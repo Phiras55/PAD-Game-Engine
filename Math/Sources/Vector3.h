@@ -24,13 +24,13 @@ struct Vector3 final																/*! Templated vector 3 structure*/
 #pragma region Variables		
 
 	union {
-		struct {	T x;																/*!< X axis value of the vector */
-					T y;																/*!< Y axis value of the vector */
-					T z;																/*!< Z axis value of the vector */
+		struct {	T x;															/*!< X axis value of the vector */
+					T y;															/*!< Y axis value of the vector */
+					T z;															/*!< Z axis value of the vector */
 				};
-		struct {	T r;																/*!< Red channel value of the color */
-					T g;																/*!< Green channel value of the color */
-					T b;																/*!< Blue channel value of the color */
+		struct {	T r;															/*!< Red channel value of the color */
+					T g;															/*!< Green channel value of the color */
+					T b;															/*!< Blue channel value of the color */
 				};
 	};
 

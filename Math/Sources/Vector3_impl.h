@@ -114,8 +114,8 @@ template <typename T>
 bool Vector3<T>::operator!=(const Vector3& _vector)
 {
 	return (	x != _vector.x
-			&&	y != _vector.y
-			&&	z != _vector.z);
+			||	y != _vector.y
+			||	z != _vector.z);
 }
 
 template <typename T>

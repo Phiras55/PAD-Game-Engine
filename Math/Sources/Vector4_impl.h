@@ -24,7 +24,8 @@ Vector4<T>::Vector4() :
 }
 
 template<typename T>
-Vector4<T>::Vector4(const Vector4& _vector) :
+template<typename U>
+Vector4<T>::Vector4(const Vector4<U>& _vector) :
 	x(_vector.x), 
 	y(_vector.y),
 	z(_vector.z),
@@ -54,6 +55,15 @@ Vector4<T>::Vector4(const T _x, const T _y, const T _z, const T _w) :
 #pragma endregion
 
 #pragma region Member Functions
+
+template<typename T>
+Vector4<T> Vector4<T>::CrossProduct(const Vector4& _vector) const
+{
+	return Vector4<T>(	(y * _vector.z) - (z * _vector.y),
+						(z * _vector.x) - (x * _vector.z),
+						(x * _vector.y) - (y * _vector.x),
+						1);
+}
 
 template<typename T>
 float Vector4<T>::DotProduct(const Vector4& _vector) const
@@ -113,6 +123,15 @@ bool Vector4<T>::operator==(const Vector4& _vector)
 			&&	y == _vector.y 
 			&&	z == _vector.z
 			&&	w == _vector.w);
+}
+
+template <typename T>
+bool Vector4<T>::operator!=(const Vector4& _vector)
+{
+	return (	x != _vector.x 
+			||	y != _vector.y 
+			||	z != _vector.z
+			||	w != _vector.w);
 }
 
 template <typename T>

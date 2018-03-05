@@ -9,6 +9,7 @@ using	Vec3i	= Vector3<int>;
 using	Vec3u	= Vector3<unsigned int>;
 using	Vec3f	= Vector3<float>;
 using	Vec3d	= Vector3<double>;
+using	Color3	= Vector3<unsigned char>;
 
 #pragma endregion
 
@@ -42,6 +43,14 @@ Vector3<T>::Vector3(const T _x, const T _y, const T _z) :
 #pragma endregion
 
 #pragma region Member Functions
+
+template<typename T>
+Vector3<T> Vector3<T>::CrossProduct(const Vector3& _vector) const
+{
+	return Vector3<T>(	(y * _vector.z) - (z * _vector.y),
+						(z * _vector.x) - (x * _vector.z),
+						(x * _vector.y) - (y * _vector.x));
+}
 
 template<typename T>
 float Vector3<T>::DotProduct(const Vector3& _vector) const
@@ -99,6 +108,14 @@ bool Vector3<T>::operator==(const Vector3& _vector)
 	return (	x == _vector.x 
 			&&	y == _vector.y 
 			&&	z == _vector.z);
+}
+
+template <typename T>
+bool Vector3<T>::operator!=(const Vector3& _vector)
+{
+	return (	x != _vector.x
+			&&	y != _vector.y
+			&&	z != _vector.z);
 }
 
 template <typename T>

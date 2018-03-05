@@ -28,6 +28,8 @@ void DavidArthurMathTest()
 	v2.DotProduct(v1);
 	std::cout << v1 << std::endl;
 
+	math::Vec3<float> v3float(1, 1, 1);
+
 	system("pause");
 }
 

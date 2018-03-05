@@ -24,8 +24,8 @@ Vector2<T>::Vector2() :
 template<typename T>
 template<typename U>
 Vector2<T>::Vector2(const Vector2<U>& _vector) :
-	x(_vector.x), 
-	y(_vector.y)
+	x(static_cast<T>(_vector.x)), 
+	y(static_cast<T>(_vector.y))
 {
 }
 
@@ -43,13 +43,13 @@ Vector2<T>::Vector2(const T _x, const T _y) :
 template<typename T>
 float Vector2<T>::DotProduct(const Vector2& _vector) const
 {
-	return (x * _vector.x) + (y * _vector.y);
+	return static_cast<float>((x * _vector.x) + (y * _vector.y));
 }
 
 template<typename T>
 float Vector2<T>::Length() const
 {
-	return sqrt((x * x) + (y * y));
+	return static_cast<float>(sqrt((x * x) + (y * y)));
 }
 
 template<typename T>
@@ -57,6 +57,8 @@ Vector2<T>& Vector2<T>::Normalize()
 {
 	if (!IsNull())
 		return (*this /= Length());
+	else
+		return *this;
 }
 
 template<typename T>
@@ -64,6 +66,8 @@ Vector2<T> Vector2<T>::Normalized() const
 {
 	if (!IsNull())
 		return (*this / Length());
+	else
+		return *this;
 }
 
 template<typename T>
@@ -93,6 +97,12 @@ template <typename T>
 bool Vector2<T>::operator==(const Vector2& _vector)
 {
 	return (x == _vector.x && y == _vector.y);
+}
+
+template <typename T>
+bool Vector2<T>::operator!=(const Vector2& _vector)
+{
+	return (x != _vector.x || y != _vector.y);
 }
 
 template <typename T>
@@ -146,8 +156,8 @@ Vector2<T> Vector2<T>::operator/(const float _scalar)
 template <typename T>
 Vector2<T>& Vector2<T>::operator/=(const float _scalar)
 {
-	x /= _scalar;
-	y /= _scalar;
+	x = static_cast<T>(x / _scalar);
+	y = static_cast<T>(y / _scalar);
 	return *this;
 }
 

@@ -3,13 +3,13 @@ namespace math	{
 
 #pragma region Typedef
 
-template<typename T>
-using	Vec3	= Vector3<T>;
-using	Vec3i	= Vector3<int>;
-using	Vec3u	= Vector3<unsigned int>;
-using	Vec3f	= Vector3<float>;
-using	Vec3d	= Vector3<double>;
-using	Color3	= Vector3<unsigned char>;
+template<typename T>																/*! Vector3 templated by the user */
+using	Vec3	= Vector3<T>;														
+using	Vec3i	= Vector3<int>;														/*! Vector3 templated in int */
+using	Vec3u	= Vector3<unsigned int>;											/*! Vector3 templated in unsigned int */
+using	Vec3f	= Vector3<float>;													/*! Vector3 templated in float */
+using	Vec3d	= Vector3<double>;													/*! Vector3 templated in double */
+using	Color3	= Vector3<unsigned char>;											/*! Vector3 templated in unsigned char */
 
 #pragma endregion
 

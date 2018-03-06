@@ -3,6 +3,8 @@
 #include <Vector3.h>
 #include <Vector4.h>
 
+#include <vld.h>
+
 using namespace pad;
 
 void DavidArthurMathTest()

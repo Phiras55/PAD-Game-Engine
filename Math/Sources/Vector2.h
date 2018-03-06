@@ -6,7 +6,7 @@ namespace pad	{
 namespace math	{
 
 template<typename T>
-struct Vector2 final																/*! Templated vector 2 structure*/
+struct Vector2 final																/*! Templated vector 2 structure */
 {
 #pragma region Constructor / Destructor
 
@@ -59,8 +59,8 @@ struct Vector2 final																/*! Templated vector 2 structure*/
 
 #pragma region Utils
 
-template <typename T>
-std::ostream& operator<<(std::ostream& _out, const Vector2<T>& _vector);			/*! << operator to print vector value with std::cout */
+template <typename T>																/*! << operator to print vector value with std::cout */
+std::ostream& operator<<(std::ostream& _out, const Vector2<T>& _vector);
 
 #pragma endregion
 

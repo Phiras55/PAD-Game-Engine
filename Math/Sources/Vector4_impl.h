@@ -3,12 +3,13 @@ namespace math	{
 
 #pragma region Typedef
 
-template<typename T>
+template<typename T>																/*! Vector4 templated by the user */
 using	Vec4	= Vector4<T>;
-using	Vec4i	= Vector4<int>;
-using	Vec4u	= Vector4<unsigned int>;
-using	Vec4f	= Vector4<float>;
-using	Vec4d	= Vector4<double>;
+using	Vec4i	= Vector4<int>;														/*! Vector4 templated in int */
+using	Vec4u	= Vector4<unsigned int>;											/*! Vector4 templated in unsigned int */
+using	Vec4f	= Vector4<float>;													/*! Vector4 templated in float */
+using	Vec4d	= Vector4<double>;													/*! Vector4 templated in double */
+using	Color4	= Vector4<unsigned char>;											/*! Vector4 templated in unsigned char */
 
 #pragma endregion
 

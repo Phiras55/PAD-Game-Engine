@@ -3,12 +3,12 @@ namespace math	{
 
 #pragma region Typedef
 
-template<typename T>
-using	Vec2	= Vector2<T>;
-using	Vec2i	= Vector2<int>;
-using	Vec2u	= Vector2<unsigned int>;
-using	Vec2f	= Vector2<float>;
-using	Vec2d	= Vector2<double>;
+template<typename T>																/*! Vector2 templated by the user */
+using	Vec2	= Vector2<T>;														
+using	Vec2i	= Vector2<int>;														/*! Vector2 templated in int */
+using	Vec2u	= Vector2<unsigned int>;											/*! Vector2 templated in unsigned int */
+using	Vec2f	= Vector2<float>;													/*! Vector2 templated in float */
+using	Vec2d	= Vector2<double>;													/*! Vector2 templated in double */
 
 #pragma endregion
 

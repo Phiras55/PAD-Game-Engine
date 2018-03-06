@@ -15,6 +15,7 @@ struct Vector3 final																/*! Templated vector 3 structure */
 	
 	template<typename U>
 	Vector3(const Vector3<U>& _vector);												/*!< Constructor by copy */
+	Vector3(const Vector3& _vector);												/*!< Constructor by copy */
 
 	Vector3(Vector3&& _vector)	= default;											/*!< Move constructor */
 	~Vector3()					= default;											/*!< Default destructor */
@@ -50,6 +51,8 @@ struct Vector3 final																/*! Templated vector 3 structure */
 
 #pragma region Operator
 
+	template <typename U>
+	void		operator=	(const	Vector3<U>&	_vector);							/*! Assignment operator*/
 	void		operator=	(const	Vector3&	_vector);							/*! Assignment operator*/
 	Vector3&	operator=	(		Vector3&&	_vector)	= default;				/*! Move assignment operator */
 	bool		operator==	(const	Vector3&	_vector);							/*! Equal to operator */
@@ -62,6 +65,7 @@ struct Vector3 final																/*! Templated vector 3 structure */
 	Vector3&	operator*=	(const	float		_scalar);							/*! Compound assignment: multiplication */
 	Vector3		operator/	(const	float		_scalar);							/*! Arithmetic operator: division */
 	Vector3&	operator/=	(const	float		_scalar);							/*! Compound assignment: division */
+	T&			operator[]	(const	int			_index);							/*! Access operator */
 
 #pragma endregion
 };

@@ -1,3 +1,5 @@
+#include <assert.h>
+
 namespace pad	{
 namespace math	{
 
@@ -26,6 +28,13 @@ template<typename U>
 Vector2<T>::Vector2(const Vector2<U>& _vector) :
 	x(static_cast<T>(_vector.x)), 
 	y(static_cast<T>(_vector.y))
+{
+}
+
+template<typename T>
+Vector2<T>::Vector2(const Vector2& _vector) :
+	x(_vector.x),
+	y(_vector.y)
 {
 }
 
@@ -85,6 +94,14 @@ bool Vector2<T>::IsUnit() const
 #pragma endregion
 
 #pragma region Operator
+
+template <typename T>
+template <typename U>
+void Vector2<T>::operator=(const Vector2<U>& _vector)
+{
+	x = static_cast<T>(_vector.x);
+	y = static_cast<T>(_vector.y);
+}
 
 template <typename T>
 void Vector2<T>::operator=(const Vector2& _vector)
@@ -159,6 +176,13 @@ Vector2<T>& Vector2<T>::operator/=(const float _scalar)
 	x = static_cast<T>(x / _scalar);
 	y = static_cast<T>(y / _scalar);
 	return *this;
+}
+
+template <typename T>
+T& Vector2<T>::operator[](const int _index)
+{
+	assert(_index >= 0 && _index < 2);
+	return *(&x + _index);
 }
 
 #pragma endregion

@@ -10,8 +10,9 @@ var searchData=
   ['vec3f',['Vec3f',['../namespacepad_1_1math.html#ac2c67cf958d2b7d769b35022eb197757',1,'pad::math']]],
   ['vec3i',['Vec3i',['../namespacepad_1_1math.html#acccfc4afcdb1f72c6881e0e74078eb7b',1,'pad::math']]],
   ['vec3u',['Vec3u',['../namespacepad_1_1math.html#ad75d374d51ed67887ddde9d2111e69fd',1,'pad::math']]],
-  ['vec4',['Vec4',['../namespacepad_1_1math.html#a60dc33698b324ca795bfef17a678b368',1,'pad::math']]],
+  ['vec4',['Vec4',['../namespacepad_1_1math.html#a97a1193114b33cea7a82ae656d507825',1,'pad::math']]],
   ['vec4d',['Vec4d',['../namespacepad_1_1math.html#a845efb6de5d2237d1a7f27cf87741454',1,'pad::math']]],
   ['vec4f',['Vec4f',['../namespacepad_1_1math.html#a4eb77014ac7b74bd24cf73bca82ac3a3',1,'pad::math']]],
+  ['vec4i',['Vec4i',['../namespacepad_1_1math.html#a6b61fad19375a5164da9e1a86403f208',1,'pad::math']]],
   ['vec4u',['Vec4u',['../namespacepad_1_1math.html#ad5b8d7d51edf8173f6a0ddbbb792c803',1,'pad::math']]]
 ];

@@ -13,6 +13,8 @@
 \item 
 {\footnotesize template$<$typename U $>$ }\\\mbox{\hyperlink{structpad_1_1math_1_1_vector3_a7f6a17638301c9ddaec4ea300a3c846a}{Vector3}} (const \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}}$<$ U $>$ \&\+\_\+vector)
 \item 
+\mbox{\hyperlink{structpad_1_1math_1_1_vector3_a08af6d6eca643fe525839844c5790e6f}{Vector3}} (const \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}} \&\+\_\+vector)
+\item 
 \mbox{\hyperlink{structpad_1_1math_1_1_vector3_adf7a624bdd20e8d79c6fe663c36ce43b}{Vector3}} (\mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}} \&\&\+\_\+vector)=default
 \item 
 \mbox{\hyperlink{structpad_1_1math_1_1_vector3_a8a778f1112409992f9e95a10f9760cfd}{$\sim$\+Vector3}} ()=default
@@ -30,6 +32,8 @@ void \mbox{\hyperlink{structpad_1_1math_1_1_vector3_a76c70ba64ff0c1b27e26d444bfd
 bool \mbox{\hyperlink{structpad_1_1math_1_1_vector3_a47a83130cf6e4210a5a3d7f8ac7bb70a}{Is\+Null}} () const
 \item 
 bool \mbox{\hyperlink{structpad_1_1math_1_1_vector3_ab8816c85165ed684cb521f3647dff935}{Is\+Unit}} () const
+\item 
+{\footnotesize template$<$typename U $>$ }\\void \mbox{\hyperlink{structpad_1_1math_1_1_vector3_a33986a35c9534de7caec3353e19f0b10}{operator=}} (const \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}}$<$ U $>$ \&\+\_\+vector)
 \item 
 void \mbox{\hyperlink{structpad_1_1math_1_1_vector3_aabaa38eda86b1ebc0ad7b10ce3dd146e}{operator=}} (const \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}} \&\+\_\+vector)
 \item 
@@ -54,6 +58,8 @@ bool \mbox{\hyperlink{structpad_1_1math_1_1_vector3_a3f24df3c362f90ca6a02bfb40cc
 \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}} \mbox{\hyperlink{structpad_1_1math_1_1_vector3_a6da03717416e8f24f15c69a195e89734}{operator/}} (const float \+\_\+scalar)
 \item 
 \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}} \& \mbox{\hyperlink{structpad_1_1math_1_1_vector3_a562f20bc51eb5d598acecf4233bb8005}{operator/=}} (const float \+\_\+scalar)
+\item 
+T \& \mbox{\hyperlink{structpad_1_1math_1_1_vector3_af14bcf2fb21a1a991ba711cc00ba1307}{operator\mbox{[}$\,$\mbox{]}}} (const int \+\_\+index)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -86,7 +92,7 @@ Templated vector 3 structure
 \mbox{\Hypertarget{structpad_1_1math_1_1_vector3_a06aefc4e209e7e8ab954c9124e9f663f}\label{structpad_1_1math_1_1_vector3_a06aefc4e209e7e8ab954c9124e9f663f}} 
 \index{pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}!Vector3@{Vector3}}
 \index{Vector3@{Vector3}!pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}}
-\subsubsection{\texorpdfstring{Vector3()}{Vector3()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+\subsubsection{\texorpdfstring{Vector3()}{Vector3()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{pad\+::math\+::\+Vector3}}$<$ T $>$\+::\mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
@@ -95,22 +101,29 @@ Default constructor
 \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}} templated in unsigned char \mbox{\Hypertarget{structpad_1_1math_1_1_vector3_a0770fb886ae92f895ce0258e28a1a1eb}\label{structpad_1_1math_1_1_vector3_a0770fb886ae92f895ce0258e28a1a1eb}} 
 \index{pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}!Vector3@{Vector3}}
 \index{Vector3@{Vector3}!pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}}
-\subsubsection{\texorpdfstring{Vector3()}{Vector3()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+\subsubsection{\texorpdfstring{Vector3()}{Vector3()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{pad\+::math\+::\+Vector3}}$<$ T $>$\+::\mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}} (\begin{DoxyParamCaption}\item[{const T}]{\+\_\+x,  }\item[{const T}]{\+\_\+y,  }\item[{const T}]{\+\_\+z }\end{DoxyParamCaption})}
 
 Constructor by value \mbox{\Hypertarget{structpad_1_1math_1_1_vector3_a7f6a17638301c9ddaec4ea300a3c846a}\label{structpad_1_1math_1_1_vector3_a7f6a17638301c9ddaec4ea300a3c846a}} 
 \index{pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}!Vector3@{Vector3}}
 \index{Vector3@{Vector3}!pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}}
-\subsubsection{\texorpdfstring{Vector3()}{Vector3()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+\subsubsection{\texorpdfstring{Vector3()}{Vector3()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 template$<$typename U $>$ \\
 \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{pad\+::math\+::\+Vector3}}$<$ T $>$\+::\mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}}$<$ U $>$ \&}]{\+\_\+vector }\end{DoxyParamCaption})}
 
+Constructor by copy \mbox{\Hypertarget{structpad_1_1math_1_1_vector3_a08af6d6eca643fe525839844c5790e6f}\label{structpad_1_1math_1_1_vector3_a08af6d6eca643fe525839844c5790e6f}} 
+\index{pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}}
+\subsubsection{\texorpdfstring{Vector3()}{Vector3()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structpad_1_1math_1_1_vector3}{pad\+::math\+::\+Vector3}}$<$ T $>$\+::\mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}}$<$ T $>$ \&}]{\+\_\+vector }\end{DoxyParamCaption})}
+
 Constructor by copy \mbox{\Hypertarget{structpad_1_1math_1_1_vector3_adf7a624bdd20e8d79c6fe663c36ce43b}\label{structpad_1_1math_1_1_vector3_adf7a624bdd20e8d79c6fe663c36ce43b}} 
 \index{pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}!Vector3@{Vector3}}
 \index{Vector3@{Vector3}!pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}}
-\subsubsection{\texorpdfstring{Vector3()}{Vector3()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+\subsubsection{\texorpdfstring{Vector3()}{Vector3()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
 {\footnotesize\ttfamily template$<$typename T$>$ \\
 \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{pad\+::math\+::\+Vector3}}$<$ T $>$\+::\mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}}$<$ T $>$ \&\&}]{\+\_\+vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
@@ -236,17 +249,25 @@ Compound assignment\+: multiplication \mbox{\Hypertarget{structpad_1_1math_1_1_v
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}}$<$ T $>$ \& \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{pad\+::math\+::\+Vector3}}$<$ T $>$\+::operator/= (\begin{DoxyParamCaption}\item[{const float}]{\+\_\+scalar }\end{DoxyParamCaption})}
 
-Arithmetic operator\+: division \mbox{\Hypertarget{structpad_1_1math_1_1_vector3_aabaa38eda86b1ebc0ad7b10ce3dd146e}\label{structpad_1_1math_1_1_vector3_aabaa38eda86b1ebc0ad7b10ce3dd146e}} 
+Arithmetic operator\+: division \mbox{\Hypertarget{structpad_1_1math_1_1_vector3_a33986a35c9534de7caec3353e19f0b10}\label{structpad_1_1math_1_1_vector3_a33986a35c9534de7caec3353e19f0b10}} 
 \index{pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}!operator=@{operator=}}
 \index{operator=@{operator=}!pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}}
-\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template$<$typename U $>$ \\
+void \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{pad\+::math\+::\+Vector3}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}}$<$ U $>$ \&}]{\+\_\+vector }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{structpad_1_1math_1_1_vector3_aabaa38eda86b1ebc0ad7b10ce3dd146e}\label{structpad_1_1math_1_1_vector3_aabaa38eda86b1ebc0ad7b10ce3dd146e}} 
+\index{pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}!operator=@{operator=}}
+\index{operator=@{operator=}!pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 void \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{pad\+::math\+::\+Vector3}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}}$<$ T $>$ \&}]{\+\_\+vector }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{structpad_1_1math_1_1_vector3_af89a8db6bdfd4ce06a96e63021e9ed9a}\label{structpad_1_1math_1_1_vector3_af89a8db6bdfd4ce06a96e63021e9ed9a}} 
+Assignment operator \mbox{\Hypertarget{structpad_1_1math_1_1_vector3_af89a8db6bdfd4ce06a96e63021e9ed9a}\label{structpad_1_1math_1_1_vector3_af89a8db6bdfd4ce06a96e63021e9ed9a}} 
 \index{pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}!operator=@{operator=}}
 \index{operator=@{operator=}!pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}}
-\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$typename T$>$ \\
 \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}}\& \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{pad\+::math\+::\+Vector3}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}}$<$ T $>$ \&\&}]{\+\_\+vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
 
@@ -257,7 +278,14 @@ Assignment operator \mbox{\Hypertarget{structpad_1_1math_1_1_vector3_a8366aa2e0d
 {\footnotesize\ttfamily template$<$typename T $>$ \\
 bool \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{pad\+::math\+::\+Vector3}}$<$ T $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{Vector3}}$<$ T $>$ \&}]{\+\_\+vector }\end{DoxyParamCaption})}
 
-Move assignment operator 
+Move assignment operator \mbox{\Hypertarget{structpad_1_1math_1_1_vector3_af14bcf2fb21a1a991ba711cc00ba1307}\label{structpad_1_1math_1_1_vector3_af14bcf2fb21a1a991ba711cc00ba1307}} 
+\index{pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!pad\+::math\+::\+Vector3@{pad\+::math\+::\+Vector3}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \& \mbox{\hyperlink{structpad_1_1math_1_1_vector3}{pad\+::math\+::\+Vector3}}$<$ T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const int}]{\+\_\+index }\end{DoxyParamCaption})}
+
+Compound assignment\+: division 
 
 \subsection{Member Data Documentation}
 \mbox{\Hypertarget{structpad_1_1math_1_1_vector3_a85cf7a3b4a5c570cfb3139ef228f65ab}\label{structpad_1_1math_1_1_vector3_a85cf7a3b4a5c570cfb3139ef228f65ab}} 

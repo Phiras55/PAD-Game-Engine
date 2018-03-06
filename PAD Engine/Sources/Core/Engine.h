@@ -1,3 +1,6 @@
+#include <System/SDLWindow.h>
+#include <Graphics/Renderer.h>
+
 namespace pad
 {
 namespace core
@@ -12,9 +15,13 @@ public:
 	Engine(const Engine&)  = delete;
 	Engine(const Engine&&) = delete;
 
+private:
+	gfx::Renderer m_renderer;
+
 public:
+	void InitSimulation();
 	void StartSimulation(); // Run()
-	void Inputs();
+	void PollEvents();
 	void Update(const float _deltaTime);
 	void FixedUpdate(const float _deltaTime);
 	void Render();

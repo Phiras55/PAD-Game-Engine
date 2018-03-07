@@ -5,35 +5,101 @@ namespace pad
 namespace core
 {
 
-Engine::Engine()
-{
+	Engine::Engine()
+	{
 
-}
+	}
 
-void Engine::StartSimulation()
-{
+	Engine::~Engine()
+	{
+		delete mp_window;
+	}
 
-}
+	void Engine::InitSimulation()
+	{
+		// Will be read from a config file
+		sys::WindowSettings winSettings;
 
-void Engine::Inputs()
-{
+		winSettings.title = "This is a SDL Window.";
+		winSettings.position.x = 400u;
+		winSettings.position.y = 200u;
+		winSettings.size.x = 800u;
+		winSettings.size.y = 600u;
+		winSettings.isFullscreen = false;
 
-}
+		// Will be read from a config file
+		sys::E_WINDOW_TYPE windowType = sys::E_WINDOW_TYPE::ENGINE;
 
-void Engine::Update(const float _deltaTime)
-{
+		// Will be read from a config file
+		gfx::RenderSettings renderSettings;
 
-}
+		renderSettings.viewportSize.x = winSettings.size.x;
+		renderSettings.viewportSize.y = winSettings.size.y;
+		renderSettings.clearColor.r = 0.3f;
+		renderSettings.clearColor.g = 0.3f;
+		renderSettings.clearColor.b = 0.3f;
+		renderSettings.clearColor.a = 1.0f;
 
-void Engine::FixedUpdate(const float _deltaTime)
-{
+		CreateWindow(winSettings, windowType);
+		CreateRenderer(renderSettings);
+	}
 
-}
+	void Engine::CreateWindow(const sys::WindowSettings& _infos, const sys::E_WINDOW_TYPE _windowType)
+	{
+		switch (_windowType)
+		{
+		case sys::E_WINDOW_TYPE::EDITOR:
+			mp_window = nullptr;
+			break;
+		case sys::E_WINDOW_TYPE::ENGINE:
+		default:
+			mp_window = new sys::SDLWindow();
+		}
 
-void Engine::Render()
-{
+		mp_window->Init(_infos);
+	}
 
-}
+	void Engine::CreateRenderer(const gfx::RenderSettings& settings)
+	{
+		m_renderer.Init(settings);
+	}
 
-}
-}
+	void Engine::StartSimulation()
+	{
+		while (mp_window->IsOpen())
+		{
+			PollEvents();
+			Update(1.f);
+			FixedUpdate(1.f);
+			Render();
+		}
+	}
+
+	void Engine::PollEvents()
+	{
+		mp_window->PollEvents();
+
+		// Get inputs here
+	}
+
+	void Engine::Update(const float32 _deltaTime)
+	{
+		
+	}
+
+	void Engine::FixedUpdate(const float32 _deltaTime)
+	{
+
+	}
+
+	void Engine::Render()
+	{
+		m_renderer.ClearBuffer();
+
+
+
+		mp_window->SwapBuffer();
+	}
+
+} // namespace core
+} // namespace pad

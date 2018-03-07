@@ -2,8 +2,8 @@
 #include <immintrin.h>
 #include <emmintrin.h>
 
-namespace pad {
-namespace math {
+namespace pad	{
+namespace math	{
 
 struct Matrix4x4 final
 {
@@ -53,8 +53,6 @@ struct Matrix4x4 final
 	Matrix4x4&	operator-=	(const	Matrix4x4&	_matrix);
 	Matrix4x4	operator*	(const	Matrix4x4&	_matrix);
 	Matrix4x4&	operator*=	(const	Matrix4x4&	_matrix);
-	Matrix4x4	operator*	(const	float&		_scalar);
-	Matrix4x4&	operator*=	(const	float&		_scalar);
 
 #pragma endregion
 };
@@ -62,4 +60,4 @@ struct Matrix4x4 final
 } // namespace math
 } // namespace pad
 
-#include <Matrix4x4_impl.h>
+#include <Math/Matrix4x4_impl.h>

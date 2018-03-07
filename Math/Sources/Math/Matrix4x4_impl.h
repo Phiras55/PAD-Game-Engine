@@ -1,6 +1,5 @@
-#include "Matrix4x4.h"
-namespace pad {
-namespace math {
+namespace pad	{
+namespace math	{
 
 #pragma region Utils
 
@@ -119,18 +118,5 @@ Matrix4x4& Matrix4x4::operator*=(const Matrix4x4& _matrix)
 	return *this;
 }
 
-Matrix4x4 Matrix4x4::operator*(const float& _scalar)
-{
-	Matrix4x4 mat(*this);
-	mat *= _scalar;
-	return mat;
-}
-
-Matrix4x4& Matrix4x4::operator*=(const float& _scalar)
-{
-	__DATA256[0] = _mm256_mul_ps(__DATA256[0], _mm256_set1_ps(_scalar));
-	return *this;
-}
-
-}
-}
+} // namespace math
+} // namespace pad

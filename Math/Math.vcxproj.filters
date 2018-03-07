@@ -33,13 +33,11 @@
     <ClInclude Include="Sources\Math\Vector4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Matrix4x4.h">
+    <ClInclude Include="Sources\Math\Matrix4x4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Sources\Matrix4x4_impl.h">
+    <ClInclude Include="Sources\Math\Matrix4x4_impl.h">
       <Filter>Source Files</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,3 +1,4 @@
+#include <Core/EngineClock.h>
 #include <System/SDLWindow.h>
 #include <Graphics/Renderer.h>
 
@@ -5,6 +6,9 @@ namespace pad
 {
 namespace core
 {
+
+namespace pad	{
+namespace core	{
 
 class Engine final
 {

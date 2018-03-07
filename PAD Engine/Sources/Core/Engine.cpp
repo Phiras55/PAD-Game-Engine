@@ -1,9 +1,8 @@
 #include <Core/Engine.h>
+#include <Core/EngineClock.h>
 
-namespace pad
-{
-namespace core
-{
+namespace pad	{
+namespace core	{
 
 	Engine::Engine()
 	{
@@ -62,43 +61,6 @@ namespace core
 	void Engine::CreateRenderer(const gfx::RenderSettings& settings)
 	{
 		m_renderer.Init(settings);
-	}
-
-	void Engine::StartSimulation()
-	{
-		while (mp_window->IsOpen())
-		{
-			PollEvents();
-			Update(1.f);
-			FixedUpdate(1.f);
-			Render();
-		}
-	}
-
-	void Engine::PollEvents()
-	{
-		mp_window->PollEvents();
-
-		// Get inputs here
-	}
-
-	void Engine::Update(const float32 _deltaTime)
-	{
-		
-	}
-
-	void Engine::FixedUpdate(const float32 _deltaTime)
-	{
-
-	}
-
-	void Engine::Render()
-	{
-		m_renderer.ClearBuffer();
-
-
-
-		mp_window->SwapBuffer();
 	}
 
 } // namespace core

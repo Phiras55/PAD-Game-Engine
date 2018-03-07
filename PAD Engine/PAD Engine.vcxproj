@@ -23,6 +23,8 @@
     <ClCompile Include="Sources\Core\Engine.cpp" />
     <ClCompile Include="Sources\Graphics\Renderer.cpp" />
     <ClCompile Include="Sources\Graphics\Shader.cpp" />
+    <ClCompile Include="Sources\Core\EngineClock.cpp" />
+    <ClCompile Include="Sources\Core\Timer.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
     <ClCompile Include="Sources\System\SDLWindow.cpp" />
   </ItemGroup>
@@ -36,6 +38,8 @@
     <ClInclude Include="Sources\System\IWindowBase.h" />
     <ClInclude Include="Sources\System\SDLWindow.h" />
     <ClInclude Include="Sources\System\WindowSettings.h" />
+    <ClInclude Include="Sources\Core\EngineClock.h" />
+    <ClInclude Include="Sources\Core\Timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -7,10 +7,14 @@
 #include <immintrin.h>
 #include <emmintrin.h>
 
+#include <vld.h>
+
 using namespace pad;
 
 void ArthurMathTest()
 {
+
+	math::Vec3<float> v3float(1, 1, 1);
 
 	system("pause");
 }

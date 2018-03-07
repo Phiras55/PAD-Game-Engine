@@ -1,14 +1,17 @@
+#include <assert.h>
+
 namespace pad	{
 namespace math	{
 
 #pragma region Typedef
 
-template<typename T>
-using	Vec3	= Vector3<T>;
-using	Vec3i	= Vector3<int>;
-using	Vec3u	= Vector3<unsigned int>;
-using	Vec3f	= Vector3<float>;
-using	Vec3d	= Vector3<double>;
+template<typename T>																/*! Vector3 templated by the user */
+using	Vec3	= Vector3<T>;														
+using	Vec3i	= Vector3<int>;														/*! Vector3 templated in int */
+using	Vec3u	= Vector3<unsigned int>;											/*! Vector3 templated in unsigned int */
+using	Vec3f	= Vector3<float>;													/*! Vector3 templated in float */
+using	Vec3d	= Vector3<double>;													/*! Vector3 templated in double */
+using	Color3	= Vector3<unsigned char>;											/*! Vector3 templated in unsigned char */
 
 #pragma endregion
 
@@ -25,7 +28,15 @@ Vector3<T>::Vector3() :
 template<typename T>
 template<typename U>
 Vector3<T>::Vector3(const Vector3<U>& _vector) :
-	x(_vector.x), 
+	x(static_cast<T>(_vector.x)), 
+	y(static_cast<T>(_vector.y)),
+	z(static_cast<T>(_vector.z))
+{
+}
+
+template<typename T>
+Vector3<T>::Vector3(const Vector3& _vector) :
+	x(_vector.x),
 	y(_vector.y),
 	z(_vector.z)
 {
@@ -42,6 +53,14 @@ Vector3<T>::Vector3(const T _x, const T _y, const T _z) :
 #pragma endregion
 
 #pragma region Member Functions
+
+template<typename T>
+Vector3<T> Vector3<T>::CrossProduct(const Vector3& _vector) const
+{
+	return Vector3<T>(	(y * _vector.z) - (z * _vector.y),
+						(z * _vector.x) - (x * _vector.z),
+						(x * _vector.y) - (y * _vector.x));
+}
 
 template<typename T>
 float Vector3<T>::DotProduct(const Vector3& _vector) const
@@ -86,6 +105,15 @@ bool Vector3<T>::IsUnit() const
 #pragma region Operator
 
 template <typename T>
+template <typename U>
+void Vector3<T>::operator=(const Vector3<U>& _vector)
+{
+	x = static_cast<T>(_vector.x);
+	y = static_cast<T>(_vector.y);
+	z = static_cast<T>(_vector.z);
+}
+
+template <typename T>
 void Vector3<T>::operator=(const Vector3& _vector)
 {
 	x = _vector.x;
@@ -99,6 +127,14 @@ bool Vector3<T>::operator==(const Vector3& _vector)
 	return (	x == _vector.x 
 			&&	y == _vector.y 
 			&&	z == _vector.z);
+}
+
+template <typename T>
+bool Vector3<T>::operator!=(const Vector3& _vector)
+{
+	return (	x != _vector.x
+			||	y != _vector.y
+			||	z != _vector.z);
 }
 
 template <typename T>
@@ -177,6 +213,13 @@ Vector3<T>& Vector3<T>::operator/=(const float _scalar)
 	}
 	else
 		return NULL;
+}
+
+template <typename T>
+T& Vector3<T>::operator[](const int _index)
+{
+	assert(_index >= 0 && _index < 3);
+	return *(&x + _index);
 }
 
 #pragma endregion

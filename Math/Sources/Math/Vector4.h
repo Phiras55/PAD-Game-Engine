@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <Vector3.h>
+#include <Math/Vector3.h>
 
 namespace pad	{
 namespace math	{
@@ -92,4 +92,4 @@ std::ostream& operator<<(std::ostream& _out, const Vector4<T>& _vector);
 } // namespace math
 } // namespace pad
 
-#include <Vector4_impl.h>
+#include <Math/Vector4_impl.h>

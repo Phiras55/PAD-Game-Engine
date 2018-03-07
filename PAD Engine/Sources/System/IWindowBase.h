@@ -1,10 +1,16 @@
 #pragma once
-#include <System/Win_Info.h>
+#include <System/WindowSettings.h>
 
 namespace pad
 {
 namespace sys
 {
+
+enum class E_WINDOW_TYPE : uint8
+{
+	ENGINE = 1,
+	EDITOR = 2
+};
 
 class IWindowBase
 {
@@ -13,13 +19,15 @@ protected:
 
 public:
 	virtual void PollEvents() = 0;
-	virtual void Resize(const int w, const int h) = 0;
-	virtual void ReloadInformations(const Win_Info& infos) = 0;
-	virtual void Init(const Win_Info& infos) = 0;
+	virtual void Resize(const math::Vec2<uint16>& size) = 0;
+	virtual void ReloadSettings(const WindowSettings& _infos) = 0;
+	virtual void Init(const WindowSettings& _infos) = 0;
 	virtual bool IsOpen() = 0;
+	virtual void SwapBuffer() = 0;
 
 public:
-	// TODO : Getters and Setters for Size/Position...
+	virtual const math::Vec2i GetPosition() const = 0;
+	virtual const math::Vec2i GetSize() const = 0;
 };
 
 } // namespace sys

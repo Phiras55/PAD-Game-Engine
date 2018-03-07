@@ -12,51 +12,24 @@ namespace gfx
 
 	}
 
-	void Renderer::Init(const sys::Win_Info& _infos, const E_WINDOW_TYPE _windowType)
-	{
-		switch (_windowType)
-		{
-		case E_WINDOW_TYPE::EDITOR:
-			mp_window = nullptr;
-			break;
-		case E_WINDOW_TYPE::ENGINE:
-		default:
-			mp_window = new sys::SDLWindow();
-		}
-		CreateContext(_infos);
-	}
-
 	void Renderer::StopModule()
 	{
-		if (mp_window)
-		{
-			SDL_GL_DeleteContext(m_context);
-			delete mp_window;
-			SDL_Quit();
-		}
+
 	}
 
 	void Renderer::StartModule()
 	{
-		InitContext();
-		InitViewPort();
+
 	}
 
-	void Renderer::CreateContext(const sys::Win_Info& _infos)
+	void Renderer::Init(const RenderSettings& settings)
 	{
-		if (mp_window)
-		{
-			if (SDL_Init(SDL_INIT_VIDEO) < 0)
-			{
-				// TODO : Error message
-				return;
-			}
+		InitContext(settings.clearColor);
+		InitViewPort(settings.viewportSize);
+	}
 
-			mp_window->Init(_infos);
-			m_context = SDL_GL_CreateContext(mp_window->GetWindow());
-			SDL_GL_MakeCurrent(mp_window->GetWindow(), m_context);
-		}
-
+	void Renderer::InitContext(const math::Vec4f& _clearColor)
+	{
 		if (glewInit() != GLEW_OK)
 		{
 			// TODO : Error message
@@ -64,14 +37,11 @@ namespace gfx
 		}
 
 		glClearColor(
-			_infos.background_color[0],
-			_infos.background_color[1],
-			_infos.background_color[2],
-			_infos.background_color[3]);
-	}
+			_clearColor.r,
+			_clearColor.g,
+			_clearColor.b,
+			_clearColor.a);
 
-	void Renderer::InitContext()
-	{
 		glewExperimental = true;
 
 		glEnable(GL_DEPTH_TEST);
@@ -80,23 +50,23 @@ namespace gfx
 		glDepthFunc(GL_LESS);
 	}
 
-	void Renderer::InitViewPort()
+	void Renderer::InitViewPort(const math::Vec2i& _viewportSize)
 	{
 		glViewport(
-			mp_window->GetPositionX(), 
-			mp_window->GetPositionY(),
-			mp_window->GetSizeX(), 
-			mp_window->GetSizeY());
+			0, 
+			0,
+			_viewportSize.x,
+			_viewportSize.y);
 	}
 
-	void Renderer::ClearScreen()
+	void Renderer::Draw()
+	{
+
+	}
+
+	void Renderer::ClearBuffer()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	}
-
-	void Renderer::SwapBuffer()
-	{
-		mp_window->SwapBuffer();
 	}
 
 } // namespace gfx

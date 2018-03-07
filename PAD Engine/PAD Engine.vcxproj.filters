@@ -48,6 +48,9 @@
     <ClCompile Include="Sources\System\SDLWindow.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Graphics\Shader.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -55,9 +58,6 @@
     </ClInclude>
     <ClInclude Include="Sources\Graphics\Renderer.h">
       <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\Win_Info.h">
-      <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\IWindowBase.h">
       <Filter>Header Files\System</Filter>
@@ -67,6 +67,18 @@
     </ClInclude>
     <ClInclude Include="Sources\System\IModule.h">
       <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Shader.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\WindowSettings.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RenderSettings.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\ShaderType.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -13,29 +13,39 @@ namespace sys
 	SDLWindow::~SDLWindow()
 	{
 		SDL_DestroyWindow(mp_window);
+		SDL_GL_DeleteContext(m_context);
+		SDL_Quit();
 	}
 
-	void SDLWindow::Init(const Win_Info& _infos)
+	void SDLWindow::Init(const WindowSettings& _infos)
 	{
+		if (SDL_Init(SDL_INIT_VIDEO) < 0)
+		{
+			// TODO : Error message
+			return;
+		}
+
 		mp_window = SDL_CreateWindow(_infos.title.c_str(), 
-			_infos.posX, 
-			_infos.posY, 
-			_infos.width, 
-			_infos.height, 
+			_infos.position.x,
+			_infos.position.y,
+			_infos.size.x, 
+			_infos.size.y, 
 			SDL_WINDOW_OPENGL | 
 			SDL_WINDOW_RESIZABLE | 
 			(_infos.isFullscreen ? SDL_WINDOW_FULLSCREEN : 0x00));
 
-		if (mp_window)
-			m_isOpen = true;
+		m_isOpen = true;
+
+		m_context = SDL_GL_CreateContext(mp_window);
+		SDL_GL_MakeCurrent(mp_window, m_context);
 	}
 
-	void SDLWindow::Resize(const int _w, const int _h)
+	void SDLWindow::Resize(const math::Vec2<uint16>& _size)
 	{
 
 	}
 
-	void SDLWindow::ReloadInformations(const Win_Info& _infos)
+	void SDLWindow::ReloadSettings(const WindowSettings& _infos)
 	{
 
 	}

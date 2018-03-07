@@ -27,6 +27,11 @@ struct Vector4 final																/*! Templated vector 4 structure */
 #pragma endregion
 
 #pragma region Variables
+	union
+	{
+		struct { T x, y, z, w; };
+		struct { T r, g, b, a; };
+	};
 
 	union {
 		struct {	T x;															/*!< X axis value of the vector */

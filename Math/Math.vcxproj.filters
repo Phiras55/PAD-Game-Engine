@@ -36,13 +36,10 @@
     <ClInclude Include="Sources\Math\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Math\Vector4_impl.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Sources\Math\Matrix4x4.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Math\Vector3_impl.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\Vector2_impl.h">
+    <ClInclude Include="Sources\Math\Matrix4x4_impl.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -12,30 +12,23 @@ struct Vector4 final
 #pragma region Constructor / Destructor
 
 	Vector4();
-
 	Vector4(const T _x, const T _y, const T _z, const T _w);
 	Vector4(const Vector4& _vector);
 	template<typename U>
 	Vector4(const Vector3<U>& _vector);
 
 	Vector4(Vector4&& _vector)	= default;
+	
 	~Vector4()					= default;
 
 #pragma endregion
 
 #pragma region Variables
-
-	union {	T x; 
-			T r; };
-
-	union {	T y;
-			T g; };
-
-	union {	T z;
-			T b; };
-
-	union {	T w;
-			T a; };
+	union
+	{
+		struct { T x, y, z, w; };
+		struct { T r, g, b, a; };
+	};
 
 #pragma endregion
 

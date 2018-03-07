@@ -15,22 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Vector2_impl.h">
+    <ClInclude Include="Sources\Math\Vector2_impl.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Vector3_impl.h">
+    <ClInclude Include="Sources\Math\Vector3_impl.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Vector4_impl.h">
+    <ClInclude Include="Sources\Math\Vector4_impl.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Vector4.h">
+    <ClInclude Include="Sources\Math\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Vector3.h">
+    <ClInclude Include="Sources\Math\Vector3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Vector2.h">
+    <ClInclude Include="Sources\Math\Vector4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

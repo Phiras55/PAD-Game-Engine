@@ -27,9 +27,10 @@ namespace gfx
 
 	void Shader::Use()
 	{
-		if (m_progID != INVALID_PROG_VALUE)
+		if (m_progID != INVALID_PROG_VALUE && m_progID != m_currentProgID)
 		{
-
+			m_currentProgID = m_progID;
+			glUseProgram(m_progID);
 		}
 	}
 
@@ -135,6 +136,34 @@ namespace gfx
 		glDeleteShader(_fragID);
 
 		return true;
+	}
+
+	void Shader::SetUniform(const std::string& name, int32 value)
+	{
+		if (m_uniforms.find(name) == m_uniforms.end())
+			m_uniforms[name] = glGetUniformLocation(m_progID, name.c_str());
+		glUniform1i(m_uniforms[name], value);
+	}
+
+	void Shader::SetUniform(const std::string& name, uint32 value)
+	{
+		if (m_uniforms.find(name) == m_uniforms.end())
+			m_uniforms[name] = glGetUniformLocation(m_progID, name.c_str());
+		glUniform1ui(m_uniforms[name], value);
+	}
+
+	void Shader::SetUniform(const std::string& name, float32 value)
+	{
+		if (m_uniforms.find(name) == m_uniforms.end())
+			m_uniforms[name] = glGetUniformLocation(m_progID, name.c_str());
+		glUniform1f(m_uniforms[name], value);
+	}
+
+	void Shader::SetUniform(const std::string& name, bool value)
+	{
+		if (m_uniforms.find(name) == m_uniforms.end())
+			m_uniforms[name] = glGetUniformLocation(m_progID, name.c_str());
+		glUniform1i(m_uniforms[name], (int)value);
 	}
 
 } // namespace gfx

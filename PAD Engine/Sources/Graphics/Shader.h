@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include <Common.h>
 
 #include <Graphics/ShaderType.h>
@@ -12,18 +13,24 @@ class Shader
 {
 public:
 	Shader();
-	~Shader() = default;
+	~Shader();
 
 	Shader(const Shader&)	= delete;
 	Shader(Shader&&)		= delete;
 
 private:
-	static int32	m_currentProgID;
-	int32			m_progID;
+	static int32				 m_currentProgID;
+	int32						 m_progID;
+	std::map<std::string, int32> m_uniforms;
 
 public:
 	void Use();
 	bool LoadFromFile(const char* _vPath, const char* _fPath);
+
+	void SetUniform(const std::string& name, int32 value);
+	void SetUniform(const std::string& name, uint32 value);
+	void SetUniform(const std::string& name, bool value);
+	void SetUniform(const std::string& name, float32 value);
 
 private:
 	bool CompileShader(const char* _shaderCode, int32& _shaderID, const E_SHADER_TYPE& _type);

@@ -1,0 +1,161 @@
+\hypertarget{classpad_1_1core_1_1_timer}{}\section{pad\+:\+:core\+:\+:Timer Class Reference}
+\label{classpad_1_1core_1_1_timer}\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+
+
+{\ttfamily \#include $<$Timer.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpad_1_1core_1_1_timer_a30a7706137aea9acde41ca7ee90326e3}{Timer}} (const bool \+\_\+affected\+By\+Pause=true)
+\item 
+\mbox{\hyperlink{classpad_1_1core_1_1_timer_aec538febc2d52e50ad5df1b200b60d5d}{$\sim$\+Timer}} ()
+\item 
+void \mbox{\hyperlink{classpad_1_1core_1_1_timer_ac3c92037256639490ad979987c58a3d3}{Start}} ()
+\item 
+void \mbox{\hyperlink{classpad_1_1core_1_1_timer_a150118ce8a2eaa2aa2e5e827511356f9}{Pause}} ()
+\item 
+void \mbox{\hyperlink{classpad_1_1core_1_1_timer_a06994d900c4a882acffc4ba47b99fc85}{Unpause}} ()
+\item 
+void \mbox{\hyperlink{classpad_1_1core_1_1_timer_a3a3cbda30033c7c9303f34ed103d70d8}{Stop}} ()
+\item 
+const double \mbox{\hyperlink{classpad_1_1core_1_1_timer_a81ee8c0bd00ea230edd6c177b578ae41}{Get\+Duration}} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacepad_1_1core_a4359864da05f393ed6e69d9d018946ad}{Timepoint}} \mbox{\hyperlink{classpad_1_1core_1_1_timer_afe9926da78b47b4c3d33fab3632903a5}{start\+Time}}
+\item 
+double \mbox{\hyperlink{classpad_1_1core_1_1_timer_ad76d18dd62c6965847b39e4e1f5d0f9b}{duration}}
+\item 
+double \mbox{\hyperlink{classpad_1_1core_1_1_timer_a4c374309dd4560bb3203c79d5f41036c}{pause\+Duration}}
+\item 
+unsigned short \mbox{\hyperlink{classpad_1_1core_1_1_timer_a56bb681d982af55045a5f614ba5c9e22}{id}}
+\item 
+bool \mbox{\hyperlink{classpad_1_1core_1_1_timer_aaf3934066247c812ced8f0b234280925}{affected\+By\+Pause}}
+\item 
+\mbox{\hyperlink{namespacepad_1_1core_a4359864da05f393ed6e69d9d018946ad}{Timepoint}} \mbox{\hyperlink{classpad_1_1core_1_1_timer_a0cbad14aa307f3c039b0ac15c239078d}{pause\+Start\+Time}}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::unordered\+\_\+map$<$ unsigned short, \mbox{\hyperlink{classpad_1_1core_1_1_timer}{Timer}} $\ast$ $>$ \mbox{\hyperlink{classpad_1_1core_1_1_timer_a57359f64301ebdbd74a257ca1ce45e1c}{timer\+Collection}}
+\item 
+static std\+::vector$<$ unsigned short $>$ \mbox{\hyperlink{classpad_1_1core_1_1_timer_ae68b007567e905744c73a4f340f1bebe}{id\+Pool}}
+\item 
+static unsigned short \mbox{\hyperlink{classpad_1_1core_1_1_timer_aaa8d5b7c9776da6430af17964d3f2871}{new\+Id}} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classpad_1_1core_1_1_timer}{Timer}} class that can be used as stop watch 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpad_1_1core_1_1_timer_a30a7706137aea9acde41ca7ee90326e3}\label{classpad_1_1core_1_1_timer_a30a7706137aea9acde41ca7ee90326e3}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{Timer()}{Timer()}}
+{\footnotesize\ttfamily pad\+::core\+::\+Timer\+::\+Timer (\begin{DoxyParamCaption}\item[{const bool}]{\+\_\+affected\+By\+Pause = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Default constructor \mbox{\Hypertarget{classpad_1_1core_1_1_timer_aec538febc2d52e50ad5df1b200b60d5d}\label{classpad_1_1core_1_1_timer_aec538febc2d52e50ad5df1b200b60d5d}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!````~Timer@{$\sim$\+Timer}}
+\index{````~Timer@{$\sim$\+Timer}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{$\sim$\+Timer()}{~Timer()}}
+{\footnotesize\ttfamily pad\+::core\+::\+Timer\+::$\sim$\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default destructor 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classpad_1_1core_1_1_timer_a81ee8c0bd00ea230edd6c177b578ae41}\label{classpad_1_1core_1_1_timer_a81ee8c0bd00ea230edd6c177b578ae41}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!Get\+Duration@{Get\+Duration}}
+\index{Get\+Duration@{Get\+Duration}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{Get\+Duration()}{GetDuration()}}
+{\footnotesize\ttfamily const double pad\+::core\+::\+Timer\+::\+Get\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Return the current duration of the timer, or the total duration if the timer have been stopped \mbox{\Hypertarget{classpad_1_1core_1_1_timer_a150118ce8a2eaa2aa2e5e827511356f9}\label{classpad_1_1core_1_1_timer_a150118ce8a2eaa2aa2e5e827511356f9}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!Pause@{Pause}}
+\index{Pause@{Pause}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{Pause()}{Pause()}}
+{\footnotesize\ttfamily void pad\+::core\+::\+Timer\+::\+Pause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Pause the timer \mbox{\Hypertarget{classpad_1_1core_1_1_timer_ac3c92037256639490ad979987c58a3d3}\label{classpad_1_1core_1_1_timer_ac3c92037256639490ad979987c58a3d3}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!Start@{Start}}
+\index{Start@{Start}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void pad\+::core\+::\+Timer\+::\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Start the timer \mbox{\Hypertarget{classpad_1_1core_1_1_timer_a3a3cbda30033c7c9303f34ed103d70d8}\label{classpad_1_1core_1_1_timer_a3a3cbda30033c7c9303f34ed103d70d8}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!Stop@{Stop}}
+\index{Stop@{Stop}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{Stop()}{Stop()}}
+{\footnotesize\ttfamily void pad\+::core\+::\+Timer\+::\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stop the timer and save the duration \mbox{\Hypertarget{classpad_1_1core_1_1_timer_a06994d900c4a882acffc4ba47b99fc85}\label{classpad_1_1core_1_1_timer_a06994d900c4a882acffc4ba47b99fc85}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!Unpause@{Unpause}}
+\index{Unpause@{Unpause}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{Unpause()}{Unpause()}}
+{\footnotesize\ttfamily void pad\+::core\+::\+Timer\+::\+Unpause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Unpause the timer 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classpad_1_1core_1_1_timer_aaf3934066247c812ced8f0b234280925}\label{classpad_1_1core_1_1_timer_aaf3934066247c812ced8f0b234280925}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!affected\+By\+Pause@{affected\+By\+Pause}}
+\index{affected\+By\+Pause@{affected\+By\+Pause}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{affected\+By\+Pause}{affectedByPause}}
+{\footnotesize\ttfamily bool pad\+::core\+::\+Timer\+::affected\+By\+Pause\hspace{0.3cm}{\ttfamily [private]}}
+
+Bool representing if the timer should be affected by pause or not (true by default) \mbox{\Hypertarget{classpad_1_1core_1_1_timer_ad76d18dd62c6965847b39e4e1f5d0f9b}\label{classpad_1_1core_1_1_timer_ad76d18dd62c6965847b39e4e1f5d0f9b}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!duration@{duration}}
+\index{duration@{duration}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{duration}{duration}}
+{\footnotesize\ttfamily double pad\+::core\+::\+Timer\+::duration\hspace{0.3cm}{\ttfamily [private]}}
+
+Total duration of the timer since it was started \mbox{\Hypertarget{classpad_1_1core_1_1_timer_a56bb681d982af55045a5f614ba5c9e22}\label{classpad_1_1core_1_1_timer_a56bb681d982af55045a5f614ba5c9e22}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!id@{id}}
+\index{id@{id}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily unsigned short pad\+::core\+::\+Timer\+::id\hspace{0.3cm}{\ttfamily [private]}}
+
+Id of the timer \mbox{\Hypertarget{classpad_1_1core_1_1_timer_ae68b007567e905744c73a4f340f1bebe}\label{classpad_1_1core_1_1_timer_ae68b007567e905744c73a4f340f1bebe}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!id\+Pool@{id\+Pool}}
+\index{id\+Pool@{id\+Pool}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{id\+Pool}{idPool}}
+{\footnotesize\ttfamily std\+::vector$<$ unsigned short $>$ pad\+::core\+::\+Timer\+::id\+Pool\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+A container for Ids that are free to be re-\/used \mbox{\Hypertarget{classpad_1_1core_1_1_timer_aaa8d5b7c9776da6430af17964d3f2871}\label{classpad_1_1core_1_1_timer_aaa8d5b7c9776da6430af17964d3f2871}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!new\+Id@{new\+Id}}
+\index{new\+Id@{new\+Id}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{new\+Id}{newId}}
+{\footnotesize\ttfamily unsigned short pad\+::core\+::\+Timer\+::new\+Id = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+The new Id to be used if none are free in the pool \mbox{\Hypertarget{classpad_1_1core_1_1_timer_a4c374309dd4560bb3203c79d5f41036c}\label{classpad_1_1core_1_1_timer_a4c374309dd4560bb3203c79d5f41036c}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!pause\+Duration@{pause\+Duration}}
+\index{pause\+Duration@{pause\+Duration}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{pause\+Duration}{pauseDuration}}
+{\footnotesize\ttfamily double pad\+::core\+::\+Timer\+::pause\+Duration\hspace{0.3cm}{\ttfamily [private]}}
+
+Total time the game have been paused since the timer started \mbox{\Hypertarget{classpad_1_1core_1_1_timer_a0cbad14aa307f3c039b0ac15c239078d}\label{classpad_1_1core_1_1_timer_a0cbad14aa307f3c039b0ac15c239078d}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!pause\+Start\+Time@{pause\+Start\+Time}}
+\index{pause\+Start\+Time@{pause\+Start\+Time}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{pause\+Start\+Time}{pauseStartTime}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacepad_1_1core_a4359864da05f393ed6e69d9d018946ad}{Timepoint}} pad\+::core\+::\+Timer\+::pause\+Start\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+Timepoint the game was paused \mbox{\Hypertarget{classpad_1_1core_1_1_timer_afe9926da78b47b4c3d33fab3632903a5}\label{classpad_1_1core_1_1_timer_afe9926da78b47b4c3d33fab3632903a5}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!start\+Time@{start\+Time}}
+\index{start\+Time@{start\+Time}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{start\+Time}{startTime}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacepad_1_1core_a4359864da05f393ed6e69d9d018946ad}{Timepoint}} pad\+::core\+::\+Timer\+::start\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+Timepoint when the timer was started \mbox{\Hypertarget{classpad_1_1core_1_1_timer_a57359f64301ebdbd74a257ca1ce45e1c}\label{classpad_1_1core_1_1_timer_a57359f64301ebdbd74a257ca1ce45e1c}} 
+\index{pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}!timer\+Collection@{timer\+Collection}}
+\index{timer\+Collection@{timer\+Collection}!pad\+::core\+::\+Timer@{pad\+::core\+::\+Timer}}
+\subsubsection{\texorpdfstring{timer\+Collection}{timerCollection}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$ unsigned short, \mbox{\hyperlink{classpad_1_1core_1_1_timer}{Timer}} $\ast$ $>$ pad\+::core\+::\+Timer\+::timer\+Collection\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+A container for all timers, needed to pause all timers affected by pause if the game is paused 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+P\+A\+D Engine/\+Sources/\+Core/\mbox{\hyperlink{_timer_8h}{Timer.\+h}}\item 
+P\+A\+D Engine/\+Sources/\+Core/\mbox{\hyperlink{_timer_8cpp}{Timer.\+cpp}}\end{DoxyCompactItemize}

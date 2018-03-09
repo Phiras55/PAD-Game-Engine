@@ -15,6 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Math\Matrix4x4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Sources\Math\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -23,6 +26,9 @@
     </ClInclude>
     <ClInclude Include="Sources\Math\Vector4.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Matrix4x4_impl.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Math\Vector2_impl.h">
       <Filter>Source Files</Filter>

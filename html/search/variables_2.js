@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['g',['g',['../structpad_1_1math_1_1_vector3.html#ab0c584460b01a899fe4504c48c2037e4',1,'pad::math::Vector3::g()'],['../structpad_1_1math_1_1_vector4.html#ac4a05c791e0522930bed20045239e870',1,'pad::math::Vector4::g()']]]
+  ['b',['b',['../structpad_1_1math_1_1_vector3.html#afaba266e93b4c9f0a14048934ac2f3f6',1,'pad::math::Vector3::b()'],['../structpad_1_1math_1_1_vector4.html#a00d2630fa1befcfa4c343e2f4187ec71',1,'pad::math::Vector4::b()']]]
 ];

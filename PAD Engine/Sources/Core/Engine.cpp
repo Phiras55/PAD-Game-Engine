@@ -64,7 +64,7 @@ void Engine::StartSimulation()
 
 void Engine::PollEvents()
 {
-
+	mp_window->PollEvents();
 }
 
 void Engine::Update()
@@ -79,7 +79,9 @@ void Engine::FixedUpdate()
 
 void Engine::Render()
 {
+	m_renderer.ClearBuffer();
 
+	mp_window->SwapBuffer();
 }
 
 void Engine::CreateWindow(const sys::WindowSettings& _infos, const sys::E_WINDOW_TYPE _windowType)

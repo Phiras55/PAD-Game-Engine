@@ -1,83 +1,78 @@
-#include "Matrix4x4.h"
+#include "Matrix3x3.h"
 namespace pad	{
 namespace math	{
 
-using Mat4 = Matrix4x4;
+using Mat3 = Matrix3x3;
 
 #pragma region Constructor / Destructor	
 
-Matrix4x4::Matrix4x4()
+Matrix3x3::Matrix3x3()
 {
-	*__DATA256		= _mm256_setr_ps(	1, 0, 0, 0,
-										0, 1, 0, 0);
-	*(__DATA256+1)	= _mm256_setr_ps(	0, 0, 1, 0,
-										0, 0, 0, 1);
+	data[0] = 0;	data[1] = 0;	data[2] = 0;
+	data[3] = 0;	data[4] = 0;	data[5] = 0;
+	data[6] = 0;	data[7] = 0;	data[8] = 0;
 }
 
-Matrix4x4::Matrix4x4(	float _00, float _01, float _02, float _03, 
-						float _10, float _11, float _12, float _13, 
-						float _20, float _21, float _22, float _23, 
-						float _30, float _31, float _32, float _33)
+Matrix3x3::Matrix3x3(	float _00, float _01, float _02, 
+						float _10, float _11, float _12, 
+						float _20, float _21, float _22)
 {
-	*__DATA256		= _mm256_setr_ps(	_00, _01, _02, _03,
-										_10, _11, _12, _13);
-	*(__DATA256+1)	= _mm256_setr_ps(	_20, _21, _22, _23,
-										_30, _31, _32, _33);
+	data[0] = _00;	data[1] = _01;	data[2] = _02;
+	data[3] = _10;	data[4] = _11;	data[5] = _12;
+	data[6] = _20;	data[7] = _21;	data[8] = _22;
 }
 
-Matrix4x4::Matrix4x4(const float* _data)
+Matrix3x3::Matrix3x3(const float* _data)
 {
-	*__DATA256		= _mm256_load_ps(_data);
-	*(__DATA256+1)	= _mm256_load_ps(_data + 8);
+	*data = *_data;
 }
 
-Matrix4x4::Matrix4x4(Matrix4x4& _matrix)
+Matrix3x3::Matrix3x3(Matrix3x3& _matrix)
 {
-	*__DATA256		= *_matrix.__DATA256;
-	*(__DATA256+1)	= *(_matrix.__DATA256+1);
+	*data = *_matrix.data;
 }
 
 #pragma endregion
 
-bool Matrix4x4::IsIdentity()
+bool Matrix3x3::IsIdentity()
 {
-	return (Matrix4x4() == *this);
+	return (Matrix3x3() == *this);
 }
 
-bool Matrix4x4::IsOrthogonal()
+bool Matrix3x3::IsOrthogonal()
 {
-	Matrix4x4 T(*this);
+	Matrix3x3 T(*this);
 	T.Transpose();
-	Matrix4x4 mat = (*this) * T;
+	Matrix3x3 mat = (*this) * T;
 
 	return (mat.IsIdentity());
 }
 
-Matrix4x4& Matrix4x4::Transpose()
+Matrix3x3& Matrix3x3::Transpose()
 {
-	Matrix4x4 _mat(*this);
+	Matrix3x3 _mat(*this);
 	for (int y = 0; y < 4; y++)
 		for (int x = 0; x < 4; x++)
 			data[y*4+x] = _mat.data[x*4+y];
 }
 
-Matrix4x4 Matrix4x4::Transposed()
+Matrix3x3 Matrix3x3::Transposed()
 {
-	return Matrix4x4(*this).Transpose();
+	return Matrix3x3(*this).Transpose();
 }
 
-float* Matrix4x4::operator[](const int _index)
+float* Matrix3x3::operator[](const int _index)
 {
 	return data+_index*4;
 }
 
-void Matrix4x4::operator=(const Matrix4x4& _matrix)
+void Matrix3x3::operator=(const Matrix3x3& _matrix)
 {
 	*__DATA256		= *_matrix.__DATA256;
 	*(__DATA256+1)	= *(_matrix.__DATA256+1);
 }
 
-bool Matrix4x4::operator==(const Matrix4x4& _matrix)
+bool Matrix3x3::operator==(const Matrix3x3& _matrix)
 {
 	__m256i mask = _mm256_castps_si256(_mm256_set1_ps(1.f));
 	return (_mm256_test_all_zeros(	mask, 
@@ -87,47 +82,47 @@ bool Matrix4x4::operator==(const Matrix4x4& _matrix)
 		_mm256_castps_si256( _mm256_xor_ps(__DATA256[1], _matrix.__DATA256[1]) )) == 1);
 }
 
-bool Matrix4x4::operator!=(const Matrix4x4 & _matrix)
+bool Matrix3x3::operator!=(const Matrix3x3 & _matrix)
 {
 	return (!(*this == _matrix));
 }
 
-Matrix4x4 Matrix4x4::operator+(const Matrix4x4& _matrix)
+Matrix3x3 Matrix3x3::operator+(const Matrix3x3& _matrix)
 {
-	Matrix4x4 mat(*this);
+	Matrix3x3 mat(*this);
 	mat += _matrix;
 	return mat;
 }
 
-Matrix4x4& Matrix4x4::operator+=(const Matrix4x4& _matrix)
+Matrix3x3& Matrix3x3::operator+=(const Matrix3x3& _matrix)
 {
 	__DATA256[0] = _mm256_add_ps(__DATA256[0], _matrix.__DATA256[0]);
 	__DATA256[1] = _mm256_add_ps(__DATA256[1], _matrix.__DATA256[1]);
 	return *this;
 }
 
-Matrix4x4 Matrix4x4::operator-(const Matrix4x4& _matrix)
+Matrix3x3 Matrix3x3::operator-(const Matrix3x3& _matrix)
 {
-	Matrix4x4 mat(*this);
+	Matrix3x3 mat(*this);
 	mat -= _matrix;
 	return mat;
 }
 
-Matrix4x4& Matrix4x4::operator-=(const Matrix4x4& _matrix)
+Matrix3x3& Matrix3x3::operator-=(const Matrix3x3& _matrix)
 {
 	__DATA256[0] = _mm256_sub_ps(__DATA256[0], _matrix.__DATA256[0]);
 	__DATA256[1] = _mm256_sub_ps(__DATA256[1], _matrix.__DATA256[1]);
 	return *this;
 }
 
-Matrix4x4 Matrix4x4::operator*(const Matrix4x4&	_matrix)
+Matrix3x3 Matrix3x3::operator*(const Matrix3x3&	_matrix)
 {
-	Matrix4x4 mat(*this);
+	Matrix3x3 mat(*this);
 	mat *= _matrix;
 	return mat;
 }
 
-Matrix4x4& Matrix4x4::operator*=(const Matrix4x4& _matrix)
+Matrix3x3& Matrix3x3::operator*=(const Matrix3x3& _matrix)
 {
 	for (char y = 0; y < 4; ++y)
 	{
@@ -144,7 +139,7 @@ Matrix4x4& Matrix4x4::operator*=(const Matrix4x4& _matrix)
 	return *this;
 }
 
-Vec4f Matrix4x4::operator*(const Vec4f& _vector)
+Vec4f Matrix3x3::operator*(const Vec4f& _vector)
 {
 	Vec4f vec;
 	for (char i = 0; i < 4; i++)
@@ -157,7 +152,7 @@ Vec4f Matrix4x4::operator*(const Vec4f& _vector)
 	return vec;
 }
 
-std::ostream& operator<<(std::ostream & _out, const Matrix4x4 & _matrix)
+std::ostream& operator<<(std::ostream & _out, const Matrix3x3 & _matrix)
 {
 return _out
 <<"["<<_matrix.data[ 0]<<", "<<_matrix.data[ 1]<<", "<<_matrix.data[ 2]<<", "<<_matrix.data[ 3]<<"]"<<std::endl

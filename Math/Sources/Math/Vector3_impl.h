@@ -5,13 +5,13 @@ namespace math	{
 
 #pragma region Typedef
 
-template<typename T>																/*! Vector3 templated by the user */
-using	Vec3	= Vector3<T>;														
-using	Vec3i	= Vector3<int>;														/*! Vector3 templated in int */
-using	Vec3u	= Vector3<unsigned int>;											/*! Vector3 templated in unsigned int */
-using	Vec3f	= Vector3<float>;													/*! Vector3 templated in float */
-using	Vec3d	= Vector3<double>;													/*! Vector3 templated in double */
-using	Color3	= Vector3<unsigned char>;											/*! Vector3 templated in unsigned char */
+template<typename T>																				/*! Vector3 templated by the user */
+using	Vec3	= Vector3<T>;																		
+using	Vec3i	= Vector3<int>;																		/*! Vector3 templated in int */
+using	Vec3u	= Vector3<unsigned int>;															/*! Vector3 templated in unsigned int */
+using	Vec3f	= Vector3<float>;																	/*! Vector3 templated in float */
+using	Vec3d	= Vector3<double>;																	/*! Vector3 templated in double */
+using	Color3	= Vector3<unsigned char>;															/*! Vector3 templated in unsigned char */
 
 #pragma endregion
 
@@ -216,7 +216,7 @@ Vector3<T>& Vector3<T>::operator/=(const float _scalar)
 }
 
 template <typename T>
-T& Vector3<T>::operator[](const int _index)
+T& Vector3<T>::operator[](const int _index) const
 {
 	assert(_index >= 0 && _index < 3);
 	return *(&x + _index);

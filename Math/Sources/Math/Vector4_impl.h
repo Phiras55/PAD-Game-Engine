@@ -1,17 +1,18 @@
 #include <assert.h>
+#include "Vector4.h"
 
 namespace pad	{
 namespace math	{
 
 #pragma region Typedef
 
-template<typename T>																/*! Vector4 templated by the user */
+template<typename T>																				/*! Vector4 templated by the user */
 using	Vec4	= Vector4<T>;
-using	Vec4i	= Vector4<int>;														/*! Vector4 templated in int */
-using	Vec4u	= Vector4<unsigned int>;											/*! Vector4 templated in unsigned int */
-using	Vec4f	= Vector4<float>;													/*! Vector4 templated in float */
-using	Vec4d	= Vector4<double>;													/*! Vector4 templated in double */
-using	Color4	= Vector4<unsigned char>;											/*! Vector4 templated in unsigned char */
+using	Vec4i	= Vector4<int>;																		/*! Vector4 templated in int */
+using	Vec4u	= Vector4<unsigned int>;															/*! Vector4 templated in unsigned int */
+using	Vec4f	= Vector4<float>;																	/*! Vector4 templated in float */
+using	Vec4d	= Vector4<double>;																	/*! Vector4 templated in double */
+using	Color4	= Vector4<unsigned char>;															/*! Vector4 templated in unsigned char */
 
 #pragma endregion
 
@@ -245,7 +246,14 @@ template <typename T>
 T& Vector4<T>::operator[](const int _index)
 {
 	assert(_index >= 0 && _index < 4);
-	return *(&x + _index);
+		return (*(&x + _index));
+}
+
+template<typename T>
+const T& Vector4<T>::operator[](const int _index) const
+{
+	assert(_index >= 0 && _index < 4);
+		return (*(&x + _index));
 }
 
 #pragma endregion

@@ -13,7 +13,7 @@ using HighResClock		= std::chrono::high_resolution_clock;										/*!< Short na
 
 #pragma endregion
 
-static class EngineClock																			/*! Engine clock used for delta time (frame duration) */
+class EngineClock																					/*! Engine clock used for delta time (frame duration) */
 {
 #pragma region Constructor / Destructor
 

@@ -63,8 +63,17 @@ void Timer::Stop()
 {
 	Timepoint endTime = HighResClock::now();
 
-	duration =	(DurationSeconds(endTime - startTime).count() - pauseDuration)
-				* core::EngineClock::GetTimeScale();
+	duration =	(	(DurationSeconds(endTime - startTime).count() - pauseDuration)
+					* core::EngineClock::GetTimeScale());
+}
+
+void Timer::PauseAll()
+{
+	for (std::pair<int, Timer*> timer : timerCollection)
+	{
+		if (timer.second->affectedByPause)
+			timer.second->Pause();
+	}
 }
 
 #pragma endregion

@@ -69,7 +69,7 @@ void Engine::PollEvents()
 
 void Engine::Update()
 {
-
+	core::Timer::PauseAll();
 }
 
 void Engine::FixedUpdate()

@@ -41,6 +41,8 @@ public:
 	void Unpause();																					/*!< Unpause the timer */
 	void Stop();																					/*!< Stop the timer and save the duration */
 
+	static void PauseAll();																			/*!< Pause all timers */
+
 #pragma endregion
 
 #pragma region Getter / Setter

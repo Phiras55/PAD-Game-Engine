@@ -19,10 +19,12 @@ private:
 	uint32 m_indiceCount;
 
 public:
-	void LoadGeometry(const MeshData& data);
+	inline uint32&		GetVAO()				{ return m_vao; }
+	inline const uint32 GetVAO() const			{ return m_vao; }
+	inline uint32&		GetIndiceCount()		{ return m_indiceCount; }
+	inline const uint32 GetIndiceCount() const	{ return m_indiceCount; }
 
-private:
-	void BindBuffer(float* const _data, const uint32 _dataSize, const int32 _vertexElementCount, const E_VERTEX_ATTRIB_LOCATION _location);
+	inline void SetIndiceCount(const uint32 _count) { m_indiceCount = _count; }
 
 public:
 	void operator=(const Mesh&) = delete;

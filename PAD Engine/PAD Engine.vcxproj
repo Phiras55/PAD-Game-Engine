@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Sources\Common.h" />
     <ClCompile Include="Sources\Core\Engine.cpp" />
+    <ClCompile Include="Sources\Graphics\Material.cpp" />
     <ClCompile Include="Sources\Graphics\Mesh.cpp" />
     <ClCompile Include="Sources\Graphics\MeshData.cpp" />
     <ClCompile Include="Sources\Graphics\Renderer.cpp" />
@@ -30,6 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h" />
+    <ClInclude Include="Sources\Graphics\Material.h" />
     <ClInclude Include="Sources\Graphics\Mesh.h" />
     <ClInclude Include="Sources\Graphics\MeshData.h" />
     <ClInclude Include="Sources\Graphics\Renderer.h" />

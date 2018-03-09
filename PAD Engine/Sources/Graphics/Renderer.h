@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include <Graphics/RenderSettings.h>
+#include <Graphics/Mesh.h>
 #include <System/IModule.h>
 
 namespace pad
@@ -22,13 +23,16 @@ public:
 	virtual void StartModule();
 	virtual void StopModule();
 
-	void Init(const RenderSettings& settings);
-	void ClearBuffer();
+	void Init(const RenderSettings& _settings);
 	void Draw();
+	void ClearBuffer();
+
+	static void LoadGeometry(Mesh& mesh, const MeshData& data);
 
 private:
 	void InitContext(const math::Vec4f& _clearColor);
 	void InitViewPort(const math::Vec2i& _viewportSize);
+	static void BindBuffer(float* const _data, const uint32 _dataSize, const int32 _vertexElementCount, const E_VERTEX_ATTRIB_LOCATION _location);
 
 public:
 	void operator=(const Renderer&) = delete;

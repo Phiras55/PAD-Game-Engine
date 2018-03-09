@@ -1,11 +1,13 @@
+#include <Core/EngineClock.h>
+
 namespace pad	{
 namespace core	{
 
-#pragma region Constructor / Destructor
+#pragma region Statics
 
-double EngineClock::deltaTime		= 0;
-Timepoint EngineClock::startTime	= std::chrono::high_resolution_clock::now();
-Timepoint EngineClock::endTime		= std::chrono::high_resolution_clock::now();
+Timepoint	EngineClock::startTime	= HighResClock::now();
+double		EngineClock::deltaTime	= 0;
+float		EngineClock::timeScale	= 1.f;
 
 #pragma endregion
 
@@ -13,14 +15,14 @@ Timepoint EngineClock::endTime		= std::chrono::high_resolution_clock::now();
 
 void EngineClock::Init()
 {
-	startTime = std::chrono::high_resolution_clock::now();
+	startTime = HighResClock::now();
 }
 
 void EngineClock::Update()
 {
-	endTime		= std::chrono::high_resolution_clock::now();
-	deltaTime	= std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime).count();
-	startTime	= endTime;
+	Timepoint endTime	= HighResClock::now();
+	deltaTime			= DurationSeconds(endTime - startTime).count() * timeScale;
+	startTime			= endTime;
 }
 
 #pragma endregion

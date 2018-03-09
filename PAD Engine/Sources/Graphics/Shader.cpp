@@ -21,9 +21,9 @@ namespace gfx
 
 	}
 
-	Shader::~Shader()
-	{
-	}
+	//Shader::~Shader()
+	//{
+	//}
 
 	void Shader::Use()
 	{

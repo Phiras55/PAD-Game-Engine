@@ -2,11 +2,6 @@
 #include <System/SDLWindow.h>
 #include <Graphics/Renderer.h>
 
-namespace pad
-{
-namespace core
-{
-
 namespace pad	{
 namespace core	{
 
@@ -27,8 +22,8 @@ public:
 	void InitSimulation();																			/*! Initialize the simulation. Reads the config files and initialize the renderer and the window. */
 	void StartSimulation();																			/*! Starts the simulation with the parameters given in InitSimulation method. */
 	void PollEvents();
-	void Update(const float32 _deltaTime);
-	void FixedUpdate(const float32 _deltaTime);
+	void Update();
+	void FixedUpdate();
 	void Render();
 
 private:

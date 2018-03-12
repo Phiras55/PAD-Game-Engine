@@ -59,6 +59,7 @@ Matrix4x4& Matrix4x4::Transpose()
 	for (int y = 0; y < 4; y++)
 		for (int x = 0; x < 4; x++)
 			data[y*4+x] = _mat.data[x*4+y];
+	return _mat;
 }
 
 Matrix4x4 Matrix4x4::Transposed()

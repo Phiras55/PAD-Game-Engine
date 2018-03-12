@@ -52,8 +52,8 @@ struct Matrix3x3 final																				/*! 4x4 Matrix of float structure */
 	Matrix3x3&	operator-=	(const	Matrix3x3&	_matrix);											/*! Compound assignment: Substraction */
 	Matrix3x3	operator*	(const	Matrix3x3&	_matrix);											/*! Arithmetic operator: Multiplication */
 	Matrix3x3&	operator*=	(const	Matrix3x3&	_matrix);											/*! Compound assignment: Multiplication */
-	Vec4f		operator*	(const	Vec4f&		_vector);											/*! Arithmetic operator: Vector4<float> Multiplication */
-
+	Vec3f		operator*	(const	Vec3f&		_vector);											/*! Arithmetic operator: Vector4<float> Multiplication */
+	
 #pragma endregion
 };
 

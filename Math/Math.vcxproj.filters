@@ -42,11 +42,11 @@
     <ClInclude Include="MatrixTransform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix3x3_impl.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix3x3.h">
+    <ClInclude Include="Sources\Math\Matrix3x3.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Matrix3x3_impl.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,18 +1,29 @@
 #include <iostream>
+
+#include <chrono>
+
 #include <Math/Vector2.h>
 #include <Math/Vector3.h>
 #include <Math/Vector4.h>
-#include <Math/Matrix4x4.h>
+#include <Math/Matrix3x3.h>
 
 using namespace pad;
 
 void ArthurMathTest()
 {
-	math::Matrix4x4 mat(1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7);
+	auto Start = std::chrono::high_resolution_clock::now();
 
-	mat.Transpose();
+	math::Matrix3x3 mat	(1,2,3,4,5,6,7,8,9);
+	math::Matrix3x3 mat2(1,2,3,4,5,6,7,8,8);
+	
+	for (size_t i = 0; i < 100000000; i++)
+	{
 
-	std::cout << mat << std::endl;
+	}
+
+	auto End = std::chrono::high_resolution_clock::now();
+
+	std::cout << std::chrono::duration<float>(End - Start).count() << std::endl;
 
 	system("pause");
 }

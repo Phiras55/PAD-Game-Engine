@@ -13,13 +13,16 @@ using HighResClock		= std::chrono::high_resolution_clock;										/*!< Short na
 
 #pragma endregion
 
-class EngineClock																					/*! Engine clock used for delta time (frame duration) */
+class EngineClock final																				/*! Engine clock used for delta time (frame duration) */
 {
 #pragma region Constructor / Destructor
 
 public:
 	EngineClock()	= default;																		/*!< Default constructor */
 	~EngineClock()	= default;																		/*!< Default destructor */
+
+	EngineClock(const EngineClock&) = delete;
+	EngineClock(EngineClock&&)		= delete;
 
 #pragma endregion
 
@@ -47,6 +50,15 @@ public:
 	inline static float&	GetTimeScale()							{ return timeScale; }			/*!< Get the time scale */
 
 	inline static void		SetTimeScale(const float _timeScale)	{ timeScale = _timeScale; }		/*!< Set the time scale */
+
+#pragma endregion
+
+#pragma region Operators
+
+public:
+	EngineClock& operator=(const EngineClock&) = delete;
+	EngineClock& operator=(EngineClock&&) = delete;
+
 #pragma endregion
 };
 

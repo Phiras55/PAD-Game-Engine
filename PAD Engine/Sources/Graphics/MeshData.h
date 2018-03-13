@@ -1,8 +1,8 @@
 #pragma once
 #include <Common.h>
 
-namespace pad {
-namespace gfx {
+namespace pad	{
+namespace gfx	{
 
 struct MeshData
 {

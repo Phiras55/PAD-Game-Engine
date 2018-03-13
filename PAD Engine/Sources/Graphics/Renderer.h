@@ -5,10 +5,8 @@
 #include <Graphics/Mesh.h>
 #include <System/IModule.h>
 
-namespace pad
-{
-namespace gfx
-{
+namespace pad	{
+namespace gfx	{
 
 class Renderer final : public sys::IModule
 {
@@ -24,7 +22,7 @@ public:
 	virtual void StopModule();
 
 	void Init(const RenderSettings& _settings);
-	void Draw();
+	void Draw(const Mesh& _mesh);
 	void ClearBuffer();
 
 	static void LoadGeometry(Mesh& mesh, const MeshData& data);

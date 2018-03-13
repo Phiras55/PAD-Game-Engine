@@ -2,8 +2,8 @@
 #include <Graphics/MeshData.h>
 #include <Graphics/ShaderType.h>
 
-namespace pad {
-namespace gfx {
+namespace pad	{
+namespace gfx	{
 
 class Mesh
 {

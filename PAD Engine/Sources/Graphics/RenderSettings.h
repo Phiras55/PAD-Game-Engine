@@ -2,10 +2,8 @@
 #include <Math/Vector4.h>
 #include <Math/Vector2.h>
 
-namespace pad
-{
-namespace gfx
-{
+namespace pad	{
+namespace gfx	{
 
 struct RenderSettings final
 {

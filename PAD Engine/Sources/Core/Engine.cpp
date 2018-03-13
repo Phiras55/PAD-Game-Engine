@@ -1,5 +1,7 @@
 #include <Core/Engine.h>
 #include <Core/Timer.h>
+#include <Graphics/Shader.h>
+#include <Graphics/Mesh.h>
 
 namespace pad	{
 namespace core	{
@@ -81,7 +83,9 @@ void Engine::Render()
 {
 	m_renderer.ClearBuffer();
 
-	
+	gfx::Mesh m;
+	m_renderer.Draw(m);
+
 	mp_window->SwapBuffer();
 }
 

@@ -1,7 +1,7 @@
 #pragma once
+#include <Math/Vector4.h>
 #include <immintrin.h>
 #include <emmintrin.h>
-#include <Math/Vector4.h>
 
 namespace pad	{
 namespace math	{

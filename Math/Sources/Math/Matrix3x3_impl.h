@@ -1,4 +1,3 @@
-#include "Matrix3x3.h"
 namespace pad	{
 namespace math	{
 
@@ -54,7 +53,7 @@ Matrix3x3& Matrix3x3::Transpose()
 	for (int y = 0; y < 3; y++)
 		for (int x = 0; x < 3; x++)
 			data[y*3+x] = _mat.data[x*3+y];
-	return _mat;
+	return *this;
 }
 
 Matrix3x3 Matrix3x3::Transposed()
@@ -147,12 +146,12 @@ Vec3f Matrix3x3::operator*(const Vec3f& _vector)
 	return vec;
 }
 
-std::ostream& operator<<(std::ostream& _out, const Matrix3x3 & _matrix)
+std::ostream& operator<<(std::ostream& _out, const Matrix3x3& _matrix)
 {
-return _out
-<<"["<<_matrix.data[0]<<", "<<_matrix.data[1]<<", "<<_matrix.data[2]<<"]"<<std::endl
-<<"["<<_matrix.data[3]<<", "<<_matrix.data[4]<<", "<<_matrix.data[5]<<"]"<<std::endl
-<<"["<<_matrix.data[6]<<", "<<_matrix.data[7]<<", "<<_matrix.data[8]<<"]"<<std::endl;
+return _out<<
+"["<<_matrix.data[0]<<", "<<_matrix.data[1]<<", "<<_matrix.data[2]<<"]"<<std::endl<<
+"["<<_matrix.data[3]<<", "<<_matrix.data[4]<<", "<<_matrix.data[5]<<"]"<<std::endl<<
+"["<<_matrix.data[6]<<", "<<_matrix.data[7]<<", "<<_matrix.data[8]<<"]"<<std::endl;
 }
 
 } // namespace math

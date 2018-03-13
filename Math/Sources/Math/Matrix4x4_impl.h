@@ -1,4 +1,3 @@
-#include "Matrix4x4.h"
 namespace pad	{
 namespace math	{
 
@@ -41,7 +40,7 @@ Matrix4x4::Matrix4x4(Matrix4x4& _matrix)
 
 bool Matrix4x4::IsIdentity()
 {
-	return (Matrix4x4() == *this);
+	return (*this == Mat4());
 }
 
 bool Matrix4x4::IsOrthogonal()
@@ -59,7 +58,7 @@ Matrix4x4& Matrix4x4::Transpose()
 	for (int y = 0; y < 4; y++)
 		for (int x = 0; x < 4; x++)
 			data[y*4+x] = _mat.data[x*4+y];
-	return _mat;
+	return *this;
 }
 
 Matrix4x4 Matrix4x4::Transposed()
@@ -80,12 +79,12 @@ void Matrix4x4::operator=(const Matrix4x4& _matrix)
 
 bool Matrix4x4::operator==(const Matrix4x4& _matrix)
 {
-	__m256i mask = _mm256_castps_si256(_mm256_set1_ps(1.f));
-	return (_mm256_test_all_zeros(	mask, 
-		_mm256_castps_si256( _mm256_xor_ps(__DATA256[0], _matrix.__DATA256[0]) )) == 1
+	__m256i mask = _mm256_set1_epi32(0xFFFFFFFF);
+	return (_mm256_testz_si256(mask,
+		_mm256_castps_si256( _mm256_xor_ps(__DATA256[0], _matrix.__DATA256[0]) ))
 									&&
-			_mm256_test_all_zeros(	mask, 
-		_mm256_castps_si256( _mm256_xor_ps(__DATA256[1], _matrix.__DATA256[1]) )) == 1);
+		_mm256_testz_si256(	mask,
+		_mm256_castps_si256( _mm256_xor_ps(__DATA256[1], _matrix.__DATA256[1]) )));
 }
 
 bool Matrix4x4::operator!=(const Matrix4x4 & _matrix)
@@ -158,13 +157,13 @@ Vec4f Matrix4x4::operator*(const Vec4f& _vector)
 	return vec;
 }
 
-std::ostream& operator<<(std::ostream & _out, const Matrix4x4 & _matrix)
+std::ostream& operator<<(std::ostream& _out, const Matrix4x4& _matrix)
 {
-return _out
-<<"["<<_matrix.data[ 0]<<", "<<_matrix.data[ 1]<<", "<<_matrix.data[ 2]<<", "<<_matrix.data[ 3]<<"]"<<std::endl
-<<"["<<_matrix.data[ 4]<<", "<<_matrix.data[ 5]<<", "<<_matrix.data[ 6]<<", "<<_matrix.data[ 7]<<"]"<<std::endl
-<<"["<<_matrix.data[ 8]<<", "<<_matrix.data[ 9]<<", "<<_matrix.data[10]<<", "<<_matrix.data[11]<<"]"<<std::endl
-<<"["<<_matrix.data[12]<<", "<<_matrix.data[13]<<", "<<_matrix.data[14]<<", "<<_matrix.data[15]<<"]"<<std::endl;
+return _out<<
+"["<<_matrix.data[ 0]<<", "<<_matrix.data[ 1]<<", "<<_matrix.data[ 2]<<", "<<_matrix.data[ 3]<<"]"<<std::endl<<
+"["<<_matrix.data[ 4]<<", "<<_matrix.data[ 5]<<", "<<_matrix.data[ 6]<<", "<<_matrix.data[ 7]<<"]"<<std::endl<<
+"["<<_matrix.data[ 8]<<", "<<_matrix.data[ 9]<<", "<<_matrix.data[10]<<", "<<_matrix.data[11]<<"]"<<std::endl<<
+"["<<_matrix.data[12]<<", "<<_matrix.data[13]<<", "<<_matrix.data[14]<<", "<<_matrix.data[15]<<"]"<<std::endl;
 }
 
 } // namespace math

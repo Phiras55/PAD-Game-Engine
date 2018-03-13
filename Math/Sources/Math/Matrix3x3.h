@@ -1,7 +1,5 @@
 #pragma once
-#include <immintrin.h>
-#include <emmintrin.h>
-#include <Math/Vector4.h>
+#include <Math/Vector3.h>
 
 namespace pad	{
 namespace math	{
@@ -14,12 +12,12 @@ struct Matrix3x3 final																				/*! 4x4 Matrix of float structure */
 	Matrix3x3(float _00, float _01, float _02,														/*!< Constructor with values (16 floats) */
 			  float _10, float _11, float _12,											
 			  float _20, float _21, float _22);							
-	Matrix3x3(const float* _data);																	/*!< Constructor with data array (float) */
-	Matrix3x3(Matrix3x3& _matrix);																	/*!< Copy constructor */
+	Matrix3x3(const float*	_data);																	/*!< Constructor with data array (float) */
+	Matrix3x3(Matrix3x3&	_matrix);																/*!< Copy constructor */
 	
-	Matrix3x3(Matrix3x3&& _matrix)	= default;														/*!< Default move constructor */
-	
-	~Matrix3x3()					= default;														/*!< Default destructor */
+	Matrix3x3(Matrix3x3&&	_matrix)	= default;													/*!< Default move constructor */
+
+	~Matrix3x3()						= default;													/*!< Default destructor */
 
 #pragma endregion
 

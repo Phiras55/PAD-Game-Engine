@@ -7,14 +7,16 @@
 namespace pad	{
 namespace core	{
 
-class Timer																							/*! Timer class that can be used as stop watch */
+class Timer	final																					/*! Timer class that can be used as stop watch */
 {
 #pragma region Constructor / Destructor
 	
 public:
 	Timer(const bool _affectedByPause = true);														/*!< Default constructor */
-	~Timer();																						/*!< Default destructor */
-
+	~Timer();																						/*!< Default destructor */	
+																				
+	Timer(const Timer&) = delete;
+	Timer(Timer&&)		= delete;
 #pragma endregion
 
 #pragma region Variables
@@ -49,6 +51,14 @@ public:
 
 public:
 	const double GetDuration();																		/*!< Return the current duration of the timer, or the total duration if the timer have been stopped */
+
+#pragma endregion
+
+#pragma region Operators
+
+public:
+	Timer& operator=(const Timer&)	= delete;
+	Timer& operator=(Timer&&)		= delete;
 
 #pragma endregion
 };

@@ -24,6 +24,9 @@
     <ClCompile Include="SimpleLoggerEnums.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Channel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleLogger.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Channel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

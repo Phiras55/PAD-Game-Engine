@@ -126,12 +126,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Channel.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SimpleLogger.cpp" />
     <ClCompile Include="SimpleLoggerEnums.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Channel.h" />
+    <ClInclude Include="Message.h" />
     <ClInclude Include="SimpleLogger.h" />
     <ClInclude Include="SimpleLoggerEnums.h" />
     <ClInclude Include="SimpleLogger_impl.h" />

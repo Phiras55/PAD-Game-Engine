@@ -1,24 +1,24 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <chrono>
 #include <queue>
+#include <map>
 
 #include <Channel.h>
-#include <SimpleLoggerEnums.h>
+#include <Message.h>
 
 #define LOGGER
 
 #ifdef LOGGER
+	#define LOG_INIT() SimpleLogger::Init()
 	#define LOG_INFO(cFormat, ...) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::INFO, cFormat, __VA_ARGS__)
 #else
+	#define LOG_INIT() void(0)
 	#define LOG_INFO(cFormat, ...) void(0)
 #endif
 
 
 namespace sl {
-
-using Message		= std::string;
 
 class SimpleLogger final
 {
@@ -30,7 +30,8 @@ private:
 	SimpleLogger(SimpleLogger&&)		= delete;
 
 private:
-	std::queue<Message> m_messages;
+	static std::queue<Message>			m_messages;
+	static std::map<ChanType, Channel>	m_channels;
 
 public:
 	template<typename T, typename... Targs>
@@ -43,6 +44,8 @@ public:
 		const std::string& _format,
 		const T& _arg,
 		Targs&&... _args);
+
+	static void Init();
 
 private:
 	static void LogRecurs();

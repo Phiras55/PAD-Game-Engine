@@ -14,6 +14,4 @@ void SimpleLogger::Log(
 	Targs&&... _args)
 {
 	//if(sizeof...(_args))
-	PrintHeaders(_chan);
-	std::cout << _date << " " << _time << " ";
 }

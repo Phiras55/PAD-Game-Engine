@@ -81,6 +81,7 @@ void Engine::Render()
 {
 	m_renderer.ClearBuffer();
 
+
 	
 	mp_window->SwapBuffer();
 }

@@ -1,23 +1,16 @@
 #include <iostream>
-#include <Core/Engine.h>
+#include <SimpleLogger.h>
 
 #undef main
 
-using namespace pad;
-
 void MethodForTestingPurpose()
 {
-
+	LOG_INFO("Prout", 1);
 }
 
 int main()
 {
 	MethodForTestingPurpose();
-
-	core::Engine engine;
-	
-	engine.InitSimulation();
-	engine.StartSimulation();
 
 	return EXIT_SUCCESS;
 }

@@ -50,7 +50,7 @@ private:
 
 public:
 	template<typename T, typename... Targs>
-	static void Log(
+	static LOGGER_API void Log(
 		const char*				_sourceFileName,
 		const int				_sourceLine,
 		const char*				_date,
@@ -60,10 +60,10 @@ public:
 		const T&				_arg,
 		Targs&&...				_args);
 
-	static void Init();
-	static void Flush();
-	static void SetChannelOutput(const ChanType _chan, const ChanOutput _output);
-	static void SetChannelRestriction(const ChanType _chan, const ChanRestrict _r);
+	static LOGGER_API void Init();
+	static LOGGER_API void Flush();
+	static LOGGER_API void SetChannelOutput(const ChanType _chan, const ChanOutput _output);
+	static LOGGER_API void SetChannelRestriction(const ChanType _chan, const ChanRestrict _r);
 
 private:
 	template<typename T, typename... Targs>

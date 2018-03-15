@@ -1,20 +1,24 @@
 #include <iostream>
-#include <Math/Vector2.h>
-#include <Math/Vector3.h>
-#include <Math/Vector4.h>
 #include <Core/Engine.h>
+#include <SimpleLogger.h>
 
 #undef main
 
 using namespace pad;
 
-void DavidArthurMathTest()
+void MethodForTestingPurpose()
 {
+	LOG_INIT();
 
+	LOG_INFO("Too much arguments and no delimiter.\n", 1, 2, 3, 4, 5);
+
+	LOG_FLUSH();
 }
 
 int main()
 {
+	MethodForTestingPurpose();
+
 	core::Engine engine;
 	
 	engine.InitSimulation();

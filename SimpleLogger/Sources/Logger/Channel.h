@@ -2,8 +2,8 @@
 #include <string>
 #include <fstream>
 
-#include <SimpleLoggerEnums.h>
-#include <Message.h>
+#include <Logger/SimpleLoggerEnums.h>
+#include <Logger/Message.h>
 
 namespace sl {
 

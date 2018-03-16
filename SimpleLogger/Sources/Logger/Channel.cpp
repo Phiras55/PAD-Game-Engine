@@ -1,5 +1,6 @@
-#include <Channel.h>
 #include <iostream>
+
+#include <Logger/Channel.h>
 
 namespace sl
 {

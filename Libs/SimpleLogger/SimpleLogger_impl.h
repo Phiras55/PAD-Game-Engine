@@ -13,7 +13,7 @@ void SimpleLogger::Log(
 	const T&				_arg,
 	Targs&&...				_args)
 {
-	Message m(_chan, _sourceFileName, _time, _date, _sourceLine);
+	Message m(_chan, StripPath(_sourceFileName), _time, _date, _sourceLine);
 
 	BuildMessage(_format, m, 0, _arg, _args...);
 

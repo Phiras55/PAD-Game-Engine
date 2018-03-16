@@ -18,6 +18,20 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Logger\Channel.cpp" />
+    <ClCompile Include="Sources\Logger\SimpleLogger.cpp" />
+    <ClCompile Include="Sources\Logger\SimpleLoggerEnums.cpp" />
+    <ClCompile Include="Sources\Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\Logger\Channel.h" />
+    <ClInclude Include="Sources\Logger\ExportMacro.h" />
+    <ClInclude Include="Sources\Logger\Message.h" />
+    <ClInclude Include="Sources\Logger\SimpleLogger.h" />
+    <ClInclude Include="Sources\Logger\SimpleLoggerEnums.h" />
+    <ClInclude Include="Sources\Logger\SimpleLogger_impl.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{BF72A2EE-E2A2-459B-AD21-0EA16EAEE5F4}</ProjectGuid>
@@ -70,16 +84,28 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Sources\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Sources\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Sources\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Sources\;$(ProjectDir);$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -129,20 +155,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Channel.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="SimpleLogger.cpp" />
-    <ClCompile Include="SimpleLoggerEnums.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Channel.h" />
-    <ClInclude Include="ExportMacro.h" />
-    <ClInclude Include="Message.h" />
-    <ClInclude Include="SimpleLogger.h" />
-    <ClInclude Include="SimpleLoggerEnums.h" />
-    <ClInclude Include="SimpleLogger_impl.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

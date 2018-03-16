@@ -5,7 +5,7 @@
 #include <map>
 #include <mutex>
 
-#include <Channel.h>
+#include <Logger/Channel.h>
 
 #define CPARAMETER "%%"
 
@@ -19,16 +19,30 @@
 	#define LOG_ERROR(cFormat, ...) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::ERROR, cFormat, __VA_ARGS__)
 	#define LOG_FATAL(cFormat, ...) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::FATAL, cFormat, __VA_ARGS__)
 	#define LOG_CUSTOM(channelType, cFormat, ...) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, channelType, cFormat, __VA_ARGS__)
+
+	#define LOG_INFO_S(cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::INFO, cFormat, 0)
+	#define LOG_TRACE_S(cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::TRACE, cFormat, 0)
+	#define LOG_WARNING_S(cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::WARNING, cFormat, 0)
+	#define LOG_ERROR_S(cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::ERROR, cFormat, 0)
+	#define LOG_FATAL_S(cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::FATAL, cFormat, 0)
+	#define LOG_CUSTOM_S(channelType, cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, channelType, cFormat, 0)
 #else
 	#define LOG_INIT() void(0)
 	#define LOG_FLUSH() void(0)
 
-	#define LOG_INFO(cFormat, ...) void(0)
-	#define LOG_TRACE(cFormat, ...) void(0)
-	#define LOG_WARNING(cFormat, ...) void(0)
-	#define LOG_ERROR(cFormat, ...) void(0)
-	#define LOG_FATAL(cFormat, ...) void(0)
+	#define LOG_INFO(cFormat, ...)		void(0)
+	#define LOG_TRACE(cFormat, ...)		void(0)
+	#define LOG_WARNING(cFormat, ...)	void(0)
+	#define LOG_ERROR(cFormat, ...)		void(0)
+	#define LOG_FATAL(cFormat, ...)		void(0)
 	#define LOG_CUSTOM(channelType, cFormat, ...) void(0)
+
+	#define LOG_INFO_S(cFormat) void(0)
+	#define LOG_TRACE_S(cFormat) void(0)
+	#define LOG_WARNING_S(cFormat) void(0)
+	#define LOG_ERROR_S(cFormat) void(0)
+	#define LOG_FATAL_S(cFormat) void(0)
+	#define LOG_CUSTOM_S(channelType, cFormat) void(0)
 #endif
 
 
@@ -77,6 +91,8 @@ public:
 	SimpleLogger& operator=(SimpleLogger&&)			= delete;
 };
 
+std::string StripPath(const char* path);
+
 } // namespace sl
 
-#include <SimpleLogger_impl.h>
+#include <Logger/SimpleLogger_impl.h>

@@ -1,9 +1,11 @@
 #include <iostream>
 
 #define LOGGER
-#include <SimpleLogger.h>
+#include <Logger/SimpleLogger.h>
 
 #undef main
+
+#define LOGGER
 
 void MethodForTestingPurpose()
 {
@@ -14,7 +16,7 @@ void MethodForTestingPurpose()
 	LOG_WARNING("Not enough arguments. %% + %%\n", 1);
 	LOG_ERROR("No arguments with delimiter. %%\n", 0);
 	LOG_FATAL("No arguments and no delimiter.\n", 0);
-	LOG_INFO("Just perfect one. %%\n", 0);
+	LOG_INFO_S("Just perfect one. %%\n");
 	LOG_CUSTOM(ChanType::INFO | ChanType::ERROR, "I am in INFO and ERROR\n", 0);
 
 	LOG_FLUSH();

@@ -1,4 +1,4 @@
-#include <SimpleLogger.h>
+#include <Logger/SimpleLogger.h>
 
 using namespace sl;
 
@@ -106,4 +106,15 @@ void SimpleLogger::SetChannelRestriction(const ChanType _chan, const ChanRestric
 
 	if (operator&(_chan, ChanType::FATAL) != ChanType::NONE)
 		m_channels[ChanType::FATAL].chanRestrict = _r;
+}
+
+std::string sl::StripPath(const char* path)
+{
+	std::string s(path);
+	std::size_t found = s.find_last_of("/\\");
+
+	if(found != std::string::npos)
+		return std::string(s.substr(found + 1));
+
+	return s.c_str();
 }

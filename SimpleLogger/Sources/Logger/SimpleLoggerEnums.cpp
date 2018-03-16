@@ -1,4 +1,4 @@
-#include <SimpleLoggerEnums.h>
+#include <Logger/SimpleLoggerEnums.h>
 
 namespace sl
 {

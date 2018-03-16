@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['z_5fb',['Z_B',['../unionpad_1_1math_1_1_vector3_1_1_z___b.html',1,'pad::math::Vector3']]]
+  ['sdlwindow',['SDLWindow',['../classpad_1_1sys_1_1_s_d_l_window.html',1,'pad::sys']]],
+  ['shader',['Shader',['../classpad_1_1gfx_1_1_shader.html',1,'pad::gfx']]]
 ];

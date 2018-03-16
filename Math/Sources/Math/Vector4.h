@@ -16,8 +16,10 @@ struct Vector4 final																/*! Templated vector 4 structure */
 
 	template<typename U>
 	Vector4(const Vector4<U>& _vector);												/*!< Constructor by copy */
+	Vector4(const Vector4& _vector);												/*!< Constructor by copy */
 	template<typename U>
 	Vector4(const Vector3<U>& _vector);												/*!< Constructor by vector3 */
+	Vector4(const Vector3<T>& _vector);												/*!< Constructor by vector3 */
 
 	Vector4(Vector4&& _vector)	= default;											/*!< Move constructor */
 	~Vector4()					= default;											/*!< Default destructor */
@@ -25,6 +27,11 @@ struct Vector4 final																/*! Templated vector 4 structure */
 #pragma endregion
 
 #pragma region Variables
+	union
+	{
+		struct { T x, y, z, w; };
+		struct { T r, g, b, a; };
+	};
 
 	union {
 		struct {	T x;															/*!< X axis value of the vector */
@@ -55,6 +62,8 @@ struct Vector4 final																/*! Templated vector 4 structure */
 
 #pragma region Operator
 
+	template <typename U>
+	void		operator=	(const	Vector4<U>&	_vector);							/*! Assignment operator*/
 	void		operator=	(const	Vector4&	_vector);							/*! Assignment operator*/
 	Vector4&	operator=	(		Vector4&&	_vector)	= default;				/*! Move assignment operator */
 	bool		operator==	(const	Vector4&	_vector);							/*! Equal to operator */
@@ -67,6 +76,7 @@ struct Vector4 final																/*! Templated vector 4 structure */
 	Vector4&	operator*=	(const	float		_scalar);							/*! Compound assignment: multiplication */
 	Vector4		operator/	(const	float		_scalar);							/*! Arithmetic operator: division */
 	Vector4&	operator/=	(const	float		_scalar);							/*! Compound assignment: division */
+	T&			operator[]	(const	int			_index);							/*! Access operator */
 
 
 #pragma endregion

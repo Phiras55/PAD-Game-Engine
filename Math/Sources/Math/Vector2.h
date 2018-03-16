@@ -15,6 +15,7 @@ struct Vector2 final																/*! Templated vector 2 structure */
 
 	template<typename U>
 	Vector2(const Vector2<U>& _vector);												/*!< Constructor by copy */
+	Vector2(const Vector2& _vector);												/*!< Constructor by copy */
 	
 	Vector2(Vector2&& _vector)	= default;											/*!< Move constructor */
 	~Vector2()					= default;											/*!< Default destructor */
@@ -41,6 +42,8 @@ struct Vector2 final																/*! Templated vector 2 structure */
 
 #pragma region Operator
 
+	template<typename U>
+	void		operator=	(const	Vector2<U>&	_vector);							/*! Assignment operator*/
 	void		operator=	(const	Vector2&	_vector);							/*! Assignment operator*/
 	Vector2&	operator=	(		Vector2&&	_vector)	= default;				/*! Move assignment operator */
 	bool		operator==	(const	Vector2&	_vector);							/*! Equal to operator */
@@ -53,6 +56,7 @@ struct Vector2 final																/*! Templated vector 2 structure */
 	Vector2&	operator*=	(const	float		_scalar);							/*! Compound assignment: multiplication */
 	Vector2		operator/	(const	float		_scalar);							/*! Arithmetic operator: division */
 	Vector2&	operator/=	(const	float		_scalar);							/*! Compound assignment: division */
+	T&			operator[]	(const	int			_index);							/*! Access operator */
 
 #pragma endregion
 };

@@ -1,0 +1,142 @@
+\hypertarget{classpad_1_1gfx_1_1_renderer}{}\section{pad\+:\+:gfx\+:\+:Renderer Class Reference}
+\label{classpad_1_1gfx_1_1_renderer}\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+
+
+{\ttfamily \#include $<$Renderer.\+h$>$}
+
+Inheritance diagram for pad\+:\+:gfx\+:\+:Renderer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpad_1_1gfx_1_1_renderer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_a31e4f7095746776998b8d9826dd48e69}{Renderer}} ()
+\item 
+virtual \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_a104d47988f127a95e78ed01a29b70d39}{$\sim$\+Renderer}} ()=default
+\item 
+\mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_a2bcf737a8d0e8964e69aa391995335d2}{Renderer}} (const \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer}{Renderer}} \&)=delete
+\item 
+\mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_afef3c09f0e69578c3c70a271d37b5c86}{Renderer}} (\mbox{\hyperlink{classpad_1_1gfx_1_1_renderer}{Renderer}} \&\&)=delete
+\item 
+virtual void \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_af78164b0fc174776bf1345c99d5c08b4}{Start\+Module}} ()
+\item 
+virtual void \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_ad90dc994132b8f4028eaa5b9af87b601}{Stop\+Module}} ()
+\item 
+void \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_a28ca09b90cf50729dcca9e6c6e7150d3}{Init}} (const \mbox{\hyperlink{structpad_1_1gfx_1_1_render_settings}{Render\+Settings}} \&settings)
+\item 
+void \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_a9a2be08d5d678ba36dbf94f2690c57fb}{Clear\+Buffer}} ()
+\item 
+void \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_ae7e6d57e172a8921b44fe41e976f0d0f}{Draw}} ()
+\item 
+void \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_a0988ec219668aa3a4410c31161cac8ac}{operator=}} (const \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer}{Renderer}} \&)=delete
+\item 
+void \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_a2ea30dd98eda5c1a840d598e8de57dc1}{operator=}} (\mbox{\hyperlink{classpad_1_1gfx_1_1_renderer}{Renderer}} \&\&)=delete
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_a231a9121b1b95e52eae5fab21cd8785c}{Init\+Context}} (const \mbox{\hyperlink{namespacepad_1_1math_a4eb77014ac7b74bd24cf73bca82ac3a3}{math\+::\+Vec4f}} \&\+\_\+clear\+Color)
+\item 
+void \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer_a403e00bd5a3c5f91c5505332dda41a3e}{Init\+View\+Port}} (const \mbox{\hyperlink{namespacepad_1_1math_a808a631a6bccd994f9589d7fb86bad41}{math\+::\+Vec2i}} \&\+\_\+viewport\+Size)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_a31e4f7095746776998b8d9826dd48e69}\label{classpad_1_1gfx_1_1_renderer_a31e4f7095746776998b8d9826dd48e69}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!Renderer@{Renderer}}
+\index{Renderer@{Renderer}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{Renderer()}{Renderer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily pad\+::gfx\+::\+Renderer\+::\+Renderer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_a104d47988f127a95e78ed01a29b70d39}\label{classpad_1_1gfx_1_1_renderer_a104d47988f127a95e78ed01a29b70d39}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!````~Renderer@{$\sim$\+Renderer}}
+\index{````~Renderer@{$\sim$\+Renderer}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{$\sim$\+Renderer()}{~Renderer()}}
+{\footnotesize\ttfamily virtual pad\+::gfx\+::\+Renderer\+::$\sim$\+Renderer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_a2bcf737a8d0e8964e69aa391995335d2}\label{classpad_1_1gfx_1_1_renderer_a2bcf737a8d0e8964e69aa391995335d2}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!Renderer@{Renderer}}
+\index{Renderer@{Renderer}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{Renderer()}{Renderer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily pad\+::gfx\+::\+Renderer\+::\+Renderer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer}{Renderer}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_afef3c09f0e69578c3c70a271d37b5c86}\label{classpad_1_1gfx_1_1_renderer_afef3c09f0e69578c3c70a271d37b5c86}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!Renderer@{Renderer}}
+\index{Renderer@{Renderer}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{Renderer()}{Renderer()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily pad\+::gfx\+::\+Renderer\+::\+Renderer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpad_1_1gfx_1_1_renderer}{Renderer}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_a9a2be08d5d678ba36dbf94f2690c57fb}\label{classpad_1_1gfx_1_1_renderer_a9a2be08d5d678ba36dbf94f2690c57fb}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!Clear\+Buffer@{Clear\+Buffer}}
+\index{Clear\+Buffer@{Clear\+Buffer}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{Clear\+Buffer()}{ClearBuffer()}}
+{\footnotesize\ttfamily void pad\+::gfx\+::\+Renderer\+::\+Clear\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_ae7e6d57e172a8921b44fe41e976f0d0f}\label{classpad_1_1gfx_1_1_renderer_ae7e6d57e172a8921b44fe41e976f0d0f}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!Draw@{Draw}}
+\index{Draw@{Draw}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void pad\+::gfx\+::\+Renderer\+::\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_a28ca09b90cf50729dcca9e6c6e7150d3}\label{classpad_1_1gfx_1_1_renderer_a28ca09b90cf50729dcca9e6c6e7150d3}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!Init@{Init}}
+\index{Init@{Init}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void pad\+::gfx\+::\+Renderer\+::\+Init (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpad_1_1gfx_1_1_render_settings}{Render\+Settings}} \&}]{settings }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_a231a9121b1b95e52eae5fab21cd8785c}\label{classpad_1_1gfx_1_1_renderer_a231a9121b1b95e52eae5fab21cd8785c}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!Init\+Context@{Init\+Context}}
+\index{Init\+Context@{Init\+Context}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{Init\+Context()}{InitContext()}}
+{\footnotesize\ttfamily void pad\+::gfx\+::\+Renderer\+::\+Init\+Context (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacepad_1_1math_a4eb77014ac7b74bd24cf73bca82ac3a3}{math\+::\+Vec4f}} \&}]{\+\_\+clear\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_a403e00bd5a3c5f91c5505332dda41a3e}\label{classpad_1_1gfx_1_1_renderer_a403e00bd5a3c5f91c5505332dda41a3e}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!Init\+View\+Port@{Init\+View\+Port}}
+\index{Init\+View\+Port@{Init\+View\+Port}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{Init\+View\+Port()}{InitViewPort()}}
+{\footnotesize\ttfamily void pad\+::gfx\+::\+Renderer\+::\+Init\+View\+Port (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacepad_1_1math_a808a631a6bccd994f9589d7fb86bad41}{math\+::\+Vec2i}} \&}]{\+\_\+viewport\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_a0988ec219668aa3a4410c31161cac8ac}\label{classpad_1_1gfx_1_1_renderer_a0988ec219668aa3a4410c31161cac8ac}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!operator=@{operator=}}
+\index{operator=@{operator=}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void pad\+::gfx\+::\+Renderer\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classpad_1_1gfx_1_1_renderer}{Renderer}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_a2ea30dd98eda5c1a840d598e8de57dc1}\label{classpad_1_1gfx_1_1_renderer_a2ea30dd98eda5c1a840d598e8de57dc1}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!operator=@{operator=}}
+\index{operator=@{operator=}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void pad\+::gfx\+::\+Renderer\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classpad_1_1gfx_1_1_renderer}{Renderer}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_af78164b0fc174776bf1345c99d5c08b4}\label{classpad_1_1gfx_1_1_renderer_af78164b0fc174776bf1345c99d5c08b4}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!Start\+Module@{Start\+Module}}
+\index{Start\+Module@{Start\+Module}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{Start\+Module()}{StartModule()}}
+{\footnotesize\ttfamily void pad\+::gfx\+::\+Renderer\+::\+Start\+Module (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classpad_1_1sys_1_1_i_module_ad3d5abf3e4d20047b6b64da7db92d1ef}{pad\+::sys\+::\+I\+Module}}.
+
+\mbox{\Hypertarget{classpad_1_1gfx_1_1_renderer_ad90dc994132b8f4028eaa5b9af87b601}\label{classpad_1_1gfx_1_1_renderer_ad90dc994132b8f4028eaa5b9af87b601}} 
+\index{pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}!Stop\+Module@{Stop\+Module}}
+\index{Stop\+Module@{Stop\+Module}!pad\+::gfx\+::\+Renderer@{pad\+::gfx\+::\+Renderer}}
+\subsubsection{\texorpdfstring{Stop\+Module()}{StopModule()}}
+{\footnotesize\ttfamily void pad\+::gfx\+::\+Renderer\+::\+Stop\+Module (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classpad_1_1sys_1_1_i_module_aa6c2b9d1e6b66aeee291923d4be87f0c}{pad\+::sys\+::\+I\+Module}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+P\+A\+D Engine/\+Sources/\+Graphics/\mbox{\hyperlink{_renderer_8h}{Renderer.\+h}}\item 
+P\+A\+D Engine/\+Sources/\+Graphics/\mbox{\hyperlink{_renderer_8cpp}{Renderer.\+cpp}}\end{DoxyCompactItemize}

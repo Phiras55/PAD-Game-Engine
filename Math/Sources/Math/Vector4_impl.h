@@ -1,3 +1,5 @@
+#include <assert.h>
+
 namespace pad	{
 namespace math	{
 
@@ -27,7 +29,16 @@ Vector4<T>::Vector4() :
 template<typename T>
 template<typename U>
 Vector4<T>::Vector4(const Vector4<U>& _vector) :
-	x(_vector.x), 
+	x(static_cast<T>(_vector.x)), 
+	y(static_cast<T>(_vector.y)),
+	z(static_cast<T>(_vector.z)),
+	w(static_cast<T>(_vector.w))
+{
+}
+
+template<typename T>
+Vector4<T>::Vector4(const Vector4& _vector) :
+	x(_vector.x),
 	y(_vector.y),
 	z(_vector.z),
 	w(_vector.w)
@@ -37,6 +48,15 @@ Vector4<T>::Vector4(const Vector4<U>& _vector) :
 template<typename T>
 template<typename U>
 Vector4<T>::Vector4(const Vector3<U>& _vector) :
+	x(static_cast<T>(_vector.x)),
+	y(static_cast<T>(_vector.y)),
+	z(static_cast<T>(_vector.z)),
+	w(static_cast<T>(1))
+{
+}
+
+template<typename T>
+Vector4<T>::Vector4(const Vector3<T>& _vector) :
 	x(_vector.x),
 	y(_vector.y),
 	z(_vector.z),
@@ -107,6 +127,16 @@ bool Vector4<T>::IsUnit() const
 #pragma endregion
 
 #pragma region Operator
+
+template <typename T>
+template <typename U>
+void Vector4<T>::operator=(const Vector4<U>& _vector)
+{
+	x = static_cast<T>(_vector.x);
+	y = static_cast<T>(_vector.y);
+	z = static_cast<T>(_vector.z);
+	w = static_cast<T>(_vector.w);
+}
 
 template <typename T>
 void Vector4<T>::operator=(const Vector4& _vector)
@@ -209,6 +239,13 @@ Vector4<T>& Vector4<T>::operator/=(const float _scalar)
 	z /= _scalar;
 	w /= _scalar;
 	return *this;
+}
+
+template <typename T>
+T& Vector4<T>::operator[](const int _index)
+{
+	assert(_index >= 0 && _index < 4);
+	return *(&x + _index);
 }
 
 #pragma endregion

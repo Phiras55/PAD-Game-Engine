@@ -1,3 +1,5 @@
+#include <assert.h>
+
 namespace pad	{
 namespace math	{
 
@@ -26,7 +28,15 @@ Vector3<T>::Vector3() :
 template<typename T>
 template<typename U>
 Vector3<T>::Vector3(const Vector3<U>& _vector) :
-	x(_vector.x), 
+	x(static_cast<T>(_vector.x)), 
+	y(static_cast<T>(_vector.y)),
+	z(static_cast<T>(_vector.z))
+{
+}
+
+template<typename T>
+Vector3<T>::Vector3(const Vector3& _vector) :
+	x(_vector.x),
 	y(_vector.y),
 	z(_vector.z)
 {
@@ -93,6 +103,15 @@ bool Vector3<T>::IsUnit() const
 #pragma endregion
 
 #pragma region Operator
+
+template <typename T>
+template <typename U>
+void Vector3<T>::operator=(const Vector3<U>& _vector)
+{
+	x = static_cast<T>(_vector.x);
+	y = static_cast<T>(_vector.y);
+	z = static_cast<T>(_vector.z);
+}
 
 template <typename T>
 void Vector3<T>::operator=(const Vector3& _vector)
@@ -194,6 +213,13 @@ Vector3<T>& Vector3<T>::operator/=(const float _scalar)
 	}
 	else
 		return NULL;
+}
+
+template <typename T>
+T& Vector3<T>::operator[](const int _index)
+{
+	assert(_index >= 0 && _index < 3);
+	return *(&x + _index);
 }
 
 #pragma endregion

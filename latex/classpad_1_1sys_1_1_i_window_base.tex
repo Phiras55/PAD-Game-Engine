@@ -1,0 +1,133 @@
+\hypertarget{classpad_1_1sys_1_1_i_window_base}{}\section{pad\+:\+:sys\+:\+:I\+Window\+Base Class Reference}
+\label{classpad_1_1sys_1_1_i_window_base}\index{pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}}
+
+
+{\ttfamily \#include $<$I\+Window\+Base.\+h$>$}
+
+Inheritance diagram for pad\+:\+:sys\+:\+:I\+Window\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpad_1_1sys_1_1_i_window_base}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classpad_1_1sys_1_1_i_window_base_aee21db35ea6bdd4299783b4e96a9b326}{Poll\+Events}} ()=0
+\item 
+virtual void \mbox{\hyperlink{classpad_1_1sys_1_1_i_window_base_a19fff5f21c5a75082d8ca4e2491b269e}{Resize}} (const \mbox{\hyperlink{namespacepad_1_1math_a9773bcf81aa2ddd829bc327d822c6552}{math\+::\+Vec2}}$<$ \mbox{\hyperlink{namespacepad_a03b9241a5f6a191da2faac64714e1038}{uint16}} $>$ \&size)=0
+\item 
+virtual void \mbox{\hyperlink{classpad_1_1sys_1_1_i_window_base_aff693c784fbf16ae5bbfce797f570879}{Reload\+Settings}} (const \mbox{\hyperlink{structpad_1_1sys_1_1_window_settings}{Window\+Settings}} \&\+\_\+infos)=0
+\item 
+virtual void \mbox{\hyperlink{classpad_1_1sys_1_1_i_window_base_aee66a6eacff6126f4106a8e725bcbf1f}{Init}} (const \mbox{\hyperlink{structpad_1_1sys_1_1_window_settings}{Window\+Settings}} \&\+\_\+infos)=0
+\item 
+virtual bool \mbox{\hyperlink{classpad_1_1sys_1_1_i_window_base_a07aae1254b0d8139e912584029d785ea}{Is\+Open}} ()=0
+\item 
+virtual void \mbox{\hyperlink{classpad_1_1sys_1_1_i_window_base_ac6fe9dea946b20c52ad8d9372e57e6c1}{Swap\+Buffer}} ()=0
+\item 
+virtual const \mbox{\hyperlink{namespacepad_1_1math_a808a631a6bccd994f9589d7fb86bad41}{math\+::\+Vec2i}} \mbox{\hyperlink{classpad_1_1sys_1_1_i_window_base_ac3cb42c492b8c2ba59f36da4702b7bec}{Get\+Position}} () const =0
+\item 
+virtual const \mbox{\hyperlink{namespacepad_1_1math_a808a631a6bccd994f9589d7fb86bad41}{math\+::\+Vec2i}} \mbox{\hyperlink{classpad_1_1sys_1_1_i_window_base_acf3540e89da05cc490cf981f196ad771}{Get\+Size}} () const =0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classpad_1_1sys_1_1_i_window_base_a4ca3e1915cb3c100497ace0d7d04fa23}{m\+\_\+is\+Open}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classpad_1_1sys_1_1_i_window_base_ac3cb42c492b8c2ba59f36da4702b7bec}\label{classpad_1_1sys_1_1_i_window_base_ac3cb42c492b8c2ba59f36da4702b7bec}} 
+\index{pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}!Get\+Position@{Get\+Position}}
+\index{Get\+Position@{Get\+Position}!pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}}
+\subsubsection{\texorpdfstring{Get\+Position()}{GetPosition()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{namespacepad_1_1math_a808a631a6bccd994f9589d7fb86bad41}{math\+::\+Vec2i}} pad\+::sys\+::\+I\+Window\+Base\+::\+Get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classpad_1_1sys_1_1_s_d_l_window_a43391052519ec0bc8c194642d6d68d12}{pad\+::sys\+::\+S\+D\+L\+Window}}.
+
+\mbox{\Hypertarget{classpad_1_1sys_1_1_i_window_base_acf3540e89da05cc490cf981f196ad771}\label{classpad_1_1sys_1_1_i_window_base_acf3540e89da05cc490cf981f196ad771}} 
+\index{pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}!Get\+Size@{Get\+Size}}
+\index{Get\+Size@{Get\+Size}!pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}}
+\subsubsection{\texorpdfstring{Get\+Size()}{GetSize()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{namespacepad_1_1math_a808a631a6bccd994f9589d7fb86bad41}{math\+::\+Vec2i}} pad\+::sys\+::\+I\+Window\+Base\+::\+Get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classpad_1_1sys_1_1_s_d_l_window_a4b39d8767776e1fe6f613ad3fe7d7b29}{pad\+::sys\+::\+S\+D\+L\+Window}}.
+
+\mbox{\Hypertarget{classpad_1_1sys_1_1_i_window_base_aee66a6eacff6126f4106a8e725bcbf1f}\label{classpad_1_1sys_1_1_i_window_base_aee66a6eacff6126f4106a8e725bcbf1f}} 
+\index{pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}!Init@{Init}}
+\index{Init@{Init}!pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}}
+\subsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily virtual void pad\+::sys\+::\+I\+Window\+Base\+::\+Init (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpad_1_1sys_1_1_window_settings}{Window\+Settings}} \&}]{\+\_\+infos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classpad_1_1sys_1_1_s_d_l_window_a7749e49f614ac33a95f1ef4ffed853e7}{pad\+::sys\+::\+S\+D\+L\+Window}}.
+
+\mbox{\Hypertarget{classpad_1_1sys_1_1_i_window_base_a07aae1254b0d8139e912584029d785ea}\label{classpad_1_1sys_1_1_i_window_base_a07aae1254b0d8139e912584029d785ea}} 
+\index{pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}!Is\+Open@{Is\+Open}}
+\index{Is\+Open@{Is\+Open}!pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}}
+\subsubsection{\texorpdfstring{Is\+Open()}{IsOpen()}}
+{\footnotesize\ttfamily virtual bool pad\+::sys\+::\+I\+Window\+Base\+::\+Is\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classpad_1_1sys_1_1_s_d_l_window_ae76d9066f3c36e8b949b6c211be0affd}{pad\+::sys\+::\+S\+D\+L\+Window}}.
+
+\mbox{\Hypertarget{classpad_1_1sys_1_1_i_window_base_aee21db35ea6bdd4299783b4e96a9b326}\label{classpad_1_1sys_1_1_i_window_base_aee21db35ea6bdd4299783b4e96a9b326}} 
+\index{pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}!Poll\+Events@{Poll\+Events}}
+\index{Poll\+Events@{Poll\+Events}!pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}}
+\subsubsection{\texorpdfstring{Poll\+Events()}{PollEvents()}}
+{\footnotesize\ttfamily virtual void pad\+::sys\+::\+I\+Window\+Base\+::\+Poll\+Events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classpad_1_1sys_1_1_s_d_l_window_a66014e181e30c20a3488ff715d106665}{pad\+::sys\+::\+S\+D\+L\+Window}}.
+
+\mbox{\Hypertarget{classpad_1_1sys_1_1_i_window_base_aff693c784fbf16ae5bbfce797f570879}\label{classpad_1_1sys_1_1_i_window_base_aff693c784fbf16ae5bbfce797f570879}} 
+\index{pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}!Reload\+Settings@{Reload\+Settings}}
+\index{Reload\+Settings@{Reload\+Settings}!pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}}
+\subsubsection{\texorpdfstring{Reload\+Settings()}{ReloadSettings()}}
+{\footnotesize\ttfamily virtual void pad\+::sys\+::\+I\+Window\+Base\+::\+Reload\+Settings (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structpad_1_1sys_1_1_window_settings}{Window\+Settings}} \&}]{\+\_\+infos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classpad_1_1sys_1_1_s_d_l_window_a7f45cd8f1ffa83c4aaedf40b69012870}{pad\+::sys\+::\+S\+D\+L\+Window}}.
+
+\mbox{\Hypertarget{classpad_1_1sys_1_1_i_window_base_a19fff5f21c5a75082d8ca4e2491b269e}\label{classpad_1_1sys_1_1_i_window_base_a19fff5f21c5a75082d8ca4e2491b269e}} 
+\index{pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}!Resize@{Resize}}
+\index{Resize@{Resize}!pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}}
+\subsubsection{\texorpdfstring{Resize()}{Resize()}}
+{\footnotesize\ttfamily virtual void pad\+::sys\+::\+I\+Window\+Base\+::\+Resize (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacepad_1_1math_a9773bcf81aa2ddd829bc327d822c6552}{math\+::\+Vec2}}$<$ \mbox{\hyperlink{namespacepad_a03b9241a5f6a191da2faac64714e1038}{uint16}} $>$ \&}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classpad_1_1sys_1_1_s_d_l_window_aba5a51090a6865da6d47826af28413ef}{pad\+::sys\+::\+S\+D\+L\+Window}}.
+
+\mbox{\Hypertarget{classpad_1_1sys_1_1_i_window_base_ac6fe9dea946b20c52ad8d9372e57e6c1}\label{classpad_1_1sys_1_1_i_window_base_ac6fe9dea946b20c52ad8d9372e57e6c1}} 
+\index{pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}!Swap\+Buffer@{Swap\+Buffer}}
+\index{Swap\+Buffer@{Swap\+Buffer}!pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}}
+\subsubsection{\texorpdfstring{Swap\+Buffer()}{SwapBuffer()}}
+{\footnotesize\ttfamily virtual void pad\+::sys\+::\+I\+Window\+Base\+::\+Swap\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classpad_1_1sys_1_1_s_d_l_window_a991b47b499f3073e4d1962c2512e2ae8}{pad\+::sys\+::\+S\+D\+L\+Window}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classpad_1_1sys_1_1_i_window_base_a4ca3e1915cb3c100497ace0d7d04fa23}\label{classpad_1_1sys_1_1_i_window_base_a4ca3e1915cb3c100497ace0d7d04fa23}} 
+\index{pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}!m\+\_\+is\+Open@{m\+\_\+is\+Open}}
+\index{m\+\_\+is\+Open@{m\+\_\+is\+Open}!pad\+::sys\+::\+I\+Window\+Base@{pad\+::sys\+::\+I\+Window\+Base}}
+\subsubsection{\texorpdfstring{m\+\_\+is\+Open}{m\_isOpen}}
+{\footnotesize\ttfamily bool pad\+::sys\+::\+I\+Window\+Base\+::m\+\_\+is\+Open\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+P\+A\+D Engine/\+Sources/\+System/\mbox{\hyperlink{_i_window_base_8h}{I\+Window\+Base.\+h}}\end{DoxyCompactItemize}

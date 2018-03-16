@@ -26,7 +26,7 @@ template<typename T, typename... Targs>
 static void SimpleLogger::BuildMessage(const std::string& _format, Message& _m, int _findStart, const T& _a, Targs&&... _args)
 {
 	const int findBegin = (_findStart == 0 ? _findStart : _findStart + 1);
-	_findStart = _format.find(CPARAMETER, _findStart);
+	_findStart = (int)_format.find(CPARAMETER, _findStart);
 
 	if (_findStart != std::string::npos)
 	{

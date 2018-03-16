@@ -3,6 +3,7 @@
 
 namespace pad	{
 namespace gfx	{
+namespace mod	{
 
 struct MeshData
 {
@@ -20,5 +21,6 @@ struct MeshData
 	uint32 indiceCount;
 };
 
+} // namespace mod
 } // namespace gfx
 } // namespace pad

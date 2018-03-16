@@ -2,7 +2,7 @@
 #include <map>
 #include <Common.h>
 
-#include <Graphics/ShaderType.h>
+#include <Graphics/RHI/Shader/ShaderType.h>
 
 namespace pad	{
 namespace gfx	{
@@ -19,7 +19,6 @@ public:
 private:
 	static int32				 m_currentProgID;
 	int32						 m_progID;
-	std::map<std::string, int32> m_uniforms;
 
 public:
 	void Use();
@@ -31,8 +30,8 @@ public:
 	void SetUniform(const std::string& name, float32 value);
 
 private:
-	bool CompileShader(const char* _shaderCode, int32& _shaderID, const E_SHADER_TYPE& _type);
-	bool LoadShader(const char* _path, const E_SHADER_TYPE& _type, int32& _shaderID);
+	bool CompileShader(const char* _shaderCode, int32& _shaderID, const rhi::shad::E_SHADER_TYPE& _type);
+	bool LoadShader(const char* _path, const rhi::shad::E_SHADER_TYPE& _type, int32& _shaderID);
 	bool CreateProgram(const int32 _vertID, const int32 _fragID);
 
 public:

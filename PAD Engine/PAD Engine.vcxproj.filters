@@ -66,6 +66,12 @@
     <ClCompile Include="Sources\Core\Timer.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Core\Scene.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Core\SceneObject.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -108,6 +114,12 @@
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Core\Timer.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Core\SceneObject.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Core\Scene.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>

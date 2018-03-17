@@ -39,5 +39,13 @@
     <ClInclude Include="Sources\Math\Vector4_impl.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Math\Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Math\Transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

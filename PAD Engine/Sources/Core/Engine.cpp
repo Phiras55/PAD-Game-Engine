@@ -2,6 +2,7 @@
 #include <Core/Timer.h>
 #include <Graphics/Shader.h>
 #include <Graphics/Mesh.h>
+#include <Core/Scene.h>
 
 namespace pad	{
 namespace core	{
@@ -49,6 +50,17 @@ void Engine::InitSimulation()
 
 void Engine::StartSimulation()
 {
+	Scene scene;
+	SceneObject* so1 = new SceneObject();
+	SceneObject* so2 = new SceneObject();
+	SceneObject* so3 = new SceneObject();
+
+	scene.AddSceneObject(so1);
+	so2->AddChild(so3);
+	scene.AddSceneObject(so3);
+	so2->AddChild(so1);
+	so2->SetParent(so3);
+
 	while (mp_window->IsOpen())
 	{
 		core::EngineClock::Update();
@@ -56,6 +68,7 @@ void Engine::StartSimulation()
 
 		if (true)
 		{
+			scene.Update();
 			Update();
 			FixedUpdate();
 		}

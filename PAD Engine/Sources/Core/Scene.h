@@ -20,12 +20,13 @@ public:
 #pragma endregion
 
 
-private:
-	std::vector<SceneObject*> sceneObjects;
+public:
+	static SceneObject* masterSceneObject;
 
 public:
 	void Update();
-	void Render();
+	void AddSceneObject(SceneObject* _sceneObject);
+//	void Render();
 };
 
 } // namespace core

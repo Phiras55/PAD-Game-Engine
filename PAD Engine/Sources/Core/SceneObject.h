@@ -12,7 +12,9 @@ class SceneObject
 
 public:
 	SceneObject();
-	~SceneObject()	= default;
+	SceneObject(SceneObject* const _parent);
+
+	~SceneObject();
 
 	SceneObject(const SceneObject&)		= delete;
 	SceneObject(const SceneObject&&)	= delete;
@@ -23,20 +25,25 @@ public:
 
 private:
 	Transform					transform;
-	std::vector<SceneObject*>	children;
+	std::vector<SceneObject*>	childs;
 	SceneObject*				parent;
+
+	static unsigned int counter;
+	unsigned int id;
 
 #pragma endregion
 
 #pragma region Member Functions
 
 public:
-	void Update();
+	void AddChild(SceneObject* const _child);
+	void RemoveChild(SceneObject* const _child);
+	void Update(std::string _test);
 
 #pragma endregion
+
+	void SetParent(SceneObject* const _parent);
 };
-
-
 
 } // namespace core
 } // namespace pad

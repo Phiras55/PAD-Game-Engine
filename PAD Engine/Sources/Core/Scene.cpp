@@ -1,16 +1,29 @@
 #include "Scene.h"
 
-pad::core::Scene::~Scene()
+namespace pad	{
+namespace core	{
+
+SceneObject* Scene::masterSceneObject = new SceneObject(Scene::masterSceneObject);
+
+Scene::~Scene()
 {
 
 }
 
-void pad::core::Scene::Update()
+void Scene::Update()
 {
-
+	masterSceneObject->Update("");
 }
 
-void pad::core::Scene::Render()
+void Scene::AddSceneObject(SceneObject * _sceneObject)
 {
-
+	_sceneObject->SetParent(masterSceneObject);
 }
+
+//void Scene::Render()
+//{
+//
+//}
+
+} // namespace core
+} // namespace pad

@@ -9,13 +9,16 @@ namespace shad	{
 class AShaderProgram
 {
 protected:
+	static int32 m_currentUsedID;
+
 	int32	 m_id;
 	AShader* m_vertShader;
 	AShader* m_fragShader;
 	std::map<std::string, int32> m_uniforms;
 
 public:
-	virtual void CompileProgram() = 0;
+	virtual bool CompileProgram() = 0;
+	virtual void Use() = 0;
 
 	virtual void SetUniform(const std::string& name, int32 value) = 0;
 	virtual void SetUniform(const std::string& name, uint32 value) = 0;

@@ -6,14 +6,14 @@ namespace gfx	{
 namespace gl	{
 namespace shad	{
 
-class GLVertexShader final : public rhi::shad::AShader
+class GLFragmentShader final : public rhi::shad::AShader
 {
 public:
-	GLVertexShader();
-	virtual ~GLVertexShader();
+	GLFragmentShader();
+	virtual ~GLFragmentShader();
 
-	GLVertexShader(const GLVertexShader&) = delete;
-	GLVertexShader(GLVertexShader&&) = delete;
+	GLFragmentShader(const GLFragmentShader&) = delete;
+	GLFragmentShader(GLFragmentShader&&) = delete;
 
 public:
 	virtual bool LoadShader(const char* _path);
@@ -22,8 +22,8 @@ private:
 	virtual bool CompileShader(const char* _shaderCode);
 
 public:
-	void operator=(const GLVertexShader&) = delete;
-	void operator=(GLVertexShader&&) = delete;
+	void operator=(const GLFragmentShader&) = delete;
+	void operator=(GLFragmentShader&&) = delete;
 };
 
 } // namespace shad

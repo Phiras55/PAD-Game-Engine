@@ -1,26 +1,25 @@
 #include <sstream>
 
 #include <GL/glew.h>
-#include <Graphics/GL/Shader/GLVertexShader.h>
-#include <Graphics/RHI/Shader/ShaderType.h>
+#include <Graphics/GL/Shader/GLFragmentShader.h>
 
 namespace pad	{
 namespace gfx	{
 namespace gl	{
 namespace shad	{
 
-GLVertexShader::GLVertexShader()
+GLFragmentShader::GLFragmentShader()
 {
 	m_id = SHADER_INVALID_VALUE;
 }
 
-GLVertexShader::~GLVertexShader()
+GLFragmentShader::~GLFragmentShader()
 {
 	if (m_id != SHADER_INVALID_VALUE)
 		glDeleteShader(m_id);
 }
 
-bool GLVertexShader::LoadShader(const char* _path)
+bool GLFragmentShader::LoadShader(const char* _path)
 {
 	std::string shaderCode;
 	std::ifstream shaderFile;
@@ -49,11 +48,11 @@ bool GLVertexShader::LoadShader(const char* _path)
 	return true;
 }
 
-bool GLVertexShader::CompileShader(const char* _shaderCode)
+bool GLFragmentShader::CompileShader(const char* _shaderCode)
 {
 	int32 success;
 
-	m_id = glCreateShader(GL_VERTEX_SHADER);
+	m_id = glCreateShader(GL_FRAGMENT_SHADER);
 
 	glShaderSource(m_id, 1, &_shaderCode, NULL);
 	glCompileShader(m_id);

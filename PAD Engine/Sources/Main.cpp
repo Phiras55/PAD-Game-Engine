@@ -1,4 +1,7 @@
 #include <iostream>
+
+#include <chrono>
+
 #include <Math/Vector2.h>
 #include <Math/Vector3.h>
 #include <Math/Vector4.h>
@@ -8,7 +11,7 @@
 
 using namespace pad;
 
-void DavidArthurMathTest()
+void ArthurMathTest()
 {
 
 }

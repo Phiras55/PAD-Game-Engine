@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MatrixTransform.h" />
+    <ClInclude Include="Sources\Math\Matrix3x3.h" />
+    <ClInclude Include="Sources\Math\Matrix3x3_impl.h" />
     <ClInclude Include="Sources\Math\Matrix4x4.h" />
     <ClInclude Include="Sources\Math\Matrix4x4_impl.h" />
     <ClInclude Include="Sources\Math\Transform.h" />

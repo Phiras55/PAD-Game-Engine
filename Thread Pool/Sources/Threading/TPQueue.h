@@ -1,6 +1,7 @@
 #pragma once
 #include <queue>
 #include <mutex>
+#include <stdexcept>
 
 namespace pad {
 namespace trp {
@@ -10,22 +11,25 @@ struct TPQueue final
 {
 	void Push(T task)
 	{
-		std::lock_guard<std::mutex>(mutex);
+		std::lock_guard<std::mutex> lg(mutex);
 		queue.push(task);
 	}
-	bool Pop()
+	T Pop()
 	{
-		std::lock_guard<std::mutex>(mutex);
+		std::lock_guard<std::mutex> lg(mutex);
 		if (IsEmpty())
-			return false;
+			throw std::out_of_range("Queue is empty");
 		else
-			queue.pop();
-		return true;
+		{
+			T temp = queue.front();
+			return temp;
+		}
 	}
 	bool Clear()
 	{
 		if (!IsEmpty())
-			while (Pop());
+			while (Pop())
+				;
 		return true;
 	}
 	bool IsEmpty()
@@ -33,9 +37,8 @@ struct TPQueue final
 		return queue.empty();
 	}
 
-	std::queue<T> queue;
-	std::mutex mutex;
+	std::queue<T>	queue;
+	std::mutex		mutex;
 };
-
 }
 }

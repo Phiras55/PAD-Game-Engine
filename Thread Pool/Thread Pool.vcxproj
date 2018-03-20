@@ -24,6 +24,7 @@
     <ClInclude Include="Sources\Threading\TPQueue.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Sources\Threading\ThreadObject.cpp" />
     <ClCompile Include="Sources\Threading\ThreadPool.cpp" />
   </ItemGroup>

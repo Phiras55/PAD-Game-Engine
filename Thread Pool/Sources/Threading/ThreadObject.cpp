@@ -1,4 +1,5 @@
 #include "ThreadObject.h"
+#include "ThreadPool.h"
 
 namespace pad {
 namespace trp {
@@ -18,9 +19,11 @@ namespace trp {
 	{
 	}
 
-	bool ThreadObject::LookForTask()
+	void ThreadObject::LookForTask()
 	{
-		return false;
+		m_func = m_threadPool.Pop();
+		if (m_func == nullptr)
+			return;
 	}
 
 	void ThreadObject::Stop()

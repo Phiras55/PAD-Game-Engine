@@ -17,11 +17,11 @@ public:
 private:
 	ThreadPool&				m_threadPool;
 	std::thread				m_thread;
-	std::function<void()>*	m_func;
+	std::function<void()>	m_func;
 	std::atomic_bool		m_busy			= false;
 	
 	void Start();
-	bool LookForTask();
+	void LookForTask();
 	void Stop();
 };
 

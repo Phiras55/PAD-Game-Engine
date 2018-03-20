@@ -11,19 +11,18 @@ public:
 	ThreadPool();
 	~ThreadPool();
 	
-	void Push(std::function<void()>*);
-	void Stop();
+	void					Push(std::function<void()> _func);
+	void					Stop();
+	std::function<void()>	Pop();
 
 private:
 	void Init();
-	std::function<void()>* Pop();
 
-	std::vector<std::thread*>		Threads;
-	TPQueue<std::function<void()>*> Queue;
-	std::condition_variable			Cv;
-	std::mutex						Mutex;
-	bool							IsActive;
-	int								WaitingThreads;
+	std::vector<std::thread*>		m_threads;
+	TPQueue<std::function<void()>>	m_queue;
+	std::condition_variable			m_cv;
+	std::mutex						m_mutex;
+	bool							m_isActive;
 
 };
 

@@ -12,14 +12,15 @@ ThreadPool::~ThreadPool()
 {
 }
 
-void ThreadPool::Push(std::function<void()>* _task)
+void ThreadPool::Push(std::function<void()> _task)
 {
-	Queue.Push(_task);
+	m_queue.Push(_task);
 }
 
 void ThreadPool::Stop()
 {
-	Queue.Clear();
+	m_queue.Clear();
+
 }
 
 void ThreadPool::Init()
@@ -27,9 +28,9 @@ void ThreadPool::Init()
 
 }
 
-std::function<void()>* ThreadPool::Pop()
+std::function<void()> ThreadPool::Pop()
 {
-	return new std::function<void()>();
+	return m_queue.Pop();
 }
 
 

@@ -1,16 +1,42 @@
 #pragma once
 
-#include <Math/Vector3.h>
+#include <Math/Matrix4x4.h>
 
 namespace pad	{
-namespace core	{
+namespace math	{
 
-struct Transform final
+class Transform final
 {
-	math::Vec3f		position;
-	math::Vec3f		rotation;
-	math::Vec3f		scale;
+public:
+	Transform()		= default;
+	~Transform()	= default;
+
+private:
+	Mat4	localTransform;
+	Mat4	globalTransform;
+	Vec3f	position;
+	Vec3f	rotation;
+	Vec3f	scale;
+	bool	isDirty;
+
+private:
+	void ComputeLocalMatrix();
+
+public:
+	inline const Mat4& GetGlobalTransform() const { return globalTransform; }
+
+	const Mat4& GetLocalTransform();
+	void SetGlobalTransform(const Mat4& _globalTransform);
+
+	void SetPosition(const Vec3f& _position);
+	void Move(const Vec3f& _movement);
+
+	void SetRotation(const Vec3f& _rotation);
+
+	void SetScale(const Vec3f& _scale);
+	void SetScale(const float _scalar);
+	void ScaleBy(const float _scalar);
 };
 
-} // namespace core
+} // namespace math
 } // namespace pad

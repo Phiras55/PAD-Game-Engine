@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <list>
 #include <Math/Transform.h>
 
 namespace pad	{
@@ -24,12 +24,9 @@ public:
 #pragma region Variables
 
 private:
-	Transform					transform;
-	std::vector<SceneObject*>	childs;
-	SceneObject*				parent;
-
-	static unsigned int counter;
-	unsigned int id;
+	math::Transform			transform;
+	std::list<SceneObject*>	childs;
+	SceneObject*			parent;
 
 #pragma endregion
 
@@ -38,7 +35,7 @@ private:
 public:
 	void AddChild(SceneObject* const _child);
 	void RemoveChild(SceneObject* const _child);
-	void Update(std::string _test);
+	void Update();
 
 #pragma endregion
 

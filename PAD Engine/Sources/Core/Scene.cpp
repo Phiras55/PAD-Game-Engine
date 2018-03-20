@@ -3,16 +3,19 @@
 namespace pad	{
 namespace core	{
 
-SceneObject* Scene::masterSceneObject = new SceneObject(Scene::masterSceneObject);
+Scene::Scene() :
+	masterSceneObject(new SceneObject())
+{
+}
 
-Scene::~Scene()
+Scene::~Scene() 
 {
 
 }
 
 void Scene::Update()
 {
-	masterSceneObject->Update("");
+	masterSceneObject->Update();
 }
 
 void Scene::AddSceneObject(SceneObject * _sceneObject)

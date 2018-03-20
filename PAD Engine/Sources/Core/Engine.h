@@ -31,8 +31,8 @@ private:
 	void CreateRenderer(const gfx::RenderSettings& settings);
 
 public:
-	void operator=(const Engine&) = delete;
-	void operator=(const Engine&&) = delete;
+	void operator=(const Engine&)	= delete;
+	void operator=(const Engine&&)	= delete;
 };
 
 } // namespace core

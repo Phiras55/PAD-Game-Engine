@@ -4,26 +4,28 @@
 namespace pad	{
 namespace core	{
 
-unsigned int SceneObject::counter = 0;
-
 SceneObject::SceneObject() :
 	parent(nullptr)
 {
-	id = counter;
-	counter++;
+
 }
 
 SceneObject::SceneObject(SceneObject* const _parent) :
 	parent(_parent)
 {
-	id = counter;
-	counter++;
+
 }
 
 SceneObject::~SceneObject()
 {
 	if (parent)
 		parent->RemoveChild(this);
+
+	for (SceneObject* so : childs)
+	{
+		so->SetParent(nullptr);
+		so->~SceneObject();
+	}
 }
 
 void SceneObject::AddChild(SceneObject* const _child)
@@ -37,31 +39,16 @@ void SceneObject::AddChild(SceneObject* const _child)
 
 void SceneObject::RemoveChild(SceneObject* const _child)
 {
-	// besoin de discuter pour optimisation
-
-	childs.erase(std::remove(childs.begin(), childs.end(), _child), childs.end());
-
-	//Alternative approach
-
-	//auto it = std::find(childs.begin(), childs.end(), _child);
-	//if (it != childs.end())
-	//{
-	//	std::swap(*it, childs.back());
-	//	childs.pop_back();
-	//}
+	childs.remove(_child);
 }
 
-void SceneObject::Update(std::string _test)
+void SceneObject::Update()
 {
-	std::cout << _test.c_str() << id << "\n";
-	_test += "  ";
+	transform.SetGlobalTransform(		parent->transform.GetGlobalTransform() 
+									*	transform.GetLocalTransform());
 
-	//	transform = parent->transform * transform;
-
-	for (int i = 0; i < childs.size(); ++i)
-	{
-		childs[i]->Update(_test);
-	}
+	for (SceneObject* so : childs)
+		so->Update();
 }
 
 void SceneObject::SetParent(SceneObject* const _parent)

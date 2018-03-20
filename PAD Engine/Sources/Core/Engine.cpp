@@ -60,6 +60,9 @@ void Engine::StartSimulation()
 	scene.AddSceneObject(so3);
 	so2->AddChild(so1);
 	so2->SetParent(so3);
+	scene.AddSceneObject(so1);
+	so3->SetParent(so1);
+	so1->AddChild(so2);
 
 	while (mp_window->IsOpen())
 	{

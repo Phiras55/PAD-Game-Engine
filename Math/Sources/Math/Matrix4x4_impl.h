@@ -30,7 +30,7 @@ Matrix4x4::Matrix4x4(const float* _data)
 	*(__DATA256+1)	= _mm256_load_ps(_data + 8);
 }
 
-Matrix4x4::Matrix4x4(Matrix4x4& _matrix)
+Matrix4x4::Matrix4x4(const Matrix4x4& _matrix)
 {
 	*__DATA256		= *_matrix.__DATA256;
 	*(__DATA256+1)	= *(_matrix.__DATA256+1);
@@ -120,7 +120,7 @@ Matrix4x4& Matrix4x4::operator-=(const Matrix4x4& _matrix)
 	return *this;
 }
 
-Matrix4x4 Matrix4x4::operator*(const Matrix4x4&	_matrix)
+Matrix4x4 Matrix4x4::operator*(const Matrix4x4&	_matrix) const
 {
 	Matrix4x4 mat(*this);
 	mat *= _matrix;

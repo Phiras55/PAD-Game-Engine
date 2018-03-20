@@ -11,7 +11,7 @@ class Scene final
 #pragma region Constructor / Destructor
 
 public:
-	Scene()		= default;
+	Scene();
 	~Scene();
 
 	Scene(const Scene&)		= delete;
@@ -21,7 +21,7 @@ public:
 
 
 public:
-	static SceneObject* masterSceneObject;
+	SceneObject* masterSceneObject;
 
 public:
 	void Update();

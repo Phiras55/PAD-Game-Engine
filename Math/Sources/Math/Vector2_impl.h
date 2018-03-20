@@ -5,12 +5,12 @@ namespace math	{
 
 #pragma region Typedef
 
-template<typename T>																/*! Vector2 templated by the user */
-using	Vec2	= Vector2<T>;														
-using	Vec2i	= Vector2<int>;														/*! Vector2 templated in int */
-using	Vec2u	= Vector2<unsigned int>;											/*! Vector2 templated in unsigned int */
-using	Vec2f	= Vector2<float>;													/*! Vector2 templated in float */
-using	Vec2d	= Vector2<double>;													/*! Vector2 templated in double */
+template<typename T>																				/*! Vector2 templated by the user */
+using	Vec2	= Vector2<T>;																		
+using	Vec2i	= Vector2<int>;																		/*! Vector2 templated in int */
+using	Vec2u	= Vector2<unsigned int>;															/*! Vector2 templated in unsigned int */
+using	Vec2f	= Vector2<float>;																	/*! Vector2 templated in float */
+using	Vec2d	= Vector2<double>;																	/*! Vector2 templated in double */
 
 #pragma endregion
 
@@ -179,7 +179,7 @@ Vector2<T>& Vector2<T>::operator/=(const float _scalar)
 }
 
 template <typename T>
-T& Vector2<T>::operator[](const int _index)
+T& Vector2<T>::operator[](const int _index) const
 {
 	assert(_index >= 0 && _index < 2);
 	return *(&x + _index);

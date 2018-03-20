@@ -15,7 +15,7 @@ public:
 	Engine(const Engine&&) = delete;
 
 private:
-	gfx::rhi::IRenderer*	m_renderer;																		/*! The renderer that contains the window and is used to render data. */
+	gfx::rhi::IRenderer*	m_renderer;																/*! The renderer that contains the window and is used to render data. */
 	sys::SDLWindow*			mp_window;
 
 public:
@@ -31,8 +31,8 @@ private:
 	void CreateRenderer(const gfx::rhi::RenderSettings& settings);
 
 public:
-	void operator=(const Engine&) = delete;
-	void operator=(const Engine&&) = delete;
+	void operator=(const Engine&)	= delete;
+	void operator=(const Engine&&)	= delete;
 };
 
 } // namespace core

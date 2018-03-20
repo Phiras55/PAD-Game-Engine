@@ -1,15 +1,15 @@
 #include <Core/Engine.h>
 #include <Core/Timer.h>
-#include <Graphics/GL/Shader/Shader.h>
-#include <Graphics/Model/Mesh.h>
 #include <Graphics/GL/GLRenderer.h>
+#include <Math/Matrix4x4.h>
 
 namespace pad	{
 namespace core	{
 
 Engine::Engine()
 {
-
+	math::Matrix4x4 mat1;
+	mat1.IsOrthogonal();
 }
 
 Engine::~Engine()
@@ -46,8 +46,6 @@ void Engine::InitSimulation()
 	CreateRenderer(renderSettings);
 
 	core::EngineClock::Init();
-
-	LOG_INIT();
 }
 
 void Engine::StartSimulation()

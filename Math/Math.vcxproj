@@ -19,8 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Math\Matrix3x3.h" />
+    <ClInclude Include="Sources\Math\Matrix3x3_impl.h" />
     <ClInclude Include="Sources\Math\Matrix4x4.h" />
     <ClInclude Include="Sources\Math\Matrix4x4_impl.h" />
+    <ClInclude Include="Sources\Math\MatrixTransform.h" />
+    <ClInclude Include="Sources\Math\Transform.h" />
     <ClInclude Include="Sources\Math\Vector2.h" />
     <ClInclude Include="Sources\Math\Vector2_impl.h" />
     <ClInclude Include="Sources\Math\Vector3.h" />

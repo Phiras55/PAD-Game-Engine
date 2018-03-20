@@ -1,3 +1,5 @@
+#include <Logger/SimpleLogger.h>
+
 namespace pad
 {
 	///////////////////////////

@@ -4,7 +4,7 @@
 #include <sstream>
 #include <GL/glew.h>
 
-#include <Graphics/Shader.h>
+#include <Graphics/Shader/Shader.h>
 
 #define LOG_SIZE 512u
 #define INVALID_PROG_VALUE 0u

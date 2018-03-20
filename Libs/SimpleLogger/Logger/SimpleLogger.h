@@ -10,22 +10,22 @@
 #define CPARAMETER "%%"
 
 #ifdef LOGGER
-	#define LOG_FLUSH() SimpleLogger::Flush()
-	#define LOG_INIT() SimpleLogger::Init()
+	#define LOG_FLUSH() sl::SimpleLogger::Flush()
+	#define LOG_INIT() sl::SimpleLogger::Init()
 
-	#define LOG_INFO(cFormat, ...) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::INFO, cFormat, __VA_ARGS__)
-	#define LOG_TRACE(cFormat, ...) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::TRACE, cFormat, __VA_ARGS__)
-	#define LOG_WARNING(cFormat, ...) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::WARNING, cFormat, __VA_ARGS__)
-	#define LOG_ERROR(cFormat, ...) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::ERROR, cFormat, __VA_ARGS__)
-	#define LOG_FATAL(cFormat, ...) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::FATAL, cFormat, __VA_ARGS__)
-	#define LOG_CUSTOM(channelType, cFormat, ...) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, channelType, cFormat, __VA_ARGS__)
+	#define LOG_INFO(cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::INFO, cFormat, __VA_ARGS__)
+	#define LOG_TRACE(cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::TRACE, cFormat, __VA_ARGS__)
+	#define LOG_WARNING(cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::WARNING, cFormat, __VA_ARGS__)
+	#define LOG_ERROR(cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::ERROR, cFormat, __VA_ARGS__)
+	#define LOG_FATAL(cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::FATAL, cFormat, __VA_ARGS__)
+	#define LOG_CUSTOM(channelType, cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, channelType, cFormat, __VA_ARGS__)
 
-	#define LOG_INFO_S(cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::INFO, cFormat, 0)
-	#define LOG_TRACE_S(cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::TRACE, cFormat, 0)
-	#define LOG_WARNING_S(cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::WARNING, cFormat, 0)
-	#define LOG_ERROR_S(cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::ERROR, cFormat, 0)
-	#define LOG_FATAL_S(cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::FATAL, cFormat, 0)
-	#define LOG_CUSTOM_S(channelType, cFormat) SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, channelType, cFormat, 0)
+	#define LOG_INFO_S(cFormat) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::INFO, cFormat, 0)
+	#define LOG_TRACE_S(cFormat) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::TRACE, cFormat, 0)
+	#define LOG_WARNING_S(cFormat) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::WARNING, cFormat, 0)
+	#define LOG_ERROR_S(cFormat) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::ERROR, cFormat, 0)
+	#define LOG_FATAL_S(cFormat) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::FATAL, cFormat, 0)
+	#define LOG_CUSTOM_S(channelType, cFormat) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, channelType, cFormat, 0)
 #else
 	#define LOG_INIT() void(0)
 	#define LOG_FLUSH() void(0)
@@ -94,5 +94,11 @@ public:
 std::string StripPath(const char* path);
 
 } // namespace sl
+
+namespace std
+{
+	std::string to_string(const std::string& s);
+	std::string to_string(const char* s);
+}
 
 #include <Logger/SimpleLogger_impl.h>

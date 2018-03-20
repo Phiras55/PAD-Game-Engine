@@ -4,6 +4,7 @@
 
 namespace pad	{
 namespace gfx	{
+namespace rhi	{
 
 struct RenderSettings final
 {
@@ -11,5 +12,6 @@ struct RenderSettings final
 	math::Vec4f clearColor;
 };
 
-} //namesapce gfx
-} //namesapce pad
+} // namespace rhi
+} // namesapce gfx
+} // namesapce pad

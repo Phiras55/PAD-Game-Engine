@@ -118,3 +118,13 @@ std::string sl::StripPath(const char* path)
 
 	return s.c_str();
 }
+
+std::string std::to_string(const std::string& s)
+{
+	return s;
+}
+
+std::string std::to_string(const char* s)
+{
+	return std::string(s);
+}

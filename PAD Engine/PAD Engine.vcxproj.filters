@@ -31,6 +31,36 @@
     <Filter Include="Source Files\System">
       <UniqueIdentifier>{9e2269a8-de15-4919-ac80-bf1a0541b70c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Graphics\RHI">
+      <UniqueIdentifier>{6dd5ca8d-5f53-4c4e-9a1d-bcac6d9ffe8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\RHI">
+      <UniqueIdentifier>{c988ef3c-c856-4134-860e-f531e9e0b469}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Model">
+      <UniqueIdentifier>{4db469c8-45c3-48d7-a24e-865df6182975}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Model">
+      <UniqueIdentifier>{feb35953-9312-49af-8020-0cc44be23a41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\GL">
+      <UniqueIdentifier>{99b590a2-ea14-4550-a524-918b1467bf11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\GL">
+      <UniqueIdentifier>{83d15099-93b3-4249-a52b-a7d7c8322243}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\GL\Shader">
+      <UniqueIdentifier>{768ecf85-6038-4cb5-8660-3381046c91d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\GL\Shader">
+      <UniqueIdentifier>{4295e9b8-1d53-4be6-9390-28977a6d274c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\RHI\Shader">
+      <UniqueIdentifier>{e7c93861-1a92-46f5-a0ad-fb67e08eaa13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\RHI\Shader">
+      <UniqueIdentifier>{9094b494-783e-4d22-b7d6-6e60a1f84c55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Engine.cpp">
@@ -39,26 +69,11 @@
     <ClCompile Include="Sources\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Graphics\Renderer.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Common.h">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\System\SDLWindow.cpp">
       <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Graphics\Shader.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Graphics\MeshData.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Graphics\Mesh.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\Graphics\Material.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Core\EngineClock.cpp">
       <Filter>Source Files\Core</Filter>
@@ -66,19 +81,43 @@
     <ClCompile Include="Sources\Core\Timer.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Core\Scene.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="Sources\Graphics\Model\Mesh.cpp">
+      <Filter>Source Files\Graphics\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Core\SceneObject.cpp">
-      <Filter>Source Files\Core</Filter>
+    <ClCompile Include="Sources\Graphics\Model\MeshData.cpp">
+      <Filter>Source Files\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\Model\Material.cpp">
+      <Filter>Source Files\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp">
+      <Filter>Source Files\Graphics\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\GLVertexArray.cpp">
+      <Filter>Source Files\Graphics\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\GLVertexBuffer.cpp">
+      <Filter>Source Files\Graphics\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\GLVertexElementBuffer.cpp">
+      <Filter>Source Files\Graphics\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\Shader\GLVertexShader.cpp">
+      <Filter>Source Files\Graphics\GL\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\Shader\GLFragmentShader.cpp">
+      <Filter>Source Files\Graphics\GL\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\Shader\GLShaderProgram.cpp">
+      <Filter>Source Files\Graphics\GL\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp">
+      <Filter>Source Files\Graphics\RHI\Shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
       <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Graphics\Renderer.h">
-      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\IWindowBase.h">
       <Filter>Header Files\System</Filter>
@@ -89,26 +128,8 @@
     <ClInclude Include="Sources\System\IModule.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Graphics\Shader.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\System\WindowSettings.h">
       <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Graphics\RenderSettings.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Graphics\ShaderType.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Graphics\MeshData.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Graphics\Mesh.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Graphics\Material.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Core\EngineClock.h">
       <Filter>Header Files\Core</Filter>
@@ -116,11 +137,20 @@
     <ClInclude Include="Sources\Core\Timer.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Core\SceneObject.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Core\Scene.h">
-      <Filter>Header Files\Core</Filter>
+    <ClInclude Include="Sources\Graphics\RHI\IRenderer.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\Mesh.h">
+      <Filter>Header Files\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\MeshData.h">
+      <Filter>Header Files\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\Material.h">
+      <Filter>Header Files\Graphics\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

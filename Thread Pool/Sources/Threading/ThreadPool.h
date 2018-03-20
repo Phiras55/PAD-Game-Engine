@@ -8,21 +8,29 @@ namespace trp {
 class ThreadPool
 {
 public:
-	ThreadPool();
+	ThreadPool() = delete;
+	ThreadPool(const unsigned int& _threadsCount = 4u);
 	~ThreadPool();
 	
 	void					Push(std::function<void()> _func);
 	void					Stop();
-	std::function<void()>	Pop();
+	std::function<void()>	TakeTask();
+	void					Clear();
+
+	bool					Lock();
+	void					Unlock();
+
+	bool					IsEmpty();
+	bool					IsActive();
+
 
 private:
-	void Init();
+	void Init(const unsigned int& _threadCount);
 
-	std::vector<std::thread*>		m_threads;
+	std::vector<ThreadObject*>		m_threads;
 	TPQueue<std::function<void()>>	m_queue;
-	std::condition_variable			m_cv;
 	std::mutex						m_mutex;
-	bool							m_isActive;
+	std::atomic_bool				m_isActive;
 
 };
 

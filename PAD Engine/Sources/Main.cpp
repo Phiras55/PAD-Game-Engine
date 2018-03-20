@@ -3,22 +3,42 @@
 #include <Math/Vector3.h>
 #include <Math/Vector4.h>
 #include <Core/Engine.h>
+#include <vector>
+#include <functional>
+
+#include <Threading/ThreadPool.h>
 
 #undef main
 
 using namespace pad;
 
-void DavidArthurMathTest()
+inline void ArthurThreadingTest()
 {
-
+	auto Start = std::chrono::high_resolution_clock::now();
+	trp::ThreadPool	Pool(4);
+	std::mutex m;
+	for (std::uint32_t i = 0u; i < 800u; ++i)
+	{
+		Pool.Push([&m, &Start]()
+		{
+			std::this_thread::sleep_for(std::chrono::seconds(1));
+			auto End = std::chrono::high_resolution_clock::now();
+			m.lock();
+			std::cout << std::chrono::duration<float>(End - Start).count() << std::endl;
+			m.unlock();
+		});
+	}
+	while (true);
 }
 
 int main()
 {
-	core::Engine engine;
+	ArthurThreadingTest();
+	/*core::Engine engine;
 	
 	engine.InitSimulation();
-	engine.StartSimulation();
+	engine.StartSimulation();*/
+
 
 	return EXIT_SUCCESS;
 }

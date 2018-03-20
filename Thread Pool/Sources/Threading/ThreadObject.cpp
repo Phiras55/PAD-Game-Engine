@@ -4,10 +4,10 @@
 namespace pad {
 namespace trp {
 
-	ThreadObject::ThreadObject(ThreadPool & _tp) : 
-		m_threadPool(_tp)
+	ThreadObject::ThreadObject(ThreadPool* _tp) : 
+		m_threadPool(_tp),
+		m_thread(&ThreadObject::Start, this)
 	{
-		Start();
 	}
 
 	ThreadObject::~ThreadObject()
@@ -17,17 +17,38 @@ namespace trp {
 
 	void ThreadObject::Start()
 	{
+		m_active.store(true);
+		while (m_active.load() && m_threadPool->IsActive())
+		{
+			std::this_thread::yield();
+			while (m_active.load() && LookForTask())
+			{
+				m_func();
+			}
+		}
 	}
 
-	void ThreadObject::LookForTask()
+	bool ThreadObject::LookForTask()
 	{
-		m_func = m_threadPool.Pop();
-		if (m_func == nullptr)
-			return;
+		if (!m_threadPool->Lock())
+			return false;
+		if (m_threadPool->IsEmpty())
+		{
+			m_threadPool->Unlock();
+			return false;
+		}
+		else
+		{
+			m_func = m_threadPool->TakeTask();
+			m_threadPool->Unlock();
+			return true;
+		}
 	}
 
 	void ThreadObject::Stop()
 	{
+		m_active.store(false);
+		m_thread.join();
 	}
 
 }

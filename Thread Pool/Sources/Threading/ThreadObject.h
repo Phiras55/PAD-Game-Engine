@@ -11,17 +11,17 @@ class ThreadObject final
 {
 public:
 	ThreadObject() = delete;
-	ThreadObject(ThreadPool& _tp);
+	ThreadObject(ThreadPool* _tp);
 	~ThreadObject();
 
 private:
-	ThreadPool&				m_threadPool;
+	ThreadPool*				m_threadPool;
 	std::thread				m_thread;
 	std::function<void()>	m_func;
-	std::atomic_bool		m_busy			= false;
-	
+	std::atomic_bool		m_active;
+
 	void Start();
-	void LookForTask();
+	bool LookForTask();
 	void Stop();
 };
 

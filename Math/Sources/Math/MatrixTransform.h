@@ -5,7 +5,7 @@
 namespace pad	{
 namespace math	{
 
-Matrix4x4 TranslationMatrix(float _x= 0.f, float _y = 0.f, float _z = 0.f)
+inline Matrix4x4 TranslationMatrix(float _x= 0.f, float _y = 0.f, float _z = 0.f)
 {
 	return Matrix4x4(	1, 0, 0,_x,
 						0, 1, 0,_y, 
@@ -13,7 +13,7 @@ Matrix4x4 TranslationMatrix(float _x= 0.f, float _y = 0.f, float _z = 0.f)
 						0, 0, 0, 1);
 }
 
-Matrix4x4 TranslationMatrix(const Vec3f& _position)
+inline Matrix4x4 TranslationMatrix(const Vec3f& _position)
 {
 	return Matrix4x4(	1, 0, 0, _position.x,
 						0, 1, 0, _position.y,
@@ -21,7 +21,7 @@ Matrix4x4 TranslationMatrix(const Vec3f& _position)
 						0, 0, 0, 1);
 }
 
-Matrix4x4 RotationMatrix(float _x = 0.f, float _y = 0.f, float _z = 0.f)
+inline Matrix4x4 RotationMatrix(float _x = 0.f, float _y = 0.f, float _z = 0.f)
 {
 	Matrix4x4 matX(			1,			0,			0,			0,
 							0,	  cos(_x),   -sin(_x),			0,
@@ -41,7 +41,7 @@ Matrix4x4 RotationMatrix(float _x = 0.f, float _y = 0.f, float _z = 0.f)
 	return matX;
 }
 
-Matrix4x4 RotationMatrix(const Vec3f& _rotation)
+inline Matrix4x4 RotationMatrix(const Vec3f& _rotation)
 {
 	Matrix4x4 matX(	1,	0,					0,					0,
 					0,	cos(_rotation.x),	-sin(_rotation.x),	0,
@@ -61,7 +61,7 @@ Matrix4x4 RotationMatrix(const Vec3f& _rotation)
 	return matX;
 }
 
-Matrix4x4 ScaleMatrix(float _x = 0.f, float _y = 0.f, float _z = 0.f)
+inline Matrix4x4 ScaleMatrix(float _x = 0.f, float _y = 0.f, float _z = 0.f)
 {
 	return Matrix4x4(  _x, 0, 0, 0,
 						0,_y, 0, 0,
@@ -69,7 +69,7 @@ Matrix4x4 ScaleMatrix(float _x = 0.f, float _y = 0.f, float _z = 0.f)
 						0, 0, 0, 1);
 }
 
-Matrix4x4 ScaleMatrix(const Vec3f& _scale)
+inline Matrix4x4 ScaleMatrix(const Vec3f& _scale)
 {
 	return Matrix4x4(	_scale.x,	0,			0,			0,
 						0,			_scale.y,	0,			0,

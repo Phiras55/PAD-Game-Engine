@@ -1,15 +1,16 @@
 #pragma once
-
-#include <Math/Matrix4x4.h>
+#include <Math/MatrixTransform.h>
+#include <Math/Vector4.h>
 
 namespace pad	{
 namespace math	{
+using Mat4 = Matrix4x4;
 
 class Transform final
 {
 public:
-	Transform()		= default;
-	~Transform()	= default;
+	inline Transform()		= default;
+	inline ~Transform()		= default;
 
 private:
 	Mat4	localTransform;
@@ -20,22 +21,66 @@ private:
 	bool	isDirty;
 
 private:
-	void ComputeLocalMatrix();
+	inline void ComputeLocalMatrix()
+	{
+		localTransform = TranslationMatrix(position)
+			*	RotationMatrix()
+			*	ScaleMatrix();
+
+		isDirty = false;
+	}
 
 public:
 	inline const Mat4& GetGlobalTransform() const { return globalTransform; }
 
-	const Mat4& GetLocalTransform();
-	void SetGlobalTransform(const Mat4& _globalTransform);
+	inline const Mat4& GetLocalTransform()
+	{
+		if (isDirty)
+			ComputeLocalMatrix();
 
-	void SetPosition(const Vec3f& _position);
-	void Move(const Vec3f& _movement);
+		return localTransform;
+	}
 
-	void SetRotation(const Vec3f& _rotation);
+	inline void SetGlobalTransform(const Mat4& _globalTransform)
+	{
+		globalTransform = _globalTransform;
+	}
 
-	void SetScale(const Vec3f& _scale);
-	void SetScale(const float _scalar);
-	void ScaleBy(const float _scalar);
+	inline void SetPosition(const Vec3f& _position)
+	{
+		position = _position;
+		isDirty = true;
+	}
+
+	inline void Move(const Vec3f& _movement)
+	{
+		position += _movement;
+		isDirty = true;
+	}
+	 
+	inline void SetRotation(const Vec3f& _rotation)
+	{
+		rotation = _rotation;
+		isDirty = true;
+	}
+	 
+	inline void SetScale(const Vec3f& _scale)
+	{
+		scale = _scale;
+		isDirty = true;
+	}
+
+	inline void SetScale(const float _scalar)
+	{
+		scale = Vec3f(_scalar, _scalar, _scalar);
+		isDirty = true;
+	}
+
+	inline void ScaleBy(const float _scalar)
+	{
+		scale *= _scalar;
+		isDirty = true;
+	}
 };
 
 } // namespace math

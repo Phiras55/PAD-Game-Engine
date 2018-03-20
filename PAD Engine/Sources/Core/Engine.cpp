@@ -1,14 +1,15 @@
 #include <Core/Engine.h>
 #include <Core/Timer.h>
-#include <Graphics/Shader.h>
-#include <Graphics/Mesh.h>
+#include <Graphics/GL/GLRenderer.h>
+#include <Math/Matrix4x4.h>
 
 namespace pad	{
 namespace core	{
 
 Engine::Engine()
 {
-
+	math::Matrix4x4 mat1;
+	mat1.IsOrthogonal();
 }
 
 Engine::~Engine()

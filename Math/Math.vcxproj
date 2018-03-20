@@ -32,9 +32,6 @@
     <ClInclude Include="Sources\Math\Vector4.h" />
     <ClInclude Include="Sources\Math\Vector4_impl.h" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Sources\Math\Transform.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{40A4178C-EE0B-43C6-A4AD-085F0390F44E}</ProjectGuid>

@@ -1,16 +1,8 @@
 #pragma once
 #include <System/WindowSettings.h>
 
-namespace pad
-{
-namespace sys
-{
-
-enum class E_WINDOW_TYPE : uint8
-{
-	ENGINE = 1,
-	EDITOR = 2
-};
+namespace pad	{
+namespace sys	{
 
 class IWindowBase
 {

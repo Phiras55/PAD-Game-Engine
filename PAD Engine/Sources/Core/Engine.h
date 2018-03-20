@@ -15,7 +15,7 @@ public:
 	Engine(const Engine&&) = delete;
 
 private:
-	gfx::rhi::IRenderer*	m_renderer;																/*! The renderer that contains the window and is used to render data. */
+	gfx::rhi::IRenderer*	mp_renderer;															/*! The renderer that contains the window and is used to render data. */
 	sys::SDLWindow*			mp_window;
 
 public:
@@ -26,9 +26,15 @@ public:
 	void FixedUpdate();
 	void Render();
 
-private:
-	void CreateWindow(const sys::WindowSettings& _infos, const sys::E_WINDOW_TYPE _windowType);
-	void CreateRenderer(const gfx::rhi::RenderSettings& settings);
+	void CreateWindow(const sys::WindowSettings& _infos);
+	void CreateRenderer(const gfx::rhi::RenderSettings& _settings);
+
+	void Draw(const gfx::mod::Mesh& _m);
+	void SwapBuffers();
+	void ClearBuffer();
+	void ResizeContext(const uint32 _w, const uint32 _h);
+
+	void FlushLogs();
 
 public:
 	void operator=(const Engine&)	= delete;

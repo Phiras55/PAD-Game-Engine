@@ -1,6 +1,4 @@
 #pragma once
-#include <SDL.h>
-
 #include <System/IWindowBase.h>
 #include <Math/Vector2.h>
 
@@ -19,9 +17,8 @@ public:
 	SDLWindow(SDLWindow&&)		= delete;
 
 private:
-	SDL_Window*		mp_window;
-	SDL_GLContext	m_context;
-	SDL_Event		m_event;
+	struct SDL_Window*		mp_window;
+	void*					mp_context;
 
 public:
 	virtual void Init(const WindowSettings& _infos);
@@ -33,8 +30,8 @@ public:
 	inline virtual bool IsOpen() { return m_isOpen; }
 
 public:
-	virtual inline const math::Vec2i GetPosition()	const	{ math::Vec2i v;  SDL_GetWindowPosition(mp_window, &v.x, &v.y); return v; }
-	virtual inline const math::Vec2i GetSize()		const	{ math::Vec2i v;  SDL_GetWindowSize(mp_window, &v.x, &v.y); return v; }
+	virtual const math::Vec2i GetPosition()	const;
+	virtual const math::Vec2i GetSize()		const;
 
 public:
 	SDLWindow& operator=(const SDLWindow&)	= delete;

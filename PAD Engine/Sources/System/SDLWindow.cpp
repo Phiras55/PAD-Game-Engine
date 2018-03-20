@@ -1,3 +1,5 @@
+#include <SDL.h>
+
 #include <System/SDLWindow.h>
 
 namespace pad
@@ -13,7 +15,7 @@ namespace sys
 	SDLWindow::~SDLWindow()
 	{
 		SDL_DestroyWindow(mp_window);
-		SDL_GL_DeleteContext(m_context);
+		SDL_GL_DeleteContext(mp_context);
 		SDL_Quit();
 	}
 
@@ -36,8 +38,8 @@ namespace sys
 
 		m_isOpen = true;
 
-		m_context = SDL_GL_CreateContext(mp_window);
-		SDL_GL_MakeCurrent(mp_window, m_context);
+		mp_context = SDL_GL_CreateContext(mp_window);
+		SDL_GL_MakeCurrent(mp_window, mp_context);
 	}
 
 	void SDLWindow::Resize(const math::Vec2<uint16>& _size)
@@ -52,9 +54,10 @@ namespace sys
 
 	void SDLWindow::PollEvents()
 	{
-		while (SDL_PollEvent(&m_event))
+		SDL_Event events;
+		while (SDL_PollEvent(&events))
 		{
-			if (m_event.type == SDL_QUIT)
+			if (events.type == SDL_QUIT)
 				m_isOpen = false;
 		}
 	}
@@ -62,6 +65,20 @@ namespace sys
 	void SDLWindow::SwapBuffer()
 	{
 		SDL_GL_SwapWindow(mp_window);
+	}
+
+	const math::Vec2i SDLWindow::GetPosition() const
+	{ 
+		math::Vec2i v;  
+		SDL_GetWindowPosition(mp_window, &v.x, &v.y); 
+		return v; 
+	}
+
+	const math::Vec2i SDLWindow::GetSize() const
+	{
+		math::Vec2i v;  
+		SDL_GetWindowSize(mp_window, &v.x, &v.y); 
+		return v; 
 	}
 
 } // namespace sys

@@ -2,7 +2,6 @@
 #include <Core/Timer.h>
 #include <Graphics/Shader.h>
 #include <Graphics/Mesh.h>
-#include <Core/Scene.h>
 
 namespace pad	{
 namespace core	{
@@ -33,7 +32,7 @@ void Engine::InitSimulation()
 	sys::E_WINDOW_TYPE windowType = sys::E_WINDOW_TYPE::ENGINE;
 
 	// Will be read from a config file
-	gfx::RenderSettings renderSettings;
+	gfx::rhi::RenderSettings renderSettings;
 
 	renderSettings.viewportSize.x = winSettings.size.x;
 	renderSettings.viewportSize.y = winSettings.size.y;
@@ -50,20 +49,6 @@ void Engine::InitSimulation()
 
 void Engine::StartSimulation()
 {
-	Scene scene;
-	SceneObject* so1 = new SceneObject();
-	SceneObject* so2 = new SceneObject();
-	SceneObject* so3 = new SceneObject();
-
-	scene.AddSceneObject(so1);
-	so2->AddChild(so3);
-	scene.AddSceneObject(so3);
-	so2->AddChild(so1);
-	so2->SetParent(so3);
-	scene.AddSceneObject(so1);
-	so3->SetParent(so1);
-	so1->AddChild(so2);
-
 	while (mp_window->IsOpen())
 	{
 		core::EngineClock::Update();
@@ -71,7 +56,6 @@ void Engine::StartSimulation()
 
 		if (true)
 		{
-			scene.Update();
 			Update();
 			FixedUpdate();
 		}
@@ -83,6 +67,7 @@ void Engine::StartSimulation()
 void Engine::PollEvents()
 {
 	mp_window->PollEvents();
+	LOG_FLUSH();
 }
 
 void Engine::Update()
@@ -97,10 +82,10 @@ void Engine::FixedUpdate()
 
 void Engine::Render()
 {
-	m_renderer.ClearBuffer();
+	m_renderer->ClearBuffer();
 
-	gfx::Mesh m;
-	m_renderer.Draw(m);
+	gfx::mod::Mesh m;
+	m_renderer->Draw(m);
 
 	mp_window->SwapBuffer();
 }
@@ -120,9 +105,10 @@ void Engine::CreateWindow(const sys::WindowSettings& _infos, const sys::E_WINDOW
 	mp_window->Init(_infos);
 }
 
-void Engine::CreateRenderer(const gfx::RenderSettings& settings)
+void Engine::CreateRenderer(const gfx::rhi::RenderSettings& settings)
 {
-	m_renderer.Init(settings);
+	m_renderer = new gfx::gl::GLRenderer();
+	m_renderer->Init(settings);
 }
 
 } // namespace core

@@ -99,11 +99,13 @@
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
     <SourcePath>$(ProjectDir)Sources;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
     <SourcePath>$(ProjectDir)Sources;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

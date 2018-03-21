@@ -1,7 +1,9 @@
+#include <Common.h>
 #include <Core/Engine.h>
 #include <Core/Timer.h>
-#include <Graphics/Shader.h>
-#include <Graphics/Mesh.h>
+#include <Graphics/GL/GLRenderer.h>
+#include <Math/Matrix4x4.h>
+#include <Logger/SimpleLogger.h>
 
 namespace pad	{
 namespace core	{
@@ -13,37 +15,15 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-	delete mp_window;
+	if(mp_window)
+		delete mp_window;
+	if (mp_renderer)
+		delete mp_renderer;
 }
 
 void Engine::InitSimulation()
 {
-	// Will be read from a config file
-	sys::WindowSettings winSettings;
-
-	winSettings.title = "This is a SDL Window.";
-	winSettings.position.x = 400u;
-	winSettings.position.y = 200u;
-	winSettings.size.x = 800u;
-	winSettings.size.y = 600u;
-	winSettings.isFullscreen = false;
-
-	// Will be read from a config file
-	sys::E_WINDOW_TYPE windowType = sys::E_WINDOW_TYPE::ENGINE;
-
-	// Will be read from a config file
-	gfx::RenderSettings renderSettings;
-
-	renderSettings.viewportSize.x = winSettings.size.x;
-	renderSettings.viewportSize.y = winSettings.size.y;
-	renderSettings.clearColor.r = 0.3f;
-	renderSettings.clearColor.g = 0.3f;
-	renderSettings.clearColor.b = 0.3f;
-	renderSettings.clearColor.a = 1.0f;
-
-	CreateWindow(winSettings, windowType);
-	CreateRenderer(renderSettings);
-
+	LOG_INIT();
 	core::EngineClock::Init();
 }
 
@@ -66,7 +46,8 @@ void Engine::StartSimulation()
 
 void Engine::PollEvents()
 {
-	mp_window->PollEvents();
+	if(mp_window)
+		mp_window->PollEvents();
 }
 
 void Engine::Update()
@@ -81,32 +62,78 @@ void Engine::FixedUpdate()
 
 void Engine::Render()
 {
-	m_renderer.ClearBuffer();
+	mp_renderer->ClearBuffer();
 
-	gfx::Mesh m;
-	m_renderer.Draw(m);
+	gfx::mod::Mesh m;
+	mp_renderer->Draw(m);
 
 	mp_window->SwapBuffer();
 }
 
-void Engine::CreateWindow(const sys::WindowSettings& _infos, const sys::E_WINDOW_TYPE _windowType)
+void Engine::CreateWindow(const sys::WindowSettings& _infos)
 {
-	switch (_windowType)
-	{
-	case sys::E_WINDOW_TYPE::EDITOR:
-		mp_window = nullptr;
-		break;
-	case sys::E_WINDOW_TYPE::ENGINE:
-	default:
+	if (_infos.windowType == sys::E_WINDOW_TYPE::ENGINE)
 		mp_window = new sys::SDLWindow();
-	}
+	else if (_infos.windowType == sys::E_WINDOW_TYPE::EDITOR)
+		mp_window = nullptr;
 
-	mp_window->Init(_infos);
+	if(mp_window)
+		mp_window->Init(_infos);
 }
 
-void Engine::CreateRenderer(const gfx::RenderSettings& settings)
+void Engine::CreateRenderer(const gfx::rhi::RenderSettings& _settings)
 {
-	m_renderer.Init(settings);
+	mp_renderer = new gfx::gl::GLRenderer();
+	mp_renderer->Init(_settings);
+
+	if (mp_window)
+	{
+		mp_window->SetResizeCallback(
+			std::bind(
+				&gfx::gl::GLRenderer::ResizeViewport,
+				static_cast<gfx::gl::GLRenderer*>(mp_renderer),
+				std::placeholders::_1,
+				std::placeholders::_2
+			)
+		);
+	}
+}
+
+void Engine::ClearBuffer()
+{
+	if (mp_renderer)
+		mp_renderer->ClearBuffer();
+}
+
+void Engine::SwapBuffers()
+{
+	if (mp_window)
+		mp_window->SwapBuffer();
+}
+
+void Engine::ResizeContext(const uint32 _w, const uint32 _h)
+{
+	if (mp_renderer)
+		mp_renderer->ResizeViewport(_w, _h);
+}
+
+void Engine::Draw(const gfx::mod::Mesh& _m)
+{
+	if (mp_renderer)
+		mp_renderer->Draw(_m);
+}
+
+void Engine::FlushLogs()
+{
+	LOG_FLUSH();
+}
+
+bool Engine::IsWindowOpen()
+{
+	if (mp_window)
+		return mp_window->IsOpen();
+	else
+		return false;
 }
 
 } // namespace core

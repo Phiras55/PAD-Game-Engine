@@ -81,13 +81,6 @@ void Engine::CreateWindow(const sys::WindowSettings& _infos)
 		mp_window->Init(_infos);
 }
 
-void toto(const uint32, const uint32)
-{
-
-}
-
-
-
 void Engine::CreateRenderer(const gfx::rhi::RenderSettings& _settings)
 {
 	mp_renderer = new gfx::gl::GLRenderer();

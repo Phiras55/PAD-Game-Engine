@@ -8,6 +8,9 @@ namespace trp {
 template <typename T>
 struct TPQueue final
 {
+	std::queue<T>	queue;
+	std::mutex		mutex;
+
 	void Push(T task)
 	{
 		std::lock_guard<std::mutex> lg(mutex);
@@ -40,9 +43,6 @@ struct TPQueue final
 		std::lock_guard<std::mutex> lg(mutex);
 		return queue.empty();
 	}
-
-	std::queue<T>	queue;
-	std::mutex		mutex;
 };
 }
 }

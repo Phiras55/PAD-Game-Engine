@@ -20,7 +20,7 @@ namespace trp {
 		m_active.store(true);
 		while (m_active.load() && m_threadPool->IsActive())
 		{
-			std::this_thread::yield();
+			std::this_thread::sleep_for(std::chrono::nanoseconds(378));
 			while (m_active.load() && LookForTask())
 			{
 				m_func();

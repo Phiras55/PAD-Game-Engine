@@ -20,6 +20,7 @@ private:
 	std::function<void()>	m_func;
 	std::atomic_bool		m_active;
 
+private:
 	void Start();
 	bool LookForTask();
 	void Stop();

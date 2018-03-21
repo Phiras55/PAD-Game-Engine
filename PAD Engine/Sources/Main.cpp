@@ -14,10 +14,12 @@ using namespace pad;
 
 inline void ArthurThreadingTest()
 {
-	auto Start = std::chrono::high_resolution_clock::now();
+	std::chrono::high_resolution_clock::time_point Start
+		= std::chrono::high_resolution_clock::now();
+	
 	trp::ThreadPool	Pool(4);
 	std::mutex m;
-	for (std::uint32_t i = 0u; i < 800u; ++i)
+	for (std::uint32_t i = 0u; i < 80u; ++i)
 	{
 		Pool.Push([&m, &Start]()
 		{
@@ -28,6 +30,8 @@ inline void ArthurThreadingTest()
 			m.unlock();
 		});
 	}
+	auto End = std::chrono::high_resolution_clock::now();
+	std::cout << std::chrono::duration<float>(End - Start).count() << std::endl;
 	while (true);
 }
 

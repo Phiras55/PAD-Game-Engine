@@ -1,5 +1,5 @@
 #include <Graphics/GL/GLRenderer.h>
-
+#include <Logger/SimpleLogger.h>
 #include <GL/glew.h>
 
 namespace pad	{

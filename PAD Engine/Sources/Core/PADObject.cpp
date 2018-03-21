@@ -1,34 +1,34 @@
-#include <Core/SceneObject.h>
+#include <Core/PADObject.h>
 #include <algorithm>
 
 namespace pad	{
 namespace core	{
 
-SceneObject::SceneObject() :
+PADObject::PADObject() :
 	parent(nullptr)
 {
 
 }
 
-SceneObject::SceneObject(SceneObject* const _parent) :
+PADObject::PADObject(PADObject* const _parent) :
 	parent(_parent)
 {
 
 }
 
-SceneObject::~SceneObject()
+PADObject::~PADObject()
 {
 	if (parent)
 		parent->RemoveChild(this);
 
-	for (SceneObject* so : childs)
+	for (PADObject* so : childs)
 	{
 		so->SetParent(nullptr);
-		so->~SceneObject();
+		so->~PADObject();
 	}
 }
 
-void SceneObject::AddChild(SceneObject* const _child)
+void PADObject::AddChild(PADObject* const _child)
 {
 	if (_child->parent)
 		_child->parent->RemoveChild(_child);
@@ -37,21 +37,21 @@ void SceneObject::AddChild(SceneObject* const _child)
 	childs.push_back(_child);
 }
 
-void SceneObject::RemoveChild(SceneObject* const _child)
+void PADObject::RemoveChild(PADObject* const _child)
 {
 	childs.remove(_child);
 }
 
-void SceneObject::Update()
+void PADObject::Update()
 {
 	transform.SetGlobalTransform(		parent->transform.GetGlobalTransform() 
 									*	transform.GetLocalTransform());
 
-	for (SceneObject* so : childs)
+	for (PADObject* so : childs)
 		so->Update();
 }
 
-void SceneObject::SetParent(SceneObject* const _parent)
+void PADObject::SetParent(PADObject* const _parent)
 {
 	if (parent)
 		parent->RemoveChild(this);

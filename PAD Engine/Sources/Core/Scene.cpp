@@ -4,7 +4,7 @@ namespace pad	{
 namespace core	{
 
 Scene::Scene() :
-	masterSceneObject(new SceneObject())
+	masterPADObject(new PADObject())
 {
 }
 
@@ -15,12 +15,12 @@ Scene::~Scene()
 
 void Scene::Update()
 {
-	masterSceneObject->Update();
+	masterPADObject->Update();
 }
 
-void Scene::AddSceneObject(SceneObject * _sceneObject)
+void Scene::AddPADObject(PADObject * _PADObject)
 {
-	_sceneObject->SetParent(masterSceneObject);
+	_PADObject->SetParent(masterPADObject);
 }
 
 //void Scene::Render()

@@ -1,22 +1,13 @@
 #include <iostream>
-#include <Core/Engine.h>
-#include <Math/Matrix4x4.h>
-
-#undef main
-
-using namespace pad;
-
-void MethodForTestingPurpose()
-{
-	
-}
+#include <Core/EngineDLL.h>
 
 int main()
 {
-	MethodForTestingPurpose();
+	pad::CreateEngine();
+	pad::InitEngine();
 
 	// Will be read from a config file
-	sys::WindowSettings winSettings;
+	pad::sys::WindowSettings winSettings;
 
 	winSettings.title = "This is a SDL Window.";
 	winSettings.position.x = 400u;
@@ -24,10 +15,10 @@ int main()
 	winSettings.size.x = 800u;
 	winSettings.size.y = 600u;
 	winSettings.isFullscreen = false;
-	winSettings.windowType = sys::E_WINDOW_TYPE::ENGINE;
+	winSettings.windowType = pad::sys::E_WINDOW_TYPE::ENGINE;
 
 	// Will be read from a config file
-	gfx::rhi::RenderSettings renderSettings;
+	pad::gfx::rhi::RenderSettings renderSettings;
 
 	renderSettings.viewportSize.x = winSettings.size.x;
 	renderSettings.viewportSize.y = winSettings.size.y;
@@ -36,10 +27,17 @@ int main()
 	renderSettings.clearColor.b = 0.3f;
 	renderSettings.clearColor.a = 1.0f;
 
-	core::Engine engine;
-	
-	engine.InitSimulation();
-	engine.StartSimulation();
+	pad::InitWindow(winSettings);
+	pad::InitRenderer(renderSettings);
+
+	while (pad::IsWindowOpen())
+	{
+		pad::PollEvents();
+
+		pad::ClearBuffer();
+
+		pad::SwapBuffers();
+	}
 
 	return EXIT_SUCCESS;
 }

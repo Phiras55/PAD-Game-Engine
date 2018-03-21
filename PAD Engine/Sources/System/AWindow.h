@@ -1,23 +1,19 @@
 #pragma once
+#include <functional>
+
 #include <System/WindowSettings.h>
 
-namespace pad
-{
-namespace sys
-{
+namespace pad	{
+namespace sys	{
 
-enum class E_WINDOW_TYPE : uint8
-{
-	ENGINE = 1,
-	EDITOR = 2
-};
-
-class IWindowBase
+class AWindow
 {
 protected:
+	std::function<void(const uint32, const uint32)>	m_resizeCallback;
 	bool m_isOpen;
 
 public:
+	virtual void SetResizeCallback(const std::function<void(const uint32, const uint32)>& _func) = 0;
 	virtual void PollEvents() = 0;
 	virtual void Resize(const math::Vec2<uint16>& size) = 0;
 	virtual void ReloadSettings(const WindowSettings& _infos) = 0;

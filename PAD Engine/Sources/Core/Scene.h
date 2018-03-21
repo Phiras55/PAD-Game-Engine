@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include <Core/SceneObject.h>
+#include <Core/PADObject.h>
 
 namespace pad	{
 namespace core	{
@@ -21,11 +21,11 @@ public:
 
 
 public:
-	SceneObject* masterSceneObject;
+	PADObject* masterPADObject;
 
 public:
 	void Update();
-	void AddSceneObject(SceneObject* _sceneObject);
+	void AddPADObject(PADObject* _PADObject);
 //	void Render();
 };
 

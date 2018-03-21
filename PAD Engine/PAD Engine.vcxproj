@@ -24,7 +24,7 @@
     <ClCompile Include="Sources\Core\EngineClock.cpp" />
     <ClCompile Include="Sources\Core\EngineDLL.cpp" />
     <ClCompile Include="Sources\Core\Scene.cpp" />
-    <ClCompile Include="Sources\Core\SceneObject.cpp" />
+    <ClCompile Include="Sources\Core\PADObject.cpp" />
     <ClCompile Include="Sources\Core\Timer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexArray.cpp" />
@@ -45,7 +45,7 @@
     <ClInclude Include="Sources\Core\EngineClock.h" />
     <ClInclude Include="Sources\Core\EngineDLL.h" />
     <ClInclude Include="Sources\Core\Scene.h" />
-    <ClInclude Include="Sources\Core\SceneObject.h" />
+    <ClInclude Include="Sources\Core\PADObject.h" />
     <ClInclude Include="Sources\Core\Timer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexArray.h" />

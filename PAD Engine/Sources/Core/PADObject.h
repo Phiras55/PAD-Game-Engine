@@ -6,18 +6,18 @@
 namespace pad	{
 namespace core	{
 
-class SceneObject
+class PADObject
 {
 #pragma region Constructor / Destructor
 
 public:
-	SceneObject();
-	SceneObject(SceneObject* const _parent);
+	PADObject();
+	PADObject(PADObject* const _parent);
 
-	~SceneObject();
+	~PADObject();
 
-	SceneObject(const SceneObject&)		= delete;
-	SceneObject(const SceneObject&&)	= delete;
+	PADObject(const PADObject&)		= delete;
+	PADObject(const PADObject&&)	= delete;
 
 #pragma endregion
 
@@ -25,21 +25,21 @@ public:
 
 private:
 	math::Transform			transform;
-	std::list<SceneObject*>	childs;
-	SceneObject*			parent;
+	std::list<PADObject*>	childs;
+	PADObject*			parent;
 
 #pragma endregion
 
 #pragma region Member Functions
 
 public:
-	void AddChild(SceneObject* const _child);
-	void RemoveChild(SceneObject* const _child);
+	void AddChild(PADObject* const _child);
+	void RemoveChild(PADObject* const _child);
 	void Update();
 
 #pragma endregion
 
-	void SetParent(SceneObject* const _parent);
+	void SetParent(PADObject* const _parent);
 };
 
 } // namespace core

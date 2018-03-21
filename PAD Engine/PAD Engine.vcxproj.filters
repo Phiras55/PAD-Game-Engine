@@ -114,13 +114,13 @@
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp">
       <Filter>Source Files\Graphics\RHI\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Core\SceneObject.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Core\Scene.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Core\EngineDLL.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Core\PADObject.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -195,9 +195,6 @@
       <Filter>Header Files\Graphics\GL\Shader</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Core\Scene.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Core\SceneObject.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Core\EngineDLL.h">

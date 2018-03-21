@@ -1,14 +1,15 @@
 #include <Core/Engine.h>
 #include <Core/Timer.h>
-#include <Graphics/Shader.h>
-#include <Graphics/Mesh.h>
+#include <Graphics/GL/GLRenderer.h>
+#include <Math/Matrix4x4.h>
 
 namespace pad	{
 namespace core	{
 
 Engine::Engine()
 {
-
+	math::Matrix4x4 mat1;
+	mat1.IsOrthogonal();
 }
 
 Engine::~Engine()
@@ -45,45 +46,6 @@ void Engine::InitSimulation()
 	CreateRenderer(renderSettings);
 
 	core::EngineClock::Init();
-}
-
-void Engine::StartSimulation()
-{
-	while (mp_window->IsOpen())
-	{
-		core::EngineClock::Update();
-		PollEvents();
-
-		if (true)
-		{
-			Update();
-			FixedUpdate();
-		}
-
-		Render();
-	}
-}
-
-void Engine::PollEvents()
-{
-	mp_window->PollEvents();
-}
-
-void Engine::Update()
-{
-	core::Timer::PauseAll();
-}
-
-void Engine::FixedUpdate()
-{
-
-}
-
-void Engine::Render()
-{
-	m_renderer.ClearBuffer();
-
-	LOG_INIT();
 }
 
 void Engine::StartSimulation()
@@ -152,7 +114,3 @@ void Engine::CreateRenderer(const gfx::rhi::RenderSettings& settings)
 
 } // namespace core
 } // namespace pad
-
-#include <Graphics/GL/Shader/Shader.h>
-#include <Graphics/Model/Mesh.h>
-#include <Graphics/GL/GLRenderer.h>

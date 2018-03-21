@@ -1,8 +1,6 @@
 #include <iostream>
-#include <Math/Vector2.h>
-#include <Math/Vector3.h>
-#include <Math/Vector4.h>
 #include <Core/Engine.h>
+#include <Math/Matrix4x4.h>
 
 #undef main
 
@@ -10,6 +8,8 @@ using namespace pad;
 
 void MethodForTestingPurpose()
 {
+	math::Matrix4x4 mat1;
+	mat1.IsOrthogonal();
 }
 
 int main()

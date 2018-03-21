@@ -169,7 +169,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx64;$(SolutionDir)Libs\glew\lib\Release\glewx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -190,7 +192,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -213,7 +217,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

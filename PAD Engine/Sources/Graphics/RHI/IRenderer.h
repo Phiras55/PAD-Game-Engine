@@ -16,7 +16,7 @@ public:
 	virtual void Init(const RenderSettings& _settings)	= 0;
 	virtual void Draw(const mod::Mesh& _m)				= 0;
 	virtual void ClearBuffer()							= 0;
-	virtual void ResizeViewport(const uint32 w, const uint32 h)	= 0;
+	virtual void ResizeViewport(const uint32 _w, const uint32 _h)	= 0;
 
 protected:
 	virtual void InitContext(const math::Vec4f& _clearColor)	= 0;

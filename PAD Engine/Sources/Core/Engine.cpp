@@ -1,3 +1,4 @@
+#include <Common.h>
 #include <Core/Engine.h>
 #include <Core/Timer.h>
 #include <Graphics/GL/GLRenderer.h>
@@ -9,13 +10,15 @@ namespace core	{
 
 Engine::Engine()
 {
-	math::Matrix4x4 mat1;
-	mat1.IsOrthogonal();
+
 }
 
 Engine::~Engine()
 {
-	delete mp_window;
+	if(mp_window)
+		delete mp_window;
+	if (mp_renderer)
+		delete mp_renderer;
 }
 
 void Engine::InitSimulation()
@@ -82,6 +85,18 @@ void Engine::CreateRenderer(const gfx::rhi::RenderSettings& _settings)
 {
 	mp_renderer = new gfx::gl::GLRenderer();
 	mp_renderer->Init(_settings);
+
+	if (mp_window)
+	{
+		mp_window->SetResizeCallback(
+			std::bind(
+				&gfx::gl::GLRenderer::ResizeViewport,
+				static_cast<gfx::gl::GLRenderer*>(mp_renderer),
+				std::placeholders::_1,
+				std::placeholders::_2
+			)
+		);
+	}
 }
 
 void Engine::ClearBuffer()

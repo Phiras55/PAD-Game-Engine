@@ -27,7 +27,7 @@ public:
 	virtual void Resize(const math::Vec2<uint16>& size);
 	virtual void ReloadSettings(const WindowSettings& _infos);
 	virtual void SwapBuffer();
-	virtual void SetResizeCallback(const std::function<void(const uint32, const uint32)>& _func);
+	void SetResizeCallback(const std::function<void(const uint32, const uint32)>& _func) override;
 
 	inline virtual bool IsOpen() { return m_isOpen; }
 

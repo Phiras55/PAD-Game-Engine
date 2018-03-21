@@ -206,5 +206,8 @@
     <ClInclude Include="Sources\System\AWindow.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Core\PADObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -113,5 +113,13 @@ void Engine::FlushLogs()
 	LOG_FLUSH();
 }
 
+bool Engine::IsWindowOpen()
+{
+	if (mp_window)
+		return mp_window->IsOpen();
+	else
+		return false;
+}
+
 } // namespace core
 } // namespace pad

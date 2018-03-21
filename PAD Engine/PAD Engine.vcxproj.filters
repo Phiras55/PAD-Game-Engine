@@ -128,9 +128,6 @@
     <ClInclude Include="Sources\Core\Engine.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\IWindowBase.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\System\SDLWindow.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
@@ -207,6 +204,9 @@
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\WindowEnums.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\AWindow.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>

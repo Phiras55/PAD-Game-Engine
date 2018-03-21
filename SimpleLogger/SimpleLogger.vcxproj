@@ -87,25 +87,25 @@
     <IncludePath>$(ProjectDir)Sources\;$(ProjectDir);$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
-    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(ProjectDir)Sources\;$(ProjectDir);$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
-    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir)Sources\;$(ProjectDir);$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
-    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)Sources\;$(ProjectDir);$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
-    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

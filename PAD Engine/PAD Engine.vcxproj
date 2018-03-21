@@ -65,7 +65,7 @@
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderType.h" />
     <ClInclude Include="Sources\System\IModule.h" />
-    <ClInclude Include="Sources\System\IWindowBase.h" />
+    <ClInclude Include="Sources\System\AWindow.h" />
     <ClInclude Include="Sources\System\SDLWindow.h" />
     <ClInclude Include="Sources\System\WindowEnums.h" />
     <ClInclude Include="Sources\System\WindowSettings.h" />
@@ -151,7 +151,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Math\Sources;%(AdditionalIncludeDirectories);$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs/Math;$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Math\Sources;%(AdditionalIncludeDirectories);$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -160,7 +160,7 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx86</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/SimpleLogger/;$(SolutionDir)Libs\glew\lib\glewx86;$(SolutionDir)Libs\SDL2\lib\sdlx86;$(SolutionDir)Libs\Visual Leak Detector\lib\Win32</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs/SimpleLogger/lib/slDebug/slx86;$(SolutionDir)Libs\glew\lib\glewx86;$(SolutionDir)Libs\SDL2\lib\sdlx86;$(SolutionDir)Libs\Visual Leak Detector\lib\Win32</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -172,7 +172,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs/Math;$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -181,7 +181,7 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/SimpleLogger/;$(SolutionDir)Libs\glew\lib\glewx64;$(SolutionDir)Libs\SDL2\lib\sdlx64;$(SolutionDir)Libs\Visual Leak Detector\lib\Win64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\glew\lib\glewx64;$(SolutionDir)Libs\SDL2\lib\sdlx64;$(SolutionDir)Libs\Visual Leak Detector\lib\Win64;$(SolutionDir)Libs/SimpleLogger/lib/slDebug/slx64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -195,7 +195,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs/Math;$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -206,7 +206,7 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx86</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/SimpleLogger/;$(SolutionDir)Libs\glew\lib\glewx86;$(SolutionDir)Libs\SDL2\lib\sdlx86;$(SolutionDir)Libs\Visual Leak Detector\lib\Win32</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs/SimpleLogger/lib/slRelease/slx86;$(SolutionDir)Libs\glew\lib\glewx86;$(SolutionDir)Libs\SDL2\lib\sdlx86;$(SolutionDir)Libs\Visual Leak Detector\lib\Win32</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -220,7 +220,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs/Math;$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -231,7 +231,7 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/SimpleLogger/;$(SolutionDir)Libs\glew\lib\glewx64;$(SolutionDir)Libs\SDL2\lib\sdlx64;$(SolutionDir)Libs\Visual Leak Detector\lib\Win64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs/SimpleLogger/lib/slRelease/slx64;$(SolutionDir)Libs\glew\lib\glewx64;$(SolutionDir)Libs\SDL2\lib\sdlx64;$(SolutionDir)Libs\Visual Leak Detector\lib\Win64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>

@@ -97,4 +97,25 @@ void Draw(const gfx::mod::Mesh& _m)
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
+bool IsWindowOpen()
+{
+	if (g_engine)
+	{
+		return g_engine->IsWindowOpen();
+	}
+	else
+	{
+		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
+		return false;
+	}
+}
+
+void ResizeViewport(const uint32 _w, const uint32 _h)
+{
+	if (g_engine)
+		g_engine->ResizeContext(_w, _h);
+	else
+		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
+}
+
 }

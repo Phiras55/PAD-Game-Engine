@@ -30,7 +30,7 @@ int main()
 	pad::InitWindow(winSettings);
 	pad::InitRenderer(renderSettings);
 
-	while (true)
+	while (pad::IsWindowOpen())
 	{
 		pad::PollEvents();
 

@@ -1,5 +1,6 @@
 #include <SDL.h>
 
+#include <Logger/SimpleLogger.h>
 #include <System/SDLWindow.h>
 
 namespace pad
@@ -14,6 +15,9 @@ namespace sys
 
 	SDLWindow::~SDLWindow()
 	{
+		if (mp_event)
+			delete mp_event;
+
 		SDL_DestroyWindow(mp_window);
 		SDL_GL_DeleteContext(mp_context);
 		SDL_Quit();
@@ -23,7 +27,7 @@ namespace sys
 	{
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		{
-			// TODO : Error message
+			LOG_FATAL_S("Error! Could not init SDL.\n");
 			return;
 		}
 
@@ -40,11 +44,14 @@ namespace sys
 
 		mp_context = SDL_GL_CreateContext(mp_window);
 		SDL_GL_MakeCurrent(mp_window, mp_context);
+
+		mp_event = new SDL_Event();
 	}
 
 	void SDLWindow::Resize(const math::Vec2<uint16>& _size)
 	{
-
+		if(mp_window)
+			SDL_SetWindowSize(mp_window, _size.x, _size.y);
 	}
 
 	void SDLWindow::ReloadSettings(const WindowSettings& _infos)
@@ -54,12 +61,19 @@ namespace sys
 
 	void SDLWindow::PollEvents()
 	{
-		SDL_Event events;
-		while (SDL_PollEvent(&events))
+		SDL_Event* events = static_cast<SDL_Event*>(mp_event);
+		while (SDL_PollEvent(events))
 		{
-			if (events.type == SDL_QUIT)
+			if (events->type == SDL_QUIT)
 				m_isOpen = false;
+			else if (events->type == SDL_WINDOWEVENT_RESIZED)
+				m_resizeCallback(events->window.data1, events->window.data2);
 		}
+	}
+
+	void SDLWindow::SetResizeCallback(const std::function<void(const uint32, const uint32)>& _func)
+	{
+		m_resizeCallback = _func;
 	}
 
 	void SDLWindow::SwapBuffer()

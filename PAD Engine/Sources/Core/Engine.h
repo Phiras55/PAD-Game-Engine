@@ -35,6 +35,7 @@ public:
 	void ResizeContext(const uint32 _w, const uint32 _h);
 
 	void FlushLogs();
+	bool IsWindowOpen();
 
 public:
 	void operator=(const Engine&)	= delete;

@@ -21,4 +21,7 @@ namespace pad
 	ENGINE_API void ClearBuffer();
 	ENGINE_API void Draw(const gfx::mod::Mesh& _m);
 	ENGINE_API void SwapBuffers();
+
+	ENGINE_API void ResizeViewport(const uint32 _w, const uint32 _h);
+	ENGINE_API bool IsWindowOpen();
 }

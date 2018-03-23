@@ -38,7 +38,7 @@ void InitWindow(const sys::WindowSettings& _settings)
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void InitRenderer(const gfx::rhi::RenderSettings& _settings)
+void InitRenderer(const gfx::rhi::ContextSettings& _settings)
 {
 	if (g_engine)
 		g_engine->CreateRenderer(_settings);

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 
+#include <Graphics/RHI/ContextSettings.h>
 #include <Graphics/RHI/RenderSettings.h>
 #include <Graphics/RHI/IRenderer.h>
 
@@ -21,13 +22,13 @@ public:
 	virtual void StartModule();
 	virtual void StopModule();
 
-	virtual void Init(const rhi::RenderSettings& _settings);
-	virtual void Draw(const mod::Mesh& _mesh);
+	virtual void Init(const rhi::ContextSettings& _settings);
+	virtual void Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings);
 	virtual void ResizeViewport(const uint32 _w, const uint32 _h);
 	virtual void ClearBuffer();
 
 private:
-	virtual void InitContext(const math::Vec4f& _clearColor);
+	virtual void InitContext(const rhi::ContextSettings& _settings);
 	virtual void InitViewPort(const math::Vec2i& _viewportSize);
 
 public:

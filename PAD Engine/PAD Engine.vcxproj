@@ -36,6 +36,7 @@
     <ClCompile Include="Sources\Graphics\Model\Material.cpp" />
     <ClCompile Include="Sources\Graphics\Model\Mesh.cpp" />
     <ClCompile Include="Sources\Graphics\Model\MeshData.cpp" />
+    <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp" />
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
     <ClCompile Include="Sources\System\SDLWindow.cpp" />
@@ -60,6 +61,7 @@
     <ClInclude Include="Sources\Graphics\RHI\IRenderer.h" />
     <ClInclude Include="Sources\Graphics\RHI\AVertexArray.h" />
     <ClInclude Include="Sources\Graphics\RHI\AVertexBuffer.h" />
+    <ClInclude Include="Sources\Graphics\RHI\ContextSettings.h" />
     <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
@@ -69,6 +71,7 @@
     <ClInclude Include="Sources\System\SDLWindow.h" />
     <ClInclude Include="Sources\System\WindowEnums.h" />
     <ClInclude Include="Sources\System\WindowSettings.h" />
+    <ClInclude Include="Sources\Utilities\EnumUtils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

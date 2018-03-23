@@ -22,6 +22,9 @@
     <ClCompile Include="Sources\Common.h" />
     <ClCompile Include="Sources\Core\Engine.cpp" />
     <ClCompile Include="Sources\Core\EngineClock.cpp" />
+    <ClCompile Include="Sources\Core\EngineDLL.cpp" />
+    <ClCompile Include="Sources\Core\Scene.cpp" />
+    <ClCompile Include="Sources\Core\PADObject.cpp" />
     <ClCompile Include="Sources\Core\Timer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexArray.cpp" />
@@ -40,6 +43,9 @@
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h" />
     <ClInclude Include="Sources\Core\EngineClock.h" />
+    <ClInclude Include="Sources\Core\EngineDLL.h" />
+    <ClInclude Include="Sources\Core\Scene.h" />
+    <ClInclude Include="Sources\Core\PADObject.h" />
     <ClInclude Include="Sources\Core\Timer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexArray.h" />
@@ -59,8 +65,9 @@
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderType.h" />
     <ClInclude Include="Sources\System\IModule.h" />
-    <ClInclude Include="Sources\System\IWindowBase.h" />
+    <ClInclude Include="Sources\System\AWindow.h" />
     <ClInclude Include="Sources\System\SDLWindow.h" />
+    <ClInclude Include="Sources\System\WindowEnums.h" />
     <ClInclude Include="Sources\System\WindowSettings.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -71,26 +78,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -115,28 +122,28 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
-    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>$(SolutionDir)Libs/SimpleLogger/;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
+    <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <IncludePath>$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
-    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>$(SolutionDir)Libs/SimpleLogger/;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
+    <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <IncludePath>$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
-    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>$(SolutionDir)Libs/SimpleLogger/;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
+    <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <IncludePath>$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
-    <TargetName>$(ProjectName)_$(Configuration)_$(Platform)</TargetName>
-    <IncludePath>$(SolutionDir)Libs/SimpleLogger/;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
+    <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <IncludePath>$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -144,7 +151,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Math\Sources;%(AdditionalIncludeDirectories);$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -153,10 +160,11 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx86</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/SimpleLogger/;$(SolutionDir)Libs\glew\lib\glewx86;$(SolutionDir)Libs\SDL2\lib\sdlx86;$(SolutionDir)Libs\Visual Leak Detector\lib\Win32</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs/lib/Debug/Win32</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -165,7 +173,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -174,10 +182,11 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/SimpleLogger/;$(SolutionDir)Libs\glew\lib\glewx64;$(SolutionDir)Libs\SDL2\lib\sdlx64;$(SolutionDir)Libs\Visual Leak Detector\lib\Win64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs/lib/Debug/x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -188,7 +197,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -199,10 +208,11 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx86</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/SimpleLogger/;$(SolutionDir)Libs\glew\lib\glewx86;$(SolutionDir)Libs\SDL2\lib\sdlx86;$(SolutionDir)Libs\Visual Leak Detector\lib\Win32</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs/lib/Release/Win32</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -213,7 +223,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs/SimpleLogger;$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;%(AdditionalIncludeDirectories);$(SolutionDir)Math\Sources;$(SolutionDir)Libs\Visual Leak Detector\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
@@ -224,10 +234,11 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/SimpleLogger/;$(SolutionDir)Libs\glew\lib\glewx64;$(SolutionDir)Libs\SDL2\lib\sdlx64;$(SolutionDir)Libs\Visual Leak Detector\lib\Win64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs/lib/Release/x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

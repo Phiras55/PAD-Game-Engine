@@ -114,13 +114,19 @@
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp">
       <Filter>Source Files\Graphics\RHI\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Core\Scene.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Core\EngineDLL.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Core\PADObject.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
       <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\IWindowBase.h">
-      <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\SDLWindow.h">
       <Filter>Header Files\System</Filter>
@@ -187,6 +193,21 @@
     </ClInclude>
     <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderProgram.h">
       <Filter>Header Files\Graphics\GL\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Core\Scene.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Core\EngineDLL.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\WindowEnums.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\AWindow.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Core\PADObject.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

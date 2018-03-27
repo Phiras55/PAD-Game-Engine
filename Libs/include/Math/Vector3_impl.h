@@ -84,8 +84,7 @@ void Vector3<T>::Normalize()
 template<typename T>
 Vector3<T> Vector3<T>::Normalized()
 {
-	if (!IsNull())
-		return (*this / Length());
+	return IsNull() ? *this : *this / Length();
 }
 
 template<typename T>
@@ -122,7 +121,7 @@ void Vector3<T>::operator=(const Vector3& _vector)
 }
 
 template <typename T>
-bool Vector3<T>::operator==(const Vector3& _vector)
+bool Vector3<T>::operator==(const Vector3& _vector) const
 {
 	return (	x == _vector.x 
 			&&	y == _vector.y 
@@ -138,7 +137,7 @@ bool Vector3<T>::operator!=(const Vector3& _vector)
 }
 
 template <typename T>
-Vector3<T> Vector3<T>::operator+(const Vector3& _vector)
+Vector3<T> Vector3<T>::operator+(const Vector3& _vector) const
 {
 	return Vector3<T>(	x + _vector.x, 
 						y + _vector.y,
@@ -155,7 +154,7 @@ Vector3<T>& Vector3<T>::operator+=(const Vector3& _vector)
 }
 
 template <typename T>
-Vector3<T> Vector3<T>::operator-(const Vector3& _vector)
+Vector3<T> Vector3<T>::operator-(const Vector3& _vector) const
 {
 	return Vector3<T>(	x - _vector.x, 
 						y - _vector.y,
@@ -172,7 +171,7 @@ Vector3<T>& Vector3<T>::operator-=(const Vector3& _vector)
 }
 
 template <typename T>
-Vector3<T> Vector3<T>::operator*(const float _scalar)
+Vector3<T> Vector3<T>::operator*(const float _scalar) const
 {
 	return Vector3<T>(	x * _scalar, 
 						y * _scalar,
@@ -189,7 +188,7 @@ Vector3<T>& Vector3<T>::operator*=(const float _scalar)
 }
 
 template <typename T>
-Vector3<T> Vector3<T>::operator/(const float _scalar)
+Vector3<T> Vector3<T>::operator/(const float _scalar) const
 {
 	if (_scalar != 0)
 	{
@@ -198,7 +197,7 @@ Vector3<T> Vector3<T>::operator/(const float _scalar)
 							z / _scalar);
 	}
 	else
-		return NULL;
+		return Vector3<T>();
 }
 
 template <typename T>
@@ -209,10 +208,14 @@ Vector3<T>& Vector3<T>::operator/=(const float _scalar)
 		x /= _scalar;
 		y /= _scalar;
 		z /= _scalar;
-		return *this;
 	}
 	else
-		return NULL;
+	{
+		x = INFINITY;
+		y = INFINITY;
+		z = INFINITY;
+	}
+	return *this;
 }
 
 template <typename T>
@@ -230,6 +233,20 @@ template <typename T>
 std::ostream& operator<<(std::ostream& _out, const Vector3<T>& _vector)
 {
 	return _out << "(" << _vector.x << ", " << _vector.y << ", " << _vector.z << ")";
+}
+
+template<typename T>
+T DotProduct(Vector3<T> _v1, Vector3<T> _v2)
+{
+	Vector3<T> temp(_v1);
+	return temp.DotProduct(_v2);
+}
+
+template<typename T>
+Vector3<T> CrossProduct(Vector3<T> _v1, Vector3<T> _v2)
+{
+	Vector3<T> temp(_v1);
+	return temp.CrossProduct(_v2);
 }
 
 #pragma endregion

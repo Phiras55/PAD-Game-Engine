@@ -1,17 +1,19 @@
 #pragma once
 #include <Math/Vector4.h>
-#include <Math/Vector2.h>
+#include <Graphics/RHI/Shader/AShaderProgram.h>
 
 namespace pad	{
 namespace gfx	{
 namespace rhi	{
 
-struct RenderSettings final
+struct RenderSettings
 {
-	math::Vec2i viewportSize;
-	math::Vec4f clearColor;
+	shad::AShaderProgram**	programs;
+	uint16					programCount;
+
+	bool					isWireframe;
 };
 
 } // namespace rhi
-} // namesapce gfx
-} // namesapce pad
+} // namespace gfx
+} // namespace pad

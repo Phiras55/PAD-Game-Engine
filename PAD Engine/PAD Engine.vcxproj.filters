@@ -73,6 +73,9 @@
     <Filter Include="Header Files\System\ECS">
       <UniqueIdentifier>{31351365-4fa7-44b8-8d1a-f37dc47ca292}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Utilities">
+      <UniqueIdentifier>{ae7f1c25-3d80-44af-926d-109847af5857}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Engine.cpp">
@@ -147,6 +150,12 @@
     <ClCompile Include="Sources\System\ECS\Scene.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp">
+      <Filter>Source Files\Graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\PerspectiveCamera.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -166,9 +175,6 @@
     </ClInclude>
     <ClInclude Include="Sources\Core\Timer.h">
       <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h">
-      <Filter>Header Files\Graphics\RHI</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Graphics\RHI\IRenderer.h">
       <Filter>Header Files\Graphics\RHI</Filter>
@@ -250,6 +256,21 @@
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\IComponent.h">
       <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\ContextSettings.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Utilities\EnumUtils.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\PerspectiveCamera.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Camera.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

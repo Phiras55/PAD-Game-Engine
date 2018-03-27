@@ -19,7 +19,7 @@ int main()
 	winSettings.windowType = pad::sys::E_WINDOW_TYPE::ENGINE;
 
 	// Will be read from a config file
-	pad::gfx::rhi::RenderSettings renderSettings;
+	pad::gfx::rhi::ContextSettings renderSettings;
 
 	renderSettings.viewportSize.x = winSettings.size.x;
 	renderSettings.viewportSize.y = winSettings.size.y;
@@ -27,6 +27,8 @@ int main()
 	renderSettings.clearColor.g = 0.3f;
 	renderSettings.clearColor.b = 0.3f;
 	renderSettings.clearColor.a = 1.0f;
+
+	renderSettings.enabledBuffers = pad::gfx::rhi::BufferType::ALL;
 
 	pad::InitWindow(winSettings);
 	pad::InitRenderer(renderSettings);

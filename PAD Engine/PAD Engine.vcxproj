@@ -25,6 +25,7 @@
     <ClCompile Include="Sources\Core\EngineDLL.cpp" />
     <ClCompile Include="Sources\Core\IDPool.cpp" />
     <ClCompile Include="Sources\Core\Timer.cpp" />
+    <ClCompile Include="Sources\Graphics\PerspectiveCamera.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexArray.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexBuffer.cpp" />
@@ -35,6 +36,7 @@
     <ClCompile Include="Sources\Graphics\Model\Material.cpp" />
     <ClCompile Include="Sources\Graphics\Model\Mesh.cpp" />
     <ClCompile Include="Sources\Graphics\Model\MeshData.cpp" />
+    <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp" />
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
     <ClCompile Include="Sources\System\ECS\PADObject.cpp" />
@@ -50,6 +52,8 @@
     <ClInclude Include="Sources\Core\EngineDLL.h" />
     <ClInclude Include="Sources\Core\IDPool.h" />
     <ClInclude Include="Sources\Core\Timer.h" />
+    <ClInclude Include="Sources\Graphics\Camera.h" />
+    <ClInclude Include="Sources\Graphics\PerspectiveCamera.h" />
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexArray.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexBuffer.h" />
@@ -63,6 +67,7 @@
     <ClInclude Include="Sources\Graphics\RHI\IRenderer.h" />
     <ClInclude Include="Sources\Graphics\RHI\AVertexArray.h" />
     <ClInclude Include="Sources\Graphics\RHI\AVertexBuffer.h" />
+    <ClInclude Include="Sources\Graphics\RHI\ContextSettings.h" />
     <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
@@ -79,6 +84,7 @@
     <ClInclude Include="Sources\System\SDLWindow.h" />
     <ClInclude Include="Sources\System\WindowEnums.h" />
     <ClInclude Include="Sources\System\WindowSettings.h" />
+    <ClInclude Include="Sources\Utilities\EnumUtils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

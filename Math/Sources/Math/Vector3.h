@@ -59,15 +59,15 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 	void		operator=	(const	Vector3<U>&	_vector);											/*! Assignment operator*/
 	void		operator=	(const	Vector3&	_vector);											/*! Assignment operator*/
 	Vector3&	operator=	(		Vector3&&	_vector)	= default;								/*! Move assignment operator */
-	bool		operator==	(const	Vector3&	_vector);											/*! Equal to operator */
+	bool		operator==	(const	Vector3&	_vector) const;										/*! Equal to operator */
 	bool		operator!=	(const	Vector3&	_vector);											/*! Not equal to operator */
-	Vector3		operator+	(const	Vector3&	_vector);											/*! Arithmetic operator: addition */
+	Vector3		operator+	(const	Vector3&	_vector) const;										/*! Arithmetic operator: addition */
 	Vector3&	operator+=	(const	Vector3&	_vector);											/*! Compound assignment: addition */
-	Vector3		operator-	(const	Vector3&	_vector);											/*! Arithmetic operator: substraction */
+	Vector3		operator-	(const	Vector3&	_vector) const;										/*! Arithmetic operator: substraction */
 	Vector3&	operator-=	(const	Vector3&	_vector);											/*! Compound assignment: substraction */
-	Vector3		operator*	(const	float		_scalar);											/*! Arithmetic operator: multiplication */
+	Vector3		operator*	(const	float		_scalar) const;										/*! Arithmetic operator: multiplication */
 	Vector3&	operator*=	(const	float		_scalar);											/*! Compound assignment: multiplication */
-	Vector3		operator/	(const	float		_scalar);											/*! Arithmetic operator: division */
+	Vector3		operator/	(const	float		_scalar) const;										/*! Arithmetic operator: division */
 	Vector3&	operator/=	(const	float		_scalar);											/*! Compound assignment: division */
 	T&			operator[]	(const	int			_index) const;										/*! Access operator */
 
@@ -78,6 +78,12 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 
 template <typename T>																				/*! << operator to print vector value with std::cout */
 std::ostream& operator<<(std::ostream& _out, const Vector3<T>& _vector);			
+
+template <typename T>
+T DotProduct(Vector3<T> _v1, Vector3<T> _v2);
+
+template <typename T>
+Vector3<T> CrossProduct(Vector3<T> _v1, Vector3<T> _v2);
 
 #pragma endregion
 

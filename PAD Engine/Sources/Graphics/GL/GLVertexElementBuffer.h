@@ -12,10 +12,10 @@ public:
 	virtual ~GLVertexElementBuffer();
 
 public:
-	virtual void GenerateID();
-	virtual void Bind();
-	virtual void BindData(uint32* const _data, const uint32 _dataSize);
-	virtual void BindData(float* const _data, const uint32 _dataSize, const int32 _vertexElementCount, const uint8 _location) {}
+	void GenerateID() override;
+	void Bind() override;
+	void BindData(uint32* const _data, const uint32 _dataSize) override;
+	void BindData(float* const _data, const uint32 _dataSize, const int32 _vertexElementCount, const uint8 _location) override {}
 };
 
 } // namespace gl

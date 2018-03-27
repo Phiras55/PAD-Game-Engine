@@ -78,39 +78,8 @@ void GLRenderer::Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settin
 		rhi::shad::AShaderProgram* currentShader = _settings.programs[0];
 		if (currentShader)
 		{
-			if (_settings.isOutlined)
-			{
-				/*glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-				glStencilFunc(GL_ALWAYS, 1, 0xFF);
-				glStencilMask(0xFF);
-
-				// Draw the first pass.
-				currentShader->Use();
-				
-				glDrawElements(GL_TRIANGLES, _mesh.GetIndiceCount(), GL_UNSIGNED_INT, nullptr);
-
-				glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-				glStencilMask(0x00);
-				glDisable(GL_DEPTH_TEST);
-
-				// Draw the second pass.
-				currentShader = _settings.programs[1];
-
-				if (currentShader)
-				{
-					currentShader->Use();
-					glDrawElements(GL_TRIANGLES, _mesh.GetIndiceCount(), GL_UNSIGNED_INT, nullptr);
-				}
-
-				glEnable(GL_DEPTH_TEST);
-				// We need to not update the stencil buffer when we don't need to.
-				glStencilMask(0x00);*/
-			}
-			else
-			{
-				currentShader->Use();
-				glDrawElements(GL_TRIANGLES, _mesh.GetIndiceCount(), GL_UNSIGNED_INT, nullptr);
-			}
+			currentShader->Use();
+			glDrawElements(GL_TRIANGLES, _mesh.GetIndiceCount(), GL_UNSIGNED_INT, nullptr);
 		}
 	}
 	else
@@ -127,6 +96,18 @@ void GLRenderer::ClearBuffer()
 void GLRenderer::ResizeViewport(const uint32 _w, const uint32 _h)
 {
 	glViewport(0, 0, _w, _h);
+	m_viewportSize.x = _w;
+	m_viewportSize.y = _h;
+}
+
+void GLRenderer::InitBuffers()
+{
+
+}
+
+void GLRenderer::GenerateBuffer(uint32& _id)
+{
+
 }
 
 } // namespace gl

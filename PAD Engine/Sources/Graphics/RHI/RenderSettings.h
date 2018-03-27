@@ -11,11 +11,6 @@ struct RenderSettings
 	shad::AShaderProgram**	programs;
 	uint16					programCount;
 
-	math::Vec4f				outlineColor;
-	math::Vec3f				scale;
-	float32					outlineThickness;
-	bool					isOutlined;
-
 	bool					isWireframe;
 };
 

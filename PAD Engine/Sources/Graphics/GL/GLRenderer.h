@@ -13,27 +13,29 @@ class GLRenderer final : public rhi::IRenderer
 {
 public:
 	GLRenderer();
-	virtual ~GLRenderer() = default;
+	~GLRenderer()															= default;
 
-	GLRenderer(const GLRenderer&)	= delete;
-	GLRenderer(GLRenderer&&)		= delete;
+	GLRenderer(const GLRenderer&)											= delete;
+	GLRenderer(GLRenderer&&)												= delete;
 
 public:
-	virtual void StartModule();
-	virtual void StopModule();
+	void StartModule()														override;
+	void StopModule()														override;
 
-	virtual void Init(const rhi::ContextSettings& _settings);
-	virtual void Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings);
-	virtual void ResizeViewport(const uint32 _w, const uint32 _h);
-	virtual void ClearBuffer();
+	void Init(const rhi::ContextSettings& _settings)						override;
+	void Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings) override;
+	void ResizeViewport(const uint32 _w, const uint32 _h)					override;
+	void ClearBuffer()														override;
 
 private:
-	virtual void InitContext(const rhi::ContextSettings& _settings);
-	virtual void InitViewPort(const math::Vec2i& _viewportSize);
+	void InitContext(const rhi::ContextSettings& _settings)					override;
+	void InitViewPort(const math::Vec2i& _viewportSize)						override;
+	void InitBuffers()														override;
+	void GenerateBuffer(uint32& _id);
 
 public:
-	void operator=(const GLRenderer&) = delete;
-	void operator=(GLRenderer&&)		= delete;
+	void operator=(const GLRenderer&)										= delete;
+	void operator=(GLRenderer&&)											= delete;
 };
 
 } // namespace gl

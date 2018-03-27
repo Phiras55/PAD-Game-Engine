@@ -1,6 +1,7 @@
 #pragma once
 #include <System/WindowSettings.h>
 #include <Graphics/RHI/ContextSettings.h>
+#include <Graphics/RHI/RenderSettings.h>
 #include <Graphics/Model/Mesh.h>
 
 #define ENGINE_API __declspec(dllexport)

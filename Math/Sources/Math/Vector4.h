@@ -85,10 +85,10 @@ template <typename T>																				/*! << operator to print vector value w
 std::ostream& operator<<(std::ostream& _out, const Vector4<T>& _vector);		
 
 template <typename T>
-T DotProduct(Vec4<T> _v1, Vec4<T> _v2);
+T DotProduct(Vector4<T> _v1, Vector4<T> _v2);
 
 template <typename T>
-Vec4<T> CrossProduct(Vec4<T> _v1, Vec4<T> _v2);
+Vector4<T> CrossProduct(Vector4<T> _v1, Vector4<T> _v2);
 
 #pragma endregion
 

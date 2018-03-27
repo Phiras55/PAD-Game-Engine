@@ -65,7 +65,8 @@ void Engine::Render()
 	mp_renderer->ClearBuffer();
 
 	gfx::mod::Mesh m;
-	mp_renderer->Draw(m);
+	gfx::rhi::RenderSettings s;
+	mp_renderer->Draw(m, s);
 
 	mp_window->SwapBuffer();
 }

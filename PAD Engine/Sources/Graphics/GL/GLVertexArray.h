@@ -8,8 +8,8 @@ namespace gl  {
 class GLVertexArray final : public rhi::AVertexArray
 {
 public:
-	virtual void GenerateID();
-	virtual void Bind();
+	void GenerateID() override;
+	void Bind() override;
 };
 
 } // namespace gl

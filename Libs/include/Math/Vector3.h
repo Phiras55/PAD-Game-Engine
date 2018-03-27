@@ -55,15 +55,15 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 	void		operator=	(const	Vector3<U>&	_vector);											/*! Assignment operator*/
 	void		operator=	(const	Vector3&	_vector);											/*! Assignment operator*/
 	Vector3&	operator=	(		Vector3&&	_vector)	= default;								/*! Move assignment operator */
-	bool		operator==	(const	Vector3&	_vector);											/*! Equal to operator */
+	bool		operator==	(const	Vector3&	_vector) const;										/*! Equal to operator */
 	bool		operator!=	(const	Vector3&	_vector);											/*! Not equal to operator */
-	Vector3		operator+	(const	Vector3&	_vector);											/*! Arithmetic operator: addition */
+	Vector3		operator+	(const	Vector3&	_vector) const;										/*! Arithmetic operator: addition */
 	Vector3&	operator+=	(const	Vector3&	_vector);											/*! Compound assignment: addition */
-	Vector3		operator-	(const	Vector3&	_vector);											/*! Arithmetic operator: substraction */
+	Vector3		operator-	(const	Vector3&	_vector) const;										/*! Arithmetic operator: substraction */
 	Vector3&	operator-=	(const	Vector3&	_vector);											/*! Compound assignment: substraction */
-	Vector3		operator*	(const	float		_scalar);											/*! Arithmetic operator: multiplication */
+	Vector3		operator*	(const	float		_scalar) const;										/*! Arithmetic operator: multiplication */
 	Vector3&	operator*=	(const	float		_scalar);											/*! Compound assignment: multiplication */
-	Vector3		operator/	(const	float		_scalar);											/*! Arithmetic operator: division */
+	Vector3		operator/	(const	float		_scalar) const;										/*! Arithmetic operator: division */
 	Vector3&	operator/=	(const	float		_scalar);											/*! Compound assignment: division */
 	T&			operator[]	(const	int			_index) const;										/*! Access operator */
 

@@ -13,8 +13,8 @@ public:
 	SDLWindow();
 	virtual ~SDLWindow();
 
-	SDLWindow(const SDLWindow&)	= delete;
-	SDLWindow(SDLWindow&&)		= delete;
+	SDLWindow(const SDLWindow&)																= delete;
+	SDLWindow(SDLWindow&&)																	= delete;
 
 private:
 	struct SDL_Window*		mp_window;
@@ -22,22 +22,22 @@ private:
 	void*					mp_event;
 
 public:
-	virtual void Init(const WindowSettings& _infos);
-	virtual void PollEvents();
-	virtual void Resize(const math::Vec2<uint16>& size);
-	virtual void ReloadSettings(const WindowSettings& _infos);
-	virtual void SwapBuffer();
-	void SetResizeCallback(const std::function<void(const uint32, const uint32)>& _func) override;
+	void Init(const WindowSettings& _infos)													override;
+	void PollEvents()																		override;
+	void Resize(const math::Vec2<uint16>& size)												override;
+	void ReloadSettings(const WindowSettings& _infos)										override;
+	void SwapBuffer()																		override;
+	void SetResizeCallback(const std::function<void(const uint32, const uint32)>& _func)	override;
 
-	inline virtual bool IsOpen() { return m_isOpen; }
-
-public:
-	virtual const math::Vec2i GetPosition()	const;
-	virtual const math::Vec2i GetSize()		const;
+	inline bool IsOpen() override { return m_isOpen; }
 
 public:
-	SDLWindow& operator=(const SDLWindow&)	= delete;
-	SDLWindow& operator=(SDLWindow&&)		= delete;
+	const math::Vec2i GetPosition()	const													override;
+	const math::Vec2i GetSize()		const													override;
+
+public:
+	SDLWindow& operator=(const SDLWindow&)													= delete;
+	SDLWindow& operator=(SDLWindow&&)														= delete;
 };
 
 } // namespace sys

@@ -84,8 +84,7 @@ void Vector3<T>::Normalize()
 template<typename T>
 Vector3<T> Vector3<T>::Normalized()
 {
-	if (!IsNull())
-		return (*this / Length());
+	return IsNull() ? *this : *this / Length();
 }
 
 template<typename T>
@@ -122,7 +121,7 @@ void Vector3<T>::operator=(const Vector3& _vector)
 }
 
 template <typename T>
-bool Vector3<T>::operator==(const Vector3& _vector)
+bool Vector3<T>::operator==(const Vector3& _vector) const
 {
 	return (	x == _vector.x 
 			&&	y == _vector.y 
@@ -138,7 +137,7 @@ bool Vector3<T>::operator!=(const Vector3& _vector)
 }
 
 template <typename T>
-Vector3<T> Vector3<T>::operator+(const Vector3& _vector)
+Vector3<T> Vector3<T>::operator+(const Vector3& _vector) const
 {
 	return Vector3<T>(	x + _vector.x, 
 						y + _vector.y,
@@ -155,7 +154,7 @@ Vector3<T>& Vector3<T>::operator+=(const Vector3& _vector)
 }
 
 template <typename T>
-Vector3<T> Vector3<T>::operator-(const Vector3& _vector)
+Vector3<T> Vector3<T>::operator-(const Vector3& _vector) const
 {
 	return Vector3<T>(	x - _vector.x, 
 						y - _vector.y,
@@ -172,7 +171,7 @@ Vector3<T>& Vector3<T>::operator-=(const Vector3& _vector)
 }
 
 template <typename T>
-Vector3<T> Vector3<T>::operator*(const float _scalar)
+Vector3<T> Vector3<T>::operator*(const float _scalar) const
 {
 	return Vector3<T>(	x * _scalar, 
 						y * _scalar,
@@ -189,7 +188,7 @@ Vector3<T>& Vector3<T>::operator*=(const float _scalar)
 }
 
 template <typename T>
-Vector3<T> Vector3<T>::operator/(const float _scalar)
+Vector3<T> Vector3<T>::operator/(const float _scalar) const
 {
 	if (_scalar != 0)
 	{
@@ -198,11 +197,7 @@ Vector3<T> Vector3<T>::operator/(const float _scalar)
 							z / _scalar);
 	}
 	else
-	{
-		return Vector3<T>(	INFINITY,
-							INFINITY,
-							INFINITY);
-	}
+		return Vector3<T>();
 }
 
 template <typename T>
@@ -213,15 +208,14 @@ Vector3<T>& Vector3<T>::operator/=(const float _scalar)
 		x /= _scalar;
 		y /= _scalar;
 		z /= _scalar;
-		return *this;
 	}
 	else
 	{
 		x = INFINITY;
 		y = INFINITY;
 		z = INFINITY;
-		return *this;
 	}
+	return *this;
 }
 
 template <typename T>

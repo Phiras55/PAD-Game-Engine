@@ -89,10 +89,10 @@ void SwapBuffers()
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void Draw(const gfx::mod::Mesh& _m)
+void Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings)
 {
 	if (g_engine)
-		g_engine->Draw(_m);
+		g_engine->Draw(_m, _settings);
 	else
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
@@ -118,4 +118,4 @@ void ResizeViewport(const uint32 _w, const uint32 _h)
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-}
+} // namespace pad

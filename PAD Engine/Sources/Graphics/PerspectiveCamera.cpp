@@ -1,7 +1,8 @@
 #include <Graphics/PerspectiveCamera.h>
 #include <Math/Vector3.h>
 
-namespace pad {
+namespace pad	{
+namespace gfx	{
 
 PerspectiveCamera::PerspectiveCamera()
 {
@@ -20,7 +21,7 @@ const math::Mat4& PerspectiveCamera::Perspective(float v, float r, float n, floa
 	return _projectionMatrix;
 }
 
-const math::Mat4& PerspectiveCamera::LookAt(math::Vec3f& eye, math::Vec3f& at, math::Vec3f& up)
+const math::Mat4& PerspectiveCamera::LookAt(const math::Vec3f& eye, const math::Vec3f& at, const math::Vec3f& up)
 {
 	math::Vec3f h(at - eye); 
 	h.Normalize();
@@ -40,5 +41,5 @@ const math::Mat4& PerspectiveCamera::LookAt(math::Vec3f& eye, math::Vec3f& at, m
 	return _viewMatrix;
 }
 
-
-}
+} // namespace gfx
+} // namespace pad

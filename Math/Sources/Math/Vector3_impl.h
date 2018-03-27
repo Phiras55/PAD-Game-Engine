@@ -232,6 +232,20 @@ std::ostream& operator<<(std::ostream& _out, const Vector3<T>& _vector)
 	return _out << "(" << _vector.x << ", " << _vector.y << ", " << _vector.z << ")";
 }
 
+template<typename T>
+T DotProduct(Vec3<T> _v1, Vec3<T> _v2)
+{
+	Vec3<T> temp(_v1);
+	return temp.DotProduct(_v2);
+}
+
+template<typename T>
+Vec4<T> CrossProduct(Vec3<T> _v1, Vec3<T> _v2)
+{
+	Vec3<T> temp(_v1);
+	return temp.CrossProduct(_v2);
+}
+
 #pragma endregion
 
 } // namespace math

@@ -123,6 +123,9 @@
     <ClCompile Include="Sources\Core\PADObject.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Graphics\Camera.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="Sources\Core\PADObject.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Camera.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

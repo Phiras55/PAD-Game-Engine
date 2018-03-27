@@ -72,8 +72,14 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 
 #pragma region Utils
 
-template <typename T>																/*! << operator to print vector value with std::cout */
+template <typename T>																				/*! << operator to print vector value with std::cout */
 std::ostream& operator<<(std::ostream& _out, const Vector3<T>& _vector);			
+
+template <typename T>
+T DotProduct(Vector3<T> _v1, Vector3<T> _v2);
+
+template <typename T>
+Vector3<T> CrossProduct(Vector3<T> _v1, Vector3<T> _v2);
 
 #pragma endregion
 

@@ -198,7 +198,11 @@ Vector3<T> Vector3<T>::operator/(const float _scalar)
 							z / _scalar);
 	}
 	else
-		return NULL;
+	{
+		return Vector3<T>(	INFINITY,
+							INFINITY,
+							INFINITY);
+	}
 }
 
 template <typename T>
@@ -212,7 +216,12 @@ Vector3<T>& Vector3<T>::operator/=(const float _scalar)
 		return *this;
 	}
 	else
-		return NULL;
+	{
+		x = INFINITY;
+		y = INFINITY;
+		z = INFINITY;
+		return *this;
+	}
 }
 
 template <typename T>
@@ -230,6 +239,20 @@ template <typename T>
 std::ostream& operator<<(std::ostream& _out, const Vector3<T>& _vector)
 {
 	return _out << "(" << _vector.x << ", " << _vector.y << ", " << _vector.z << ")";
+}
+
+template<typename T>
+T DotProduct(Vector3<T> _v1, Vector3<T> _v2)
+{
+	Vector3<T> temp(_v1);
+	return temp.DotProduct(_v2);
+}
+
+template<typename T>
+Vector3<T> CrossProduct(Vector3<T> _v1, Vector3<T> _v2)
+{
+	Vector3<T> temp(_v1);
+	return temp.CrossProduct(_v2);
 }
 
 #pragma endregion

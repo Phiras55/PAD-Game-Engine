@@ -1,11 +1,13 @@
-#include <Core/PADObject.h>
+#include <System/ECS/PADObject.h>
 #include <algorithm>
 
 namespace pad	{
-namespace core	{
+namespace sys	{
+namespace ecs	{
 
 PADObject::PADObject() :
-	parent(nullptr)
+	parent(nullptr),
+	dontDestroy(false)
 {
 
 }
@@ -60,5 +62,6 @@ void PADObject::SetParent(PADObject* const _parent)
 	_parent->AddChild(this);
 }
 
-} // namespace core
+} // namespace ecs
+} // namespace sys
 } // namespace pad

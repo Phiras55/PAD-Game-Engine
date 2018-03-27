@@ -4,6 +4,7 @@
 
 namespace pad	{
 namespace math	{
+
 using Mat4 = Matrix4x4;
 
 class Transform final

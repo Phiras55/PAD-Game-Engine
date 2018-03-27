@@ -1,8 +1,7 @@
 #pragma once
-namespace pad
-{
-namespace sys
-{
+
+namespace pad	{
+namespace sys	{
 
 class IModule
 {

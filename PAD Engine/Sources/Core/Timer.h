@@ -1,8 +1,10 @@
 #pragma once
 
 #include <chrono>
-#include <unordered_map>
+#include <map>
+#include <vector>
 #include <Core/EngineClock.h>
+#include <Core/IDPool.h>
 
 namespace pad	{
 namespace core	{
@@ -22,16 +24,15 @@ public:
 #pragma region Variables
 
 private:
-	Timepoint											startTime;									/*!< Timepoint when the timer was started */
-	double												duration;									/*!< Total duration of the timer since it was started */
-	double												pauseDuration;								/*!< Total time the game have been paused since the timer started */
-	unsigned short										id;											/*!< Id of the timer */
-	bool												affectedByPause;							/*!< Bool representing if the timer should be affected by pause or not (true by default) */
+	Timepoint									startTime;											/*!< Timepoint when the timer was started */
+	double										duration;											/*!< Total duration of the timer since it was started */
+	double										pauseDuration;										/*!< Total time the game have been paused since the timer started */
+	unsigned short								id;													/*!< Id of the timer */
+	bool										affectedByPause;									/*!< Bool representing if the timer should be affected by pause or not (true by default) */
 
-	Timepoint											pauseStartTime;								/*!< Timepoint the game was paused */
-	static std::unordered_map<unsigned short, Timer*>	timerCollection;							/*!< A container for all timers, needed to pause all timers affected by pause if the game is paused */
-	static std::vector<unsigned short>					idPool;										/*!< A container for Ids that are free to be re-used */
-	static unsigned short								newId;										/*!< The new Id to be used if none are free in the pool */
+	Timepoint									pauseStartTime;										/*!< Timepoint the game was paused */
+	static std::map<unsigned short, Timer*>		timerCollection;									/*!< A container for all timers, needed to pause all timers affected by pause if the game is paused */
+	static IDPool								idPool;
 
 #pragma endregion
 

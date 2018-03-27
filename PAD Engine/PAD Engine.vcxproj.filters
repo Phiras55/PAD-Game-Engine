@@ -61,6 +61,18 @@
     <Filter Include="Source Files\Graphics\RHI\Shader">
       <UniqueIdentifier>{9094b494-783e-4d22-b7d6-6e60a1f84c55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\System\Resource">
+      <UniqueIdentifier>{b17d9066-18ec-4256-b90b-d761d1689495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Resource">
+      <UniqueIdentifier>{d4a4f04b-8d47-462c-906c-7ea2317a670d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\ECS">
+      <UniqueIdentifier>{922b0db2-26a1-4258-85b1-732a042cd5d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\ECS">
+      <UniqueIdentifier>{31351365-4fa7-44b8-8d1a-f37dc47ca292}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Engine.cpp">
@@ -114,14 +126,26 @@
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp">
       <Filter>Source Files\Graphics\RHI\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Core\Scene.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Core\EngineDLL.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Core\PADObject.cpp">
+    <ClCompile Include="Sources\System\Resource\AResourceManager.cpp">
+      <Filter>Source Files\System\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Core\IDPool.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\Resource\ResourceManager.cpp">
+      <Filter>Source Files\System\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\Resource\Resource.cpp">
+      <Filter>Source Files\System\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\PADObject.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\Scene.cpp">
+      <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,9 +218,6 @@
     <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderProgram.h">
       <Filter>Header Files\Graphics\GL\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Core\Scene.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Core\EngineDLL.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
@@ -206,8 +227,29 @@
     <ClInclude Include="Sources\System\AWindow.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Core\PADObject.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Sources\System\Resource\ResourceManager.h">
+      <Filter>Header Files\System\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Resource\AResourceManager.h">
+      <Filter>Header Files\System\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Core\IDPool.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Resource\MeshManager.h">
+      <Filter>Header Files\System\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Resource\Resource.h">
+      <Filter>Header Files\System\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\PADObject.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\Scene.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\IComponent.h">
+      <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

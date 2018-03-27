@@ -1,10 +1,11 @@
 #pragma once
 
 #include <vector>
-#include <Core/PADObject.h>
+#include <System/ECS/PADObject.h>
 
 namespace pad	{
-namespace core	{
+namespace sys	{
+namespace ecs	{
 
 class Scene final
 {
@@ -29,5 +30,6 @@ public:
 //	void Render();
 };
 
-} // namespace core
+} // namespace ecs
+} // namespace sys
 } // namespace pad

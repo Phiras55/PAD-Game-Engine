@@ -1,12 +1,13 @@
 #pragma once
 #include <Graphics/RHI/AVertexArray.h>
 #include <Graphics/RHI/AVertexBuffer.h>
+#include <System/Resource/Resource.h>
 
 namespace pad	{
 namespace gfx	{
 namespace mod	{
 
-class Mesh
+class Mesh : public sys::res::Resource
 {
 public:
 	Mesh();

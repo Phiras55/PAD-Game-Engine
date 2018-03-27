@@ -2,8 +2,8 @@
 #include <Core/Engine.h>
 #include <Logger/SimpleLogger.h>
 
-namespace pad	
-{
+namespace pad	{
+
 core::Engine* g_engine = nullptr;
 
 void CreateEngine()
@@ -118,4 +118,4 @@ void ResizeViewport(const uint32 _w, const uint32 _h)
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-}
+} // namespace pad

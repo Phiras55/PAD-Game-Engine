@@ -1,11 +1,13 @@
-#include "Scene.h"
+#include <System/ECS/Scene.h>
 
 namespace pad	{
-namespace core	{
+namespace sys	{
+namespace ecs	{
 
 Scene::Scene() :
 	masterPADObject(new PADObject())
 {
+
 }
 
 Scene::~Scene() 
@@ -28,5 +30,6 @@ void Scene::AddPADObject(PADObject * _PADObject)
 //
 //}
 
-} // namespace core
+} // namespace ecs
+} // namespace sys
 } // namespace pad

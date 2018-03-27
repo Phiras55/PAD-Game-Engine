@@ -5,9 +5,8 @@ namespace core	{
 
 #pragma region Statics
 
-unsigned short								Timer::newId = 0;
-std::unordered_map<unsigned short, Timer*>	Timer::timerCollection;
-std::vector<unsigned short>					Timer::idPool;
+std::map<unsigned short, Timer*>	Timer::timerCollection;
+IDPool								Timer::idPool;
 
 #pragma endregion
 
@@ -17,16 +16,7 @@ Timer::Timer(const bool _affectedByPause) :
 	duration(-1),
 	pauseDuration(0)
 {
-	if (idPool.size() > 0)
-	{
-		id = idPool[idPool.size() - 1];
-		idPool.pop_back();
-	}
-	else
-	{
-		id = newId;
-		++newId;
-	}
+	id = idPool.GenerateID();
 
 	timerCollection[id] = this;
 }
@@ -34,7 +24,7 @@ Timer::Timer(const bool _affectedByPause) :
 Timer::~Timer()
 {
 	timerCollection[id] = nullptr;
-	idPool.push_back(id);
+	idPool.FreeID(id);
 }
 
 #pragma endregion

@@ -1,6 +1,6 @@
 #pragma once
-#include <functional>
 
+#include <functional>
 #include <System/WindowSettings.h>
 
 namespace pad	{

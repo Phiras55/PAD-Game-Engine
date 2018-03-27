@@ -4,7 +4,8 @@
 #include <Math/Transform.h>
 
 namespace pad	{
-namespace core	{
+namespace sys	{
+namespace ecs	{
 
 class PADObject
 {
@@ -26,7 +27,8 @@ public:
 private:
 	math::Transform			transform;
 	std::list<PADObject*>	childs;
-	PADObject*			parent;
+	PADObject*				parent;
+	bool					dontDestroy;
 
 #pragma endregion
 
@@ -39,8 +41,10 @@ public:
 
 #pragma endregion
 
+
 	void SetParent(PADObject* const _parent);
 };
 
-} // namespace core
+} // namespace ecs
+} // namespace sys
 } // namespace pad

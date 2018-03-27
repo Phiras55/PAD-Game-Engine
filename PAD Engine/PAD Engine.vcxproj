@@ -23,8 +23,7 @@
     <ClCompile Include="Sources\Core\Engine.cpp" />
     <ClCompile Include="Sources\Core\EngineClock.cpp" />
     <ClCompile Include="Sources\Core\EngineDLL.cpp" />
-    <ClCompile Include="Sources\Core\Scene.cpp" />
-    <ClCompile Include="Sources\Core\PADObject.cpp" />
+    <ClCompile Include="Sources\Core\IDPool.cpp" />
     <ClCompile Include="Sources\Core\Timer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexArray.cpp" />
@@ -38,14 +37,18 @@
     <ClCompile Include="Sources\Graphics\Model\MeshData.cpp" />
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
+    <ClCompile Include="Sources\System\ECS\PADObject.cpp" />
+    <ClCompile Include="Sources\System\ECS\Scene.cpp" />
+    <ClCompile Include="Sources\System\Resource\Resource.cpp" />
+    <ClCompile Include="Sources\System\Resource\AResourceManager.cpp" />
+    <ClCompile Include="Sources\System\Resource\ResourceManager.cpp" />
     <ClCompile Include="Sources\System\SDLWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h" />
     <ClInclude Include="Sources\Core\EngineClock.h" />
     <ClInclude Include="Sources\Core\EngineDLL.h" />
-    <ClInclude Include="Sources\Core\Scene.h" />
-    <ClInclude Include="Sources\Core\PADObject.h" />
+    <ClInclude Include="Sources\Core\IDPool.h" />
     <ClInclude Include="Sources\Core\Timer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexArray.h" />
@@ -64,8 +67,15 @@
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderType.h" />
+    <ClInclude Include="Sources\System\ECS\IComponent.h" />
+    <ClInclude Include="Sources\System\ECS\PADObject.h" />
+    <ClInclude Include="Sources\System\ECS\Scene.h" />
     <ClInclude Include="Sources\System\IModule.h" />
     <ClInclude Include="Sources\System\AWindow.h" />
+    <ClInclude Include="Sources\System\Resource\Resource.h" />
+    <ClInclude Include="Sources\System\Resource\AResourceManager.h" />
+    <ClInclude Include="Sources\System\Resource\MeshManager.h" />
+    <ClInclude Include="Sources\System\Resource\ResourceManager.h" />
     <ClInclude Include="Sources\System\SDLWindow.h" />
     <ClInclude Include="Sources\System\WindowEnums.h" />
     <ClInclude Include="Sources\System\WindowSettings.h" />

@@ -84,6 +84,12 @@ struct Vector4 final																				/*! Templated vector 4 structure */
 template <typename T>																				/*! << operator to print vector value with std::cout */
 std::ostream& operator<<(std::ostream& _out, const Vector4<T>& _vector);		
 
+template <typename T>
+T DotProduct(Vec4<T> _v1, Vec4<T> _v2);
+
+template <typename T>
+Vec4<T> CrossProduct(Vec4<T> _v1, Vec4<T> _v2);
+
 #pragma endregion
 
 } // namespace math

@@ -26,6 +26,8 @@
     <ClCompile Include="Sources\Core\Scene.cpp" />
     <ClCompile Include="Sources\Core\PADObject.cpp" />
     <ClCompile Include="Sources\Core\Timer.cpp" />
+    <ClCompile Include="Sources\Graphics\Camera.cpp" />
+    <ClCompile Include="Sources\Graphics\PerspectiveCamera.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexArray.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexBuffer.cpp" />
@@ -48,6 +50,8 @@
     <ClInclude Include="Sources\Core\Scene.h" />
     <ClInclude Include="Sources\Core\PADObject.h" />
     <ClInclude Include="Sources\Core\Timer.h" />
+    <ClInclude Include="Sources\Graphics\Camera.h" />
+    <ClInclude Include="Sources\Graphics\PerspectiveCamera.h" />
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexArray.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexBuffer.h" />

@@ -129,6 +129,12 @@
     <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp">
       <Filter>Source Files\Graphics\RHI</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Graphics\PerspectiveCamera.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\Camera.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -220,6 +226,12 @@
     </ClInclude>
     <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h">
       <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\PerspectiveCamera.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Camera.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

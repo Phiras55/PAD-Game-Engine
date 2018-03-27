@@ -65,7 +65,8 @@ void Engine::Render()
 	mp_renderer->ClearBuffer();
 
 	gfx::mod::Mesh m;
-	mp_renderer->Draw(m);
+	gfx::rhi::RenderSettings s;
+	mp_renderer->Draw(m, s);
 
 	mp_window->SwapBuffer();
 }
@@ -81,7 +82,7 @@ void Engine::CreateWindow(const sys::WindowSettings& _infos)
 		mp_window->Init(_infos);
 }
 
-void Engine::CreateRenderer(const gfx::rhi::RenderSettings& _settings)
+void Engine::CreateRenderer(const gfx::rhi::ContextSettings& _settings)
 {
 	mp_renderer = new gfx::gl::GLRenderer();
 	mp_renderer->Init(_settings);
@@ -117,10 +118,10 @@ void Engine::ResizeContext(const uint32 _w, const uint32 _h)
 		mp_renderer->ResizeViewport(_w, _h);
 }
 
-void Engine::Draw(const gfx::mod::Mesh& _m)
+void Engine::Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings)
 {
 	if (mp_renderer)
-		mp_renderer->Draw(_m);
+		mp_renderer->Draw(_m, _settings);
 }
 
 void Engine::FlushLogs()

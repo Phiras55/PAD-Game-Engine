@@ -1,4 +1,5 @@
 #include <assert.h>
+#include "Vector4.h"
 
 namespace pad	{
 namespace math	{
@@ -110,6 +111,8 @@ Vector4<T> Vector4<T>::Normalized()
 {
 	if (!IsNull())
 		return (*this / Length());
+	//TODO: Log error message
+	return *this;
 }
 
 template<typename T>
@@ -263,6 +266,20 @@ template <typename T>
 std::ostream& operator<<(std::ostream& _out, const Vector4<T>& _vector)
 {
 	return _out << "(" << _vector.x << ", " << _vector.y << ", " << _vector.z << ", " << _vector.w << ")";
+}
+
+template<typename T>
+T DotProduct(Vector4<T> _v1, Vector4<T> _v2)
+{
+	Vector4<T> temp(_v1);
+	return temp.DotProduct(_v2);
+}
+
+template<typename T>
+Vector4<T> CrossProduct(Vector4<T> _v1, Vector4<T> _v2)
+{
+	Vector4<T> temp(_v1);
+	return temp.CrossProduct(_v2);
 }
 
 #pragma endregion

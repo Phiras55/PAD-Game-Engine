@@ -1,6 +1,7 @@
 #include <Core/EngineClock.h>
 #include <System/SDLWindow.h>
 #include <Graphics/RHI/IRenderer.h>
+#include <Graphics/RHI/RenderSettings.h>
 
 namespace pad	{
 namespace core	{
@@ -27,9 +28,9 @@ public:
 	void Render();
 
 	void CreateWindow(const sys::WindowSettings& _infos);
-	void CreateRenderer(const gfx::rhi::RenderSettings& _settings);
+	void CreateRenderer(const gfx::rhi::ContextSettings& _settings);
 
-	void Draw(const gfx::mod::Mesh& _m);
+	void Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings);
 	void SwapBuffers();
 	void ClearBuffer();
 	void ResizeContext(const uint32 _w, const uint32 _h);

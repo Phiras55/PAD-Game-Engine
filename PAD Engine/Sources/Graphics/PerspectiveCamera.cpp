@@ -20,8 +20,9 @@ const math::Mat4& PerspectiveCamera::Perspective(float v, float r, float n, floa
 	_projectionMatrix[0][0] = 1.f / (fovTan * r);
 	_projectionMatrix[1][1] = 1.f / fovTan;
 	_projectionMatrix[2][2] = -(f + n) / (f - n);
-	_projectionMatrix[3][2] = (-2 * f * n) / (f - n);
-	_projectionMatrix[2][3] = -1.f;
+	_projectionMatrix[2][3] = (-2 * f * n) / (f - n);
+	_projectionMatrix[3][2] = -1.f;
+	_projectionMatrix[3][3] = 0.f;
 
 	return _projectionMatrix;
 }
@@ -49,19 +50,19 @@ const math::Mat4& PerspectiveCamera::LookAt(const math::Vec3f& eye, const math::
 								//0.f, 0.f, 0.f, 1);
 
 	_viewMatrix[0][0] = f.x;
-	_viewMatrix[1][0] = f.y;
-	_viewMatrix[2][0] = f.z;
-	_viewMatrix[3][0] = fe;
+	_viewMatrix[0][1] = f.y;
+	_viewMatrix[0][2] = f.z;
+	_viewMatrix[0][3] = fe;
 
-	_viewMatrix[0][1] = g.x;
+	_viewMatrix[1][0] = g.x;
 	_viewMatrix[1][1] = g.y;
-	_viewMatrix[2][1] = g.z;
-	_viewMatrix[3][1] = ge;
+	_viewMatrix[1][2] = g.z;
+	_viewMatrix[1][3] = ge;
 
-	_viewMatrix[0][2] = h.x;
-	_viewMatrix[1][2] = h.y;
+	_viewMatrix[2][0] = h.x;
+	_viewMatrix[2][1] = h.y;
 	_viewMatrix[2][2] = h.z;
-	_viewMatrix[3][2] = he;
+	_viewMatrix[2][3] = he;
 
 	return _viewMatrix;
 }

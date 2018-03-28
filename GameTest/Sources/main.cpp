@@ -108,6 +108,13 @@ int main()
 			pad::math::Vec4f(1.f, 0.f, 0.f, 1.f)
 		);
 
+		pad::math::Mat4 t1(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+		pad::math::Mat4 t2(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+		pad::math::Mat4 t3 = t1 * t2;
+		pad::math::Mat4 p = c.Perspective(45.f, (float)winSettings.size.x / (float)winSettings.size.y, 0.1f, 1000.f);
+		pad::math::Mat4 l = c.LookAt(pad::math::Vec3f(0.f, 0.f, 10.f), pad::math::Vec3f(0.f, 0.f, 0.f), pad::math::Vec3f(0.f, 1.f, 0.f));
+		pad::math::Mat4 m = p * l;
+
 		pad::SwapBuffers();
 	}
 

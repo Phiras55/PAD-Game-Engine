@@ -1,10 +1,11 @@
 #pragma once
 #include <Math/Matrix4x4.h>
+#include <Utilities/Export.h>
 
 namespace pad	{
 namespace gfx	{
 
-class Camera
+class ENGINE_API Camera
 {
 protected:
 	Camera()	= default;

@@ -8,6 +8,13 @@ namespace rhi	{
 
 struct RenderSettings
 {
+	RenderSettings() : 
+		programs(nullptr),
+		programCount(0),
+		isWireframe(false)
+	{
+	}
+
 	shad::AShaderProgram**	programs;
 	uint16					programCount;
 

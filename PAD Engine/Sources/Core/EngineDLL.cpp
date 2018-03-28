@@ -118,4 +118,20 @@ void ResizeViewport(const uint32 _w, const uint32 _h)
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
+void DebugGenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)
+{
+	if (g_engine)
+		g_engine->GenerateMesh(_m, _md);
+	else
+		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
+}
+
+void DebugDraw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, const math::Mat4& _vp, const math::Vec4f& _albedo)
+{
+	if (g_engine)
+		g_engine->DebugDraw(_m, _settings, _vp, _albedo);
+	else
+		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
+}
+
 } // namespace pad

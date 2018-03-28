@@ -137,5 +137,17 @@ bool Engine::IsWindowOpen()
 		return false;
 }
 
+void Engine::GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)
+{
+	if (mp_renderer)
+		mp_renderer->GenerateMesh(_m, _md);
+}
+
+void Engine::DebugDraw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, const math::Mat4& _vp, const math::Vec4f& _albedo)
+{
+	if (mp_renderer)
+		mp_renderer->DebugDraw(_m, _settings, _vp, _albedo);
+}
+
 } // namespace core
 } // namespace pad

@@ -25,7 +25,10 @@ public:
 	void Init(const rhi::ContextSettings& _settings)						override;
 	void Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings) override;
 	void ResizeViewport(const uint32 _w, const uint32 _h)					override;
+	void GenerateMesh(mod::Mesh& _m, const mod::MeshData& _md)				override;
 	void ClearBuffer()														override;
+
+	void DebugDraw(const mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, const math::Mat4& _vp, const math::Vec4f&) override;
 
 private:
 	void InitContext(const rhi::ContextSettings& _settings)					override;

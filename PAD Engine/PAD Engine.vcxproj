@@ -75,6 +75,11 @@
     <ClInclude Include="Sources\System\WindowEnums.h" />
     <ClInclude Include="Sources\System\WindowSettings.h" />
     <ClInclude Include="Sources\Utilities\EnumUtils.h" />
+    <ClInclude Include="Sources\Utilities\Export.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\Shaders\basicColors.frag" />
+    <None Include="..\Resources\Shaders\basicPositions.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -180,7 +185,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;LOGGER;ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>

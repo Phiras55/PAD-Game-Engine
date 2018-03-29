@@ -1,13 +1,14 @@
 #include <System/ECS/Scene.h>
+#include <Graphics/PerspectiveCamera.h>
 
 namespace pad	{
 namespace sys	{
 namespace ecs	{
 
 Scene::Scene() :
-	masterPADObject(new PADObject())
+	m_masterPADObject(new PADObject())
 {
-
+	m_mainCamera = new gfx::PerspectiveCamera(&m_masterPADObject->GetTransform());
 }
 
 Scene::~Scene() 
@@ -17,18 +18,13 @@ Scene::~Scene()
 
 void Scene::Update()
 {
-	masterPADObject->Update();
+	m_masterPADObject->Update();
 }
 
 void Scene::AddPADObject(PADObject * _PADObject)
 {
-	_PADObject->SetParent(masterPADObject);
+	_PADObject->SetParent(m_masterPADObject);
 }
-
-//void Scene::Render()
-//{
-//
-//}
 
 } // namespace ecs
 } // namespace sys

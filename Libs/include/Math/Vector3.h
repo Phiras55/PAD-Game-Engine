@@ -46,6 +46,10 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 	Vector3	Normalized();																			/*!< Returns a normalized copy of the vector, without affecting the vector itself */
 	bool	IsNull() const;																			/*!< Returns true if the length of the vector is equal to 0 */
 	bool	IsUnit() const;																			/*!< Returns true if the length of the vector is equal to 1 */
+	
+	static inline Vector3 Up()		{ return Vec3(0, 1, 0); }
+	static inline Vector3 Forward()	{ return Vec3(0, 0, 1); }
+	static inline Vector3 Right()	{ return Vec3(1, 0, 0); }
 
 #pragma endregion
 
@@ -66,6 +70,8 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 	Vector3		operator/	(const	float		_scalar) const;										/*! Arithmetic operator: division */
 	Vector3&	operator/=	(const	float		_scalar);											/*! Compound assignment: division */
 	T&			operator[]	(const	int			_index) const;										/*! Access operator */
+
+	Vector3		operator-	()const;
 
 #pragma endregion
 };

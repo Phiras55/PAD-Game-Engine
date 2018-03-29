@@ -5,7 +5,7 @@ namespace sys	{
 namespace res	{
 
 AResourceManager::AResourceManager() :
-	lastResourceIndex(-1)
+	m_lastResourceIndex(-1)
 {
 
 }
@@ -17,34 +17,34 @@ AResourceManager::~AResourceManager()
 
 void AResourceManager::AddResource(std::string _name, Resource _resource)
 {
-	if (resourceCollection.count(_name))
+	if (m_resourceCollection.count(_name))
 		return;
 
-	int resourceIndex = idPool.GenerateID();
+	int resourceIndex = m_idPool.GenerateID();
 
-	if (resourceIndex == resourceArray.size() - 1)
-		resourceArray.push_back(_resource);
+	if (resourceIndex == m_resourceArray.size() - 1)
+		m_resourceArray.push_back(_resource);
 	else
-		resourceArray[resourceIndex] = _resource;
+		m_resourceArray[resourceIndex] = _resource;
 
-	++lastResourceIndex;
+	++m_lastResourceIndex;
 }
 
 void AResourceManager::RemoveResources(const std::vector<std::string>& _toRemove)
 {
 	for (int i = 0; i < _toRemove.size(); ++i)
 	{
-		for (auto pair : resourceCollection)
+		for (auto pair : m_resourceCollection)
 		{
-			if (pair.second == lastResourceIndex - 1)
-				pair.second = resourceCollection[_toRemove[i]];
+			if (pair.second == m_lastResourceIndex - 1)
+				pair.second = m_resourceCollection[_toRemove[i]];
 		}
 
-		std::swap(resourceArray[resourceCollection[_toRemove[i]]], resourceArray[lastResourceIndex - 1]);
+		std::swap(m_resourceArray[m_resourceCollection[_toRemove[i]]], m_resourceArray[m_lastResourceIndex - 1]);
 
-		resourceCollection.erase(_toRemove[i]);
+		m_resourceCollection.erase(_toRemove[i]);
 
-		--lastResourceIndex;
+		--m_lastResourceIndex;
 	}
 }
 

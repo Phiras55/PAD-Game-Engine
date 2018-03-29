@@ -15,12 +15,12 @@ public:
 	~AResourceManager();
 
 private:
-	std::unordered_map<std::string, int>	resourceCollection;
-	std::vector<Resource>					resourceArray;
-
-protected:
-	core::IDPool							idPool;
-	int										lastResourceIndex;
+	std::unordered_map<std::string, int>	m_resourceCollection;
+	std::vector<Resource>					m_resourceArray;
+											
+protected:									
+	core::IDPool							m_idPool;
+	int										m_lastResourceIndex;
 
 public:
 	void AddResource(std::string _name, Resource _resource);

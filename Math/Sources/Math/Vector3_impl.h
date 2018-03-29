@@ -222,6 +222,12 @@ T& Vector3<T>::operator[](const int _index) const
 	return *(&x + _index);
 }
 
+template <typename T>
+Vector3<T>	 Vector3<T>::operator-	()const
+{
+
+}
+
 #pragma endregion
 
 #pragma region Utils

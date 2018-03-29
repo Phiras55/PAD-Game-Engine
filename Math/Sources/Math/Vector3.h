@@ -63,13 +63,15 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 	bool		operator!=	(const	Vector3&	_vector);											/*! Not equal to operator */
 	Vector3		operator+	(const	Vector3&	_vector) const;										/*! Arithmetic operator: addition */
 	Vector3&	operator+=	(const	Vector3&	_vector);											/*! Compound assignment: addition */
-	Vector3		operator-	(const	Vector3&	_vector) const;										/*! Arithmetic operator: substraction */
+//	Vector3		operator-	(const	Vector3&	_vector) const;										/*! Arithmetic operator: substraction */
 	Vector3&	operator-=	(const	Vector3&	_vector);											/*! Compound assignment: substraction */
 	Vector3		operator*	(const	float		_scalar) const;										/*! Arithmetic operator: multiplication */
 	Vector3&	operator*=	(const	float		_scalar);											/*! Compound assignment: multiplication */
 	Vector3		operator/	(const	float		_scalar) const;										/*! Arithmetic operator: division */
 	Vector3&	operator/=	(const	float		_scalar);											/*! Compound assignment: division */
 	T&			operator[]	(const	int			_index) const;										/*! Access operator */
+
+	Vector3		operator-	()const;
 
 #pragma endregion
 };

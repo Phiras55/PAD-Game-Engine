@@ -6,24 +6,24 @@ namespace sys	{
 namespace ecs	{
 
 PADObject::PADObject() :
-	parent(nullptr),
-	dontDestroy(false)
+	m_parent(nullptr),
+	m_dontDestroy(false)
 {
 
 }
 
 PADObject::PADObject(PADObject* const _parent) :
-	parent(_parent)
+	m_parent(_parent)
 {
 
 }
 
 PADObject::~PADObject()
 {
-	if (parent)
-		parent->RemoveChild(this);
+	if (m_parent)
+		m_parent->RemoveChild(this);
 
-	for (PADObject* so : childs)
+	for (PADObject* so : m_childs)
 	{
 		so->SetParent(nullptr);
 		so->~PADObject();
@@ -32,33 +32,62 @@ PADObject::~PADObject()
 
 void PADObject::AddChild(PADObject* const _child)
 {
-	if (_child->parent)
-		_child->parent->RemoveChild(_child);
+	if (_child->m_parent)
+		_child->m_parent->RemoveChild(_child);
 
-	_child->parent = this;
-	childs.push_back(_child);
+	_child->m_parent = this;
+	m_childs.push_back(_child);
 }
 
 void PADObject::RemoveChild(PADObject* const _child)
 {
-	childs.remove(_child);
+	m_childs.remove(_child);
 }
 
 void PADObject::Update()
 {
-	transform.SetGlobalTransform(		parent->transform.GetGlobalTransform() 
-									*	transform.GetLocalTransform());
+	for (IComponent* comp : m_components)
+		comp->Update();
 
-	for (PADObject* so : childs)
+	m_transform.SetGlobalTransform(		m_parent->m_transform.GetGlobalTransform() 
+									*	m_transform.GetLocalTransform());
+
+	for (PADObject* so : m_childs)
 		so->Update();
+}
+
+void PADObject::FixedUpdate()
+{
+}
+
+void PADObject::LateUpdate()
+{
+}
+
+void PADObject::AddComponent(IComponent* const _component)
+{
+	m_components.push_back(_component);
+}
+
+void PADObject::RemoveComponent(IComponent * const _component)
+{
+	m_components.remove(_component);
+}
+
+void PADObject::Init()
+{
+}
+
+void PADObject::Start()
+{
 }
 
 void PADObject::SetParent(PADObject* const _parent)
 {
-	if (parent)
-		parent->RemoveChild(this);
+	if (m_parent)
+		m_parent->RemoveChild(this);
 
-	parent = _parent;
+	m_parent = _parent;
 	_parent->AddChild(this);
 }
 

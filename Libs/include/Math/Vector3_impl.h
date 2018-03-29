@@ -84,7 +84,8 @@ void Vector3<T>::Normalize()
 template<typename T>
 Vector3<T> Vector3<T>::Normalized()
 {
-	return IsNull() ? *this : *this / Length();
+	if (!IsNull())
+		return (*this / Length());
 }
 
 template<typename T>
@@ -208,14 +209,10 @@ Vector3<T>& Vector3<T>::operator/=(const float _scalar)
 		x /= _scalar;
 		y /= _scalar;
 		z /= _scalar;
+		return *this;
 	}
 	else
-	{
-		x = INFINITY;
-		y = INFINITY;
-		z = INFINITY;
-	}
-	return *this;
+		return Vector3<T>();
 }
 
 template <typename T>
@@ -223,6 +220,12 @@ T& Vector3<T>::operator[](const int _index) const
 {
 	assert(_index >= 0 && _index < 3);
 	return *(&x + _index);
+}
+
+template <typename T>
+Vector3<T>	 Vector3<T>::operator-	()const
+{
+
 }
 
 #pragma endregion

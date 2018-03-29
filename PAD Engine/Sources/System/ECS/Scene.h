@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <System/ECS/PADObject.h>
+#include <Graphics/Camera.h>
 
 namespace pad	{
 namespace sys	{
@@ -21,13 +22,16 @@ public:
 #pragma endregion
 
 
-public:
-	PADObject* masterPADObject;
+private:
+	PADObject*		m_masterPADObject;
+	gfx::Camera*	m_mainCamera;
 
 public:
 	void Update();
 	void AddPADObject(PADObject* _PADObject);
-//	void Render();
+
+public:
+	inline PADObject* const GetMasterObject() const { return m_masterPADObject; }
 };
 
 } // namespace ecs

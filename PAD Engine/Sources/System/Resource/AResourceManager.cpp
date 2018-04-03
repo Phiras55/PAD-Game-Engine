@@ -32,7 +32,7 @@ void AResourceManager::AddResource(std::string _name, Resource _resource)
 
 void AResourceManager::RemoveResources(const std::vector<std::string>& _toRemove)
 {
-	for (int i = 0; i < _toRemove.size(); ++i)
+	for (unsigned int i = 0; i < _toRemove.size(); ++i)
 	{
 		for (auto pair : m_resourceCollection)
 		{

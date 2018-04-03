@@ -30,7 +30,7 @@ void InitEngine()
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void InitWindow(const sys::WindowSettings& _settings)
+void InitWindow(const sys::win::WindowSettings& _settings)
 {
 	if (g_engine)
 		g_engine->CreateWindow(_settings);

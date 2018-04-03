@@ -6,8 +6,6 @@
 #include <Graphics/GL/GLVertexElementBuffer.h>
 #include <Graphics/RHI/Shader/ShaderInfos.h>
 
-#include <Graphics/PerspectiveCamera.h>
-
 #include <GL/glew.h>
 
 namespace pad	{
@@ -98,11 +96,15 @@ void GLRenderer::Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settin
 		currentShader = _settings.shaders[0];
 		if (currentShader)
 		{
+			if(_settings.isWireframe)
+				glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 			currentShader->Use();
 			currentShader->SetUniform("albedo", math::Color4(1, 0, 0, 1));
 			currentShader->SetUniform("mvp", _vp);
 
 			glDrawElements(GL_TRIANGLES, _mesh.GetIndiceCount(), GL_UNSIGNED_INT, nullptr);
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		}
 		else
 		{

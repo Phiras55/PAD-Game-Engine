@@ -1,5 +1,4 @@
 #include <System/ECS/Scene.h>
-#include <Graphics/PerspectiveCamera.h>
 
 namespace pad	{
 namespace sys	{

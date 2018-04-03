@@ -1,8 +1,6 @@
 #pragma once
-
 #include <vector>
 #include <System/ECS/PADObject.h>
-#include <Graphics/Camera.h>
 
 namespace pad	{
 namespace sys	{
@@ -24,7 +22,6 @@ public:
 
 private:
 	PADObject*		m_masterPADObject;
-	gfx::Camera*	m_mainCamera;
 
 public:
 	void Update();

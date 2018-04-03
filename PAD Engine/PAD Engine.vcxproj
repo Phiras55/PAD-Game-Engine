@@ -25,8 +25,6 @@
     <ClCompile Include="Sources\Core\EngineDLL.cpp" />
     <ClCompile Include="Sources\Core\IDPool.cpp" />
     <ClCompile Include="Sources\Core\Timer.cpp" />
-    <ClCompile Include="Sources\Graphics\Camera.cpp" />
-    <ClCompile Include="Sources\Graphics\PerspectiveCamera.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexArray.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexBuffer.cpp" />
@@ -40,15 +38,16 @@
     <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp" />
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
-    <ClCompile Include="Sources\System\BulletContext.cpp" />
     <ClCompile Include="Sources\System\ECS\Collider.cpp" />
     <ClCompile Include="Sources\System\ECS\PADObject.cpp" />
+    <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp" />
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp" />
     <ClCompile Include="Sources\System\ECS\Scene.cpp" />
+    <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
     <ClCompile Include="Sources\System\Resource\Resource.cpp" />
     <ClCompile Include="Sources\System\Resource\AResourceManager.cpp" />
     <ClCompile Include="Sources\System\Resource\ResourceManager.cpp" />
-    <ClCompile Include="Sources\System\SDLWindow.cpp" />
+    <ClCompile Include="Sources\System\Window\SDLWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h" />
@@ -56,8 +55,6 @@
     <ClInclude Include="Sources\Core\EngineDLL.h" />
     <ClInclude Include="Sources\Core\IDPool.h" />
     <ClInclude Include="Sources\Core\Timer.h" />
-    <ClInclude Include="Sources\Graphics\Camera.h" />
-    <ClInclude Include="Sources\Graphics\PerspectiveCamera.h" />
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexArray.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexBuffer.h" />
@@ -75,23 +72,26 @@
     <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
-    <ClInclude Include="Sources\System\BulletContext.h" />
+    <ClInclude Include="Sources\System\ECS\Camera.h" />
     <ClInclude Include="Sources\System\ECS\Collider.h" />
     <ClInclude Include="Sources\System\ECS\IComponent.h" />
     <ClInclude Include="Sources\System\ECS\PADObject.h" />
+    <ClInclude Include="Sources\System\ECS\PerspectiveCamera.h" />
     <ClInclude Include="Sources\System\ECS\RigidBody.h" />
     <ClInclude Include="Sources\System\ECS\Scene.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h" />
     <ClInclude Include="Sources\System\IModule.h" />
-    <ClInclude Include="Sources\System\AWindow.h" />
-    <ClInclude Include="Sources\System\IPhysicContext.h" />
+    <ClInclude Include="Sources\System\Physics\BulletContext.h" />
+    <ClInclude Include="Sources\System\Physics\IPhysicContext.h" />
     <ClInclude Include="Sources\System\Resource\Resource.h" />
     <ClInclude Include="Sources\System\Resource\AResourceManager.h" />
     <ClInclude Include="Sources\System\Resource\MeshManager.h" />
     <ClInclude Include="Sources\System\Resource\ResourceManager.h" />
-    <ClInclude Include="Sources\System\SDLWindow.h" />
-    <ClInclude Include="Sources\System\WindowEnums.h" />
-    <ClInclude Include="Sources\System\WindowSettings.h" />
+    <ClInclude Include="Sources\System\Window\AWindow.h" />
+    <ClInclude Include="Sources\System\Window\IWindowBase.h" />
+    <ClInclude Include="Sources\System\Window\SDLWindow.h" />
+    <ClInclude Include="Sources\System\Window\WindowEnums.h" />
+    <ClInclude Include="Sources\System\Window\WindowSettings.h" />
     <ClInclude Include="Sources\Utilities\EnumUtils.h" />
     <ClInclude Include="Sources\Utilities\Export.h" />
   </ItemGroup>

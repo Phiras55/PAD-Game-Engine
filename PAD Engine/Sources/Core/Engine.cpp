@@ -58,11 +58,11 @@ void Engine::FixedUpdate()
 
 }
 
-void Engine::CreateWindow(const sys::WindowSettings& _infos)
+void Engine::CreateWindow(const sys::win::WindowSettings& _infos)
 {
-	if (_infos.windowType == sys::E_WINDOW_TYPE::ENGINE)
-		mp_window = new sys::SDLWindow();
-	else if (_infos.windowType == sys::E_WINDOW_TYPE::EDITOR)
+	if (_infos.windowType == sys::win::E_WINDOW_TYPE::ENGINE)
+		mp_window = new sys::win::SDLWindow();
+	else if (_infos.windowType == sys::win::E_WINDOW_TYPE::EDITOR)
 		mp_window = nullptr;
 
 	if(mp_window)

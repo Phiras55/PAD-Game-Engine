@@ -25,12 +25,12 @@ public:
 	void PollEvents();
 	void Update();
 	void FixedUpdate();
-	void Render();
 
 	void CreateWindow(const sys::WindowSettings& _infos);
 	void CreateRenderer(const gfx::rhi::ContextSettings& _settings);
 
-	void Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings);
+	void GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md);
+	void Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, math::Mat4& _vp);
 	void SwapBuffers();
 	void ClearBuffer();
 	void ResizeContext(const uint32 _w, const uint32 _h);

@@ -1,4 +1,5 @@
 #include <assert.h>
+#include "Vector3.h"
 
 namespace pad	{
 namespace math	{
@@ -84,7 +85,7 @@ void Vector3<T>::Normalize()
 template<typename T>
 Vector3<T> Vector3<T>::Normalized()
 {
-	return IsNull() ? *this : *this / Length();
+	return (IsNull() ? Vec3<T>() : *this / Length());
 }
 
 template<typename T>
@@ -208,21 +209,30 @@ Vector3<T>& Vector3<T>::operator/=(const float _scalar)
 		x /= _scalar;
 		y /= _scalar;
 		z /= _scalar;
+		return *this;
 	}
 	else
-	{
-		x = INFINITY;
-		y = INFINITY;
-		z = INFINITY;
-	}
-	return *this;
+		return *this;
 }
 
 template <typename T>
-T& Vector3<T>::operator[](const int _index) const
+const T& Vector3<T>::operator[](const int _index) const
 {
 	assert(_index >= 0 && _index < 3);
 	return *(&x + _index);
+}
+
+template <typename T>
+T& Vector3<T>::operator[](const int _index)
+{
+	assert(_index >= 0 && _index < 3);
+	return *(&x + _index);
+}
+
+template<typename T>
+Vector3<T> Vector3<T>::operator-() const
+{
+	return Vector3<T>(-x, -y, -z);
 }
 
 #pragma endregion

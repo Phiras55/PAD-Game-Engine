@@ -64,6 +64,12 @@
     <Filter Include="Header Files\Utilities">
       <UniqueIdentifier>{ae7f1c25-3d80-44af-926d-109847af5857}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{584c050b-d69f-416f-abe8-a78583b841b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Shaders">
+      <UniqueIdentifier>{7e10183c-10a7-4cd9-a30c-70bd275784d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Engine.cpp">
@@ -188,9 +194,6 @@
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h">
       <Filter>Header Files\Graphics\RHI\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderType.h">
-      <Filter>Header Files\Graphics\RHI\Shader</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h">
       <Filter>Header Files\Graphics\RHI\Shader</Filter>
     </ClInclude>
@@ -230,5 +233,19 @@
     <ClInclude Include="Sources\Graphics\Camera.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Utilities\Export.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h">
+      <Filter>Header Files\Graphics\RHI\Shader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\Shaders\basicColors.frag">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\basicPositions.vert">
+      <Filter>Resources\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

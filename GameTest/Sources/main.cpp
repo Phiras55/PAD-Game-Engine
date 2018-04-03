@@ -1,6 +1,14 @@
 #include <iostream>
+
 #include <Math/Matrix4x4.h>
 #include <Core/EngineDLL.h>
+#include <Graphics/GL/Shader/GLShaderProgram.h>
+#include <Graphics/GL/Shader/GLVertexShader.h>
+#include <Graphics/GL/Shader/GLFragmentShader.h>
+#include <Graphics/PerspectiveCamera.h>
+
+#include <glm/mat4x4.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 int main()
 {
@@ -13,8 +21,8 @@ int main()
 	winSettings.title = "This is a SDL Window.";
 	winSettings.position.x = 400u;
 	winSettings.position.y = 200u;
-	winSettings.size.x = 800u;
-	winSettings.size.y = 600u;
+	winSettings.size.x = 1600u;
+	winSettings.size.y = 900u;
 	winSettings.isFullscreen = false;
 	winSettings.windowType = pad::sys::E_WINDOW_TYPE::ENGINE;
 
@@ -33,11 +41,76 @@ int main()
 	pad::InitWindow(winSettings);
 	pad::InitRenderer(renderSettings);
 
+	pad::gfx::mod::Mesh m;
+	pad::gfx::mod::MeshData md;
+	pad::gfx::rhi::RenderSettings r;
+
+	pad::gfx::gl::shad::GLShaderProgram		program;
+	pad::gfx::gl::shad::GLFragmentShader	fragShader;
+	pad::gfx::gl::shad::GLVertexShader		vertShader;
+
+	pad::gfx::rhi::shad::AShaderProgram* programs[] = { &program };
+
+	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
+	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
+
+	program.SetVertexShader(&vertShader);
+	program.SetFragmentShader(&fragShader);
+	program.CompileProgram();
+	
+	r.shaders.push_back(&program);
+
+	md.positions = new float[24]{
+		-0.5, -0.5,  0.5,
+		 0.5, -0.5,  0.5,
+		-0.5,  0.5,  0.5,
+		 0.5,  0.5,  0.5,
+		-0.5,  0.5, -0.5,
+		 0.5,  0.5, -0.5,
+		-0.5, -0.5, -0.5,
+		 0.5, -0.5, -0.5
+	};
+
+	md.positionCount = 24;
+
+	md.indices = new pad::uint32[36]{
+		0, 1, 2,
+		2, 1, 3,
+		2, 3, 5,
+		4, 3, 5,
+
+		4, 5, 6,
+		6, 5, 7,
+		6, 7, 0,
+		0, 7, 1,
+
+		1, 7, 3,
+		3, 7, 5,
+		6, 0, 4,
+		4, 0, 2
+	};
+
+	md.indiceCount = 36;
+
+	pad::DebugGenerateMesh(m, md);
+
+	glm::mat4 a = glm::perspective(glm::radians(45.f), 16.f / 9.f, 0.1f, 1000.f) * glm::lookAt(glm::vec3(0.f, 0.f, -10.f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 1.f, 0.f));
+	a *= glm::rotate(glm::mat4(), 45.f, glm::vec3(1.f, 1.f, 0.f));
+	a = glm::transpose(a);
+
+	pad::math::Mat4 vp(a[0][0], a[0][1], a[0][2], a[0][3], a[1][0], a[1][1], a[1][2], a[1][3], a[2][0], a[2][1], a[2][2], a[2][3], a[3][0], a[3][1], a[3][2], a[3][3]);
+
 	while (pad::IsWindowOpen())
 	{
 		pad::PollEvents();
 
 		pad::ClearBuffer();
+
+		pad::Draw(
+			m,
+			r,
+			vp
+		);
 
 		pad::SwapBuffers();
 	}

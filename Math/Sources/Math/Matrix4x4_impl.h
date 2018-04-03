@@ -68,7 +68,7 @@ Matrix4x4 Matrix4x4::Transposed()
 
 float* Matrix4x4::operator[](const int _index)
 {
-	return data+_index*4;
+	return data + _index * sizeof(float);
 }
 
 void Matrix4x4::operator=(const Matrix4x4& _matrix)

@@ -47,9 +47,9 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 	bool	IsNull() const;																			/*!< Returns true if the length of the vector is equal to 0 */
 	bool	IsUnit() const;																			/*!< Returns true if the length of the vector is equal to 1 */
 	
-	static inline Vector3 Up()		{ return Vec3(0, 1, 0); }
-	static inline Vector3 Forward()	{ return Vec3(0, 0, 1); }
-	static inline Vector3 Right()	{ return Vec3(1, 0, 0); }
+	static inline Vector3 Up()		{ return Vec3f(0, 1, 0); }
+	static inline Vector3 Forward()	{ return Vec3f(0, 0, 1); }
+	static inline Vector3 Right()	{ return Vec3f(1, 0, 0); }
 
 #pragma endregion
 

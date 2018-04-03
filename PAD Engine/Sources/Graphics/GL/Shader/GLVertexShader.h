@@ -9,14 +9,14 @@ namespace shad	{
 class GLVertexShader final : public rhi::shad::AShader
 {
 public:
-	GLVertexShader();
-	virtual ~GLVertexShader();
+	ENGINE_API GLVertexShader();
+	ENGINE_API virtual ~GLVertexShader();
 
 	GLVertexShader(const GLVertexShader&) = delete;
 	GLVertexShader(GLVertexShader&&) = delete;
 
 public:
-	virtual bool LoadShader(const char* _path);
+	ENGINE_API virtual bool LoadShader(const char* _path);
 
 private:
 	virtual bool CompileShader(const char* _shaderCode);

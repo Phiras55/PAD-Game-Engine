@@ -5,7 +5,7 @@
 namespace pad	{
 namespace gfx	{
 
-class PerspectiveCamera final : public Camera
+class ENGINE_API PerspectiveCamera final : public Camera
 {
 public:
 	PerspectiveCamera()		= delete;

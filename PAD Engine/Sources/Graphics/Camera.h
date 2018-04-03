@@ -1,32 +1,23 @@
 #pragma once
 #include <Math/Matrix4x4.h>
-#include <System/ECS/IComponent.h>
-#include <Math/Transform.h>
+#include <Utilities/Export.h>
 
 namespace pad	{
 namespace gfx	{
 
-class Camera : public sys::ecs::IComponent
+class ENGINE_API Camera
 {
 protected:
-	Camera()	= delete;
-	Camera(math::Transform* const _transform);
-	~Camera()	= default;
-
-protected:
-	math::Mat4 m_projectionMatrix;
-	math::Mat4 m_viewMatrix;
+	math::Mat4 _projectionMatrix;
+	math::Mat4 _viewMatrix;
 
 public:
-	inline const math::Mat4& GetProjection()	{ return m_projectionMatrix; }
-	inline const math::Mat4& GetView()			{ return m_viewMatrix; }
+	virtual const math::Mat4& Perspective(float _fov, float _aspectRatio, float _near, float _far)				= 0;
+	virtual const math::Mat4& LookAt(const math::Vec3f& eye, const math::Vec3f& center, const math::Vec3f& up)	= 0;
 
-protected:
-	virtual void Init()			override;
-	virtual void Start()		override;
-	virtual void Update()		override;
-	virtual void FixedUpdate()	override;
-	virtual void LateUpdate()	override;
+public:
+	inline const math::Mat4& GetProjection()	{ return _projectionMatrix; }
+	inline const math::Mat4& GetView()			{ return _viewMatrix; }
 };
 
 } // namespace gfx

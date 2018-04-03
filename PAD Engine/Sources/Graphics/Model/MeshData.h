@@ -1,11 +1,12 @@
 #pragma once
+#include <Utilities/Export.h>
 #include <Common.h>
 
 namespace pad	{
 namespace gfx	{
 namespace mod	{
 
-struct MeshData
+struct ENGINE_API MeshData
 {
 	MeshData();
 	~MeshData();

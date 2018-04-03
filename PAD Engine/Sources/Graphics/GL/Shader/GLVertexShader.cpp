@@ -3,7 +3,7 @@
 #include <GL/glew.h>
 #include <Logger/SimpleLogger.h>
 #include <Graphics/GL/Shader/GLVertexShader.h>
-#include <Graphics/RHI/Shader/ShaderType.h>
+#include <Graphics/RHI/Shader/ShaderInfos.h>
 
 namespace pad	{
 namespace gfx	{

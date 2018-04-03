@@ -2,6 +2,8 @@
 #include <Math/MatrixTransform.h>
 #include <Math/Vector4.h>
 
+#define PI 3.14159265359f
+
 namespace pad	{
 namespace math	{
 
@@ -88,6 +90,12 @@ public:
 		m_isDirty = true;
 	}
 };
+
+inline float DegreeToRad(const float _deg) { return (_deg * PI) / 180.f; }
+inline float RadToDegree(const float _rad) { return (_rad * 180.f) / PI; }
+
+#define DEGREE_TO_RAD(x) pad::math::DegreeToRad(x)
+#define RAD_TO_DEGREE(x) pad::math::RadToDegree(x)
 
 } // namespace math
 } // namespace pad

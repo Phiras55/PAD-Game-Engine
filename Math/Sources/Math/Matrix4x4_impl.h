@@ -68,7 +68,7 @@ Matrix4x4 Matrix4x4::Transposed()
 
 float* Matrix4x4::operator[](const int _index)
 {
-	return data + _index * sizeof(float);
+	return data + _index * 4;
 }
 
 void Matrix4x4::operator=(const Matrix4x4& _matrix)
@@ -129,16 +129,17 @@ Matrix4x4 Matrix4x4::operator*(const Matrix4x4&	_matrix) const
 
 Matrix4x4& Matrix4x4::operator*=(const Matrix4x4& _matrix)
 {
+	Matrix4x4 temp(*this);
 	for (char y = 0; y < 4; ++y)
 	{
 		for (char x = 0; x < 4; ++x)
 		{
-					float*	mData	= &data[(y*4)+x];
+					float*	 mData	= &temp.data[y*4];
 			const	float*	_mData	= &_matrix.data[x];
-			*mData = (	*mData * *(_mData) +
-						*mData * *(_mData +4) +
-						*mData * *(_mData +8) +
-						*mData * *(_mData +12));
+			data[y*4 + x] = (	*(mData  ) * *(_mData  ) +
+								*(mData+1) * *(_mData+4) +
+								*(mData+2) * *(_mData+8) +
+								*(mData+3) * *(_mData+12));
 		}
 	}
 	return *this;

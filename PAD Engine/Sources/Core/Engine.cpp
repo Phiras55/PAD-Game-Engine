@@ -39,8 +39,6 @@ void Engine::StartSimulation()
 			Update();
 			FixedUpdate();
 		}
-
-		Render();
 	}
 }
 
@@ -58,17 +56,6 @@ void Engine::Update()
 void Engine::FixedUpdate()
 {
 
-}
-
-void Engine::Render()
-{
-	mp_renderer->ClearBuffer();
-
-	gfx::mod::Mesh m;
-	gfx::rhi::RenderSettings s;
-	mp_renderer->Draw(m, s);
-
-	mp_window->SwapBuffer();
 }
 
 void Engine::CreateWindow(const sys::WindowSettings& _infos)
@@ -118,10 +105,10 @@ void Engine::ResizeContext(const uint32 _w, const uint32 _h)
 		mp_renderer->ResizeViewport(_w, _h);
 }
 
-void Engine::Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings)
+void Engine::Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, math::Mat4& _vp)
 {
 	if (mp_renderer)
-		mp_renderer->Draw(_m, _settings);
+		mp_renderer->Draw(_m, _settings, _vp);
 }
 
 void Engine::FlushLogs()
@@ -141,12 +128,6 @@ void Engine::GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)
 {
 	if (mp_renderer)
 		mp_renderer->GenerateMesh(_m, _md);
-}
-
-void Engine::DebugDraw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, const math::Mat4& _vp, const math::Vec4f& _albedo)
-{
-	if (mp_renderer)
-		mp_renderer->DebugDraw(_m, _settings, _vp, _albedo);
 }
 
 } // namespace core

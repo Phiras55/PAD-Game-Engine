@@ -7,6 +7,9 @@
 #include <Graphics/GL/Shader/GLFragmentShader.h>
 #include <Graphics/PerspectiveCamera.h>
 
+#include <glm/mat4x4.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 int main()
 {
 	pad::CreateEngine();
@@ -55,44 +58,47 @@ int main()
 	program.SetFragmentShader(&fragShader);
 	program.CompileProgram();
 	
-	r.programs		= programs;
-	r.programCount	= 1;
+	r.shaders.push_back(&program);
 
 	md.positions = new float[24]{
 		-0.5, -0.5,  0.5,
 		 0.5, -0.5,  0.5,
 		-0.5,  0.5,  0.5,
+		 0.5,  0.5,  0.5,
+		-0.5,  0.5, -0.5,
 		 0.5,  0.5, -0.5,
 		-0.5, -0.5, -0.5,
-		-0.5,  0.5, -0.5,
-		 0.5, -0.5, -0.5,
-		 0.5,  0.5,  0.5
+		 0.5, -0.5, -0.5
 	};
 
 	md.positionCount = 24;
 
 	md.indices = new pad::uint32[36]{
 		0, 1, 2,
-		3, 4, 5,
-		4, 3, 6,
-		7, 2, 1,
+		2, 1, 3,
+		2, 3, 5,
+		4, 3, 5,
 
-		4, 6, 1,
-		4, 2, 5,
-		7, 1, 6,
-		5, 2, 7,
+		4, 5, 6,
+		6, 5, 7,
+		6, 7, 0,
+		0, 7, 1,
 
-		4, 0, 2,
-		6, 3, 7,
-		1, 0, 4,
-		7, 3, 5
+		1, 7, 3,
+		3, 7, 5,
+		6, 0, 4,
+		4, 0, 2
 	};
 
 	md.indiceCount = 36;
 
 	pad::DebugGenerateMesh(m, md);
 
-	pad::gfx::PerspectiveCamera c;
+	glm::mat4 a = glm::perspective(glm::radians(45.f), 16.f / 9.f, 0.1f, 1000.f) * glm::lookAt(glm::vec3(0.f, 0.f, -10.f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 1.f, 0.f));
+	a *= glm::rotate(glm::mat4(), 45.f, glm::vec3(1.f, 1.f, 0.f));
+	a = glm::transpose(a);
+
+	pad::math::Mat4 vp(a[0][0], a[0][1], a[0][2], a[0][3], a[1][0], a[1][1], a[1][2], a[1][3], a[2][0], a[2][1], a[2][2], a[2][3], a[3][0], a[3][1], a[3][2], a[3][3]);
 
 	while (pad::IsWindowOpen())
 	{
@@ -100,20 +106,11 @@ int main()
 
 		pad::ClearBuffer();
 
-		pad::DebugDraw(
-			m, 
-			r, 
-			c.Perspective(45.f, (float)winSettings.size.x / (float)winSettings.size.y, 0.1f, 1000.f) * 
-			c.LookAt(pad::math::Vec3f(0.f, 0.f, 10.f), pad::math::Vec3f(0.f, 0.f, 0.f), pad::math::Vec3f(0.f, 1.f, 0.f)),
-			pad::math::Vec4f(1.f, 0.f, 0.f, 1.f)
+		pad::Draw(
+			m,
+			r,
+			vp
 		);
-
-		pad::math::Mat4 t1(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
-		pad::math::Mat4 t2(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
-		pad::math::Mat4 t3 = t1 * t2;
-		pad::math::Mat4 p = c.Perspective(45.f, (float)winSettings.size.x / (float)winSettings.size.y, 0.1f, 1000.f);
-		pad::math::Mat4 l = c.LookAt(pad::math::Vec3f(0.f, 0.f, 10.f), pad::math::Vec3f(0.f, 0.f, 0.f), pad::math::Vec3f(0.f, 1.f, 0.f));
-		pad::math::Mat4 m = p * l;
 
 		pad::SwapBuffers();
 	}

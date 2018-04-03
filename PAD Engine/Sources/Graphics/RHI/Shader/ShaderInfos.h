@@ -1,6 +1,8 @@
 #pragma once
 #include <Common.h>
 
+#include <Math/Vector4.h>
+
 namespace pad	{
 namespace gfx	{
 namespace rhi	{
@@ -23,6 +25,11 @@ enum class E_VERTEX_ATTRIB_LOCATION : uint8
 };
 
 using AttribLocation = E_VERTEX_ATTRIB_LOCATION;
+
+struct ShaderUniformData
+{
+	math::Vec4f cameraPos;
+};
 
 }  // namespace shad
 }  // namespace rhi

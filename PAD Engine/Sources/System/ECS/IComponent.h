@@ -1,12 +1,13 @@
 #pragma once
 
+#include <Utilities/Export.h>
 #include <Math/Transform.h>
 
 namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-class IComponent
+class ENGINE_API IComponent
 {
 public:
 	virtual void Init()			= 0;

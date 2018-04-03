@@ -39,18 +39,19 @@ struct Matrix3x3 final																				/*! 4x4 Matrix of float structure */
 
 #pragma region Operator
 
-	float*		operator[]	(const	int			_index);											/*!< Access operator */
-	void		operator=	(const	Matrix3x3&	_matrix);											/*!< Assignement operator */
-	Matrix3x3&	operator=	(		Matrix3x3&&	_matrix) = default;									/*!< Default move operator */
-	bool		operator==	(const	Matrix3x3&	_matrix);											/*!< Equal operator */
-	bool		operator!=	(const	Matrix3x3&	_matrix);											/*!< Not equal operator */
-	Matrix3x3	operator+	(const	Matrix3x3&	_matrix);											/*! Arithmetic operator: Addition*/
-	Matrix3x3&	operator+=	(const	Matrix3x3&	_matrix);											/*! Compound assignment: Addition */
-	Matrix3x3	operator-	(const	Matrix3x3&	_matrix);											/*! Arithmetic operator: Substraction */
-	Matrix3x3&	operator-=	(const	Matrix3x3&	_matrix);											/*! Compound assignment: Substraction */
-	Matrix3x3	operator*	(const	Matrix3x3&	_matrix);											/*! Arithmetic operator: Multiplication */
-	Matrix3x3&	operator*=	(const	Matrix3x3&	_matrix);											/*! Compound assignment: Multiplication */
-	Vec3f		operator*	(const	Vec3f&		_vector);											/*! Arithmetic operator: Vector4<float> Multiplication */
+	float*			operator[]	(const	int			_index);										/*!< Access operator */
+	const float*	operator[]	(const	int			_index) const;									/*!< Const Access operator */
+	void			operator=	(const	Matrix3x3&	_matrix);										/*!< Assignement operator */
+	Matrix3x3&		operator=	(		Matrix3x3&&	_matrix) = default;								/*!< Default move operator */
+	bool			operator==	(const	Matrix3x3&	_matrix) const;									/*!< Equal operator */
+	bool			operator!=	(const	Matrix3x3&	_matrix) const;									/*!< Not equal operator */
+	Matrix3x3		operator+	(const	Matrix3x3&	_matrix) const;									/*! Arithmetic operator: Addition*/
+	Matrix3x3&		operator+=	(const	Matrix3x3&	_matrix);										/*! Compound assignment: Addition */
+	Matrix3x3		operator-	(const	Matrix3x3&	_matrix) const;									/*! Arithmetic operator: Substraction */
+	Matrix3x3&		operator-=	(const	Matrix3x3&	_matrix);										/*! Compound assignment: Substraction */
+	Matrix3x3		operator*	(const	Matrix3x3&	_matrix) const;									/*! Arithmetic operator: Multiplication */
+	Matrix3x3&		operator*=	(const	Matrix3x3&	_matrix);										/*! Compound assignment: Multiplication */
+	Vec3f			operator*	(const	Vec3f&		_vector) const;									/*! Arithmetic operator: Vector4<float> Multiplication */
 	
 #pragma endregion
 };

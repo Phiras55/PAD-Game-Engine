@@ -23,10 +23,10 @@ public:
 public:
 	inline void SetMass(const float _mass);
 
-	inline btRigidBody* const GetBTRigidBody() const { return m_btRigidBody; }
+//	inline btRigidBody* const GetBTRigidBody() const { return m_btRigidBody; }
 
 private:
-	btRigidBody*	m_btRigidBody;
+	//btRigidBody*	m_btRigidBody;
 	Collider*		m_collider;
 };
 

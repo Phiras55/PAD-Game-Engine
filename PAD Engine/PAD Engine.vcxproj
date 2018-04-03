@@ -75,7 +75,6 @@
     <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
-    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderType.h" />
     <ClInclude Include="Sources\System\BulletContext.h" />
     <ClInclude Include="Sources\System\ECS\Collider.h" />
     <ClInclude Include="Sources\System\ECS\IComponent.h" />
@@ -99,17 +98,6 @@
   <ItemGroup>
     <None Include="..\Resources\Shaders\basicColors.frag" />
     <None Include="..\Resources\Shaders\basicPositions.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Libs\bullet3-2.83.7\build3\vs2010\BulletCollision.vcxproj">
-      <Project>{754475e5-0ce6-9c4a-b2fa-fddc69bae6f3}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Libs\bullet3-2.83.7\build3\vs2010\BulletDynamics.vcxproj">
-      <Project>{86bb4f25-4b75-0b42-b68c-33166fa6c8fb}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Libs\bullet3-2.83.7\build3\vs2010\LinearMath.vcxproj">
-      <Project>{b731f10f-2437-1c42-ace8-bc1667b7b747}</Project>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -209,6 +197,9 @@
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -233,6 +224,9 @@
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -261,6 +255,9 @@
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -289,6 +286,9 @@
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

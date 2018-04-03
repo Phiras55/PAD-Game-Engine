@@ -13,6 +13,13 @@ public:
 	~PerspectiveCamera();
 
 public:
+	void Init() override {}
+	void Start() override {}
+	void Update() override {}
+	void FixedUpdate() override {}
+	void LateUpdate() override {}
+
+public:
 	const math::Mat4& Perspective(float _fov, float _aspectRatio, float _near, float _far) override;
 	const math::Mat4& LookAt(const math::Vec3f& _eyePos, const math::Vec3f& _target, const math::Vec3f& _up) override;
 };

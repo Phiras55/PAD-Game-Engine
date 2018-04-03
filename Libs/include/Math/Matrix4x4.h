@@ -20,7 +20,7 @@ struct Matrix4x4 final																				/*! 4x4 Matrix of float structure */
 	
 	inline Matrix4x4(Matrix4x4&& _matrix)	= default;												/*!< Default move constructor */
 	
-	inline ~Matrix4x4()					= default;													/*!< Default destructor */
+	inline ~Matrix4x4()						= default;													/*!< Default destructor */
 
 #pragma endregion
 
@@ -48,17 +48,18 @@ struct Matrix4x4 final																				/*! 4x4 Matrix of float structure */
 #pragma region Operator
 
 	inline float*		operator[]	(const	int			_index);									/*!< Access operator */
+	inline const float*	operator[]	(const	int			_index) const;								/*!< Const Access operator */
 	inline void			operator=	(const	Matrix4x4&	_matrix);									/*!< Assignement operator */
 	inline Matrix4x4&	operator=	(		Matrix4x4&&	_matrix) = default;							/*!< Default move operator */
-	inline bool			operator==	(const	Matrix4x4&	_matrix);									/*!< Equal operator */
-	inline bool			operator!=	(const	Matrix4x4&	_matrix);									/*!< Not equal operator */
-	inline Matrix4x4	operator+	(const	Matrix4x4&	_matrix);									/*! Arithmetic operator: Addition*/
+	inline bool			operator==	(const	Matrix4x4&	_matrix) const;								/*!< Compare operator */
+	inline bool			operator!=	(const	Matrix4x4&	_matrix) const;								/*!< Not equal operator */
+	inline Matrix4x4	operator+	(const	Matrix4x4&	_matrix) const;								/*! Arithmetic operator: Addition*/
 	inline Matrix4x4&	operator+=	(const	Matrix4x4&	_matrix);									/*! Compound assignment: Addition */
-	inline Matrix4x4	operator-	(const	Matrix4x4&	_matrix);									/*! Arithmetic operator: Substraction */
+	inline Matrix4x4	operator-	(const	Matrix4x4&	_matrix) const;								/*! Arithmetic operator: Substraction */
 	inline Matrix4x4&	operator-=	(const	Matrix4x4&	_matrix);									/*! Compound assignment: Substraction */
 	inline Matrix4x4	operator*	(const	Matrix4x4&	_matrix) const;								/*! Arithmetic operator: Multiplication */
 	inline Matrix4x4&	operator*=	(const	Matrix4x4&	_matrix);									/*! Compound assignment: Multiplication */
-	inline Vec4f		operator*	(const	Vec4f&		_vector);									/*! Arithmetic operator: Vector4<float> Multiplication */
+	inline Vec4f		operator*	(const	Vec4f&		_vector) const;									/*! Arithmetic operator: Vector4<float> Multiplication */
 
 #pragma endregion
 };

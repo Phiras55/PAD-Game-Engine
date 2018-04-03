@@ -47,10 +47,6 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 	bool	IsNull() const;																			/*!< Returns true if the length of the vector is equal to 0 */
 	bool	IsUnit() const;																			/*!< Returns true if the length of the vector is equal to 1 */
 
-	static inline Vector3 Up()		{ return Vec3(0, 1, 0); }
-	static inline Vector3 Forward()	{ return Vec3(0, 0, 1); }
-	static inline Vector3 Right()	{ return Vec3(1, 0, 0); }
-
 #pragma endregion
 
 #pragma region Operator
@@ -63,7 +59,7 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 	bool		operator!=	(const	Vector3&	_vector);											/*! Not equal to operator */
 	Vector3		operator+	(const	Vector3&	_vector) const;										/*! Arithmetic operator: addition */
 	Vector3&	operator+=	(const	Vector3&	_vector);											/*! Compound assignment: addition */
-//	Vector3		operator-	(const	Vector3&	_vector) const;										/*! Arithmetic operator: substraction */
+	Vector3		operator-	(const	Vector3&	_vector) const;										/*! Arithmetic operator: substraction */
 	Vector3&	operator-=	(const	Vector3&	_vector);											/*! Compound assignment: substraction */
 	Vector3		operator*	(const	float		_scalar) const;										/*! Arithmetic operator: multiplication */
 	Vector3&	operator*=	(const	float		_scalar);											/*! Compound assignment: multiplication */
@@ -74,7 +70,9 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 
 	Vector3		operator-	() const;
 
-	Vector3		operator-	()const;
+	static inline Vector3 Up()		{ return Vec3f(0, 1, 0); }
+	static inline Vector3 Forward() { return Vec3f(0, 0, 1); }
+	static inline Vector3 Right()	{ return Vec3f(1, 0, 0); }
 
 #pragma endregion
 };

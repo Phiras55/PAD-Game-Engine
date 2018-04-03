@@ -7,6 +7,8 @@
 #include <Graphics/GL/Shader/GLFragmentShader.h>
 #include <Graphics/PerspectiveCamera.h>
 
+#include <glm/gtc/matrix_transform.hpp>
+
 int main()
 {
 	pad::CreateEngine();
@@ -45,8 +47,6 @@ int main()
 	pad::gfx::gl::shad::GLShaderProgram		program;
 	pad::gfx::gl::shad::GLFragmentShader	fragShader;
 	pad::gfx::gl::shad::GLVertexShader		vertShader;
-
-	pad::gfx::rhi::shad::AShaderProgram* programs[] = { &program };
 
 	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
 	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
@@ -91,15 +91,8 @@ int main()
 
 	pad::DebugGenerateMesh(m, md);
 
-	/*glm::mat4 a = glm::perspective(glm::radians(45.f), 16.f / 9.f, 0.1f, 1000.f) * glm::lookAt(glm::vec3(0.f, 0.f, -10.f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 1.f, 0.f));
-	a *= glm::rotate(glm::mat4(), 45.f, glm::vec3(1.f, 1.f, 0.f));
-	a = glm::transpose(a);*/
-
-	//pad::math::Mat4 vp(a[0][0], a[0][1], a[0][2], a[0][3], a[1][0], a[1][1], a[1][2], a[1][3], a[2][0], a[2][1], a[2][2], a[2][3], a[3][0], a[3][1], a[3][2], a[3][3]);
-
 	pad::math::Mat4 vp;
 	pad::gfx::PerspectiveCamera c;
-
 	vp = c.Perspective(45.f, 16.f / 9.f, 0.1f, 1000.f) * c.LookAt(pad::math::Vec3f(0.f, 0.f, -10.f), pad::math::Vec3f(0.f, 0.f, 0.f), pad::math::Vec3f(0.f, 1.f, 0.f));
 
 	while (pad::IsWindowOpen())

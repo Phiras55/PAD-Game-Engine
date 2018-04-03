@@ -7,16 +7,16 @@ namespace sys	{
 BulletContext::BulletContext()
 {	
 	// TO DO : Physic Settings
-	collisionConfiguration	= new btDefaultCollisionConfiguration();
-	dispatcher				= new btCollisionDispatcher(collisionConfiguration);
-	broadphaseInterface		= new btDbvtBroadphase();
-	solver					= new btSequentialImpulseConstraintSolver();
-	dynamicsWorld			= new btDiscreteDynamicsWorld(	dispatcher,
-															broadphaseInterface,
-															solver,
-															collisionConfiguration);
+	//collisionConfiguration	= new btDefaultCollisionConfiguration();
+	//dispatcher				= new btCollisionDispatcher(collisionConfiguration);
+	//broadphaseInterface		= new btDbvtBroadphase();
+	//solver					= new btSequentialImpulseConstraintSolver();
+	//dynamicsWorld			= new btDiscreteDynamicsWorld(	dispatcher,
+															//broadphaseInterface,
+															//solver,
+															//collisionConfiguration);
 
-	dynamicsWorld->setGravity(btVector3(0, -10, 0));
+	//dynamicsWorld->setGravity(btVector3(0, -10, 0));
 }
 
 BulletContext::~BulletContext()
@@ -29,26 +29,26 @@ void BulletContext::Init()
 
 void BulletContext::Update()
 {
-	dynamicsWorld->stepSimulation(core::EngineClock::DeltaTime());
+	//dynamicsWorld->stepSimulation(core::EngineClock::DeltaTime());
 }
 
 void BulletContext::Clean()
 {
-	delete collisionConfiguration;
-	delete dispatcher;
-	delete broadphaseInterface;
-	delete solver;
-	delete dynamicsWorld;
+	//delete collisionConfiguration;
+	//delete dispatcher;
+	//delete broadphaseInterface;
+	//delete solver;
+	//delete dynamicsWorld;
 }
 
 void BulletContext::AddRigidBody(ecs::RigidBody* const _rigidBody)
 {
-	dynamicsWorld->addRigidBody(_rigidBody->GetBTRigidBody());
+	//dynamicsWorld->addRigidBody(_rigidBody->GetBTRigidBody());
 }
 
 void BulletContext::AddCollider(ecs::Collider* const _collider)
 {
-	dynamicsWorld->addCollisionObject(_collider->GetBTCollider());
+	//dynamicsWorld->addCollisionObject(_collider->GetBTCollider());
 }
 
 } // namespace sys

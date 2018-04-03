@@ -1,11 +1,10 @@
 #pragma once
+
 #include <System/AWindow.h>
 #include <Math/Vector2.h>
 
-namespace pad
-{
-namespace sys
-{
+namespace pad	{
+namespace sys	{
 
 class SDLWindow final : public AWindow
 {

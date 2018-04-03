@@ -2,8 +2,8 @@
 #include <Core/Engine.h>
 #include <Logger/SimpleLogger.h>
 
-namespace pad	
-{
+namespace pad	{
+
 core::Engine* g_engine = nullptr;
 
 void CreateEngine()

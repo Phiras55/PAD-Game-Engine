@@ -1,6 +1,6 @@
 #pragma once
-#include <string>
 
+#include <string>
 #include <Math/Vector2.h>
 #include <System/WindowEnums.h>
 

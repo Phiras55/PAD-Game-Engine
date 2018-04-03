@@ -5,36 +5,26 @@ namespace core	{
 
 #pragma region Statics
 
-unsigned short								Timer::newId = 0;
-std::unordered_map<unsigned short, Timer*>	Timer::timerCollection;
-std::vector<unsigned short>					Timer::idPool;
+std::map<unsigned short, Timer*>	Timer::m_timerCollection;
+IDPool								Timer::m_idPool;
 
 #pragma endregion
 
 #pragma region Constructor / Destructor
 
 Timer::Timer(const bool _affectedByPause) :
-	duration(-1),
-	pauseDuration(0)
+	m_duration(-1),
+	m_pauseDuration(0)
 {
-	if (idPool.size() > 0)
-	{
-		id = idPool[idPool.size() - 1];
-		idPool.pop_back();
-	}
-	else
-	{
-		id = newId;
-		++newId;
-	}
+	m_id = m_idPool.GenerateID();
 
-	timerCollection[id] = this;
+	m_timerCollection[m_id] = this;
 }
 
 Timer::~Timer()
 {
-	timerCollection[id] = nullptr;
-	idPool.push_back(id);
+	m_timerCollection[m_id] = nullptr;
+	m_idPool.FreeID(m_id);
 }
 
 #pragma endregion
@@ -43,35 +33,35 @@ Timer::~Timer()
 
 void Timer::Start()
 {
-	startTime = HighResClock::now();
+	m_startTime = HighResClock::now();
 }
 
 void Timer::Pause()
 {
-	pauseStartTime = HighResClock::now();
+	m_pauseStartTime = HighResClock::now();
 }
 
 void Timer::Unpause()
 {
 	Timepoint pauseEndTime = HighResClock::now();
 
-	pauseDuration += (	DurationSeconds(pauseEndTime - pauseStartTime).count() 
-						* core::EngineClock::GetTimeScale());
+	m_pauseDuration += (	DurationSeconds(pauseEndTime - m_pauseStartTime).count() 
+						*	core::EngineClock::GetTimeScale());
 }
 
 void Timer::Stop()
 {
 	Timepoint endTime = HighResClock::now();
 
-	duration =	(	(DurationSeconds(endTime - startTime).count() - pauseDuration)
-					* core::EngineClock::GetTimeScale());
+	m_duration =	(	(DurationSeconds(endTime - m_startTime).count() - m_pauseDuration)
+					*	core::EngineClock::GetTimeScale());
 }
 
 void Timer::PauseAll()
 {
-	for (std::pair<int, Timer*> timer : timerCollection)
+	for (std::pair<int, Timer*> timer : m_timerCollection)
 	{
-		if (timer.second->affectedByPause)
+		if (timer.second->m_affectedByPause)
 			timer.second->Pause();
 	}
 }
@@ -84,12 +74,12 @@ const double Timer::GetDuration()
 {
 	Timepoint endTime = HighResClock::now();
 
-	if (duration < 0)
-		return	(DurationSeconds(endTime - startTime).count() - pauseDuration)
+	if (m_duration < 0)
+		return	(DurationSeconds(endTime - m_startTime).count() - m_pauseDuration)
 				* core::EngineClock::GetTimeScale();
 
 	else
-		return duration;
+		return m_duration;
 }
 
 #pragma endregion

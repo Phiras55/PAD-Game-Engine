@@ -1,11 +1,12 @@
 #pragma once
 #include <Math/Matrix4x4.h>
 #include <Utilities/Export.h>
+#include <System/ECS/IComponent.h>
 
 namespace pad	{
 namespace gfx	{
 
-class ENGINE_API Camera
+class ENGINE_API Camera : public sys::ecs::IComponent
 {
 protected:
 	math::Mat4 _projectionMatrix;

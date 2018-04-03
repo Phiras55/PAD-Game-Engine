@@ -74,8 +74,6 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 
 	Vector3		operator-	() const;
 
-	Vector3		operator-	()const;
-
 #pragma endregion
 };
 

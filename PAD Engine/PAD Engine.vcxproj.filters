@@ -194,9 +194,6 @@
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h">
       <Filter>Header Files\Graphics\RHI\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderType.h">
-      <Filter>Header Files\Graphics\RHI\Shader</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h">
       <Filter>Header Files\Graphics\RHI\Shader</Filter>
     </ClInclude>
@@ -238,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="Sources\Utilities\Export.h">
       <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h">
+      <Filter>Header Files\Graphics\RHI\Shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

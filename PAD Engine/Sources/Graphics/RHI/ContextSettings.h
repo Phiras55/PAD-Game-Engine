@@ -29,6 +29,7 @@ struct ContextSettings final
 	math::Vec4f clearColor;
 	uint16		frameBufferCount;
 	BufferType	enabledBuffers;
+	bool		areTrianglesCounterClockwise;
 };
 
 } // namespace rhi

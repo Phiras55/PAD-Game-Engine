@@ -8,12 +8,12 @@ namespace gfx	{
 class ENGINE_API Camera
 {
 protected:
-	Camera()	= default;
-	~Camera()	= default;
-
-protected:
 	math::Mat4 _projectionMatrix;
 	math::Mat4 _viewMatrix;
+
+public:
+	virtual const math::Mat4& Perspective(float _fov, float _aspectRatio, float _near, float _far)				= 0;
+	virtual const math::Mat4& LookAt(const math::Vec3f& eye, const math::Vec3f& center, const math::Vec3f& up)	= 0;
 
 public:
 	inline const math::Mat4& GetProjection()	{ return _projectionMatrix; }

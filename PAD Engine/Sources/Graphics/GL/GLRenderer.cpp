@@ -4,7 +4,7 @@
 #include <Graphics/GL/GLVertexBuffer.h>
 #include <Graphics/GL/GLVertexArray.h>
 #include <Graphics/GL/GLVertexElementBuffer.h>
-#include <Graphics/RHI/Shader/ShaderType.h>
+#include <Graphics/RHI/Shader/ShaderInfos.h>
 
 #include <Graphics/PerspectiveCamera.h>
 
@@ -51,6 +51,12 @@ void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
 
 	glewExperimental = true;
 
+	InitMainBuffer(_settings);
+	InitCullFace(_settings);
+}
+
+void GLRenderer::InitMainBuffer(const rhi::ContextSettings& _settings)
+{
 	if (util::IsFlagSet(_settings.enabledBuffers, gfx::rhi::E_BUFFER_TYPE::DEPTH_BUFFER))
 	{
 		glEnable(GL_DEPTH_TEST);
@@ -62,9 +68,15 @@ void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
 		glEnable(GL_STENCIL_TEST);
 		glStencilMask(0x00);
 	}
+}
 
+void GLRenderer::InitCullFace(const rhi::ContextSettings& _settings)
+{
 	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
+
+	_settings.areTrianglesCounterClockwise ?
+		glCullFace(GL_BACK) :
+		glCullFace(GL_FRONT);
 }
 
 void GLRenderer::InitViewPort(const math::Vec2i& _viewportSize)
@@ -76,27 +88,26 @@ void GLRenderer::InitViewPort(const math::Vec2i& _viewportSize)
 		_viewportSize.y);
 }
 
-void GLRenderer::Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings)
+void GLRenderer::Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings, math::Mat4& _vp)
 {
 	glBindVertexArray(_mesh.GetVertexArrayID());
+	rhi::shad::AShaderProgram* currentShader;
 
-	if (_settings.programs)
+	for (uint32 i = 0; i < _settings.shaders.size(); ++i)
 	{
-		rhi::shad::AShaderProgram* currentShader = _settings.programs[0];
+		currentShader = _settings.shaders[0];
 		if (currentShader)
 		{
-			PerspectiveCamera cam;
 			currentShader->Use();
-
 			currentShader->SetUniform("albedo", math::Color4(1, 0, 0, 1));
-			currentShader->SetUniform("mvp", cam.Perspective(45.f, (float)m_viewportSize.x/(float)m_viewportSize.y, 0.1f, 1000.f) * cam.LookAt(math::Vec3f(0.f, 0.f, 10.f), math::Vec3f(0.f, 0.f, 0.f), math::Vec3f(0.f, 1.f, 0.f)));
+			currentShader->SetUniform("mvp", _vp);
 
 			glDrawElements(GL_TRIANGLES, _mesh.GetIndiceCount(), GL_UNSIGNED_INT, nullptr);
 		}
-	}
-	else
-	{
-		LOG_ERROR_S("No valid shaders. Try to add one in the RenderSettings.\n");
+		else
+		{
+			LOG_ERROR_S("The shader is not valid. Try to add one in the RenderSettings.\n");
+		}
 	}
 }
 
@@ -131,35 +142,6 @@ void GLRenderer::GenerateMesh(mod::Mesh& _m, const mod::MeshData& _md)
 	ibo->BindData(_md.indices, _md.indiceCount);
 
 	_m.SetVertexElementBuffer(ibo);
-}
-
-void GLRenderer::DebugDraw(const mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, const math::Mat4& _vp, const math::Vec4f& _albedo)
-{
-	glBindVertexArray(_m.GetVertexArrayID());
-
-	if (_settings.programs)
-	{
-		rhi::shad::AShaderProgram* currentShader = _settings.programs[0];
-		if (currentShader)
-		{
-			PerspectiveCamera cam;
-			currentShader->Use();
-
-			currentShader->SetUniform("albedo", _albedo);
-			currentShader->SetUniform("mvp", _vp * math::Mat4());
-
-			glDrawElements(GL_TRIANGLES, _m.GetIndiceCount(), GL_UNSIGNED_INT, nullptr);
-		}
-	}
-	else
-	{
-		LOG_ERROR_S("No valid shaders. Try to add one in the RenderSettings.\n");
-	}
-}
-
-void GLRenderer::InitBuffers()
-{
-
 }
 
 void GLRenderer::GenerateBuffer(uint32& _id)

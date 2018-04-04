@@ -21,25 +21,35 @@ Engine::~Engine()
 		delete mp_renderer;
 }
 
-void Engine::InitSimulation()
+void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win::WindowSettings& _w)
 {
 	LOG_INIT();
 	core::EngineClock::Init();
+	CreateWindow(_w);
+	CreateRenderer(_c);
 }
 
 void Engine::StartSimulation()
 {
 	while (mp_window->IsOpen())
 	{
-		core::EngineClock::Update();
-		PollEvents();
-
-		if (true)
-		{
-			Update();
-			FixedUpdate();
-		}
+		Simulate();
 	}
+}
+
+void Engine::Simulate()
+{
+	core::EngineClock::Update();
+	PollEvents();
+	FlushLogs();
+
+	Update();
+	FixedUpdate();
+	LateUpdate();
+
+	ClearBuffers();
+	Render();
+	SwapBuffers();
 }
 
 void Engine::PollEvents()
@@ -58,12 +68,20 @@ void Engine::FixedUpdate()
 
 }
 
+void Engine::LateUpdate()
+{
+
+}
+
+void Engine::Render()
+{
+
+}
+
 void Engine::CreateWindow(const sys::win::WindowSettings& _infos)
 {
-	if (_infos.windowType == sys::win::E_WINDOW_TYPE::ENGINE)
+	if (_infos.windowType == sys::win::E_WINDOW_TYPE::SDL)
 		mp_window = new sys::win::SDLWindow();
-	else if (_infos.windowType == sys::win::E_WINDOW_TYPE::EDITOR)
-		mp_window = nullptr;
 
 	if(mp_window)
 		mp_window->Init(_infos);
@@ -87,7 +105,7 @@ void Engine::CreateRenderer(const gfx::rhi::ContextSettings& _settings)
 	}
 }
 
-void Engine::ClearBuffer()
+void Engine::ClearBuffers()
 {
 	if (mp_renderer)
 		mp_renderer->ClearBuffer();
@@ -114,14 +132,6 @@ void Engine::Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _set
 void Engine::FlushLogs()
 {
 	LOG_FLUSH();
-}
-
-bool Engine::IsWindowOpen()
-{
-	if (mp_window)
-		return mp_window->IsOpen();
-	else
-		return false;
 }
 
 void Engine::GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)

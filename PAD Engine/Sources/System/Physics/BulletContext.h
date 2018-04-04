@@ -1,5 +1,5 @@
 #pragma once
-//#include <btBulletDynamicsCommon.h>
+#include <Bullet/btBulletDynamicsCommon.h>
 #include <System/Physics/IPhysicContext.h>
 
 namespace pad	{
@@ -21,11 +21,11 @@ public:
 	void AddCollider(ecs::Collider* const _collider)	override;
 
 private:
-	//btDefaultCollisionConfiguration*		collisionConfiguration;
-	//btCollisionDispatcher*					dispatcher;
-	//btBroadphaseInterface*					broadphaseInterface;
-	//btSequentialImpulseConstraintSolver*	solver;
-	//btDiscreteDynamicsWorld*				dynamicsWorld;
+	btDefaultCollisionConfiguration*		collisionConfiguration;
+	btCollisionDispatcher*					dispatcher;
+	btBroadphaseInterface*					broadphaseInterface;
+	btSequentialImpulseConstraintSolver*	solver;
+	btDiscreteDynamicsWorld*				dynamicsWorld;
 };
 
 } // namespace phx

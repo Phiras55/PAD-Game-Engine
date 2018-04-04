@@ -9,8 +9,8 @@ namespace res	{
 class MeshManager : public AResourceManager
 {
 public:
-	MeshManager();
-	~MeshManager();
+	MeshManager()	{};
+	~MeshManager()	{};
 };
 
 } // namespace res

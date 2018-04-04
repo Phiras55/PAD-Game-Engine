@@ -23,8 +23,9 @@ protected:
 	int										m_lastResourceIndex;
 
 public:
-	void AddResource(std::string _name, Resource _resource);
+	void AddResource(const std::string _name, const Resource _resource);
 	void RemoveResources(const std::vector<std::string>& _toRemove);
+	Resource& GetResource(const std::string _name);
 };
 
 } // namespace res

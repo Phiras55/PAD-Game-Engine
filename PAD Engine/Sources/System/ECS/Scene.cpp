@@ -7,12 +7,17 @@ namespace ecs	{
 Scene::Scene() :
 	m_masterPADObject(new PADObject())
 {
-//	m_mainCamera = new gfx::PerspectiveCamera(&m_masterPADObject->GetTransform());
+
 }
 
 Scene::~Scene() 
 {
 
+}
+
+void Scene::Init()
+{
+	m_masterPADObject->Init();
 }
 
 void Scene::Update()

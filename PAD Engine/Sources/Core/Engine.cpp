@@ -8,13 +8,16 @@
 namespace pad	{
 namespace core	{
 
-Engine::Engine()
+Engine::Engine() :
+	m_scene(new sys::ecs::Scene())
 {
 
 }
 
 Engine::~Engine()
 {
+	if (m_scene)
+		delete m_scene;
 	if(mp_window)
 		delete mp_window;
 	if (mp_renderer)

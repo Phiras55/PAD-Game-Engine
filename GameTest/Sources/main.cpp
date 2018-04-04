@@ -6,8 +6,8 @@
 #include <Graphics/GL/Shader/GLVertexShader.h>
 #include <Graphics/GL/Shader/GLFragmentShader.h>
 #include <System/ECS/PerspectiveCamera.h>
-
-#include <glm/gtc/matrix_transform.hpp>
+#include <System/ECS/PADObject.h>
+#include <System/ECS/RigidBody.h>
 
 int main()
 {
@@ -52,7 +52,15 @@ int main()
 	program.SetVertexShader(&vertShader);
 	program.SetFragmentShader(&fragShader);
 	program.CompileProgram();
+
+	#pragma endregion
+
+	#pragma region Mesh
 	
+	pad::gfx::mod::Mesh m;
+	pad::gfx::mod::MeshData md;
+	pad::gfx::rhi::RenderSettings r;
+
 	r.shaders.push_back(&program);
 	r.isWireframe = true;
 

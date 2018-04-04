@@ -2,12 +2,13 @@
 #include <Graphics/RHI/AVertexArray.h>
 #include <Graphics/RHI/AVertexBuffer.h>
 #include <Utilities/Export.h>
+#include <System/Resource/Resource.h>
 
 namespace pad	{
 namespace gfx	{
 namespace mod	{
 
-class ENGINE_API Mesh
+class ENGINE_API Mesh : public sys::res::Resource
 {
 public:
 	Mesh();

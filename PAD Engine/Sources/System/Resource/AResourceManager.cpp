@@ -15,7 +15,7 @@ AResourceManager::~AResourceManager()
 
 }
 
-void AResourceManager::AddResource(std::string _name, Resource _resource)
+void AResourceManager::AddResource(const std::string _name, const Resource _resource)
 {
 	if (m_resourceCollection.count(_name))
 		return;
@@ -46,6 +46,11 @@ void AResourceManager::RemoveResources(const std::vector<std::string>& _toRemove
 
 		--m_lastResourceIndex;
 	}
+}
+
+Resource& AResourceManager::GetResource(const std::string _name)
+{
+	return m_resourceArray[m_resourceCollection[_name]];
 }
 
 } // namespace res

@@ -4,12 +4,13 @@
 #include <Math/Transform.h>
 #include <System/ECS/IComponent.h>
 #include <vector>
+#include <Utilities/Export.h>
 
 namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-class PADObject
+class ENGINE_API PADObject
 {
 #pragma region Constructor / Destructor
 

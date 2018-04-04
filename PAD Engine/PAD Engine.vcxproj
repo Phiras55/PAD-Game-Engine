@@ -23,10 +23,8 @@
     <ClCompile Include="Sources\Core\Engine.cpp" />
     <ClCompile Include="Sources\Core\EngineClock.cpp" />
     <ClCompile Include="Sources\Core\EngineDLL.cpp" />
-    <ClCompile Include="Sources\Core\Scene.cpp" />
-    <ClCompile Include="Sources\Core\PADObject.cpp" />
+    <ClCompile Include="Sources\Core\IDPool.cpp" />
     <ClCompile Include="Sources\Core\Timer.cpp" />
-    <ClCompile Include="Sources\Graphics\PerspectiveCamera.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexArray.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexBuffer.cpp" />
@@ -40,17 +38,23 @@
     <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp" />
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
-    <ClCompile Include="Sources\System\SDLWindow.cpp" />
+    <ClCompile Include="Sources\System\ECS\Collider.cpp" />
+    <ClCompile Include="Sources\System\ECS\PADObject.cpp" />
+    <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp" />
+    <ClCompile Include="Sources\System\ECS\RigidBody.cpp" />
+    <ClCompile Include="Sources\System\ECS\Scene.cpp" />
+    <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
+    <ClCompile Include="Sources\System\Resource\Resource.cpp" />
+    <ClCompile Include="Sources\System\Resource\AResourceManager.cpp" />
+    <ClCompile Include="Sources\System\Resource\ResourceManager.cpp" />
+    <ClCompile Include="Sources\System\Window\SDLWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h" />
     <ClInclude Include="Sources\Core\EngineClock.h" />
     <ClInclude Include="Sources\Core\EngineDLL.h" />
-    <ClInclude Include="Sources\Core\Scene.h" />
-    <ClInclude Include="Sources\Core\PADObject.h" />
+    <ClInclude Include="Sources\Core\IDPool.h" />
     <ClInclude Include="Sources\Core\Timer.h" />
-    <ClInclude Include="Sources\Graphics\Camera.h" />
-    <ClInclude Include="Sources\Graphics\PerspectiveCamera.h" />
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexArray.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexBuffer.h" />
@@ -68,12 +72,26 @@
     <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
-    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderType.h" />
+    <ClInclude Include="Sources\System\ECS\Camera.h" />
+    <ClInclude Include="Sources\System\ECS\Collider.h" />
+    <ClInclude Include="Sources\System\ECS\IComponent.h" />
+    <ClInclude Include="Sources\System\ECS\PADObject.h" />
+    <ClInclude Include="Sources\System\ECS\PerspectiveCamera.h" />
+    <ClInclude Include="Sources\System\ECS\RigidBody.h" />
+    <ClInclude Include="Sources\System\ECS\Scene.h" />
+    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h" />
     <ClInclude Include="Sources\System\IModule.h" />
-    <ClInclude Include="Sources\System\AWindow.h" />
-    <ClInclude Include="Sources\System\SDLWindow.h" />
-    <ClInclude Include="Sources\System\WindowEnums.h" />
-    <ClInclude Include="Sources\System\WindowSettings.h" />
+    <ClInclude Include="Sources\System\Physics\BulletContext.h" />
+    <ClInclude Include="Sources\System\Physics\IPhysicContext.h" />
+    <ClInclude Include="Sources\System\Resource\Resource.h" />
+    <ClInclude Include="Sources\System\Resource\AResourceManager.h" />
+    <ClInclude Include="Sources\System\Resource\MeshManager.h" />
+    <ClInclude Include="Sources\System\Resource\ResourceManager.h" />
+    <ClInclude Include="Sources\System\Window\AWindow.h" />
+    <ClInclude Include="Sources\System\Window\IWindowBase.h" />
+    <ClInclude Include="Sources\System\Window\SDLWindow.h" />
+    <ClInclude Include="Sources\System\Window\WindowEnums.h" />
+    <ClInclude Include="Sources\System\Window\WindowSettings.h" />
     <ClInclude Include="Sources\Utilities\EnumUtils.h" />
     <ClInclude Include="Sources\Utilities\Export.h" />
   </ItemGroup>
@@ -85,7 +103,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{2DA028DE-BFEF-40F3-8326-C4E510AF7339}</ProjectGuid>
     <RootNamespace>PADEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -162,8 +180,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\bullet3-2.83.7\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;LOGGER;ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -177,6 +197,9 @@
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -184,6 +207,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\bullet3-2.83.7\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -199,6 +224,9 @@
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -208,8 +236,10 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\bullet3-2.83.7\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;LOGGER;ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -225,6 +255,9 @@
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -234,8 +267,10 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)Libs\SDL2\include;$(SolutionDir)Libs\stb_image;$(SolutionDir)Libs\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\bullet3-2.83.7\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;LOGGER;ENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
@@ -251,6 +286,9 @@
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

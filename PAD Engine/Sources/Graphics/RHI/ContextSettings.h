@@ -25,10 +25,21 @@ E_BUFFER_TYPE& operator&=(E_BUFFER_TYPE& left, const E_BUFFER_TYPE& right);
 
 struct ContextSettings final
 {
+	ContextSettings() :
+		viewportSize(0, 0),
+		clearColor(0.f, 0.f, 0.f, 1.f),
+		frameBufferCount(0),
+		enabledBuffers(E_BUFFER_TYPE::ALL),
+		areTrianglesCounterClockwise(true)
+	{
+
+	}
+
 	math::Vec2i viewportSize;
 	math::Vec4f clearColor;
 	uint16		frameBufferCount;
 	BufferType	enabledBuffers;
+	bool		areTrianglesCounterClockwise;
 };
 
 } // namespace rhi

@@ -20,8 +20,7 @@ protected:
 
 public:
 	virtual void Init(const ContextSettings& _settings)						= 0;
-	virtual void Draw(const mod::Mesh& _m, const RenderSettings& _settings)	= 0;
-	virtual void DebugDraw(const mod::Mesh& _m, const RenderSettings& _settings, const math::Mat4& _vp, const math::Vec4f& _albedo) = 0;
+	virtual void Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings, math::Mat4& _vp) = 0;
 	virtual void ClearBuffer()												= 0;
 	virtual void ResizeViewport(const uint32 _w, const uint32 _h)			= 0;
 	virtual void GenerateMesh(mod::Mesh& _m, const mod::MeshData& _md)		= 0;
@@ -29,7 +28,6 @@ public:
 protected:
 	virtual void InitContext(const rhi::ContextSettings& _settings)			= 0;
 	virtual void InitViewPort(const math::Vec2i& _viewportSize)				= 0;
-	virtual void InitBuffers()												= 0;
 };
 
 } // namespace rhi

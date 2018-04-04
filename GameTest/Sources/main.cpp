@@ -5,7 +5,9 @@
 #include <Graphics/GL/Shader/GLShaderProgram.h>
 #include <Graphics/GL/Shader/GLVertexShader.h>
 #include <Graphics/GL/Shader/GLFragmentShader.h>
-#include <Graphics/PerspectiveCamera.h>
+#include <System/ECS/PerspectiveCamera.h>
+
+#include <glm/gtc/matrix_transform.hpp>
 
 int main()
 {
@@ -13,7 +15,7 @@ int main()
 	pad::InitEngine();
 
 	// Will be read from a config file
-	pad::sys::WindowSettings winSettings;
+	pad::sys::win::WindowSettings winSettings;
 
 	winSettings.title = "This is a SDL Window.";
 	winSettings.position.x = 400u;
@@ -21,22 +23,23 @@ int main()
 	winSettings.size.x = 1600u;
 	winSettings.size.y = 900u;
 	winSettings.isFullscreen = false;
-	winSettings.windowType = pad::sys::E_WINDOW_TYPE::ENGINE;
+	winSettings.windowType = pad::sys::win::E_WINDOW_TYPE::ENGINE;
 
 	// Will be read from a config file
-	pad::gfx::rhi::ContextSettings renderSettings;
+	pad::gfx::rhi::ContextSettings contextSettings;
 
-	renderSettings.viewportSize.x = winSettings.size.x;
-	renderSettings.viewportSize.y = winSettings.size.y;
-	renderSettings.clearColor.r = 0.3f;
-	renderSettings.clearColor.g = 0.3f;
-	renderSettings.clearColor.b = 0.3f;
-	renderSettings.clearColor.a = 1.0f;
+	contextSettings.viewportSize.x = winSettings.size.x;
+	contextSettings.viewportSize.y = winSettings.size.y;
+	contextSettings.clearColor.r = 0.3f;
+	contextSettings.clearColor.g = 0.3f;
+	contextSettings.clearColor.b = 0.3f;
+	contextSettings.clearColor.a = 1.0f;
+	contextSettings.areTrianglesCounterClockwise = true;
 
-	renderSettings.enabledBuffers = pad::gfx::rhi::BufferType::ALL;
+	contextSettings.enabledBuffers = pad::gfx::rhi::BufferType::ALL;
 
 	pad::InitWindow(winSettings);
-	pad::InitRenderer(renderSettings);
+	pad::InitRenderer(contextSettings);
 
 	pad::gfx::mod::Mesh m;
 	pad::gfx::mod::MeshData md;
@@ -46,8 +49,6 @@ int main()
 	pad::gfx::gl::shad::GLFragmentShader	fragShader;
 	pad::gfx::gl::shad::GLVertexShader		vertShader;
 
-	pad::gfx::rhi::shad::AShaderProgram* programs[] = { &program };
-
 	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
 	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
 
@@ -55,8 +56,8 @@ int main()
 	program.SetFragmentShader(&fragShader);
 	program.CompileProgram();
 	
-	r.programs		= programs;
-	r.programCount	= 1;
+	r.shaders.push_back(&program);
+	r.isWireframe = true;
 
 	md.positions = new float[24]{
 		-0.5, -0.5,  0.5,
@@ -76,12 +77,10 @@ int main()
 		3, 4, 5,
 		4, 3, 6,
 		7, 2, 1,
-
 		4, 6, 1,
 		4, 2, 5,
 		7, 1, 6,
 		5, 2, 7,
-
 		4, 0, 2,
 		6, 3, 7,
 		1, 0, 4,
@@ -92,7 +91,10 @@ int main()
 
 	pad::DebugGenerateMesh(m, md);
 
-	pad::gfx::PerspectiveCamera c;
+	pad::math::Mat4 vp, test;
+	pad::sys::ecs::PerspectiveCamera c;
+	vp = c.Perspective(45.f, 16.f / 9.f, 0.1f, 1000.f) * c.LookAt(pad::math::Vec3f(-5.f, 7.f, 10.f), pad::math::Vec3f(0.f, 0.f, 0.f), pad::math::Vec3f(0.f, 1.f, 0.f));
+	test = vp * pad::math::TranslationMatrix(5.f, 0.f, 0.f);
 
 	while (pad::IsWindowOpen())
 	{
@@ -100,20 +102,17 @@ int main()
 
 		pad::ClearBuffer();
 
-		pad::DebugDraw(
-			m, 
-			r, 
-			c.Perspective(45.f, (float)winSettings.size.x / (float)winSettings.size.y, 0.1f, 1000.f) * 
-			c.LookAt(pad::math::Vec3f(0.f, 0.f, 10.f), pad::math::Vec3f(0.f, 0.f, 0.f), pad::math::Vec3f(0.f, 1.f, 0.f)),
-			pad::math::Vec4f(1.f, 0.f, 0.f, 1.f)
+		pad::Draw(
+			m,
+			r,
+			vp
 		);
 
-		pad::math::Mat4 t1(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
-		pad::math::Mat4 t2(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
-		pad::math::Mat4 t3 = t1 * t2;
-		pad::math::Mat4 p = c.Perspective(45.f, (float)winSettings.size.x / (float)winSettings.size.y, 0.1f, 1000.f);
-		pad::math::Mat4 l = c.LookAt(pad::math::Vec3f(0.f, 0.f, 10.f), pad::math::Vec3f(0.f, 0.f, 0.f), pad::math::Vec3f(0.f, 1.f, 0.f));
-		pad::math::Mat4 m = p * l;
+		pad::Draw(
+			m,
+			r,
+			test
+		);
 
 		pad::SwapBuffers();
 	}

@@ -2,8 +2,8 @@
 #include <Core/Engine.h>
 #include <Logger/SimpleLogger.h>
 
-namespace pad	
-{
+namespace pad	{
+
 core::Engine* g_engine = nullptr;
 
 void CreateEngine()
@@ -30,7 +30,7 @@ void InitEngine()
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void InitWindow(const sys::WindowSettings& _settings)
+void InitWindow(const sys::win::WindowSettings& _settings)
 {
 	if (g_engine)
 		g_engine->CreateWindow(_settings);
@@ -89,10 +89,10 @@ void SwapBuffers()
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings)
+void Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, math::Mat4& _vp)
 {
 	if (g_engine)
-		g_engine->Draw(_m, _settings);
+		g_engine->Draw(_m, _settings, _vp);
 	else
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
@@ -122,14 +122,6 @@ void DebugGenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)
 {
 	if (g_engine)
 		g_engine->GenerateMesh(_m, _md);
-	else
-		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
-}
-
-void DebugDraw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, const math::Mat4& _vp, const math::Vec4f& _albedo)
-{
-	if (g_engine)
-		g_engine->DebugDraw(_m, _settings, _vp, _albedo);
 	else
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }

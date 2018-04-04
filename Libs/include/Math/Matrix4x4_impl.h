@@ -1,3 +1,4 @@
+#include "Matrix4x4.h"
 namespace pad	{
 namespace math	{
 
@@ -68,7 +69,12 @@ Matrix4x4 Matrix4x4::Transposed()
 
 float* Matrix4x4::operator[](const int _index)
 {
-	return data + _index * sizeof(float);
+	return data + _index * 4;
+}
+
+const float* Matrix4x4::operator[](const int _index) const
+{
+	return data + _index * 4;
 }
 
 void Matrix4x4::operator=(const Matrix4x4& _matrix)
@@ -77,7 +83,7 @@ void Matrix4x4::operator=(const Matrix4x4& _matrix)
 	*(__DATA256+1)	= *(_matrix.__DATA256+1);
 }
 
-bool Matrix4x4::operator==(const Matrix4x4& _matrix)
+bool Matrix4x4::operator==(const Matrix4x4& _matrix) const
 {
 	__m256i mask = _mm256_set1_epi32(0xFFFFFFFF);
 	return (_mm256_testz_si256(mask,
@@ -87,12 +93,12 @@ bool Matrix4x4::operator==(const Matrix4x4& _matrix)
 		_mm256_castps_si256( _mm256_xor_ps(__DATA256[1], _matrix.__DATA256[1]) )));
 }
 
-bool Matrix4x4::operator!=(const Matrix4x4 & _matrix)
+bool Matrix4x4::operator!=(const Matrix4x4 & _matrix) const
 {
 	return (!(*this == _matrix));
 }
 
-Matrix4x4 Matrix4x4::operator+(const Matrix4x4& _matrix)
+Matrix4x4 Matrix4x4::operator+(const Matrix4x4& _matrix) const
 {
 	Matrix4x4 mat(*this);
 	mat += _matrix;
@@ -106,7 +112,7 @@ Matrix4x4& Matrix4x4::operator+=(const Matrix4x4& _matrix)
 	return *this;
 }
 
-Matrix4x4 Matrix4x4::operator-(const Matrix4x4& _matrix)
+Matrix4x4 Matrix4x4::operator-(const Matrix4x4& _matrix) const
 {
 	Matrix4x4 mat(*this);
 	mat -= _matrix;
@@ -129,22 +135,23 @@ Matrix4x4 Matrix4x4::operator*(const Matrix4x4&	_matrix) const
 
 Matrix4x4& Matrix4x4::operator*=(const Matrix4x4& _matrix)
 {
+	Matrix4x4 temp(*this);
 	for (char y = 0; y < 4; ++y)
 	{
 		for (char x = 0; x < 4; ++x)
 		{
-					float*	mData	= &data[(y*4)+x];
+					float*	 mData	= &temp.data[y*4];
 			const	float*	_mData	= &_matrix.data[x];
-			*mData = (	*mData * *(_mData) +
-						*mData * *(_mData +4) +
-						*mData * *(_mData +8) +
-						*mData * *(_mData +12));
+			data[y*4 + x] = (	*(mData  ) * *(_mData  ) +
+								*(mData+1) * *(_mData+4) +
+								*(mData+2) * *(_mData+8) +
+								*(mData+3) * *(_mData+12));
 		}
 	}
 	return *this;
 }
 
-Vec4f Matrix4x4::operator*(const Vec4f& _vector)
+Vec4f Matrix4x4::operator*(const Vec4f& _vector) const
 {
 	Vec4f vec;
 	for (char i = 0; i < 4; i++)

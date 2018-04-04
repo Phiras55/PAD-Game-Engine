@@ -1,3 +1,4 @@
+#include "Matrix3x3.h"
 namespace pad	{
 namespace math	{
 
@@ -63,7 +64,12 @@ Matrix3x3 Matrix3x3::Transposed()
 
 float* Matrix3x3::operator[](const int _index)
 {
-	return data+_index*3;
+	return data + _index * 3;
+}
+
+const float * Matrix3x3::operator[](const int _index) const
+{
+	return data + _index * 3;
 }
 
 void Matrix3x3::operator=(const Matrix3x3& _matrix)
@@ -71,20 +77,20 @@ void Matrix3x3::operator=(const Matrix3x3& _matrix)
 	memcpy(data, _matrix.data, 9);
 }
 
-bool Matrix3x3::operator==(const Matrix3x3& _matrix)
+bool Matrix3x3::operator==(const Matrix3x3& _matrix) const
 {
 	if (memcmp(data, _matrix.data, 9) == 0)	return true;
 	else									return false;
 }
 
-bool Matrix3x3::operator!=(const Matrix3x3& _matrix)
+bool Matrix3x3::operator!=(const Matrix3x3& _matrix) const
 {
 return (data[0] != _matrix.data[0] || data[1] != _matrix.data[1] || data[2] != _matrix.data[2] || 
 		data[3] != _matrix.data[3] || data[4] != _matrix.data[4] || data[5] != _matrix.data[5] || 
 		data[6] != _matrix.data[6] || data[7] != _matrix.data[7] || data[8] != _matrix.data[8]);
 }
 
-Matrix3x3 Matrix3x3::operator+(const Matrix3x3& _matrix)
+Matrix3x3 Matrix3x3::operator+(const Matrix3x3& _matrix) const
 {
 	Matrix3x3 mat(*this);
 	mat += _matrix;
@@ -99,7 +105,7 @@ Matrix3x3& Matrix3x3::operator+=(const Matrix3x3& _matrix)
 	return *this;
 }
 
-Matrix3x3 Matrix3x3::operator-(const Matrix3x3& _matrix)
+Matrix3x3 Matrix3x3::operator-(const Matrix3x3& _matrix) const
 {
 	Matrix3x3 mat(*this);
 	mat -= _matrix;
@@ -114,7 +120,7 @@ Matrix3x3& Matrix3x3::operator-=(const Matrix3x3& _matrix)
 	return *this;
 }
 
-Matrix3x3 Matrix3x3::operator*(const Matrix3x3&	_matrix)
+Matrix3x3 Matrix3x3::operator*(const Matrix3x3&	_matrix) const
 {
 	Matrix3x3 mat(*this);
 	mat *= _matrix;
@@ -137,7 +143,7 @@ Matrix3x3& Matrix3x3::operator*=(const Matrix3x3& _matrix)
 	return *this;
 }
 
-Vec3f Matrix3x3::operator*(const Vec3f& _vector)
+Vec3f Matrix3x3::operator*(const Vec3f& _vector) const
 {
 	Vec3f vec;
 	vec.x = data[0] * _vector.x + data[1] * _vector.y + data[2] * _vector.z;

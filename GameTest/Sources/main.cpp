@@ -11,9 +11,6 @@
 
 int main()
 {
-	pad::CreateEngine();
-	pad::InitEngine();
-
 	// Will be read from a config file
 	pad::sys::win::WindowSettings winSettings;
 
@@ -23,7 +20,7 @@ int main()
 	winSettings.size.x = 1600u;
 	winSettings.size.y = 900u;
 	winSettings.isFullscreen = false;
-	winSettings.windowType = pad::sys::win::E_WINDOW_TYPE::ENGINE;
+	winSettings.windowType = pad::sys::win::E_WINDOW_TYPE::SDL;
 
 	// Will be read from a config file
 	pad::gfx::rhi::ContextSettings contextSettings;
@@ -38,14 +35,14 @@ int main()
 
 	contextSettings.enabledBuffers = pad::gfx::rhi::BufferType::ALL;
 
-	pad::InitWindow(winSettings);
-	pad::InitRenderer(contextSettings);
+	pad::CreateEngine();
+	pad::InitEngine(contextSettings, winSettings);
 
-	pad::gfx::mod::Mesh m;
-	pad::gfx::mod::MeshData md;
-	pad::gfx::rhi::RenderSettings r;
+	pad::StartSimulation();
 
-	pad::gfx::gl::shad::GLShaderProgram		program;
+	pad::DestroyEngine();
+
+	/*pad::gfx::gl::shad::GLShaderProgram		program;
 	pad::gfx::gl::shad::GLFragmentShader	fragShader;
 	pad::gfx::gl::shad::GLVertexShader		vertShader;
 
@@ -87,35 +84,7 @@ int main()
 		7, 3, 5
 	};
 
-	md.indiceCount = 36;
-
-	pad::DebugGenerateMesh(m, md);
-
-	pad::math::Mat4 vp, test;
-	pad::sys::ecs::PerspectiveCamera c;
-	vp = c.Perspective(45.f, 16.f / 9.f, 0.1f, 1000.f) * c.LookAt(pad::math::Vec3f(-5.f, 7.f, 10.f), pad::math::Vec3f(0.f, 0.f, 0.f), pad::math::Vec3f(0.f, 1.f, 0.f));
-	test = vp * pad::math::TranslationMatrix(5.f, 0.f, 0.f);
-
-	while (pad::IsWindowOpen())
-	{
-		pad::PollEvents();
-
-		pad::ClearBuffer();
-
-		pad::Draw(
-			m,
-			r,
-			vp
-		);
-
-		pad::Draw(
-			m,
-			r,
-			test
-		);
-
-		pad::SwapBuffers();
-	}
+	md.indiceCount = 36;*/
 
 	return EXIT_SUCCESS;
 }

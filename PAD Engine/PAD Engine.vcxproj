@@ -90,7 +90,6 @@
     <ClInclude Include="Sources\System\Window\AWindow.h" />
     <ClInclude Include="Sources\System\Window\IWindowBase.h" />
     <ClInclude Include="Sources\System\Window\SDLWindow.h" />
-    <ClInclude Include="Sources\System\Window\WindowEnums.h" />
     <ClInclude Include="Sources\System\Window\WindowSettings.h" />
     <ClInclude Include="Sources\Utilities\EnumUtils.h" />
     <ClInclude Include="Sources\Utilities\Export.h" />

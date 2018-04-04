@@ -22,108 +22,59 @@ void DestroyEngine()
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void InitEngine()
+void InitEngine(const gfx::rhi::ContextSettings& _c, const sys::win::WindowSettings& _w)
 {
 	if (g_engine)
-		g_engine->InitSimulation();
+		g_engine->InitSimulation(_c, _w);
 	else
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void InitWindow(const sys::win::WindowSettings& _settings)
+void StartSimulation()
 {
 	if (g_engine)
-		g_engine->CreateWindow(_settings);
+		g_engine->StartSimulation();
 	else
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void InitRenderer(const gfx::rhi::ContextSettings& _settings)
+void Simulate()
 {
 	if (g_engine)
-		g_engine->CreateRenderer(_settings);
+		g_engine->Simulate();
 	else
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void PollEvents()
+void AddPADObject()
 {
-	if (g_engine)
-	{
-		g_engine->PollEvents();
-		g_engine->FlushLogs();
-	}
-	else
-		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
+
 }
 
-void UpdateEngine()
+void RemovePADObject()
 {
-	if (g_engine)
-		g_engine->Update();
-	else
-		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
+
 }
 
-void FixedUpdateEngine()
+void SetMainCamera()
 {
-	if (g_engine)
-		g_engine->FixedUpdate();
-	else
-		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
+
 }
 
-void ClearBuffer()
+void MoveMainCamera()
 {
-	if (g_engine)
-		g_engine->ClearBuffer();
-	else
-		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
+
 }
 
-void SwapBuffers()
+void RotateMainCamera()
 {
-	if (g_engine)
-		g_engine->SwapBuffers();
-	else
-		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
+
 }
 
-void Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, math::Mat4& _vp)
+void SetMainCameraTarget()
 {
-	if (g_engine)
-		g_engine->Draw(_m, _settings, _vp);
-	else
-		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
+
 }
 
-bool IsWindowOpen()
-{
-	if (g_engine)
-	{
-		return g_engine->IsWindowOpen();
-	}
-	else
-	{
-		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
-		return false;
-	}
-}
-
-void ResizeViewport(const uint32 _w, const uint32 _h)
-{
-	if (g_engine)
-		g_engine->ResizeContext(_w, _h);
-	else
-		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
-}
-
-void DebugGenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)
-{
-	if (g_engine)
-		g_engine->GenerateMesh(_m, _md);
-	else
-		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
-}
 
 } // namespace pad

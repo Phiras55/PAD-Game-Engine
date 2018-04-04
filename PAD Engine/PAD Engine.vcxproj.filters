@@ -290,9 +290,6 @@
     <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h">
       <Filter>Header Files\Graphics\RHI\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\Window\WindowEnums.h">
-      <Filter>Header Files\System\Window</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\System\Window\WindowSettings.h">
       <Filter>Header Files\System\Window</Filter>
     </ClInclude>

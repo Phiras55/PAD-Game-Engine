@@ -19,16 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MatrixTransform.h" />
     <ClInclude Include="Sources\Math\Matrix3x3.h" />
     <ClInclude Include="Sources\Math\Matrix3x3_impl.h" />
     <ClInclude Include="Sources\Math\Matrix4x4.h" />
-    <ClInclude Include="Sources\Math\Matrix4x4_impl.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="Sources\Math\Matrix4x4_impl.h" />
+    <ClInclude Include="Sources\Math\MatrixTransform.h" />
+    <ClInclude Include="Sources\Math\Transform.h" />
     <ClInclude Include="Sources\Math\Vector2.h" />
     <ClInclude Include="Sources\Math\Vector2_impl.h" />
     <ClInclude Include="Sources\Math\Vector3.h" />
@@ -40,7 +36,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{40A4178C-EE0B-43C6-A4AD-085F0390F44E}</ProjectGuid>
     <RootNamespace>Math</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -103,11 +99,13 @@
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
     <SourcePath>$(ProjectDir)Sources;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
     <SourcePath>$(ProjectDir)Sources;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

@@ -15,14 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Math\Vector2_impl.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\Vector3_impl.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\Vector4_impl.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Sources\Math\Matrix4x4.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Math\Vector2.h">
       <Filter>Header Files</Filter>
@@ -33,20 +27,29 @@
     <ClInclude Include="Sources\Math\Vector4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Math\Matrix4x4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\Math\Matrix4x4_impl.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixTransform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Math\Matrix3x3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Math\Matrix3x3_impl.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Vector2_impl.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Vector3_impl.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Vector4_impl.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\Matrix4x4_impl.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Math\MatrixTransform.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

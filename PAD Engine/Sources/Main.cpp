@@ -1,30 +1,22 @@
 #include <iostream>
-
-#include <chrono>
-
-#include <Math/Vector2.h>
-#include <Math/Vector3.h>
-#include <Math/Vector4.h>
+#include <Core/Engine.h>
 #include <Math/Matrix4x4.h>
+
+#undef main
 
 using namespace pad;
 
-void ArthurMathTest()
+void MethodForTestingPurpose()
 {
-	auto Start = std::chrono::high_resolution_clock::now();
 	
-
-
-	auto End = std::chrono::high_resolution_clock::now();
-	std::cout << std::endl << std::endl << std::endl <<
-		"Duration: " << std::chrono::duration<float>(End - Start).count()<<
-	std::endl << std::endl << std::endl;
-	
-	system("pause");
 }
 
 int main()
 {
+	core::Engine engine;
+	
+	engine.InitSimulation();
+	engine.StartSimulation();
 
 	return EXIT_SUCCESS;
 }

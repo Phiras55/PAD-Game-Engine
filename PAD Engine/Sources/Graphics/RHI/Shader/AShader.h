@@ -1,5 +1,6 @@
 #pragma once
 #include <Common.h>
+#include <Utilities/Export.h>
 
 #include <string>
 #include <map>
@@ -12,7 +13,7 @@ namespace gfx	{
 namespace rhi	{
 namespace shad	{
 
-class AShader
+class ENGINE_API AShader
 {
 protected:
 	int32 m_id;

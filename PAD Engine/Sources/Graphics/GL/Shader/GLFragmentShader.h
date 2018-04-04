@@ -9,14 +9,14 @@ namespace shad	{
 class GLFragmentShader final : public rhi::shad::AShader
 {
 public:
-	GLFragmentShader();
-	virtual ~GLFragmentShader();
+	ENGINE_API GLFragmentShader();
+	ENGINE_API virtual ~GLFragmentShader();
 
 	GLFragmentShader(const GLFragmentShader&) = delete;
 	GLFragmentShader(GLFragmentShader&&) = delete;
 
 public:
-	virtual bool LoadShader(const char* _path);
+	ENGINE_API virtual bool LoadShader(const char* _path);
 
 private:
 	virtual bool CompileShader(const char* _shaderCode);

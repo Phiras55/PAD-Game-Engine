@@ -1,6 +1,11 @@
 #include <Graphics/GL/GLRenderer.h>
 #include <Logger/SimpleLogger.h>
 #include <Utilities/EnumUtils.h>
+#include <Graphics/GL/GLVertexBuffer.h>
+#include <Graphics/GL/GLVertexArray.h>
+#include <Graphics/GL/GLVertexElementBuffer.h>
+#include <Graphics/RHI/Shader/ShaderInfos.h>
+
 #include <GL/glew.h>
 
 namespace pad	{
@@ -44,6 +49,12 @@ void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
 
 	glewExperimental = true;
 
+	InitMainBuffer(_settings);
+	InitCullFace(_settings);
+}
+
+void GLRenderer::InitMainBuffer(const rhi::ContextSettings& _settings)
+{
 	if (util::IsFlagSet(_settings.enabledBuffers, gfx::rhi::E_BUFFER_TYPE::DEPTH_BUFFER))
 	{
 		glEnable(GL_DEPTH_TEST);
@@ -55,9 +66,15 @@ void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
 		glEnable(GL_STENCIL_TEST);
 		glStencilMask(0x00);
 	}
+}
 
+void GLRenderer::InitCullFace(const rhi::ContextSettings& _settings)
+{
 	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
+
+	_settings.areTrianglesCounterClockwise ?
+		glCullFace(GL_BACK) :
+		glCullFace(GL_FRONT);
 }
 
 void GLRenderer::InitViewPort(const math::Vec2i& _viewportSize)
@@ -69,22 +86,30 @@ void GLRenderer::InitViewPort(const math::Vec2i& _viewportSize)
 		_viewportSize.y);
 }
 
-void GLRenderer::Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings)
+void GLRenderer::Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings, math::Mat4& _vp)
 {
 	glBindVertexArray(_mesh.GetVertexArrayID());
+	rhi::shad::AShaderProgram* currentShader;
 
-	if (_settings.programs)
+	for (uint32 i = 0; i < _settings.shaders.size(); ++i)
 	{
-		rhi::shad::AShaderProgram* currentShader = _settings.programs[0];
+		currentShader = _settings.shaders[0];
 		if (currentShader)
 		{
+			if(_settings.isWireframe)
+				glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 			currentShader->Use();
+			currentShader->SetUniform("albedo", math::Color4(1, 0, 0, 1));
+			currentShader->SetUniform("mvp", _vp);
+
 			glDrawElements(GL_TRIANGLES, _mesh.GetIndiceCount(), GL_UNSIGNED_INT, nullptr);
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		}
-	}
-	else
-	{
-		LOG_ERROR_S("No valid shaders. Try to add one in the RenderSettings.\n");
+		else
+		{
+			LOG_ERROR_S("The shader is not valid. Try to add one in the RenderSettings.\n");
+		}
 	}
 }
 
@@ -100,9 +125,25 @@ void GLRenderer::ResizeViewport(const uint32 _w, const uint32 _h)
 	m_viewportSize.y = _h;
 }
 
-void GLRenderer::InitBuffers()
+void GLRenderer::GenerateMesh(mod::Mesh& _m, const mod::MeshData& _md)
 {
+	gfx::gl::GLVertexArray* vao = new gfx::gl::GLVertexArray();
+	vao->GenerateID();
+	vao->Bind();
 
+	_m.SetVertexArray(vao);
+
+	gfx::gl::GLVertexBuffer vbo;
+	vbo.GenerateID();
+	vbo.Bind();
+	vbo.BindData(_md.positions, _md.positionCount, 3, static_cast<uint8>(gfx::rhi::shad::AttribLocation::POSITION));
+
+	gfx::gl::GLVertexElementBuffer* ibo = new gfx::gl::GLVertexElementBuffer();
+	ibo->GenerateID();
+	ibo->Bind();
+	ibo->BindData(_md.indices, _md.indiceCount);
+
+	_m.SetVertexElementBuffer(ibo);
 }
 
 void GLRenderer::GenerateBuffer(uint32& _id)

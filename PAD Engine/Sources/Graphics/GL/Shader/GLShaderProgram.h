@@ -8,24 +8,28 @@ namespace shad	{
 
 class GLShaderProgram final : public rhi::shad::AShaderProgram
 {
-	GLShaderProgram();
-	virtual ~GLShaderProgram();
+public:
+	ENGINE_API GLShaderProgram();
+	ENGINE_API virtual ~GLShaderProgram();
 
 	GLShaderProgram(const GLShaderProgram&) = delete;
-	GLShaderProgram(GLShaderProgram&&) = delete;
+	GLShaderProgram(GLShaderProgram&&)		= delete;
 
 public:
-	virtual bool CompileProgram();
-	virtual void Use();
+	ENGINE_API bool CompileProgram()	override;
+	ENGINE_API void Use()				override;
 
-	virtual void SetUniform(const std::string& name, int32 value);
-	virtual void SetUniform(const std::string& name, uint32 value);
-	virtual void SetUniform(const std::string& name, bool value);
-	virtual void SetUniform(const std::string& name, float32 value);
+	ENGINE_API void SetUniform(const std::string& name, const int32 value)			override;
+	ENGINE_API void SetUniform(const std::string& name, const uint32 value)			override;
+	ENGINE_API void SetUniform(const std::string& name, const bool value)			override;
+	ENGINE_API void SetUniform(const std::string& name, const float32 value)		override;
+	ENGINE_API void SetUniform(const std::string& name, math::Mat4& _value)			override;
+	ENGINE_API void SetUniform(const std::string& name, const math::Vec4f& _value)	override;
+	ENGINE_API void SetUniform(const std::string& name, const math::Vec3f& _value)	override;
 
 public:
-	void operator=(const GLShaderProgram&) = delete;
-	void operator=(GLShaderProgram&&) = delete;
+	void operator=(const GLShaderProgram&)	= delete;
+	void operator=(GLShaderProgram&&)		= delete;
 };
 
 } // namespace shad

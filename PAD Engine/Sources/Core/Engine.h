@@ -1,5 +1,5 @@
 #include <Core/EngineClock.h>
-#include <System/SDLWindow.h>
+#include <System/Window/SDLWindow.h>
 #include <Graphics/RHI/IRenderer.h>
 #include <Graphics/RHI/RenderSettings.h>
 
@@ -17,7 +17,7 @@ public:
 
 private:
 	gfx::rhi::IRenderer*	mp_renderer;															/*! The renderer that contains the window and is used to render data. */
-	sys::SDLWindow*			mp_window;
+	sys::win::SDLWindow*	mp_window;
 
 public:
 	void InitSimulation();																			/*! Initialize the simulation. Reads the config files and initialize the renderer and the window. */
@@ -25,12 +25,12 @@ public:
 	void PollEvents();
 	void Update();
 	void FixedUpdate();
-	void Render();
 
-	void CreateWindow(const sys::WindowSettings& _infos);
+	void CreateWindow(const sys::win::WindowSettings& _infos);
 	void CreateRenderer(const gfx::rhi::ContextSettings& _settings);
 
-	void Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings);
+	void GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md);
+	void Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, math::Mat4& _vp);
 	void SwapBuffers();
 	void ClearBuffer();
 	void ResizeContext(const uint32 _w, const uint32 _h);

@@ -61,8 +61,38 @@
     <Filter Include="Source Files\Graphics\RHI\Shader">
       <UniqueIdentifier>{9094b494-783e-4d22-b7d6-6e60a1f84c55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\System\Resource">
+      <UniqueIdentifier>{b17d9066-18ec-4256-b90b-d761d1689495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\ECS">
+      <UniqueIdentifier>{922b0db2-26a1-4258-85b1-732a042cd5d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\ECS">
+      <UniqueIdentifier>{31351365-4fa7-44b8-8d1a-f37dc47ca292}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Utilities">
       <UniqueIdentifier>{ae7f1c25-3d80-44af-926d-109847af5857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{584c050b-d69f-416f-abe8-a78583b841b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Shaders">
+      <UniqueIdentifier>{7e10183c-10a7-4cd9-a30c-70bd275784d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Window">
+      <UniqueIdentifier>{6b58709a-ddcb-4aaa-99f3-e1effce375b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Physics">
+      <UniqueIdentifier>{ccdf6619-b50f-46e6-9870-19c69d597994}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\ResourceManager">
+      <UniqueIdentifier>{d4a4f04b-8d47-462c-906c-7ea2317a670d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\Window">
+      <UniqueIdentifier>{d8b530a2-ee35-468d-a0b5-5a0353f3ac97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\Physics">
+      <UniqueIdentifier>{07c47f7e-e6fc-4bc5-a29e-508581c4326c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -74,9 +104,6 @@
     </ClCompile>
     <ClCompile Include="Sources\Common.h">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\System\SDLWindow.cpp">
-      <Filter>Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Core\EngineClock.cpp">
       <Filter>Source Files\Core</Filter>
@@ -117,20 +144,44 @@
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp">
       <Filter>Source Files\Graphics\RHI\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Core\Scene.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Core\EngineDLL.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Core\PADObject.cpp">
+    <ClCompile Include="Sources\System\Resource\AResourceManager.cpp">
+      <Filter>Source Files\System\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Core\IDPool.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\Resource\ResourceManager.cpp">
+      <Filter>Source Files\System\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\Resource\Resource.cpp">
+      <Filter>Source Files\System\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\PADObject.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\Scene.cpp">
+      <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp">
       <Filter>Source Files\Graphics\RHI</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Graphics\PerspectiveCamera.cpp">
-      <Filter>Source Files\Graphics</Filter>
+    <ClCompile Include="Sources\System\ECS\Collider.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\RigidBody.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\Window\SDLWindow.cpp">
+      <Filter>Source Files\System\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\Physics\BulletContext.cpp">
+      <Filter>Source Files\System\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp">
+      <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Graphics\OrthographicCamera.cpp">
       <Filter>Source Files\Graphics</Filter>
@@ -140,13 +191,7 @@
     <ClInclude Include="Sources\Core\Engine.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\SDLWindow.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\System\IModule.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\WindowSettings.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Core\EngineClock.h">
@@ -191,9 +236,6 @@
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h">
       <Filter>Header Files\Graphics\RHI\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderType.h">
-      <Filter>Header Files\Graphics\RHI\Shader</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h">
       <Filter>Header Files\Graphics\RHI\Shader</Filter>
     </ClInclude>
@@ -203,20 +245,32 @@
     <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderProgram.h">
       <Filter>Header Files\Graphics\GL\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Core\Scene.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Core\EngineDLL.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\WindowEnums.h">
-      <Filter>Header Files\System</Filter>
+    <ClInclude Include="Sources\System\Resource\ResourceManager.h">
+      <Filter>Header Files\System\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\AWindow.h">
-      <Filter>Header Files\System</Filter>
+    <ClInclude Include="Sources\System\Resource\AResourceManager.h">
+      <Filter>Header Files\System\Resource</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Core\PADObject.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Sources\Core\IDPool.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Resource\MeshManager.h">
+      <Filter>Header Files\System\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Resource\Resource.h">
+      <Filter>Header Files\System\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\PADObject.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\Scene.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\IComponent.h">
+      <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Graphics\RHI\ContextSettings.h">
       <Filter>Header Files\Graphics\RHI</Filter>
@@ -227,14 +281,55 @@
     <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h">
       <Filter>Header Files\Graphics\RHI</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Graphics\PerspectiveCamera.h">
-      <Filter>Header Files\Graphics</Filter>
+    <ClInclude Include="Sources\System\ECS\Collider.h">
+      <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Graphics\Camera.h">
-      <Filter>Header Files\Graphics</Filter>
+    <ClInclude Include="Sources\System\ECS\RigidBody.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Utilities\Export.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h">
+      <Filter>Header Files\Graphics\RHI\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Window\WindowEnums.h">
+      <Filter>Header Files\System\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Window\WindowSettings.h">
+      <Filter>Header Files\System\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Window\AWindow.h">
+      <Filter>Header Files\System\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Window\IWindowBase.h">
+      <Filter>Header Files\System\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Window\SDLWindow.h">
+      <Filter>Header Files\System\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Physics\BulletContext.h">
+      <Filter>Header Files\System\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Physics\IPhysicContext.h">
+      <Filter>Header Files\System\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\PerspectiveCamera.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\Camera.h">
+      <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Graphics\OrthographicCamera.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\Shaders\basicColors.frag">
+      <Filter>Resources\Shaders</Filter>
+    </None>
+    <None Include="..\Resources\Shaders\basicPositions.vert">
+      <Filter>Resources\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

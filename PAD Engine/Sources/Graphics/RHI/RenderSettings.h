@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include <Math/Vector4.h>
 #include <Graphics/RHI/Shader/AShaderProgram.h>
 
@@ -8,10 +10,16 @@ namespace rhi	{
 
 struct RenderSettings
 {
-	shad::AShaderProgram**	programs;
-	uint16					programCount;
+	RenderSettings() : 
+		isWireframe(false)
+	{
+		shaders.reserve(1);
+	}
 
-	bool					isWireframe;
+	std::vector<shad::AShaderProgram*> shaders;
+
+	bool toTexture;
+	bool isWireframe;
 };
 
 } // namespace rhi

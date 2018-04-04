@@ -59,32 +59,53 @@ void GLShaderProgram::Use()
 	}
 }
 
-void GLShaderProgram::SetUniform(const std::string& name, int32 value)
+void GLShaderProgram::SetUniform(const std::string& name, const int32 value)
 {
 	if (m_uniforms.find(name) == m_uniforms.end())
 		m_uniforms[name] = glGetUniformLocation(m_id, name.c_str());
 	glUniform1i(m_uniforms[name], value);
 }
 
-void GLShaderProgram::SetUniform(const std::string& name, uint32 value)
+void GLShaderProgram::SetUniform(const std::string& name, const uint32 value)
 {
 	if (m_uniforms.find(name) == m_uniforms.end())
 		m_uniforms[name] = glGetUniformLocation(m_id, name.c_str());
 	glUniform1ui(m_uniforms[name], value);
 }
 
-void GLShaderProgram::SetUniform(const std::string& name, float32 value)
+void GLShaderProgram::SetUniform(const std::string& name, const float32 value)
 {
 	if (m_uniforms.find(name) == m_uniforms.end())
 		m_uniforms[name] = glGetUniformLocation(m_id, name.c_str());
 	glUniform1f(m_uniforms[name], value);
 }
 
-void GLShaderProgram::SetUniform(const std::string& name, bool value)
+void GLShaderProgram::SetUniform(const std::string& name, const bool value)
 {
 	if (m_uniforms.find(name) == m_uniforms.end())
 		m_uniforms[name] = glGetUniformLocation(m_id, name.c_str());
 	glUniform1i(m_uniforms[name], (int)value);
+}
+
+void GLShaderProgram::SetUniform(const std::string& name, math::Mat4& _value)
+{
+	if (m_uniforms.find(name) == m_uniforms.end())
+		m_uniforms[name] = glGetUniformLocation(m_id, name.c_str());
+	glUniformMatrix4fv(m_uniforms[name], 1, GL_TRUE, _value[0]);
+}
+
+void GLShaderProgram::SetUniform(const std::string& name, const math::Vec4f& _value)
+{
+	if (m_uniforms.find(name) == m_uniforms.end())
+		m_uniforms[name] = glGetUniformLocation(m_id, name.c_str());
+	glUniform4fv(m_uniforms[name], 1, &_value[0]);
+}
+
+void GLShaderProgram::SetUniform(const std::string& name, const math::Vec3f& _value)
+{
+	if (m_uniforms.find(name) == m_uniforms.end())
+		m_uniforms[name] = glGetUniformLocation(m_id, name.c_str());
+	glUniform3fv(m_uniforms[name], 1, &_value[0]);
 }
 
 } // namespace shad

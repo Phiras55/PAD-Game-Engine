@@ -65,7 +65,14 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 	Vector3&	operator*=	(const	float		_scalar);											/*! Compound assignment: multiplication */
 	Vector3		operator/	(const	float		_scalar) const;										/*! Arithmetic operator: division */
 	Vector3&	operator/=	(const	float		_scalar);											/*! Compound assignment: division */
-	T&			operator[]	(const	int			_index) const;										/*! Access operator */
+	const T&	operator[]	(const	int			_index) const;										/*! Access operator */
+	T&			operator[]	(const	int			_index);											/*! Access operator */
+
+	Vector3		operator-	() const;
+
+	static inline Vector3 Up()		{ return Vec3f(0, 1, 0); }
+	static inline Vector3 Forward() { return Vec3f(0, 0, 1); }
+	static inline Vector3 Right()	{ return Vec3f(1, 0, 0); }
 
 #pragma endregion
 };

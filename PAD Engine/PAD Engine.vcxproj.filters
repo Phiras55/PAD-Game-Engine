@@ -94,6 +94,15 @@
     <Filter Include="Header Files\System\Physics">
       <UniqueIdentifier>{07c47f7e-e6fc-4bc5-a29e-508581c4326c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Utilities\Serialization">
+      <UniqueIdentifier>{c3d78dde-c163-4ddd-b29f-f63e81666c37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{bd1a1749-9d65-4233-934b-8b41aa5fa74d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities\Serialization">
+      <UniqueIdentifier>{b39437aa-4101-47f4-9241-8f5984c2f5a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Engine.cpp">
@@ -182,6 +191,15 @@
     </ClCompile>
     <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp">
       <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Utilities\Serialization\Serialization.cpp">
+      <Filter>Source Files\Utilities\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Utilities\Serialization\Reflection.cpp">
+      <Filter>Source Files\Utilities\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Utilities\Serialization\MetaData.cpp">
+      <Filter>Source Files\Utilities\Serialization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +331,15 @@
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\Camera.h">
       <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Utilities\Serialization\Serialization.h">
+      <Filter>Header Files\Utilities\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Utilities\Serialization\Reflection.h">
+      <Filter>Header Files\Utilities\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Utilities\Serialization\MetaData.h">
+      <Filter>Header Files\Utilities\Serialization</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

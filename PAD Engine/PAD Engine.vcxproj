@@ -48,6 +48,9 @@
     <ClCompile Include="Sources\System\Resource\AResourceManager.cpp" />
     <ClCompile Include="Sources\System\Resource\ResourceManager.cpp" />
     <ClCompile Include="Sources\System\Window\SDLWindow.cpp" />
+    <ClCompile Include="Sources\Utilities\Serialization\MetaData.cpp" />
+    <ClCompile Include="Sources\Utilities\Serialization\Reflection.cpp" />
+    <ClCompile Include="Sources\Utilities\Serialization\Serialization.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h" />
@@ -93,6 +96,9 @@
     <ClInclude Include="Sources\System\Window\WindowSettings.h" />
     <ClInclude Include="Sources\Utilities\EnumUtils.h" />
     <ClInclude Include="Sources\Utilities\Export.h" />
+    <ClInclude Include="Sources\Utilities\Serialization\MetaData.h" />
+    <ClInclude Include="Sources\Utilities\Serialization\Reflection.h" />
+    <ClInclude Include="Sources\Utilities\Serialization\Serialization.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\basicColors.frag" />

@@ -46,14 +46,14 @@ void Simulate()
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void AddPADObject()
+void AddPADObject(sys::ecs::PADObject* const _padObject)
 {
-
+	g_engine->GetScene()->AddPADObject(_padObject);
 }
 
-void RemovePADObject()
+void RemovePADObject(sys::ecs::PADObject* const _padObject)
 {
-
+	_padObject->GetParent()->RemoveChild(_padObject);
 }
 
 void SetMainCamera()
@@ -75,6 +75,5 @@ void SetMainCameraTarget()
 {
 
 }
-
 
 } // namespace pad

@@ -48,6 +48,7 @@ private:
 	void ResizeContext(const uint32 _w, const uint32 _h);
 	void FlushLogs();
 
+public:
 	sys::ecs::Scene* const				GetScene() const			{ return m_scene; }
 	sys::res::ResourceManager* const	GetResourceManager() const	{ return m_resourceManager; }
 

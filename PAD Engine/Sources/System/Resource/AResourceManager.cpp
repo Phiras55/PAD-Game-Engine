@@ -4,28 +4,19 @@ namespace pad	{
 namespace sys	{
 namespace res	{
 
-AResourceManager::AResourceManager() :
-	m_lastResourceIndex(-1)
-{
-
-}
-
-AResourceManager::~AResourceManager()
-{
-
-}
-
-void AResourceManager::AddResource(const std::string _name, const Resource _resource)
+void AResourceManager::AddResource(const std::string _name, Resource* const _resource)
 {
 	if (m_resourceCollection.count(_name))
 		return;
 
 	int resourceIndex = m_idPool.GenerateID();
 
-	if (resourceIndex == m_resourceArray.size() - 1)
+	if (resourceIndex == m_resourceArray.size())
 		m_resourceArray.push_back(_resource);
 	else
 		m_resourceArray[resourceIndex] = _resource;
+
+	m_resourceCollection[_name] = resourceIndex;
 
 	++m_lastResourceIndex;
 }
@@ -46,11 +37,6 @@ void AResourceManager::RemoveResources(const std::vector<std::string>& _toRemove
 
 		--m_lastResourceIndex;
 	}
-}
-
-Resource& AResourceManager::GetResource(const std::string _name)
-{
-	return m_resourceArray[m_resourceCollection[_name]];
 }
 
 } // namespace res

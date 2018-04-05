@@ -39,11 +39,13 @@
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
     <ClCompile Include="Sources\System\ECS\Collider.cpp" />
+    <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp" />
     <ClCompile Include="Sources\System\ECS\PADObject.cpp" />
     <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp" />
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp" />
     <ClCompile Include="Sources\System\ECS\Scene.cpp" />
     <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
+    <ClCompile Include="Sources\System\Resource\MeshManager.cpp" />
     <ClCompile Include="Sources\System\Resource\Resource.cpp" />
     <ClCompile Include="Sources\System\Resource\AResourceManager.cpp" />
     <ClCompile Include="Sources\System\Resource\ResourceManager.cpp" />
@@ -75,6 +77,7 @@
     <ClInclude Include="Sources\System\ECS\Camera.h" />
     <ClInclude Include="Sources\System\ECS\Collider.h" />
     <ClInclude Include="Sources\System\ECS\IComponent.h" />
+    <ClInclude Include="Sources\System\ECS\MeshRenderer.h" />
     <ClInclude Include="Sources\System\ECS\PADObject.h" />
     <ClInclude Include="Sources\System\ECS\PerspectiveCamera.h" />
     <ClInclude Include="Sources\System\ECS\RigidBody.h" />

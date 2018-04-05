@@ -3,8 +3,9 @@
 
 #include <Math/Vector4.h>
 
-namespace pad {
-namespace gfx {
+namespace pad	{
+namespace gfx	{
+namespace mod	{
 
 class Material final
 {
@@ -24,5 +25,6 @@ public:
 	void operator=(Material&&)		= delete;
 };
 
+} // namespace mod
 } // namespace gfx
 } // namespace pad

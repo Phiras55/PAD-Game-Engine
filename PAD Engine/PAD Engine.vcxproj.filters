@@ -183,6 +183,12 @@
     <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\System\Resource\MeshManager.cpp">
+      <Filter>Source Files\System\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -312,6 +318,9 @@
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\Camera.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\MeshRenderer.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>

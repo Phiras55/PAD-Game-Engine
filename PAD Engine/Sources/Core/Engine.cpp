@@ -5,16 +5,26 @@
 #include <Math/Matrix4x4.h>
 #include <Logger/SimpleLogger.h>
 
+#include <Graphics/GL/Shader/GLShaderProgram.h>
+#include <Graphics/GL/Shader/GLFragmentShader.h>
+#include <Graphics/GL/Shader/GLVertexShader.h>
+#include <System/ECS/MeshRenderer.h>
+#include <System/ECS/PerspectiveCamera.h>
+
 namespace pad	{
 namespace core	{
 
-Engine::Engine()
+Engine::Engine() :
+	m_scene(new sys::ecs::Scene()),
+	m_resourceManager(new sys::res::ResourceManager())
 {
 
 }
 
 Engine::~Engine()
 {
+	if (m_scene)
+		delete m_scene;
 	if(mp_window)
 		delete mp_window;
 	if (mp_renderer)
@@ -27,6 +37,60 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win:
 	core::EngineClock::Init();
 	CreateWindow(_w);
 	CreateRenderer(_c);
+
+	#pragma region Mesh
+
+	//gfx::gl::shad::GLShaderProgram	program;
+	//gfx::gl::shad::GLFragmentShader	fragShader;
+	//gfx::gl::shad::GLVertexShader	vertShader;
+
+	//vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
+	//fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
+
+	//program.SetVertexShader(&vertShader);
+	//program.SetFragmentShader(&fragShader);
+	//program.CompileProgram();
+
+	//gfx::rhi::RenderSettings r;
+	//r.shaders.push_back(&program);
+	//r.isWireframe = true;
+
+	pad::gfx::mod::MeshData md;
+
+	md.positions = new float[24]{
+		-0.5, -0.5,  0.5,
+		0.5, -0.5,  0.5,
+		-0.5,  0.5,  0.5,
+		0.5,  0.5, -0.5,
+		-0.5, -0.5, -0.5,
+		-0.5,  0.5, -0.5,
+		0.5, -0.5, -0.5,
+		0.5,  0.5,  0.5
+	};
+	md.positionCount = 24;
+
+	md.indices = new pad::uint32[36]{
+		0, 1, 2,
+		3, 4, 5,
+		4, 3, 6,
+		7, 2, 1,
+		4, 6, 1,
+		4, 2, 5,
+		7, 1, 6,
+		5, 2, 7,
+		4, 0, 2,
+		6, 3, 7,
+		1, 0, 4,
+		7, 3, 5
+	};
+	md.indiceCount = 36;
+
+	gfx::mod::Mesh* m = new gfx::mod::Mesh();
+	m->SetName("Cube");
+	mp_renderer->GenerateMesh(*m, md);
+	m_resourceManager->GetMeshManager().AddResource(m->GetName(), m);
+	
+	#pragma endregion
 }
 
 void Engine::StartSimulation()
@@ -75,7 +139,34 @@ void Engine::LateUpdate()
 
 void Engine::Render()
 {
+	sys::ecs::PerspectiveCamera cam;
+	cam.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
+	cam.LookAt(math::Vec3f(10, 10, -10), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 
+	math::Mat4 mvp = cam.GetProjection() * cam.GetView();
+
+	gfx::gl::shad::GLShaderProgram	program;
+	gfx::gl::shad::GLFragmentShader	fragShader;
+	gfx::gl::shad::GLVertexShader	vertShader;
+
+	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
+	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
+
+	program.SetVertexShader(&vertShader);
+	program.SetFragmentShader(&fragShader);
+	program.CompileProgram();
+
+	gfx::rhi::RenderSettings r;
+	r.shaders.push_back(&program);
+	r.isWireframe = true;
+
+	for (auto mr : sys::ecs::MeshRenderer::GetCollection())
+	{
+		std::string a = mr.GetMeshName();
+
+		if (mp_renderer)
+			mp_renderer->Draw(*m_resourceManager->GetMeshManager().GetResource(mr.GetMeshName()), r, mvp);
+	}
 }
 
 void Engine::CreateWindow(const sys::win::WindowSettings& _infos)

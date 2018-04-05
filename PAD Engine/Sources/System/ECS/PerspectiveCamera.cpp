@@ -6,22 +6,38 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-PerspectiveCamera::PerspectiveCamera(math::Transform* const _transform)
+PerspectiveCamera::PerspectiveCamera()
 {
-	m_transform = _transform;
+	m_transform = new math::Transform();
 
 	Perspective(45, 16.f / 9.f, 0.01f, 1000.f);
 	LookAt(m_transform->Position(), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 }
 
-PerspectiveCamera::PerspectiveCamera()
-{
-	m_transform = nullptr;
-}
-
 PerspectiveCamera::~PerspectiveCamera()
 {
 
+}
+
+void PerspectiveCamera::Init(PADObject* const _owner)
+{
+	m_owner	= _owner;
+}
+
+void PerspectiveCamera::Start()
+{
+}
+
+void PerspectiveCamera::Update()
+{
+}
+
+void PerspectiveCamera::FixedUpdate()
+{
+}
+
+void PerspectiveCamera::LateUpdate()
+{
 }
 
 const math::Mat4& PerspectiveCamera::Perspective(float v, float r, float n, float f) //v = FOV, r = aspectRatio, n = near, f = far

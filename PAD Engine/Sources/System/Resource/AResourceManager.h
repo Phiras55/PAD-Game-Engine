@@ -10,21 +10,18 @@ namespace res	{
 
 class AResourceManager
 {
-public:
-	AResourceManager();
-	~AResourceManager();
-
-private:
+protected:
 	std::unordered_map<std::string, int>	m_resourceCollection;
-	std::vector<Resource>					m_resourceArray;
-											
-protected:									
+	std::vector<Resource*>					m_resourceArray;
+								
 	core::IDPool							m_idPool;
 	int										m_lastResourceIndex;
 
 public:
-	void AddResource(std::string _name, Resource _resource);
+	void AddResource(const std::string _name, Resource* const _resource);
 	void RemoveResources(const std::vector<std::string>& _toRemove);
+
+	virtual Resource* const GetResource(const std::string _name) = 0;
 };
 
 } // namespace res

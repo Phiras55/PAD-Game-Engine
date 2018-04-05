@@ -1,6 +1,8 @@
 #pragma once
 #include <System/Window/WindowSettings.h>
 #include <Graphics/RHI/ContextSettings.h>
+#include <System/ECS/PADObject.h>
+
 #include <Utilities/Export.h>
 
 namespace pad	
@@ -12,8 +14,8 @@ namespace pad
 	ENGINE_API void StartSimulation();
 	ENGINE_API void Simulate();
 
-	ENGINE_API void AddPADObject();
-	ENGINE_API void RemovePADObject();
+	ENGINE_API void AddPADObject(sys::ecs::PADObject* const _padObject);
+	ENGINE_API void RemovePADObject(sys::ecs::PADObject* const _padObject);
 
 	ENGINE_API void SetMainCamera();
 	ENGINE_API void MoveMainCamera();

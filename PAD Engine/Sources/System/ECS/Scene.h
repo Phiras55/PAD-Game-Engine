@@ -24,6 +24,7 @@ private:
 	PADObject*		m_masterPADObject;
 
 public:
+	void Init();
 	void Update();
 	void AddPADObject(PADObject* _PADObject);
 

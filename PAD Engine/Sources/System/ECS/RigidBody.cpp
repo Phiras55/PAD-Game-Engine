@@ -6,14 +6,17 @@ namespace ecs	{
 
 RigidBody::RigidBody()
 {
+
 }
 
 RigidBody::~RigidBody()
 {
+
 }
 
-void RigidBody::Init()
+void RigidBody::Init(PADObject* const _owner)
 {
+	m_owner = _owner;
 }
 
 void RigidBody::Start()
@@ -28,12 +31,12 @@ void RigidBody::Update()
 
 void RigidBody::FixedUpdate()
 {
-	// parent.transform = rigidBody.transform
+
 }
 
 void RigidBody::LateUpdate()
 {
-
+	// parent.transform = rigidBody.transform
 }
 
 void RigidBody::SetMass(const float _mass)

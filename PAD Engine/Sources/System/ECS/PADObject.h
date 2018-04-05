@@ -4,12 +4,13 @@
 #include <Math/Transform.h>
 #include <System/ECS/IComponent.h>
 #include <vector>
+#include <Utilities/Export.h>
 
 namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-class PADObject
+class ENGINE_API PADObject
 {
 #pragma region Constructor / Destructor
 
@@ -57,6 +58,7 @@ public:
 #pragma region MyRegion
 
 	void SetParent(PADObject* const _parent);
+	PADObject* const GetParent() const { return m_parent; }
 
 	inline math::Transform& GetTransform() 				{ return m_transform; }
 	inline const math::Transform& GetTransform() const	{ return m_transform; }

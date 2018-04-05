@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include <Math/Matrix4x4.h>
 #include <Core/EngineDLL.h>
 #include <Graphics/GL/Shader/GLShaderProgram.h>
@@ -7,11 +6,18 @@
 #include <Graphics/GL/Shader/GLFragmentShader.h>
 #include <System/ECS/PerspectiveCamera.h>
 
-#include <glm/gtc/matrix_transform.hpp>
+#include <System/ECS/PADObject.h>
+#include <System/ECS/RigidBody.h>
+#include <Graphics/Model/Mesh.h>
+#include <Graphics/Model/MeshData.h>
+#include <System/ECS/MeshRenderer.h>
+
+//#include <glm/gtc/matrix_transform.hpp>
 
 int main()
 {
-	// Will be read from a config file
+	#pragma region RenderInit
+
 	pad::sys::win::WindowSettings winSettings;
 
 	winSettings.title = "This is a SDL Window.";
@@ -32,59 +38,26 @@ int main()
 	contextSettings.clearColor.b = 0.3f;
 	contextSettings.clearColor.a = 1.0f;
 	contextSettings.areTrianglesCounterClockwise = true;
-
 	contextSettings.enabledBuffers = pad::gfx::rhi::BufferType::ALL;
+
+	#pragma endregion
 
 	pad::CreateEngine();
 	pad::InitEngine(contextSettings, winSettings);
 
-	pad::StartSimulation();
+	pad::sys::ecs::PADObject		obj;
+	pad::sys::ecs::RigidBody		rb;
+	pad::sys::ecs::MeshRenderer		mr;
+	mr.SetMeshName("Cube");
+	obj.AddComponent(&rb);
+	obj.AddComponent(&mr);
+	pad::sys::ecs::MeshRenderer::AddToCollection(mr);
 
+	pad::AddPADObject(&obj);
+
+	pad::StartSimulation();
 	pad::DestroyEngine();
 
-	/*pad::gfx::gl::shad::GLShaderProgram		program;
-	pad::gfx::gl::shad::GLFragmentShader	fragShader;
-	pad::gfx::gl::shad::GLVertexShader		vertShader;
-
-	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
-	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
-
-	program.SetVertexShader(&vertShader);
-	program.SetFragmentShader(&fragShader);
-	program.CompileProgram();
-	
-	r.shaders.push_back(&program);
-	r.isWireframe = true;
-
-	md.positions = new float[24]{
-		-0.5, -0.5,  0.5,
-		 0.5, -0.5,  0.5,
-		-0.5,  0.5,  0.5,
-		 0.5,  0.5, -0.5,
-		-0.5, -0.5, -0.5,
-		-0.5,  0.5, -0.5,
-		 0.5, -0.5, -0.5,
-		 0.5,  0.5,  0.5
-	};
-
-	md.positionCount = 24;
-
-	md.indices = new pad::uint32[36]{
-		0, 1, 2,
-		3, 4, 5,
-		4, 3, 6,
-		7, 2, 1,
-		4, 6, 1,
-		4, 2, 5,
-		7, 1, 6,
-		5, 2, 7,
-		4, 0, 2,
-		6, 3, 7,
-		1, 0, 4,
-		7, 3, 5
-	};
-
-	md.indiceCount = 36;*/
-
 	return EXIT_SUCCESS;
+
 }

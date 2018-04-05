@@ -1,7 +1,7 @@
 #pragma once
 
 #include <System/ECS/IComponent.h>
-//#include <btBulletDynamicsCommon.h>
+#include <Bullet/btBulletDynamicsCommon.h>
 
 namespace pad	{
 namespace sys	{
@@ -14,10 +14,10 @@ public:
 	~Collider();
 
 public:
-	//btCollisionObject* const GetBTCollider() const { return m_btCollider; }
+	btCollisionObject* const GetBTCollider() const { return m_btCollider; }
 
 private:
-	//btCollisionObject* m_btCollider;
+	btCollisionObject* m_btCollider;
 };
 
 } // namespace ecs

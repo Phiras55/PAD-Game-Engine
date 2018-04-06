@@ -3,6 +3,10 @@
 #include <Graphics/RHI/IRenderer.h>
 #include <Graphics/RHI/RenderSettings.h>
 
+#include <type_traits>
+
+#include <Utilities\Serialization\MetaData.h>
+
 namespace pad	{
 namespace core	{
 

@@ -2,6 +2,8 @@
 #include <array>
 #include <varargs.h>
 
+class Serializer;
+
 #pragma region ARG_COUNT
 
 #define ARG_COUNT(...) ARG_COUNT_IMPL(__VA_ARGS__, MASK())
@@ -13,7 +15,7 @@
 
 #pragma region ARG_LIST_N
 
-#define ARG_LIST_1(val, ...) #val
+#define ARG_LIST_1(val) #val
 #define ARG_LIST_2(val, ...) #val , MACRO_EXPAND(ARG_LIST_1(__VA_ARGS__))
 #define ARG_LIST_3(val, ...) #val , MACRO_EXPAND(ARG_LIST_2(__VA_ARGS__))
 #define ARG_LIST_4(val, ...) #val , MACRO_EXPAND(ARG_LIST_3(__VA_ARGS__))
@@ -50,7 +52,7 @@
 
 #pragma region MAKE_META_DATA
 
-#define MAKE_META_DATA(NAME, ...) /*friend Serializer;*/MAKE_META_DATA_IMPL(NAME, ARG_COUNT(__VA_ARGS__), __VA_ARGS__)
-#define MAKE_META_DATA_IMPL(NAME, N, ...) constexpr std::array<const char*, N> meta_##NAME = { MACRO_EXPAND(MACRO_CONCAT(ARG_LIST, N)(__VA_ARGS__)) };
+#define MAKE_META_DATA(NAME, ...) MAKE_META_DATA_IMPL(NAME, ARG_COUNT(__VA_ARGS__), __VA_ARGS__)
+#define MAKE_META_DATA_IMPL(NAME, N, ...) static constexpr std::array<const char*, N> meta_##NAME = { MACRO_EXPAND(MACRO_CONCAT(ARG_LIST, N)(__VA_ARGS__)) };
 
 #pragma endregion

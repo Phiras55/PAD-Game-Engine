@@ -4,6 +4,7 @@
 #include <Graphics/RHI/RenderSettings.h>
 #include <System/ECS/Scene.h>
 #include <System/Resource/ResourceManager.h>
+#include <System/Physics/IPhysicContext.h>
 
 namespace pad	{
 namespace core	{
@@ -22,6 +23,7 @@ private:
 	sys::win::SDLWindow*	mp_window;
 
 	sys::ecs::Scene*			m_scene;
+	sys::phx::IPhysicContext*	m_physicContext;
 	sys::res::ResourceManager*	m_resourceManager;
 
 public:

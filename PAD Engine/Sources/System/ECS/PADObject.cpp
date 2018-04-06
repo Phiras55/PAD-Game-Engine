@@ -1,4 +1,5 @@
 #include <System/ECS/PADObject.h>
+#include <System/ECS/IComponent.h>
 #include <algorithm>
 
 namespace pad	{
@@ -77,6 +78,7 @@ void PADObject::LateUpdate()
 
 void PADObject::AddComponent(IComponent* const _component)
 {
+	_component->SetOwner(this);
 	m_components.push_back(_component);
 }
 

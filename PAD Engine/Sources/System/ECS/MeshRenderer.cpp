@@ -9,7 +9,7 @@ std::vector<MeshRenderer> MeshRenderer::m_collection;
 
 MeshRenderer::MeshRenderer()
 {
-
+	m_type = COMPONENT_TYPE::MESH_RENDERER;
 }
 
 MeshRenderer::~MeshRenderer()

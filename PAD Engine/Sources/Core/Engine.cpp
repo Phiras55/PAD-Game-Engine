@@ -10,12 +10,14 @@
 #include <Graphics/GL/Shader/GLVertexShader.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/PerspectiveCamera.h>
+#include <System/Physics/BulletContext.h>
 
 namespace pad	{
 namespace core	{
 
 Engine::Engine() :
 	m_scene(new sys::ecs::Scene()),
+	m_physicContext(new sys::phx::BulletContext()),
 	m_resourceManager(new sys::res::ResourceManager())
 {
 
@@ -124,7 +126,10 @@ void Engine::PollEvents()
 
 void Engine::Update()
 {
-	core::Timer::PauseAll();
+//	core::Timer::PauseAll();
+//	m_scene->Update();
+//	m_physicContext->Update();
+
 }
 
 void Engine::FixedUpdate()
@@ -141,9 +146,9 @@ void Engine::Render()
 {
 	sys::ecs::PerspectiveCamera cam;
 	cam.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-	cam.LookAt(math::Vec3f(10, 10, -10), math::Vec3f(0, 0, 0), math::Vec3f::Up());
+	cam.LookAt(math::Vec3f(0, 0, 10), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 
-	math::Mat4 mvp = cam.GetProjection() * cam.GetView();
+//	math::Mat4 mvp = cam.GetProjection() * cam.GetView();
 
 	gfx::gl::shad::GLShaderProgram	program;
 	gfx::gl::shad::GLFragmentShader	fragShader;
@@ -162,7 +167,7 @@ void Engine::Render()
 
 	for (auto mr : sys::ecs::MeshRenderer::GetCollection())
 	{
-		std::string a = mr.GetMeshName();
+		math::Mat4 mvp = cam.GetProjection() * cam.GetView() * mr.GetOwner()->GetTransform().GetLocalTransform();
 
 		if (mp_renderer)
 			mp_renderer->Draw(*m_resourceManager->GetMeshManager().GetResource(mr.GetMeshName()), r, mvp);

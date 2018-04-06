@@ -6,6 +6,9 @@
 
 namespace pad	{
 namespace math	{
+	
+inline float DegreeToRad(const float _deg) { return (_deg * PI) / 180.f; }
+inline float RadToDegree(const float _rad) { return (_rad * 180.f) / PI; }
 
 using Mat4 = Matrix4x4;
 
@@ -31,9 +34,9 @@ public:
 private:
 	inline void ComputeLocalMatrix()
 	{
-		m_localTransform = TranslationMatrix(m_position)
-			*	RotationMatrix()
-			*	ScaleMatrix();
+		m_localTransform =		TranslationMatrix(m_position)
+							*	RotationMatrix(DegreeToRad(m_rotation.x), DegreeToRad(m_rotation.y), DegreeToRad(m_rotation.z))
+							*	ScaleMatrix(m_scale);
 
 		m_isDirty = false;
 	}
@@ -45,7 +48,6 @@ public:
 	{
 		if (m_isDirty)
 			ComputeLocalMatrix();
-
 		return m_localTransform;
 	}
 
@@ -90,9 +92,6 @@ public:
 		m_isDirty = true;
 	}
 };
-
-inline float DegreeToRad(const float _deg) { return (_deg * PI) / 180.f; }
-inline float RadToDegree(const float _rad) { return (_rad * 180.f) / PI; }
 
 #define DEGREE_TO_RAD(x) pad::math::DegreeToRad(x)
 #define RAD_TO_DEGREE(x) pad::math::RadToDegree(x)

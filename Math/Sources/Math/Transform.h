@@ -12,7 +12,11 @@ using Mat4 = Matrix4x4;
 class Transform final
 {
 public:
-	inline Transform()		= default;
+	inline Transform()
+	{
+		m_isDirty = true;
+	}
+
 	inline ~Transform()		= default;
 
 private:

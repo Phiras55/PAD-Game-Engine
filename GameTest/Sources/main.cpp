@@ -46,14 +46,23 @@ int main()
 	pad::InitEngine(contextSettings, winSettings);
 
 	pad::sys::ecs::PADObject		obj;
+	obj.GetTransform().SetScale(1.f);
 	pad::sys::ecs::RigidBody		rb;
 	pad::sys::ecs::MeshRenderer		mr;
 	mr.SetMeshName("Cube");
 	obj.AddComponent(&rb);
 	obj.AddComponent(&mr);
 	pad::sys::ecs::MeshRenderer::AddToCollection(mr);
-
 	pad::AddPADObject(&obj);
+
+	pad::sys::ecs::PADObject		obj2;
+	obj2.GetTransform().SetPosition(pad::math::Vec3f(3, 0, 0));
+	obj2.GetTransform().SetScale(1.f);
+	pad::sys::ecs::MeshRenderer		mr2;
+	mr2.SetMeshName("Cube");
+	obj2.AddComponent(&mr2);
+	pad::sys::ecs::MeshRenderer::AddToCollection(mr2);
+	pad::AddPADObject(&obj2);
 
 	pad::StartSimulation();
 	pad::DestroyEngine();

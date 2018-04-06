@@ -35,9 +35,10 @@ inline Matrix4x4 RotationMatrix(float _x = 0.f, float _y = 0.f, float _z = 0.f)
 
 	Matrix4x4 matZ(	  cos(_z),   -sin(_z),			0,			0,
 					  sin(_z),    cos(_z),			0,			0,
-							0,			0,			0,			0,
+							0,			0,			1,			0,
 							0,			0,			0,			1);
-	matX *= (matY *= matZ);
+
+	matX = (matY * matX * matZ);
 	return matX;
 }
 
@@ -55,9 +56,10 @@ inline Matrix4x4 RotationMatrix(const Vec3f& _rotation)
 
 	Matrix4x4 matZ(	cos(_rotation.z),	-sin(_rotation.z),	0,	0,
 					sin(_rotation.z),	cos(_rotation.z),	0,	0,
-					0,					0,					0,	0,
+					0,					0,					1,	0,
 					0,					0,					0,	1);
-	matX *= (matY *= matZ);
+
+	matX = (matY * matX * matZ);
 	return matX;
 }
 

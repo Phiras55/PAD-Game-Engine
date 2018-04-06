@@ -35,6 +35,8 @@ public:
 	void SetOwner(PADObject* const _owner)	override		{ m_owner = _owner; }
 	PADObject* const GetOwner() const		override		{ return m_owner; }
 
+	virtual const COMPONENT_TYPE GetType() const override	{ return m_type; }
+
 	void SetMeshName(const std::string& _name)				{ m_meshName = _name; }
 	const std::string& GetMeshName() const					{ return m_meshName; }
 

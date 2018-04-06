@@ -12,13 +12,25 @@ namespace mod {
 	{
 	}
 
-	Mesh::~Mesh()
+	void Mesh::Clean()
 	{
 		if (m_vao)
+		{
 			delete m_vao;
+			m_vao = nullptr;
+		}
 
 		if (m_ibo)
+		{
 			delete m_ibo;
+			m_ibo = nullptr;
+		}
+	}
+
+	void Mesh::operator=(const Mesh& _other)
+	{
+		m_vao = _other.m_vao;
+		m_ibo = _other.m_ibo;
 	}
 
 } // namespace mod

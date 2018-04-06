@@ -10,15 +10,16 @@ namespace rhi	{
 
 struct RenderSettings
 {
-	RenderSettings() : 
+	RenderSettings() :
+		modelMatrix(nullptr),
 		isWireframe(false)
 	{
-		shaders.reserve(1);
+		programs.reserve(1);
 	}
 
-	std::vector<shad::AShaderProgram*> shaders;
+	std::vector<shad::AShaderProgram*>	programs;
+	const math::Matrix4x4*				modelMatrix;
 
-	bool toTexture;
 	bool isWireframe;
 };
 

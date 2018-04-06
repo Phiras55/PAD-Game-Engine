@@ -20,11 +20,8 @@ public:
 	GLRenderer(GLRenderer&&)												= delete;
 
 public:
-	void StartModule()														override;
-	void StopModule()														override;
-
 	void Init(const rhi::ContextSettings& _settings)						override;
-	void Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings, math::Mat4& _vp) override;
+	void ForwardRendering(mod::Mesh* const _mesh, const rhi::RenderSettings* const _settings, const math::Mat4& _vp, const uint32 _meshCount) override;
 	void ResizeViewport(const uint32 _w, const uint32 _h)					override;
 	void GenerateMesh(mod::Mesh& _m, const mod::MeshData& _md)				override;
 	void ClearBuffer()														override;

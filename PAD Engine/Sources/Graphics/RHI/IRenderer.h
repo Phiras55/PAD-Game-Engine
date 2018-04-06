@@ -3,7 +3,6 @@
 #include <Graphics/Model/Mesh.h>
 #include <Graphics/Model/MeshData.h>
 #include <Graphics/RHI/RenderSettings.h>
-#include <System/IModule.h>
 
 #include <Common.h>
 #include <vector>
@@ -12,7 +11,7 @@ namespace pad {
 namespace gfx {
 namespace rhi { 
 
-class IRenderer : public sys::IModule
+class IRenderer
 {
 protected:
 	std::vector<uint32> m_buffers;
@@ -20,7 +19,7 @@ protected:
 
 public:
 	virtual void Init(const ContextSettings& _settings)						= 0;
-	virtual void Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings, math::Mat4& _vp) = 0;
+	virtual void ForwardRendering(mod::Mesh* const _mesh, const rhi::RenderSettings* const _settings, const math::Mat4& _vp, const uint32 _meshCount) = 0;
 	virtual void ClearBuffer()												= 0;
 	virtual void ResizeViewport(const uint32 _w, const uint32 _h)			= 0;
 	virtual void GenerateMesh(mod::Mesh& _m, const mod::MeshData& _md)		= 0;

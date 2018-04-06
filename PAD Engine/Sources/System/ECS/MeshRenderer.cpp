@@ -7,9 +7,9 @@ namespace ecs	{
 
 std::vector<MeshRenderer> MeshRenderer::m_collection;
 
-MeshRenderer::MeshRenderer()
+MeshRenderer::MeshRenderer(math::Transform& _ownerTransform)
 {
-
+	m_settings.modelMatrix = &_ownerTransform.GetGlobalTransform();
 }
 
 MeshRenderer::~MeshRenderer()

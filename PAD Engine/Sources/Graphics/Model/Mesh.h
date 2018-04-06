@@ -12,16 +12,15 @@ class ENGINE_API Mesh : public sys::res::Resource
 {
 public:
 	Mesh();
-	~Mesh();
-
-	Mesh(const Mesh&)	= delete;
-	Mesh(Mesh&&)		= delete;
+	~Mesh() = default;
 
 private:
 	rhi::AVertexArray*  m_vao;
 	rhi::AVertexBuffer* m_ibo;
 
 public:
+	void Clean();
+
 	inline uint32&		GetVertexArrayID()			{ return m_vao->GetID(); }
 	inline const uint32 GetVertexArrayID() const	{ return m_vao->GetID(); }
 	inline uint32&		GetIndiceCount()			{ return m_ibo->GetCount(); }
@@ -32,8 +31,7 @@ public:
 	inline void SetVertexArray(rhi::AVertexArray* const _vao) { m_vao = _vao; }
 
 public:
-	void operator=(const Mesh&) = delete;
-	void operator=(Mesh&&)		= delete;
+	void operator=(const Mesh& _other);
 };
 
 } // namespace mod

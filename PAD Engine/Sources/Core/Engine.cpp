@@ -139,34 +139,37 @@ void Engine::LateUpdate()
 
 void Engine::Render()
 {
+#pragma region Temp Code
+	// TODO : Change the temp camera for a main camera in the scene
 	sys::ecs::PerspectiveCamera cam;
 	cam.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
 	cam.LookAt(math::Vec3f(10, 10, -10), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 
-	math::Mat4 mvp = cam.GetProjection() * cam.GetView();
+	math::Mat4 vp = cam.GetProjection() * cam.GetView();
+#pragma endregion
 
-	gfx::gl::shad::GLShaderProgram	program;
-	gfx::gl::shad::GLFragmentShader	fragShader;
-	gfx::gl::shad::GLVertexShader	vertShader;
+	gfx::mod::Mesh* meshes = nullptr;
+	gfx::rhi::RenderSettings* settings = nullptr;
 
-	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
-	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
+	uint32 meshCount		= (uint32)sys::ecs::MeshRenderer::GetCollection().size();
+	uint32 meshRendererIdx	= 0;
 
-	program.SetVertexShader(&vertShader);
-	program.SetFragmentShader(&fragShader);
-	program.CompileProgram();
+	meshes		= new gfx::mod::Mesh[meshCount];
+	settings	= new gfx::rhi::RenderSettings[meshCount];
 
-	gfx::rhi::RenderSettings r;
-	r.shaders.push_back(&program);
-	r.isWireframe = true;
-
-	for (auto mr : sys::ecs::MeshRenderer::GetCollection())
+	for (const auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{
-		std::string a = mr.GetMeshName();
+		meshes[meshRendererIdx]		= *m_resourceManager->GetMeshManager().GetResource(meshRenderer.GetMeshName());
+		settings[meshRendererIdx]	= meshRenderer.GetSettings();
 
-		if (mp_renderer)
-			mp_renderer->Draw(*m_resourceManager->GetMeshManager().GetResource(mr.GetMeshName()), r, mvp);
+		++meshRendererIdx;
 	}
+
+	if (mp_renderer)
+		mp_renderer->ForwardRendering(meshes, settings, vp, meshCount);
+
+	delete[] meshes;
+	delete[] settings;
 }
 
 void Engine::CreateWindow(const sys::win::WindowSettings& _infos)
@@ -212,12 +215,6 @@ void Engine::ResizeContext(const uint32 _w, const uint32 _h)
 {
 	if (mp_renderer)
 		mp_renderer->ResizeViewport(_w, _h);
-}
-
-void Engine::Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, math::Mat4& _vp)
-{
-	if (mp_renderer)
-		mp_renderer->Draw(_m, _settings, _vp);
 }
 
 void Engine::FlushLogs()

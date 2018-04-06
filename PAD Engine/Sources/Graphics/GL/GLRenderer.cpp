@@ -1,6 +1,7 @@
 #include <Graphics/GL/GLRenderer.h>
 #include <Logger/SimpleLogger.h>
 #include <Utilities/EnumUtils.h>
+#include <Graphics/RHI/Shader/AShaderProgram.h>
 #include <Graphics/GL/GLVertexBuffer.h>
 #include <Graphics/GL/GLVertexArray.h>
 #include <Graphics/GL/GLVertexElementBuffer.h>
@@ -13,16 +14,6 @@ namespace gfx	{
 namespace gl	{
 
 GLRenderer::GLRenderer()
-{
-
-}
-
-void GLRenderer::StopModule()
-{
-
-}
-
-void GLRenderer::StartModule()
 {
 
 }
@@ -86,31 +77,42 @@ void GLRenderer::InitViewPort(const math::Vec2i& _viewportSize)
 		_viewportSize.y);
 }
 
-void GLRenderer::Draw(const mod::Mesh& _mesh, const rhi::RenderSettings& _settings, math::Mat4& _vp)
+void GLRenderer::ForwardRendering(mod::Mesh* const _mesh, const rhi::RenderSettings* const _settings, const math::Mat4& _vp, const uint32 _meshCount)
 {
-	glBindVertexArray(_mesh.GetVertexArrayID());
-	rhi::shad::AShaderProgram* currentShader;
+	if (!_mesh || !_settings)
+		return;
 
-	for (uint32 i = 0; i < _settings.shaders.size(); ++i)
+	for (uint32 meshIdx = 0; meshIdx < _meshCount; ++meshIdx)
 	{
-		currentShader = _settings.shaders[0];
-		if (currentShader)
-		{
-			if(_settings.isWireframe)
-				glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		const mod::Mesh&			currentMesh		= _mesh[meshIdx];
+		const rhi::RenderSettings&	currentSettings	= _settings[meshIdx];
+		const uint32				shaderCount		= (uint32)currentSettings.programs.size();
 
-			currentShader->Use();
-			currentShader->SetUniform("albedo", math::Color4(1, 0, 0, 1));
-			currentShader->SetUniform("mvp", _vp);
+		if (shaderCount == 0)
+			continue;
 
-			glDrawElements(GL_TRIANGLES, _mesh.GetIndiceCount(), GL_UNSIGNED_INT, nullptr);
-			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		}
-		else
+		if(currentSettings.isWireframe)
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		glBindVertexArray(currentMesh.GetVertexArrayID());
+
+		for (rhi::shad::AShaderProgram* const currentProgram : currentSettings.programs)
 		{
-			LOG_ERROR_S("The shader is not valid. Try to add one in the RenderSettings.\n");
+			if (!currentProgram)
+			{
+				LOG_ERROR_S("The shader is not valid. Try to add one in the RenderSettings.\n");
+				continue;
+			}
+
+			currentProgram->Use();
+			currentProgram->SetUniform("albedo", math::Vec4f(1, 0, 0, 1));
+			currentProgram->SetUniform("mvp", _vp * *currentSettings.modelMatrix);
+
+			glDrawElements(GL_TRIANGLES, currentMesh.GetIndiceCount(), GL_UNSIGNED_INT, nullptr);
 		}
 	}
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void GLRenderer::ClearBuffer()

@@ -45,9 +45,23 @@ int main()
 	pad::CreateEngine();
 	pad::InitEngine(contextSettings, winSettings);
 
+	pad::gfx::gl::shad::GLShaderProgram		program;
+	pad::gfx::gl::shad::GLFragmentShader	fragShader;
+	pad::gfx::gl::shad::GLVertexShader		vertShader;
+
+	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
+	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
+
+	program.SetVertexShader(&vertShader);
+	program.SetFragmentShader(&fragShader);
+	program.CompileProgram();
+
 	pad::sys::ecs::PADObject		obj;
 	pad::sys::ecs::RigidBody		rb;
-	pad::sys::ecs::MeshRenderer		mr;
+	pad::sys::ecs::MeshRenderer		mr(obj.GetTransform());
+
+	mr.GetSettings().programs.push_back(&program);
+
 	mr.SetMeshName("Cube");
 	obj.AddComponent(&rb);
 	obj.AddComponent(&mr);

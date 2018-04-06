@@ -42,7 +42,6 @@ private:
 	// TODO : Move GenerateMesh to the right place
 	void GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md);
 
-	void Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, math::Mat4& _vp);
 	void SwapBuffers();
 	void ClearBuffers();
 	void ResizeContext(const uint32 _w, const uint32 _h);

@@ -26,11 +26,11 @@ private:
 	static std::vector<MeshRenderer> m_collection;
 
 public:
-	void Init(PADObject* const _owner)		override;
-	void Start()							override;
-	void Update()							override;
-	void FixedUpdate()						override;
-	void LateUpdate()						override;
+	void Init()			override;
+	void Start()		override;
+	void Update()		override;
+	void FixedUpdate()	override;
+	void LateUpdate()	override;
 
 	void SetOwner(PADObject* const _owner)	override		{ m_owner = _owner; }
 	PADObject* const GetOwner() const		override		{ return m_owner; }

@@ -17,7 +17,7 @@ MeshRenderer::~MeshRenderer()
 //	m_collection.erase(std::remove(m_collection.begin(), m_collection.end(), *this), m_collection.end());
 }
 
-void MeshRenderer::Init(PADObject* const _owner)
+void MeshRenderer::Init()
 {
 
 }

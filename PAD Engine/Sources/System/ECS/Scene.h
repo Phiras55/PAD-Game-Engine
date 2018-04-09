@@ -26,6 +26,7 @@ private:
 public:
 	void Init();
 	void Update();
+	void LateUpdate();
 	void AddPADObject(PADObject* _PADObject);
 
 public:

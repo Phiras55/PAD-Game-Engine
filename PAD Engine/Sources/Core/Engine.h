@@ -23,8 +23,10 @@ private:
 	sys::win::SDLWindow*	mp_window;
 
 	sys::ecs::Scene*			m_scene;
-	sys::phx::IPhysicContext*	m_physicContext;
 	sys::res::ResourceManager*	m_resourceManager;
+
+
+	static sys::phx::IPhysicContext*	m_physicContext;
 
 public:
 	void InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win::WindowSettings& _w);			/*! Initialize the simulation. Reads the config files and initialize the renderer and the window. */
@@ -53,6 +55,8 @@ private:
 public:
 	sys::ecs::Scene* const				GetScene() const			{ return m_scene; }
 	sys::res::ResourceManager* const	GetResourceManager() const	{ return m_resourceManager; }
+
+	static sys::phx::IPhysicContext* const	GetPhysicContext()		{ return m_physicContext; }
 
 public:
 	void operator=(const Engine&)	= delete;

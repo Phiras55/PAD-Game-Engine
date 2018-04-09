@@ -11,6 +11,9 @@
 #include <Graphics/Model/Mesh.h>
 #include <Graphics/Model/MeshData.h>
 #include <System/ECS/MeshRenderer.h>
+#include <System/ECS/BoxCollider.h>
+
+//#include "vld.h"
 
 //#include <glm/gtc/matrix_transform.hpp>
 
@@ -46,18 +49,18 @@ int main()
 	pad::InitEngine(contextSettings, winSettings);
 
 	pad::sys::ecs::PADObject		obj;
-	obj.GetTransform().SetScale(1.f);
 	pad::sys::ecs::RigidBody		rb;
 	pad::sys::ecs::MeshRenderer		mr;
+	pad::sys::ecs::BoxCollider		box;
 	mr.SetMeshName("Cube");
+	rb.SetMass(10);
+	obj.AddComponent(&box);
 	obj.AddComponent(&rb);
 	obj.AddComponent(&mr);
 	pad::sys::ecs::MeshRenderer::AddToCollection(mr);
 	pad::AddPADObject(&obj);
 
 	pad::sys::ecs::PADObject		obj2;
-	obj2.GetTransform().SetPosition(pad::math::Vec3f(3, 0, 0));
-	obj2.GetTransform().SetScale(1.f);
 	pad::sys::ecs::MeshRenderer		mr2;
 	mr2.SetMeshName("Cube");
 	obj2.AddComponent(&mr2);
@@ -68,5 +71,4 @@ int main()
 	pad::DestroyEngine();
 
 	return EXIT_SUCCESS;
-
 }

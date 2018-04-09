@@ -4,6 +4,11 @@ namespace pad	{
 namespace sys	{
 namespace res	{
 
+AResourceManager::~AResourceManager()
+{
+
+}
+
 void AResourceManager::AddResource(const std::string _name, Resource* const _resource)
 {
 	if (m_resourceCollection.count(_name))

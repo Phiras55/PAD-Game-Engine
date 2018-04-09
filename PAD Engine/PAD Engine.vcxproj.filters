@@ -85,14 +85,14 @@
     <Filter Include="Source Files\System\Physics">
       <UniqueIdentifier>{ccdf6619-b50f-46e6-9870-19c69d597994}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\System\ResourceManager">
-      <UniqueIdentifier>{d4a4f04b-8d47-462c-906c-7ea2317a670d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\System\Window">
       <UniqueIdentifier>{d8b530a2-ee35-468d-a0b5-5a0353f3ac97}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\System\Physics">
       <UniqueIdentifier>{07c47f7e-e6fc-4bc5-a29e-508581c4326c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Resource">
+      <UniqueIdentifier>{d4a4f04b-8d47-462c-906c-7ea2317a670d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,16 +148,16 @@
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Sources\System\Resource\AResourceManager.cpp">
-      <Filter>Source Files\System\ResourceManager</Filter>
+      <Filter>Source Files\System\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Core\IDPool.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Sources\System\Resource\ResourceManager.cpp">
-      <Filter>Source Files\System\ResourceManager</Filter>
+      <Filter>Source Files\System\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Sources\System\Resource\Resource.cpp">
-      <Filter>Source Files\System\ResourceManager</Filter>
+      <Filter>Source Files\System\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Sources\System\ECS\PADObject.cpp">
       <Filter>Source Files\System\ECS</Filter>
@@ -167,9 +167,6 @@
     </ClCompile>
     <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp">
       <Filter>Source Files\Graphics\RHI</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\System\ECS\Collider.cpp">
-      <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp">
       <Filter>Source Files\System\ECS</Filter>
@@ -184,9 +181,15 @@
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Sources\System\Resource\MeshManager.cpp">
-      <Filter>Source Files\System\ResourceManager</Filter>
+      <Filter>Source Files\System\Resource</Filter>
     </ClCompile>
     <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\BoxCollider.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\ACollider.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
   </ItemGroup>
@@ -284,9 +287,6 @@
     <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h">
       <Filter>Header Files\Graphics\RHI</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\ECS\Collider.h">
-      <Filter>Header Files\System\ECS</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\System\ECS\RigidBody.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
@@ -321,6 +321,12 @@
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\MeshRenderer.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\BoxCollider.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\ACollider.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>

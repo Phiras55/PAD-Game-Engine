@@ -15,7 +15,11 @@ using Mat4 = Matrix4x4;
 class Transform final
 {
 public:
-	inline Transform()		= default;
+	inline Transform() :
+		m_scale(math::Vec3f(1.f, 1.f, 1.f))
+	{
+	}
+
 	inline ~Transform()		= default;
 
 private:

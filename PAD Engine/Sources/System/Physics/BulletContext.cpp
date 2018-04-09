@@ -47,7 +47,7 @@ void BulletContext::AddRigidBody(ecs::RigidBody* const _rigidBody)
 	dynamicsWorld->addRigidBody(_rigidBody->GetBTRigidBody());
 }
 
-void BulletContext::AddCollider(ecs::Collider* const _collider)
+void BulletContext::AddCollider(ecs::ACollider* const _collider)
 {
 	dynamicsWorld->addCollisionObject(_collider->GetBTCollider());
 }

@@ -48,8 +48,11 @@ void PADObject::RemoveChild(PADObject* const _child)
 
 void PADObject::Update()
 {
-	m_transform.SetGlobalTransform(		m_parent->m_transform.GetGlobalTransform()
-									*	m_transform.GetLocalTransform());
+	if (m_parent)
+	{
+		m_transform.SetGlobalTransform(		m_parent->m_transform.GetGlobalTransform()
+										*	m_transform.GetLocalTransform());
+	}
 
 	for (IComponent* comp : m_components)
 		comp->Update();
@@ -90,7 +93,7 @@ void PADObject::RemoveComponent(IComponent* const _component)
 void PADObject::Init()
 {
 	for (IComponent* comp : m_components)
-		comp->Init(this);
+		comp->Init();
 
 	for (PADObject* so : m_childs)
 		so->Init();

@@ -13,8 +13,8 @@ public:
 	~PerspectiveCamera();
 
 public:
-	void Init(PADObject* const _owner)	override;
-	void Start()						override;
+	void Init()			override;
+	void Start()		override;
 	void Update()		override;
 	void FixedUpdate()	override;
 	void LateUpdate()	override;

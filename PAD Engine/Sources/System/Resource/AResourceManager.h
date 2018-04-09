@@ -10,6 +10,9 @@ namespace res	{
 
 class AResourceManager
 {
+public:
+	virtual ~AResourceManager();
+
 protected:
 	std::unordered_map<std::string, int>	m_resourceCollection;
 	std::vector<Resource*>					m_resourceArray;

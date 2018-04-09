@@ -240,11 +240,11 @@ Vector3<T> Vector3<T>::operator-() const
 #pragma region Bullet Conversions
 
 template<typename T>
-inline Vector3<T>::Vector3(const btVector3 & _vector)
+inline Vector3<T>::Vector3(const btVector3& _vector)
 {
-	x = _vector.x;
-	y = _vector.y;
-	z = _vector.z;
+	x = _vector.x();
+	y = _vector.y();
+	z = _vector.z();
 }
 
 template<typename T>

@@ -15,9 +15,10 @@
 namespace pad	{
 namespace core	{
 
+sys::phx::IPhysicContext* Engine::m_physicContext = new sys::phx::BulletContext();
+
 Engine::Engine() :
 	m_scene(new sys::ecs::Scene()),
-	m_physicContext(new sys::phx::BulletContext()),
 	m_resourceManager(new sys::res::ResourceManager())
 {
 
@@ -31,6 +32,10 @@ Engine::~Engine()
 		delete mp_window;
 	if (mp_renderer)
 		delete mp_renderer;
+	if (m_resourceManager)
+		delete m_resourceManager;
+	if (m_physicContext)
+		delete m_physicContext;
 }
 
 void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win::WindowSettings& _w)
@@ -91,12 +96,14 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win:
 	m->SetName("Cube");
 	mp_renderer->GenerateMesh(*m, md);
 	m_resourceManager->GetMeshManager().AddResource(m->GetName(), m);
-	
+
 	#pragma endregion
 }
 
 void Engine::StartSimulation()
 {
+	m_scene->Init();
+
 	while (mp_window->IsOpen())
 	{
 		Simulate();
@@ -127,8 +134,8 @@ void Engine::PollEvents()
 void Engine::Update()
 {
 //	core::Timer::PauseAll();
-//	m_scene->Update();
-//	m_physicContext->Update();
+	m_scene->Update();
+	m_physicContext->Update();
 
 }
 
@@ -139,7 +146,7 @@ void Engine::FixedUpdate()
 
 void Engine::LateUpdate()
 {
-
+	m_scene->LateUpdate();
 }
 
 void Engine::Render()
@@ -148,7 +155,7 @@ void Engine::Render()
 	cam.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
 	cam.LookAt(math::Vec3f(0, 0, 10), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 
-//	math::Mat4 mvp = cam.GetProjection() * cam.GetView();
+	math::Mat4 mvp = cam.GetProjection() * cam.GetView();
 
 	gfx::gl::shad::GLShaderProgram	program;
 	gfx::gl::shad::GLFragmentShader	fragShader;

@@ -25,6 +25,11 @@ void Scene::Update()
 	m_masterPADObject->Update();
 }
 
+void Scene::LateUpdate()
+{
+	m_masterPADObject->LateUpdate();
+}
+
 void Scene::AddPADObject(PADObject * _PADObject)
 {
 	_PADObject->SetParent(m_masterPADObject);

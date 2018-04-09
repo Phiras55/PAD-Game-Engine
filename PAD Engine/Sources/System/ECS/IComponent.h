@@ -19,7 +19,7 @@ enum COMPONENT_TYPE
 class ENGINE_API IComponent
 {
 public:
-	virtual void Init(PADObject* const _owner)		= 0;
+	virtual void Init()								= 0;
 	virtual void Start()							= 0;
 	virtual void Update()							= 0;
 	virtual void FixedUpdate()						= 0;
@@ -31,7 +31,7 @@ public:
 	virtual const COMPONENT_TYPE GetType() const	= 0;
 
 protected:
-	math::Transform*	m_transform;
+	math::Transform		m_transform;
 	PADObject*			m_owner;
 	COMPONENT_TYPE		m_type;
 };

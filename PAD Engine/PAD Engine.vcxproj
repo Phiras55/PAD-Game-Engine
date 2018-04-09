@@ -38,7 +38,8 @@
     <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp" />
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
-    <ClCompile Include="Sources\System\ECS\Collider.cpp" />
+    <ClCompile Include="Sources\System\ECS\ACollider.cpp" />
+    <ClCompile Include="Sources\System\ECS\BoxCollider.cpp" />
     <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp" />
     <ClCompile Include="Sources\System\ECS\PADObject.cpp" />
     <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp" />
@@ -74,8 +75,9 @@
     <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
+    <ClInclude Include="Sources\System\ECS\BoxCollider.h" />
     <ClInclude Include="Sources\System\ECS\Camera.h" />
-    <ClInclude Include="Sources\System\ECS\Collider.h" />
+    <ClInclude Include="Sources\System\ECS\ACollider.h" />
     <ClInclude Include="Sources\System\ECS\IComponent.h" />
     <ClInclude Include="Sources\System\ECS\MeshRenderer.h" />
     <ClInclude Include="Sources\System\ECS\PADObject.h" />

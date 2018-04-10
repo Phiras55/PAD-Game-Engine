@@ -12,8 +12,6 @@
 #include <Graphics/Model/MeshData.h>
 #include <System/ECS/MeshRenderer.h>
 
-//#include <glm/gtc/matrix_transform.hpp>
-
 int main()
 {
 	#pragma region RenderInit
@@ -73,5 +71,4 @@ int main()
 	pad::DestroyEngine();
 
 	return EXIT_SUCCESS;
-
 }

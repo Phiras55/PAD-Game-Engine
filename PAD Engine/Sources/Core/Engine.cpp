@@ -25,10 +25,12 @@ Engine::~Engine()
 {
 	if (m_scene)
 		delete m_scene;
-	if(mp_window)
+	if (mp_window)
 		delete mp_window;
 	if (mp_renderer)
 		delete mp_renderer;
+	if (m_resourceManager)
+		delete m_resourceManager;
 }
 
 void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win::WindowSettings& _w)
@@ -39,22 +41,6 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win:
 	CreateRenderer(_c);
 
 	#pragma region Mesh
-
-	//gfx::gl::shad::GLShaderProgram	program;
-	//gfx::gl::shad::GLFragmentShader	fragShader;
-	//gfx::gl::shad::GLVertexShader	vertShader;
-
-	//vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
-	//fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
-
-	//program.SetVertexShader(&vertShader);
-	//program.SetFragmentShader(&fragShader);
-	//program.CompileProgram();
-
-	//gfx::rhi::RenderSettings r;
-	//r.shaders.push_back(&program);
-	//r.isWireframe = true;
-
 	pad::gfx::mod::MeshData md;
 
 	md.positions = new float[24]{
@@ -86,9 +72,10 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win:
 	md.indiceCount = 36;
 
 	gfx::mod::Mesh* m = new gfx::mod::Mesh();
-	m->SetName("Cube");
-	mp_renderer->GenerateMesh(*m, md);
-	m_resourceManager->GetMeshManager().AddResource(m->GetName(), m);
+	
+	//m->SetName("Cube");
+	mp_renderer->GenerateMesh(md, m->GetVAO(), m->GetIBO());
+	//m_resourceManager->GetMeshManager().AddResource("Cube", m);
 	
 	#pragma endregion
 }
@@ -148,27 +135,34 @@ void Engine::Render()
 	math::Mat4 vp = cam.GetProjection() * cam.GetView();
 #pragma endregion
 
-	gfx::mod::Mesh* meshes = nullptr;
-	gfx::rhi::RenderSettings* settings = nullptr;
+	gfx::rhi::AVertexArray**	vaos		= nullptr;
+	gfx::rhi::AVertexBuffer**	ibos		= nullptr;
+	gfx::rhi::RenderSettings*	settings	= nullptr;
 
 	uint32 meshCount		= (uint32)sys::ecs::MeshRenderer::GetCollection().size();
 	uint32 meshRendererIdx	= 0;
 
-	meshes		= new gfx::mod::Mesh[meshCount];
+	vaos		= new gfx::rhi::AVertexArray*[meshCount];
+	ibos		= new gfx::rhi::AVertexBuffer*[meshCount];
 	settings	= new gfx::rhi::RenderSettings[meshCount];
 
 	for (const auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{
-		meshes[meshRendererIdx]		= *m_resourceManager->GetMeshManager().GetResource(meshRenderer.GetMeshName());
+		//const gfx::mod::Mesh& currentMesh = *m_resourceManager->GetMeshManager().GetResource(meshRenderer.GetMeshName());
+		//vaos[meshRendererIdx]		= currentMesh.GetVAO();
+		//ibos[meshRendererIdx]		= currentMesh.GetIBO();
+		vaos[meshRendererIdx]		= nullptr;
+		ibos[meshRendererIdx]		= nullptr;
 		settings[meshRendererIdx]	= meshRenderer.GetSettings();
 
 		++meshRendererIdx;
 	}
 
 	if (mp_renderer)
-		mp_renderer->ForwardRendering(meshes, settings, vp, meshCount);
+		mp_renderer->ForwardRendering(vaos, ibos, settings, vp, meshCount);
 
-	delete[] meshes;
+	delete[] vaos;
+	delete[] ibos;
 	delete[] settings;
 }
 
@@ -224,8 +218,11 @@ void Engine::FlushLogs()
 
 void Engine::GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)
 {
+	gfx::rhi::AVertexArray& vao		= *_m.GetVAO();
+	gfx::rhi::AVertexBuffer& ibo	= *_m.GetIBO();
+
 	if (mp_renderer)
-		mp_renderer->GenerateMesh(_m, _md);
+		mp_renderer->GenerateMesh(_md, &vao, &ibo);
 }
 
 } // namespace core

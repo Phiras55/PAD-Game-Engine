@@ -24,6 +24,10 @@ RigidBody::~RigidBody()
 void RigidBody::Init()
 {
 	m_transform = m_owner->GetTransform();
+	btTransform t(btMatrix3x3(), btVector3(	m_owner->GetTransform().Position().x,
+											m_owner->GetTransform().Position().y,
+											m_owner->GetTransform().Position().z));
+
 	m_btMotionState = new btDefaultMotionState();
 
 	for (auto comp : m_owner->GetComponents())
@@ -88,6 +92,7 @@ void RigidBody::LateUpdate()
 
 void RigidBody::SetMass(const float _mass)
 {
+	m_mass = _mass;
 	btVector3 inertia(0, 0, 0);
 
 	if (m_collider)

@@ -17,7 +17,7 @@ BulletContext::BulletContext()
 															solver,
 															collisionConfiguration);
 
-	dynamicsWorld->setGravity(btVector3(0, -10, 0));
+	dynamicsWorld->setGravity(btVector3(0, -9.81, 0));
 }
 
 BulletContext::~BulletContext()
@@ -30,7 +30,7 @@ void BulletContext::Init()
 
 void BulletContext::Update()
 {
-	dynamicsWorld->stepSimulation(core::EngineClock::DeltaTime());
+	dynamicsWorld->stepSimulation(0.016f);
 }
 
 void BulletContext::Clean()

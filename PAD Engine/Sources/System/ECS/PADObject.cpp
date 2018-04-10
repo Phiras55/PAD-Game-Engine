@@ -27,7 +27,7 @@ PADObject::~PADObject()
 
 	for (PADObject* so : m_childs)
 	{
-		so->SetParent(nullptr);
+		so->m_parent = nullptr;
 		so->~PADObject();
 	}
 }
@@ -113,7 +113,6 @@ void PADObject::SetParent(PADObject* const _parent)
 	if (m_parent)
 		m_parent->RemoveChild(this);
 
-	m_parent = _parent;
 	_parent->AddChild(this);
 }
 

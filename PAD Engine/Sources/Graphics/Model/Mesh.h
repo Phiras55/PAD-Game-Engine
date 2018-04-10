@@ -14,8 +14,8 @@ public:
 	Mesh();
 	~Mesh();
 
-	Mesh(const Mesh&)	= delete;
-	Mesh(Mesh&&)		= delete;
+//	Mesh(const Mesh&)	= delete;
+//	Mesh(Mesh&&)		= delete;
 
 private:
 	rhi::AVertexArray*  m_vao;
@@ -31,9 +31,9 @@ public:
 	inline void SetVertexElementBuffer(rhi::AVertexBuffer* const _ibo) { m_ibo = _ibo; }
 	inline void SetVertexArray(rhi::AVertexArray* const _vao) { m_vao = _vao; }
 
-public:
-	void operator=(const Mesh&) = delete;
-	void operator=(Mesh&&)		= delete;
+//public:
+//	void operator=(const Mesh&) = delete;
+//	void operator=(Mesh&&)		= delete;
 };
 
 } // namespace mod

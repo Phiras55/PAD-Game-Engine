@@ -14,7 +14,7 @@ GLShaderProgram::GLShaderProgram()
 
 GLShaderProgram::~GLShaderProgram()
 {
-
+	glDeleteProgram(m_id);
 }
 
 bool GLShaderProgram::CompileProgram()

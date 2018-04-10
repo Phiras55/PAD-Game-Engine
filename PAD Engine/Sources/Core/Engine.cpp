@@ -95,7 +95,7 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win:
 	gfx::mod::Mesh* m = new gfx::mod::Mesh();
 	m->SetName("Cube");
 	mp_renderer->GenerateMesh(*m, md);
-	m_resourceManager->GetMeshManager().AddResource(m->GetName(), m);
+	m_resourceManager->GetMeshManager().AddResource(m->GetName(), *m);
 
 	#pragma endregion
 }
@@ -104,6 +104,7 @@ void Engine::StartSimulation()
 {
 	m_scene->Init();
 
+	m_fixedUpdateTimer.Start();
 	while (mp_window->IsOpen())
 	{
 		Simulate();
@@ -117,7 +118,13 @@ void Engine::Simulate()
 	FlushLogs();
 
 	Update();
-	FixedUpdate();
+
+	if (m_fixedUpdateTimer.GetDuration() > 0.016f)
+	{
+		FixedUpdate();
+		m_fixedUpdateTimer.ResetDuration();
+	}
+
 	LateUpdate();
 
 	ClearBuffers();
@@ -133,15 +140,12 @@ void Engine::PollEvents()
 
 void Engine::Update()
 {
-//	core::Timer::PauseAll();
 	m_scene->Update();
-	m_physicContext->Update();
-
 }
 
 void Engine::FixedUpdate()
 {
-
+	m_physicContext->Update();
 }
 
 void Engine::LateUpdate()
@@ -177,7 +181,7 @@ void Engine::Render()
 		math::Mat4 mvp = cam.GetProjection() * cam.GetView() * mr.GetOwner()->GetTransform().GetLocalTransform();
 
 		if (mp_renderer)
-			mp_renderer->Draw(*m_resourceManager->GetMeshManager().GetResource(mr.GetMeshName()), r, mvp);
+			mp_renderer->Draw(m_resourceManager->GetMeshManager().GetResource(mr.GetMeshName()), r, mvp);
 	}
 }
 

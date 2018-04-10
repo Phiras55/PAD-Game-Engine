@@ -4,15 +4,16 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-Scene::Scene() :
+Scene::Scene() : 
 	m_masterPADObject(new PADObject())
 {
-
+	m_masterPADObject->SetName("MasterSceneObject");
 }
 
 Scene::~Scene() 
 {
-
+	if (m_masterPADObject)
+		delete m_masterPADObject;
 }
 
 void Scene::Init()

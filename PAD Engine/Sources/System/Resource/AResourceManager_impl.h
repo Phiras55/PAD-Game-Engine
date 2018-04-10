@@ -4,12 +4,14 @@ namespace pad	{
 namespace sys	{
 namespace res	{
 
-AResourceManager::~AResourceManager()
+template<typename T>
+AResourceManager<T>::~AResourceManager()
 {
 
 }
 
-void AResourceManager::AddResource(const std::string _name, Resource* const _resource)
+template<typename T>
+void AResourceManager<T>::AddResource(const std::string _name, T const _resource)
 {
 	if (m_resourceCollection.count(_name))
 		return;
@@ -26,7 +28,8 @@ void AResourceManager::AddResource(const std::string _name, Resource* const _res
 	++m_lastResourceIndex;
 }
 
-void AResourceManager::RemoveResources(const std::vector<std::string>& _toRemove)
+template<typename T>
+void AResourceManager<T>::RemoveResources(const std::vector<std::string>& _toRemove)
 {
 	for (unsigned int i = 0; i < _toRemove.size(); ++i)
 	{
@@ -42,6 +45,15 @@ void AResourceManager::RemoveResources(const std::vector<std::string>& _toRemove
 
 		--m_lastResourceIndex;
 	}
+}
+
+template<typename T>
+T* const AResourceManager<T>::GetResource(const std::string _name)
+{
+	if (m_resourceCollection.find(_name) != m_resourceCollection.end())
+		return &m_resourceArray[m_resourceCollection[_name]];
+	else
+		return nullptr;
 }
 
 } // namespace res

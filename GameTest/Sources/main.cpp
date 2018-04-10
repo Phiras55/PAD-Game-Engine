@@ -48,24 +48,39 @@ int main()
 	pad::CreateEngine();
 	pad::InitEngine(contextSettings, winSettings);
 
-	pad::sys::ecs::PADObject		obj;
-	pad::sys::ecs::RigidBody		rb;
-	pad::sys::ecs::MeshRenderer		mr;
-	pad::sys::ecs::BoxCollider		box;
-	mr.SetMeshName("Cube");
-	rb.SetMass(10);
-	obj.AddComponent(&box);
-	obj.AddComponent(&rb);
-	obj.AddComponent(&mr);
-	pad::sys::ecs::MeshRenderer::AddToCollection(mr);
-	pad::AddPADObject(&obj);
+	for (int i = 0; i < 5; ++i)
+	{
+		pad::sys::ecs::PADObject*		obj = new pad::sys::ecs::PADObject();
+		obj->SetName("Physic Cube");
+		obj->GetTransform().SetPosition(pad::math::Vec3f(0, i * 1.5 + 5, 0));
+		pad::sys::ecs::RigidBody*		rb = new pad::sys::ecs::RigidBody();
+		pad::sys::ecs::MeshRenderer*	mr = new pad::sys::ecs::MeshRenderer();
+		pad::sys::ecs::BoxCollider*		box = new pad::sys::ecs::BoxCollider();
+		mr->SetMeshName("Cube");
+		obj->AddComponent(box);
+		obj->AddComponent(rb);
+		obj->AddComponent(mr);
+		rb->SetMass(100);
+		pad::sys::ecs::MeshRenderer::AddToCollection(*mr);
+		pad::AddPADObject(obj);
+	}
 
-	pad::sys::ecs::PADObject		obj2;
-	pad::sys::ecs::MeshRenderer		mr2;
-	mr2.SetMeshName("Cube");
-	obj2.AddComponent(&mr2);
-	pad::sys::ecs::MeshRenderer::AddToCollection(mr2);
-	pad::AddPADObject(&obj2);
+	pad::sys::ecs::PADObject*		obj2 = new pad::sys::ecs::PADObject();
+	obj2->SetName("ground");
+	obj2->GetTransform().SetPosition(pad::math::Vec3f(0, -2, 0));
+	obj2->GetTransform().SetScale(pad::math::Vec3f(10, 0.1, 10));
+
+	pad::sys::ecs::BoxCollider*		box2 = new pad::sys::ecs::BoxCollider();
+	pad::sys::ecs::RigidBody*		rb2 = new pad::sys::ecs::RigidBody();
+	pad::sys::ecs::MeshRenderer*	mr2 = new pad::sys::ecs::MeshRenderer();
+	mr2->SetMeshName("Cube");
+
+	rb2->SetMass(0.f);
+	obj2->AddComponent(mr2);
+	obj2->AddComponent(box2);
+	obj2->AddComponent(rb2);
+	pad::sys::ecs::MeshRenderer::AddToCollection(*mr2);
+	pad::AddPADObject(obj2);
 
 	pad::StartSimulation();
 	pad::DestroyEngine();

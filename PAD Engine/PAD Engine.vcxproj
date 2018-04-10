@@ -48,7 +48,7 @@
     <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
     <ClCompile Include="Sources\System\Resource\MeshManager.cpp" />
     <ClCompile Include="Sources\System\Resource\Resource.cpp" />
-    <ClCompile Include="Sources\System\Resource\AResourceManager.cpp" />
+    <ClCompile Include="Sources\System\Resource\AResourceManager_impl.h" />
     <ClCompile Include="Sources\System\Resource\ResourceManager.cpp" />
     <ClCompile Include="Sources\System\Window\SDLWindow.cpp" />
   </ItemGroup>

@@ -5,6 +5,7 @@
 #include <System/ECS/Scene.h>
 #include <System/Resource/ResourceManager.h>
 #include <System/Physics/IPhysicContext.h>
+#include <Core/Timer.h>
 
 namespace pad	{
 namespace core	{
@@ -24,7 +25,7 @@ private:
 
 	sys::ecs::Scene*			m_scene;
 	sys::res::ResourceManager*	m_resourceManager;
-
+	core::Timer					m_fixedUpdateTimer;
 
 	static sys::phx::IPhysicContext*	m_physicContext;
 

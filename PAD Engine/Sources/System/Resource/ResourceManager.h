@@ -1,6 +1,7 @@
 #pragma once
 
-#include <System/Resource/MeshManager.h>
+#include <System/Resource/AResourceManager.h>
+#include <Graphics/Model/Mesh.h>
 
 namespace pad	{
 namespace sys	{
@@ -13,12 +14,12 @@ public:
 	~ResourceManager();
 
 private:
-	MeshManager			m_meshManager;
+	AResourceManager<gfx::mod::Mesh>			m_meshManager;
 //	MaterialManager		m_materialManager;
 //	TextureManager		m_textureManager;
 
 public:
-	MeshManager& GetMeshManager() { return m_meshManager; }
+	AResourceManager<gfx::mod::Mesh>& GetMeshManager() { return m_meshManager; }
 };
 
 } // namespace res

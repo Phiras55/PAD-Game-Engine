@@ -30,7 +30,7 @@ public:
 	void AddPADObject(PADObject* _PADObject);
 
 public:
-	inline PADObject* const GetMasterObject() const { return m_masterPADObject; }
+	inline PADObject* const GetMasterObject() { return m_masterPADObject; }
 };
 
 } // namespace ecs

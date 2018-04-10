@@ -7,14 +7,14 @@ namespace pad	{
 namespace sys	{
 namespace res	{
 
-class MeshManager : public AResourceManager
+class MeshManager //: public AResourceManager
 {
 public:
 	MeshManager();
 	~MeshManager();
 
 public:
-	gfx::mod::Mesh* const GetResource(const std::string _name) override;
+	//gfx::mod::Mesh* const GetResource(const std::string _name) override;
 };
 
 } // namespace res

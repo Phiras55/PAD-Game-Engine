@@ -43,6 +43,7 @@ public:
 	void Pause();																					/*!< Pause the timer */
 	void Unpause();																					/*!< Unpause the timer */
 	void Stop();																					/*!< Stop the timer and save the duration */
+	void ResetDuration();
 
 	static void PauseAll();																			/*!< Pause all timers */
 

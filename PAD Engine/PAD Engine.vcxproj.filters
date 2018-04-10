@@ -147,9 +147,6 @@
     <ClCompile Include="Sources\Core\EngineDLL.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\Resource\AResourceManager.cpp">
-      <Filter>Source Files\System\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Core\IDPool.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
@@ -191,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="Sources\System\ECS\ACollider.cpp">
       <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\Resource\AResourceManager_impl.h">
+      <Filter>Source Files\System\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

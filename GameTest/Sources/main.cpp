@@ -13,10 +13,6 @@
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/BoxCollider.h>
 
-//#include "vld.h"
-
-//#include <glm/gtc/matrix_transform.hpp>
-
 int main()
 {
 	#pragma region RenderInit
@@ -52,7 +48,7 @@ int main()
 	{
 		pad::sys::ecs::PADObject*		obj = new pad::sys::ecs::PADObject();
 		obj->SetName("Physic Cube");
-		obj->GetTransform().SetPosition(pad::math::Vec3f(0, i * 1.5 + 5, 0));
+		obj->GetTransform().SetPosition(pad::math::Vec3f(i *0.5, i * 1.5 + 5, 0));
 		pad::sys::ecs::RigidBody*		rb = new pad::sys::ecs::RigidBody();
 		pad::sys::ecs::MeshRenderer*	mr = new pad::sys::ecs::MeshRenderer();
 		pad::sys::ecs::BoxCollider*		box = new pad::sys::ecs::BoxCollider();
@@ -70,7 +66,7 @@ int main()
 	obj2->GetTransform().SetPosition(pad::math::Vec3f(0, -2, 0));
 	obj2->GetTransform().SetScale(pad::math::Vec3f(10, 0.1, 10));
 
-	pad::sys::ecs::BoxCollider*		box2 = new pad::sys::ecs::BoxCollider();
+	pad::sys::ecs::BoxCollider*		box2 = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(5, 0.05, 5));
 	pad::sys::ecs::RigidBody*		rb2 = new pad::sys::ecs::RigidBody();
 	pad::sys::ecs::MeshRenderer*	mr2 = new pad::sys::ecs::MeshRenderer();
 	mr2->SetMeshName("Cube");

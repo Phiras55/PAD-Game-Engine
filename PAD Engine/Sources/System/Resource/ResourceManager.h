@@ -22,7 +22,7 @@ protected:
 	int										m_lastResourceIndex;
 
 public:
-	inline void AddResource(const std::string _name, T const _resource)
+	inline void AddResource(const std::string _name, const T&  _resource)
 	{
 		if (m_resourceCollection.count(_name))
 			return;

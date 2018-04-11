@@ -19,7 +19,7 @@ sys::phx::IPhysicContext* Engine::m_physicContext = new sys::phx::BulletContext(
 
 Engine::Engine() :
 	m_scene(new sys::ecs::Scene()),
-	m_resourceManager(new sys::res::ResourceManager())
+	m_resourceManager(new sys::res::MasterManager())
 {
 
 }
@@ -146,6 +146,7 @@ void Engine::Update()
 void Engine::FixedUpdate()
 {
 	m_physicContext->Update();
+	m_scene->FixedUpdate();
 }
 
 void Engine::LateUpdate()
@@ -181,7 +182,7 @@ void Engine::Render()
 		math::Mat4 mvp = cam.GetProjection() * cam.GetView() * mr.GetOwner()->GetTransform().GetLocalTransform();
 
 		if (mp_renderer)
-			mp_renderer->Draw(m_resourceManager->GetMeshManager().GetResource(mr.GetMeshName()), r, mvp);
+			mp_renderer->Draw(*m_resourceManager->GetMeshManager().GetResource(mr.GetMeshName()), r, mvp);
 	}
 }
 

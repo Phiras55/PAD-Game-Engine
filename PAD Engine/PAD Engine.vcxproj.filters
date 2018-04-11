@@ -150,9 +150,6 @@
     <ClCompile Include="Sources\Core\IDPool.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\Resource\ResourceManager.cpp">
-      <Filter>Source Files\System\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\System\Resource\Resource.cpp">
       <Filter>Source Files\System\Resource</Filter>
     </ClCompile>
@@ -177,9 +174,6 @@
     <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\Resource\MeshManager.cpp">
-      <Filter>Source Files\System\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
@@ -189,7 +183,7 @@
     <ClCompile Include="Sources\System\ECS\ACollider.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\Resource\AResourceManager_impl.h">
+    <ClCompile Include="Sources\System\Resource\MasterManager.cpp">
       <Filter>Source Files\System\Resource</Filter>
     </ClCompile>
   </ItemGroup>
@@ -254,17 +248,8 @@
     <ClInclude Include="Sources\Core\EngineDLL.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\Resource\ResourceManager.h">
-      <Filter>Header Files\System\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\Resource\AResourceManager.h">
-      <Filter>Header Files\System\Resource</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Core\IDPool.h">
       <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\Resource\MeshManager.h">
-      <Filter>Header Files\System\Resource</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\Resource\Resource.h">
       <Filter>Header Files\System\Resource</Filter>
@@ -328,6 +313,12 @@
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\ACollider.h">
       <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Resource\MasterManager.h">
+      <Filter>Header Files\System\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Resource\ResourceManager.h">
+      <Filter>Header Files\System\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

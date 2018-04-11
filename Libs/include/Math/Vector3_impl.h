@@ -1,5 +1,4 @@
 #include <assert.h>
-#include "Vector3.h"
 
 namespace pad	{
 namespace math	{

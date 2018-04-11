@@ -1,15 +1,15 @@
-#include "ResourceManager.h"
+#include <System/Resource/MasterManager.h>
 
 namespace pad	{
 namespace sys	{
 namespace res	{
 
-ResourceManager::ResourceManager()
+MasterManager::MasterManager()
 {
 
 }
 
-ResourceManager::~ResourceManager()
+MasterManager::~MasterManager()
 {
 
 }

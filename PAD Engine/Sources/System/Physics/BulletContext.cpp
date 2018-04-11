@@ -52,6 +52,16 @@ void BulletContext::AddCollider(ecs::ACollider* const _collider)
 	dynamicsWorld->addCollisionObject(_collider->GetBTCollider());
 }
 
+void BulletContext::RemoveCollider(ecs::ACollider* const _collider)
+{
+	dynamicsWorld->removeCollisionObject(_collider->GetBTCollider());
+}
+
+void BulletContext::RemoveRigidBody(ecs::RigidBody* const _rigidBody)
+{
+	dynamicsWorld->removeRigidBody(_rigidBody->GetBTRigidBody());
+}
+
 } // namespace phx
 } // namespace sys
 } // namespace pad

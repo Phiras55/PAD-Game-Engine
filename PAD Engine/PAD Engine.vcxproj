@@ -46,10 +46,8 @@
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp" />
     <ClCompile Include="Sources\System\ECS\Scene.cpp" />
     <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
-    <ClCompile Include="Sources\System\Resource\MeshManager.cpp" />
     <ClCompile Include="Sources\System\Resource\Resource.cpp" />
-    <ClCompile Include="Sources\System\Resource\AResourceManager_impl.h" />
-    <ClCompile Include="Sources\System\Resource\ResourceManager.cpp" />
+    <ClCompile Include="Sources\System\Resource\MasterManager.cpp" />
     <ClCompile Include="Sources\System\Window\SDLWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -89,9 +87,8 @@
     <ClInclude Include="Sources\System\Physics\BulletContext.h" />
     <ClInclude Include="Sources\System\Physics\IPhysicContext.h" />
     <ClInclude Include="Sources\System\Resource\Resource.h" />
-    <ClInclude Include="Sources\System\Resource\AResourceManager.h" />
-    <ClInclude Include="Sources\System\Resource\MeshManager.h" />
     <ClInclude Include="Sources\System\Resource\ResourceManager.h" />
+    <ClInclude Include="Sources\System\Resource\MasterManager.h" />
     <ClInclude Include="Sources\System\Window\AWindow.h" />
     <ClInclude Include="Sources\System\Window\IWindowBase.h" />
     <ClInclude Include="Sources\System\Window\SDLWindow.h" />

@@ -15,9 +15,13 @@ protected:
 public:
 	virtual ~ACollider();
 
+	void Init()	override;
+
 public:
 	btCollisionObject* const	GetBTCollider() const			{ return m_btCollider; }
 	btCollisionShape* const		GetBTCollisionShape() const		{ return m_btCollisionShape; }
+
+	void SetBTCollisionObject(btCollisionObject* const _collisionObject);
 
 protected:
 	btCollisionObject*	m_btCollider;

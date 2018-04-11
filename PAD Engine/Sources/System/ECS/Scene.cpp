@@ -26,6 +26,11 @@ void Scene::Update()
 	m_masterPADObject->Update();
 }
 
+void Scene::FixedUpdate()
+{
+	m_masterPADObject->FixedUpdate();
+}
+
 void Scene::LateUpdate()
 {
 	m_masterPADObject->LateUpdate();

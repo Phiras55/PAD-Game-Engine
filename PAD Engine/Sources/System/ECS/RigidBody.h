@@ -25,11 +25,15 @@ public:
 	inline void SetMass(const float _mass);
 
 	inline btRigidBody* const	GetBTRigidBody() const				{ return m_btRigidBody; }
+	inline ACollider*	const	GetCollider() const					{ return m_collider; }
 
-	virtual void				SetOwner(PADObject* const _owner)	{ m_owner = _owner; }
-	virtual PADObject* const	GetOwner() const					{ return m_owner; }
+	inline void SetCollider(ACollider* const _collider);
+
+	virtual void				SetOwner(PADObject* const _owner) override { m_owner = _owner; }
+	virtual PADObject* const	GetOwner() const override					{ return m_owner; }
 
 	virtual const COMPONENT_TYPE GetType() const override			{ return m_type; }
+	
 
 private:
 	btRigidBody*	m_btRigidBody;

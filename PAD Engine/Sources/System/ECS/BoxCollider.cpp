@@ -21,7 +21,7 @@ BoxCollider::~BoxCollider()
 
 void BoxCollider::Init()
 {
-	core::Engine::GetPhysicContext()->AddCollider(this);
+	ACollider::Init();
 }
 
 void BoxCollider::Start()

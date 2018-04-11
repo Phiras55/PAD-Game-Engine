@@ -3,7 +3,7 @@
 #include <Graphics/RHI/IRenderer.h>
 #include <Graphics/RHI/RenderSettings.h>
 #include <System/ECS/Scene.h>
-#include <System/Resource/ResourceManager.h>
+#include <System/Resource/MasterManager.h>
 #include <System/Physics/IPhysicContext.h>
 #include <Core/Timer.h>
 
@@ -24,7 +24,7 @@ private:
 	sys::win::SDLWindow*	mp_window;
 
 	sys::ecs::Scene*			m_scene;
-	sys::res::ResourceManager*	m_resourceManager;
+	sys::res::MasterManager*	m_resourceManager;
 	core::Timer					m_fixedUpdateTimer;
 
 	static sys::phx::IPhysicContext*	m_physicContext;
@@ -55,7 +55,7 @@ private:
 
 public:
 	sys::ecs::Scene* const				GetScene() const			{ return m_scene; }
-	sys::res::ResourceManager* const	GetResourceManager() const	{ return m_resourceManager; }
+	sys::res::MasterManager* const		GetMasterManager() const	{ return m_resourceManager; }
 
 	static sys::phx::IPhysicContext* const	GetPhysicContext()		{ return m_physicContext; }
 

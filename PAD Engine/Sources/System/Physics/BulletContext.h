@@ -20,6 +20,9 @@ public:
 	void AddRigidBody(ecs::RigidBody* const _rigidBody) override;
 	void AddCollider(ecs::ACollider* const _collider)	override;
 
+	void RemoveCollider(ecs::ACollider* const _collider) override;
+	void RemoveRigidBody(ecs::RigidBody* const _rigidBody) override;
+
 private:
 	btDefaultCollisionConfiguration*		collisionConfiguration;
 	btCollisionDispatcher*					dispatcher;

@@ -45,6 +45,7 @@ void RigidBody::Init()
 		btCollisionShape* collider = m_collider->GetBTCollider()->getCollisionShape();
 		collider->calculateLocalInertia(m_mass, inertia);
 		m_btRigidBody = new btRigidBody(m_mass, m_btMotionState, collider, inertia);
+		m_collider->SetBTCollisionObject(m_btRigidBody);
 	}
 	else
 		m_btRigidBody = new btRigidBody(m_mass, m_btMotionState, nullptr, inertia);
@@ -79,15 +80,15 @@ void RigidBody::Update()
 
 void RigidBody::FixedUpdate()
 {
-
-}
-
-void RigidBody::LateUpdate()
-{
 	m_owner->GetTransform().SetPosition(m_btRigidBody->getWorldTransform().getOrigin());
 	//m_owner->GetTransform().SetRotation(math::Vec3f(m_btRigidBody->getWorldTransform().getRotation().x,
 	//												m_btRigidBody->getWorldTransform().getRotation().y,
 	//												m_btRigidBody->getWorldTransform().getRotation().z));
+}
+
+void RigidBody::LateUpdate()
+{
+
 }
 
 void RigidBody::SetMass(const float _mass)
@@ -100,6 +101,11 @@ void RigidBody::SetMass(const float _mass)
 
 	if (m_btRigidBody)
 		m_btRigidBody->setMassProps(_mass, inertia);
+}
+
+inline void RigidBody::SetCollider(ACollider* const _collider)
+{
+	m_collider = _collider;
 }
 
 } // namespace ecs

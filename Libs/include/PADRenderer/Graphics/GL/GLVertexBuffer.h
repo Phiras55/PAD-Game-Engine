@@ -9,7 +9,7 @@ class GLVertexBuffer final : public rhi::AVertexBuffer
 {
 public:
 	GLVertexBuffer();
-	virtual ~GLVertexBuffer();
+	virtual ~GLVertexBuffer() = default;
 
 public:
 	void GenerateID() override;

@@ -95,9 +95,6 @@ void GLRenderer::ForwardRendering(rhi::AVertexArray* const* const _vaos, rhi::AV
 		if (shaderCount == 0 || !currentVAO || !currentIBO)
 			continue;
 
-		if(currentSettings.isWireframe)
-			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
 		glBindVertexArray(currentVAO->GetID());
 
 		for (rhi::shad::AShaderProgram* const currentProgram : currentSettings.programs)
@@ -115,8 +112,6 @@ void GLRenderer::ForwardRendering(rhi::AVertexArray* const* const _vaos, rhi::AV
 			glDrawElements(GL_TRIANGLES, currentIBO->GetCount(), GL_UNSIGNED_INT, nullptr);
 		}
 	}
-
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void GLRenderer::ClearBuffer()
@@ -158,6 +153,14 @@ void GLRenderer::GenerateTexture(uint32& _textureID, const std::string& _path)
 void GLRenderer::GenerateBuffer(uint32& _id)
 {
 
+}
+
+void GLRenderer::SetCustomUniforms(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings)
+{
+	for (const auto& it : _settings.customUniforms)
+	{
+		_program->SetCustomUniform(it.first, it.second);
+	}
 }
 
 } // namespace gl

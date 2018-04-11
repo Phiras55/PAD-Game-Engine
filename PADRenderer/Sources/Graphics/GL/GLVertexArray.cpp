@@ -6,6 +6,11 @@ namespace pad {
 namespace gfx {
 namespace gl  {
 
+GLVertexArray::GLVertexArray()
+{
+	m_id = GL_INVALID_VALUE;
+}
+
 void GLVertexArray::GenerateID()
 {
 	glGenVertexArrays(1, &m_id);

@@ -12,6 +12,12 @@ namespace mod {
 	{
 	}
 
+	Mesh::Mesh(const Mesh& _m)
+	{
+		m_vao = _m.m_vao;
+		m_ibo = _m.m_ibo;
+	}
+
 	Mesh::~Mesh()
 	{
 		Clean();

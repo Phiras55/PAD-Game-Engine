@@ -25,9 +25,6 @@
     <Filter Include="Source Files\System">
       <UniqueIdentifier>{9e2269a8-de15-4919-ac80-bf1a0541b70c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\System\Resource">
-      <UniqueIdentifier>{b17d9066-18ec-4256-b90b-d761d1689495}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\System\ECS">
       <UniqueIdentifier>{922b0db2-26a1-4258-85b1-732a042cd5d1}</UniqueIdentifier>
     </Filter>
@@ -58,6 +55,9 @@
     <Filter Include="Header Files\System\Physics">
       <UniqueIdentifier>{07c47f7e-e6fc-4bc5-a29e-508581c4326c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\System\ResourceManager">
+      <UniqueIdentifier>{b17d9066-18ec-4256-b90b-d761d1689495}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Engine.cpp">
@@ -75,14 +75,8 @@
     <ClCompile Include="Sources\Core\EngineDLL.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\Resource\AResourceManager.cpp">
-      <Filter>Source Files\System\ResourceManager</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Core\IDPool.cpp">
       <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\System\Resource\ResourceManager.cpp">
-      <Filter>Source Files\System\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="Sources\System\Resource\Resource.cpp">
       <Filter>Source Files\System\ResourceManager</Filter>
@@ -108,19 +102,16 @@
     <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\Resource\MeshManager.cpp">
-      <Filter>Source Files\System\ResourceManager</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp">
       <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\Resource\MasterManager.cpp">
+      <Filter>Source Files\System\ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
       <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\IModule.h">
-      <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Core\EngineClock.h">
       <Filter>Header Files\Core</Filter>
@@ -132,19 +123,13 @@
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\Resource\ResourceManager.h">
-      <Filter>Header Files\System\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\Resource\AResourceManager.h">
-      <Filter>Header Files\System\Resource</Filter>
+      <Filter>Header Files\System\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Core\IDPool.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\Resource\MeshManager.h">
-      <Filter>Header Files\System\Resource</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\System\Resource\Resource.h">
-      <Filter>Header Files\System\Resource</Filter>
+      <Filter>Header Files\System\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\PADObject.h">
       <Filter>Header Files\System\ECS</Filter>
@@ -190,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\MeshRenderer.h">
       <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Resource\MasterManager.h">
+      <Filter>Header Files\System\ResourceManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

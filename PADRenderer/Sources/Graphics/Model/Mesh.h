@@ -12,6 +12,8 @@ public:
 	Mesh();
 	~Mesh();
 
+	Mesh(const Mesh& _m);
+
 private:
 	rhi::AVertexArray*  m_vao;
 	rhi::AVertexBuffer* m_ibo;

@@ -39,6 +39,7 @@ private:
 	void InitMainBuffer(const rhi::ContextSettings& _settings);
 	void InitCullFace(const rhi::ContextSettings& _settings);
 	void GenerateBuffer(uint32& _id);
+	void SetCustomUniforms(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings);
 
 public:
 	void operator=(const GLRenderer&)										= delete;

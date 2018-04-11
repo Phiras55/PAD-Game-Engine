@@ -108,6 +108,39 @@ void GLShaderProgram::SetUniform(const std::string& name, const math::Vec3f& _va
 	glUniform3fv(m_uniforms[name], 1, &_value[0]);
 }
 
+void GLShaderProgram::SetCustomUniform(const std::string& _name, const rhi::shad::CustomUniform& _customUniform)
+{
+	if (m_uniforms.find(_name) == m_uniforms.end())
+		m_uniforms[_name] = glGetUniformLocation(m_id, _name.c_str());
+
+	switch (_customUniform.type)
+	{
+	case rhi::shad::DataType::MAT4:
+		SetUniform(_name, *static_cast<math::Mat4*>(_customUniform.data));
+		break;
+	case rhi::shad::DataType::VEC4:
+		SetUniform(_name, *static_cast<math::Vec4f*>(_customUniform.data));
+		break;
+	case rhi::shad::DataType::VEC3:
+		SetUniform(_name, *static_cast<math::Vec3f*>(_customUniform.data));
+		break;
+	case rhi::shad::DataType::FLOAT:
+		SetUniform(_name, *static_cast<float32*>(_customUniform.data));
+		break;
+	case rhi::shad::DataType::INT:
+		SetUniform(_name, *static_cast<int32*>(_customUniform.data));
+		break;
+	case rhi::shad::DataType::UINT:
+		SetUniform(_name, *static_cast<uint32*>(_customUniform.data));
+		break;
+	case rhi::shad::DataType::BOOL:
+		SetUniform(_name, *static_cast<bool*>(_customUniform.data));
+		break;
+	default:
+		LOG_ERROR_S("Error trying to set a custom uniform. An unexpected DataType was chosen.\n");
+	}
+}
+
 } // namespace shad
 } // namespace gl
 } // namespace gfx

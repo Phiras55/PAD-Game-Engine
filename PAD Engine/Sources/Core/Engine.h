@@ -4,7 +4,7 @@
 #include <Graphics/RHI/RenderSettings.h>
 #include <Graphics/Model/Mesh.h>
 #include <System/ECS/Scene.h>
-#include <System/Resource/ResourceManager.h>
+#include <System/Resource/MasterManager.h>
 
 namespace pad	{
 namespace core	{
@@ -23,7 +23,7 @@ private:
 	sys::win::SDLWindow*	mp_window;
 
 	sys::ecs::Scene*			m_scene;
-	sys::res::ResourceManager*	m_resourceManager;
+	sys::res::MasterManager*	m_resourceManager;
 
 public:
 	void InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win::WindowSettings& _w);			/*! Initialize the simulation. Reads the config files and initialize the renderer and the window. */
@@ -50,7 +50,7 @@ private:
 
 public:
 	sys::ecs::Scene* const				GetScene() const			{ return m_scene; }
-	sys::res::ResourceManager* const	GetResourceManager() const	{ return m_resourceManager; }
+	sys::res::MasterManager* const		GetResourceManager() const	{ return m_resourceManager; }
 
 public:
 	void operator=(const Engine&)	= delete;

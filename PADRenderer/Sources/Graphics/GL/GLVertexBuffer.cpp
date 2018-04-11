@@ -7,12 +7,8 @@ namespace gl  {
 
 GLVertexBuffer::GLVertexBuffer()
 {
-
-}
-
-GLVertexBuffer::~GLVertexBuffer()
-{
-
+	m_id	= GL_INVALID_VALUE;
+	m_count = 0;
 }
 
 void GLVertexBuffer::GenerateID()

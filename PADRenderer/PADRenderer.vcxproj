@@ -95,6 +95,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;SDL2.lib;glew32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -111,6 +113,8 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opengl32.lib;SDL2.lib;glew32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -129,6 +133,8 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -149,6 +155,8 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>_MBCS;LOGGER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -198,6 +206,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
+    <ClInclude Include="Sources\Graphics\RHI\Shader\CustomUniform.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h" />
     <ClInclude Include="Sources\Graphics\RHI\TextureParameters.h" />
     <ClInclude Include="Sources\Graphics\Window\AWindow.h" />

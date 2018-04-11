@@ -16,7 +16,7 @@ namespace core	{
 
 Engine::Engine() :
 	m_scene(new sys::ecs::Scene()),
-	m_resourceManager(new sys::res::ResourceManager())
+	m_resourceManager(new sys::res::MasterManager())
 {
 
 }
@@ -73,10 +73,8 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win:
 
 	gfx::mod::Mesh* m = new gfx::mod::Mesh();
 	
-	//m->SetName("Cube");
 	mp_renderer->GenerateMesh(md, m->GetVAO(), m->GetIBO());
-	//m_resourceManager->GetMeshManager().AddResource("Cube", m);
-	
+	m_resourceManager->GetMeshManager().AddResource("Cube", *m);
 	#pragma endregion
 }
 
@@ -111,7 +109,7 @@ void Engine::PollEvents()
 
 void Engine::Update()
 {
-	core::Timer::PauseAll();
+
 }
 
 void Engine::FixedUpdate()
@@ -148,11 +146,9 @@ void Engine::Render()
 
 	for (const auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{
-		//const gfx::mod::Mesh& currentMesh = *m_resourceManager->GetMeshManager().GetResource(meshRenderer.GetMeshName());
-		//vaos[meshRendererIdx]		= currentMesh.GetVAO();
-		//ibos[meshRendererIdx]		= currentMesh.GetIBO();
-		vaos[meshRendererIdx]		= nullptr;
-		ibos[meshRendererIdx]		= nullptr;
+		const gfx::mod::Mesh& currentMesh = *m_resourceManager->GetMeshManager().GetResource(meshRenderer.GetMeshName());
+		vaos[meshRendererIdx]		= currentMesh.GetVAO();
+		ibos[meshRendererIdx]		= currentMesh.GetIBO();
 		settings[meshRendererIdx]	= meshRenderer.GetSettings();
 
 		++meshRendererIdx;

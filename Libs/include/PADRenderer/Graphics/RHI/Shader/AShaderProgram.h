@@ -1,6 +1,7 @@
 #pragma once
 #include <Math/Matrix4x4.h>
 #include <Graphics/RHI/Shader/AShader.h>
+#include <Graphics/RHI/Shader/CustomUniform.h>
 
 namespace pad	{
 namespace gfx	{
@@ -24,13 +25,14 @@ public:
 	virtual bool CompileProgram() = 0;
 	virtual void Use() = 0;
 
-	virtual void SetUniform(const std::string& name, const int32 value) = 0;
-	virtual void SetUniform(const std::string& name, const uint32 value) = 0;
-	virtual void SetUniform(const std::string& name, const bool value) = 0;
-	virtual void SetUniform(const std::string& name, const float32 value) = 0;
-	virtual void SetUniform(const std::string& name, const math::Vec4f& _value) = 0;
-	virtual void SetUniform(const std::string& name, const math::Vec3f& _value) = 0;
-	virtual void SetUniform(const std::string& name, const math::Mat4& _value) = 0;
+	virtual void SetUniform(const std::string& _name, const int32 value)			= 0;
+	virtual void SetUniform(const std::string& _name, const uint32 value)			= 0;
+	virtual void SetUniform(const std::string& _name, const bool value)				= 0;
+	virtual void SetUniform(const std::string& _name, const float32 value)			= 0;
+	virtual void SetUniform(const std::string& _name, const math::Vec4f& _value)	= 0;
+	virtual void SetUniform(const std::string& _name, const math::Vec3f& _value)	= 0;
+	virtual void SetUniform(const std::string& _name, const math::Mat4& _value)		= 0;
+	virtual void SetCustomUniform(const std::string& _name, const CustomUniform& _customUniform) = 0;
 
 public:
 	inline int32&		GetID()			{ return m_id; }

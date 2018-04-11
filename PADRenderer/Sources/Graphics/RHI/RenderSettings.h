@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <map>
 
 #include <Math/Vector4.h>
 #include <Graphics/RHI/Shader/AShaderProgram.h>
@@ -17,8 +18,9 @@ struct RenderSettings
 		programs.reserve(1);
 	}
 
-	std::vector<shad::AShaderProgram*>	programs;
-	const math::Matrix4x4*				modelMatrix;
+	std::vector<shad::AShaderProgram*>			programs;
+	std::map<std::string, shad::CustomUniform>	customUniforms;
+	const math::Matrix4x4*						modelMatrix;
 
 	bool isWireframe;
 };

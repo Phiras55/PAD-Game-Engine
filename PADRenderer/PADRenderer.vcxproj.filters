@@ -179,5 +179,8 @@
     <ClInclude Include="Sources\Graphics\Model\Mesh.h">
       <Filter>Header Files\Graphics\Model</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\Shader\CustomUniform.h">
+      <Filter>Header Files\Graphics\RHI\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

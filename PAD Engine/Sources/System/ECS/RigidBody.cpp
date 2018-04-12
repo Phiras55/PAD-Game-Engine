@@ -55,9 +55,9 @@ void RigidBody::Init()
 															m_transform.Position().y,
 															m_transform.Position().z));
 
-	m_btRigidBody->getWorldTransform().setRotation(btQuaternion(	m_transform.Rotation().y,
-																	m_transform.Rotation().x,
-																	m_transform.Rotation().z));
+	//m_btRigidBody->getWorldTransform().setRotation(btQuaternion(	m_transform.Rotation().y,
+	//																m_transform.Rotation().x,
+	//																m_transform.Rotation().z));
 
 	core::Engine::GetPhysicContext()->AddRigidBody(this);
 }
@@ -73,22 +73,29 @@ void RigidBody::Update()
 															m_owner->GetTransform().Position().y,
 															m_owner->GetTransform().Position().z));
 
-	m_btRigidBody->getWorldTransform().setRotation(btQuaternion(	m_owner->GetTransform().Rotation().y,
-																	m_owner->GetTransform().Rotation().x,
-																	m_owner->GetTransform().Rotation().z));
+	//m_btRigidBody->getWorldTransform().setRotation(btQuaternion(	m_owner->GetTransform().Rotation().y,
+	//																m_owner->GetTransform().Rotation().x,
+	//																m_owner->GetTransform().Rotation().z));
 }
 
 void RigidBody::FixedUpdate()
 {
 	m_owner->GetTransform().SetPosition(m_btRigidBody->getWorldTransform().getOrigin());
-	//m_owner->GetTransform().SetRotation(math::Vec3f(m_btRigidBody->getWorldTransform().getRotation().x,
-	//												m_btRigidBody->getWorldTransform().getRotation().y,
-	//												m_btRigidBody->getWorldTransform().getRotation().z));
+	m_owner->GetTransform().SetQuatRotation(math::Quat(	m_btRigidBody->getWorldTransform().getRotation().x(),
+														m_btRigidBody->getWorldTransform().getRotation().y(),
+														m_btRigidBody->getWorldTransform().getRotation().z(),
+														m_btRigidBody->getWorldTransform().getRotation().w()));
 }
 
 void RigidBody::LateUpdate()
 {
+	m_btRigidBody->getWorldTransform().setOrigin(btVector3(m_owner->GetTransform().Position().x,
+		m_owner->GetTransform().Position().y,
+		m_owner->GetTransform().Position().z));
 
+	//m_btRigidBody->getWorldTransform().setRotation(btQuaternion(	m_owner->GetTransform().Rotation().y,
+	//																m_owner->GetTransform().Rotation().x,
+	//																m_owner->GetTransform().Rotation().z));
 }
 
 void RigidBody::SetMass(const float _mass)

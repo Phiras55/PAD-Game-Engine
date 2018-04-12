@@ -1,6 +1,7 @@
 #pragma once
 #include <Math/MatrixTransform.h>
 #include <Math/Vector4.h>
+#include <Math/Quaternion.h>
 
 #define PI 3.14159265359f
 
@@ -25,6 +26,7 @@ public:
 private:
 	Mat4	m_localTransform;
 	Mat4	m_globalTransform;
+	Quat	m_quatRotation;
 	Vec3f	m_position;
 	Vec3f	m_rotation;
 	Vec3f	m_scale;
@@ -39,7 +41,8 @@ private:
 	inline void ComputeLocalMatrix()
 	{
 		m_localTransform =		TranslationMatrix(m_position)
-							*	RotationMatrix(DegreeToRad(m_rotation.x), DegreeToRad(m_rotation.y), DegreeToRad(m_rotation.z))
+							*	RotationMatrix(m_quatRotation)
+//							*	RotationMatrix(DegreeToRad(m_rotation.x), DegreeToRad(m_rotation.y), DegreeToRad(m_rotation.z))
 							*	ScaleMatrix(m_scale);
 
 		m_isDirty = false;
@@ -78,6 +81,12 @@ public:
 		m_isDirty = true;
 	}
 	 
+	inline void SetQuatRotation(const Quat& _quat)
+	{
+		m_quatRotation = _quat;
+		m_isDirty = true;
+	}
+
 	inline void SetScale(const Vec3f& _scale)
 	{
 		m_scale = _scale;

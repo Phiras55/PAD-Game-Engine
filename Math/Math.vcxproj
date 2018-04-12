@@ -24,6 +24,8 @@
     <ClInclude Include="..\Libs\include\Math\Matrix4x4.h" />
     <ClInclude Include="..\Libs\include\Math\Matrix4x4_impl.h" />
     <ClInclude Include="..\Libs\include\Math\MatrixTransform.h" />
+    <ClInclude Include="..\Libs\include\Math\Quaternion.h" />
+    <ClInclude Include="..\Libs\include\Math\Quaternion_impl.h" />
     <ClInclude Include="..\Libs\include\Math\Transform.h" />
     <ClInclude Include="..\Libs\include\Math\Vector2.h" />
     <ClInclude Include="..\Libs\include\Math\Vector2_impl.h" />

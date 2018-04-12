@@ -51,5 +51,11 @@
     <ClInclude Include="..\Libs\include\Math\MatrixTransform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Libs\include\Math\Quaternion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Libs\include\Math\Quaternion_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

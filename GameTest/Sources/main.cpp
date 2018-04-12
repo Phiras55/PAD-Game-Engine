@@ -13,6 +13,8 @@
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/BoxCollider.h>
 
+#include "ScriptTest.h"
+
 int main()
 {
 	#pragma region RenderInit
@@ -57,7 +59,6 @@ int main()
 		obj->AddComponent(rb);
 		obj->AddComponent(mr);
 		rb->SetMass(100);
-		pad::sys::ecs::MeshRenderer::AddToCollection(*mr);
 		pad::AddPADObject(obj);
 	}
 
@@ -69,13 +70,14 @@ int main()
 	pad::sys::ecs::BoxCollider*		box2 = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(5, 0.05, 5));
 	pad::sys::ecs::RigidBody*		rb2 = new pad::sys::ecs::RigidBody();
 	pad::sys::ecs::MeshRenderer*	mr2 = new pad::sys::ecs::MeshRenderer();
+	ScriptTest test;
 	mr2->SetMeshName("Cube");
 
 	rb2->SetMass(0.f);
 	obj2->AddComponent(mr2);
 	obj2->AddComponent(box2);
 	obj2->AddComponent(rb2);
-	pad::sys::ecs::MeshRenderer::AddToCollection(*mr2);
+	obj2->AddComponent(&test);
 	pad::AddPADObject(obj2);
 
 	pad::StartSimulation();

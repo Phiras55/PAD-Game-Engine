@@ -45,7 +45,7 @@ public:
 
 	static const std::vector<MeshRenderer>& GetCollection() { return m_collection; }
 
-	static void AddToCollection(const MeshRenderer& _meshRenderer);
+//	static void AddToCollection(const MeshRenderer& _meshRenderer);
 };
 
 } // namespace ecs

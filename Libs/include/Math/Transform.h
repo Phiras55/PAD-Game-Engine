@@ -42,7 +42,6 @@ private:
 	{
 		m_localTransform =		TranslationMatrix(m_position)
 							*	RotationMatrix(m_quatRotation)
-//							*	RotationMatrix(DegreeToRad(m_rotation.x), DegreeToRad(m_rotation.y), DegreeToRad(m_rotation.z))
 							*	ScaleMatrix(m_scale);
 
 		m_isDirty = false;

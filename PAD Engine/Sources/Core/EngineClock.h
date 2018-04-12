@@ -1,6 +1,7 @@
 #pragma once
 
 #include <chrono>
+#include <Utilities/Export.h>
 
 namespace pad	{
 namespace core	{
@@ -13,7 +14,7 @@ using HighResClock		= std::chrono::high_resolution_clock;										/*!< Short na
 
 #pragma endregion
 
-class EngineClock final																				/*! Engine clock used for delta time (frame duration) */
+class ENGINE_API EngineClock final																				/*! Engine clock used for delta time (frame duration) */
 {
 #pragma region Constructor / Destructor
 

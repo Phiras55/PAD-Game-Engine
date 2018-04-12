@@ -186,6 +186,9 @@
     <ClCompile Include="Sources\System\Resource\MasterManager.cpp">
       <Filter>Source Files\System\Resource</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\System\ECS\AScriptComponent.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -319,6 +322,9 @@
     </ClInclude>
     <ClInclude Include="Sources\System\Resource\ResourceManager.h">
       <Filter>Header Files\System\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\AScriptComponent.h">
+      <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

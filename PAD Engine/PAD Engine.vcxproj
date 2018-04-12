@@ -39,6 +39,7 @@
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
     <ClCompile Include="Sources\System\ECS\ACollider.cpp" />
+    <ClCompile Include="Sources\System\ECS\AScriptComponent.cpp" />
     <ClCompile Include="Sources\System\ECS\BoxCollider.cpp" />
     <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp" />
     <ClCompile Include="Sources\System\ECS\PADObject.cpp" />
@@ -83,6 +84,7 @@
     <ClInclude Include="Sources\System\ECS\RigidBody.h" />
     <ClInclude Include="Sources\System\ECS\Scene.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h" />
+    <ClInclude Include="Sources\System\ECS\AScriptComponent.h" />
     <ClInclude Include="Sources\System\IModule.h" />
     <ClInclude Include="Sources\System\Physics\BulletContext.h" />
     <ClInclude Include="Sources\System\Physics\IPhysicContext.h" />

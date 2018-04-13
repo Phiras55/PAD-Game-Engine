@@ -11,6 +11,11 @@
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/PerspectiveCamera.h>
 #include <System/Physics/BulletContext.h>
+#include <Graphics/GL/Shader/GLShaderProgram.h>
+#include <Graphics/GL/Shader/GLFragmentShader.h>
+#include <Graphics/GL/Shader/GLVertexShader.h>
+#include <System/ECS/MeshRenderer.h>
+#include <System/ECS/PerspectiveCamera.h>
 
 namespace pad	{
 namespace core	{
@@ -18,7 +23,7 @@ namespace core	{
 Engine::Engine() :
 	m_scene(new sys::ecs::Scene()),
 	m_physicContext(new sys::phx::BulletContext()),
-	m_resourceManager(new sys::res::ResourceManager())
+	m_resourceManager(new sys::res::MasterManager())
 {
 
 }
@@ -27,36 +32,17 @@ Engine::~Engine()
 {
 	if (m_scene)
 		delete m_scene;
-	if(mp_window)
-		delete mp_window;
-	if (mp_renderer)
-		delete mp_renderer;
+	if (m_resourceManager)
+		delete m_resourceManager;
 }
 
-void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win::WindowSettings& _w)
+void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win::WindowSettings& _w)
 {
 	LOG_INIT();
 	core::EngineClock::Init();
-	CreateWindow(_w);
-	CreateRenderer(_c);
+	m_highLevelRenderer.Initialize(_c, _w);
 
-	#pragma region Mesh
-
-	//gfx::gl::shad::GLShaderProgram	program;
-	//gfx::gl::shad::GLFragmentShader	fragShader;
-	//gfx::gl::shad::GLVertexShader	vertShader;
-
-	//vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
-	//fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
-
-	//program.SetVertexShader(&vertShader);
-	//program.SetFragmentShader(&fragShader);
-	//program.CompileProgram();
-
-	//gfx::rhi::RenderSettings r;
-	//r.shaders.push_back(&program);
-	//r.isWireframe = true;
-
+#pragma region Mesh
 	pad::gfx::mod::MeshData md;
 
 	md.positions = new float[24]{
@@ -88,16 +74,20 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win:
 	md.indiceCount = 36;
 
 	gfx::mod::Mesh* m = new gfx::mod::Mesh();
-	m->SetName("Cube");
-	mp_renderer->GenerateMesh(*m, md);
-	m_resourceManager->GetMeshManager().AddResource(m->GetName(), m);
-	
-	#pragma endregion
+
+	m_highLevelRenderer.GenerateMesh(*m, md);
+	m_resourceManager->GetMeshManager().AddResource("Cube", *m);
+#pragma endregion
+
+#pragma region Material
+	gfx::mod::Material* mat = new gfx::mod::Material();
+
+#pragma endregion
 }
 
 void Engine::StartSimulation()
 {
-	while (mp_window->IsOpen())
+	while (m_highLevelRenderer.IsWindowOpen())
 	{
 		Simulate();
 	}
@@ -113,22 +103,16 @@ void Engine::Simulate()
 	FixedUpdate();
 	LateUpdate();
 
-	ClearBuffers();
 	Render();
-	SwapBuffers();
 }
 
 void Engine::PollEvents()
 {
-	if(mp_window)
-		mp_window->PollEvents();
+	m_highLevelRenderer.PollEvents();
 }
 
 void Engine::Update()
 {
-//	core::Timer::PauseAll();
-//	m_scene->Update();
-//	m_physicContext->Update();
 
 }
 
@@ -144,96 +128,17 @@ void Engine::LateUpdate()
 
 void Engine::Render()
 {
-	sys::ecs::PerspectiveCamera cam;
-	cam.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-	cam.LookAt(math::Vec3f(0, 0, 10), math::Vec3f(0, 0, 0), math::Vec3f::Up());
-
-//	math::Mat4 mvp = cam.GetProjection() * cam.GetView();
-
-	gfx::gl::shad::GLShaderProgram	program;
-	gfx::gl::shad::GLFragmentShader	fragShader;
-	gfx::gl::shad::GLVertexShader	vertShader;
-
-	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
-	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
-
-	program.SetVertexShader(&vertShader);
-	program.SetFragmentShader(&fragShader);
-	program.CompileProgram();
-
-	gfx::rhi::RenderSettings r;
-	r.shaders.push_back(&program);
-	r.isWireframe = true;
-
-	for (auto mr : sys::ecs::MeshRenderer::GetCollection())
-	{
-		math::Mat4 mvp = cam.GetProjection() * cam.GetView() * mr.GetOwner()->GetTransform().GetLocalTransform();
-
-		if (mp_renderer)
-			mp_renderer->Draw(*m_resourceManager->GetMeshManager().GetResource(mr.GetMeshName()), r, mvp);
-	}
-}
-
-void Engine::CreateWindow(const sys::win::WindowSettings& _infos)
-{
-	if (_infos.windowType == sys::win::E_WINDOW_TYPE::SDL)
-		mp_window = new sys::win::SDLWindow();
-
-	if(mp_window)
-		mp_window->Init(_infos);
-}
-
-void Engine::CreateRenderer(const gfx::rhi::ContextSettings& _settings)
-{
-	mp_renderer = new gfx::gl::GLRenderer();
-	mp_renderer->Init(_settings);
-
-	if (mp_window)
-	{
-		mp_window->SetResizeCallback(
-			std::bind(
-				&gfx::gl::GLRenderer::ResizeViewport,
-				static_cast<gfx::gl::GLRenderer*>(mp_renderer),
-				std::placeholders::_1,
-				std::placeholders::_2
-			)
-		);
-	}
-}
-
-void Engine::ClearBuffers()
-{
-	if (mp_renderer)
-		mp_renderer->ClearBuffer();
-}
-
-void Engine::SwapBuffers()
-{
-	if (mp_window)
-		mp_window->SwapBuffer();
+	m_highLevelRenderer.Render(*m_resourceManager);
 }
 
 void Engine::ResizeContext(const uint32 _w, const uint32 _h)
 {
-	if (mp_renderer)
-		mp_renderer->ResizeViewport(_w, _h);
-}
-
-void Engine::Draw(const gfx::mod::Mesh& _m, const gfx::rhi::RenderSettings& _settings, math::Mat4& _vp)
-{
-	if (mp_renderer)
-		mp_renderer->Draw(_m, _settings, _vp);
+	m_highLevelRenderer.ResizeContext(_w, _h);
 }
 
 void Engine::FlushLogs()
 {
 	LOG_FLUSH();
-}
-
-void Engine::GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)
-{
-	if (mp_renderer)
-		mp_renderer->GenerateMesh(_m, _md);
 }
 
 } // namespace core

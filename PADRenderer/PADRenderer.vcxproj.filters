@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{07a82839-a2fd-45cd-9922-a262d3c728b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{f3169d50-f274-44bd-aa45-6d34438dbf9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\GL">
+      <UniqueIdentifier>{c0e4e608-075f-4014-8e25-c35e59f7c149}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Model">
+      <UniqueIdentifier>{f16ad2bf-722f-47f5-8175-5b5f2272febf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\RHI">
+      <UniqueIdentifier>{0838e695-e66a-4397-9289-1fc6bbf0116b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\GL">
+      <UniqueIdentifier>{d24f5824-a30c-401f-af19-565a04258d5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Model">
+      <UniqueIdentifier>{f3102bad-abd9-471d-b402-7557dde47572}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\RHI">
+      <UniqueIdentifier>{a503a1eb-71fc-47ef-963c-db6a04fb0669}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\GL\Shader">
+      <UniqueIdentifier>{b5c9cba2-6767-45a3-b0fa-9ddbd8b988fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\GL\Shader">
+      <UniqueIdentifier>{2ae7ad0f-e99c-41ee-8467-2db12a1c1316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\RHI\Shader">
+      <UniqueIdentifier>{945b9a44-6df9-48ac-9b09-19c33b0133c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\RHI\Shader">
+      <UniqueIdentifier>{68288e31-7f6a-4dd8-b791-9bf71802a137}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics\Window">
+      <UniqueIdentifier>{0d313d4a-ec85-454b-b10d-899985daf377}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Window">
+      <UniqueIdentifier>{6b739a59-35e0-4fa3-97f3-b65d8979e3c2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp">
+      <Filter>Source Files\Graphics\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\GLTexture.cpp">
+      <Filter>Source Files\Graphics\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\GLVertexArray.cpp">
+      <Filter>Source Files\Graphics\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\GLVertexBuffer.cpp">
+      <Filter>Source Files\Graphics\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\GLVertexElementBuffer.cpp">
+      <Filter>Source Files\Graphics\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\Shader\GLVertexShader.cpp">
+      <Filter>Source Files\Graphics\GL\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\Shader\GLFragmentShader.cpp">
+      <Filter>Source Files\Graphics\GL\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\Shader\GLShaderProgram.cpp">
+      <Filter>Source Files\Graphics\GL\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\Model\MeshData.cpp">
+      <Filter>Source Files\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\Model\Material.cpp">
+      <Filter>Source Files\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp">
+      <Filter>Source Files\Graphics\RHI</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp">
+      <Filter>Source Files\Graphics\RHI\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\Window\SDLWindow.cpp">
+      <Filter>Source Files\Graphics\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\Model\Mesh.cpp">
+      <Filter>Source Files\Graphics\Model</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\Graphics\GL\GLRenderer.h">
+      <Filter>Header Files\Graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\GL\GLTexture.h">
+      <Filter>Header Files\Graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\GL\GLVertexArray.h">
+      <Filter>Header Files\Graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\GL\GLVertexBuffer.h">
+      <Filter>Header Files\Graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\GL\GLVertexElementBuffer.h">
+      <Filter>Header Files\Graphics\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\GL\Shader\GLFragmentShader.h">
+      <Filter>Header Files\Graphics\GL\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderProgram.h">
+      <Filter>Header Files\Graphics\GL\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\GL\Shader\GLVertexShader.h">
+      <Filter>Header Files\Graphics\GL\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\MeshData.h">
+      <Filter>Header Files\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\Material.h">
+      <Filter>Header Files\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\AVertexBuffer.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\ContextSettings.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\IRenderer.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\TextureParameters.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\ATexture.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\AVertexArray.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h">
+      <Filter>Header Files\Graphics\RHI\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h">
+      <Filter>Header Files\Graphics\RHI\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h">
+      <Filter>Header Files\Graphics\RHI\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Window\SDLWindow.h">
+      <Filter>Header Files\Graphics\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Window\WindowSettings.h">
+      <Filter>Header Files\Graphics\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Window\AWindow.h">
+      <Filter>Header Files\Graphics\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Window\IWindowBase.h">
+      <Filter>Header Files\Graphics\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\Mesh.h">
+      <Filter>Header Files\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\Shader\CustomUniform.h">
+      <Filter>Header Files\Graphics\RHI\Shader</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

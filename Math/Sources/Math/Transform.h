@@ -24,7 +24,7 @@ private:
 	Mat4	m_globalTransform;
 	Vec3f	m_position;
 	Vec3f	m_rotation;
-	Vec3f	m_scale;
+	Vec3f	m_scale = Vec3f(1.f, 1.f, 1.f);
 	bool	m_isDirty;
 
 public:
@@ -36,8 +36,8 @@ private:
 	inline void ComputeLocalMatrix()
 	{
 		m_localTransform = TranslationMatrix(m_position)
-			*	RotationMatrix()
-			*	ScaleMatrix();
+			*	RotationMatrix(m_rotation)
+			*	ScaleMatrix(m_scale);
 
 		m_isDirty = false;
 	}

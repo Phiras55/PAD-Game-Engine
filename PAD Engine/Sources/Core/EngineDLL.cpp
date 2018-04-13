@@ -22,7 +22,7 @@ void DestroyEngine()
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void InitEngine(const gfx::rhi::ContextSettings& _c, const sys::win::WindowSettings& _w)
+void InitEngine(const gfx::rhi::ContextSettings& _c, const gfx::win::WindowSettings& _w)
 {
 	if (g_engine)
 		g_engine->InitSimulation(_c, _w);

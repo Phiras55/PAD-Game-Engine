@@ -114,7 +114,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y /I /S</Command>
+      <Command>xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\" /Y /I /S</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -124,7 +124,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y /I /S</Command>
+      <Command>xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\" /Y /I /S</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -140,7 +140,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y /I /S</Command>
+      <Command>xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\" /Y /I /S</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -156,7 +156,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y /I /S</Command>
+      <Command>xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\" /Y /I /S</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

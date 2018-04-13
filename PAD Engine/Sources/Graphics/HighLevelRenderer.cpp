@@ -22,6 +22,15 @@ HighLevelRenderer::~HighLevelRenderer()
 
 void HighLevelRenderer::Initialize(const rhi::ContextSettings& _rSettings, const win::WindowSettings& _wSettings)
 {
+	switch (_wSettings.windowType)
+	{
+	case gfx::win::E_WINDOW_TYPE::SDL:
+		m_mainWindow = new win::SDLWindow();
+		break;
+	case gfx::win::E_WINDOW_TYPE::QT:
+		break;
+	}
+
 	switch (_rSettings.implementationType)
 	{
 	case rhi::E_RENDERER_IMPLEMENTATION_TYPE::OPENGL:
@@ -29,11 +38,24 @@ void HighLevelRenderer::Initialize(const rhi::ContextSettings& _rSettings, const
 		m_lowLevelRenderer = new gl::GLRenderer();
 	}
 
-	m_mainWindow = new win::SDLWindow();
-	m_mainWindow->Init(_wSettings);
+	if (m_mainWindow)
+	{
+		m_mainWindow->Init(_wSettings);
+		m_mainWindow->SetResizeCallback(
+			std::bind(
+				&gfx::gl::GLRenderer::ResizeViewport,
+				static_cast<gfx::gl::GLRenderer*>(m_lowLevelRenderer),
+				std::placeholders::_1,
+				std::placeholders::_2
+			)
+		);
+	}
+
+	if (m_lowLevelRenderer)
+		m_lowLevelRenderer->Init(_rSettings);
 }
 
-void HighLevelRenderer::Render(const sys::res::MasterManager& _resources)
+void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 {
 #pragma region Temp Code
 	// TODO : Change the temp camera for a main camera in the scene
@@ -44,13 +66,56 @@ void HighLevelRenderer::Render(const sys::res::MasterManager& _resources)
 	math::Mat4 vp = cam.GetProjection() * cam.GetView();
 #pragma endregion
 
+	ClearBuffers();
+
 	for (const auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{
-		const gfx::mod::Mesh& currentMesh = *_resources.GetMeshManager().GetResource(meshRenderer.GetMeshName());
+		const gfx::mod::Mesh* const currentMesh = _resources.GetMeshManager().GetResource(meshRenderer.GetMeshName());
+
+		if (!currentMesh)
+			continue;
 
 		if (m_lowLevelRenderer)
-			m_lowLevelRenderer->ForwardRendering(currentMesh.GetVAO(), currentMesh.GetIBO(), meshRenderer.GetSettings(), vp);
+			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), meshRenderer.GetSettings(), vp);
 	}
+
+	SwapBuffers();
+}
+
+void HighLevelRenderer::GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)
+{
+	if (m_lowLevelRenderer)
+		m_lowLevelRenderer->GenerateMesh(_md, _m.GetVAO(), _m.GetIBO());
+}
+
+bool HighLevelRenderer::IsWindowOpen()
+{
+	if (m_mainWindow)
+		return m_mainWindow->IsOpen();
+	return false;
+}
+
+void HighLevelRenderer::PollEvents()
+{
+	if (m_mainWindow)
+		m_mainWindow->PollEvents();
+}
+
+void HighLevelRenderer::ClearBuffers()
+{
+	if(m_lowLevelRenderer)
+		m_lowLevelRenderer->ClearBuffer();
+}
+
+void HighLevelRenderer::SwapBuffers()
+{
+	if(m_mainWindow)
+		m_mainWindow->SwapBuffer();
+}
+
+void HighLevelRenderer::ResizeContext(const uint32 _w, const uint32 _h)
+{
+	m_lowLevelRenderer->ResizeViewport(_w, _h);
 }
 
 } // namespace gfx

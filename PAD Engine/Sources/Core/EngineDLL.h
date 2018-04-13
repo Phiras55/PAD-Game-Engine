@@ -1,5 +1,5 @@
 #pragma once
-#include <System/Window/WindowSettings.h>
+#include <Graphics/Window/WindowSettings.h>
 #include <PADRenderer/Graphics/RHI/ContextSettings.h>
 #include <System/ECS/PADObject.h>
 
@@ -8,7 +8,7 @@
 namespace pad	
 {
 	ENGINE_API void CreateEngine();
-	ENGINE_API void InitEngine(const gfx::rhi::ContextSettings& _c, const sys::win::WindowSettings& _w);
+	ENGINE_API void InitEngine(const gfx::rhi::ContextSettings& _c, const gfx::win::WindowSettings& _w);
 	ENGINE_API void DestroyEngine();
 
 	ENGINE_API void StartSimulation();

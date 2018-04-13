@@ -45,14 +45,14 @@ void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
 
 	InitMainBuffer(_settings);
 	InitCullFace(_settings);
+	InitWindingOrder(_settings);
 }
 
 void GLRenderer::InitMainBuffer(const rhi::ContextSettings& _settings)
 {
 	if (util::IsFlagSet(_settings.enabledBuffers, gfx::rhi::E_BUFFER_TYPE::DEPTH_BUFFER))
 	{
-		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LESS);
+		InitDepthBuffer(_settings);
 	}
 
 	if (util::IsFlagSet(_settings.enabledBuffers, gfx::rhi::E_BUFFER_TYPE::STENCIL_BUFFER))
@@ -62,13 +62,74 @@ void GLRenderer::InitMainBuffer(const rhi::ContextSettings& _settings)
 	}
 }
 
+void GLRenderer::InitDepthBuffer(const rhi::ContextSettings& _settings)
+{
+	glEnable(GL_DEPTH_TEST);
+
+	int depthFunction = 0;
+	switch (_settings.depthFunc)
+	{
+	case rhi::E_DEPTH_FUNCTION::ALWAYS:
+		depthFunction = GL_ALWAYS;
+		break;
+	case rhi::E_DEPTH_FUNCTION::EQUAL:
+		depthFunction = GL_EQUAL;
+		break;
+	case rhi::E_DEPTH_FUNCTION::GEQUAL:
+		depthFunction = GL_GEQUAL;
+		break;
+	case rhi::E_DEPTH_FUNCTION::GREATER:
+		depthFunction = GL_GREATER;
+		break;
+	case rhi::E_DEPTH_FUNCTION::LEQUAL:
+		depthFunction = GL_LEQUAL;
+		break;
+	case rhi::E_DEPTH_FUNCTION::LESS:
+		depthFunction = GL_LESS;
+		break;
+	case rhi::E_DEPTH_FUNCTION::NEVER:
+		depthFunction = GL_NEVER;
+		break;
+	case rhi::E_DEPTH_FUNCTION::NOTEQUAL:
+		depthFunction = GL_NOTEQUAL;
+		break;
+	}
+	glDepthFunc(depthFunction);
+}
+
 void GLRenderer::InitCullFace(const rhi::ContextSettings& _settings)
 {
 	glEnable(GL_CULL_FACE);
 
-	/*_settings.areTrianglesCounterClockwise ?
-		glCullFace(GL_BACK) :
-		glCullFace(GL_FRONT);*/
+	int cullFace = 0;
+	switch (_settings.cullFace)
+	{
+	case rhi::E_CULL_FACE::BACK:
+		cullFace = GL_BACK;
+		break;
+	case rhi::E_CULL_FACE::FRONT:
+		cullFace = GL_FRONT;
+		break;
+	case rhi::E_CULL_FACE::FRONT_AND_BACK:
+		cullFace = GL_FRONT_AND_BACK;
+		break;
+	}
+	glCullFace(cullFace);
+}
+
+void GLRenderer::InitWindingOrder(const rhi::ContextSettings& _settings)
+{
+	int windingOrder = 0;
+	switch (_settings.windingOrder)
+	{
+	case rhi::E_WINDING_ORDER::COUNTER_CLOCKWISE:
+		windingOrder = GL_CCW;
+		break;
+	case rhi::E_WINDING_ORDER::CLOCKWISE:
+		windingOrder = GL_CW;
+		break;
+	}
+	glFrontFace(windingOrder);
 }
 
 void GLRenderer::InitViewPort(const math::Vec2i& _viewportSize)
@@ -95,6 +156,9 @@ void GLRenderer::ForwardRendering(
 
 	glBindVertexArray(_vao->GetID());
 
+	if (_setting.isWireframe)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 	for (rhi::shad::AShaderProgram* const currentProgram : _setting.programs)
 	{
 		if (!currentProgram)
@@ -109,6 +173,7 @@ void GLRenderer::ForwardRendering(
 
 		glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, nullptr);
 	}
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void GLRenderer::ClearBuffer()
@@ -145,11 +210,6 @@ void GLRenderer::GenerateTexture(uint32& _textureID, const std::string& _path)
 {
 	int width, height, nrChannels;
 	unsigned char *data = stbi_load(_path.c_str(), &width, &height, &nrChannels, 0);
-}
-
-void GLRenderer::GenerateBuffer(uint32& _id)
-{
-
 }
 
 void GLRenderer::SetCustomUniforms(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings)

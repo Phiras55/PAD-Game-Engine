@@ -71,14 +71,15 @@ E_BUFFER_TYPE& operator&=(E_BUFFER_TYPE& left, const E_BUFFER_TYPE& right);
 struct ContextSettings final
 {
 	ContextSettings() :
-		viewportSize(0, 0),
-		clearColor(0.f, 0.f, 0.f, 1.f),
-		frameBufferCount(0),
-		enabledBuffers(E_BUFFER_TYPE::ALL),
-		depthFunc(E_DEPTH_FUNCTION::LESS),
-		windingOrder(E_WINDING_ORDER::COUNTER_CLOCKWISE),
-		cullFace(E_CULL_FACE::BACK),
-		implementationType(E_RENDERER_IMPLEMENTATION_TYPE::OPENGL)
+		viewportSize		(0, 0),
+		clearColor			(0.f, 0.f, 0.f, 1.f),
+		frameBufferCount	(0),
+		stencilMask			(0x00),
+		enabledBuffers		(E_BUFFER_TYPE::ALL),
+		depthFunc			(E_DEPTH_FUNCTION::LESS),
+		windingOrder		(E_WINDING_ORDER::COUNTER_CLOCKWISE),
+		cullFace			(E_CULL_FACE::BACK),
+		implementationType	(E_RENDERER_IMPLEMENTATION_TYPE::OPENGL)
 	{
 
 	}
@@ -86,6 +87,7 @@ struct ContextSettings final
 	math::Vec2i					viewportSize;
 	math::Vec4f					clearColor;
 	uint16						frameBufferCount;
+	uint32						stencilMask;
 	BufferType					enabledBuffers;
 	DepthFunc					depthFunc;
 	WindingOrder				windingOrder;

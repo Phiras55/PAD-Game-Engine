@@ -25,20 +25,15 @@ Engine::~Engine()
 {
 	if (m_scene)
 		delete m_scene;
-	if (mp_window)
-		delete mp_window;
-	if (mp_renderer)
-		delete mp_renderer;
 	if (m_resourceManager)
 		delete m_resourceManager;
 }
 
-void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win::WindowSettings& _w)
+void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win::WindowSettings& _w)
 {
 	LOG_INIT();
 	core::EngineClock::Init();
-	CreateWindow(_w);
-	CreateRenderer(_c);
+	m_highLevelRenderer.Initialize(_c, _w);
 
 #pragma region Mesh
 	pad::gfx::mod::MeshData md;
@@ -73,7 +68,7 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win:
 
 	gfx::mod::Mesh* m = new gfx::mod::Mesh();
 	
-	mp_renderer->GenerateMesh(md, m->GetVAO(), m->GetIBO());
+	m_highLevelRenderer.GenerateMesh(*m, md);
 	m_resourceManager->GetMeshManager().AddResource("Cube", *m);
 #pragma endregion
 
@@ -85,7 +80,7 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win:
 
 void Engine::StartSimulation()
 {
-	while (mp_window->IsOpen())
+	while (m_highLevelRenderer.IsWindowOpen())
 	{
 		Simulate();
 	}
@@ -101,15 +96,12 @@ void Engine::Simulate()
 	FixedUpdate();
 	LateUpdate();
 
-	ClearBuffers();
 	Render();
-	SwapBuffers();
 }
 
 void Engine::PollEvents()
 {
-	if(mp_window)
-		mp_window->PollEvents();
+	m_highLevelRenderer.PollEvents();
 }
 
 void Engine::Update()
@@ -129,66 +121,17 @@ void Engine::LateUpdate()
 
 void Engine::Render()
 {
-
-}
-
-void Engine::CreateWindow(const sys::win::WindowSettings& _infos)
-{
-	if (_infos.windowType == sys::win::E_WINDOW_TYPE::SDL)
-		mp_window = new sys::win::SDLWindow();
-
-	if (mp_window)
-		mp_window->Init(_infos);
-}
-
-void Engine::CreateRenderer(const gfx::rhi::ContextSettings& _settings)
-{
-	mp_renderer = new gfx::gl::GLRenderer();
-	mp_renderer->Init(_settings);
-
-	if (mp_window)
-	{
-		mp_window->SetResizeCallback(
-			std::bind(
-				&gfx::gl::GLRenderer::ResizeViewport,
-				static_cast<gfx::gl::GLRenderer*>(mp_renderer),
-				std::placeholders::_1,
-				std::placeholders::_2
-			)
-		);
-	}
-}
-
-void Engine::ClearBuffers()
-{
-	if (mp_renderer)
-		mp_renderer->ClearBuffer();
-}
-
-void Engine::SwapBuffers()
-{
-	if (mp_window)
-		mp_window->SwapBuffer();
+	m_highLevelRenderer.Render(*m_resourceManager);
 }
 
 void Engine::ResizeContext(const uint32 _w, const uint32 _h)
 {
-	if (mp_renderer)
-		mp_renderer->ResizeViewport(_w, _h);
+	m_highLevelRenderer.ResizeContext(_w, _h);
 }
 
 void Engine::FlushLogs()
 {
 	LOG_FLUSH();
-}
-
-void Engine::GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)
-{
-	gfx::rhi::AVertexArray& vao		= *_m.GetVAO();
-	gfx::rhi::AVertexBuffer& ibo	= *_m.GetIBO();
-
-	if (mp_renderer)
-		mp_renderer->GenerateMesh(_md, &vao, &ibo);
 }
 
 } // namespace core

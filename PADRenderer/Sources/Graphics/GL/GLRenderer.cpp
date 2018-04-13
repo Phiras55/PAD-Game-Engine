@@ -66,9 +66,9 @@ void GLRenderer::InitCullFace(const rhi::ContextSettings& _settings)
 {
 	glEnable(GL_CULL_FACE);
 
-	_settings.areTrianglesCounterClockwise ?
+	/*_settings.areTrianglesCounterClockwise ?
 		glCullFace(GL_BACK) :
-		glCullFace(GL_FRONT);
+		glCullFace(GL_FRONT);*/
 }
 
 void GLRenderer::InitViewPort(const math::Vec2i& _viewportSize)
@@ -80,37 +80,34 @@ void GLRenderer::InitViewPort(const math::Vec2i& _viewportSize)
 		_viewportSize.y);
 }
 
-void GLRenderer::ForwardRendering(rhi::AVertexArray* const* const _vaos, rhi::AVertexBuffer* const* const _ibos, const rhi::RenderSettings* const _settings, const math::Mat4& _vp, const uint32 _meshCount)
+void GLRenderer::ForwardRendering(
+	rhi::AVertexArray* const _vao,
+	rhi::AVertexBuffer* const _ibo,
+	const rhi::RenderSettings _setting,
+	const math::Mat4& _vp)
 {
-	if (!_vaos || !_ibos || !_settings)
+	if (!_vao || !_ibo)
+		return;
+	const uint32 shaderCount = (uint32)_setting.programs.size();
+
+	if (shaderCount == 0)
 		return;
 
-	for (uint32 meshIdx = 0; meshIdx < _meshCount; ++meshIdx)
+	glBindVertexArray(_vao->GetID());
+
+	for (rhi::shad::AShaderProgram* const currentProgram : _setting.programs)
 	{
-		const rhi::AVertexArray*	currentVAO		= _vaos[meshIdx];
-		const rhi::AVertexBuffer*	currentIBO		= _ibos[meshIdx];
-		const rhi::RenderSettings&	currentSettings	= _settings[meshIdx];
-		const uint32				shaderCount		= (uint32)currentSettings.programs.size();
-
-		if (shaderCount == 0 || !currentVAO || !currentIBO)
-			continue;
-
-		glBindVertexArray(currentVAO->GetID());
-
-		for (rhi::shad::AShaderProgram* const currentProgram : currentSettings.programs)
+		if (!currentProgram)
 		{
-			if (!currentProgram)
-			{
-				LOG_ERROR_S("The shader is not valid. Try to add one in the RenderSettings.\n");
-				continue;
-			}
-
-			currentProgram->Use();
-			currentProgram->SetUniform("albedo", math::Vec4f(1, 0, 0, 1));
-			currentProgram->SetUniform("mvp", _vp * *currentSettings.modelMatrix);
-
-			glDrawElements(GL_TRIANGLES, currentIBO->GetCount(), GL_UNSIGNED_INT, nullptr);
+			LOG_ERROR_S("The shader is not valid. Try to add one in the RenderSettings.\n");
+			continue;
 		}
+
+		currentProgram->Use();
+		currentProgram->SetUniform("albedo", math::Vec4f(1, 0, 0, 1));
+		currentProgram->SetUniform("mvp", _vp * *_setting.modelMatrix);
+
+		glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, nullptr);
 	}
 }
 

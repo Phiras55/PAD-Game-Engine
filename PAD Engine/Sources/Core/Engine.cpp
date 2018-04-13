@@ -40,7 +40,7 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win:
 	CreateWindow(_w);
 	CreateRenderer(_c);
 
-	#pragma region Mesh
+#pragma region Mesh
 	pad::gfx::mod::MeshData md;
 
 	md.positions = new float[24]{
@@ -75,7 +75,12 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const sys::win:
 	
 	mp_renderer->GenerateMesh(md, m->GetVAO(), m->GetIBO());
 	m_resourceManager->GetMeshManager().AddResource("Cube", *m);
-	#pragma endregion
+#pragma endregion
+
+#pragma region Material
+	gfx::mod::Material* mat = new gfx::mod::Material();
+	
+#pragma endregion
 }
 
 void Engine::StartSimulation()
@@ -124,42 +129,7 @@ void Engine::LateUpdate()
 
 void Engine::Render()
 {
-#pragma region Temp Code
-	// TODO : Change the temp camera for a main camera in the scene
-	sys::ecs::PerspectiveCamera cam;
-	cam.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-	cam.LookAt(math::Vec3f(10, 10, -10), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 
-	math::Mat4 vp = cam.GetProjection() * cam.GetView();
-#pragma endregion
-
-	gfx::rhi::AVertexArray**	vaos		= nullptr;
-	gfx::rhi::AVertexBuffer**	ibos		= nullptr;
-	gfx::rhi::RenderSettings*	settings	= nullptr;
-
-	uint32 meshCount		= (uint32)sys::ecs::MeshRenderer::GetCollection().size();
-	uint32 meshRendererIdx	= 0;
-
-	vaos		= new gfx::rhi::AVertexArray*[meshCount];
-	ibos		= new gfx::rhi::AVertexBuffer*[meshCount];
-	settings	= new gfx::rhi::RenderSettings[meshCount];
-
-	for (const auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
-	{
-		const gfx::mod::Mesh& currentMesh = *m_resourceManager->GetMeshManager().GetResource(meshRenderer.GetMeshName());
-		vaos[meshRendererIdx]		= currentMesh.GetVAO();
-		ibos[meshRendererIdx]		= currentMesh.GetIBO();
-		settings[meshRendererIdx]	= meshRenderer.GetSettings();
-
-		++meshRendererIdx;
-	}
-
-	if (mp_renderer)
-		mp_renderer->ForwardRendering(vaos, ibos, settings, vp, meshCount);
-
-	delete[] vaos;
-	delete[] ibos;
-	delete[] settings;
 }
 
 void Engine::CreateWindow(const sys::win::WindowSettings& _infos)
@@ -167,7 +137,7 @@ void Engine::CreateWindow(const sys::win::WindowSettings& _infos)
 	if (_infos.windowType == sys::win::E_WINDOW_TYPE::SDL)
 		mp_window = new sys::win::SDLWindow();
 
-	if(mp_window)
+	if (mp_window)
 		mp_window->Init(_infos);
 }
 

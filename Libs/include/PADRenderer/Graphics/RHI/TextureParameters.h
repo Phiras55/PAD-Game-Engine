@@ -34,16 +34,32 @@ using MipmapType		= E_MIPMAP_TYPE;
 struct TextureParameters
 {
 	TextureParameters() :
-		wrap(E_WRAP_TYPE::REPEAT),
-		filtering(E_TEXTURE_FILTERING::LINEAR),
-		mipmap(E_MIPMAP_TYPE::LINEAR_LINEAR)
+		sWrap(E_WRAP_TYPE::REPEAT),
+		tWrap(E_WRAP_TYPE::REPEAT),
+		minFiltering(E_TEXTURE_FILTERING::LINEAR),
+		magFiltering(E_TEXTURE_FILTERING::LINEAR),
+		minMipmap(E_MIPMAP_TYPE::LINEAR_LINEAR),
+		magMipmap(E_MIPMAP_TYPE::LINEAR_LINEAR)
 	{
 	}
 
-	WrapType			wrap;
-	TextureFiltering	filtering;
-	MipmapType			mipmap;
+	WrapType			sWrap;
+	WrapType			tWrap;
+	TextureFiltering	minFiltering;
+	TextureFiltering	magFiltering;
+	MipmapType			minMipmap;
+	MipmapType			magMipmap;
 };
+
+// S = Minifying
+// T = Magnifying
+enum class E_AXIS_TYPE : uint8
+{
+	S,
+	T
+};
+
+using AxisType = E_AXIS_TYPE;
 
 }
 }

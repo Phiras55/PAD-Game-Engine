@@ -26,11 +26,10 @@ public:
 	void ClearBuffer()														override;
 	void GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao, rhi::AVertexBuffer* _ibo) override;
 	void ForwardRendering(
-		rhi::AVertexArray* const * const _vaos, 
-		rhi::AVertexBuffer* const * const _ibos, 
-		const rhi::RenderSettings* const _settings, 
-		const math::Mat4& _vp, 
-		const uint32 _meshCount) override;
+		rhi::AVertexArray* const _vaos,
+		rhi::AVertexBuffer* const _ibos,
+		const rhi::RenderSettings _settings,
+		const math::Mat4& _vp)												override;
 
 private:
 	void InitContext(const rhi::ContextSettings& _settings)					override;

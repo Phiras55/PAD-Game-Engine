@@ -40,23 +40,23 @@
     <Filter Include="Resources\Shaders">
       <UniqueIdentifier>{7e10183c-10a7-4cd9-a30c-70bd275784d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\System\Window">
-      <UniqueIdentifier>{6b58709a-ddcb-4aaa-99f3-e1effce375b1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\System\Physics">
       <UniqueIdentifier>{ccdf6619-b50f-46e6-9870-19c69d597994}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\System\ResourceManager">
       <UniqueIdentifier>{d4a4f04b-8d47-462c-906c-7ea2317a670d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\System\Window">
-      <UniqueIdentifier>{d8b530a2-ee35-468d-a0b5-5a0353f3ac97}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\System\Physics">
       <UniqueIdentifier>{07c47f7e-e6fc-4bc5-a29e-508581c4326c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\System\ResourceManager">
       <UniqueIdentifier>{b17d9066-18ec-4256-b90b-d761d1689495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{6048f736-da9d-4568-b5bf-1c2253703102}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{b12f80d5-8a64-422c-8edc-a311b5e5a508}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,9 +93,6 @@
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\Window\SDLWindow.cpp">
-      <Filter>Source Files\System\Window</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\System\Physics\BulletContext.cpp">
       <Filter>Source Files\System\Physics</Filter>
     </ClCompile>
@@ -107,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="Sources\System\Resource\MasterManager.cpp">
       <Filter>Source Files\System\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\HighLevelRenderer.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,18 +149,6 @@
     <ClInclude Include="Sources\Utilities\Export.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\Window\WindowSettings.h">
-      <Filter>Header Files\System\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\Window\AWindow.h">
-      <Filter>Header Files\System\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\Window\IWindowBase.h">
-      <Filter>Header Files\System\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\Window\SDLWindow.h">
-      <Filter>Header Files\System\Window</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\System\Physics\BulletContext.h">
       <Filter>Header Files\System\Physics</Filter>
     </ClInclude>
@@ -178,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="Sources\System\Resource\MasterManager.h">
       <Filter>Header Files\System\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\HighLevelRenderer.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

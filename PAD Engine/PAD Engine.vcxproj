@@ -24,6 +24,7 @@
     <ClCompile Include="Sources\Core\EngineDLL.cpp" />
     <ClCompile Include="Sources\Core\IDPool.cpp" />
     <ClCompile Include="Sources\Core\Timer.cpp" />
+    <ClCompile Include="Sources\Graphics\HighLevelRenderer.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
     <ClCompile Include="Sources\System\ECS\Collider.cpp" />
     <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp" />
@@ -34,7 +35,6 @@
     <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
     <ClCompile Include="Sources\System\Resource\MasterManager.cpp" />
     <ClCompile Include="Sources\System\Resource\Resource.cpp" />
-    <ClCompile Include="Sources\System\Window\SDLWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h" />
@@ -42,6 +42,7 @@
     <ClInclude Include="Sources\Core\EngineDLL.h" />
     <ClInclude Include="Sources\Core\IDPool.h" />
     <ClInclude Include="Sources\Core\Timer.h" />
+    <ClInclude Include="Sources\Graphics\HighLevelRenderer.h" />
     <ClInclude Include="Sources\System\ECS\Camera.h" />
     <ClInclude Include="Sources\System\ECS\Collider.h" />
     <ClInclude Include="Sources\System\ECS\IComponent.h" />
@@ -55,10 +56,6 @@
     <ClInclude Include="Sources\System\Resource\MasterManager.h" />
     <ClInclude Include="Sources\System\Resource\Resource.h" />
     <ClInclude Include="Sources\System\Resource\ResourceManager.h" />
-    <ClInclude Include="Sources\System\Window\AWindow.h" />
-    <ClInclude Include="Sources\System\Window\IWindowBase.h" />
-    <ClInclude Include="Sources\System\Window\SDLWindow.h" />
-    <ClInclude Include="Sources\System\Window\WindowSettings.h" />
     <ClInclude Include="Sources\Utilities\Export.h" />
   </ItemGroup>
   <ItemGroup>
@@ -158,7 +155,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx86</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\lib\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SimpleLogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
@@ -186,7 +183,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\lib\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SimpleLogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
@@ -218,7 +215,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx86</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\lib\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SimpleLogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
@@ -250,7 +247,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\lib\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SimpleLogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>

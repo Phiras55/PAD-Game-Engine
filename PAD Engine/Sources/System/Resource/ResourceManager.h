@@ -57,7 +57,15 @@ public:
 		}
 	}
 
-	T* const GetResource(const std::string _name)
+	const T* const GetResource(const std::string _name) const
+	{
+		if (m_resourceCollection.find(_name) != m_resourceCollection.end())
+			return &m_resourceArray[m_resourceCollection[_name]];
+		else
+			return nullptr;
+	}
+
+	T* GetResource(const std::string _name)
 	{
 		if (m_resourceCollection.find(_name) != m_resourceCollection.end())
 			return &m_resourceArray[m_resourceCollection[_name]];

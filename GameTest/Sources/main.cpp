@@ -61,6 +61,7 @@ int main()
 	mr.GetSettings().programs.push_back(&program);
 
 	mr.SetMeshName("Cube");
+	mr.SetMaterialName("Default");
 	obj.AddComponent(&rb);
 	obj.AddComponent(&mr);
 	pad::sys::ecs::MeshRenderer::AddToCollection(mr);

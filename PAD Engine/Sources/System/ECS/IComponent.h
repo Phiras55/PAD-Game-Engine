@@ -2,12 +2,19 @@
 
 #include <Utilities/Export.h>
 #include <Math/Transform.h>
+#include <System/ECS/PADObject.h>
 
 namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-class PADObject;
+enum COMPONENT_TYPE
+{
+	MESH_RENDERER,
+	RIGIDBODY,
+	COLLIDER,
+	CAMERA
+};
 
 class ENGINE_API IComponent
 {
@@ -21,9 +28,12 @@ public:
 	virtual void SetOwner(PADObject* const _owner)	= 0;
 	virtual PADObject* const GetOwner() const		= 0;
 
+	virtual const COMPONENT_TYPE GetType() const	= 0;
+
 protected:
 	math::Transform*	m_transform;
 	PADObject*			m_owner;
+	COMPONENT_TYPE		m_type;
 };
 
 } // namespace ecs

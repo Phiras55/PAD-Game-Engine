@@ -2,13 +2,15 @@
 
 #include <list>
 #include <Math/Transform.h>
-#include <System/ECS/IComponent.h>
+//#include <System/ECS/IComponent.h>
 #include <vector>
 #include <Utilities/Export.h>
 
 namespace pad	{
 namespace sys	{
 namespace ecs	{
+
+class IComponent;
 
 class ENGINE_API PADObject
 {
@@ -55,16 +57,18 @@ public:
 
 #pragma endregion
 
-#pragma region MyRegion
+#pragma region Getter / Setter
 
 	void SetParent(PADObject* const _parent);
-	PADObject* const GetParent() const { return m_parent; }
+	inline PADObject* const GetParent() const			{ return m_parent; }
 
 	inline math::Transform& GetTransform() 				{ return m_transform; }
 	inline const math::Transform& GetTransform() const	{ return m_transform; }
 
 	inline void SetName(const std::string _name)		{ m_name = _name; }
 	inline const std::string& GetName() const			{ return m_name; }
+
+	inline const std::list<IComponent*> GetComponents() const	{ return m_components; }
 
 #pragma endregion
 };

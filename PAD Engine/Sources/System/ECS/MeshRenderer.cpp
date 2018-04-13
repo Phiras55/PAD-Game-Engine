@@ -9,6 +9,7 @@ std::vector<MeshRenderer> MeshRenderer::m_collection;
 
 MeshRenderer::MeshRenderer(math::Transform& _ownerTransform)
 {
+	m_type = COMPONENT_TYPE::MESH_RENDERER;
 	m_settings.modelMatrix = &_ownerTransform.GetLocalTransform();
 }
 

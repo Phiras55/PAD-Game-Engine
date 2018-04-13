@@ -19,18 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sources\Math\Matrix3x3.h" />
-    <ClInclude Include="Sources\Math\Matrix3x3_impl.h" />
-    <ClInclude Include="Sources\Math\Matrix4x4.h" />
-    <ClInclude Include="Sources\Math\Matrix4x4_impl.h" />
-    <ClInclude Include="Sources\Math\MatrixTransform.h" />
-    <ClInclude Include="Sources\Math\Transform.h" />
-    <ClInclude Include="Sources\Math\Vector2.h" />
-    <ClInclude Include="Sources\Math\Vector2_impl.h" />
-    <ClInclude Include="Sources\Math\Vector3.h" />
-    <ClInclude Include="Sources\Math\Vector3_impl.h" />
-    <ClInclude Include="Sources\Math\Vector4.h" />
-    <ClInclude Include="Sources\Math\Vector4_impl.h" />
+    <ClInclude Include="..\Libs\include\Math\Matrix3x3.h" />
+    <ClInclude Include="..\Libs\include\Math\Matrix3x3_impl.h" />
+    <ClInclude Include="..\Libs\include\Math\Matrix4x4.h" />
+    <ClInclude Include="..\Libs\include\Math\Matrix4x4_impl.h" />
+    <ClInclude Include="..\Libs\include\Math\MatrixTransform.h" />
+    <ClInclude Include="..\Libs\include\Math\Transform.h" />
+    <ClInclude Include="..\Libs\include\Math\Vector2.h" />
+    <ClInclude Include="..\Libs\include\Math\Vector2_impl.h" />
+    <ClInclude Include="..\Libs\include\Math\Vector3.h" />
+    <ClInclude Include="..\Libs\include\Math\Vector3_impl.h" />
+    <ClInclude Include="..\Libs\include\Math\Vector4.h" />
+    <ClInclude Include="..\Libs\include\Math\Vector4_impl.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -90,7 +90,7 @@
     <SourcePath>$(ProjectDir)Sources;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)Sources;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Sources;$(SolutionDir)Libs\include;$(IncludePath)</IncludePath>
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)temp\$(Configuration)\$(Platform)\</IntDir>
     <SourcePath>$(ProjectDir)Sources;$(SourcePath)</SourcePath>

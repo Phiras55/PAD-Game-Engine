@@ -10,12 +10,19 @@
 #include <Graphics/GL/Shader/GLVertexShader.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/PerspectiveCamera.h>
+#include <System/Physics/BulletContext.h>
+#include <Graphics/GL/Shader/GLShaderProgram.h>
+#include <Graphics/GL/Shader/GLFragmentShader.h>
+#include <Graphics/GL/Shader/GLVertexShader.h>
+#include <System/ECS/MeshRenderer.h>
+#include <System/ECS/PerspectiveCamera.h>
 
 namespace pad	{
 namespace core	{
 
 Engine::Engine() :
 	m_scene(new sys::ecs::Scene()),
+	m_physicContext(new sys::phx::BulletContext()),
 	m_resourceManager(new sys::res::MasterManager())
 {
 
@@ -67,14 +74,14 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win:
 	md.indiceCount = 36;
 
 	gfx::mod::Mesh* m = new gfx::mod::Mesh();
-	
+
 	m_highLevelRenderer.GenerateMesh(*m, md);
 	m_resourceManager->GetMeshManager().AddResource("Cube", *m);
 #pragma endregion
 
 #pragma region Material
 	gfx::mod::Material* mat = new gfx::mod::Material();
-	
+
 #pragma endregion
 }
 

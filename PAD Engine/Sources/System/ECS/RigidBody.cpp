@@ -6,7 +6,7 @@ namespace ecs	{
 
 RigidBody::RigidBody()
 {
-
+	m_type = COMPONENT_TYPE::RIGIDBODY;
 }
 
 RigidBody::~RigidBody()
@@ -21,7 +21,21 @@ void RigidBody::Init(PADObject* const _owner)
 
 void RigidBody::Start()
 {
-	// rigidBody.transform = parent.transform
+	btCollisionShape* collider;
+
+	for (auto comp : m_owner->GetComponents())
+	{
+		if (comp->GetType() == COMPONENT_TYPE::COLLIDER)
+		{
+
+		}
+	}
+	//btTransform btTrans;
+	//btTrans.setOrigin(btVector3(m_owner->GetTransform().Position().x,
+	//							m_owner->GetTransform().Position().y,
+	//							m_owner->GetTransform().Position().z));
+	//
+	//m_btMotionState = new btDefaultMotionState(btTrans);
 }
 
 void RigidBody::Update()

@@ -4,6 +4,8 @@
 #include <Graphics/Model/Mesh.h>
 #include <System/ECS/Scene.h>
 #include <System/Resource/MasterManager.h>
+#include <System/Resource/ResourceManager.h>
+#include <System/Physics/IPhysicContext.h>
 
 namespace pad	{
 namespace core	{
@@ -22,6 +24,7 @@ private:
 
 	sys::ecs::Scene*			m_scene;
 	sys::res::MasterManager*	m_resourceManager;
+	sys::phx::IPhysicContext*	m_physicContext;
 
 public:
 	void InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win::WindowSettings& _w);			/*! Initialize the simulation. Reads the config files and initialize the renderer and the window. */

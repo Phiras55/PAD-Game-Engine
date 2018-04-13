@@ -44,8 +44,6 @@ public:
 	const std::string& GetMaterialName() const				{ return m_materialName; }
 
 	static const std::vector<MeshRenderer>& GetCollection() { return m_collection; }
-
-//	static void AddToCollection(const MeshRenderer& _meshRenderer);
 };
 
 } // namespace ecs

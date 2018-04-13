@@ -249,9 +249,9 @@ inline Vector3<T>::Vector3(const btVector3& _vector)
 template<typename T>
 inline void Vector3<T>::operator=(const btVector3& _vector)
 {
-	x = _vector.x;
-	y = _vector.y;
-	z = _vector.z;
+	x = _vector.x();
+	y = _vector.y();
+	z = _vector.z();
 }
 
 #pragma endregion

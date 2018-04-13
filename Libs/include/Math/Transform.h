@@ -35,6 +35,7 @@ private:
 public:
 	inline const Vec3f& Position() const	{ return m_position; }
 	inline const Vec3f& Rotation() const	{ return m_rotation; }
+	inline const Quat&	QuatRotation()const { return m_quatRotation; }
 	inline const Vec3f& Scale() const		{ return m_scale; }
 
 private:

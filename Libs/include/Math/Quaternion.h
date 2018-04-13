@@ -10,6 +10,7 @@ struct Quaternion
 	#pragma region Constructor / Destructor
 
 	Quaternion() = default;
+
 	Quaternion(const float _i, const float _j, const float _k, const float _scalar) :
 		i(_i),
 		j(_j),
@@ -27,6 +28,14 @@ struct Quaternion
 		j(_vec4.y),
 		k(_vec4.z),
 		scalar(_vec4.w) {}
+
+	Quaternion(const Mat4& _matrix)
+	{
+		scalar	= (sqrt(1 + _matrix[0][0] + _matrix[1][1] + _matrix[2][2])) / 2.f;
+		i		= (sqrt(1 + _matrix[0][0] - _matrix[1][1] - _matrix[2][2])) / 2.f;
+		j		= (sqrt(1 - _matrix[0][0] + _matrix[1][1] - _matrix[2][2])) / 2.f;
+		k		= (sqrt(1 - _matrix[0][0] - _matrix[1][1] + _matrix[2][2])) / 2.f;
+	}
 
 	~Quaternion() = default;
 

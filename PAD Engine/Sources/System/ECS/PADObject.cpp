@@ -55,7 +55,10 @@ void PADObject::Update()
 	}
 
 	for (IComponent* comp : m_components)
-		comp->Update();
+	{
+		if (comp->GetType() != SCRIPT)
+			comp->Update();
+	}
 
 	for (PADObject* so : m_childs)
 		so->Update();

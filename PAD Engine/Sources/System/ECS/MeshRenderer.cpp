@@ -41,11 +41,6 @@ void MeshRenderer::LateUpdate()
 {
 
 }
-//
-//void MeshRenderer::AddToCollection(const MeshRenderer& _meshRenderer)
-//{
-//	m_collection.push_back(_meshRenderer);
-//}
 
 } // namespace ecs
 } // namespace sys

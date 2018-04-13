@@ -3,6 +3,7 @@
 
 void ScriptTest::Init()
 {	
+	AScriptComponent::Init();
 	pos_y = -2;
 }
 

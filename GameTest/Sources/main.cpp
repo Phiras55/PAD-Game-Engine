@@ -46,38 +46,41 @@ int main()
 	pad::CreateEngine();
 	pad::InitEngine(contextSettings, winSettings);
 
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
 		pad::sys::ecs::PADObject*		obj = new pad::sys::ecs::PADObject();
+
+		pad::sys::ecs::RigidBody*		rb = new pad::sys::ecs::RigidBody();
+		rb->SetMass(10);
+		pad::sys::ecs::MeshRenderer*	mr = new pad::sys::ecs::MeshRenderer();
+		mr->SetMeshName("Cube");
+		pad::sys::ecs::BoxCollider*		box = new pad::sys::ecs::BoxCollider();
+
 		obj->SetName("Physic Cube");
 		obj->GetTransform().SetPosition(pad::math::Vec3f(i *0.5, i * 1.5 + 5, 0));
-		pad::sys::ecs::RigidBody*		rb = new pad::sys::ecs::RigidBody();
-		pad::sys::ecs::MeshRenderer*	mr = new pad::sys::ecs::MeshRenderer();
-		pad::sys::ecs::BoxCollider*		box = new pad::sys::ecs::BoxCollider();
-		mr->SetMeshName("Cube");
+
 		obj->AddComponent(box);
 		obj->AddComponent(rb);
 		obj->AddComponent(mr);
-		rb->SetMass(100);
 		pad::AddPADObject(obj);
 	}
 
 	pad::sys::ecs::PADObject*		obj2 = new pad::sys::ecs::PADObject();
 	obj2->SetName("ground");
 	obj2->GetTransform().SetPosition(pad::math::Vec3f(0, -2, 0));
-	obj2->GetTransform().SetScale(pad::math::Vec3f(10, 0.1, 10));
+	obj2->GetTransform().SetScale(pad::math::Vec3f(1, 10, 10));
 
-	pad::sys::ecs::BoxCollider*		box2 = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(5, 0.05, 5));
+	pad::sys::ecs::BoxCollider*		box2 = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(5, 0.25, 5));
 	pad::sys::ecs::RigidBody*		rb2 = new pad::sys::ecs::RigidBody();
 	pad::sys::ecs::MeshRenderer*	mr2 = new pad::sys::ecs::MeshRenderer();
-	ScriptTest test;
+//	ScriptTest test;
 	mr2->SetMeshName("Cube");
 
 	rb2->SetMass(0.f);
 	obj2->AddComponent(mr2);
 	obj2->AddComponent(box2);
 	obj2->AddComponent(rb2);
-	obj2->AddComponent(&test);
+//	obj2->AddComponent(&test);
 	pad::AddPADObject(obj2);
 
 	pad::StartSimulation();

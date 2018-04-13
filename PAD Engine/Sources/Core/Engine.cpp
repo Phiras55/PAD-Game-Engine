@@ -10,6 +10,7 @@
 #include <Graphics/GL/Shader/GLVertexShader.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/PerspectiveCamera.h>
+#include <System/ECS/AScriptComponent.h>
 #include <System/Physics/BulletContext.h>
 
 namespace pad	{
@@ -117,9 +118,10 @@ void Engine::Simulate()
 	PollEvents();
 	FlushLogs();
 
+	sys::ecs::AScriptComponent::ScriptUpdate();
 	Update();
 
-	if (m_fixedUpdateTimer.GetDuration() > 0.016f)
+	if (m_fixedUpdateTimer.GetDuration() > 1.f / 60.f)
 	{
 		FixedUpdate();
 		m_fixedUpdateTimer.ResetDuration();
@@ -158,7 +160,7 @@ void Engine::Render()
 {
 	sys::ecs::PerspectiveCamera cam;
 	cam.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-	cam.LookAt(math::Vec3f(0, 0, 10), math::Vec3f(0, 0, 0), math::Vec3f::Up());
+	cam.LookAt(math::Vec3f(0, 0, 15), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 
 	math::Mat4 mvp = cam.GetProjection() * cam.GetView();
 

@@ -30,7 +30,7 @@ void BulletContext::Init()
 
 void BulletContext::Update()
 {
-	dynamicsWorld->stepSimulation(0.016f);
+	dynamicsWorld->stepSimulation(1.f/ 60.f);
 }
 
 void BulletContext::Clean()

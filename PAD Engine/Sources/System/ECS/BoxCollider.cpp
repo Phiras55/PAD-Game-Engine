@@ -22,6 +22,10 @@ BoxCollider::~BoxCollider()
 void BoxCollider::Init()
 {
 	ACollider::Init();
+
+	m_btCollider->getWorldTransform().setOrigin(btVector3(	m_transform.Position().x,
+															m_transform.Position().y,
+															m_transform.Position().z));
 }
 
 void BoxCollider::Start()

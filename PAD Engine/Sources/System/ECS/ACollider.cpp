@@ -23,6 +23,8 @@ ACollider::~ACollider()
 
 void ACollider::Init()
 {
+//	m_transform = m_owner->GetTransform();
+
 	RigidBody* rb = nullptr;
 	for (auto comp : m_owner->GetComponents())
 	{

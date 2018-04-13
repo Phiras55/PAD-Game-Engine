@@ -97,7 +97,6 @@
     <ClInclude Include="Sources\Utilities\EnumUtils.h" />
     <ClInclude Include="Sources\Utilities\Export.h" />
     <ClInclude Include="Sources\Utilities\Serialization\MetaData.h" />
-    <ClInclude Include="Sources\Utilities\Serialization\Reflection.h" />
     <ClInclude Include="Sources\Utilities\Serialization\Serialization.h" />
   </ItemGroup>
   <ItemGroup>

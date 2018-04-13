@@ -1,5 +1,8 @@
 #pragma once
-#include <Utilities/Serialization/MetaData.h>
 
-#define Serialize(NAME)\
-		meta_##PARAM
+template<typename T>
+struct ISerializable
+{
+	virtual std::string Serialize()	= 0;
+	virtual T Deserialize()	= 0;
+};

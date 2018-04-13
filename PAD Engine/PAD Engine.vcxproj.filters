@@ -335,9 +335,6 @@
     <ClInclude Include="Sources\Utilities\Serialization\Serialization.h">
       <Filter>Header Files\Utilities\Serialization</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Utilities\Serialization\Reflection.h">
-      <Filter>Header Files\Utilities\Serialization</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Utilities\Serialization\MetaData.h">
       <Filter>Header Files\Utilities\Serialization</Filter>
     </ClInclude>

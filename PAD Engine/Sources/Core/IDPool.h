@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <Utilities/Serialization/Serialization.h>
+
 
 namespace pad	{
 namespace core	{
@@ -13,7 +15,7 @@ public:
 
 private:
 	std::vector<unsigned short>	m_pool;																/*!< A container for Ids that are free to be re-used */
-	unsigned short				m_newId;																/*!< The new Id to be used if none are free in the pool */
+	unsigned short				m_newId;															/*!< The new Id to be used if none are free in the pool */
 
 public:
 	int GenerateID();

@@ -1,15 +1,23 @@
 #include <iostream>
 
-#include <Utilities/Serialization/Serialization.h>
+#include <Graphics/Model/Mesh.h>
+#include <tuple>
 
+
+class toto
+{
+public:
+	double a;
+	float b;
+	int c;
+};
 
 int main()
 {
-	MAKE_META_DATA(toto, je, test, de, serialize, de, la, data, et, ca, marche);
-	meta_toto;
-	for (size_t i = 0; i < 10; i++)
-		std::cout << meta_toto[i] << " ";
-	std::cout << std::endl;
+	toto t;
+	t.a = 6.2;
+	t.b = 3.1f;
+	t.c = 1;
 
 	system("pause");
 

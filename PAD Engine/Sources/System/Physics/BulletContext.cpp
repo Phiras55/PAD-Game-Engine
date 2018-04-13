@@ -30,7 +30,7 @@ void BulletContext::Init()
 
 void BulletContext::Update()
 {
-	dynamicsWorld->stepSimulation(core::EngineClock::DeltaTime());
+	dynamicsWorld->stepSimulation((btScalar)core::EngineClock::DeltaTime());
 }
 
 void BulletContext::Clean()

@@ -84,7 +84,7 @@ void PADObject::AddComponent(IComponent* const _component)
 
 void PADObject::RemoveComponent(IComponent* const _component)
 {
-	m_components.remove(_component);
+
 }
 
 void PADObject::Init()

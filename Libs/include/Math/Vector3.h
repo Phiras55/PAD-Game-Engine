@@ -1,7 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <Bullet/btBulletDynamicsCommon.h>
 
 namespace pad	{
 namespace math	{
@@ -74,13 +73,6 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 	static inline Vector3 Up()		{ return Vec3f(0, 1, 0); }
 	static inline Vector3 Forward() { return Vec3f(0, 0, 1); }
 	static inline Vector3 Right()	{ return Vec3f(1, 0, 0); }
-
-#pragma endregion
-
-#pragma region Bullet Conversions
-
-	Vector3(const btVector3& _vector);
-	void operator=(const btVector3& _vector);
 
 #pragma endregion
 };

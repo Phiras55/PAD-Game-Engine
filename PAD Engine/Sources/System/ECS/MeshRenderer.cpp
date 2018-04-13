@@ -7,14 +7,15 @@ namespace ecs	{
 
 std::vector<MeshRenderer> MeshRenderer::m_collection;
 
-MeshRenderer::MeshRenderer()
+MeshRenderer::MeshRenderer(math::Transform& _ownerTransform)
 {
 	m_type = COMPONENT_TYPE::MESH_RENDERER;
+	m_settings.modelMatrix = &_ownerTransform.GetLocalTransform();
 }
 
 MeshRenderer::~MeshRenderer()
 {
-//	m_collection.erase(std::remove(m_collection.begin(), m_collection.end(), *this), m_collection.end());
+
 }
 
 void MeshRenderer::Init(PADObject* const _owner)

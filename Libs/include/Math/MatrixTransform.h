@@ -37,8 +37,7 @@ inline Matrix4x4 RotationMatrix(float _x = 0.f, float _y = 0.f, float _z = 0.f)
 					  sin(_z),    cos(_z),			0,			0,
 							0,			0,			1,			0,
 							0,			0,			0,			1);
-
-	matX = (matY * matX * matZ);
+	matX *= (matY *= matZ);
 	return matX;
 }
 
@@ -58,12 +57,11 @@ inline Matrix4x4 RotationMatrix(const Vec3f& _rotation)
 					sin(_rotation.z),	cos(_rotation.z),	0,	0,
 					0,					0,					1,	0,
 					0,					0,					0,	1);
-
-	matX = (matY * matX * matZ);
+	matX *= (matY *= matZ);
 	return matX;
 }
 
-inline Matrix4x4 ScaleMatrix(float _x = 0.f, float _y = 0.f, float _z = 0.f)
+inline Matrix4x4 ScaleMatrix(float _x = 1.f, float _y = 1.f, float _z = 1.f)
 {
 	return Matrix4x4(  _x, 0, 0, 0,
 						0,_y, 0, 0,

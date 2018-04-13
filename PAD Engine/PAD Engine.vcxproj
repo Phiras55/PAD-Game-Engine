@@ -19,24 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Sources\Common.h" />
     <ClCompile Include="Sources\Core\Engine.cpp" />
     <ClCompile Include="Sources\Core\EngineClock.cpp" />
     <ClCompile Include="Sources\Core\EngineDLL.cpp" />
     <ClCompile Include="Sources\Core\IDPool.cpp" />
     <ClCompile Include="Sources\Core\Timer.cpp" />
-    <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp" />
-    <ClCompile Include="Sources\Graphics\GL\GLVertexArray.cpp" />
-    <ClCompile Include="Sources\Graphics\GL\GLVertexBuffer.cpp" />
-    <ClCompile Include="Sources\Graphics\GL\GLVertexElementBuffer.cpp" />
-    <ClCompile Include="Sources\Graphics\GL\Shader\GLFragmentShader.cpp" />
-    <ClCompile Include="Sources\Graphics\GL\Shader\GLShaderProgram.cpp" />
-    <ClCompile Include="Sources\Graphics\GL\Shader\GLVertexShader.cpp" />
-    <ClCompile Include="Sources\Graphics\Model\Material.cpp" />
-    <ClCompile Include="Sources\Graphics\Model\Mesh.cpp" />
-    <ClCompile Include="Sources\Graphics\Model\MeshData.cpp" />
-    <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp" />
-    <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp" />
+    <ClCompile Include="Sources\Graphics\HighLevelRenderer.cpp" />
     <ClCompile Include="Sources\Main.cpp" />
     <ClCompile Include="Sources\System\ECS\Collider.cpp" />
     <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp" />
@@ -45,11 +33,8 @@
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp" />
     <ClCompile Include="Sources\System\ECS\Scene.cpp" />
     <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
-    <ClCompile Include="Sources\System\Resource\MeshManager.cpp" />
+    <ClCompile Include="Sources\System\Resource\MasterManager.cpp" />
     <ClCompile Include="Sources\System\Resource\Resource.cpp" />
-    <ClCompile Include="Sources\System\Resource\AResourceManager.cpp" />
-    <ClCompile Include="Sources\System\Resource\ResourceManager.cpp" />
-    <ClCompile Include="Sources\System\Window\SDLWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h" />
@@ -57,23 +42,7 @@
     <ClInclude Include="Sources\Core\EngineDLL.h" />
     <ClInclude Include="Sources\Core\IDPool.h" />
     <ClInclude Include="Sources\Core\Timer.h" />
-    <ClInclude Include="Sources\Graphics\GL\GLRenderer.h" />
-    <ClInclude Include="Sources\Graphics\GL\GLVertexArray.h" />
-    <ClInclude Include="Sources\Graphics\GL\GLVertexBuffer.h" />
-    <ClInclude Include="Sources\Graphics\GL\GLVertexElementBuffer.h" />
-    <ClInclude Include="Sources\Graphics\GL\Shader\GLFragmentShader.h" />
-    <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderProgram.h" />
-    <ClInclude Include="Sources\Graphics\GL\Shader\GLVertexShader.h" />
-    <ClInclude Include="Sources\Graphics\Model\Material.h" />
-    <ClInclude Include="Sources\Graphics\Model\Mesh.h" />
-    <ClInclude Include="Sources\Graphics\Model\MeshData.h" />
-    <ClInclude Include="Sources\Graphics\RHI\IRenderer.h" />
-    <ClInclude Include="Sources\Graphics\RHI\AVertexArray.h" />
-    <ClInclude Include="Sources\Graphics\RHI\AVertexBuffer.h" />
-    <ClInclude Include="Sources\Graphics\RHI\ContextSettings.h" />
-    <ClInclude Include="Sources\Graphics\RHI\RenderSettings.h" />
-    <ClInclude Include="Sources\Graphics\RHI\Shader\AShader.h" />
-    <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
+    <ClInclude Include="Sources\Graphics\HighLevelRenderer.h" />
     <ClInclude Include="Sources\System\ECS\Camera.h" />
     <ClInclude Include="Sources\System\ECS\Collider.h" />
     <ClInclude Include="Sources\System\ECS\IComponent.h" />
@@ -82,19 +51,11 @@
     <ClInclude Include="Sources\System\ECS\PerspectiveCamera.h" />
     <ClInclude Include="Sources\System\ECS\RigidBody.h" />
     <ClInclude Include="Sources\System\ECS\Scene.h" />
-    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h" />
-    <ClInclude Include="Sources\System\IModule.h" />
     <ClInclude Include="Sources\System\Physics\BulletContext.h" />
     <ClInclude Include="Sources\System\Physics\IPhysicContext.h" />
+    <ClInclude Include="Sources\System\Resource\MasterManager.h" />
     <ClInclude Include="Sources\System\Resource\Resource.h" />
-    <ClInclude Include="Sources\System\Resource\AResourceManager.h" />
-    <ClInclude Include="Sources\System\Resource\MeshManager.h" />
     <ClInclude Include="Sources\System\Resource\ResourceManager.h" />
-    <ClInclude Include="Sources\System\Window\AWindow.h" />
-    <ClInclude Include="Sources\System\Window\IWindowBase.h" />
-    <ClInclude Include="Sources\System\Window\SDLWindow.h" />
-    <ClInclude Include="Sources\System\Window\WindowSettings.h" />
-    <ClInclude Include="Sources\Utilities\EnumUtils.h" />
     <ClInclude Include="Sources\Utilities\Export.h" />
   </ItemGroup>
   <ItemGroup>
@@ -156,25 +117,25 @@
     <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
     <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IncludePath>$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
     <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IncludePath>$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
     <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IncludePath>$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
     <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IncludePath>$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -193,14 +154,15 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx86</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/lib/Debug/Win32</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\lib\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SimpleLogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+      <Command>xcopy "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)" /Y
+xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y /I /S</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -220,14 +182,15 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/lib/Debug/x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\lib\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SimpleLogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+      <Command>xcopy "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)" /Y
+xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y /I /S</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -251,14 +214,15 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx86</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/lib/Release/Win32</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\lib\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SimpleLogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+      <Command>xcopy "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)" /Y
+xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y /I /S</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -282,14 +246,15 @@
       <AdditionalDependencies>opengl32.lib;glew32.lib;SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Libs/lib/Release/x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;simplelogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libs\lib\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PADRenderer.lib;EventSystem.lib;SimpleLogger.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)\$(TargetName).dll"</Command>
+      <Command>xcopy "$(TargetDir)$(TargetName).dll" "$(SolutionDir)GameTest\bin\$(Configuration)\$(Platform)" /Y
+xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y /I /S</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

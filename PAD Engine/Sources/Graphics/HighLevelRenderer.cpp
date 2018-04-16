@@ -3,6 +3,7 @@
 #include <Graphics/Window/SDLWindow.h>
 #include <System/ECS/PerspectiveCamera.h>
 #include <System/ECS/MeshRenderer.h>
+#include <Graphics/Model/Material.h>
 
 namespace pad	{
 namespace gfx	{
@@ -70,7 +71,8 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 
 	for (const auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{
-		const gfx::mod::Mesh* const currentMesh = _resources.GetMeshManager().GetResource(meshRenderer.GetMeshName());
+		const gfx::mod::Mesh* const currentMesh			= _resources.GetMeshManager().GetResource(meshRenderer.GetMeshName());
+		const gfx::mod::Material* const currentMaterial = _resources.GetMaterialManager().GetResource(meshRenderer.GetMaterialName());
 
 		if (!currentMesh)
 			continue;

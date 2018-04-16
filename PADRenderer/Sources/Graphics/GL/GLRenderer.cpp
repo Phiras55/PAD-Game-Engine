@@ -149,6 +149,7 @@ void GLRenderer::ForwardRendering(
 {
 	if (!_vao || !_ibo)
 		return;
+
 	const uint32 shaderCount = (uint32)_setting.programs.size();
 
 	if (shaderCount == 0)

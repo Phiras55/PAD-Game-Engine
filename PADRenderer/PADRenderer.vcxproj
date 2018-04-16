@@ -209,6 +209,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     <ClInclude Include="Sources\Graphics\RHI\Shader\CustomUniform.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h" />
     <ClInclude Include="Sources\Graphics\RHI\TextureParameters.h" />
+    <ClInclude Include="Sources\Graphics\RHI\TextureSettings.h" />
     <ClInclude Include="Sources\Graphics\Window\AWindow.h" />
     <ClInclude Include="Sources\Graphics\Window\IWindowBase.h" />
     <ClInclude Include="Sources\Graphics\Window\SDLWindow.h" />

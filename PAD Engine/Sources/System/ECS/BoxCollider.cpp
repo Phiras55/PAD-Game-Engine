@@ -9,7 +9,7 @@ BoxCollider::BoxCollider(const math::Vec3f _halfBox)
 {
 	m_type			= COLLIDER;
 	m_btCollider	= new btCollisionObject();
-	m_boxShape		= new btBoxShape(btVector3(_halfBox.x, _halfBox.y, _halfBox.z));
+	m_boxShape		= new btBoxShape(btVector3(_halfBox.x / 2.f, _halfBox.y / 2.f, _halfBox.z / 2.f));
 
 	m_btCollider->setCollisionShape(m_boxShape);
 }

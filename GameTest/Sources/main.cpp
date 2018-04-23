@@ -68,9 +68,9 @@ int main()
 	pad::sys::ecs::PADObject*		obj2 = new pad::sys::ecs::PADObject();
 	obj2->SetName("ground");
 	obj2->GetTransform().SetPosition(pad::math::Vec3f(0, -2, 0));
-	obj2->GetTransform().SetScale(pad::math::Vec3f(1, 10, 10));
+	obj2->GetTransform().SetScale(pad::math::Vec3f(1, 1, 1));
 
-	pad::sys::ecs::BoxCollider*		box2 = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(5, 0.25, 5));
+	pad::sys::ecs::BoxCollider*		box2 = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(1, 1, 1));
 	pad::sys::ecs::RigidBody*		rb2 = new pad::sys::ecs::RigidBody();
 	pad::sys::ecs::MeshRenderer*	mr2 = new pad::sys::ecs::MeshRenderer();
 //	ScriptTest test;
@@ -78,6 +78,7 @@ int main()
 
 	rb2->SetMass(0.f);
 	obj2->AddComponent(mr2);
+//	obj2->AddComponent(box2);
 	obj2->AddComponent(box2);
 	obj2->AddComponent(rb2);
 //	obj2->AddComponent(&test);

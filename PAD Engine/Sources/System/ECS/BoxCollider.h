@@ -10,7 +10,7 @@ namespace ecs	{
 class ENGINE_API BoxCollider final : public ACollider
 {
 public:
-	BoxCollider(const math::Vec3f _halfBox = math::Vec3f(.5f, .5f, .5f));
+	BoxCollider(const math::Vec3f _halfBox = math::Vec3f(1.f, 1.f, 1.f));
 	virtual ~BoxCollider();
 
 private:	

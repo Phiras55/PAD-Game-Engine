@@ -82,12 +82,18 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win:
 
 #pragma region Material
 	gfx::mod::Material* mat = new gfx::mod::Material();
-
 #pragma endregion
 }
 
 void Engine::StartSimulation()
 {
+	m_scene->Init();
+	m_physicContext->Init();
+
+	m_scene->Start();
+
+	m_fixedUpdateTimer.Start();
+
 	while (m_highLevelRenderer.IsWindowOpen())
 	{
 		Simulate();
@@ -101,7 +107,13 @@ void Engine::Simulate()
 	FlushLogs();
 
 	Update();
-	FixedUpdate();
+
+	if (m_fixedUpdateTimer.GetDuration() >= (1.f / 60.f))
+	{
+		m_fixedUpdateTimer.Reset();
+		FixedUpdate();
+	}
+
 	LateUpdate();
 
 	Render();
@@ -114,12 +126,13 @@ void Engine::PollEvents()
 
 void Engine::Update()
 {
-
+	m_scene->Update();
 }
 
 void Engine::FixedUpdate()
 {
-
+	m_physicContext->Update();
+	m_scene->FixedUpdate();
 }
 
 void Engine::LateUpdate()

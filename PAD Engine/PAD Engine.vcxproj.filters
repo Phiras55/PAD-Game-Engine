@@ -108,6 +108,9 @@
     <ClCompile Include="Sources\System\ECS\ACollider.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\System\ECS\BoxCollider.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -168,6 +171,9 @@
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\ACollider.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\BoxCollider.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,7 +9,11 @@ struct Quaternion
 {
 	#pragma region Constructor / Destructor
 
-	Quaternion() = default;
+	Quaternion() :
+		i(0.f),
+		j(0.f),
+		k(0.f),
+		scalar(1.f) {}
 
 	Quaternion(const float _i, const float _j, const float _k, const float _scalar) :
 		i(_i),
@@ -32,7 +36,7 @@ struct Quaternion
 		scalar	= (cos_yaw * cos_roll * cos_pitch) + (sin_yaw * sin_roll * sin_pitch);
 	}
 
-	Quaternion(const float _pitch, const float _roll, const float _yaw)
+	Quaternion(const float _roll, const float _pitch, const float _yaw)
 	{
 		float cos_yaw	= cos(_yaw		* .5f);
 		float sin_yaw	= sin(_yaw		* .5f);

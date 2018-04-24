@@ -20,6 +20,9 @@ public:
 public:
 	inline const math::Mat4& GetProjection()	{ return _projectionMatrix; }
 	inline const math::Mat4& GetView()			{ return _viewMatrix; }
+
+	const math::Transform& GetTransform() const override { return m_transform; }
+	math::Transform& GetTransform()				override { return m_transform; }
 };
 
 } // namespace ecs

@@ -11,6 +11,9 @@ namespace math	{
 inline float DegreeToRad(const float _deg) { return (_deg * PI) / 180.f; }
 inline float RadToDegree(const float _rad) { return (_rad * 180.f) / PI; }
 
+#define DEGREE_TO_RAD(x) pad::math::DegreeToRad(x)
+#define RAD_TO_DEGREE(x) pad::math::RadToDegree(x)
+
 using Mat4 = Matrix4x4;
 
 class Transform final
@@ -78,6 +81,9 @@ public:
 	inline void SetRotation(const Vec3f& _rotation)
 	{
 		m_rotation = _rotation;
+		m_quatRotation = Quat(	DEGREE_TO_RAD(_rotation.x),
+								DEGREE_TO_RAD(_rotation.y),
+								DEGREE_TO_RAD(_rotation.z));
 		m_isDirty = true;
 	}
 	 
@@ -105,9 +111,6 @@ public:
 		m_isDirty = true;
 	}
 };
-
-#define DEGREE_TO_RAD(x) pad::math::DegreeToRad(x)
-#define RAD_TO_DEGREE(x) pad::math::RadToDegree(x)
 
 } // namespace math
 } // namespace pad

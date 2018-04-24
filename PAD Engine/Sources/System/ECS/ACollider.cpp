@@ -23,24 +23,24 @@ ACollider::~ACollider()
 
 void ACollider::Init()
 {
-//	m_transform = m_owner->GetTransform();
+	//m_transform = m_owner->GetTransform();
 
-	RigidBody* rb = nullptr;
-	for (auto comp : m_owner->GetComponents())
-	{
-		if (comp->GetType() == COMPONENT_TYPE::RIGIDBODY)
-		{
-			rb = static_cast<RigidBody*>(comp);
-			if (!rb->GetCollider())
-			{
-				rb->SetCollider(this);
-				return;
-			}
-		}
-	}
+	//RigidBody* rb = nullptr;
+	//for (auto comp : m_owner->GetComponents())
+	//{
+	//	if (comp->GetType() == COMPONENT_TYPE::RIGIDBODY)
+	//	{
+	//		rb = static_cast<RigidBody*>(comp);
+	//		if (!rb->GetCollider())
+	//		{
+	//			rb->SetCollider(this);
+	//			return;
+	//		}
+	//	}
+	//}
 
-	if (!rb)
-		core::Engine::GetPhysicContext()->AddCollider(this);
+	//if (!rb)
+	//	core::Engine::GetPhysicContext()->AddCollider(this);
 }
 
 void ACollider::SetBTCollisionObject(btCollisionObject* const _collisionObject)

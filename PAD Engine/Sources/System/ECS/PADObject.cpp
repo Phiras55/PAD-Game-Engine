@@ -53,6 +53,9 @@ void PADObject::Update()
 		m_transform.SetGlobalTransform(		m_parent->m_transform.GetGlobalTransform()
 										*	m_transform.GetLocalTransform());
 	}
+	else
+		m_transform.SetGlobalTransform(m_transform.GetLocalTransform());
+
 
 	for (IComponent* comp : m_components)
 	{
@@ -104,6 +107,14 @@ void PADObject::Init()
 
 void PADObject::Start()
 {
+	if (m_parent)
+	{
+		m_transform.SetGlobalTransform(		m_parent->m_transform.GetGlobalTransform()
+										*	m_transform.GetLocalTransform());
+	}
+	else
+		m_transform.SetGlobalTransform(m_transform.GetLocalTransform());
+
 	for (IComponent* comp : m_components)
 		comp->Start();
 

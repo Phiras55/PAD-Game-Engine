@@ -61,7 +61,7 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 	// TODO : Change the temp camera for a main camera in the scene
 	sys::ecs::PerspectiveCamera cam;
 	cam.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-	cam.LookAt(math::Vec3f(10, 10, 10), math::Vec3f(0, 0, 0), math::Vec3f::Up());
+	cam.LookAt(math::Vec3f(15, 7, 7), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 
 	math::Mat4 vp = cam.GetProjection() * cam.GetView();
 #pragma endregion
@@ -70,13 +70,13 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 
 	for (const auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{
-		const gfx::mod::Mesh* const currentMesh = _resources.GetMeshManager().GetResource(meshRenderer.GetMeshName());
+		const gfx::mod::Mesh* const currentMesh = _resources.GetMeshManager().GetResource(meshRenderer->GetMeshName());
 
 		if (!currentMesh)
 			continue;
 
 		if (m_lowLevelRenderer)
-			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), meshRenderer.GetSettings(), vp);
+			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), meshRenderer->GetSettings(), vp);
 	}
 
 	SwapBuffers();

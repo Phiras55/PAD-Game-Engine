@@ -89,12 +89,12 @@ void RigidBody::FixedUpdate()
 
 void RigidBody::LateUpdate()
 {
-	m_owner->GetTransform().SetPosition(m_btRigidBody->getWorldTransform().getOrigin());
+	//m_owner->GetTransform().SetPosition(m_btRigidBody->getWorldTransform().getOrigin());
 
-	m_owner->GetTransform().SetQuatRotation(math::Quat(	m_btRigidBody->getWorldTransform().getRotation().x(),
-														m_btRigidBody->getWorldTransform().getRotation().y(),
-														m_btRigidBody->getWorldTransform().getRotation().z(),
-														m_btRigidBody->getWorldTransform().getRotation().w()));
+	//m_owner->GetTransform().SetQuatRotation(math::Quat(	m_btRigidBody->getWorldTransform().getRotation().x(),
+	//													m_btRigidBody->getWorldTransform().getRotation().y(),
+	//													m_btRigidBody->getWorldTransform().getRotation().z(),
+	//													m_btRigidBody->getWorldTransform().getRotation().w()));
 }
 
 void RigidBody::SetMass(const float _mass)

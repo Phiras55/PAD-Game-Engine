@@ -21,6 +21,11 @@ void Scene::Init()
 	m_masterPADObject->Init();
 }
 
+void Scene::Start()
+{
+	m_masterPADObject->Start();
+}
+
 void Scene::Update()
 {
 	m_masterPADObject->Update();
@@ -38,7 +43,7 @@ void Scene::LateUpdate()
 
 void Scene::AddPADObject(PADObject * _PADObject)
 {
-	_PADObject->SetParent(m_masterPADObject);
+	m_masterPADObject->AddChild(_PADObject);
 }
 
 } // namespace ecs

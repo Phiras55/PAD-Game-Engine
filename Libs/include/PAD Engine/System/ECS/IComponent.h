@@ -26,10 +26,13 @@ public:
 	virtual void FixedUpdate()						= 0;
 	virtual void LateUpdate()						= 0;
 
-	virtual void SetOwner(PADObject* const _owner)	= 0;
-	virtual PADObject* const GetOwner() const		= 0;
+	virtual void SetOwner(PADObject* const _owner)		= 0;
+	virtual PADObject* const GetOwner() const			= 0;
 
-	virtual const COMPONENT_TYPE GetType() const	= 0;
+	virtual const COMPONENT_TYPE GetType() const		= 0;
+
+	virtual const math::Transform& GetTransform() const	= 0;
+	virtual math::Transform& GetTransform()				= 0;
 
 protected:
 	math::Transform		m_transform;

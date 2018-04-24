@@ -5,11 +5,12 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-BoxCollider::BoxCollider(const math::Vec3f _halfBox)
+BoxCollider::BoxCollider(const math::Vec3f _dimention)
 {
-	m_type			= COLLIDER;
-	m_btCollider	= new btCollisionObject();
-	m_boxShape		= new btBoxShape(btVector3(_halfBox.x / 2.f, _halfBox.y / 2.f, _halfBox.z / 2.f));
+	m_type				= COLLIDER;
+	m_btCollider		= new btCollisionObject();
+	m_boxShape			= new btBoxShape(btVector3(_dimention.x / 2.f, _dimention.y / 2.f, _dimention.z / 2.f));
+	m_btCollisionShape	= m_boxShape;
 
 	m_btCollider->setCollisionShape(m_boxShape);
 }

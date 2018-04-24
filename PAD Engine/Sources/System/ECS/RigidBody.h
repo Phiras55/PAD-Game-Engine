@@ -33,6 +33,9 @@ public:
 	virtual PADObject* const	GetOwner() const override					{ return m_owner; }
 
 	virtual const COMPONENT_TYPE GetType() const override			{ return m_type; }
+
+	const math::Transform& GetTransform() const override { return m_transform; }
+	math::Transform& GetTransform()				override { return m_transform; }
 	
 
 private:

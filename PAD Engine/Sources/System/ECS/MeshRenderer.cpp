@@ -5,12 +5,14 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-std::vector<MeshRenderer> MeshRenderer::m_collection;
+std::vector<MeshRenderer*> MeshRenderer::m_collection;
 
-MeshRenderer::MeshRenderer(math::Transform& _ownerTransform)
+MeshRenderer::MeshRenderer()
 {
-	m_type = COMPONENT_TYPE::MESH_RENDERER;
-	m_settings.modelMatrix = &_ownerTransform.GetGlobalTransform();
+	m_type					= COMPONENT_TYPE::MESH_RENDERER;
+	m_settings.modelMatrix	= &m_transform.GetGlobalTransform();
+
+	m_collection.push_back(this);
 }
 
 MeshRenderer::~MeshRenderer()
@@ -25,12 +27,14 @@ void MeshRenderer::Init()
 
 void MeshRenderer::Start()
 {
-
+	m_transform.SetGlobalTransform(		m_owner->GetTransform().GetGlobalTransform()
+									*	m_transform.GetLocalTransform());
 }
 
 void MeshRenderer::Update()
 {
-
+	m_transform.SetGlobalTransform(		m_owner->GetTransform().GetGlobalTransform()
+									*	m_transform.GetLocalTransform());
 }
 
 void MeshRenderer::FixedUpdate()
@@ -43,7 +47,7 @@ void MeshRenderer::LateUpdate()
 
 }
 
-void MeshRenderer::AddToCollection(const MeshRenderer& _meshRenderer)
+void MeshRenderer::AddToCollection(MeshRenderer* const _meshRenderer)
 {
 	m_collection.push_back(_meshRenderer);
 }

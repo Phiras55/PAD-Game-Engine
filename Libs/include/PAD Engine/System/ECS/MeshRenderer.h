@@ -29,7 +29,7 @@ private:
 	static std::vector<MeshRenderer> m_collection;
 
 public:
-	void Init(PADObject* const _owner)		override;
+	void Init()								override;
 	void Start()							override;
 	void Update()							override;
 	void FixedUpdate()						override;

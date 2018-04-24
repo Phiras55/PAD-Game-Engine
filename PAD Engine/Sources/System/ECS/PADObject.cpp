@@ -27,7 +27,7 @@ PADObject::~PADObject()
 
 	for (PADObject* so : m_childs)
 	{
-		so->SetParent(nullptr);
+		so->m_parent = nullptr;
 		so->~PADObject();
 	}
 }
@@ -48,11 +48,17 @@ void PADObject::RemoveChild(PADObject* const _child)
 
 void PADObject::Update()
 {
-	m_transform.SetGlobalTransform(		m_parent->m_transform.GetGlobalTransform()
-									*	m_transform.GetLocalTransform());
+	if (m_parent)
+	{
+		m_transform.SetGlobalTransform(		m_parent->m_transform.GetGlobalTransform()
+										*	m_transform.GetLocalTransform());
+	}
 
 	for (IComponent* comp : m_components)
-		comp->Update();
+	{
+		if (comp->GetType() != SCRIPT)
+			comp->Update();
+	}
 
 	for (PADObject* so : m_childs)
 		so->Update();
@@ -84,13 +90,13 @@ void PADObject::AddComponent(IComponent* const _component)
 
 void PADObject::RemoveComponent(IComponent* const _component)
 {
-
+	m_components.remove(_component);
 }
 
 void PADObject::Init()
 {
 	for (IComponent* comp : m_components)
-		comp->Init(this);
+		comp->Init();
 
 	for (PADObject* so : m_childs)
 		so->Init();
@@ -110,7 +116,6 @@ void PADObject::SetParent(PADObject* const _parent)
 	if (m_parent)
 		m_parent->RemoveChild(this);
 
-	m_parent = _parent;
 	_parent->AddChild(this);
 }
 

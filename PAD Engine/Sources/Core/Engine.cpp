@@ -20,9 +20,10 @@
 namespace pad	{
 namespace core	{
 
+sys::phx::IPhysicContext* Engine::m_physicContext = new sys::phx::BulletContext();
+
 Engine::Engine() :
 	m_scene(new sys::ecs::Scene()),
-	m_physicContext(new sys::phx::BulletContext()),
 	m_resourceManager(new sys::res::MasterManager())
 {
 

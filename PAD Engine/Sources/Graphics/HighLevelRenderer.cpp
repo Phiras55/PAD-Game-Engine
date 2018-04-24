@@ -61,7 +61,7 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 	// TODO : Change the temp camera for a main camera in the scene
 	sys::ecs::PerspectiveCamera cam;
 	cam.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-	cam.LookAt(math::Vec3f(0, 15, -10), math::Vec3f(0, 0, 0), math::Vec3f::Up());
+	cam.LookAt(math::Vec3f(10, 10, 10), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 
 	math::Mat4 vp = cam.GetProjection() * cam.GetView();
 #pragma endregion

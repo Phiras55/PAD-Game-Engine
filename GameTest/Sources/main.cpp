@@ -57,29 +57,32 @@ int main()
 	program.SetFragmentShader(&fragShader);
 	program.CompileProgram();
 
-	pad::sys::ecs::PADObject		obj1, obj2;
+	pad::sys::ecs::PADObject*		obj1 = new pad::sys::ecs::PADObject;
+	obj1->GetTransform().SetScale(1.f);
+	pad::sys::ecs::PADObject*		obj2 = new pad::sys::ecs::PADObject;
+	obj2->GetTransform().SetScale(1.f);
 	pad::sys::ecs::RigidBody		rb;
-	pad::sys::ecs::MeshRenderer		mr1(obj1.GetTransform());
-	obj2.GetTransform().Move(pad::math::Vec3f(5.f, 0.f, 0.f));
-	pad::sys::ecs::MeshRenderer		mr2(obj2.GetTransform());
+	pad::sys::ecs::MeshRenderer		mr1(obj1->GetTransform());
+	obj2->GetTransform().Move(pad::math::Vec3f(5.f, 5.f, 0.f));
+	pad::sys::ecs::MeshRenderer		mr2(obj2->GetTransform());
 
 	mr1.GetSettings().programs.push_back(&program);
 	mr2.GetSettings().programs.push_back(&program);
 
-	mr1.GetSettings().isWireframe = false;
+	mr1.GetSettings().isWireframe = true;
 	mr2.GetSettings().isWireframe = true;
 
 	mr1.SetMeshName("Cube");
 	mr2.SetMeshName("Cube");
 	mr1.SetMaterialName("Default");
 	mr2.SetMaterialName("Default");
-	obj1.AddComponent(&rb);
-	obj1.AddComponent(&mr1);
+	obj1->AddComponent(&rb);
+	obj1->AddComponent(&mr1);
 	pad::sys::ecs::MeshRenderer::AddToCollection(mr1);
 	pad::sys::ecs::MeshRenderer::AddToCollection(mr2);
 
-	pad::AddPADObject(&obj1);
-	pad::AddPADObject(&obj2);
+	pad::AddPADObject(obj1);
+	pad::AddPADObject(obj2);
 
 	pad::StartSimulation();
 	pad::DestroyEngine();

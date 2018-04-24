@@ -26,10 +26,12 @@ private:
 public:
 	void Init();
 	void Update();
+	void FixedUpdate();
+	void LateUpdate();
 	void AddPADObject(PADObject* _PADObject);
 
 public:
-	inline PADObject* const GetMasterObject() const { return m_masterPADObject; }
+	inline PADObject* const GetMasterObject() { return m_masterPADObject; }
 };
 
 } // namespace ecs

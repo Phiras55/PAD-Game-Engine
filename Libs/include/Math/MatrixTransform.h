@@ -1,6 +1,7 @@
 #pragma once
 #include <math.h>
 #include <Math/Matrix4x4.h>
+#include <Math/Quaternion.h>
 
 namespace pad	{
 namespace math	{
@@ -37,8 +38,31 @@ inline Matrix4x4 RotationMatrix(float _x = 0.f, float _y = 0.f, float _z = 0.f)
 					  sin(_z),    cos(_z),			0,			0,
 							0,			0,			1,			0,
 							0,			0,			0,			1);
-	matX *= (matY *= matZ);
+
+	matX = (matY * matX * matZ);
 	return matX;
+}
+
+inline Matrix4x4 RotationMatrix(const Quat& _quat)
+{
+	float _0 = (_quat.scalar * _quat.scalar) + (_quat.i * _quat.i) - (_quat.j * _quat.j) - (_quat.k * _quat.k);
+	float _1 = (2 * _quat.i * _quat.j) - (2 * _quat.scalar * _quat.k);
+	float _2 = (2 * _quat.scalar * _quat.j) + (2 * _quat.i * _quat.k);
+	float _3 = 0;
+	float _4 = (2 * _quat.scalar * _quat.k) + (2 * _quat.i * _quat.j);
+	float _5 = (_quat.scalar * _quat.scalar) - (_quat.i * _quat.i) + (_quat.j * _quat.j) - (_quat.k * _quat.k);
+	float _6 = (2 * _quat.j * _quat.k) - (2 * _quat.scalar * _quat.i);
+	float _7 = 0;
+	float _8 = (2 * _quat.i * _quat.k) - (2 * _quat.scalar * _quat.j);
+	float _9 = (2 * _quat.scalar * _quat.i) + (2 * _quat.j * _quat.k);
+	float _10 = (_quat.scalar * _quat.scalar) - (_quat.i * _quat.i) - (_quat.j * _quat.j) + (_quat.k * _quat.k);
+	float _11 = 0;
+	float _12 = 0;
+	float _13 = 0;
+	float _14 = 0;
+	float _15 = 1;
+
+	return Matrix4x4(_0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15);
 }
 
 inline Matrix4x4 RotationMatrix(const Vec3f& _rotation)
@@ -57,11 +81,12 @@ inline Matrix4x4 RotationMatrix(const Vec3f& _rotation)
 					sin(_rotation.z),	cos(_rotation.z),	0,	0,
 					0,					0,					1,	0,
 					0,					0,					0,	1);
-	matX *= (matY *= matZ);
+
+	matX = (matY * matX * matZ);
 	return matX;
 }
 
-inline Matrix4x4 ScaleMatrix(float _x = 1.f, float _y = 1.f, float _z = 1.f)
+inline Matrix4x4 ScaleMatrix(float _x = 0.f, float _y = 0.f, float _z = 0.f)
 {
 	return Matrix4x4(  _x, 0, 0, 0,
 						0,_y, 0, 0,

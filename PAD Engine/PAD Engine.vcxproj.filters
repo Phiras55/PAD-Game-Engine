@@ -87,9 +87,6 @@
     <ClCompile Include="Sources\System\ECS\Scene.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\ECS\Collider.cpp">
-      <Filter>Source Files\System\ECS</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
@@ -107,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Graphics\HighLevelRenderer.cpp">
       <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\ACollider.cpp">
+      <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +140,6 @@
     <ClInclude Include="Sources\System\ECS\IComponent.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\ECS\Collider.h">
-      <Filter>Header Files\System\ECS</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\System\ECS\RigidBody.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
@@ -169,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="Sources\Graphics\HighLevelRenderer.h">
       <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\ACollider.h">
+      <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

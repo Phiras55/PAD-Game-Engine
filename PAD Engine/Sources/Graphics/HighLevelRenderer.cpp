@@ -69,19 +69,40 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 
 	ClearBuffers();
 
-	for (const auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
+	for (auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{
-		const gfx::mod::Mesh* const currentMesh			= _resources.GetMeshManager().GetResource(meshRenderer.GetMeshName());
-		const gfx::mod::Material* const currentMaterial = _resources.GetMaterialManager().GetResource(meshRenderer.GetMaterialName());
+		const gfx::mod::Mesh* const currentMesh		= _resources.GetMeshManager().GetResource(meshRenderer.GetMeshName());
+		gfx::mod::Material* const currentMat		= _resources.GetMaterialManager().GetResource(meshRenderer.GetMaterialName());
+		gfx::rhi::RenderSettings& currentSettings	= meshRenderer.GetSettings();
 
-		if (!currentMesh)
+		if (!currentMesh || !currentMat)
 			continue;
 
+		FillTextureLayout(currentSettings, *currentMat);
+
 		if (m_lowLevelRenderer)
-			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), meshRenderer.GetSettings(), vp);
+			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
 	}
 
 	SwapBuffers();
+}
+
+void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, mod::Material& _mat)
+{
+	rhi::shad::CustomUniform uniform;
+	uniform.data = &_mat.GetAlbedoMap()->GetID();
+	uniform.type = rhi::shad::DataType::UINT;
+
+	_settings.customUniforms["albedoMap"] = uniform;
+
+	uniform.data = &_mat.GetNormalMap()->GetID();
+
+	_settings.customUniforms["normalMap"] = uniform;
+
+	uniform.data = &_mat.GetAlbedo();
+	uniform.type = rhi::shad::DataType::VEC4;
+
+	_settings.customUniforms["albedo"] = uniform;
 }
 
 void HighLevelRenderer::GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)

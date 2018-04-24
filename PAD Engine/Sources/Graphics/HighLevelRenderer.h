@@ -30,6 +30,7 @@ public:
 private:
 	void ClearBuffers();
 	void SwapBuffers();
+	void FillTextureLayout(rhi::RenderSettings& _settings, mod::Material& _mat);
 
 public:
 	inline win::AWindow* const GetMainWindow() const { return m_mainWindow; }

@@ -164,7 +164,7 @@ void GLRenderer::ForwardRendering(
 	{
 		if (!currentProgram)
 		{
-			LOG_ERROR_S("The shader is not valid. Try to add one in the RenderSettings.\n");
+			LOG_ERROR("The shader with id: %% is not valid. Try to add one in the RenderSettings.\n", currentProgram->GetID());
 			continue;
 		}
 

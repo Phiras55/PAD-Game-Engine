@@ -49,7 +49,7 @@ public:
 	inline		 gfx::rhi::RenderSettings& GetSettings()		{ return m_settings; }
 	inline const gfx::rhi::RenderSettings& GetSettings() const	{ return m_settings; }
 
-	static const std::vector<MeshRenderer>& GetCollection()		{ return m_collection; }
+	static		 std::vector<MeshRenderer>& GetCollection()		{ return m_collection; }
 
 	static void AddToCollection(const MeshRenderer& _meshRenderer);
 };

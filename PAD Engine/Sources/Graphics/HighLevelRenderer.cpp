@@ -71,14 +71,17 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 
 	for (auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{
-		const gfx::mod::Mesh* const currentMesh		= _resources.GetMeshManager().GetResource(meshRenderer.GetMeshName());
-		gfx::mod::Material* const currentMat		= _resources.GetMaterialManager().GetResource(meshRenderer.GetMaterialName());
-		gfx::rhi::RenderSettings& currentSettings	= meshRenderer.GetSettings();
+		const gfx::mod::Mesh* const currentMesh		= _resources.GetMeshManager().GetResource(meshRenderer->GetMeshName());
+		gfx::mod::Material* const currentMat		= _resources.GetMaterialManager().GetResource(meshRenderer->GetMaterialName());
+		gfx::rhi::RenderSettings& currentSettings	= meshRenderer->GetSettings();
 
-		if (!currentMesh || !currentMat)
+		/*if (!currentMesh || !currentMat)
 			continue;
 
-		FillTextureLayout(currentSettings, *currentMat);
+		FillTextureLayout(currentSettings, *currentMat);*/
+
+		if (!currentMesh) // Just for testing purposes because we don't have materials for now.
+			continue;
 
 		if (m_lowLevelRenderer)
 			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);

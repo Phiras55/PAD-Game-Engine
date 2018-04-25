@@ -58,6 +58,9 @@
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{b12f80d5-8a64-422c-8edc-a311b5e5a508}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\System\Scene">
+      <UniqueIdentifier>{a6e60753-609e-49f2-9e69-43c49851f8db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Engine.cpp">

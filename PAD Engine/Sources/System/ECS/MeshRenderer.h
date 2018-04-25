@@ -47,7 +47,7 @@ public:
 	inline		 gfx::rhi::RenderSettings& GetSettings()		{ return m_settings; }
 	inline const gfx::rhi::RenderSettings& GetSettings() const	{ return m_settings; }
 
-	static		 std::vector<MeshRenderer>& GetCollection()		{ return m_collection; }
+	static		 std::vector<MeshRenderer*>& GetCollection()	{ return m_collection; }
 	
 	inline const math::Transform& 			GetTransform() const override { return m_transform; }
 	inline 		 math::Transform& 			GetTransform() override { return m_transform; }

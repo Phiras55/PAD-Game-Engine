@@ -103,6 +103,7 @@ void Engine::StartSimulation()
 void Engine::Simulate()
 {
 	core::EngineClock::Update();
+	//std::cout << 1.f / core::EngineClock::DeltaTime() << "\n";
 	PollEvents();
 	FlushLogs();
 

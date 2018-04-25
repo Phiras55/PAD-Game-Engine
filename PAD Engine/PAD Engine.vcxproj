@@ -57,6 +57,7 @@
     <ClInclude Include="Sources\System\Resource\Resource.h" />
     <ClInclude Include="Sources\System\Resource\ResourceManager.h" />
     <ClInclude Include="Sources\Utilities\Export.h" />
+    <ClInclude Include="Sources\Utilities\Randomizer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\basicColors.frag" />

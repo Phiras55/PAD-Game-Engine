@@ -170,6 +170,9 @@
     <ClInclude Include="Sources\Graphics\HighLevelRenderer.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Utilities\Randomizer.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\basicColors.frag">

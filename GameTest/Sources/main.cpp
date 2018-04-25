@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream>/*
 #include <Math/Matrix4x4.h>
 #include <Core/EngineDLL.h>
 #include <Graphics/GL/Shader/GLShaderProgram.h>
@@ -11,9 +11,16 @@
 #include <Graphics/Model/Mesh.h>
 #include <Graphics/Model/MeshData.h>
 #include <System/ECS/MeshRenderer.h>
+*/
+
+#include <Utilities\Randomizer.h>
+#include <ctime>
+
+#include <random>
 
 int main()
 {
+	/*
 	#pragma region RenderInit
 
 	pad::gfx::win::WindowSettings winSettings;
@@ -83,6 +90,41 @@ int main()
 
 	pad::StartSimulation();
 	pad::DestroyEngine();
+	*/
 
+	InitRandomizer();
+	/*for (size_t x = 0; x < 100; ++x)
+	{
+		std::cout << "Bool	: " << RandomizeBool()		<< std::endl;
+		std::cout << "Int	: " << RandomizeInt()		<< std::endl;
+		std::cout << "UInt	: " << RandomizeUInt()		<< std::endl;
+		std::cout << "Float : " << RandomizeFloat()		<< std::endl;
+		std::cout << "Double: " << RandomizeDouble()	<< std::endl << std::endl;
+	}*/
+
+
+	for (size_t j = 0; j < 10; j++)
+	{
+		int counts[10];
+		for (size_t i = 0; i < 10; i++)
+		{
+			int toto = 50;
+			int count= 0;
+			while (toto != 1.f)
+			{
+				toto = RandomizeF(0.f, 1.f);
+				++count;
+			}
+			counts[i] = count;
+		}
+		float result = 0;
+		for (size_t i = 0; i < 10; i++)
+		{
+			result += counts[i];
+		}
+		std::cout << j << " : " << result / 10.f << std::endl;
+	}
+
+	system("pause");
 	return EXIT_SUCCESS;
 }

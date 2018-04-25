@@ -47,10 +47,10 @@ public:
 	inline		 gfx::rhi::RenderSettings& GetSettings()		{ return m_settings; }
 	inline const gfx::rhi::RenderSettings& GetSettings() const	{ return m_settings; }
 
-	const math::Transform& GetTransform() const override { return m_transform; }
-	math::Transform& GetTransform()				override { return m_transform; }
-
-	static const std::vector<MeshRenderer*>& GetCollection()		{ return m_collection; }
+	static		 std::vector<MeshRenderer>& GetCollection()		{ return m_collection; }
+	
+	inline const math::Transform& 			GetTransform() const override { return m_transform; }
+	inline 		 math::Transform& 			GetTransform() override { return m_transform; }
 
 	static void AddToCollection(MeshRenderer* const _meshRenderer);
 };

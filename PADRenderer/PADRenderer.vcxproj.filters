@@ -182,5 +182,8 @@
     <ClInclude Include="Sources\Graphics\RHI\Shader\CustomUniform.h">
       <Filter>Header Files\Graphics\RHI\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\TextureSettings.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

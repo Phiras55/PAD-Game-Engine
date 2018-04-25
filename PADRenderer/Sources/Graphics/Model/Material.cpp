@@ -4,7 +4,9 @@ namespace pad	{
 namespace gfx	{
 namespace mod	{
 
-Material::Material()
+Material::Material() :
+	m_albedoMap(nullptr),
+	m_normalMap(nullptr)
 {
 
 }

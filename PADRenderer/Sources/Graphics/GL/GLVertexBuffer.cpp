@@ -25,9 +25,6 @@ void GLVertexBuffer::BindData(float* const _data, const uint32 _dataSize, const 
 {
 	if (_data)
 	{
-		if (!m_id)
-			GenerateID();
-
 		Bind();
 
 		glEnableVertexAttribArray(_location);

@@ -115,6 +115,9 @@ void GLShaderProgram::SetCustomUniform(const std::string& _name, const rhi::shad
 
 	switch (_customUniform.type)
 	{
+	case rhi::shad::DataType::SAMPLER2D:
+
+		break;
 	case rhi::shad::DataType::MAT4:
 		SetUniform(_name, *static_cast<math::Mat4*>(_customUniform.data));
 		break;

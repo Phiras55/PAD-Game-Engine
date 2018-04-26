@@ -172,6 +172,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
   <ItemGroup>
     <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLTexture.cpp" />
+    <ClCompile Include="Sources\Graphics\GL\GLUniformBufferObject.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexArray.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexBuffer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexElementBuffer.cpp" />
@@ -189,6 +190,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
   <ItemGroup>
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLTexture.h" />
+    <ClInclude Include="Sources\Graphics\GL\GLUniformBufferObject.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexArray.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexBuffer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexElementBuffer.h" />
@@ -199,6 +201,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     <ClInclude Include="Sources\Graphics\Model\Mesh.h" />
     <ClInclude Include="Sources\Graphics\Model\MeshData.h" />
     <ClInclude Include="Sources\Graphics\RHI\ATexture.h" />
+    <ClInclude Include="Sources\Graphics\RHI\AUniformBufferObject.h" />
     <ClInclude Include="Sources\Graphics\RHI\AVertexArray.h" />
     <ClInclude Include="Sources\Graphics\RHI\AVertexBuffer.h" />
     <ClInclude Include="Sources\Graphics\RHI\ContextSettings.h" />
@@ -210,6 +213,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h" />
     <ClInclude Include="Sources\Graphics\RHI\TextureParameters.h" />
     <ClInclude Include="Sources\Graphics\RHI\TextureSettings.h" />
+    <ClInclude Include="Sources\Graphics\RHI\UniformBufferSettings.h" />
     <ClInclude Include="Sources\Graphics\Window\AWindow.h" />
     <ClInclude Include="Sources\Graphics\Window\IWindowBase.h" />
     <ClInclude Include="Sources\Graphics\Window\SDLWindow.h" />

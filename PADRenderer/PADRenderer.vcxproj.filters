@@ -102,6 +102,9 @@
     <ClCompile Include="Sources\Graphics\Model\Mesh.cpp">
       <Filter>Source Files\Graphics\Model</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\GLUniformBufferObject.cpp">
+      <Filter>Source Files\Graphics\GL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h">
@@ -184,6 +187,15 @@
     </ClInclude>
     <ClInclude Include="Sources\Graphics\RHI\TextureSettings.h">
       <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\UniformBufferSettings.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\AUniformBufferObject.h">
+      <Filter>Header Files\Graphics\RHI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\GL\GLUniformBufferObject.h">
+      <Filter>Header Files\Graphics\GL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

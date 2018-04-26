@@ -164,13 +164,14 @@ void GLRenderer::ForwardRendering(
 	{
 		if (!currentProgram)
 		{
-			LOG_ERROR("The shader with id: %% is not valid. Try to add one in the RenderSettings.\n", currentProgram->GetID());
+			LOG_ERROR_S("The shader is not valid. Try to add one in the RenderSettings.\n");
 			continue;
 		}
 
 		currentProgram->Use();
 		currentProgram->SetUniform("albedo", math::Vec4f(1, 0, 0, 1));
 		currentProgram->SetUniform("mvp", _vp * *_setting.modelMatrix);
+		SetCustomUniforms(currentProgram, _setting);
 
 		glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, nullptr);
 	}
@@ -207,10 +208,24 @@ void GLRenderer::GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao,
 	_ibo->BindData(_md.indices, _md.indiceCount);
 }
 
-void GLRenderer::GenerateTexture(uint32& _textureID, const std::string& _path)
+void GLRenderer::GenerateTexture(rhi::ATexture* const _t, const std::string& _path, const rhi::TextureParameters& _param)
 {
 	int width, height, nrChannels;
+	stbi_set_flip_vertically_on_load(_param.flipY);
 	unsigned char *data = stbi_load(_path.c_str(), &width, &height, &nrChannels, 0);
+
+	if (data)
+	{
+		_t->GenerateID();
+		_t->Bind();
+		_t->GenerateTexture(width, height, data, _param);
+	}
+	else
+	{
+		LOG_ERROR("Could not load the texture at path: %%\n", _path);
+	}
+
+	stbi_image_free(data);
 }
 
 void GLRenderer::SetCustomUniforms(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings)
@@ -219,6 +234,21 @@ void GLRenderer::SetCustomUniforms(rhi::shad::AShaderProgram* const _program, co
 	{
 		_program->SetCustomUniform(it.first, it.second);
 	}
+}
+
+void GLRenderer::CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)
+{
+
+}
+
+int32 GLRenderer::GetBindingPoint(const std::string& _bindingBlockName)
+{
+
+}
+
+void GLRenderer::UniformBufferTesting(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings)
+{
+
 }
 
 } // namespace gl

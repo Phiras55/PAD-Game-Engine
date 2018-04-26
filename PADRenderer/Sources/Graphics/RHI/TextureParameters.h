@@ -39,7 +39,8 @@ struct TextureParameters
 		minFiltering(E_TEXTURE_FILTERING::LINEAR),
 		magFiltering(E_TEXTURE_FILTERING::LINEAR),
 		minMipmap(E_MIPMAP_TYPE::LINEAR_LINEAR),
-		magMipmap(E_MIPMAP_TYPE::LINEAR_LINEAR)
+		magMipmap(E_MIPMAP_TYPE::LINEAR_LINEAR),
+		flipY(true)
 	{
 	}
 
@@ -49,6 +50,7 @@ struct TextureParameters
 	TextureFiltering	magFiltering;
 	MipmapType			minMipmap;
 	MipmapType			magMipmap;
+	bool				flipY;
 };
 
 // S = Minifying

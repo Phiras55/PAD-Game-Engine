@@ -31,4 +31,9 @@ namespace pad
 
 	// 64 bit
 	using float64 = double;
+	
+	////////////////////////////
+	// 			Defines 	  //
+	////////////////////////////
+	#define INVALID_VALUE 0
 } // namespace pad

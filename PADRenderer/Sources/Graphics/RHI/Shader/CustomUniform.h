@@ -8,6 +8,7 @@ namespace shad	{
 
 enum class E_DATA_TYPE : uint8
 {
+	SAMPLER2D,
 	VEC3,
 	VEC4,
 	MAT4,

@@ -75,10 +75,12 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 		gfx::mod::Material* const currentMat		= _resources.GetMaterialManager().GetResource(meshRenderer.GetMaterialName());
 		gfx::rhi::RenderSettings& currentSettings	= meshRenderer.GetSettings();
 
-		if (!currentMesh || !currentMat)
+		if (!currentMesh)
 			continue;
+		//if (!currentMesh || !currentMat)
+			//continue;
 
-		FillTextureLayout(currentSettings, *currentMat);
+		//FillTextureLayout(currentSettings, *currentMat);
 
 		if (m_lowLevelRenderer)
 			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);

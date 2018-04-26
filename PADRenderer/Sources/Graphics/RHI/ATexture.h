@@ -18,8 +18,11 @@ protected:
 public:
 	virtual void GenerateID()															= 0;
 	virtual void Bind()																	= 0;
-	virtual void SetTextureParameters(const TextureParameters& _param)					= 0;
-	virtual void GenerateTexture(const int32 _w, const int32 _h, uchar* const _data)	= 0;
+	virtual void GenerateTexture(
+		const int32 _w, 
+		const int32 _h, 
+		uchar* const _data, 
+		const TextureParameters& _param)												= 0;
 
 public:
 	inline const uint32& GetID() const	{ return m_id; }

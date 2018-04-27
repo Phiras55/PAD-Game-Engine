@@ -1,4 +1,5 @@
 #include <assert.h>
+#include "Vector3.h"
 
 namespace pad	{
 namespace math	{
@@ -232,26 +233,6 @@ template<typename T>
 Vector3<T> Vector3<T>::operator-() const
 {
 	return Vector3<T>(-x, -y, -z);
-}
-
-#pragma endregion
-
-#pragma region Bullet Conversions
-
-template<typename T>
-inline Vector3<T>::Vector3(const btVector3& _vector)
-{
-	x = _vector.x();
-	y = _vector.y();
-	z = _vector.z();
-}
-
-template<typename T>
-inline void Vector3<T>::operator=(const btVector3& _vector)
-{
-	x = _vector.x();
-	y = _vector.y();
-	z = _vector.z();
 }
 
 #pragma endregion

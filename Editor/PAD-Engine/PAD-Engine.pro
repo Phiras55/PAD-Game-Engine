@@ -23,16 +23,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 win32:CONFIG(debug, debug|release){
-LIBPATH = "../../Libs/lib/Debug/Win32"
-DLLPATH = "../../Libs/bin/Debug/Win32"
+LIBPATH = "../../Libs/lib/Debug/x64"
+DLLPATH = "../../Libs/bin/Debug/x64"
 }
 win64:CONFIG(debug, debug|release){
 LIBPATH = "../../Libs/lib/Debug/x64"
 DLLPATH = "../../Libs/bin/Debug/x64"
 }
 win32:CONFIG(release, debug|release){
-LIBPATH = "../../Libs/lib/Release/Win32"
-DLLPATH = "../../Libs/bin/Release/Win32"
+LIBPATH = "../../Libs/lib/Release/x64"
+DLLPATH = "../../Libs/bin/Release/x64"
 }
 win64:CONFIG(release, debug|release){
 LIBPATH = "../../Libs/lib/Release/x64"

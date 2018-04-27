@@ -17,7 +17,7 @@ CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStri
 INCPATH       = -I..\PAD-Engine -I. -I"..\..\Libs\include\PAD Engine" -I..\..\Libs\include\PADRenderer -I..\..\Libs\include -IC:\Qt\5.10.0\msvc2017_64\include -IC:\Qt\5.10.0\msvc2017_64\include\QtWidgets -IC:\Qt\5.10.0\msvc2017_64\include\QtGui -IC:\Qt\5.10.0\msvc2017_64\include\QtANGLE -IC:\Qt\5.10.0\msvc2017_64\include\QtCore -Irelease -I. -I\include -IC:\Qt\5.10.0\msvc2017_64\mkspecs\win32-msvc 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:C:\Qt\5.10.0\msvc2017_64\lib C:\Qt\5.10.0\msvc2017_64\lib\qtmain.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib shell32.lib /LIBPATH:..\..\Libs\lib\Release\Win32 "..\..\Libs\lib\Release\Win32\PAD Engine.lib" ..\..\Libs\lib\Release\Win32\PADRenderer.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Widgets.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Gui.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Core.lib 
+LIBS          = /LIBPATH:C:\Qt\5.10.0\msvc2017_64\lib C:\Qt\5.10.0\msvc2017_64\lib\qtmain.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib shell32.lib /LIBPATH:..\..\Libs\lib\Release\x64 "..\..\Libs\lib\Release\x64\PAD Engine.lib" ..\..\Libs\lib\Release\x64\PADRenderer.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Widgets.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Gui.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Core.lib 
 QMAKE         = C:\Qt\5.10.0\msvc2017_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl /NOLOGO

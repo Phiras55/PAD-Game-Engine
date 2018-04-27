@@ -1,16 +1,16 @@
-#include <iostream>
-#include <Math/Matrix4x4.h>
+#include <EnginePCH.h>
 #include <Core/EngineDLL.h>
 #include <Graphics/GL/Shader/GLShaderProgram.h>
 #include <Graphics/GL/Shader/GLVertexShader.h>
 #include <Graphics/GL/Shader/GLFragmentShader.h>
 #include <System/ECS/PerspectiveCamera.h>
-
 #include <System/ECS/PADObject.h>
 #include <System/ECS/RigidBody.h>
 #include <Graphics/Model/Mesh.h>
 #include <Graphics/Model/MeshData.h>
 #include <System/ECS/MeshRenderer.h>
+
+#undef main
 
 int main()
 {

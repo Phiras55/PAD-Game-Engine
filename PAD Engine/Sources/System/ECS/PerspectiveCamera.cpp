@@ -1,6 +1,5 @@
+#include <EnginePCH.h>
 #include <System/ECS/PerspectiveCamera.h>
-#include <Math/Transform.h>
-#include <Math/Vector3.h>
 
 namespace pad	{
 namespace sys	{

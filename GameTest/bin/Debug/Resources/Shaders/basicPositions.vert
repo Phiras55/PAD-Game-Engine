@@ -2,7 +2,7 @@
 
 layout(location = 0) in vec4 vertexPos;
 
-uniform mat4 mvp;
+uniform mat4 model;
 
 layout (std140) uniform CameraSettings
 {

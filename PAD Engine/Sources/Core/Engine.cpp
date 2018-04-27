@@ -1,10 +1,7 @@
-#include <Common.h>
+#include <EnginePCH.h>
 #include <Core/Engine.h>
 #include <Core/Timer.h>
 #include <Graphics/GL/GLRenderer.h>
-#include <Math/Matrix4x4.h>
-#include <Logger/SimpleLogger.h>
-
 #include <Graphics/GL/Shader/GLShaderProgram.h>
 #include <Graphics/GL/Shader/GLFragmentShader.h>
 #include <Graphics/GL/Shader/GLVertexShader.h>

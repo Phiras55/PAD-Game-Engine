@@ -1,4 +1,5 @@
 #pragma once
+#include <Common.h>
 #include <Graphics/RHI/Shader/AShaderProgram.h>
 #include <Graphics/RHI/UniformBufferSettings.h>
 

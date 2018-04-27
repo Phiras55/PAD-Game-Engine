@@ -1,4 +1,5 @@
 #pragma once
+#include <Graphics/RHI/AUniformBufferObject.h>
 #include <Graphics/RHI/ContextSettings.h>
 #include <Graphics/RHI/RenderSettings.h>
 #include <Graphics/RHI/IRenderer.h>
@@ -11,13 +12,14 @@ class GLRenderer final : public rhi::IRenderer
 {
 public:
 	GLRenderer();
-	~GLRenderer()															= default;
+	~GLRenderer();
 
 	GLRenderer(const GLRenderer&)											= delete;
 	GLRenderer(GLRenderer&&)												= delete;
 
 private:
-	std::unordered_map<std::string, int32>	m_bindingPoints;
+	std::unordered_map<std::string, int32>						m_bindingPoints;
+	std::unordered_map<std::string, rhi::AUniformBufferObject*> m_uniformBufferObjects;
 
 public:
 	void Init(const rhi::ContextSettings& _settings)						override;
@@ -46,6 +48,7 @@ private:
 	void InitWindingOrder(const rhi::ContextSettings& _settings);
 	void SetCustomUniforms(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings);
 	void UniformBufferTesting(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings);
+	void SetUniformBufferData(std::string& _bufferName, void* const _data, const int _dataSize, const int _offset);
 
 public:
 	void operator=(const GLRenderer&)										= delete;

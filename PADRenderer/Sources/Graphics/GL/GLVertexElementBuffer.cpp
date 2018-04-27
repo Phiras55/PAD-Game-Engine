@@ -21,13 +21,15 @@ void GLVertexElementBuffer::Bind()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_id);
 }
 
+void GLVertexElementBuffer::Unbind()
+{
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
 void GLVertexElementBuffer::BindData(uint32* const _data, const uint32 _dataSize)
 {
 	if (_data)
 	{
-		if (!m_id)
-			GenerateID();
-
 		Bind();
 
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER,

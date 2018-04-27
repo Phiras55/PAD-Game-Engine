@@ -1,4 +1,5 @@
 #pragma once
+#include <Common.h>
 #include <Graphics/RHI/AVertexArray.h>
 #include <Graphics/RHI/AVertexBuffer.h>
 #include <Graphics/RHI/ContextSettings.h>

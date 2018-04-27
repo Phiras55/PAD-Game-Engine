@@ -7,9 +7,9 @@ namespace pad {
 namespace gfx {
 namespace mod {
 
-	Mesh::Mesh()// :
-		//m_vao(new gl::GLVertexArray()),
-		//m_ibo(new gl::GLVertexElementBuffer())
+	Mesh::Mesh() :
+		m_vao(new gl::GLVertexArray()),
+		m_ibo(new gl::GLVertexElementBuffer())
 	{
 	}
 

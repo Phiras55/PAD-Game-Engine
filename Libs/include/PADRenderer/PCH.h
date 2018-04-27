@@ -14,6 +14,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <algorithm>
 #include <functional>
 #include <unordered_map>
 
@@ -32,3 +33,8 @@
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 #include <Logger/SimpleLogger.h>
+
+////////////////////////////////////////
+////		  UNDEFINITIONS			////
+////////////////////////////////////////
+#undef main

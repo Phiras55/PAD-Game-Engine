@@ -1,4 +1,5 @@
 #pragma once
+#include <Common.h>
 namespace pad {
 namespace gfx {
 namespace rhi {

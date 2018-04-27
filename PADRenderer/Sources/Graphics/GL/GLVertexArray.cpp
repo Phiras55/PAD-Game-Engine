@@ -20,6 +20,11 @@ void GLVertexArray::Bind()
 	glBindVertexArray(m_id);
 }
 
+void GLVertexArray::Unbind()
+{
+	glBindVertexArray(0);
+}
+
 } // namespace gl
 } // namespace gfx
 } // namespace pad

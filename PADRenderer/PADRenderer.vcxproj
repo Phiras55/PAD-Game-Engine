@@ -220,6 +220,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Common.h" />
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLTexture.h" />
     <ClInclude Include="Sources\Graphics\GL\GLUniformBufferObject.h" />

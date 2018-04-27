@@ -1,7 +1,6 @@
+#include <PCH.h>
 #include <Graphics/GL/GLTexture.h>
 #include <Utilities/EnumUtils.h>
-
-#include <GL/glew.h>
 
 namespace pad	{
 namespace gfx	{

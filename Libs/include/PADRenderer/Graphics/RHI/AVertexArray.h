@@ -1,6 +1,4 @@
 #pragma once
-#include <Common.h>
-
 namespace pad {
 namespace gfx {
 namespace rhi {
@@ -8,7 +6,7 @@ namespace rhi {
 class AVertexArray
 {
 public:
-	~AVertexArray() = default;
+	virtual ~AVertexArray() = default;
 
 protected:
 	uint32 m_id;
@@ -16,6 +14,7 @@ protected:
 public:
 	virtual void GenerateID()	= 0;
 	virtual void Bind()			= 0;
+	virtual void Unbind()		= 0;
 
 public:
 	inline virtual uint32&		GetID()			{ return m_id; }

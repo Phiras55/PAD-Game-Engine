@@ -1,6 +1,4 @@
 #pragma once
-#include <Common.h>
-
 #include <Graphics/RHI/TextureParameters.h>
 
 namespace pad	{

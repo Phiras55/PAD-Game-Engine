@@ -1,16 +1,13 @@
+#include <PCH.h>
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image/stb_image.h>
 #include <Graphics/GL/GLRenderer.h>
-#include <Logger/SimpleLogger.h>
 #include <Utilities/EnumUtils.h>
 #include <Graphics/RHI/Shader/AShaderProgram.h>
 #include <Graphics/GL/GLVertexBuffer.h>
 #include <Graphics/GL/GLVertexArray.h>
 #include <Graphics/GL/GLVertexElementBuffer.h>
 #include <Graphics/RHI/Shader/ShaderInfos.h>
-
-#include <GL/glew.h>
-
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image/stb_image.h>
 
 namespace pad	{
 namespace gfx	{
@@ -198,10 +195,10 @@ void GLRenderer::GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao,
 	_vao->GenerateID();
 	_vao->Bind();
 
-	gfx::gl::GLVertexBuffer vbo;
-	vbo.GenerateID();
-	vbo.Bind();
-	vbo.BindData(_md.positions, _md.positionCount, 3, static_cast<uint8>(gfx::rhi::shad::AttribLocation::POSITION));
+	//gfx::gl::GLVertexBuffer vbo;
+	////vbo.GenerateID();
+	//vbo.Bind();
+	//vbo.BindData(_md.positions, _md.positionCount, 3, static_cast<uint8>(gfx::rhi::shad::AttribLocation::POSITION));
 
 	_ibo->GenerateID();
 	_ibo->Bind();
@@ -243,7 +240,9 @@ void GLRenderer::CreateUniformBuffer(const rhi::UniformBufferSettings& _settings
 
 int32 GLRenderer::GetBindingPoint(const std::string& _bindingBlockName)
 {
-
+	if (m_bindingPoints.find(_bindingBlockName) != m_bindingPoints.end())
+		return m_bindingPoints[_bindingBlockName];
+	return -1;
 }
 
 void GLRenderer::UniformBufferTesting(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings)

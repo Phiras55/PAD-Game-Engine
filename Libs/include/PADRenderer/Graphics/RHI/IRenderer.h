@@ -4,9 +4,8 @@
 #include <Graphics/RHI/ContextSettings.h>
 #include <Graphics/Model/MeshData.h>
 #include <Graphics/RHI/RenderSettings.h>
-
-#include <Common.h>
-#include <vector>
+#include <Graphics/RHI/ATexture.h>
+#include <Graphics/RHI/UniformBufferSettings.h>
 
 namespace pad {
 namespace gfx {
@@ -25,7 +24,10 @@ public:
 	virtual void Init(const ContextSettings& _settings)							= 0;
 	virtual void ClearBuffer()													= 0;
 	virtual void ResizeViewport(const uint32 _w, const uint32 _h)				= 0;
-	virtual void GenerateTexture(uint32& _textureID, const std::string& _path)	= 0;
+	virtual void GenerateTexture(
+		ATexture* const _t, 
+		const std::string& _path, 
+		const rhi::TextureParameters& _param)									= 0;
 	virtual void GenerateMesh(
 		const mod::MeshData& _md, 
 		rhi::AVertexArray* _vao, 
@@ -35,6 +37,8 @@ public:
 		rhi::AVertexBuffer* const _ibos, 
 		const rhi::RenderSettings _settings, 
 		const math::Mat4& _vp)													= 0;
+	virtual void CreateUniformBuffer(const UniformBufferSettings& _settings)	= 0;
+	virtual int32 GetBindingPoint(const std::string& _bindingBlockName)			= 0;
 
 protected:
 	virtual void InitContext(const rhi::ContextSettings& _settings)				= 0;

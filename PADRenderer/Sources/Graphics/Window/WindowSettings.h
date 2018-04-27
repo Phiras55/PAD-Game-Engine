@@ -1,9 +1,4 @@
 #pragma once
-#include <string>
-
-#include <Common.h>
-#include <Math/Vector2.h>
-
 namespace pad	{
 namespace gfx	{
 namespace win	{
@@ -11,7 +6,7 @@ namespace win	{
 enum class E_WINDOW_TYPE : uint8
 {
 	SDL = 0x01,
-	QT = 0x02
+	QT	= 0x02
 };
 
 struct WindowSettings final

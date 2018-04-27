@@ -7,9 +7,6 @@
 #include <Graphics/RHI/ATexture.h>
 #include <Graphics/RHI/UniformBufferSettings.h>
 
-#include <Common.h>
-#include <vector>
-
 namespace pad {
 namespace gfx {
 namespace rhi { 

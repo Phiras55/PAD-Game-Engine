@@ -1,5 +1,4 @@
 #pragma once
-
 namespace pad	{
 namespace gfx	{
 namespace rhi	{

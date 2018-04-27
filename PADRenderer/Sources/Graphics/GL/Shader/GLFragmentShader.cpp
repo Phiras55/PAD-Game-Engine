@@ -1,7 +1,4 @@
-#include <sstream>
-
-#include <GL/glew.h>
-#include <Logger/SimpleLogger.h>
+#include <PCH.h>
 #include <Graphics/GL/Shader/GLFragmentShader.h>
 
 namespace pad	{

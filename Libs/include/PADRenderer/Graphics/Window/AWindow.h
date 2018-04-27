@@ -1,5 +1,4 @@
 #pragma once
-#include <functional>
 #include <Graphics/Window/WindowSettings.h>
 
 namespace pad	{

@@ -1,6 +1,5 @@
 #pragma once
 #include <Graphics/Window/AWindow.h>
-#include <Math/Vector2.h>
 
 namespace pad	{
 namespace gfx	{

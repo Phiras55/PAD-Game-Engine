@@ -1,9 +1,4 @@
 #pragma once
-#include <Common.h>
-
-#include <string>
-#include <map>
-
 #define SHADER_LOG_SIZE 512
 #define SHADER_INVALID_VALUE 0
 

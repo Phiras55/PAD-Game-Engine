@@ -1,8 +1,4 @@
 #pragma once
-#include <vector>
-#include <map>
-
-#include <Math/Vector4.h>
 #include <Graphics/RHI/Shader/AShaderProgram.h>
 #include <Graphics/RHI/UniformBufferSettings.h>
 

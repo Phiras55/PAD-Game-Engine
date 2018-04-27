@@ -1,7 +1,4 @@
 #pragma once
-#include <iostream>
-#include <unordered_map>
-
 #include <Graphics/RHI/ContextSettings.h>
 #include <Graphics/RHI/RenderSettings.h>
 #include <Graphics/RHI/IRenderer.h>

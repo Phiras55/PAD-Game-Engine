@@ -58,6 +58,11 @@ void Timer::Stop()
 					*	core::EngineClock::GetTimeScale());
 }
 
+void Timer::Reset()
+{
+	m_startTime = HighResClock::now();
+}
+
 void Timer::PauseAll()
 {
 	for (std::pair<int, Timer*> timer : m_timerCollection)

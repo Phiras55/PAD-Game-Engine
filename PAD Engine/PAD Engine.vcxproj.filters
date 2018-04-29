@@ -58,6 +58,9 @@
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{b12f80d5-8a64-422c-8edc-a311b5e5a508}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\System\Scene">
+      <UniqueIdentifier>{a6e60753-609e-49f2-9e69-43c49851f8db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Engine.cpp">
@@ -84,9 +87,6 @@
     <ClCompile Include="Sources\System\ECS\Scene.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\ECS\Collider.cpp">
-      <Filter>Source Files\System\ECS</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
@@ -107,6 +107,12 @@
     </ClCompile>
     <ClCompile Include="Sources\EnginePCH.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\ACollider.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\BoxCollider.cpp">
+      <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,9 +141,6 @@
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\IComponent.h">
-      <Filter>Header Files\System\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\ECS\Collider.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\RigidBody.h">
@@ -169,6 +172,12 @@
     </ClInclude>
     <ClInclude Include="Sources\EnginePCH.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\ACollider.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\BoxCollider.h">
+      <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

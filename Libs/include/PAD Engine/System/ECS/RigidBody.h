@@ -1,7 +1,7 @@
 #pragma once
 
 #include <System/ECS/IComponent.h>
-#include <System/ECS/Collider.h>
+#include <System/ECS/ACollider.h>
 #include <Utilities/Export.h>
 
 namespace pad	{
@@ -15,26 +15,34 @@ public:
 	~RigidBody();
 
 public:
-	void Init(PADObject* const _owner)	override;
-	void Start()						override;
-	void Update()						override;
-	void FixedUpdate()					override;
-	void LateUpdate()					override;
+	void Init()			override;
+	void Start()		override;
+	void Update()		override;
+	void FixedUpdate()	override;
+	void LateUpdate()	override;
 
 public:
 	inline void SetMass(const float _mass);
 
 	inline btRigidBody* const	GetBTRigidBody() const				{ return m_btRigidBody; }
+	inline ACollider*	const	GetCollider() const					{ return m_collider; }
 
-	virtual void				SetOwner(PADObject* const _owner)	{ m_owner = _owner; }
-	virtual PADObject* const	GetOwner() const					{ return m_owner; }
+	inline void SetCollider(ACollider* const _collider);
 
-	virtual const COMPONENT_TYPE GetType() const override { return m_type; }
+	virtual void				SetOwner(PADObject* const _owner) override { m_owner = _owner; }
+	virtual PADObject* const	GetOwner() const override					{ return m_owner; }
+
+	virtual const COMPONENT_TYPE GetType() const override			{ return m_type; }
+
+	const math::Transform& GetTransform() const override { return m_transform; }
+	math::Transform& GetTransform()				override { return m_transform; }
+	
 
 private:
 	btRigidBody*	m_btRigidBody;
 	btMotionState*	m_btMotionState;
-	Collider*		m_collider;
+	ACollider*		m_collider;
+	float			m_mass;
 };
 
 } // namespace ecs

@@ -6,6 +6,7 @@
 #include <System/Resource/MasterManager.h>
 #include <System/Resource/ResourceManager.h>
 #include <System/Physics/IPhysicContext.h>
+#include <Core/Timer.h>
 
 namespace pad	{
 namespace core	{
@@ -24,7 +25,11 @@ private:
 
 	sys::ecs::Scene*			m_scene;
 	sys::res::MasterManager*	m_resourceManager;
-	sys::phx::IPhysicContext*	m_physicContext;
+
+	Timer m_fixedUpdateTimer;
+
+private:
+	static sys::phx::IPhysicContext*	m_physicContext;
 
 public:
 	void InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win::WindowSettings& _w);			/*! Initialize the simulation. Reads the config files and initialize the renderer and the window. */
@@ -44,6 +49,9 @@ private:
 public:
 	sys::ecs::Scene* const				GetScene() const			{ return m_scene; }
 	sys::res::MasterManager* const		GetResourceManager() const	{ return m_resourceManager; }
+
+public:
+	static sys::phx::IPhysicContext* const GetPhysicContext() { return m_physicContext; }
 
 public:
 	void operator=(const Engine&)	= delete;

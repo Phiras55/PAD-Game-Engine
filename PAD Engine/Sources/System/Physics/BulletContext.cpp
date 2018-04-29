@@ -18,7 +18,7 @@ BulletContext::BulletContext()
 															solver,
 															collisionConfiguration);
 
-	dynamicsWorld->setGravity(btVector3(0, -10, 0));
+	dynamicsWorld->setGravity(btVector3(0, -9.81, 0));
 }
 
 BulletContext::~BulletContext()
@@ -31,7 +31,7 @@ void BulletContext::Init()
 
 void BulletContext::Update()
 {
-	dynamicsWorld->stepSimulation((btScalar)core::EngineClock::DeltaTime());
+	dynamicsWorld->stepSimulation(1.f/ 60.f);
 }
 
 void BulletContext::Clean()
@@ -48,9 +48,19 @@ void BulletContext::AddRigidBody(ecs::RigidBody* const _rigidBody)
 	dynamicsWorld->addRigidBody(_rigidBody->GetBTRigidBody());
 }
 
-void BulletContext::AddCollider(ecs::Collider* const _collider)
+void BulletContext::AddCollider(ecs::ACollider* const _collider)
 {
 	dynamicsWorld->addCollisionObject(_collider->GetBTCollider());
+}
+
+void BulletContext::RemoveCollider(ecs::ACollider* const _collider)
+{
+	dynamicsWorld->removeCollisionObject(_collider->GetBTCollider());
+}
+
+void BulletContext::RemoveRigidBody(ecs::RigidBody* const _rigidBody)
+{
+	dynamicsWorld->removeRigidBody(_rigidBody->GetBTRigidBody());
 }
 
 } // namespace phx

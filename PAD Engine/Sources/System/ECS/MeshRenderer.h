@@ -16,20 +16,18 @@ namespace ecs	{
 class ENGINE_API MeshRenderer : public IComponent
 {
 public:
-	MeshRenderer(math::Transform& _ownerTransform);
+	MeshRenderer();
 	~MeshRenderer();
-
-	MeshRenderer() = delete;
 
 private:
 	std::string m_meshName;
 	std::string m_materialName;
 	gfx::rhi::RenderSettings m_settings;
 
-	static std::vector<MeshRenderer> m_collection;
+	static std::vector<MeshRenderer*> m_collection;
 
 public:
-	void Init(PADObject* const _owner)		override;
+	void Init()								override;
 	void Start()							override;
 	void Update()							override;
 	void FixedUpdate()						override;
@@ -38,10 +36,10 @@ public:
 	void SetOwner(PADObject* const _owner)	override			{ m_owner = _owner; }
 	PADObject* const GetOwner() const		override			{ return m_owner; }
 
-	virtual const COMPONENT_TYPE GetType() const override	{ return m_type; }
+	virtual const COMPONENT_TYPE GetType() const override		{ return m_type; }
 
-	void SetMeshName(const std::string& _name)				{ m_meshName = _name; }
-	const std::string& GetMeshName() const					{ return m_meshName; }
+	void SetMeshName(const std::string& _name)					{ m_meshName = _name; }
+	const std::string& GetMeshName() const						{ return m_meshName; }
 
 	void SetMaterialName(const std::string& _name)				{ m_materialName = _name; }
 	const std::string& GetMaterialName() const					{ return m_materialName; }
@@ -49,9 +47,12 @@ public:
 	inline		 gfx::rhi::RenderSettings& GetSettings()		{ return m_settings; }
 	inline const gfx::rhi::RenderSettings& GetSettings() const	{ return m_settings; }
 
-	static		 std::vector<MeshRenderer>& GetCollection()		{ return m_collection; }
+	static		 std::vector<MeshRenderer*>& GetCollection()	{ return m_collection; }
+	
+	inline const math::Transform& 			GetTransform() const override { return m_transform; }
+	inline 		 math::Transform& 			GetTransform() override { return m_transform; }
 
-	static void AddToCollection(const MeshRenderer& _meshRenderer);
+	static void AddToCollection(MeshRenderer* const _meshRenderer);
 };
 
 } // namespace ecs

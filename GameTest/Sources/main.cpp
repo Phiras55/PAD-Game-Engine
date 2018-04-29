@@ -65,15 +65,11 @@ int main()
 	#pragma region Ground
 
 	pad::sys::ecs::PADObject* ground = new pad::sys::ecs::PADObject();
-
-	mr1.GetSettings().customUniforms["albedo"] = albedoUniform;
-	mr2.GetSettings().customUniforms["albedo"] = albedoUniform;
-
-	mr1.GetSettings().isWireframe = false;
-	mr2.GetSettings().isWireframe = true;
 	pad::sys::ecs::MeshRenderer* ground_MR = new pad::sys::ecs::MeshRenderer();
+
 	ground_MR->GetSettings().programs.push_back(&program);
 	ground_MR->GetSettings().isWireframe = true;
+	ground_MR->GetSettings().customUniforms["albedo"] = albedoUniform;
 	ground_MR->SetMeshName("Cube");
 	ground_MR->SetMaterialName("Default");
 	ground_MR->GetTransform().SetScale(pad::math::Vec3f(10, 1, 10));
@@ -101,6 +97,7 @@ int main()
 		pad::sys::ecs::MeshRenderer* cube_MR = new pad::sys::ecs::MeshRenderer();
 		cube_MR->GetSettings().programs.push_back(&program);
 		cube_MR->GetSettings().isWireframe = true;
+		cube_MR->GetSettings().customUniforms["albedo"] = albedoUniform;
 		cube_MR->SetMeshName("Cube");
 		cube_MR->SetMaterialName("Default");
 

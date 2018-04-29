@@ -1,29 +1,92 @@
 #pragma once
 #include <json-develop\single_include\nlohmann\json.hpp>
 #include <fstream>
+#include <io.h>
+#include <direct.h>
 
 using json = nlohmann::json;
 
-template<typename T>
-struct ISerializable
+class ASerializable
 {
-	void Serialize(std::string path)
+public:
+	virtual json	Serialize()		= 0;
+	virtual void	Deserialize()	= 0;
+protected:
+	template<typename T>
+	void AddDataToJson(json& j, const std::string& name, const T& value)
 	{
-		CreateFile(path, SerializeData());
+		j[name] = value;
 	}
-	virtual json SerializeData()	= 0;
-	virtual T Deserialize()			= 0;
+
 };
 
-void CreateFile(std::string path, json j)
+std::ofstream CreateFile(const std::string& path)
 {
-	std::ofstream f(path);
-	f << j;
-	f.close();
+	if (!_access(path.c_str(), 0))
+		_mkdir(path.c_str());
+	return std::ofstream(path);
 }
 
-template<typename T>
-void AddToJson(json& j, std::string name, T value)
+void AddJsonToFile(std::ofstream& file, const std::string& name, const json& j)
 {
-	j[name] = value;
+	file << name << j << "\n";
 }
+
+/*
+Exemple :
+
+struct bar : public ASerializable
+{
+	double a;
+	float b;
+	int c;
+	
+	json Serialize()
+	{
+		json j;
+		AddDataToJson(j, "a", a);
+		AddDataToJson(j, "b", b);
+		AddDataToJson(j, "c", c);
+		return j;
+	}
+	void Deserialize() {}
+	
+};
+
+struct foo : public ASerializable
+{
+	double a;
+	float b;
+	int c;
+	bar d;
+
+	json Serialize()
+	{
+		json j;									// Fisrt, create an empty Json
+		AddDataToJson(j, "a", a);				// Then add your data
+		AddDataToJson(j, "b", b);
+		AddDataToJson(j, "c", c);
+		AddDataToJson(j, "d", d.Serialize());	//Add to the parent Json his child data
+		return j;
+	}
+	void Deserialize() {}
+};
+
+int main()
+{
+	foo f;
+	f.a = 6.2;
+	f.b = 3.1f;
+	f.c = 1;
+	f.d.a = 1.2;
+	f.d.b = 3.6f;
+	f.d.c = 6;
+	
+	json j = f.Serialize();				//Serialization process -> gives a Json
+	
+	auto file = CreateFile("foo.json");	//Create the final file (no need to check the path, CreateFile() does it)
+	AddJsonToFile(file, "foo", j);		//Add your Json to the file with a name
+	file.close();
+	
+	return EXIT_SUCCESS;
+}*/

@@ -68,7 +68,10 @@
     <ClInclude Include="Sources\System\Physics\IPhysicContext.h" />
     <ClInclude Include="Sources\System\Resource\MasterManager.h" />
     <ClInclude Include="Sources\System\Resource\ResourceManager.h" />
+    <ClInclude Include="Sources\Utilities\EnumUtils.h" />
     <ClInclude Include="Sources\Utilities\Export.h" />
+    <ClInclude Include="Sources\Utilities\Randomizer.h" />
+    <ClInclude Include="Sources\Utilities\Serialization.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\basicColors.frag" />

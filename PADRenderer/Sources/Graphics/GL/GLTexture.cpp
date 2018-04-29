@@ -1,7 +1,6 @@
+#include <PCH.h>
 #include <Graphics/GL/GLTexture.h>
 #include <Utilities/EnumUtils.h>
-
-#include <GL/glew.h>
 
 namespace pad	{
 namespace gfx	{
@@ -89,8 +88,10 @@ void GLTexture::CheckMipmapParameters(const rhi::MipmapType& _param, const rhi::
 	glTexParameteri(GL_TEXTURE_2D, (_axis == rhi::E_AXIS_TYPE::S ? GL_TEXTURE_MIN_FILTER : GL_TEXTURE_MAG_FILTER), mipmap);
 }
 
-void GLTexture::GenerateTexture(const int32 _w, const int32 _h, uchar* const _data)
+void GLTexture::GenerateTexture(const int32 _w, const int32 _h, uchar* const _data, const rhi::TextureParameters& _param)
 {
+	SetTextureParameters(_param);
+
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _w, _h, 0, GL_RGB, GL_UNSIGNED_BYTE, _data);
 	glGenerateMipmap(GL_TEXTURE_2D);
 }

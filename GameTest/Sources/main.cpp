@@ -1,17 +1,17 @@
-#include <iostream>
-#include <Math/Matrix4x4.h>
+#include <EnginePCH.h>
 #include <Core/EngineDLL.h>
 #include <Graphics/GL/Shader/GLShaderProgram.h>
 #include <Graphics/GL/Shader/GLVertexShader.h>
 #include <Graphics/GL/Shader/GLFragmentShader.h>
 #include <System/ECS/PerspectiveCamera.h>
-
 #include <System/ECS/PADObject.h>
 #include <System/ECS/RigidBody.h>
 #include <Graphics/Model/Mesh.h>
 #include <Graphics/Model/MeshData.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/BoxCollider.h>
+
+#undef main
 
 int main()
 {
@@ -50,6 +50,10 @@ int main()
 	pad::gfx::gl::shad::GLShaderProgram		program;
 	pad::gfx::gl::shad::GLFragmentShader	fragShader;
 	pad::gfx::gl::shad::GLVertexShader		vertShader;
+	pad::gfx::rhi::shad::CustomUniform		albedoUniform;
+
+	albedoUniform.data = &pad::math::Vec4f(0.f, 1.f, 0.f, 1.f);
+	albedoUniform.type = pad::gfx::rhi::shad::DataType::VEC4;
 
 	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
 	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
@@ -62,6 +66,11 @@ int main()
 
 	pad::sys::ecs::PADObject* ground = new pad::sys::ecs::PADObject();
 
+	mr1.GetSettings().customUniforms["albedo"] = albedoUniform;
+	mr2.GetSettings().customUniforms["albedo"] = albedoUniform;
+
+	mr1.GetSettings().isWireframe = false;
+	mr2.GetSettings().isWireframe = true;
 	pad::sys::ecs::MeshRenderer* ground_MR = new pad::sys::ecs::MeshRenderer();
 	ground_MR->GetSettings().programs.push_back(&program);
 	ground_MR->GetSettings().isWireframe = true;

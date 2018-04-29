@@ -1,9 +1,7 @@
 #pragma once
-#include <vector>
-#include <map>
-
-#include <Math/Vector4.h>
+#include <Common.h>
 #include <Graphics/RHI/Shader/AShaderProgram.h>
+#include <Graphics/RHI/UniformBufferSettings.h>
 
 namespace pad	{
 namespace gfx	{
@@ -21,6 +19,7 @@ struct RenderSettings
 	std::vector<shad::AShaderProgram*>			programs;
 	std::map<std::string, shad::CustomUniform>	customUniforms;
 	const math::Matrix4x4*						modelMatrix;
+	UniformBufferSettings						uniformSettings;
 
 	bool isWireframe;
 };

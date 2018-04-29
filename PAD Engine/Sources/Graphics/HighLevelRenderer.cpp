@@ -1,3 +1,4 @@
+#include <EnginePCH.h>
 #include <Graphics/HighLevelRenderer.h>
 #include <Graphics/GL/GLRenderer.h>
 #include <Graphics/Window/SDLWindow.h>
@@ -67,7 +68,12 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 	math::Mat4 vp = cam.GetProjection() * cam.GetView();
 #pragma endregion
 
+	if (!m_lowLevelRenderer)
+		return;
+
 	ClearBuffers();
+
+	m_lowLevelRenderer->SetDefaultCameraBindingPointData(vp);
 
 	for (auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{
@@ -75,16 +81,14 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 		gfx::mod::Material* const currentMat		= _resources.GetMaterialManager().GetResource(meshRenderer->GetMaterialName());
 		gfx::rhi::RenderSettings& currentSettings	= meshRenderer->GetSettings();
 
-		/*if (!currentMesh || !currentMat)
+		if (!currentMesh)
 			continue;
+		//if (!currentMesh || !currentMat)
+			//continue;
 
-		FillTextureLayout(currentSettings, *currentMat);*/
+		//FillTextureLayout(currentSettings, *currentMat);
 
-		if (!currentMesh) // Just for testing purposes because we don't have materials for now.
-			continue;
-
-		if (m_lowLevelRenderer)
-			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
+		m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
 	}
 
 	SwapBuffers();

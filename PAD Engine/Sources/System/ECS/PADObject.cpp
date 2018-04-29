@@ -1,6 +1,6 @@
+#include <EnginePCH.h>
 #include <System/ECS/PADObject.h>
 #include <System/ECS/IComponent.h>
-#include <algorithm>
 
 namespace pad	{
 namespace sys	{

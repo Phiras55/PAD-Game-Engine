@@ -1,7 +1,4 @@
-#include <sstream>
-
-#include <GL/glew.h>
-#include <Logger/SimpleLogger.h>
+#include <PCH.h>
 #include <Graphics/GL/Shader/GLFragmentShader.h>
 
 namespace pad	{
@@ -64,9 +61,9 @@ bool GLFragmentShader::CompileShader(const char* _shaderCode)
 	{
 		char infoLog[SHADER_LOG_SIZE];
 
-		glDeleteShader(m_id);
 		glGetShaderInfoLog(m_id, SHADER_LOG_SIZE, NULL, infoLog);
 		LOG_ERROR("Error! Could not compile shader: %%\n", infoLog);
+		glDeleteShader(m_id);
 		return false;
 	}
 

@@ -1,7 +1,5 @@
 #pragma once
-#include <iostream>
-#include <map>
-
+#include <Graphics/RHI/AUniformBufferObject.h>
 #include <Graphics/RHI/ContextSettings.h>
 #include <Graphics/RHI/RenderSettings.h>
 #include <Graphics/RHI/IRenderer.h>
@@ -14,22 +12,32 @@ class GLRenderer final : public rhi::IRenderer
 {
 public:
 	GLRenderer();
-	~GLRenderer()															= default;
+	~GLRenderer();
 
 	GLRenderer(const GLRenderer&)											= delete;
 	GLRenderer(GLRenderer&&)												= delete;
 
+private:
+	std::unordered_map<std::string, int32>						m_bindingPoints;
+	std::unordered_map<std::string, rhi::AUniformBufferObject*> m_uniformBufferObjects;
+	std::unordered_map<std::string, rhi::UniformBufferSettings> m_uniformBufferSettings;
+
 public:
 	void Init(const rhi::ContextSettings& _settings)						override;
 	void ResizeViewport(const uint32 _w, const uint32 _h)					override;
-	void GenerateTexture(uint32& _textureID, const std::string& _path)		override;
 	void ClearBuffer()														override;
 	void GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao, rhi::AVertexBuffer* _ibo) override;
+	void GenerateTexture(
+		rhi::ATexture* const _t,
+		const std::string& _path,
+		const rhi::TextureParameters& _param)								override;
 	void ForwardRendering(
 		rhi::AVertexArray* const _vaos,
 		rhi::AVertexBuffer* const _ibos,
 		const rhi::RenderSettings _settings,
 		const math::Mat4& _vp)												override;
+	void CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)	override;
+	void SetDefaultCameraBindingPointData(const math::Mat4& _vp)			override;
 
 private:
 	void InitContext(const rhi::ContextSettings& _settings)					override;
@@ -39,7 +47,13 @@ private:
 	void InitCullFace(const rhi::ContextSettings& _settings);
 	void InitDepthBuffer(const rhi::ContextSettings& _settings);
 	void InitWindingOrder(const rhi::ContextSettings& _settings);
+	void InitDefaultUniformBuffers();
 	void SetCustomUniforms(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings);
+	void SetUniformBufferData(const std::string& _bufferName, const void* const _data, const int _dataSize, const int _offset);
+	void BindBufferToBindingPoint(const rhi::UniformBufferSettings& _settings);
+
+	rhi::AUniformBufferObject* const GetUniformBufferObject(const std::string& _name);
+	int32 GetBindingPoint(const std::string& _bindingBlockName);
 
 public:
 	void operator=(const GLRenderer&)										= delete;

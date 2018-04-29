@@ -1,7 +1,5 @@
 #pragma once
-#include <Common.h>
-
-#include <Math/Vector4.h>
+#include <PCH.h>
 #include <Graphics/RHI/ATexture.h>
 
 namespace pad	{

@@ -1,5 +1,4 @@
-#include <GL/glew.h>
-
+#include <PCH.h>
 #include <Graphics/GL/GLVertexArray.h>
 
 namespace pad {
@@ -19,6 +18,11 @@ void GLVertexArray::GenerateID()
 void GLVertexArray::Bind()
 {
 	glBindVertexArray(m_id);
+}
+
+void GLVertexArray::Unbind()
+{
+	glBindVertexArray(0);
 }
 
 } // namespace gl

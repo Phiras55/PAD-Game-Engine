@@ -13,7 +13,7 @@ public:
 
 public:
 	virtual void InitializeBufferData(const int32 _dataSize) = 0;
-	virtual void BindData(const int32 _size, const int32 _offset, void* const _data) = 0;
+	virtual void BindData(const int32 _size, const int32 _offset, const void* const _data) = 0;
 };
 
 } // namespace rhi

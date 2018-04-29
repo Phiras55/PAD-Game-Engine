@@ -39,7 +39,7 @@ public:
 		const rhi::RenderSettings _settings, 
 		const math::Mat4& _vp)													= 0;
 	virtual void CreateUniformBuffer(const UniformBufferSettings& _settings)	= 0;
-	virtual int32 GetBindingPoint(const std::string& _bindingBlockName)			= 0;
+	virtual void SetDefaultCameraBindingPointData(const math::Mat4& _vp)		= 0;
 
 protected:
 	virtual void InitContext(const rhi::ContextSettings& _settings)				= 0;

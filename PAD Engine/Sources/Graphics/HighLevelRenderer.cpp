@@ -68,7 +68,12 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 	math::Mat4 vp = cam.GetProjection() * cam.GetView();
 #pragma endregion
 
+	if (!m_lowLevelRenderer)
+		return;
+
 	ClearBuffers();
+
+	m_lowLevelRenderer->SetDefaultCameraBindingPointData(vp);
 
 	for (auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{
@@ -83,8 +88,7 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 
 		//FillTextureLayout(currentSettings, *currentMat);
 
-		if (m_lowLevelRenderer)
-			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
+		m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
 	}
 
 	SwapBuffers();

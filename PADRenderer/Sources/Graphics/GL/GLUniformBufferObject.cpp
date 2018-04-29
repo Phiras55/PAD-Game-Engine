@@ -39,7 +39,7 @@ void GLUniformBufferObject::InitializeBufferData(const int32 _dataSize)
 	Unbind();
 }
 
-void GLUniformBufferObject::BindData(const int32 _size, const int32 _offset, void* const _data)
+void GLUniformBufferObject::BindData(const int32 _size, const int32 _offset, const void* const _data)
 {
 	Bind();
 

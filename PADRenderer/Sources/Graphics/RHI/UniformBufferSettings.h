@@ -7,6 +7,7 @@ namespace rhi	{
 struct UniformBufferSettings final
 {
 	int32		dataSize;
+	int32		bindingPointID;
 	std::string name;
 };
 

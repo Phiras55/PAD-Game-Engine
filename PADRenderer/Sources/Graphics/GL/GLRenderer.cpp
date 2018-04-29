@@ -51,6 +51,7 @@ void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
 	InitMainBuffer(_settings);
 	InitCullFace(_settings);
 	InitWindingOrder(_settings);
+	InitDefaultUniformBuffers();
 }
 
 void GLRenderer::InitMainBuffer(const rhi::ContextSettings& _settings)
@@ -174,7 +175,6 @@ void GLRenderer::ForwardRendering(
 			continue;
 		}
 
-
 		currentProgram->Use();
 		currentProgram->SetUniform("model", *_setting.modelMatrix);
 		SetCustomUniforms(currentProgram, _setting);
@@ -182,6 +182,9 @@ void GLRenderer::ForwardRendering(
 		glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, (void*)0);
 	}
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+	_ibo->Unbind();
+	_vao->Unbind();
 }
 
 void GLRenderer::ClearBuffer()
@@ -246,12 +249,49 @@ void GLRenderer::SetCustomUniforms(rhi::shad::AShaderProgram* const _program, co
 	}
 }
 
+void GLRenderer::InitDefaultUniformBuffers()
+{
+	rhi::UniformBufferSettings cameraSettings;
+	cameraSettings.name				= "CameraSettings";
+	cameraSettings.dataSize			= 96;
+	cameraSettings.bindingPointID	= 0;
+
+	CreateUniformBuffer(cameraSettings);
+	BindBufferToBindingPoint(cameraSettings);
+
+	m_uniformBufferSettings[cameraSettings.name] = cameraSettings;
+}
+
 void GLRenderer::CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)
 {
 	GLUniformBufferObject* buffer = new GLUniformBufferObject();
 	buffer->GenerateID();
 	buffer->InitializeBufferData(_settings.dataSize);
 	m_uniformBufferObjects[_settings.name] = buffer;
+}
+
+void GLRenderer::BindBufferToBindingPoint(const rhi::UniformBufferSettings& _settings)
+{
+	rhi::AUniformBufferObject* buffer = GetUniformBufferObject(_settings.name);
+	if (!buffer)
+		return;
+
+	buffer->Bind();
+	glBindBufferRange(GL_UNIFORM_BUFFER, _settings.bindingPointID, buffer->GetID(), 0, _settings.dataSize);
+	buffer->Unbind();
+}
+
+void GLRenderer::SetUniformBufferData(const std::string& _bufferName, const void* const _data, const int _dataSize, const int _offset)
+{
+	if (m_uniformBufferObjects.find(_bufferName) != m_uniformBufferObjects.end())
+		m_uniformBufferObjects[_bufferName]->BindData(_dataSize, _offset, _data);
+}
+
+void GLRenderer::SetDefaultCameraBindingPointData(const math::Mat4& _vp)
+{
+	SetUniformBufferData("CameraSettings", &math::Vec4f(), 16, 0);
+	SetUniformBufferData("CameraSettings", &math::Vec4f(), 16, 16);
+	SetUniformBufferData("CameraSettings", &(_vp.data[0]), 64, 32);
 }
 
 int32 GLRenderer::GetBindingPoint(const std::string& _bindingBlockName)
@@ -261,15 +301,11 @@ int32 GLRenderer::GetBindingPoint(const std::string& _bindingBlockName)
 	return -1;
 }
 
-void GLRenderer::SetUniformBufferData(std::string& _bufferName, void* const _data, const int _dataSize, const int _offset)
+rhi::AUniformBufferObject* const GLRenderer::GetUniformBufferObject(const std::string& _name)
 {
-	if(m_uniformBufferObjects.find(_bufferName) != m_uniformBufferObjects.end())
-		m_uniformBufferObjects[_bufferName]->BindData(_dataSize, _offset, _data);
-}
-
-void GLRenderer::UniformBufferTesting(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings)
-{
-
+	if (m_uniformBufferObjects.find(_name) != m_uniformBufferObjects.end())
+		return m_uniformBufferObjects[_name];
+	return nullptr;
 }
 
 } // namespace gl

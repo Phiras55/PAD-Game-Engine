@@ -12,11 +12,11 @@ public:
 	~GLUniformBufferObject();
 
 public:
-	void BindData(const int32 _size, const int32 _offset, void* const _data)	override;
-	void InitializeBufferData(const int32 _dataSize)							override;
-	void GenerateID()															override;
-	void Bind()																	override;
-	void Unbind()																override;
+	void BindData(const int32 _size, const int32 _offset, const void* const _data)	override;
+	void InitializeBufferData(const int32 _dataSize)								override;
+	void GenerateID()																override;
+	void Bind()																		override;
+	void Unbind()																	override;
 };
 
 }  // namespace gl

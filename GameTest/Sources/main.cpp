@@ -49,6 +49,10 @@ int main()
 	pad::gfx::gl::shad::GLShaderProgram		program;
 	pad::gfx::gl::shad::GLFragmentShader	fragShader;
 	pad::gfx::gl::shad::GLVertexShader		vertShader;
+	pad::gfx::rhi::shad::CustomUniform		albedoUniform;
+
+	albedoUniform.data = &pad::math::Vec4f(0.f, 1.f, 0.f, 1.f);
+	albedoUniform.type = pad::gfx::rhi::shad::DataType::VEC4;
 
 	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
 	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
@@ -65,6 +69,9 @@ int main()
 
 	mr1.GetSettings().programs.push_back(&program);
 	mr2.GetSettings().programs.push_back(&program);
+
+	mr1.GetSettings().customUniforms["albedo"] = albedoUniform;
+	mr2.GetSettings().customUniforms["albedo"] = albedoUniform;
 
 	mr1.GetSettings().isWireframe = false;
 	mr2.GetSettings().isWireframe = true;

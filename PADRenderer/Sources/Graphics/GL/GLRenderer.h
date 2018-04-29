@@ -20,6 +20,7 @@ public:
 private:
 	std::unordered_map<std::string, int32>						m_bindingPoints;
 	std::unordered_map<std::string, rhi::AUniformBufferObject*> m_uniformBufferObjects;
+	std::unordered_map<std::string, rhi::UniformBufferSettings> m_uniformBufferSettings;
 
 public:
 	void Init(const rhi::ContextSettings& _settings)						override;
@@ -36,7 +37,7 @@ public:
 		const rhi::RenderSettings _settings,
 		const math::Mat4& _vp)												override;
 	void CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)	override;
-	int32 GetBindingPoint(const std::string& _bindingBlockName)				override;
+	void SetDefaultCameraBindingPointData(const math::Mat4& _vp)			override;
 
 private:
 	void InitContext(const rhi::ContextSettings& _settings)					override;
@@ -46,9 +47,13 @@ private:
 	void InitCullFace(const rhi::ContextSettings& _settings);
 	void InitDepthBuffer(const rhi::ContextSettings& _settings);
 	void InitWindingOrder(const rhi::ContextSettings& _settings);
+	void InitDefaultUniformBuffers();
 	void SetCustomUniforms(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings);
-	void UniformBufferTesting(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings);
-	void SetUniformBufferData(std::string& _bufferName, void* const _data, const int _dataSize, const int _offset);
+	void SetUniformBufferData(const std::string& _bufferName, const void* const _data, const int _dataSize, const int _offset);
+	void BindBufferToBindingPoint(const rhi::UniformBufferSettings& _settings);
+
+	rhi::AUniformBufferObject* const GetUniformBufferObject(const std::string& _name);
+	int32 GetBindingPoint(const std::string& _bindingBlockName);
 
 public:
 	void operator=(const GLRenderer&)										= delete;

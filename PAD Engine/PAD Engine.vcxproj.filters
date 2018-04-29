@@ -114,6 +114,12 @@
     <ClCompile Include="Sources\System\ECS\BoxCollider.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\System\ECS\Collider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\ComponentsHandler.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -177,6 +183,12 @@
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\BoxCollider.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\ComponentsHandler.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\AComponent.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>

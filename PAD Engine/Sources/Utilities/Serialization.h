@@ -19,16 +19,13 @@ protected:
 	}
 };
 
-std::ofstream CreateFile(const std::string& path)
+void AddJsonToFile(const std::string& path, const json& j)
 {
 	if (!_access(path.c_str(), 0))
 		_mkdir(path.c_str());
-	return std::ofstream(path);
-}
-
-void AddJsonToFile(std::ofstream& file, const json& j)
-{
+	std::ofstream file(path);
 	file << j << "\n";
+	file.close();
 }
 
 template<typename T>
@@ -111,12 +108,8 @@ int mainSerialization()
 	f.d.b = 3.6f;
 	f.d.c = 6;
 
-	json j = f.Serialize();				//Serialization process -> gives a Json
-
-	auto file = CreateFile("foo.json");	//Create the final file (no need to check the path, CreateFile() does it)
-	AddJsonToFile(file, j);				//Add your Json to the file
-	file.close();
-
+	json j = f.Serialize();			//Serialization process -> gives a Json
+	AddJsonToFile("foo.json", j);	//Add your Json to the file
 
 	json dj = LoadJsonFromFile("foo.json");
 	foo f2;

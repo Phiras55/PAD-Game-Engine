@@ -258,8 +258,6 @@ void GLRenderer::InitDefaultUniformBuffers()
 
 	CreateUniformBuffer(cameraSettings);
 	BindBufferToBindingPoint(cameraSettings);
-
-	m_uniformBufferSettings[cameraSettings.name] = cameraSettings;
 }
 
 void GLRenderer::CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)
@@ -287,18 +285,21 @@ void GLRenderer::SetUniformBufferData(const std::string& _bufferName, const void
 		m_uniformBufferObjects[_bufferName]->BindData(_dataSize, _offset, _data);
 }
 
-void GLRenderer::SetDefaultCameraBindingPointData(const math::Mat4& _vp)
+void GLRenderer::SetCameraUniformBufferData(
+	const math::Vec3f& _position,
+	const math::Vec3f& _direction,
+	const math::Mat4& _vp)
 {
-	SetUniformBufferData("CameraSettings", &math::Vec4f(), 16, 0);
-	SetUniformBufferData("CameraSettings", &math::Vec4f(), 16, 16);
+	SetUniformBufferData("CameraSettings", &_position, 16, 0);
+	SetUniformBufferData("CameraSettings", &_direction, 16, 16);
 	SetUniformBufferData("CameraSettings", &(_vp.data[0]), 64, 32);
 }
 
-int32 GLRenderer::GetBindingPoint(const std::string& _bindingBlockName)
+void GLRenderer::SetLightsUniformBufferData(
+	math::Vec4f* const _positions,
+	math::Vec4f* const _directions)
 {
-	if (m_bindingPoints.find(_bindingBlockName) != m_bindingPoints.end())
-		return m_bindingPoints[_bindingBlockName];
-	return -1;
+
 }
 
 rhi::AUniformBufferObject* const GLRenderer::GetUniformBufferObject(const std::string& _name)

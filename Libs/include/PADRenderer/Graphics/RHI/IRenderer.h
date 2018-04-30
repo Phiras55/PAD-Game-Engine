@@ -38,8 +38,14 @@ public:
 		rhi::AVertexBuffer* const _ibos, 
 		const rhi::RenderSettings _settings, 
 		const math::Mat4& _vp)													= 0;
+	virtual void SetCameraUniformBufferData(
+		const math::Vec3f& _position,
+		const math::Vec3f& _direction,
+		const math::Mat4& _vp)													= 0;
+	virtual void SetLightsUniformBufferData(
+		math::Vec4f* const _positions, 
+		math::Vec4f* const _directions)											= 0;
 	virtual void CreateUniformBuffer(const UniformBufferSettings& _settings)	= 0;
-	virtual void SetDefaultCameraBindingPointData(const math::Mat4& _vp)		= 0;
 
 protected:
 	virtual void InitContext(const rhi::ContextSettings& _settings)				= 0;

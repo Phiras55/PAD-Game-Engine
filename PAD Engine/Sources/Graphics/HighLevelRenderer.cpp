@@ -73,7 +73,7 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 
 	ClearBuffers();
 
-	m_lowLevelRenderer->SetDefaultCameraBindingPointData(vp);
+	m_lowLevelRenderer->SetCameraUniformBufferData(math::Vec3f(), math::Vec3f(), vp);
 
 	for (auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{

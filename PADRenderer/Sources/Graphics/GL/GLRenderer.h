@@ -18,9 +18,7 @@ public:
 	GLRenderer(GLRenderer&&)												= delete;
 
 private:
-	std::unordered_map<std::string, int32>						m_bindingPoints;
 	std::unordered_map<std::string, rhi::AUniformBufferObject*> m_uniformBufferObjects;
-	std::unordered_map<std::string, rhi::UniformBufferSettings> m_uniformBufferSettings;
 
 public:
 	void Init(const rhi::ContextSettings& _settings)						override;
@@ -36,8 +34,14 @@ public:
 		rhi::AVertexBuffer* const _ibos,
 		const rhi::RenderSettings _settings,
 		const math::Mat4& _vp)												override;
+	void SetCameraUniformBufferData(
+		const math::Vec3f& _position,
+		const math::Vec3f& _direction,
+		const math::Mat4& _vp)												override;
+	void SetLightsUniformBufferData(
+		math::Vec4f* const _positions,
+		math::Vec4f* const _directions)										override;
 	void CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)	override;
-	void SetDefaultCameraBindingPointData(const math::Mat4& _vp)			override;
 
 private:
 	void InitContext(const rhi::ContextSettings& _settings)					override;
@@ -53,7 +57,6 @@ private:
 	void BindBufferToBindingPoint(const rhi::UniformBufferSettings& _settings);
 
 	rhi::AUniformBufferObject* const GetUniformBufferObject(const std::string& _name);
-	int32 GetBindingPoint(const std::string& _bindingBlockName);
 
 public:
 	void operator=(const GLRenderer&)										= delete;

@@ -1,6 +1,5 @@
 #pragma once
 namespace pad	{
-namespace util	{
 using json = nlohmann::json;
 
 class ISerializable
@@ -26,7 +25,6 @@ T JsonToData(const json& j, const std::string& name)
 	return j.at(name).get<T>();
 }
 
-} // namespace util
 } // namespace pad
 
 /*

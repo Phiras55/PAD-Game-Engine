@@ -2,6 +2,7 @@
 #include <Math/MatrixTransform.h>
 #include <Math/Vector4.h>
 #include <Math/Quaternion.h>
+#include <Json/Serialization.h>
 
 #define PI 3.14159265359f
 
@@ -16,7 +17,7 @@ inline float RadToDegree(const float _rad) { return (_rad * 180.f) / PI; }
 
 using Mat4 = Matrix4x4;
 
-class Transform final
+class Transform final : pad::ISerializable
 {
 public:
 	inline Transform() :

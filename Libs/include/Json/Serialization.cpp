@@ -1,8 +1,7 @@
 #include <EnginePCH.h>
-#include <Utilities/Serialization.h>
+#include <Json/Serialization.h>
 
 namespace pad	{
-namespace util	{
 
 void AddJsonToFile(const std::string& path, const json& j)
 {
@@ -26,6 +25,5 @@ json LoadJsonFromFile(const std::string& path)
 	return j;
 }
 
-} // namespace util
 } // namespace pad
 

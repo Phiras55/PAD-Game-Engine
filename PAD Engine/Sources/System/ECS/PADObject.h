@@ -1,9 +1,5 @@
 #pragma once
-
-#include <list>
-#include <Math/Transform.h>
-//#include <System/ECS/IComponent.h>
-#include <vector>
+#include <Utilities/Serialization.h>
 #include <Utilities/Export.h>
 
 namespace pad	{
@@ -12,7 +8,7 @@ namespace ecs	{
 
 class IComponent;
 
-class ENGINE_API PADObject
+class ENGINE_API PADObject final : public util::ISerializable
 {
 #pragma region Constructor / Destructor
 
@@ -54,6 +50,9 @@ public:
 	void Update();
 	void FixedUpdate();
 	void LateUpdate();
+
+	util::json	Serialize()							override;
+	void		Deserialize(const util::json& j)	override;
 
 #pragma endregion
 

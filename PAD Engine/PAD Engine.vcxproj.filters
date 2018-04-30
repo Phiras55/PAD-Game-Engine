@@ -61,6 +61,9 @@
     <Filter Include="Header Files\System\Scene">
       <UniqueIdentifier>{a6e60753-609e-49f2-9e69-43c49851f8db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{3e0b94b6-86de-4f35-9ae8-0da24f721c36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Engine.cpp">
@@ -122,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="Sources\System\ECS\ComponentsHandler.cpp">
       <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Utilities\Serialization.cpp">
+      <Filter>Source Files\Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

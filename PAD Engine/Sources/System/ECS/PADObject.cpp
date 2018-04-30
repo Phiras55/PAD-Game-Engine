@@ -130,6 +130,18 @@ void PADObject::SetParent(PADObject* const _parent)
 	_parent->AddChild(this);
 }
 
+util::json PADObject::Serialize()
+{
+	util::json json;
+
+	AddDataToJson(json, "transform", m_transform);
+}
+
+void PADObject::Deserialize(const util::json& j)
+{
+
+}
+
 } // namespace ecs
 } // namespace sys
 } // namespace pad

@@ -47,6 +47,23 @@ void Scene::AddPADObject(PADObject * _PADObject)
 	m_masterPADObject->AddChild(_PADObject);
 }
 
+util::json Scene::Serialize()
+{
+	util::json sceneJson;
+
+	if (m_masterPADObject)
+	{
+		
+	}
+
+	return sceneJson;
+}
+
+void Scene::Deserialize(const util::json& _j)
+{
+
+}
+
 } // namespace ecs
 } // namespace sys
 } // namespace pad

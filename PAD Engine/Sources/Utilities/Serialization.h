@@ -1,16 +1,14 @@
 #pragma once
-#include <json/json.hpp>
-#include <fstream>
-#include <io.h>
-#include <direct.h>
-
+namespace pad	{
+namespace util	{
 using json = nlohmann::json;
 
-class ASerializable
+class ISerializable
 {
 public:
 	virtual json	Serialize()					= 0;
 	virtual void	Deserialize(const json& j)	= 0;
+
 protected:
 	template<typename T>
 	void AddDataToJson(json& j, const std::string& name, const T& value)
@@ -19,14 +17,8 @@ protected:
 	}
 };
 
-void AddJsonToFile(const std::string& path, const json& j)
-{
-	if (!_access(path.c_str(), 0))
-		_mkdir(path.c_str());
-	std::ofstream file(path);
-	file << j << "\n";
-	file.close();
-}
+void AddJsonToFile(const std::string& path, const json& j);
+json LoadJsonFromFile(const std::string& path);
 
 template<typename T>
 T JsonToData(const json& j, const std::string& name)
@@ -34,18 +26,8 @@ T JsonToData(const json& j, const std::string& name)
 	return j.at(name).get<T>();
 }
 
-json LoadJsonFromFile(const std::string& path)
-{
-	json j;
-	std::fstream f(path);
-	if (f.is_open())
-	{
-		if (f.good())
-			f >> j;
-		f.close();
-	}
-	return j;
-}
+} // namespace util
+} // namespace pad
 
 /*
 Exemple :

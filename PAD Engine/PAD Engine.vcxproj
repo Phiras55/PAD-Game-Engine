@@ -47,6 +47,7 @@
     <ClCompile Include="Sources\System\ECS\Scene.cpp" />
     <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
     <ClCompile Include="Sources\System\Resource\MasterManager.cpp" />
+    <ClCompile Include="Sources\Utilities\Serialization.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h" />

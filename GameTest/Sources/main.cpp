@@ -14,80 +14,6 @@
 
 #undef main
 
-struct bar : public ASerializable
-{
-	double a;
-	float b;
-	int c;
-
-	json Serialize()
-	{
-		json j;
-		AddDataToJson(j, "a", a);
-		AddDataToJson(j, "b", b);
-		AddDataToJson(j, "c", c);
-		return j;
-	}
-	void Deserialize(const json& j) 
-	{
-		a = JsonToData<double>(j, "a");
-		b = JsonToData<float>(j, "b");
-		c = JsonToData<int>(j, "c");
-	}
-
-};
-
-struct foo : public ASerializable
-{
-	double a;
-	float b;
-	int c;
-	bar d;
-
-	json Serialize()
-	{
-		json j;									// Fisrt, create an empty Json
-		AddDataToJson(j, "a", a);				// Then add your data
-		AddDataToJson(j, "b", b);
-		AddDataToJson(j, "c", c);
-		AddDataToJson(j, "d", d.Serialize());	//Add to the parent Json his child data
-		return j;
-	}
-	void Deserialize(const json& j) 
-	{
-		a = JsonToData<double>(j, "a");
-		b = JsonToData<float>(j, "b");
-		c = JsonToData<int>(j, "c");
-		d.Deserialize(JsonToData<json>(j, "d"));
-	}
-};
-
-int mainSerialization()
-{
-	foo f;
-	f.a = 6.2;
-	f.b = 3.1f;
-	f.c = 1;
-	f.d.a = 1.2;
-	f.d.b = 3.6f;
-	f.d.c = 6;
-
-	json j = f.Serialize();				//Serialization process -> gives a Json
-
-	auto file = CreateFile("foo.json");	//Create the final file (no need to check the path, CreateFile() does it)
-	AddJsonToFile(file, "foo", j);		//Add your Json to the file with a name
-	file.close();
-
-
-	json dj = LoadJsonFromFile("foo.json", "foo");
-	foo f2;
-	f2.Deserialize(dj);
-
-	system("pause");
-
-	return EXIT_SUCCESS;
-}
-
 int main()
 {
 	#pragma region RenderInit
@@ -191,6 +117,7 @@ int main()
 
 	pad::StartSimulation();
 	pad::DestroyEngine();
+
 	return EXIT_SUCCESS;
 }
 

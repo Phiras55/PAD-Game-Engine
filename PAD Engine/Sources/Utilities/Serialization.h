@@ -26,9 +26,9 @@ std::ofstream CreateFile(const std::string& path)
 	return std::ofstream(path);
 }
 
-void AddJsonToFile(std::ofstream& file, const std::string& name, const json& j)
+void AddJsonToFile(std::ofstream& file, const json& j)
 {
-	file << name << j << "\n";
+	file << j << "\n";
 }
 
 template<typename T>
@@ -37,17 +37,17 @@ T JsonToData(const json& j, const std::string& name)
 	return j.at(name).get<T>();
 }
 
-json LoadJsonFromFile(const std::string& path, const std::string& name)
+json LoadJsonFromFile(const std::string& path)
 {
 	json j;
-	std::ifstream f(path);
+	std::fstream f(path);
 	if (f.is_open())
 	{
 		if (f.good())
 			f >> j;
 		f.close();
 	}
-	return JsonToData<json>(j, name);
+	return j;
 }
 
 /*
@@ -58,7 +58,7 @@ struct bar : public ASerializable
 	double a;
 	float b;
 	int c;
-	
+
 	json Serialize()
 	{
 		json j;
@@ -67,8 +67,13 @@ struct bar : public ASerializable
 		AddDataToJson(j, "c", c);
 		return j;
 	}
-	void Deserialize() {}
-	
+	void Deserialize(const json& j) 
+	{
+		a = JsonToData<double>(j, "a");
+		b = JsonToData<float>(j, "b");
+		c = JsonToData<int>(j, "c");
+	}
+
 };
 
 struct foo : public ASerializable
@@ -87,10 +92,16 @@ struct foo : public ASerializable
 		AddDataToJson(j, "d", d.Serialize());	//Add to the parent Json his child data
 		return j;
 	}
-	void Deserialize() {}
+	void Deserialize(const json& j) 
+	{
+		a = JsonToData<double>(j, "a");
+		b = JsonToData<float>(j, "b");
+		c = JsonToData<int>(j, "c");
+		d.Deserialize(JsonToData<json>(j, "d"));
+	}
 };
 
-int main()
+int mainSerialization()
 {
 	foo f;
 	f.a = 6.2;
@@ -99,12 +110,24 @@ int main()
 	f.d.a = 1.2;
 	f.d.b = 3.6f;
 	f.d.c = 6;
-	
+
 	json j = f.Serialize();				//Serialization process -> gives a Json
-	
+
 	auto file = CreateFile("foo.json");	//Create the final file (no need to check the path, CreateFile() does it)
-	AddJsonToFile(file, "foo", j);		//Add your Json to the file with a name
+	AddJsonToFile(file, j);				//Add your Json to the file
 	file.close();
-	
+
+
+	json dj = LoadJsonFromFile("foo.json");
+	foo f2;
+	f2.Deserialize(dj);
+	std::cout	<< f.a		<< std::endl
+				<< f.b		<< std::endl
+				<< f.c		<< std::endl
+				<< f.d.a	<< std::endl
+				<< f.d.b	<< std::endl
+				<< f.d.c	<< std::endl;
+	system("pause");
+
 	return EXIT_SUCCESS;
 }*/

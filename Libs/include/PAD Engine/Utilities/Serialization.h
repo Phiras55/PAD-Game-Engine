@@ -9,15 +9,14 @@ using json = nlohmann::json;
 class ASerializable
 {
 public:
-	virtual json	Serialize()		= 0;
-	virtual void	Deserialize()	= 0;
+	virtual json	Serialize()					= 0;
+	virtual void	Deserialize(const json& j)	= 0;
 protected:
 	template<typename T>
 	void AddDataToJson(json& j, const std::string& name, const T& value)
 	{
 		j[name] = value;
 	}
-
 };
 
 std::ofstream CreateFile(const std::string& path)
@@ -30,6 +29,25 @@ std::ofstream CreateFile(const std::string& path)
 void AddJsonToFile(std::ofstream& file, const std::string& name, const json& j)
 {
 	file << name << j << "\n";
+}
+
+template<typename T>
+T JsonToData(const json& j, const std::string& name)
+{
+	return j.at(name).get<T>();
+}
+
+json LoadJsonFromFile(const std::string& path, const std::string& name)
+{
+	json j;
+	std::ifstream f(path);
+	if (f.is_open())
+	{
+		if (f.good())
+			f >> j;
+		f.close();
+	}
+	return JsonToData<json>(j, name);
 }
 
 /*

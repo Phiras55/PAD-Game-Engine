@@ -117,6 +117,12 @@
     <ClCompile Include="Sources\System\ECS\Collider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\System\ECS\Collider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\ComponentsHandler.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -190,6 +196,12 @@
     </ClInclude>
     <ClInclude Include="Sources\Utilities\Serialization.h">
       <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\ComponentsHandler.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\AComponent.h">
+      <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

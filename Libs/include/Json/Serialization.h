@@ -1,4 +1,10 @@
 #pragma once
+#include <Json/json.hpp>
+#include <io.h>
+#include <direct.h>
+#include <string>
+#include <fstream>
+
 namespace pad	{
 using json = nlohmann::json;
 

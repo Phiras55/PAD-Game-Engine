@@ -47,19 +47,19 @@ void Scene::AddPADObject(PADObject * _PADObject)
 	m_masterPADObject->AddChild(_PADObject);
 }
 
-util::json Scene::Serialize()
+json Scene::Serialize()
 {
-	util::json sceneJson;
+	json sceneJson;
 
 	if (m_masterPADObject)
 	{
-		
+		m_masterPADObject->Serialize();
 	}
 
 	return sceneJson;
 }
 
-void Scene::Deserialize(const util::json& _j)
+void Scene::Deserialize(const json& _j)
 {
 
 }

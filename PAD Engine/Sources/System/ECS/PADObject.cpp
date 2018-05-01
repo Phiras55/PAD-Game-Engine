@@ -130,14 +130,25 @@ void PADObject::SetParent(PADObject* const _parent)
 	_parent->AddChild(this);
 }
 
-util::json PADObject::Serialize()
+json PADObject::Serialize()
 {
-	util::json json;
+	json j;
 
-	AddDataToJson(json, "transform", m_transform);
+	AddDataToJson(j, "m_transform", m_transform.Serialize());
+	AddDataToJson(j, "m_dontDestroy", m_dontDestroy);
+	AddDataToJson(j, "m_name", m_name);
+	AddDataToJson(j, "m_componentCount", m_components.size());
+	AddDataToJson(j, "m_childrenCount", m_childs.size());
+
+	for (int i = 0, count = m_components.size(); i < count; ++i)
+	{
+
+	}
+
+	return j;
 }
 
-void PADObject::Deserialize(const util::json& j)
+void PADObject::Deserialize(const json& j)
 {
 
 }

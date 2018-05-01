@@ -126,12 +126,6 @@
     <ClCompile Include="Sources\System\ECS\ComponentsHandler.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Utilities\Serialization.cpp">
-      <Filter>Source Files\Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Libs\include\Json\Serialization.cpp">
-      <Filter>Header Files\Utilities</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -208,9 +202,6 @@
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\AComponent.h">
       <Filter>Header Files\System\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Libs\include\Json\Serialization.h">
-      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

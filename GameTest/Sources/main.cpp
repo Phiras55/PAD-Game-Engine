@@ -10,7 +10,6 @@
 #include <Graphics/Model/MeshData.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/BoxCollider.h>
-#include <Utilities/Serialization.h>
 
 #undef main
 

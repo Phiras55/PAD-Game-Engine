@@ -1,5 +1,5 @@
 #pragma once
-#include <Utilities/Serialization.h>
+#include <Json/Serialization.h>
 #include <Utilities/Export.h>
 
 namespace pad	{
@@ -8,7 +8,7 @@ namespace ecs	{
 
 class IComponent;
 
-class ENGINE_API PADObject final : public util::ISerializable
+class ENGINE_API PADObject final : public ISerializable
 {
 #pragma region Constructor / Destructor
 
@@ -51,8 +51,8 @@ public:
 	void FixedUpdate();
 	void LateUpdate();
 
-	util::json	Serialize()							override;
-	void		Deserialize(const util::json& j)	override;
+	json Serialize()				override;
+	void Deserialize(const json& j)	override;
 
 #pragma endregion
 

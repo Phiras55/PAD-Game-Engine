@@ -1,8 +1,8 @@
 #pragma once
+#include <Json/Serialization.h>
 #include <Math/MatrixTransform.h>
 #include <Math/Vector4.h>
 #include <Math/Quaternion.h>
-#include <Json/Serialization.h>
 
 #define PI 3.14159265359f
 
@@ -17,7 +17,7 @@ inline float RadToDegree(const float _rad) { return (_rad * 180.f) / PI; }
 
 using Mat4 = Matrix4x4;
 
-class Transform final : pad::ISerializable
+class Transform final : public ISerializable
 {
 public:
 	inline Transform() :
@@ -41,6 +41,22 @@ public:
 	inline const Vec3f& Rotation() const	{ return m_rotation; }
 	inline const Quat&	QuatRotation()const { return m_quatRotation; }
 	inline const Vec3f& Scale() const		{ return m_scale; }
+
+	json Serialize() override
+	{
+		json j;
+
+		AddDataToJson(j, "m_localTransform",	m_localTransform.Serialize());
+		AddDataToJson(j, "m_globalTransform",	m_globalTransform.Serialize());
+		AddDataToJson(j, "m_quatRotation",		m_quatRotation.Serialize());
+
+		return j;
+	}
+
+	void Deserialize(const json& j)	override
+	{
+
+	}
 
 private:
 	inline void ComputeLocalMatrix()

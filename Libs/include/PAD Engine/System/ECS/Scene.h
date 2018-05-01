@@ -1,12 +1,12 @@
 #pragma once
 #include <System/ECS/PADObject.h>
-#include <Utilities/Serialization.h>
+#include <Json/Serialization.h>
 
 namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-class Scene final : public util::ISerializable
+class Scene final : public ISerializable
 {
 #pragma region Constructor / Destructor
 
@@ -31,8 +31,8 @@ public:
 	void LateUpdate();
 	void AddPADObject(PADObject* _PADObject);
 	
-	util::json	Serialize()							override;
-	void		Deserialize(const util::json& j)	override;
+	json Serialize()				override;
+	void Deserialize(const json& j)	override;
 
 public:
 	inline PADObject* const GetMasterObject() { return m_masterPADObject; }

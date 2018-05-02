@@ -52,44 +52,22 @@ SOURCES += \
 
 HEADERS += \
        padeditor.h														\
-        "$$HEADERPATH/PAD Engine/Core/Engine.h"							\
-        "$$HEADERPATH/PAD Engine/Core/EngineClock.h"					\
-        "$$HEADERPATH/PAD Engine/Core/EngineDLL.h"						\
-        "$$HEADERPATH/PAD Engine/Core/IDPool.h"							\
-        "$$HEADERPATH/PAD Engine/Core/Timer.h"							\
-        "$$HEADERPATH/PAD Engine/Graphics/HighLevelRenderer.h"			\
-        "$$HEADERPATH/PAD Engine/System/ECS/ACollider.h"				\
-        "$$HEADERPATH/PAD Engine/System/ECS/AScriptComponent.h"			\
-        "$$HEADERPATH/PAD Engine/System/ECS/BoxCollider.h"				\
-        "$$HEADERPATH/PAD Engine/System/ECS/Camera.h"					\
-        "$$HEADERPATH/PAD Engine/System/ECS/Collider.h"					\
-        "$$HEADERPATH/PAD Engine/System/ECS/IComponent.h"				\
-        "$$HEADERPATH/PAD Engine/System/ECS/MeshRenderer.h"				\
-        "$$HEADERPATH/PAD Engine/System/ECS/PADObject.h"				\
-        "$$HEADERPATH/PAD Engine/System/ECS/PerspectiveCamera.h"		\
-        "$$HEADERPATH/PAD Engine/System/ECS/RigidBody.h"				\
-        "$$HEADERPATH/PAD Engine/System/ECS/Scene.h"					\
-        "$$HEADERPATH/PAD Engine/System/Physics/BulletContext.h"		\
-        "$$HEADERPATH/PAD Engine/System/Physics/IPhysicContext.h"		\
-        "$$HEADERPATH/PAD Engine/System/Resource/AResourceManager.h"	\
-        "$$HEADERPATH/PAD Engine/System/Resource/MasterManager.h"		\
-        "$$HEADERPATH/PAD Engine/System/Resource/MeshManager.h"			\
-        "$$HEADERPATH/PAD Engine/System/Resource/Resource.h"			\
-        "$$HEADERPATH/PAD Engine/System/Resource/ResourceManager.h"		\
-        "$$HEADERPATH/PAD Engine/System/Window/AWindow.h"				\
-        "$$HEADERPATH/PAD Engine/System/Window/IWindowBase.h"			\
-        "$$HEADERPATH/PAD Engine/System/Window/SDLWindow.h"				\
-        "$$HEADERPATH/PAD Engine/System/Window/WindowSettings.h"		\
+        "$$HEADERPATH/PAD Engine/Core/*.h"							\
+        "$$HEADERPATH/PAD Engine/Graphics/*.h"			\
+        "$$HEADERPATH/PAD Engine/System/ECS/*.h"					\
+        "$$HEADERPATH/PAD Engine/System/Physics/*.h"		\
+        "$$HEADERPATH/PAD Engine/System/Resource/*.h"		\
+        "$$HEADERPATH/PAD Engine/System/Window/*.h"		\
         "$$HEADERPATH/PAD Engine/System/IModule.h"						\
-        "$$HEADERPATH/PAD Engine/Utilities/EnumUtils.h"					\
-        "$$HEADERPATH/PAD Engine/Utilities/Export.h"					\
-        "$$HEADERPATH/PAD Engine/Utilities/Randomizer.h"				\
+        "$$HEADERPATH/PAD Engine/Utilities/*.h"				\
+        "$$HEADERPATH/Json/*.h"				\
         "$$HEADERPATH/PADRenderer/Graphics/GL/Shader/*.h"				\
         "$$HEADERPATH/PADRenderer/Graphics/GL/*.h"						\
         "$$HEADERPATH/PADRenderer/Graphics/Model/*.h"					\
         "$$HEADERPATH/PADRenderer/Graphics/RHI/Shader/*.h"				\
         "$$HEADERPATH/PADRenderer/Graphics/RHI/*.h"						\
         "$$HEADERPATH/PADRenderer/Graphics/Window/*.h"
+        "$$HEADERPATH/GL/*.h"
 
 
 

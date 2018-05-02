@@ -7,7 +7,8 @@ PADEditor::PADEditor(QWidget *parent) :
     ui(new Ui::PADEditor)
 {
     ui->setupUi(this);
-    pad::gfx::mod::Mesh m;
+    setCentralWidget(ui->dockWidget);
+    setDockNestingEnabled(true);
 }
 
 PADEditor::~PADEditor()

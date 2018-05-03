@@ -1,4 +1,6 @@
-#include <iostream>
+#include <EnginePCH.h>
+
+#undef main
 
 int main()
 {

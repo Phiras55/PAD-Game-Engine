@@ -81,9 +81,6 @@
     <ClCompile Include="Sources\Core\IDPool.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\Resource\Resource.cpp">
-      <Filter>Source Files\System\ResourceManager</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\System\ECS\PADObject.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
@@ -108,10 +105,22 @@
     <ClCompile Include="Sources\Graphics\HighLevelRenderer.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\EnginePCH.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Sources\System\ECS\ACollider.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
     <ClCompile Include="Sources\System\ECS\BoxCollider.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\Collider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\Collider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\ComponentsHandler.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
   </ItemGroup>
@@ -133,9 +142,6 @@
     </ClInclude>
     <ClInclude Include="Sources\Core\IDPool.h">
       <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\Resource\Resource.h">
-      <Filter>Header Files\System\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\PADObject.h">
       <Filter>Header Files\System\ECS</Filter>
@@ -173,10 +179,28 @@
     <ClInclude Include="Sources\Graphics\HighLevelRenderer.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\EnginePCH.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Sources\System\ECS\ACollider.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\BoxCollider.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Utilities\EnumUtils.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Utilities\Randomizer.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Utilities\Serialization.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\ComponentsHandler.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\AComponent.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>

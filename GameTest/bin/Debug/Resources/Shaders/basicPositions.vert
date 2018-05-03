@@ -2,12 +2,22 @@
 
 layout(location = 0) in vec4 vertexPos;
 
-uniform mat4 mvp;
+uniform mat4 model;
 
-layout (std140) uniform shaderData
+layout (std140, binding = 0, row_major) uniform CameraSettings
 {
-	vec4 cameraPosition;
-};
+							// Base Alignment  	// Aligned Offset
+	vec3 position;			// 16			   	// 0
+	vec3 direction; 		// 16				// 16
+	mat4 viewPerspective	// 64				// 32
+} camera;
+
+layout (std140, binding = 1) uniform Lights
+{
+							// Base Alignment  	// Aligned Offset
+	vec4 position;			// 16				// 0
+	vec3 direction; 		// 16				// 16
+} lights;
 
 out VertexData
 {
@@ -17,5 +27,5 @@ out VertexData
 
 void main()
 {
-	gl_Position = mvp * vec4(vertexPos.xyz, 1.f);
+	gl_Position = camera.viewPerspective * model * vec4(vertexPos.xyz, 1.f);
 }

@@ -1,17 +1,18 @@
-#include <iostream>
-#include <Math/Matrix4x4.h>
+#include <EnginePCH.h>
 #include <Core/EngineDLL.h>
 #include <Graphics/GL/Shader/GLShaderProgram.h>
 #include <Graphics/GL/Shader/GLVertexShader.h>
 #include <Graphics/GL/Shader/GLFragmentShader.h>
 #include <System/ECS/PerspectiveCamera.h>
-
 #include <System/ECS/PADObject.h>
 #include <System/ECS/RigidBody.h>
 #include <Graphics/Model/Mesh.h>
 #include <Graphics/Model/MeshData.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/BoxCollider.h>
+#include <Utilities/Serialization.h>
+
+#undef main
 
 int main()
 {
@@ -50,6 +51,10 @@ int main()
 	pad::gfx::gl::shad::GLShaderProgram		program;
 	pad::gfx::gl::shad::GLFragmentShader	fragShader;
 	pad::gfx::gl::shad::GLVertexShader		vertShader;
+	pad::gfx::rhi::shad::CustomUniform		albedoUniform;
+
+	albedoUniform.data = &pad::math::Vec4f(0.f, 1.f, 0.f, 1.f);
+	albedoUniform.type = pad::gfx::rhi::shad::DataType::VEC4;
 
 	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
 	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
@@ -61,10 +66,11 @@ int main()
 	#pragma region Ground
 
 	pad::sys::ecs::PADObject* ground = new pad::sys::ecs::PADObject();
-
 	pad::sys::ecs::MeshRenderer* ground_MR = new pad::sys::ecs::MeshRenderer();
+
 	ground_MR->GetSettings().programs.push_back(&program);
 	ground_MR->GetSettings().isWireframe = true;
+	ground_MR->GetSettings().customUniforms["albedo"] = albedoUniform;
 	ground_MR->SetMeshName("Cube");
 	ground_MR->SetMaterialName("Default");
 	ground_MR->GetTransform().SetScale(pad::math::Vec3f(10, 1, 10));
@@ -92,6 +98,7 @@ int main()
 		pad::sys::ecs::MeshRenderer* cube_MR = new pad::sys::ecs::MeshRenderer();
 		cube_MR->GetSettings().programs.push_back(&program);
 		cube_MR->GetSettings().isWireframe = true;
+		cube_MR->GetSettings().customUniforms["albedo"] = albedoUniform;
 		cube_MR->SetMeshName("Cube");
 		cube_MR->SetMaterialName("Default");
 
@@ -113,3 +120,4 @@ int main()
 
 	return EXIT_SUCCESS;
 }
+

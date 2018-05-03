@@ -12,8 +12,9 @@ public:
 	virtual ~GLVertexArray() = default;
 
 public:
-	void GenerateID() override;
-	void Bind() override;
+	void GenerateID()	override;
+	void Bind()			override;
+	void Unbind()		override;
 };
 
 } // namespace gl

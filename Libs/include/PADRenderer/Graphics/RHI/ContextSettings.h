@@ -1,8 +1,5 @@
 #pragma once
-#include <Common.h>
-#include <Math/Vector4.h>
-#include <Math/Vector2.h>
-
+#include <PCH.h>
 namespace pad	{
 namespace gfx	{
 namespace rhi	{

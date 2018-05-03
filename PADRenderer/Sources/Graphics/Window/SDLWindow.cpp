@@ -1,6 +1,4 @@
-#include <SDL2/SDL.h>
-
-#include <Logger/SimpleLogger.h>
+#include <PCH.h>
 #include <Graphics/Window/SDLWindow.h>
 
 namespace pad	{

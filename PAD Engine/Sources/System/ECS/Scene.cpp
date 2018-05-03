@@ -1,3 +1,4 @@
+#include <EnginePCH.h>
 #include <System/ECS/Scene.h>
 
 namespace pad	{

@@ -1,4 +1,4 @@
-#include <GL/glew.h>
+#include <PCH.h>
 #include <Graphics/GL/GLVertexBuffer.h>
 
 namespace pad {
@@ -21,13 +21,15 @@ void GLVertexBuffer::Bind()
 	glBindBuffer(GL_ARRAY_BUFFER, m_id);
 }
 
+void GLVertexBuffer::Unbind()
+{
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
 void GLVertexBuffer::BindData(float* const _data, const uint32 _dataSize, const int32 _vertexElementCount, const uint8 _location)
 {
 	if (_data)
 	{
-		if (!m_id)
-			GenerateID();
-
 		Bind();
 
 		glEnableVertexAttribArray(_location);

@@ -52,21 +52,21 @@ SOURCES += \
 
 HEADERS += \
        padeditor.h														\
-        "$$HEADERPATH/PAD Engine/Core/*.h"							\
-        "$$HEADERPATH/PAD Engine/Graphics/*.h"			\
-        "$$HEADERPATH/PAD Engine/System/ECS/*.h"					\
-        "$$HEADERPATH/PAD Engine/System/Physics/*.h"		\
-        "$$HEADERPATH/PAD Engine/System/Resource/*.h"		\
-        "$$HEADERPATH/PAD Engine/System/Window/*.h"		\
+        "$$HEADERPATH/PAD Engine/Core/*.h"								\
+        "$$HEADERPATH/PAD Engine/Graphics/*.h"							\
+        "$$HEADERPATH/PAD Engine/System/ECS/*.h"						\
+        "$$HEADERPATH/PAD Engine/System/Physics/*.h"					\
+        "$$HEADERPATH/PAD Engine/System/Resource/*.h"					\
+        "$$HEADERPATH/PAD Engine/System/Window/*.h"						\
         "$$HEADERPATH/PAD Engine/System/IModule.h"						\
-        "$$HEADERPATH/PAD Engine/Utilities/*.h"				\
-        "$$HEADERPATH/Json/*.h"				\
+        "$$HEADERPATH/PAD Engine/Utilities/*.h"							\
+        "$$HEADERPATH/Json/*.h"											\
         "$$HEADERPATH/PADRenderer/Graphics/GL/Shader/*.h"				\
         "$$HEADERPATH/PADRenderer/Graphics/GL/*.h"						\
         "$$HEADERPATH/PADRenderer/Graphics/Model/*.h"					\
         "$$HEADERPATH/PADRenderer/Graphics/RHI/Shader/*.h"				\
         "$$HEADERPATH/PADRenderer/Graphics/RHI/*.h"						\
-        "$$HEADERPATH/PADRenderer/Graphics/Window/*.h"
+        "$$HEADERPATH/PADRenderer/Graphics/Window/*.h"					\
         "$$HEADERPATH/GL/*.h"
 
 
@@ -76,4 +76,6 @@ FORMS += \
 
 LIBS += \
         "$$LIBPATH/PAD Engine.lib"\
-        "$$LIBPATH/PADRenderer.lib"
+        "$$LIBPATH/PADRenderer.lib"\
+        "$$LIBPATH/glew32.lib"\
+        "opengl32.lib"

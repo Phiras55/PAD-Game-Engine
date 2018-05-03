@@ -206,6 +206,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp" />
+    <ClCompile Include="Sources\Graphics\RHI\Shader\ShaderManager.cpp" />
     <ClCompile Include="Sources\Graphics\Window\SDLWindow.cpp" />
     <ClCompile Include="Sources\main.cpp" />
     <ClCompile Include="Sources\PCH.cpp">
@@ -244,6 +245,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\CustomUniform.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h" />
+    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderManager.h" />
     <ClInclude Include="Sources\Graphics\RHI\TextureParameters.h" />
     <ClInclude Include="Sources\Graphics\RHI\TextureSettings.h" />
     <ClInclude Include="Sources\Graphics\RHI\UniformBufferSettings.h" />

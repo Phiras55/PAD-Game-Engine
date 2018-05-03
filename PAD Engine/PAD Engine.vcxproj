@@ -36,7 +36,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EnginePCH.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Sources\System\ECS\Collider.cpp" />
     <ClCompile Include="Sources\System\ECS\ACollider.cpp" />
     <ClCompile Include="Sources\System\ECS\BoxCollider.cpp" />
     <ClCompile Include="Sources\System\ECS\ComponentsHandler.cpp" />

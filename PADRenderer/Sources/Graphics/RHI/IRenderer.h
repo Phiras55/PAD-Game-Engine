@@ -18,7 +18,6 @@ public:
 	virtual ~IRenderer() = default;
 
 protected:
-	std::vector<uint32> m_buffers;
 	math::Vec2i			m_viewportSize;
 
 public:

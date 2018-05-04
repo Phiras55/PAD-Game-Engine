@@ -108,8 +108,8 @@
     <ClCompile Include="Sources\PCH.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Graphics\RHI\Shader\ShaderManager.cpp">
-      <Filter>Source Files\Graphics\RHI\Shader</Filter>
+    <ClCompile Include="Sources\Graphics\GL\Shader\GLShaderManager.cpp">
+      <Filter>Source Files\Graphics\GL\Shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,7 +209,10 @@
     <ClInclude Include="Sources\Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderManager.h">
+    <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderManager.h">
+      <Filter>Header Files\Graphics\GL\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderManager.h">
       <Filter>Header Files\Graphics\RHI\Shader</Filter>
     </ClInclude>
   </ItemGroup>

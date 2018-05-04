@@ -1,11 +1,12 @@
 #pragma once
 #include <Common.h>
+#include <Graphics/RHI/ATexture.h>
+#include <Graphics/Model/MeshData.h>
 #include <Graphics/RHI/AVertexArray.h>
 #include <Graphics/RHI/AVertexBuffer.h>
-#include <Graphics/RHI/ContextSettings.h>
-#include <Graphics/Model/MeshData.h>
 #include <Graphics/RHI/RenderSettings.h>
-#include <Graphics/RHI/ATexture.h>
+#include <Graphics/RHI/ContextSettings.h>
+#include <Graphics/RHI/Shader/AShaderManager.h>
 #include <Graphics/RHI/UniformBufferSettings.h>
 
 namespace pad {
@@ -18,7 +19,8 @@ public:
 	virtual ~IRenderer() = default;
 
 protected:
-	math::Vec2i			m_viewportSize;
+	math::Vec2i				m_viewportSize;
+	shad::AShaderManager*	m_shaderManager;
 
 public:
 	virtual void Init(const ContextSettings& _settings)							= 0;

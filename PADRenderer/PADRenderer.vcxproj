@@ -190,6 +190,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     <ClCompile Include="Sources\Graphics\GL\GLVertexBuffer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\GLVertexElementBuffer.cpp" />
     <ClCompile Include="Sources\Graphics\GL\Shader\GLFragmentShader.cpp" />
+    <ClCompile Include="Sources\Graphics\GL\Shader\GLShaderManager.cpp" />
     <ClCompile Include="Sources\Graphics\GL\Shader\GLShaderProgram.cpp" />
     <ClCompile Include="Sources\Graphics\GL\Shader\GLVertexShader.cpp" />
     <ClCompile Include="Sources\Graphics\Model\Material.cpp" />
@@ -206,7 +207,6 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Sources\Graphics\RHI\Shader\AShaderProgram.cpp" />
-    <ClCompile Include="Sources\Graphics\RHI\Shader\ShaderManager.cpp" />
     <ClCompile Include="Sources\Graphics\Window\SDLWindow.cpp" />
     <ClCompile Include="Sources\main.cpp" />
     <ClCompile Include="Sources\PCH.cpp">
@@ -229,6 +229,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     <ClInclude Include="Sources\Graphics\GL\GLVertexBuffer.h" />
     <ClInclude Include="Sources\Graphics\GL\GLVertexElementBuffer.h" />
     <ClInclude Include="Sources\Graphics\GL\Shader\GLFragmentShader.h" />
+    <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderManager.h" />
     <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderProgram.h" />
     <ClInclude Include="Sources\Graphics\GL\Shader\GLVertexShader.h" />
     <ClInclude Include="Sources\Graphics\Model\Material.h" />
@@ -245,7 +246,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderProgram.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\CustomUniform.h" />
     <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderInfos.h" />
-    <ClInclude Include="Sources\Graphics\RHI\Shader\ShaderManager.h" />
+    <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderManager.h" />
     <ClInclude Include="Sources\Graphics\RHI\TextureParameters.h" />
     <ClInclude Include="Sources\Graphics\RHI\TextureSettings.h" />
     <ClInclude Include="Sources\Graphics\RHI\UniformBufferSettings.h" />

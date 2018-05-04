@@ -1,4 +1,5 @@
 #include <PCH.h>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image/stb_image.h>
 #include <Utilities/EnumUtils.h>
@@ -8,7 +9,7 @@
 #include <Graphics/RHI/Shader/ShaderInfos.h>
 #include <Graphics/GL/GLVertexElementBuffer.h>
 #include <Graphics/GL/GLUniformBufferObject.h>
-#include <Graphics/RHI/Shader/AShaderProgram.h>
+#include <Graphics/GL/Shader/GLShaderManager.h>
 
 namespace pad	{
 namespace gfx	{
@@ -30,6 +31,17 @@ void GLRenderer::Init(const rhi::ContextSettings& _settings)
 {
 	InitContext(_settings);
 	InitViewPort(_settings.viewportSize);
+	InitShaders();
+}
+
+void GLRenderer::InitShaders()
+{
+	m_shaderManager = new gl::shad::GLShaderManager();
+
+	m_shaderManager->LoadShaders(
+		"../Resources/Shaders/basicPositions.vert", 
+		"../Resources/Shaders/basicColors.frag", 
+		"Default");
 }
 
 void GLRenderer::InitContext(const rhi::ContextSettings& _settings)

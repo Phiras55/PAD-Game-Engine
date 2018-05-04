@@ -13,12 +13,12 @@
 	#define LOG_FLUSH() sl::SimpleLogger::Flush()
 	#define LOG_INIT() sl::SimpleLogger::Init()
 
-	#define LOG_INFO(cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::INFO, cFormat, __VA_ARGS__)
-	#define LOG_TRACE(cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::TRACE, cFormat, __VA_ARGS__)
-	#define LOG_WARNING(cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::WARNING, cFormat, __VA_ARGS__)
-	#define LOG_ERROR(cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::ERROR, cFormat, __VA_ARGS__)
-	#define LOG_FATAL(cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::FATAL, cFormat, __VA_ARGS__)
-	#define LOG_CUSTOM(channelType, cFormat, ...) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, channelType, cFormat, __VA_ARGS__)
+	#define LOG_INFO(cFormat, ...)					sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::INFO, cFormat, __VA_ARGS__)
+	#define LOG_TRACE(cFormat, ...)					sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::TRACE, cFormat, __VA_ARGS__)
+	#define LOG_WARNING(cFormat, ...)				sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::WARNING, cFormat, __VA_ARGS__)
+	#define LOG_ERROR(cFormat, ...)					sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::ERROR, cFormat, __VA_ARGS__)
+	#define LOG_FATAL(cFormat, ...)					sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::FATAL, cFormat, __VA_ARGS__)
+	#define LOG_CUSTOM(channelType, cFormat, ...)	sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, channelType, cFormat, __VA_ARGS__)
 
 	#define LOG_INFO_S(cFormat) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::INFO, cFormat, 0)
 	#define LOG_TRACE_S(cFormat) sl::SimpleLogger::Log(__FILE__, __LINE__, __DATE__, __TIME__, E_CHANNEL_TYPE::TRACE, cFormat, 0)

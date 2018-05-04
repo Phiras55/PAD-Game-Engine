@@ -60,14 +60,15 @@ HEADERS += \
         "$$HEADERPATH/PAD Engine/System/Window/*.h"						\
         "$$HEADERPATH/PAD Engine/System/IModule.h"						\
         "$$HEADERPATH/PAD Engine/Utilities/*.h"							\
-        "$$HEADERPATH/Json/*.h"											\
+        "$$HEADERPATH/Json/*.hpp"										\
         "$$HEADERPATH/PADRenderer/Graphics/GL/Shader/*.h"				\
         "$$HEADERPATH/PADRenderer/Graphics/GL/*.h"						\
         "$$HEADERPATH/PADRenderer/Graphics/Model/*.h"					\
         "$$HEADERPATH/PADRenderer/Graphics/RHI/Shader/*.h"				\
         "$$HEADERPATH/PADRenderer/Graphics/RHI/*.h"						\
         "$$HEADERPATH/PADRenderer/Graphics/Window/*.h"					\
-        "$$HEADERPATH/GL/*.h"
+        "$$HEADERPATH/GL/*.h" \
+    glwidget.h
 
 
 

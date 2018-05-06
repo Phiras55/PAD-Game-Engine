@@ -21,14 +21,16 @@ GLShaderManager::~GLShaderManager()
 
 bool GLShaderManager::LoadShaders(const std::string& _vertPath, const std::string& _fragPath, const std::string& _name)
 {
-	pad::gfx::gl::shad::GLShaderProgram*		program = nullptr;
-	pad::gfx::gl::shad::GLFragmentShader		fragShader;
-	pad::gfx::gl::shad::GLVertexShader			vertShader;
+	pad::gfx::gl::shad::GLShaderProgram* program = nullptr;
+	pad::gfx::gl::shad::GLFragmentShader fragShader;
+	pad::gfx::gl::shad::GLVertexShader	 vertShader;
 
 	if (!vertShader.LoadShader(_vertPath.c_str()) || !fragShader.LoadShader(_fragPath.c_str()))
 		return false;
 
 	program = new gl::shad::GLShaderProgram();
+	program->SetVertexShader(&vertShader);
+	program->SetFragmentShader(&fragShader);
 
 	if (!program->CompileProgram())
 		return false;

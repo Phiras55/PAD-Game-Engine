@@ -9,17 +9,12 @@ namespace ecs	{
 
 class Scene final : public ISerializable
 {
-#pragma region Constructor / Destructor
-
 public:
 	Scene();
 	~Scene();
 
 	Scene(const Scene&)		= delete;
 	Scene(const Scene&&)	= delete;
-
-#pragma endregion
-
 
 private:
 	PADObject*			m_masterPADObject;
@@ -37,8 +32,8 @@ public:
 	void Deserialize(const json& j)	override;
 
 public:
-	inline PADObject* const			GetMasterObject()	{ return m_masterPADObject; }
-	inline const PerspectiveCamera& GetMainCamera()		{ return m_mainCamera; }
+	inline PADObject* const		GetMasterObject()	{ return m_masterPADObject; }
+	inline PerspectiveCamera&	GetMainCamera()		{ return m_mainCamera; }
 };
 
 } // namespace ecs

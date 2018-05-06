@@ -10,13 +10,13 @@ namespace rhi	{
 struct RenderSettings
 {
 	RenderSettings() :
+		programHandle("Default"),
 		modelMatrix(nullptr),
 		isWireframe(false)
 	{
-		programs.reserve(1);
 	}
 
-	std::vector<shad::AShaderProgram*>			programs;
+	std::string									programHandle;
 	std::map<std::string, shad::CustomUniform>	customUniforms;
 	const math::Matrix4x4*						modelMatrix;
 	UniformBufferSettings						uniformSettings;

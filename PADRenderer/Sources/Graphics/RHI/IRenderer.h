@@ -48,6 +48,8 @@ public:
 		math::Vec4f* const _directions)											= 0;
 	virtual void CreateUniformBuffer(const UniformBufferSettings& _settings)	= 0;
 
+	inline shad::AShaderManager* const GetShaderManager() { return m_shaderManager; }
+
 protected:
 	virtual void InitContext(const rhi::ContextSettings& _settings)				= 0;
 	virtual void InitViewPort(const math::Vec2i& _viewportSize)					= 0;

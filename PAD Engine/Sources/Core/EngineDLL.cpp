@@ -48,32 +48,43 @@ void Simulate()
 
 void AddPADObject(sys::ecs::PADObject* const _padObject)
 {
-	g_engine->GetScene()->AddPADObject(_padObject);
+	if(g_engine && g_engine->GetScene())
+		g_engine->GetScene()->AddPADObject(_padObject);
 }
 
 void RemovePADObject(sys::ecs::PADObject* const _padObject)
 {
-	_padObject->GetParent()->RemoveChild(_padObject);
+	if(_padObject->GetParent())
+		_padObject->GetParent()->RemoveChild(_padObject);
 }
 
-void SetMainCamera()
+void MoveMainCamera(math::Vec3f& _translation)
 {
-
+	if (g_engine && g_engine->GetScene())
+		g_engine->GetScene()->GetMainCamera().GetTransform().Move(_translation);
 }
 
-void MoveMainCamera()
+void RotateMainCamera(math::Vec3f& _rotation)
 {
-
+	if (g_engine && g_engine->GetScene())
+		g_engine->GetScene()->GetMainCamera().GetTransform().SetRotation(_rotation);
 }
 
-void RotateMainCamera()
+void SetMainCameraTarget(const math::Vec3f& _targetPosition)
 {
-
+	if (g_engine && g_engine->GetScene())
+	{
+		sys::ecs::PerspectiveCamera& cam = g_engine->GetScene()->GetMainCamera();
+		cam.LookAt(cam.GetTransform().Position(), _targetPosition, math::Vec3f::Up());
+	}
 }
 
-void SetMainCameraTarget()
+void LoadResourceFile(const std::string& _filePath, const std::string& _outputPath)
 {
+	if (g_engine)
+	{
 
+	}
 }
 
 } // namespace pad

@@ -13,13 +13,15 @@ Scene::Scene() :
 
 Scene::~Scene() 
 {
-	if (m_masterPADObject)
-		delete m_masterPADObject;
+	delete m_masterPADObject;
 }
 
 void Scene::Init()
 {
 	m_masterPADObject->Init();
+
+	m_mainCamera.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
+	m_mainCamera.LookAt(math::Vec3f(15, 7, 7), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 }
 
 void Scene::Start()
@@ -61,7 +63,7 @@ json Scene::Serialize()
 
 void Scene::Deserialize(const json& _j)
 {
-
+	m_masterPADObject->Deserialize(_j);
 }
 
 } // namespace ecs

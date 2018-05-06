@@ -22,8 +22,10 @@ HighLevelRenderer::~HighLevelRenderer()
 	delete m_mainWindow;
 }
 
-void HighLevelRenderer::Initialize(const rhi::ContextSettings& _rSettings, const win::WindowSettings& _wSettings)
+void HighLevelRenderer::Initialize(const rhi::ContextSettings& _rSettings, const win::WindowSettings& _wSettings, sys::res::MasterManager* _masterManagerHandle)
 {
+	m_masterManagerHandle = _masterManagerHandle;
+
 	switch (_wSettings.windowType)
 	{
 	case gfx::win::E_WINDOW_TYPE::SDL:
@@ -55,12 +57,50 @@ void HighLevelRenderer::Initialize(const rhi::ContextSettings& _rSettings, const
 
 	if (m_lowLevelRenderer)
 		m_lowLevelRenderer->Init(_rSettings);
+
+	InitializeDefaultMeshes();
+}
+
+void HighLevelRenderer::InitializeDefaultMeshes()
+{
+	pad::gfx::mod::MeshData md;
+
+	md.positions = new float[24]{
+		-0.5, -0.5,  0.5,
+		0.5, -0.5,  0.5,
+		-0.5,  0.5,  0.5,
+		0.5,  0.5, -0.5,
+		-0.5, -0.5, -0.5,
+		-0.5,  0.5, -0.5,
+		0.5, -0.5, -0.5,
+		0.5,  0.5,  0.5
+	};
+	md.positionCount = 24;
+
+	md.indices = new pad::uint32[36]{
+		0, 1, 2,
+		3, 4, 5,
+		4, 3, 6,
+		7, 2, 1,
+		4, 6, 1,
+		4, 2, 5,
+		7, 1, 6,
+		5, 2, 7,
+		4, 0, 2,
+		6, 3, 7,
+		1, 0, 4,
+		7, 3, 5
+	};
+	md.indiceCount = 36;
+
+	gfx::mod::Mesh m;
+
+	GenerateMesh(m, md);
+	m_masterManagerHandle->GetMeshManager().AddResource("Default", m);
 }
 
 void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene)
 {
-	//cam.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-	//cam.LookAt(math::Vec3f(15, 7, 7), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 	if (!m_lowLevelRenderer)
 		return;
 
@@ -80,7 +120,7 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Sc
 		if (!currentMesh)
 			continue;
 
-		if(currentMat)
+		if (currentMat)
 			FillTextureLayout(currentSettings, *currentMat);
 
 		m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);

@@ -68,6 +68,9 @@ void RigidBody::Start()
 
 void RigidBody::Update()
 {
+	if (!m_btRigidBody)
+		return;
+
 	m_btRigidBody->getWorldTransform().setOrigin(btVector3(	m_owner->GetTransform().Position().x,
 															m_owner->GetTransform().Position().y,
 															m_owner->GetTransform().Position().z));
@@ -80,6 +83,9 @@ void RigidBody::Update()
 
 void RigidBody::FixedUpdate()
 {
+	if (!m_btRigidBody)
+		return;
+
 	m_owner->GetTransform().SetPosition(m_btRigidBody->getWorldTransform().getOrigin());
 
 	m_owner->GetTransform().SetQuatRotation(math::Quat(	m_btRigidBody->getWorldTransform().getRotation().x(),

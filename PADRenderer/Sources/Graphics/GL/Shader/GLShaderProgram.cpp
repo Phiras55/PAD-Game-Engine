@@ -18,6 +18,9 @@ GLShaderProgram::~GLShaderProgram()
 
 bool GLShaderProgram::CompileProgram()
 {
+	if (!m_vertShader || !m_fragShader)
+		return false;
+
 	int32 success;
 	int32& vertID = m_vertShader->GetID();
 	int32& fragID = m_fragShader->GetID();

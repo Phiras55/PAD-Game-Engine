@@ -81,10 +81,10 @@ struct Vector4 final : public ISerializable															/*! Templated vector 4
 	{
 		json j;
 
-		AddDataToJson(J, "x", x);
-		AddDataToJson(J, "y", y);
-		AddDataToJson(J, "z", z);
-		AddDataToJson(J, "w", w);
+		AddDataToJson(j, "x", x);
+		AddDataToJson(j, "y", y);
+		AddDataToJson(j, "z", z);
+		AddDataToJson(j, "w", w);
 
 		return j;
 	}

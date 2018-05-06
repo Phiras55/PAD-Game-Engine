@@ -7,7 +7,8 @@ namespace mod	{
 
 Material::Material() :
 	m_albedoMap(nullptr),
-	m_normalMap(nullptr)
+	m_normalMap(nullptr),
+	m_shiness(0.f)
 {
 
 }

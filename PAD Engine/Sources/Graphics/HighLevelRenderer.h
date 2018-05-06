@@ -1,4 +1,5 @@
 #pragma once
+#include <System/ECS/Scene.h>
 #include <System/Resource/MasterManager.h>
 #include <Graphics/RHI/IRenderer.h>
 #include <Graphics/Window/AWindow.h>
@@ -21,7 +22,7 @@ private:
 
 public:
 	void Initialize(const rhi::ContextSettings& _rSettings, const win::WindowSettings& _wSettings);
-	void Render(sys::res::MasterManager& _resources); // Will also take the scene when and sort what needs to be rendered.
+	void Render(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene);
 	void GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md);
 	void PollEvents();
 	void ResizeContext(const uint32 _w, const uint32 _h);
@@ -30,7 +31,7 @@ public:
 private:
 	void ClearBuffers();
 	void SwapBuffers();
-	void FillTextureLayout(rhi::RenderSettings& _settings, mod::Material& _mat);
+	void FillTextureLayout(rhi::RenderSettings& _settings, const mod::Material& _mat);
 
 public:
 	inline win::AWindow* const GetMainWindow() const { return m_mainWindow; }

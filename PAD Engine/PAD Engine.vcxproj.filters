@@ -117,9 +117,6 @@
     <ClCompile Include="Sources\System\ECS\BoxCollider.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\ECS\Collider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\System\ECS\ComponentsHandler.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>

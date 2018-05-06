@@ -1,4 +1,5 @@
 #pragma once
+#include <System/ECS/PerspectiveCamera.h>
 #include <System/ECS/PADObject.h>
 #include <Json/Serialization.h>
 
@@ -21,7 +22,8 @@ public:
 
 
 private:
-	PADObject*		m_masterPADObject;
+	PADObject*			m_masterPADObject;
+	PerspectiveCamera	m_mainCamera;
 
 public:
 	void Init();
@@ -35,7 +37,8 @@ public:
 	void Deserialize(const json& j)	override;
 
 public:
-	inline PADObject* const GetMasterObject() { return m_masterPADObject; }
+	inline PADObject* const			GetMasterObject()	{ return m_masterPADObject; }
+	inline const PerspectiveCamera& GetMainCamera()		{ return m_mainCamera; }
 };
 
 } // namespace ecs

@@ -88,9 +88,9 @@ struct Vector3 final : public ISerializable															/*! Templated vector 3
 	{
 		json j;
 
-		AddDataToJson(J, "x", x);
-		AddDataToJson(J, "y", y);
-		AddDataToJson(J, "z", z);
+		AddDataToJson(j, "x", x);
+		AddDataToJson(j, "y", y);
+		AddDataToJson(j, "z", z);
 
 		return j;
 	}

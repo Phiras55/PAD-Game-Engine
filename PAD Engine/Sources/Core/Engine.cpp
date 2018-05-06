@@ -40,6 +40,11 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win:
 	core::EngineClock::Init();
 	m_highLevelRenderer.Initialize(_c, _w);
 
+	m_scene->Init();
+	m_physicContext->Init();
+	m_scene->Start();
+	m_fixedUpdateTimer.Start();
+
 #pragma region Mesh
 	pad::gfx::mod::MeshData md;
 
@@ -71,28 +76,15 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win:
 	};
 	md.indiceCount = 36;
 
-	gfx::mod::Mesh* m = new gfx::mod::Mesh();
+	gfx::mod::Mesh m;
 
-	m_highLevelRenderer.GenerateMesh(*m, md);
-	m_resourceManager->GetMeshManager().AddResource("Cube", *m);
-#pragma endregion
-
-#pragma region Material
-	gfx::mod::Material* mat = new gfx::mod::Material();
+	m_highLevelRenderer.GenerateMesh(m, md);
+	m_resourceManager->GetMeshManager().AddResource("Cube", m);
 #pragma endregion
 }
 
 void Engine::StartSimulation()
 {
-	m_scene->Init();
-	m_physicContext->Init();
-
-	m_scene->Start();
-
-	m_fixedUpdateTimer.Start();
-
-	m_scene->Serialize();
-
 	while (m_highLevelRenderer.IsWindowOpen())
 	{
 		Simulate();
@@ -141,7 +133,7 @@ void Engine::LateUpdate()
 
 void Engine::Render()
 {
-	m_highLevelRenderer.Render(*m_resourceManager);
+	m_highLevelRenderer.Render(*m_resourceManager, *m_scene);
 }
 
 void Engine::ResizeContext(const uint32 _w, const uint32 _h)

@@ -49,13 +49,23 @@ public:
 		AddDataToJson(j, "m_localTransform",	m_localTransform.Serialize());
 		AddDataToJson(j, "m_globalTransform",	m_globalTransform.Serialize());
 		AddDataToJson(j, "m_quatRotation",		m_quatRotation.Serialize());
+		AddDataToJson(j, "m_position",			m_position.Serialize());
+		AddDataToJson(j, "m_rotation",			m_rotation.Serialize());
+		AddDataToJson(j, "m_scale",				m_scale.Serialize());
+		AddDataToJson(j, "m_isDirty",			m_isDirty);
 
 		return j;
 	}
 
 	void Deserialize(const json& j)	override
 	{
-
+		m_localTransform.Deserialize(	JsonToData<json>(j, "m_localTransform"));
+		m_globalTransform.Deserialize(	JsonToData<json>(j, "m_globalTransform"));
+		m_quatRotation.Deserialize(		JsonToData<json>(j, "m_quatRotation"));
+		m_position.Deserialize(			JsonToData<json>(j, "m_position"));
+		m_rotation.Deserialize(			JsonToData<json>(j, "m_rotation"));
+		m_scale.Deserialize(			JsonToData<json>(j, "m_scale"));
+		m_isDirty = JsonToData<bool>(j, "m_isDirty");
 	}
 
 private:

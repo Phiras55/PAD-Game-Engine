@@ -18,11 +18,11 @@ public:
 	virtual const math::Mat4& LookAt(const math::Vec3f& eye, const math::Vec3f& center, const math::Vec3f& up)	= 0;
 
 public:
-	inline const math::Mat4& GetProjection()	{ return _projectionMatrix; }
-	inline const math::Mat4& GetView()			{ return _viewMatrix; }
+	inline const math::Mat4& GetProjection() const	{ return _projectionMatrix; }
+	inline const math::Mat4& GetView()		 const	{ return _viewMatrix; }
 
-	const math::Transform& GetTransform() const override { return m_transform; }
-	math::Transform& GetTransform()				override { return m_transform; }
+	const math::Transform&	GetTransform()	 const	override { return m_transform; }
+	math::Transform&		GetTransform()			override { return m_transform; }
 };
 
 } // namespace ecs

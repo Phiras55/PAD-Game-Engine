@@ -83,7 +83,7 @@
    <attribute name="dockWidgetArea">
     <number>4</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents">
+   <widget class="QWidget" name="OpenGL_Content">
     <layout class="QGridLayout" name="gridLayout">
      <property name="leftMargin">
       <number>0</number>
@@ -110,7 +110,7 @@
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_2">
+   <widget class="QWidget" name="Hierarchy_Content">
     <layout class="QGridLayout" name="gridLayout_4">
      <property name="leftMargin">
       <number>0</number>
@@ -146,7 +146,7 @@
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_3">
+   <widget class="QWidget" name="Inspector_Content">
     <property name="sizeIncrement">
      <size>
       <width>0</width>
@@ -200,7 +200,7 @@
    <attribute name="dockWidgetArea">
     <number>8</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_4">
+   <widget class="QWidget" name="Project_View_Content">
     <layout class="QGridLayout" name="gridLayout_2">
      <property name="leftMargin">
       <number>0</number>
@@ -249,7 +249,7 @@
    <attribute name="dockWidgetArea">
     <number>8</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_5">
+   <widget class="QWidget" name="Console_Content">
     <layout class="QGridLayout" name="gridLayout_5">
      <property name="leftMargin">
       <number>0</number>

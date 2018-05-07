@@ -46,10 +46,14 @@ OBJECTS_DIR   = debug
 ####### Files
 
 SOURCES       = ..\PAD-Engine\main.cpp \
-		..\PAD-Engine\padeditor.cpp debug\qrc_style.cpp
+		..\PAD-Engine\padeditor.cpp debug\qrc_style.cpp \
+		debug\moc_padeditor.cpp \
+		debug\moc_glwidget.cpp
 OBJECTS       = debug\main.obj \
 		debug\padeditor.obj \
-		debug\qrc_style.obj
+		debug\qrc_style.obj \
+		debug\moc_padeditor.obj \
+		debug\moc_glwidget.obj
 
 DIST          =  ..\PAD-Engine\padeditor.h \
 		"..\..\Libs\include\PAD Engine\Core\Engine.h" \
@@ -200,7 +204,7 @@ all: Makefile.Debug  $(DESTDIR_TARGET)
 
 $(DESTDIR_TARGET): ui_padeditor.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-debug\main.obj debug\padeditor.obj debug\qrc_style.obj
+debug\main.obj debug\padeditor.obj debug\qrc_style.obj debug\moc_padeditor.obj debug\moc_glwidget.obj
 $(LIBS)
 <<
 
@@ -213,7 +217,7 @@ dist:
 	$(ZIP) PAD-Engine.zip $(SOURCES) $(DIST) ..\PAD-Engine\PAD-Engine.pro C:\Qt\5.10.0\msvc2017_64\mkspecs\features\spec_pre.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\angle.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\windows-vulkan.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\msvc-desktop.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\qconfig.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3danimation.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3danimation_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dextras.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dextras_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_accessibility_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_edid_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_egl_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gamepad.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gamepad_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_location.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_scxml.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_scxml_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_texttospeech.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_texttospeech_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_theme_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_vulkan_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webview.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webview_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qt_functions.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qt_config.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\win32-msvc\qmake.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\5.10.0\msvc2017_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\msvc-version.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\toolchain.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\default_pre.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\resolve_config.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\default_post.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\build_pass.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qml_debug.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\precompile_header.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\warn_on.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qt.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\resources.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\moc.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\win32\opengl.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\uic.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qmake_use.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\file_copies.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\win32\windows.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\testcase_targets.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\exceptions.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\yacc.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\lex.prf ..\PAD-Engine\PAD-Engine.pro ..\PAD-Engine\style.qrc C:\Qt\5.10.0\msvc2017_64\lib\qtmaind.prl C:\Qt\5.10.0\msvc2017_64\lib\Qt5Widgetsd.prl C:\Qt\5.10.0\msvc2017_64\lib\Qt5Guid.prl C:\Qt\5.10.0\msvc2017_64\lib\Qt5Cored.prl   ..\PAD-Engine\style.qrc C:\Qt\5.10.0\msvc2017_64\mkspecs\features\data\dummy.cpp ..\PAD-Engine\padeditor.h "..\..\Libs\include\PAD Engine\Core\Engine.h" "..\..\Libs\include\PAD Engine\Core\EngineClock.h" "..\..\Libs\include\PAD Engine\Core\EngineDLL.h" "..\..\Libs\include\PAD Engine\Core\IDPool.h" "..\..\Libs\include\PAD Engine\Core\Timer.h" "..\..\Libs\include\PAD Engine\Graphics\HighLevelRenderer.h" "..\..\Libs\include\PAD Engine\System\ECS\ACollider.h" "..\..\Libs\include\PAD Engine\System\ECS\AComponent.h" "..\..\Libs\include\PAD Engine\System\ECS\AScriptComponent.h" "..\..\Libs\include\PAD Engine\System\ECS\BoxCollider.h" "..\..\Libs\include\PAD Engine\System\ECS\Camera.h" "..\..\Libs\include\PAD Engine\System\ECS\Collider.h" "..\..\Libs\include\PAD Engine\System\ECS\ComponentsHandler.h" "..\..\Libs\include\PAD Engine\System\ECS\IComponent.h" "..\..\Libs\include\PAD Engine\System\ECS\MeshRenderer.h" "..\..\Libs\include\PAD Engine\System\ECS\PADObject.h" "..\..\Libs\include\PAD Engine\System\ECS\PerspectiveCamera.h" "..\..\Libs\include\PAD Engine\System\ECS\RigidBody.h" "..\..\Libs\include\PAD Engine\System\ECS\Scene.h" "..\..\Libs\include\PAD Engine\System\Physics\BulletContext.h" "..\..\Libs\include\PAD Engine\System\Physics\IPhysicContext.h" "..\..\Libs\include\PAD Engine\System\Resource\AResourceManager.h" "..\..\Libs\include\PAD Engine\System\Resource\MasterManager.h" "..\..\Libs\include\PAD Engine\System\Resource\MeshManager.h" "..\..\Libs\include\PAD Engine\System\Resource\Resource.h" "..\..\Libs\include\PAD Engine\System\Resource\ResourceManager.h" "..\..\Libs\include\PAD Engine\System\Window\AWindow.h" "..\..\Libs\include\PAD Engine\System\Window\IWindowBase.h" "..\..\Libs\include\PAD Engine\System\Window\SDLWindow.h" "..\..\Libs\include\PAD Engine\System\Window\WindowSettings.h" "..\..\Libs\include\PAD Engine\System\IModule.h" "..\..\Libs\include\PAD Engine\Utilities\EnumUtils.h" "..\..\Libs\include\PAD Engine\Utilities\Export.h" "..\..\Libs\include\PAD Engine\Utilities\Randomizer.h" "..\..\Libs\include\PAD Engine\Utilities\Serialization.h" ..\..\Libs\include\Json\json.hpp ..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLFragmentShader.h ..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLShaderProgram.h ..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLVertexShader.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLRenderer.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLTexture.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLUniformBufferObject.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexArray.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexBuffer.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexElementBuffer.h ..\..\Libs\include\PADRenderer\Graphics\Model\Material.h ..\..\Libs\include\PADRenderer\Graphics\Model\Mesh.h ..\..\Libs\include\PADRenderer\Graphics\Model\MeshData.h ..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShader.h ..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShaderProgram.h ..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\CustomUniform.h ..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\ShaderInfos.h ..\..\Libs\include\PADRenderer\Graphics\RHI\ATexture.h ..\..\Libs\include\PADRenderer\Graphics\RHI\AUniformBufferObject.h ..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexArray.h ..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexBuffer.h ..\..\Libs\include\PADRenderer\Graphics\RHI\ContextSettings.h ..\..\Libs\include\PADRenderer\Graphics\RHI\IRenderer.h ..\..\Libs\include\PADRenderer\Graphics\RHI\RenderSettings.h ..\..\Libs\include\PADRenderer\Graphics\RHI\TextureParameters.h ..\..\Libs\include\PADRenderer\Graphics\RHI\TextureSettings.h ..\..\Libs\include\PADRenderer\Graphics\RHI\UniformBufferSettings.h ..\..\Libs\include\PADRenderer\Graphics\Window\AWindow.h ..\..\Libs\include\PADRenderer\Graphics\Window\IWindowBase.h ..\..\Libs\include\PADRenderer\Graphics\Window\SDLWindow.h ..\..\Libs\include\PADRenderer\Graphics\Window\WindowSettings.h ..\..\Libs\include\GL\eglew.h ..\..\Libs\include\GL\glew.h ..\..\Libs\include\GL\glxew.h ..\..\Libs\include\GL\wglew.h ..\PAD-Engine\glwidget.h  ..\PAD-Engine\main.cpp ..\PAD-Engine\padeditor.cpp ..\PAD-Engine\padeditor.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.obj debug\padeditor.obj debug\qrc_style.obj
+	-$(DEL_FILE) debug\main.obj debug\padeditor.obj debug\qrc_style.obj debug\moc_padeditor.obj debug\moc_glwidget.obj
 	-$(DEL_FILE) debug\PAD-Engine.exp debug\PAD-Engine.vc.pdb debug\PAD-Engine.ilk debug\PAD-Engine.idb
 
 distclean: clean 
@@ -284,8 +288,403 @@ compiler_moc_predefs_clean:
 debug\moc_predefs.h: C:\Qt\5.10.0\msvc2017_64\mkspecs\features\data\dummy.cpp
 	cl -BxC:\Qt\5.10.0\msvc2017_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E C:\Qt\5.10.0\msvc2017_64\mkspecs\features\data\dummy.cpp 2>NUL >debug\moc_predefs.h
 
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: debug\moc_padeditor.cpp debug\moc_glwidget.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) debug\moc_padeditor.cpp debug\moc_glwidget.cpp
+debug\moc_padeditor.cpp: C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QMainWindow \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qmainwindow.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qtguiglobal.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qglobal.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qconfig.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qtcore-config.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qsystemdetection.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qprocessordetection.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qtypeinfo.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qsysinfo.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qlogging.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qflags.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qatomic.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qbasicatomic.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qgenericatomic.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qglobalstatic.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qmutex.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qnumeric.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qversiontagging.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qtgui-config.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qwidget.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qwindowdefs.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qobjectdefs.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qnamespace.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qobject.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstring.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qchar.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qbytearray.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qrefcount.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qarraydata.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringliteral.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringview.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringbuilder.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qlist.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qalgorithms.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qiterator.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qhashfunctions.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qpair.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qbytearraylist.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringlist.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qregexp.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringmatcher.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qcoreevent.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qscopedpointer.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qmetatype.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qobject_impl.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qmargins.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpaintdevice.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qrect.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qsize.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qpoint.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpalette.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qcolor.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qrgb.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qrgba64.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qbrush.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qvector.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qmatrix.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpolygon.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qregion.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdatastream.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qiodevice.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qline.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qtransform.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpainterpath.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qimage.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpixelformat.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpixmap.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qsharedpointer.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qshareddata.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qhash.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qfont.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qfontmetrics.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qfontinfo.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qcursor.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qkeysequence.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qevent.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qvariant.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qmap.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdebug.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qtextstream.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qlocale.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qset.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qurl.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qurlquery.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qfile.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qfiledevice.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qvector2d.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qtouchdevice.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtabwidget.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qicon.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QFileSystemModel \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qfilesystemmodel.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qabstractitemmodel.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdir.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qfileinfo.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdiriterator.h \
+		..\PAD-Engine\padeditor.h \
+		debug\moc_predefs.h \
+		C:\Qt\5.10.0\msvc2017_64\bin\moc.exe
+	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\padeditor.h -o debug\moc_padeditor.cpp
+
+debug\moc_glwidget.cpp: "..\..\Libs\include\PAD Engine\Core\EngineDLL.h" \
+		..\..\Libs\include\PADRenderer\Graphics\Window\WindowSettings.h \
+		..\..\Libs\include\PADRenderer\PCH.h \
+		..\..\Libs\include\PADRenderer\Common.h \
+		..\..\Libs\include\Math\Vector2.h \
+		..\..\Libs\include\Math\Vector2_impl.h \
+		..\..\Libs\include\Math\Vector3.h \
+		..\..\Libs\include\Bullet\btBulletDynamicsCommon.h \
+		..\..\Libs\include\Bullet\btBulletCollisionCommon.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionDispatch\btCollisionWorld.h \
+		..\..\Libs\include\Bullet\LinearMath\btTransform.h \
+		..\..\Libs\include\Bullet\LinearMath\btMatrix3x3.h \
+		..\..\Libs\include\Bullet\LinearMath\btVector3.h \
+		..\..\Libs\include\Bullet\LinearMath\btScalar.h \
+		..\..\Libs\include\Bullet\LinearMath\btMinMax.h \
+		..\..\Libs\include\Bullet\LinearMath\btAlignedAllocator.h \
+		..\..\Libs\include\Bullet\LinearMath\btQuaternion.h \
+		..\..\Libs\include\Bullet\LinearMath\btQuadWord.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionDispatch\btCollisionObject.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionDispatch\btCollisionDispatcher.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionDispatch\btCollisionCreateFunc.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btBoxShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btPolyhedralConvexShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btConvexInternalShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btConvexShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btCollisionShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btCollisionMargin.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btSphereShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btCapsuleShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btCylinderShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btConeShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btStaticPlaneShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btConcaveShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btTriangleCallback.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btConvexHullShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btTriangleMesh.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btTriangleIndexVertexArray.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btStridingMeshInterface.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btConvexTriangleMeshShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btBvhTriangleMeshShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btTriangleMeshShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btOptimizedBvh.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btTriangleInfoMap.h \
+		..\..\Libs\include\Bullet\LinearMath\btSerializer.h \
+		..\..\Libs\include\Bullet\LinearMath\btHashMap.h \
+		..\..\Libs\include\Bullet\LinearMath\btAlignedObjectArray.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btScaledBvhTriangleMeshShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btCompoundShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btTetrahedronShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btEmptyShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btMultiSphereShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionShapes\btUniformScalingShape.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionDispatch\btSphereSphereCollisionAlgorithm.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionDispatch\btActivatingCollisionAlgorithm.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h \
+		..\..\Libs\include\Bullet\BulletCollision\CollisionDispatch\btCollisionConfiguration.h \
+		..\..\Libs\include\Bullet\BulletCollision\BroadphaseCollision\btSimpleBroadphase.h \
+		..\..\Libs\include\Bullet\BulletCollision\BroadphaseCollision\btOverlappingPairCache.h \
+		..\..\Libs\include\Bullet\BulletCollision\BroadphaseCollision\btBroadphaseInterface.h \
+		..\..\Libs\include\Bullet\BulletCollision\BroadphaseCollision\btBroadphaseProxy.h \
+		..\..\Libs\include\Bullet\BulletCollision\BroadphaseCollision\btOverlappingPairCallback.h \
+		..\..\Libs\include\Bullet\BulletCollision\BroadphaseCollision\btAxisSweep3.h \
+		..\..\Libs\include\Bullet\BulletCollision\BroadphaseCollision\btDbvtBroadphase.h \
+		..\..\Libs\include\Bullet\LinearMath\btQuickprof.h \
+		..\..\Libs\include\Bullet\BulletCollision\BroadphaseCollision\btMultiSapBroadphase.h \
+		..\..\Libs\include\Bullet\LinearMath\btDefaultMotionState.h \
+		..\..\Libs\include\Bullet\LinearMath\btMotionState.h \
+		..\..\Libs\include\Bullet\LinearMath\btIDebugDraw.h \
+		..\..\Libs\include\Bullet\BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h \
+		..\..\Libs\include\Bullet\BulletDynamics\Dynamics\btDynamicsWorld.h \
+		..\..\Libs\include\Bullet\BulletDynamics\Dynamics\btSimpleDynamicsWorld.h \
+		..\..\Libs\include\Bullet\BulletDynamics\Dynamics\btRigidBody.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btPoint2PointConstraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btJacobianEntry.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btTypedConstraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btSolverConstraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btSolverBody.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btHingeConstraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btConeTwistConstraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btGeneric6DofConstraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btSliderConstraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btGeneric6DofSpringConstraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btUniversalConstraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btHinge2Constraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btGeneric6DofSpring2Constraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btGearConstraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btFixedConstraint.h \
+		..\..\Libs\include\Bullet\BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h \
+		..\..\Libs\include\Bullet\BulletDynamics\Vehicle\btRaycastVehicle.h \
+		..\..\Libs\include\Bullet\BulletDynamics\Vehicle\btVehicleRaycaster.h \
+		..\..\Libs\include\Bullet\BulletDynamics\Vehicle\btWheelInfo.h \
+		..\..\Libs\include\Math\Vector3_impl.h \
+		..\..\Libs\include\Math\Vector4.h \
+		..\..\Libs\include\Math\Vector4_impl.h \
+		..\..\Libs\include\Math\Matrix4x4.h \
+		..\..\Libs\include\Math\Matrix4x4_impl.h \
+		..\..\Libs\include\GL\glew.h \
+		..\..\Libs\include\SDL2\SDL.h \
+		..\..\Libs\include\SDL2\SDL_main.h \
+		..\..\Libs\include\SDL2\SDL_stdinc.h \
+		..\..\Libs\include\SDL2\SDL_config.h \
+		..\..\Libs\include\SDL2\SDL_platform.h \
+		..\..\Libs\include\SDL2\begin_code.h \
+		..\..\Libs\include\SDL2\close_code.h \
+		..\..\Libs\include\SDL2\SDL_assert.h \
+		..\..\Libs\include\SDL2\SDL_atomic.h \
+		..\..\Libs\include\SDL2\SDL_audio.h \
+		..\..\Libs\include\SDL2\SDL_error.h \
+		..\..\Libs\include\SDL2\SDL_endian.h \
+		..\..\Libs\include\SDL2\SDL_mutex.h \
+		..\..\Libs\include\SDL2\SDL_thread.h \
+		..\..\Libs\include\SDL2\SDL_rwops.h \
+		..\..\Libs\include\SDL2\SDL_clipboard.h \
+		..\..\Libs\include\SDL2\SDL_cpuinfo.h \
+		..\..\Libs\include\SDL2\SDL_events.h \
+		..\..\Libs\include\SDL2\SDL_video.h \
+		..\..\Libs\include\SDL2\SDL_pixels.h \
+		..\..\Libs\include\SDL2\SDL_rect.h \
+		..\..\Libs\include\SDL2\SDL_surface.h \
+		..\..\Libs\include\SDL2\SDL_blendmode.h \
+		..\..\Libs\include\SDL2\SDL_keyboard.h \
+		..\..\Libs\include\SDL2\SDL_keycode.h \
+		..\..\Libs\include\SDL2\SDL_scancode.h \
+		..\..\Libs\include\SDL2\SDL_mouse.h \
+		..\..\Libs\include\SDL2\SDL_joystick.h \
+		..\..\Libs\include\SDL2\SDL_gamecontroller.h \
+		..\..\Libs\include\SDL2\SDL_quit.h \
+		..\..\Libs\include\SDL2\SDL_gesture.h \
+		..\..\Libs\include\SDL2\SDL_touch.h \
+		..\..\Libs\include\SDL2\SDL_filesystem.h \
+		..\..\Libs\include\SDL2\SDL_haptic.h \
+		..\..\Libs\include\SDL2\SDL_hints.h \
+		..\..\Libs\include\SDL2\SDL_loadso.h \
+		..\..\Libs\include\SDL2\SDL_log.h \
+		..\..\Libs\include\SDL2\SDL_messagebox.h \
+		..\..\Libs\include\SDL2\SDL_power.h \
+		..\..\Libs\include\SDL2\SDL_render.h \
+		..\..\Libs\include\SDL2\SDL_shape.h \
+		..\..\Libs\include\SDL2\SDL_system.h \
+		..\..\Libs\include\SDL2\SDL_timer.h \
+		..\..\Libs\include\SDL2\SDL_version.h \
+		..\..\Libs\include\Logger\SimpleLogger.h \
+		..\..\Libs\include\Logger\Channel.h \
+		..\..\Libs\include\Logger\SimpleLoggerEnums.h \
+		..\..\Libs\include\Logger\Message.h \
+		..\..\Libs\include\Logger\SimpleLogger_impl.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\ContextSettings.h \
+		"..\..\Libs\include\PAD Engine\System\ECS\PADObject.h" \
+		..\..\Libs\include\Math\Transform.h \
+		..\..\Libs\include\Math\MatrixTransform.h \
+		..\..\Libs\include\Math\Quaternion.h \
+		..\..\Libs\include\Math\Quaternion_impl.h \
+		"..\..\Libs\include\PAD Engine\Utilities\Export.h" \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QOpenGLWidget \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qopenglwidget.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qtguiglobal.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qglobal.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qconfig.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qtcore-config.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qsystemdetection.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qprocessordetection.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qcompilerdetection.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qtypeinfo.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qsysinfo.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qlogging.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qflags.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qatomic.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qbasicatomic.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qgenericatomic.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qatomic_cxx11.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qatomic_msvc.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qglobalstatic.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qmutex.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qnumeric.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qversiontagging.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qtgui-config.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QWidget \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qwidget.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qwindowdefs.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qobjectdefs.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qnamespace.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qobject.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstring.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qchar.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qbytearray.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qrefcount.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qarraydata.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringliteral.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringalgorithms.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringview.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringbuilder.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qlist.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qalgorithms.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qiterator.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qhashfunctions.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qpair.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qbytearraylist.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringlist.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qregexp.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qstringmatcher.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qcoreevent.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qscopedpointer.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qmetatype.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qvarlengtharray.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qcontainerfwd.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qobject_impl.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qmargins.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpaintdevice.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qrect.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qsize.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qpoint.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpalette.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qcolor.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qrgb.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qrgba64.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qbrush.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qvector.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qmatrix.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpolygon.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qregion.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdatastream.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qiodevice.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qline.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qtransform.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpainterpath.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qimage.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpixelformat.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qpixmap.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qsharedpointer.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qshareddata.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qhash.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qfont.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qfontmetrics.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qfontinfo.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qcursor.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qkeysequence.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qevent.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qvariant.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qmap.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdebug.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qtextstream.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qlocale.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qset.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qcontiguouscache.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qurl.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qurlquery.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qfile.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qfiledevice.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qvector2d.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qtouchdevice.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\QSurfaceFormat \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qsurfaceformat.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qopengl.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qt_windows.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtANGLE\GLES3\gl3.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtANGLE\GLES3\gl3platform.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtANGLE\KHR\khrplatform.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtANGLE\GLES2\gl2.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtANGLE\GLES2\gl2platform.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qopengles2ext.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qopenglext.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\QTimer \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qtimer.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qbasictimer.h \
+		..\PAD-Engine\glwidget.h \
+		debug\moc_predefs.h \
+		C:\Qt\5.10.0\msvc2017_64\bin\moc.exe
+	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include debug/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\glwidget.h -o debug\moc_glwidget.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
@@ -303,7 +702,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 
 
@@ -599,6 +998,12 @@ debug\main.obj: ..\PAD-Engine\main.cpp C:\Qt\5.10.0\msvc2017_64\include\QtWidget
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qmainwindow.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtabwidget.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qicon.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QFileSystemModel \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qfilesystemmodel.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qabstractitemmodel.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdir.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qfileinfo.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdiriterator.h \
 		../PAD-Engine/glwidget.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QOpenGLWidget \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qopenglwidget.h \
@@ -725,6 +1130,12 @@ debug\padeditor.obj: ..\PAD-Engine\padeditor.cpp ../PAD-Engine/padeditor.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qtouchdevice.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtabwidget.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qicon.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QFileSystemModel \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qfilesystemmodel.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qabstractitemmodel.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdir.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qfileinfo.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdiriterator.h \
 		ui_padeditor.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtCore\QVariant \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QAction \
@@ -754,7 +1165,6 @@ debug\padeditor.obj: ..\PAD-Engine\padeditor.cpp ../PAD-Engine/padeditor.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qabstractitemview.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qframe.h \
-		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qabstractitemmodel.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qitemselectionmodel.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qstyleoption.h \
@@ -971,6 +1381,10 @@ debug\padeditor.obj: ..\PAD-Engine\padeditor.cpp ../PAD-Engine/padeditor.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qopenglext.h
 
 debug\qrc_style.obj: debug\qrc_style.cpp 
+
+debug\moc_padeditor.obj: debug\moc_padeditor.cpp 
+
+debug\moc_glwidget.obj: debug\moc_glwidget.cpp 
 
 ####### Install
 

@@ -42,26 +42,26 @@ public:
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
     QDockWidget *OpenGl;
-    QWidget *dockWidgetContents;
+    QWidget *OpenGL_Content;
     QGridLayout *gridLayout;
     QDockWidget *Hierarchy;
-    QWidget *dockWidgetContents_2;
+    QWidget *Hierarchy_Content;
     QGridLayout *gridLayout_4;
     QTreeView *hierarchyTreeView;
     QDockWidget *Inspector;
-    QWidget *dockWidgetContents_3;
+    QWidget *Inspector_Content;
     QGridLayout *gridLayout_3;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QFormLayout *formLayout;
     QDockWidget *Project_View;
-    QWidget *dockWidgetContents_4;
+    QWidget *Project_View_Content;
     QGridLayout *gridLayout_2;
     QSplitter *splitter;
     QTreeView *projectTreeView;
     QListView *projectListView;
     QDockWidget *Console;
-    QWidget *dockWidgetContents_5;
+    QWidget *Console_Content;
     QGridLayout *gridLayout_5;
     QPlainTextEdit *consoleOutput;
 
@@ -98,30 +98,30 @@ public:
         OpenGl->setFloating(false);
         OpenGl->setFeatures(QDockWidget::AllDockWidgetFeatures);
         OpenGl->setAllowedAreas(Qt::AllDockWidgetAreas);
-        dockWidgetContents = new QWidget();
-        dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
-        gridLayout = new QGridLayout(dockWidgetContents);
+        OpenGL_Content = new QWidget();
+        OpenGL_Content->setObjectName(QStringLiteral("OpenGL_Content"));
+        gridLayout = new QGridLayout(OpenGL_Content);
         gridLayout->setSpacing(0);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        OpenGl->setWidget(dockWidgetContents);
+        OpenGl->setWidget(OpenGL_Content);
         PADEditor->addDockWidget(static_cast<Qt::DockWidgetArea>(4), OpenGl);
         Hierarchy = new QDockWidget(PADEditor);
         Hierarchy->setObjectName(QStringLiteral("Hierarchy"));
-        dockWidgetContents_2 = new QWidget();
-        dockWidgetContents_2->setObjectName(QStringLiteral("dockWidgetContents_2"));
-        gridLayout_4 = new QGridLayout(dockWidgetContents_2);
+        Hierarchy_Content = new QWidget();
+        Hierarchy_Content->setObjectName(QStringLiteral("Hierarchy_Content"));
+        gridLayout_4 = new QGridLayout(Hierarchy_Content);
         gridLayout_4->setSpacing(0);
         gridLayout_4->setContentsMargins(11, 11, 11, 11);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
         gridLayout_4->setContentsMargins(0, 0, 0, 0);
-        hierarchyTreeView = new QTreeView(dockWidgetContents_2);
+        hierarchyTreeView = new QTreeView(Hierarchy_Content);
         hierarchyTreeView->setObjectName(QStringLiteral("hierarchyTreeView"));
 
         gridLayout_4->addWidget(hierarchyTreeView, 0, 0, 1, 1);
 
-        Hierarchy->setWidget(dockWidgetContents_2);
+        Hierarchy->setWidget(Hierarchy_Content);
         PADEditor->addDockWidget(static_cast<Qt::DockWidgetArea>(1), Hierarchy);
         Inspector = new QDockWidget(PADEditor);
         Inspector->setObjectName(QStringLiteral("Inspector"));
@@ -130,15 +130,15 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(Inspector->sizePolicy().hasHeightForWidth());
         Inspector->setSizePolicy(sizePolicy);
-        dockWidgetContents_3 = new QWidget();
-        dockWidgetContents_3->setObjectName(QStringLiteral("dockWidgetContents_3"));
-        dockWidgetContents_3->setSizeIncrement(QSize(0, 0));
-        gridLayout_3 = new QGridLayout(dockWidgetContents_3);
+        Inspector_Content = new QWidget();
+        Inspector_Content->setObjectName(QStringLiteral("Inspector_Content"));
+        Inspector_Content->setSizeIncrement(QSize(0, 0));
+        gridLayout_3 = new QGridLayout(Inspector_Content);
         gridLayout_3->setSpacing(6);
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         gridLayout_3->setContentsMargins(0, 0, 0, 0);
-        scrollArea = new QScrollArea(dockWidgetContents_3);
+        scrollArea = new QScrollArea(Inspector_Content);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
@@ -152,20 +152,20 @@ public:
 
         gridLayout_3->addWidget(scrollArea, 0, 0, 1, 1);
 
-        Inspector->setWidget(dockWidgetContents_3);
+        Inspector->setWidget(Inspector_Content);
         PADEditor->addDockWidget(static_cast<Qt::DockWidgetArea>(2), Inspector);
         Project_View = new QDockWidget(PADEditor);
         Project_View->setObjectName(QStringLiteral("Project_View"));
         Project_View->setFeatures(QDockWidget::AllDockWidgetFeatures);
         Project_View->setAllowedAreas(Qt::AllDockWidgetAreas);
-        dockWidgetContents_4 = new QWidget();
-        dockWidgetContents_4->setObjectName(QStringLiteral("dockWidgetContents_4"));
-        gridLayout_2 = new QGridLayout(dockWidgetContents_4);
+        Project_View_Content = new QWidget();
+        Project_View_Content->setObjectName(QStringLiteral("Project_View_Content"));
+        gridLayout_2 = new QGridLayout(Project_View_Content);
         gridLayout_2->setSpacing(0);
         gridLayout_2->setContentsMargins(11, 11, 11, 11);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        splitter = new QSplitter(dockWidgetContents_4);
+        splitter = new QSplitter(Project_View_Content);
         splitter->setObjectName(QStringLiteral("splitter"));
         splitter->setOrientation(Qt::Horizontal);
         splitter->setHandleWidth(0);
@@ -180,23 +180,23 @@ public:
 
         gridLayout_2->addWidget(splitter, 0, 0, 1, 1);
 
-        Project_View->setWidget(dockWidgetContents_4);
+        Project_View->setWidget(Project_View_Content);
         PADEditor->addDockWidget(static_cast<Qt::DockWidgetArea>(8), Project_View);
         Console = new QDockWidget(PADEditor);
         Console->setObjectName(QStringLiteral("Console"));
-        dockWidgetContents_5 = new QWidget();
-        dockWidgetContents_5->setObjectName(QStringLiteral("dockWidgetContents_5"));
-        gridLayout_5 = new QGridLayout(dockWidgetContents_5);
+        Console_Content = new QWidget();
+        Console_Content->setObjectName(QStringLiteral("Console_Content"));
+        gridLayout_5 = new QGridLayout(Console_Content);
         gridLayout_5->setSpacing(0);
         gridLayout_5->setContentsMargins(11, 11, 11, 11);
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
         gridLayout_5->setContentsMargins(0, 0, 0, 0);
-        consoleOutput = new QPlainTextEdit(dockWidgetContents_5);
+        consoleOutput = new QPlainTextEdit(Console_Content);
         consoleOutput->setObjectName(QStringLiteral("consoleOutput"));
 
         gridLayout_5->addWidget(consoleOutput, 0, 0, 1, 1);
 
-        Console->setWidget(dockWidgetContents_5);
+        Console->setWidget(Console_Content);
         PADEditor->addDockWidget(static_cast<Qt::DockWidgetArea>(8), Console);
 
         menuBar->addAction(menuFile->menuAction());

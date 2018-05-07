@@ -9,15 +9,19 @@
 
 class GLWidget final : public QOpenGLWidget
 {
+    Q_OBJECT
 public:
     GLWidget() = delete;
 
     GLWidget(QWidget* _parent = 0, Qt::WindowFlags _f = Qt::WindowFlags()) :
         QOpenGLWidget(_parent, _f)
     {
+            QTimer* timer = new QTimer(this);
+            connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
+            timer->start(0);
     }
 
-    virtual ~GLWidget()
+    ~GLWidget()
     {
     }
 private:
@@ -25,22 +29,18 @@ private:
 
 public:
 
-    void Init()
-    {
-        QTimer *timer = new QTimer(this);
-        connect(timer, SIGNAL(timeout()), this, SLOT(paintGL()));
-        timer->start(0);
-    }
+    inline void Init() {}
 
-    void paintGL() override
+public slots:
+    inline void Update()
     {
-        qInfo( "Working!" );
+        qInfo( "Update..." );
         pad::Simulate();
     }
-public:
-    void toto()
+private:
+    inline void paintGL() override
     {
-        qInfo( "toto!" );
+        qInfo( "paintGL..." );
         pad::Simulate();
     }
 };

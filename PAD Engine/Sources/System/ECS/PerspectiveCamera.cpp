@@ -84,6 +84,22 @@ const math::Mat4& PerspectiveCamera::LookAt(const math::Vec3f& eye, const math::
 	return _viewMatrix;
 }
 
+json PerspectiveCamera::Serialize()
+{
+	json j;
+
+	AddDataToJson(j, "_viewMatrix", _viewMatrix.Serialize());
+	AddDataToJson(j, "_projectionMatrix", _projectionMatrix.Serialize());
+
+	return j;
+}
+
+void PerspectiveCamera::Deserialize(const json& j)
+{
+	_viewMatrix.Deserialize			(JsonToData<json>(j, "_viewMatrix"));
+	_projectionMatrix.Deserialize	(JsonToData<json>(j, "_projectionMatrix"));
+}
+
 } // namespace ecs
 } // namespace sys
 } // namespace pad

@@ -49,6 +49,9 @@ void Engine::StartSimulation()
 	m_scene->Start();
 	m_fixedUpdateTimer.Start();
 
+	// Test
+	m_scene->Serialize();
+
 	while (m_highLevelRenderer.IsWindowOpen())
 	{
 		Simulate();

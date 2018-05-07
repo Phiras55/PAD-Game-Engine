@@ -13,11 +13,14 @@ public:
 	~PerspectiveCamera();
 
 public:
-	void Init()			override;
-	void Start()		override;
-	void Update()		override;
-	void FixedUpdate()	override;
-	void LateUpdate()	override;
+	void Init()						override;
+	void Start()					override;
+	void Update()					override;
+	void FixedUpdate()				override;
+	void LateUpdate()				override;
+
+	json Serialize()				override;
+	void Deserialize(const json& j)	override;
 
 public:
 	const math::Mat4& Perspective(float _fov, float _aspectRatio, float _near, float _far) override;

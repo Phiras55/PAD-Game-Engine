@@ -137,12 +137,15 @@ json PADObject::Serialize()
 	AddDataToJson(j, "m_transform", m_transform.Serialize());
 	AddDataToJson(j, "m_dontDestroy", m_dontDestroy);
 	AddDataToJson(j, "m_name", m_name);
-	AddDataToJson(j, "m_componentCount", m_components.size());
-	AddDataToJson(j, "m_childrenCount", m_childs.size());
+	AddDataToJson(j, "componentCount", m_components.size());
+	AddDataToJson(j, "childrenCount", m_childs.size());
 
-	for (int i = 0, count = m_components.size(); i < count; ++i)
+	int i = 0;
+	for (IComponent* const component : m_components)
 	{
-
+		AddDataToJson(j, std::string("componentType") + std::to_string(i), component->GetType());
+		AddDataToJson(j, std::string("componentType") + std::to_string(i), component->Serialize());
+		++i;
 	}
 
 	return j;

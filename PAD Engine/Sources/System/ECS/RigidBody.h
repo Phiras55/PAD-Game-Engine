@@ -38,6 +38,7 @@ public:
 	math::Transform& GetTransform()				override { return m_transform; }
 	
 
+
 private:
 	btRigidBody*	m_btRigidBody;
 	btMotionState*	m_btMotionState;

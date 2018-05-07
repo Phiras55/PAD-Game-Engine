@@ -1,7 +1,7 @@
 #ifndef PADEDITOR_H
 #define PADEDITOR_H
 
-#include <QMainWindow>
+#include <QtWidgets/QMainWindow>
 
 namespace Ui {
 class PADEditor;
@@ -9,7 +9,7 @@ class PADEditor;
 
 class PADEditor : public QMainWindow
 {
-	//Q_OBJECT
+    //Q_OBJECT
 
 public:
     explicit PADEditor(QWidget *parent = 0);

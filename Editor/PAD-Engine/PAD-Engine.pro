@@ -47,30 +47,31 @@ INCLUDEPATH  += \
                 "../../Libs/include"
 
 SOURCES += \
-        main.cpp        \
-        padeditor.cpp
+        main.cpp      \
+		padeditor.cpp
 
 HEADERS += \
-       padeditor.h														\
-        "$$HEADERPATH/PAD Engine/Core/*.h"								\
-        "$$HEADERPATH/PAD Engine/Graphics/*.h"							\
-        "$$HEADERPATH/PAD Engine/System/ECS/*.h"						\
-        "$$HEADERPATH/PAD Engine/System/Physics/*.h"					\
-        "$$HEADERPATH/PAD Engine/System/Resource/*.h"					\
-        "$$HEADERPATH/PAD Engine/System/Window/*.h"						\
-        "$$HEADERPATH/PAD Engine/System/IModule.h"						\
-        "$$HEADERPATH/PAD Engine/Utilities/*.h"							\
-        "$$HEADERPATH/Json/*.hpp"										\
-        "$$HEADERPATH/PADRenderer/Graphics/GL/Shader/*.h"				\
-        "$$HEADERPATH/PADRenderer/Graphics/GL/*.h"						\
-        "$$HEADERPATH/PADRenderer/Graphics/Model/*.h"					\
-        "$$HEADERPATH/PADRenderer/Graphics/RHI/Shader/*.h"				\
-        "$$HEADERPATH/PADRenderer/Graphics/RHI/*.h"						\
-        "$$HEADERPATH/PADRenderer/Graphics/Window/*.h"					\
-        "$$HEADERPATH/GL/*.h" \
-    glwidget.h
+       padeditor.h                                          \
+        "$$HEADERPATH/PAD Engine/Core/*.h"                  \
+        "$$HEADERPATH/PAD Engine/Graphics/*.h"              \
+        "$$HEADERPATH/PAD Engine/System/ECS/*.h"            \
+        "$$HEADERPATH/PAD Engine/System/Physics/*.h"        \
+        "$$HEADERPATH/PAD Engine/System/Resource/*.h"       \
+        "$$HEADERPATH/PAD Engine/System/Window/*.h"         \
+        "$$HEADERPATH/PAD Engine/System/IModule.h"          \
+        "$$HEADERPATH/PAD Engine/Utilities/*.h"             \
+        "$$HEADERPATH/Json/*.hpp"                           \
+        "$$HEADERPATH/PADRenderer/Graphics/GL/Shader/*.h"   \
+        "$$HEADERPATH/PADRenderer/Graphics/GL/*.h"          \
+        "$$HEADERPATH/PADRenderer/Graphics/Model/*.h"       \
+        "$$HEADERPATH/PADRenderer/Graphics/RHI/Shader/*.h"  \
+        "$$HEADERPATH/PADRenderer/Graphics/RHI/*.h"         \
+        "$$HEADERPATH/PADRenderer/Graphics/Window/*.h"      \
+        "$$HEADERPATH/GL/*.h"                               \
+        glwidget.h
 
-
+RESOURCES +=\
+	style.qrc
 
 FORMS += \
         padeditor.ui

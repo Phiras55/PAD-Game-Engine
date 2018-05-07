@@ -43,6 +43,9 @@
     <ClCompile Include="padeditor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="glwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\ACollider.h">
@@ -244,6 +247,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Libs\include\GL\glew.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glwidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Libs\include\GL\glxew.h">

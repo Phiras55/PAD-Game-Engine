@@ -21,7 +21,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QOpenGLWidget>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSplitter>
@@ -42,10 +41,9 @@ public:
     QMenu *menuView;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
-    QDockWidget *dockWidget;
+    QDockWidget *OpenGl;
     QWidget *dockWidgetContents;
     QGridLayout *gridLayout;
-    QOpenGLWidget *openGLWidget;
     QDockWidget *Hierarchy;
     QWidget *dockWidgetContents_2;
     QGridLayout *gridLayout_4;
@@ -73,13 +71,15 @@ public:
             PADEditor->setObjectName(QStringLiteral("PADEditor"));
         PADEditor->resize(1280, 720);
         PADEditor->setMinimumSize(QSize(720, 480));
+        PADEditor->setStyleSheet(QStringLiteral(""));
         PADEditor->setDockNestingEnabled(false);
         centralWidget = new QWidget(PADEditor);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        centralWidget->setStyleSheet(QStringLiteral(""));
         PADEditor->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(PADEditor);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1280, 21));
+        menuBar->setGeometry(QRect(0, 0, 1280, 20));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuEdit = new QMenu(menuBar);
@@ -93,25 +93,20 @@ public:
         statusBar = new QStatusBar(PADEditor);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         PADEditor->setStatusBar(statusBar);
-        dockWidget = new QDockWidget(PADEditor);
-        dockWidget->setObjectName(QStringLiteral("dockWidget"));
-        dockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
-        dockWidget->setAllowedAreas(Qt::NoDockWidgetArea);
+        OpenGl = new QDockWidget(PADEditor);
+        OpenGl->setObjectName(QStringLiteral("OpenGl"));
+        OpenGl->setFloating(false);
+        OpenGl->setFeatures(QDockWidget::AllDockWidgetFeatures);
+        OpenGl->setAllowedAreas(Qt::AllDockWidgetAreas);
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
         gridLayout = new QGridLayout(dockWidgetContents);
-        gridLayout->setSpacing(6);
+        gridLayout->setSpacing(0);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        openGLWidget = new QOpenGLWidget(dockWidgetContents);
-        openGLWidget->setObjectName(QStringLiteral("openGLWidget"));
-        openGLWidget->setEnabled(true);
-
-        gridLayout->addWidget(openGLWidget, 0, 0, 1, 1);
-
-        dockWidget->setWidget(dockWidgetContents);
-        PADEditor->addDockWidget(static_cast<Qt::DockWidgetArea>(4), dockWidget);
+        OpenGl->setWidget(dockWidgetContents);
+        PADEditor->addDockWidget(static_cast<Qt::DockWidgetArea>(4), OpenGl);
         Hierarchy = new QDockWidget(PADEditor);
         Hierarchy->setObjectName(QStringLiteral("Hierarchy"));
         dockWidgetContents_2 = new QWidget();
@@ -148,7 +143,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 78, 389));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 68, 392));
         formLayout = new QFormLayout(scrollAreaWidgetContents);
         formLayout->setSpacing(6);
         formLayout->setContentsMargins(11, 11, 11, 11);
@@ -219,6 +214,7 @@ public:
         menuFile->setTitle(QApplication::translate("PADEditor", "File", nullptr));
         menuEdit->setTitle(QApplication::translate("PADEditor", "Edit", nullptr));
         menuView->setTitle(QApplication::translate("PADEditor", "View", nullptr));
+        OpenGl->setWindowTitle(QApplication::translate("PADEditor", "OpenGL", nullptr));
         Hierarchy->setWindowTitle(QApplication::translate("PADEditor", "Hierarchy", nullptr));
         Inspector->setWindowTitle(QApplication::translate("PADEditor", "Inspector", nullptr));
         Project_View->setWindowTitle(QApplication::translate("PADEditor", "Project", nullptr));

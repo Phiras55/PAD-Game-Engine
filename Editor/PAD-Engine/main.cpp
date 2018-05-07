@@ -1,6 +1,6 @@
-#include "padeditor.h"
-#include <QApplication>
-
+#include <QApplication.h>
+#include <QFile>
+#include <QTextStream>
 
 #include <iostream>
 #include <Math/Matrix4x4.h>
@@ -17,17 +17,33 @@
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/BoxCollider.h>
 
-#include <fstream>
+#include <padeditor.h>
 
 #include <glwidget.h>
+
+#define LOGGER
+
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QFile f(":qdarkstyle/style.qss");
+    if (!f.exists())
+    {
+        printf("Unable to set stylesheet, file not found\n");
+    }
+    else
+    {
+        f.open(QFile::ReadOnly | QFile::Text);
+        QTextStream ts(&f);
+        qApp->setStyleSheet(ts.readAll());
+    }
     PADEditor w;
     w.show();
 
-	
+
+
+
 
 #pragma region RenderInit
 
@@ -59,8 +75,8 @@ int main(int argc, char *argv[])
     #pragma endregion
 
     pad::CreateEngine();
-    pad::InitEngine(contextSettings, winSettings);
 
+    pad::InitEngine(contextSettings, winSettings);
     pad::gfx::gl::shad::GLShaderProgram		program;
     pad::gfx::gl::shad::GLFragmentShader	fragShader;
     pad::gfx::gl::shad::GLVertexShader		vertShader;
@@ -127,10 +143,8 @@ int main(int argc, char *argv[])
     }
 
     #pragma endregion
+	
     pad::StartSimulation();
-
-
-
-
-	return a.exec();
+	pad::Simulate();
+    return a.exec();
 }

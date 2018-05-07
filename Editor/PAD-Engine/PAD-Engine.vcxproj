@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F8CA2257-F73B-313D-A015-432ECBADC131}</ProjectGuid>
+    <ProjectGuid>{B6574368-7512-3214-BB93-BE8DC6C7D773}</ProjectGuid>
     <RootNamespace>PAD-Engine</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
@@ -160,6 +160,7 @@
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="glwidget.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="padeditor.cpp" />
   </ItemGroup>
@@ -231,6 +232,7 @@
     <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\Window\WindowSettings.h" />
     <ClInclude Include="..\..\Libs\include\GL\eglew.h" />
     <ClInclude Include="..\..\Libs\include\GL\glew.h" />
+    <ClInclude Include="glwidget.h" />
     <ClInclude Include="..\..\Libs\include\GL\glxew.h" />
     <ClInclude Include="..\..\Libs\include\Json\json.hpp" />
     <ClInclude Include="padeditor.h" />
@@ -266,7 +268,7 @@
   <ImportGroup Label="ExtensionTargets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" Qt5Version_x0020_x64="5.10.0" />
+      <UserProperties UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" Qt5Version_x0020_x64="msvc2017_64" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -39,6 +39,12 @@ void SDLWindow::Init(const WindowSettings& _infos)
 
 	m_isOpen = true;
 
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
+
 	mp_context = SDL_GL_CreateContext(mp_window);
 	SDL_GL_MakeCurrent(mp_window, mp_context);
 

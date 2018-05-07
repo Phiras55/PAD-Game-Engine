@@ -21,6 +21,9 @@ public:
 	void FixedUpdate()	override;
 	void LateUpdate()	override;
 
+	json Serialize()						override;
+	void Deserialize(const json& j)			override;
+
 public:
 	inline void SetMass(const float _mass);
 

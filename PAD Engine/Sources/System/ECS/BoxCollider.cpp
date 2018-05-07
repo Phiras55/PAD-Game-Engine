@@ -50,6 +50,18 @@ void BoxCollider::LateUpdate()
 
 }
 
+json BoxCollider::Serialize()
+{
+	json j;
+
+	return j;
+}
+
+void BoxCollider::Deserialize(const json& j)
+{
+
+}
+
 } // namespace ecs
 } // namespace sys
 } // namespace pad

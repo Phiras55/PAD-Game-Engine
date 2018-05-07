@@ -121,6 +121,18 @@ inline void RigidBody::SetCollider(ACollider* const _collider)
 	m_collider = _collider;
 }
 
+json RigidBody::Serialize()
+{
+	json j;
+
+	return j;
+}
+
+void RigidBody::Deserialize(const json& j)
+{
+
+}
+
 } // namespace ecs
 } // namespace sys
 } // namespace pad

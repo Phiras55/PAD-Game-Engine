@@ -1,4 +1,5 @@
 #pragma once
+#include <Json/Serialization.h>
 #include <Math/MatrixTransform.h>
 #include <Math/Vector4.h>
 #include <Math/Quaternion.h>
@@ -16,7 +17,7 @@ inline float RadToDegree(const float _rad) { return (_rad * 180.f) / PI; }
 
 using Mat4 = Matrix4x4;
 
-class Transform final
+class Transform final : public ISerializable
 {
 public:
 	inline Transform() :
@@ -40,6 +41,32 @@ public:
 	inline const Vec3f& Rotation() const	{ return m_rotation; }
 	inline const Quat&	QuatRotation()const { return m_quatRotation; }
 	inline const Vec3f& Scale() const		{ return m_scale; }
+
+	json Serialize() override
+	{
+		json j;
+
+		AddDataToJson(j, "m_localTransform",	m_localTransform.Serialize());
+		AddDataToJson(j, "m_globalTransform",	m_globalTransform.Serialize());
+		AddDataToJson(j, "m_quatRotation",		m_quatRotation.Serialize());
+		AddDataToJson(j, "m_position",			m_position.Serialize());
+		AddDataToJson(j, "m_rotation",			m_rotation.Serialize());
+		AddDataToJson(j, "m_scale",				m_scale.Serialize());
+		AddDataToJson(j, "m_isDirty",			m_isDirty);
+
+		return j;
+	}
+
+	void Deserialize(const json& j)	override
+	{
+		m_localTransform.Deserialize(	JsonToData<json>(j, "m_localTransform"));
+		m_globalTransform.Deserialize(	JsonToData<json>(j, "m_globalTransform"));
+		m_quatRotation.Deserialize(		JsonToData<json>(j, "m_quatRotation"));
+		m_position.Deserialize(			JsonToData<json>(j, "m_position"));
+		m_rotation.Deserialize(			JsonToData<json>(j, "m_rotation"));
+		m_scale.Deserialize(			JsonToData<json>(j, "m_scale"));
+		m_isDirty = JsonToData<bool>(j, "m_isDirty");
+	}
 
 private:
 	inline void ComputeLocalMatrix()

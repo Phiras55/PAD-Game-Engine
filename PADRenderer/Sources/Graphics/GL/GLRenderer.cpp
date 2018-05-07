@@ -1,4 +1,5 @@
 #include <PCH.h>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image/stb_image.h>
 #include <Utilities/EnumUtils.h>
@@ -8,7 +9,7 @@
 #include <Graphics/RHI/Shader/ShaderInfos.h>
 #include <Graphics/GL/GLVertexElementBuffer.h>
 #include <Graphics/GL/GLUniformBufferObject.h>
-#include <Graphics/RHI/Shader/AShaderProgram.h>
+#include <Graphics/GL/Shader/GLShaderManager.h>
 
 namespace pad	{
 namespace gfx	{
@@ -16,7 +17,7 @@ namespace gl	{
 
 GLRenderer::GLRenderer()
 {
-
+	m_shaderManager = new gl::shad::GLShaderManager();
 }
 
 GLRenderer::~GLRenderer()
@@ -24,12 +25,20 @@ GLRenderer::~GLRenderer()
 	for (auto& ubo : m_uniformBufferObjects)
 		delete ubo.second;
 	m_uniformBufferObjects.clear();
+
+	delete m_shaderManager;
 }
 
 void GLRenderer::Init(const rhi::ContextSettings& _settings)
 {
 	InitContext(_settings);
 	InitViewPort(_settings.viewportSize);
+	InitShaders();
+}
+
+void GLRenderer::InitShaders()
+{
+	m_shaderManager->LoadShaders("Resources/Shaders/basicPositions.vert", "Resources/Shaders/basicColors.frag", "Default");
 }
 
 void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
@@ -153,12 +162,9 @@ void GLRenderer::ForwardRendering(
 	const rhi::RenderSettings _setting,
 	const math::Mat4& _vp)
 {
-	if (!_vao || !_ibo)
-		return;
+	rhi::shad::AShaderProgram* const currentShader = m_shaderManager->GetShader(_setting.programHandle);
 
-	const uint32 shaderCount = (uint32)_setting.programs.size();
-
-	if (shaderCount == 0)
+	if (!_vao || !_ibo || !currentShader)
 		return;
 
 	_vao->Bind();
@@ -167,20 +173,15 @@ void GLRenderer::ForwardRendering(
 	if (_setting.isWireframe)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	for (rhi::shad::AShaderProgram* const currentProgram : _setting.programs)
-	{
-		if (!currentProgram)
-		{
-			LOG_ERROR_S("The shader is not valid. Try to add one in the RenderSettings.\n");
-			continue;
-		}
+	if (!currentShader)
+		return;
 
-		currentProgram->Use();
-		currentProgram->SetUniform("model", *_setting.modelMatrix);
-		SetCustomUniforms(currentProgram, _setting);
+	currentShader->Use();
+	currentShader->SetUniform("model", *_setting.modelMatrix);
+	SetCustomUniforms(currentShader, _setting);
 
-		glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, (void*)0);
-	}
+	glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, (void*)0);
+
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	_ibo->Unbind();

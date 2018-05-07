@@ -1,8 +1,8 @@
 #pragma once
-
 #include <System/Resource/ResourceManager.h>
 #include <Graphics/Model/Mesh.h>
 #include <Graphics/Model/Material.h>
+#include <Graphics/GL/Shader/GLShaderManager.h>
 
 namespace pad	{
 namespace sys	{

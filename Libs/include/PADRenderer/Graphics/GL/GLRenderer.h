@@ -47,6 +47,7 @@ private:
 	void InitContext(const rhi::ContextSettings& _settings)					override;
 	void InitViewPort(const math::Vec2i& _viewportSize)						override;
 
+	void InitShaders();
 	void InitMainBuffer(const rhi::ContextSettings& _settings);
 	void InitCullFace(const rhi::ContextSettings& _settings);
 	void InitDepthBuffer(const rhi::ContextSettings& _settings);

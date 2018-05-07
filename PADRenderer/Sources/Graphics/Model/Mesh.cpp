@@ -13,10 +13,10 @@ namespace mod {
 	{
 	}
 
-	Mesh::Mesh(const Mesh& _m)
+	Mesh::Mesh(const Mesh& _m) :
+		Mesh()
 	{
-		m_vao = _m.m_vao;
-		m_ibo = _m.m_ibo;
+		*this = _m;
 	}
 
 	Mesh::~Mesh()
@@ -26,23 +26,15 @@ namespace mod {
 
 	void Mesh::Clean()
 	{
-		if (m_vao)
-		{
-			delete m_vao;
-			m_vao = nullptr;
-		}
-
-		if (m_ibo)
-		{
-			delete m_ibo;
-			m_ibo = nullptr;
-		}
+		delete m_vao;
+		delete m_ibo;
 	}
 
 	void Mesh::operator=(const Mesh& _other)
 	{
-		m_vao = _other.m_vao;
-		m_ibo = _other.m_ibo;
+		m_vao->SetID(_other.m_vao->GetID());
+		m_ibo->SetID(_other.m_ibo->GetID());
+		m_ibo->SetCount(_other.m_ibo->GetCount());
 	}
 
 	rhi::AVertexArray* const Mesh::GetVAO() const

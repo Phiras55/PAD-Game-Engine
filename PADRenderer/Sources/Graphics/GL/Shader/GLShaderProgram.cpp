@@ -18,6 +18,9 @@ GLShaderProgram::~GLShaderProgram()
 
 bool GLShaderProgram::CompileProgram()
 {
+	if (!m_vertShader || !m_fragShader)
+		return false;
+
 	int32 success;
 	int32& vertID = m_vertShader->GetID();
 	int32& fragID = m_fragShader->GetID();
@@ -38,6 +41,8 @@ bool GLShaderProgram::CompileProgram()
 		glDeleteShader(fragID);
 		glGetProgramInfoLog(m_id, SHADER_LOG_SIZE, NULL, infoLog);
 		LOG_ERROR("Error! Could not link the program: %%", infoLog);
+		m_vertShader = nullptr;
+		m_fragShader = nullptr;
 		return false;
 	}
 
@@ -45,7 +50,8 @@ bool GLShaderProgram::CompileProgram()
 	glDetachShader(m_id, fragID);
 	glDeleteShader(vertID);
 	glDeleteShader(fragID);
-
+	m_vertShader = nullptr;
+	m_fragShader = nullptr;
 	return true;
 }
 

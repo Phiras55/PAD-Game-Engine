@@ -1,11 +1,11 @@
 #pragma once
-
+#include <Json/Serialization.h>
 #include <Math/Matrix4x4.h>
 
 namespace pad	{
 namespace math	{
 
-struct Quaternion
+struct Quaternion final : public ISerializable
 {
 	#pragma region Constructor / Destructor
 
@@ -92,6 +92,26 @@ struct Quaternion
 	};
 
 	#pragma endregion
+
+	json Serialize() override
+	{
+		json j;
+
+		AddDataToJson(j, "x", x);
+		AddDataToJson(j, "y", y);
+		AddDataToJson(j, "z", z);
+		AddDataToJson(j, "w", w);
+
+		return j;
+	}
+
+	void Deserialize(const json& j)	override
+	{
+		x = JsonToData<float>(j, "x");
+		y = JsonToData<float>(j, "y");
+		z = JsonToData<float>(j, "z");
+		w = JsonToData<float>(j, "w");
+	}
 };
 
 using Quat = Quaternion;

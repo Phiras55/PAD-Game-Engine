@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{300af1d1-00a3-4029-bba6-f06b935c31f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System">
+      <UniqueIdentifier>{2cead271-2260-4fb9-9f38-27f24a891aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Event">
+      <UniqueIdentifier>{fc64f746-1d9a-47e0-a4a9-bfc7a7e8641d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\Event">
+      <UniqueIdentifier>{b82ff405-31d2-41cc-a7b0-5cce5c1a68f0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\Event\EventHandler.cpp">
+      <Filter>Source Files\System\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\Event\Subject.cpp">
+      <Filter>Source Files\System\Event</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sources\System\Event\IObserver.h">
+      <Filter>Header Files\System\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Event\Subject.h">
+      <Filter>Header Files\System\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Event\EventArgs.h">
+      <Filter>Header Files\System\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Event\EventHandler.h">
+      <Filter>Header Files\System\Event</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

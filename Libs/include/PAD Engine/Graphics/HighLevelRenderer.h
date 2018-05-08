@@ -33,7 +33,7 @@ private:
 	void ClearBuffers();
 	void SwapBuffers();
 	void InitializeDefaultMeshes();
-	void FillTextureLayout(rhi::RenderSettings& _settings, const mod::Material& _mat);
+	void FillTextureLayout(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources);
 
 public:
 	inline win::AWindow* const GetMainWindow() const { return m_mainWindow; }

@@ -121,7 +121,7 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Sc
 			continue;
 
 		if (currentMat)
-			FillTextureLayout(currentSettings, *currentMat);
+			FillTextureLayout(currentSettings, *currentMat, _resources);
 
 		m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
 	}

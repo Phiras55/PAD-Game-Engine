@@ -21,6 +21,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPlainTextEdit>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
@@ -50,6 +51,8 @@ public:
     QDockWidget *Inspector;
     QWidget *Inspector_Content;
     QGridLayout *gridLayout_3;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
     QDockWidget *Project_View;
     QWidget *Project_View_Content;
     QGridLayout *gridLayout_2;
@@ -1327,7 +1330,7 @@ public:
         PADEditor->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(PADEditor);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1280, 21));
+        menuBar->setGeometry(QRect(0, 0, 1280, 20));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuEdit = new QMenu(menuBar);
@@ -1386,6 +1389,16 @@ public:
         gridLayout_3->setContentsMargins(11, 11, 11, 11);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         gridLayout_3->setContentsMargins(0, 0, 0, 0);
+        scrollArea = new QScrollArea(Inspector_Content);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 222, 382));
+        scrollArea->setWidget(scrollAreaWidgetContents);
+
+        gridLayout_3->addWidget(scrollArea, 0, 0, 1, 1);
+
         Inspector->setWidget(Inspector_Content);
         PADEditor->addDockWidget(static_cast<Qt::DockWidgetArea>(2), Inspector);
         Project_View = new QDockWidget(PADEditor);

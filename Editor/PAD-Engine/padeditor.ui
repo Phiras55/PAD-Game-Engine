@@ -1257,7 +1257,7 @@ QDateEdit::down-arrow:focus {
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -1388,6 +1388,23 @@ QDateEdit::down-arrow:focus {
      <property name="bottomMargin">
       <number>0</number>
      </property>
+     <item row="0" column="0">
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>222</width>
+          <height>382</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </item>
     </layout>
    </widget>
   </widget>

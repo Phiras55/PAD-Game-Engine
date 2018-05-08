@@ -29,17 +29,6 @@ public:
     QGridLayout *gridLayout;
     QGroupBox *Transform;
     QGridLayout *gridLayout_2;
-    QHBoxLayout *Pos;
-    QLabel *label_Pos;
-    QHBoxLayout *Pos_X;
-    QLabel *label_Pos_X;
-    QDoubleSpinBox *val_Pos_X;
-    QHBoxLayout *Pos_Y;
-    QLabel *label_Pos_Y;
-    QDoubleSpinBox *val_Pos_Y;
-    QHBoxLayout *Pos_Z;
-    QLabel *label_Pos_Z;
-    QDoubleSpinBox *val_Pos_Z;
     QHBoxLayout *Rot;
     QLabel *label_Rot;
     QHBoxLayout *Rot_X;
@@ -62,19 +51,30 @@ public:
     QHBoxLayout *Scale_Z;
     QLabel *label_Scale_Z;
     QDoubleSpinBox *val_Scale_Z;
+    QHBoxLayout *Pos;
+    QLabel *label_Pos;
+    QHBoxLayout *Pos_X;
+    QLabel *label_Pos_X;
+    QDoubleSpinBox *val_Pos_X;
+    QHBoxLayout *Pos_Y;
+    QLabel *label_Pos_Y;
+    QDoubleSpinBox *val_Pos_Y;
+    QHBoxLayout *Pos_Z;
+    QLabel *label_Pos_Z;
+    QDoubleSpinBox *val_Pos_Z;
 
     void setupUi(QWidget *TransformWidget)
     {
         if (TransformWidget->objectName().isEmpty())
             TransformWidget->setObjectName(QStringLiteral("TransformWidget"));
         TransformWidget->setEnabled(true);
-        TransformWidget->resize(484, 140);
+        TransformWidget->resize(360, 140);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(TransformWidget->sizePolicy().hasHeightForWidth());
         TransformWidget->setSizePolicy(sizePolicy);
-        TransformWidget->setMinimumSize(QSize(258, 140));
+        TransformWidget->setMinimumSize(QSize(360, 140));
         TransformWidget->setMaximumSize(QSize(16777215, 140));
         TransformWidget->setStyleSheet(QLatin1String("QToolTip {\n"
 "    border: 1px solid #76797C;\n"
@@ -1328,9 +1328,7 @@ public:
 "}\n"
 ""));
         gridLayout = new QGridLayout(TransformWidget);
-        gridLayout->setSpacing(0);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setSizeConstraint(QLayout::SetFixedSize);
         gridLayout->setContentsMargins(0, 0, 0, 0);
         Transform = new QGroupBox(TransformWidget);
         Transform->setObjectName(QStringLiteral("Transform"));
@@ -1343,104 +1341,14 @@ public:
         gridLayout_2->setHorizontalSpacing(0);
         gridLayout_2->setVerticalSpacing(10);
         gridLayout_2->setContentsMargins(5, 5, 5, 5);
-        Pos = new QHBoxLayout();
-        Pos->setSpacing(6);
-        Pos->setObjectName(QStringLiteral("Pos"));
-        Pos->setSizeConstraint(QLayout::SetFixedSize);
-        label_Pos = new QLabel(Transform);
-        label_Pos->setObjectName(QStringLiteral("label_Pos"));
-        label_Pos->setEnabled(true);
-        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(label_Pos->sizePolicy().hasHeightForWidth());
-        label_Pos->setSizePolicy(sizePolicy1);
-        label_Pos->setMinimumSize(QSize(25, 0));
-
-        Pos->addWidget(label_Pos);
-
-        Pos_X = new QHBoxLayout();
-        Pos_X->setObjectName(QStringLiteral("Pos_X"));
-        Pos_X->setSizeConstraint(QLayout::SetFixedSize);
-        label_Pos_X = new QLabel(Transform);
-        label_Pos_X->setObjectName(QStringLiteral("label_Pos_X"));
-        label_Pos_X->setEnabled(true);
-        sizePolicy1.setHeightForWidth(label_Pos_X->sizePolicy().hasHeightForWidth());
-        label_Pos_X->setSizePolicy(sizePolicy1);
-        label_Pos_X->setLayoutDirection(Qt::LeftToRight);
-        label_Pos_X->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        Pos_X->addWidget(label_Pos_X);
-
-        val_Pos_X = new QDoubleSpinBox(Transform);
-        val_Pos_X->setObjectName(QStringLiteral("val_Pos_X"));
-        val_Pos_X->setEnabled(true);
-        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(val_Pos_X->sizePolicy().hasHeightForWidth());
-        val_Pos_X->setSizePolicy(sizePolicy2);
-
-        Pos_X->addWidget(val_Pos_X);
-
-
-        Pos->addLayout(Pos_X);
-
-        Pos_Y = new QHBoxLayout();
-        Pos_Y->setObjectName(QStringLiteral("Pos_Y"));
-        Pos_Y->setSizeConstraint(QLayout::SetFixedSize);
-        label_Pos_Y = new QLabel(Transform);
-        label_Pos_Y->setObjectName(QStringLiteral("label_Pos_Y"));
-        label_Pos_Y->setEnabled(true);
-        sizePolicy1.setHeightForWidth(label_Pos_Y->sizePolicy().hasHeightForWidth());
-        label_Pos_Y->setSizePolicy(sizePolicy1);
-        label_Pos_Y->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        Pos_Y->addWidget(label_Pos_Y);
-
-        val_Pos_Y = new QDoubleSpinBox(Transform);
-        val_Pos_Y->setObjectName(QStringLiteral("val_Pos_Y"));
-        val_Pos_Y->setEnabled(true);
-        sizePolicy2.setHeightForWidth(val_Pos_Y->sizePolicy().hasHeightForWidth());
-        val_Pos_Y->setSizePolicy(sizePolicy2);
-
-        Pos_Y->addWidget(val_Pos_Y);
-
-
-        Pos->addLayout(Pos_Y);
-
-        Pos_Z = new QHBoxLayout();
-        Pos_Z->setSpacing(6);
-        Pos_Z->setObjectName(QStringLiteral("Pos_Z"));
-        Pos_Z->setSizeConstraint(QLayout::SetFixedSize);
-        label_Pos_Z = new QLabel(Transform);
-        label_Pos_Z->setObjectName(QStringLiteral("label_Pos_Z"));
-        label_Pos_Z->setEnabled(true);
-        sizePolicy1.setHeightForWidth(label_Pos_Z->sizePolicy().hasHeightForWidth());
-        label_Pos_Z->setSizePolicy(sizePolicy1);
-        label_Pos_Z->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        Pos_Z->addWidget(label_Pos_Z);
-
-        val_Pos_Z = new QDoubleSpinBox(Transform);
-        val_Pos_Z->setObjectName(QStringLiteral("val_Pos_Z"));
-        val_Pos_Z->setEnabled(true);
-        sizePolicy2.setHeightForWidth(val_Pos_Z->sizePolicy().hasHeightForWidth());
-        val_Pos_Z->setSizePolicy(sizePolicy2);
-
-        Pos_Z->addWidget(val_Pos_Z);
-
-
-        Pos->addLayout(Pos_Z);
-
-
-        gridLayout_2->addLayout(Pos, 0, 0, 1, 1);
-
         Rot = new QHBoxLayout();
         Rot->setObjectName(QStringLiteral("Rot"));
         Rot->setSizeConstraint(QLayout::SetDefaultConstraint);
         label_Rot = new QLabel(Transform);
         label_Rot->setObjectName(QStringLiteral("label_Rot"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(label_Rot->sizePolicy().hasHeightForWidth());
         label_Rot->setSizePolicy(sizePolicy1);
         label_Rot->setMinimumSize(QSize(25, 0));
@@ -1461,6 +1369,9 @@ public:
 
         val_Rot_X = new QDoubleSpinBox(Transform);
         val_Rot_X->setObjectName(QStringLiteral("val_Rot_X"));
+        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(val_Rot_X->sizePolicy().hasHeightForWidth());
         val_Rot_X->setSizePolicy(sizePolicy2);
 
@@ -1585,10 +1496,6 @@ public:
         val_Scale_Z->setObjectName(QStringLiteral("val_Scale_Z"));
         sizePolicy2.setHeightForWidth(val_Scale_Z->sizePolicy().hasHeightForWidth());
         val_Scale_Z->setSizePolicy(sizePolicy2);
-        val_Scale_Z->setCorrectionMode(QAbstractSpinBox::CorrectToNearestValue);
-        val_Scale_Z->setProperty("showGroupSeparator", QVariant(false));
-        val_Scale_Z->setMinimum(-1e+45);
-        val_Scale_Z->setMaximum(1e+48);
 
         Scale_Z->addWidget(val_Scale_Z);
 
@@ -1597,6 +1504,85 @@ public:
 
 
         gridLayout_2->addLayout(Scale, 2, 0, 1, 1);
+
+        Pos = new QHBoxLayout();
+        Pos->setObjectName(QStringLiteral("Pos"));
+        Pos->setSizeConstraint(QLayout::SetDefaultConstraint);
+        label_Pos = new QLabel(Transform);
+        label_Pos->setObjectName(QStringLiteral("label_Pos"));
+        sizePolicy1.setHeightForWidth(label_Pos->sizePolicy().hasHeightForWidth());
+        label_Pos->setSizePolicy(sizePolicy1);
+        label_Pos->setMinimumSize(QSize(25, 0));
+
+        Pos->addWidget(label_Pos);
+
+        Pos_X = new QHBoxLayout();
+        Pos_X->setObjectName(QStringLiteral("Pos_X"));
+        Pos_X->setSizeConstraint(QLayout::SetFixedSize);
+        label_Pos_X = new QLabel(Transform);
+        label_Pos_X->setObjectName(QStringLiteral("label_Pos_X"));
+        sizePolicy1.setHeightForWidth(label_Pos_X->sizePolicy().hasHeightForWidth());
+        label_Pos_X->setSizePolicy(sizePolicy1);
+        label_Pos_X->setLayoutDirection(Qt::LeftToRight);
+        label_Pos_X->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        Pos_X->addWidget(label_Pos_X);
+
+        val_Pos_X = new QDoubleSpinBox(Transform);
+        val_Pos_X->setObjectName(QStringLiteral("val_Pos_X"));
+        sizePolicy2.setHeightForWidth(val_Pos_X->sizePolicy().hasHeightForWidth());
+        val_Pos_X->setSizePolicy(sizePolicy2);
+
+        Pos_X->addWidget(val_Pos_X);
+
+
+        Pos->addLayout(Pos_X);
+
+        Pos_Y = new QHBoxLayout();
+        Pos_Y->setObjectName(QStringLiteral("Pos_Y"));
+        Pos_Y->setSizeConstraint(QLayout::SetFixedSize);
+        label_Pos_Y = new QLabel(Transform);
+        label_Pos_Y->setObjectName(QStringLiteral("label_Pos_Y"));
+        sizePolicy1.setHeightForWidth(label_Pos_Y->sizePolicy().hasHeightForWidth());
+        label_Pos_Y->setSizePolicy(sizePolicy1);
+        label_Pos_Y->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        Pos_Y->addWidget(label_Pos_Y);
+
+        val_Pos_Y = new QDoubleSpinBox(Transform);
+        val_Pos_Y->setObjectName(QStringLiteral("val_Pos_Y"));
+        sizePolicy2.setHeightForWidth(val_Pos_Y->sizePolicy().hasHeightForWidth());
+        val_Pos_Y->setSizePolicy(sizePolicy2);
+
+        Pos_Y->addWidget(val_Pos_Y);
+
+
+        Pos->addLayout(Pos_Y);
+
+        Pos_Z = new QHBoxLayout();
+        Pos_Z->setSpacing(6);
+        Pos_Z->setObjectName(QStringLiteral("Pos_Z"));
+        Pos_Z->setSizeConstraint(QLayout::SetFixedSize);
+        label_Pos_Z = new QLabel(Transform);
+        label_Pos_Z->setObjectName(QStringLiteral("label_Pos_Z"));
+        sizePolicy1.setHeightForWidth(label_Pos_Z->sizePolicy().hasHeightForWidth());
+        label_Pos_Z->setSizePolicy(sizePolicy1);
+        label_Pos_Z->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        Pos_Z->addWidget(label_Pos_Z);
+
+        val_Pos_Z = new QDoubleSpinBox(Transform);
+        val_Pos_Z->setObjectName(QStringLiteral("val_Pos_Z"));
+        sizePolicy2.setHeightForWidth(val_Pos_Z->sizePolicy().hasHeightForWidth());
+        val_Pos_Z->setSizePolicy(sizePolicy2);
+
+        Pos_Z->addWidget(val_Pos_Z);
+
+
+        Pos->addLayout(Pos_Z);
+
+
+        gridLayout_2->addLayout(Pos, 0, 0, 1, 1);
 
 
         gridLayout->addWidget(Transform, 0, 0, 1, 1);
@@ -1611,10 +1597,6 @@ public:
     {
         TransformWidget->setWindowTitle(QApplication::translate("TransformWidget", "Form", nullptr));
         Transform->setTitle(QApplication::translate("TransformWidget", "Transform", nullptr));
-        label_Pos->setText(QApplication::translate("TransformWidget", "Pos", nullptr));
-        label_Pos_X->setText(QApplication::translate("TransformWidget", "X", nullptr));
-        label_Pos_Y->setText(QApplication::translate("TransformWidget", "Y", nullptr));
-        label_Pos_Z->setText(QApplication::translate("TransformWidget", "Z", nullptr));
         label_Rot->setText(QApplication::translate("TransformWidget", "Rot", nullptr));
         label_Rot_X->setText(QApplication::translate("TransformWidget", "X", nullptr));
         label_Rot_Y->setText(QApplication::translate("TransformWidget", "Y", nullptr));
@@ -1623,6 +1605,10 @@ public:
         label_Scale_X->setText(QApplication::translate("TransformWidget", "X", nullptr));
         label_Scale_Y->setText(QApplication::translate("TransformWidget", "Y", nullptr));
         label_Scale_Z->setText(QApplication::translate("TransformWidget", "Z", nullptr));
+        label_Pos->setText(QApplication::translate("TransformWidget", "Pos", nullptr));
+        label_Pos_X->setText(QApplication::translate("TransformWidget", "X", nullptr));
+        label_Pos_Y->setText(QApplication::translate("TransformWidget", "Y", nullptr));
+        label_Pos_Z->setText(QApplication::translate("TransformWidget", "Z", nullptr));
     } // retranslateUi
 
 };

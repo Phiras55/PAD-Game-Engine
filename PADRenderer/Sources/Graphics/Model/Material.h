@@ -21,22 +21,22 @@ private:
 	math::Vec3f		m_diffuse;
 	math::Vec3f		m_specular;
 	float			m_shiness;
-	rhi::ATexture*	m_albedoMap;
-	rhi::ATexture*  m_normalMap;
+	std::string		m_albedoMapName;
+	std::string		m_normalMapName;
 	std::string		m_name;
 
 public:
-	inline rhi::ATexture* const GetAlbedoMap()	const	{ return m_albedoMap; }
-	inline rhi::ATexture* const GetNormalMap()	const	{ return m_normalMap; }
-	inline const math::Vec4f&	GetAlbedo()		const	{ return m_albedo; }
-	inline const math::Vec3f&	GetAmbient()	const	{ return m_ambient; }
-	inline const math::Vec3f&	GetDiffuse()	const	{ return m_diffuse; }
-	inline const math::Vec3f&	GetSpecular()	const	{ return m_specular; }
-	inline const float&			GetShiness()	const	{ return m_shiness; }
-	inline const std::string&	GetName()		const	{ return m_name; }
+	inline const std::string&	GetAlbedoMapName()	const	{ return m_albedoMapName; }
+	inline const std::string&	GetNormalMapName()	const	{ return m_normalMapName; }
+	inline const math::Vec4f&	GetAlbedo()		const		{ return m_albedo; }
+	inline const math::Vec3f&	GetAmbient()	const		{ return m_ambient; }
+	inline const math::Vec3f&	GetDiffuse()	const		{ return m_diffuse; }
+	inline const math::Vec3f&	GetSpecular()	const		{ return m_specular; }
+	inline const float&			GetShiness()	const		{ return m_shiness; }
+	inline const std::string&	GetName()		const		{ return m_name; }
 
-	inline void SetAlbedoMap(rhi::ATexture* const _t)		{ m_albedoMap = _t; }
-	inline void SetNormalMap(rhi::ATexture* const _t)		{ m_normalMap = _t; }
+	inline void SetAlbedoMapName(const std::string& _n)		{ m_albedoMapName = _n; }
+	inline void SetNormalMapName(const std::string& _n)		{ m_normalMapName = _n; }
 	inline void SetAlbedo(const math::Vec4f& _albedo)		{ m_albedo = _albedo; }
 	inline void SetAmbient(const math::Vec3f& _ambient)		{ m_ambient = _ambient; }
 	inline void SetDiffuse(const math::Vec3f& _diffuse)		{ m_diffuse = _diffuse; }

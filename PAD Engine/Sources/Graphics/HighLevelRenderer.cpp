@@ -121,7 +121,7 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Sc
 			continue;
 
 		if (currentMat)
-			FillTextureLayout(currentSettings, *currentMat);
+			FillTextureLayout(currentSettings, *currentMat, _resources);
 
 		m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
 	}
@@ -129,17 +129,27 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Sc
 	SwapBuffers();
 }
 
-void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const mod::Material& _mat)
+void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources)
 {
 	rhi::shad::CustomUniform uniform;
-	uniform.data = &_mat.GetAlbedoMap()->GetID();
-	uniform.type = rhi::shad::DataType::UINT;
+	rhi::ATexture** texture = _resources.GetTextureManager().GetResource(_mat.GetAlbedoMapName());
 
-	_settings.customUniforms["albedoMap"] = uniform;
+	if (texture)
+	{
+		uniform.data = (void*)&(*texture)->GetID();
+		uniform.type = rhi::shad::DataType::UINT;
 
-	uniform.data = &_mat.GetNormalMap()->GetID();
+		_settings.customUniforms["albedoMap"] = uniform;
+	}
 
-	_settings.customUniforms["normalMap"] = uniform;
+	texture = _resources.GetTextureManager().GetResource(_mat.GetNormalMapName());
+	if (texture)
+	{
+		uniform.data = (void*)&(*texture)->GetID();
+
+		_settings.customUniforms["normalMap"] = uniform;
+		uniform.type = rhi::shad::DataType::UINT;
+	}
 
 	uniform.data = (void*)&_mat.GetAlbedo();
 	uniform.type = rhi::shad::DataType::VEC4;

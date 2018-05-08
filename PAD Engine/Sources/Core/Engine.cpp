@@ -38,58 +38,19 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win:
 {
 	LOG_INIT();
 	core::EngineClock::Init();
-	m_highLevelRenderer.Initialize(_c, _w);
 
-#pragma region Mesh
-	pad::gfx::mod::MeshData md;
-
-	md.positions = new float[24]{
-		-0.5, -0.5,  0.5,
-		0.5, -0.5,  0.5,
-		-0.5,  0.5,  0.5,
-		0.5,  0.5, -0.5,
-		-0.5, -0.5, -0.5,
-		-0.5,  0.5, -0.5,
-		0.5, -0.5, -0.5,
-		0.5,  0.5,  0.5
-	};
-	md.positionCount = 24;
-
-	md.indices = new pad::uint32[36]{
-		0, 1, 2,
-		3, 4, 5,
-		4, 3, 6,
-		7, 2, 1,
-		4, 6, 1,
-		4, 2, 5,
-		7, 1, 6,
-		5, 2, 7,
-		4, 0, 2,
-		6, 3, 7,
-		1, 0, 4,
-		7, 3, 5
-	};
-	md.indiceCount = 36;
-
-	gfx::mod::Mesh* m = new gfx::mod::Mesh();
-
-	m_highLevelRenderer.GenerateMesh(*m, md);
-	m_resourceManager->GetMeshManager().AddResource("Cube", *m);
-#pragma endregion
-
-#pragma region Material
-	gfx::mod::Material* mat = new gfx::mod::Material();
-#pragma endregion
+	m_highLevelRenderer.Initialize(_c, _w, m_resourceManager);
 }
 
 void Engine::StartSimulation()
 {
 	m_scene->Init();
 	m_physicContext->Init();
-
 	m_scene->Start();
-
 	m_fixedUpdateTimer.Start();
+
+	// Test
+	m_scene->Serialize();
 
 	while (m_highLevelRenderer.IsWindowOpen())
 	{
@@ -100,7 +61,6 @@ void Engine::StartSimulation()
 void Engine::Simulate()
 {
 	core::EngineClock::Update();
-	//std::cout << 1.f / core::EngineClock::DeltaTime() << "\n";
 	PollEvents();
 	FlushLogs();
 
@@ -140,7 +100,7 @@ void Engine::LateUpdate()
 
 void Engine::Render()
 {
-	m_highLevelRenderer.Render(*m_resourceManager);
+	m_highLevelRenderer.Render(*m_resourceManager, *m_scene);
 }
 
 void Engine::ResizeContext(const uint32 _w, const uint32 _h)

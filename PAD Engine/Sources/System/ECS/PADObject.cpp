@@ -130,6 +130,32 @@ void PADObject::SetParent(PADObject* const _parent)
 	_parent->AddChild(this);
 }
 
+json PADObject::Serialize()
+{
+	json j;
+
+	AddDataToJson(j, "m_transform", m_transform.Serialize());
+	AddDataToJson(j, "m_dontDestroy", m_dontDestroy);
+	AddDataToJson(j, "m_name", m_name);
+	AddDataToJson(j, "componentCount", m_components.size());
+	AddDataToJson(j, "childrenCount", m_childs.size());
+
+	int i = 0;
+	for (IComponent* const component : m_components)
+	{
+		AddDataToJson(j, std::string("componentType") + std::to_string(i), component->GetType());
+		AddDataToJson(j, std::string("componentType") + std::to_string(i), component->Serialize());
+		++i;
+	}
+
+	return j;
+}
+
+void PADObject::Deserialize(const json& j)
+{
+
+}
+
 } // namespace ecs
 } // namespace sys
 } // namespace pad

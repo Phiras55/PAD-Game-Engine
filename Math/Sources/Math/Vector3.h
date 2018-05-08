@@ -1,12 +1,13 @@
 #pragma once
-
 #include <iostream>
+#include <Json/Serialization.h>
+#include <Bullet/btBulletDynamicsCommon.h>
 
 namespace pad	{
 namespace math	{
 
 template<typename T>
-struct Vector3 final																				/*! Templated vector 3 structure */
+struct Vector3 final : public ISerializable															/*! Templated vector 3 structure */
 {
 #pragma region Constructor / Destructor
 
@@ -75,6 +76,31 @@ struct Vector3 final																				/*! Templated vector 3 structure */
 	static inline Vector3 Right()	{ return Vec3f(1, 0, 0); }
 
 #pragma endregion
+
+#pragma region Bullet Conversions
+
+	Vector3(const btVector3& _vector);
+	void operator=(const btVector3& _vector);
+
+#pragma endregion
+
+	json Serialize() override
+	{
+		json j;
+
+		AddDataToJson(j, "x", x);
+		AddDataToJson(j, "y", y);
+		AddDataToJson(j, "z", z);
+
+		return j;
+	}
+
+	void Deserialize(const json& j)	override
+	{
+		x = JsonToData<T>(j, "x");
+		y = JsonToData<T>(j, "y");
+		z = JsonToData<T>(j, "z");
+	}
 };
 
 #pragma region Utils

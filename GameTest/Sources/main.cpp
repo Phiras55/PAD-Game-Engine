@@ -47,30 +47,13 @@ int main()
 	pad::CreateEngine();
 	pad::InitEngine(contextSettings, winSettings);
 
-	pad::gfx::gl::shad::GLShaderProgram		program;
-	pad::gfx::gl::shad::GLFragmentShader	fragShader;
-	pad::gfx::gl::shad::GLVertexShader		vertShader;
-	pad::gfx::rhi::shad::CustomUniform		albedoUniform;
-
-	albedoUniform.data = &pad::math::Vec4f(0.f, 1.f, 0.f, 1.f);
-	albedoUniform.type = pad::gfx::rhi::shad::DataType::VEC4;
-
-	vertShader.LoadShader("../Resources/Shaders/basicPositions.vert");
-	fragShader.LoadShader("../Resources/Shaders/basicColors.frag");
-
-	program.SetVertexShader(&vertShader);
-	program.SetFragmentShader(&fragShader);
-	program.CompileProgram();
-
 	#pragma region Ground
 
 	pad::sys::ecs::PADObject* ground = new pad::sys::ecs::PADObject();
 	pad::sys::ecs::MeshRenderer* ground_MR = new pad::sys::ecs::MeshRenderer();
 
-	ground_MR->GetSettings().programs.push_back(&program);
 	ground_MR->GetSettings().isWireframe = true;
-	ground_MR->GetSettings().customUniforms["albedo"] = albedoUniform;
-	ground_MR->SetMeshName("Cube");
+	ground_MR->SetMeshName("Default");
 	ground_MR->SetMaterialName("Default");
 	ground_MR->GetTransform().SetScale(pad::math::Vec3f(10, 1, 10));
 
@@ -95,10 +78,8 @@ int main()
 		cube->GetTransform().SetRotation(pad::math::Vec3f(i * 45, i *45, i*45));
 
 		pad::sys::ecs::MeshRenderer* cube_MR = new pad::sys::ecs::MeshRenderer();
-		cube_MR->GetSettings().programs.push_back(&program);
 		cube_MR->GetSettings().isWireframe = true;
-		cube_MR->GetSettings().customUniforms["albedo"] = albedoUniform;
-		cube_MR->SetMeshName("Cube");
+		cube_MR->SetMeshName("Default");
 		cube_MR->SetMaterialName("Default");
 
 		pad::sys::ecs::RigidBody*	cube_RB = new pad::sys::ecs::RigidBody();
@@ -119,3 +100,4 @@ int main()
 
 	return EXIT_SUCCESS;
 }
+

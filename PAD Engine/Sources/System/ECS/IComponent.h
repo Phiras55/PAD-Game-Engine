@@ -3,6 +3,7 @@
 #include <Utilities/Export.h>
 #include <Math/Transform.h>
 #include <System/ECS/PADObject.h>
+#include <Json/Serialization.h>
 
 namespace pad	{
 namespace sys	{
@@ -17,7 +18,7 @@ enum COMPONENT_TYPE
 	SCRIPT
 };
 
-class ENGINE_API IComponent
+class ENGINE_API IComponent : public ISerializable
 {
 public:
 	virtual void Init()								= 0;

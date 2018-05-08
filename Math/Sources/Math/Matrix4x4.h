@@ -1,4 +1,5 @@
 #pragma once
+#include <Json/Serialization.h>
 #include <Math/Vector4.h>
 #include <immintrin.h>
 #include <emmintrin.h>
@@ -6,7 +7,7 @@
 namespace pad	{
 namespace math	{
 
-struct Matrix4x4 final																				/*! 4x4 Matrix of float structure */
+struct Matrix4x4 final : public ISerializable																			/*! 4x4 Matrix of float structure */
 {
 #pragma region Constructor / Destructor
 
@@ -36,6 +37,49 @@ struct Matrix4x4 final																				/*! 4x4 Matrix of float structure */
 #pragma endregion
 
 #pragma region Member Functions
+	json Serialize() override
+	{
+		json j;
+
+		AddDataToJson(j, "data[0]", data[0]);
+		AddDataToJson(j, "data[1]", data[1]);
+		AddDataToJson(j, "data[2]", data[2]);
+		AddDataToJson(j, "data[3]", data[3]);
+		AddDataToJson(j, "data[4]", data[4]);
+		AddDataToJson(j, "data[5]", data[5]);
+		AddDataToJson(j, "data[6]", data[6]);
+		AddDataToJson(j, "data[7]", data[7]);
+		AddDataToJson(j, "data[8]", data[8]);
+		AddDataToJson(j, "data[9]", data[9]);
+		AddDataToJson(j, "data[10]", data[10]);
+		AddDataToJson(j, "data[11]", data[11]);
+		AddDataToJson(j, "data[12]", data[12]);
+		AddDataToJson(j, "data[13]", data[13]);
+		AddDataToJson(j, "data[14]", data[14]);
+		AddDataToJson(j, "data[15]", data[15]);
+
+		return j;
+	}
+
+	void Deserialize(const json& j)	override
+	{
+		data[0] = JsonToData<float>(j, "data[0]");
+		data[1] = JsonToData<float>(j, "data[1]");
+		data[2] = JsonToData<float>(j, "data[2]");
+		data[3] = JsonToData<float>(j, "data[3]");
+		data[4] = JsonToData<float>(j, "data[4]");
+		data[5] = JsonToData<float>(j, "data[5]");
+		data[6] = JsonToData<float>(j, "data[6]");
+		data[7] = JsonToData<float>(j, "data[7]");
+		data[8] = JsonToData<float>(j, "data[8]");
+		data[9] = JsonToData<float>(j, "data[9]");
+		data[10] = JsonToData<float>(j, "data[10]");
+		data[11] = JsonToData<float>(j, "data[11]");
+		data[12] = JsonToData<float>(j, "data[12]");
+		data[13] = JsonToData<float>(j, "data[13]");
+		data[14] = JsonToData<float>(j, "data[14]");
+		data[15] = JsonToData<float>(j, "data[15]");
+	}
 
 	inline bool IsIdentity();																		/*!< Return true if the matrix is  */
 	inline bool IsOrthogonal();																		/*!< Return true if the matrix is  */

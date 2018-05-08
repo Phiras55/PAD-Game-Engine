@@ -1,11 +1,12 @@
 #pragma once
 #include <Common.h>
+#include <Graphics/RHI/ATexture.h>
+#include <Graphics/Model/MeshData.h>
 #include <Graphics/RHI/AVertexArray.h>
 #include <Graphics/RHI/AVertexBuffer.h>
-#include <Graphics/RHI/ContextSettings.h>
-#include <Graphics/Model/MeshData.h>
 #include <Graphics/RHI/RenderSettings.h>
-#include <Graphics/RHI/ATexture.h>
+#include <Graphics/RHI/ContextSettings.h>
+#include <Graphics/RHI/Shader/AShaderManager.h>
 #include <Graphics/RHI/UniformBufferSettings.h>
 
 namespace pad {
@@ -18,8 +19,8 @@ public:
 	virtual ~IRenderer() = default;
 
 protected:
-	std::vector<uint32> m_buffers;
-	math::Vec2i			m_viewportSize;
+	math::Vec2i				m_viewportSize;
+	shad::AShaderManager*	m_shaderManager;
 
 public:
 	virtual void Init(const ContextSettings& _settings)							= 0;
@@ -46,6 +47,8 @@ public:
 		math::Vec4f* const _positions, 
 		math::Vec4f* const _directions)											= 0;
 	virtual void CreateUniformBuffer(const UniformBufferSettings& _settings)	= 0;
+
+	inline shad::AShaderManager* const GetShaderManager() { return m_shaderManager; }
 
 protected:
 	virtual void InitContext(const rhi::ContextSettings& _settings)				= 0;

@@ -22,8 +22,10 @@ HighLevelRenderer::~HighLevelRenderer()
 	delete m_mainWindow;
 }
 
-void HighLevelRenderer::Initialize(const rhi::ContextSettings& _rSettings, const win::WindowSettings& _wSettings)
+void HighLevelRenderer::Initialize(const rhi::ContextSettings& _rSettings, const win::WindowSettings& _wSettings, sys::res::MasterManager* _masterManagerHandle)
 {
+	m_masterManagerHandle = _masterManagerHandle;
+
 	switch (_wSettings.windowType)
 	{
 	case gfx::win::E_WINDOW_TYPE::SDL:
@@ -55,21 +57,55 @@ void HighLevelRenderer::Initialize(const rhi::ContextSettings& _rSettings, const
 
 	if (m_lowLevelRenderer)
 		m_lowLevelRenderer->Init(_rSettings);
+
+	InitializeDefaultMeshes();
 }
 
-void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
+void HighLevelRenderer::InitializeDefaultMeshes()
 {
-#pragma region Temp Code
-	// TODO : Change the temp camera for a main camera in the scene
-	sys::ecs::PerspectiveCamera cam;
-	cam.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-	cam.LookAt(math::Vec3f(15, 7, 7), math::Vec3f(0, 0, 0), math::Vec3f::Up());
+	pad::gfx::mod::MeshData md;
 
-	math::Mat4 vp = cam.GetProjection() * cam.GetView();
-#pragma endregion
+	md.positions = new float[24]{
+		-0.5, -0.5,  0.5,
+		0.5, -0.5,  0.5,
+		-0.5,  0.5,  0.5,
+		0.5,  0.5, -0.5,
+		-0.5, -0.5, -0.5,
+		-0.5,  0.5, -0.5,
+		0.5, -0.5, -0.5,
+		0.5,  0.5,  0.5
+	};
+	md.positionCount = 24;
 
+	md.indices = new pad::uint32[36]{
+		0, 1, 2,
+		3, 4, 5,
+		4, 3, 6,
+		7, 2, 1,
+		4, 6, 1,
+		4, 2, 5,
+		7, 1, 6,
+		5, 2, 7,
+		4, 0, 2,
+		6, 3, 7,
+		1, 0, 4,
+		7, 3, 5
+	};
+	md.indiceCount = 36;
+
+	gfx::mod::Mesh m;
+
+	GenerateMesh(m, md);
+	m_masterManagerHandle->GetMeshManager().AddResource("Default", m);
+}
+
+void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene)
+{
 	if (!m_lowLevelRenderer)
 		return;
+
+	const sys::ecs::PerspectiveCamera& cam = _scene.GetMainCamera();
+	math::Mat4 vp = cam.GetProjection() * cam.GetView();
 
 	ClearBuffers();
 
@@ -78,15 +114,14 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 	for (auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
 	{
 		const gfx::mod::Mesh* const currentMesh		= _resources.GetMeshManager().GetResource(meshRenderer->GetMeshName());
-		gfx::mod::Material* const currentMat		= _resources.GetMaterialManager().GetResource(meshRenderer->GetMaterialName());
+		const gfx::mod::Material* const currentMat	= _resources.GetMaterialManager().GetResource(meshRenderer->GetMaterialName());
 		gfx::rhi::RenderSettings& currentSettings	= meshRenderer->GetSettings();
 
 		if (!currentMesh)
 			continue;
-		//if (!currentMesh || !currentMat)
-			//continue;
 
-		//FillTextureLayout(currentSettings, *currentMat);
+		if (currentMat)
+			FillTextureLayout(currentSettings, *currentMat, _resources);
 
 		m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
 	}
@@ -94,22 +129,52 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources)
 	SwapBuffers();
 }
 
-void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, mod::Material& _mat)
+void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources)
 {
 	rhi::shad::CustomUniform uniform;
-	uniform.data = &_mat.GetAlbedoMap()->GetID();
-	uniform.type = rhi::shad::DataType::UINT;
+	rhi::ATexture** texture = _resources.GetTextureManager().GetResource(_mat.GetAlbedoMapName());
 
-	_settings.customUniforms["albedoMap"] = uniform;
+	if (texture)
+	{
+		uniform.data = (void*)&(*texture)->GetID();
+		uniform.type = rhi::shad::DataType::UINT;
 
-	uniform.data = &_mat.GetNormalMap()->GetID();
+		_settings.customUniforms["albedoMap"] = uniform;
+	}
 
-	_settings.customUniforms["normalMap"] = uniform;
+	texture = _resources.GetTextureManager().GetResource(_mat.GetNormalMapName());
+	if (texture)
+	{
+		uniform.data = (void*)&(*texture)->GetID();
 
-	uniform.data = &_mat.GetAlbedo();
+		_settings.customUniforms["normalMap"] = uniform;
+		uniform.type = rhi::shad::DataType::UINT;
+	}
+
+	uniform.data = (void*)&_mat.GetAlbedo();
 	uniform.type = rhi::shad::DataType::VEC4;
 
 	_settings.customUniforms["albedo"] = uniform;
+
+	uniform.data = (void*)&_mat.GetAmbient();
+	uniform.type = rhi::shad::DataType::VEC3;
+
+	_settings.customUniforms["ambient"] = uniform;
+
+	uniform.data = (void*)&_mat.GetDiffuse();
+	uniform.type = rhi::shad::DataType::VEC3;
+
+	_settings.customUniforms["diffuse"] = uniform;
+
+	uniform.data = (void*)&_mat.GetSpecular();
+	uniform.type = rhi::shad::DataType::VEC3;
+
+	_settings.customUniforms["specular"] = uniform;
+
+	uniform.data = (void*)&_mat.GetShiness();
+	uniform.type = rhi::shad::DataType::FLOAT;
+
+	_settings.customUniforms["shiness"] = uniform;
 }
 
 void HighLevelRenderer::GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)

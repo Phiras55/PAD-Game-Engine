@@ -21,6 +21,9 @@ public:
 	void FixedUpdate()	override;
 	void LateUpdate()	override;
 
+	json Serialize()						override;
+	void Deserialize(const json& j)			override;
+
 public:
 	inline void SetMass(const float _mass);
 
@@ -37,6 +40,7 @@ public:
 	const math::Transform& GetTransform() const override { return m_transform; }
 	math::Transform& GetTransform()				override { return m_transform; }
 	
+
 
 private:
 	btRigidBody*	m_btRigidBody;

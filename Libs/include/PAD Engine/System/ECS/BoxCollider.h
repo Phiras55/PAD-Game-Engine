@@ -1,5 +1,4 @@
 #pragma once
-
 #include <System/ECS/ACollider.h>
 #include <Utilities/Export.h>
 
@@ -17,11 +16,14 @@ private:
 	btBoxShape* m_boxShape;
 
 public:
-	void Init()			override;
-	void Start()		override;
-	void Update()		override;
-	void FixedUpdate()	override;
-	void LateUpdate()	override;
+	void Init()								override;
+	void Start()							override;
+	void Update()							override;
+	void FixedUpdate()						override;
+	void LateUpdate()						override;
+
+	json Serialize()						override;
+	void Deserialize(const json& j)			override;
 };
 
 } // namespace ecs

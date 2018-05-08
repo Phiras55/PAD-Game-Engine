@@ -33,6 +33,9 @@ public:
 	void FixedUpdate()						override;
 	void LateUpdate()						override;
 
+	json Serialize()						override;
+	void Deserialize(const json& j)			override;
+
 	void SetOwner(PADObject* const _owner)	override			{ m_owner = _owner; }
 	PADObject* const GetOwner() const		override			{ return m_owner; }
 

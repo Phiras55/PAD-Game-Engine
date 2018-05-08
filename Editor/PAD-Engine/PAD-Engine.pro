@@ -48,7 +48,8 @@ INCLUDEPATH  += \
 
 SOURCES += \
         main.cpp      \
-		padeditor.cpp
+		padeditor.cpp \
+    transformwidget.cpp
 
 HEADERS += \
        padeditor.h                                          \
@@ -68,13 +69,15 @@ HEADERS += \
         "$$HEADERPATH/PADRenderer/Graphics/RHI/*.h"         \
         "$$HEADERPATH/PADRenderer/Graphics/Window/*.h"      \
         "$$HEADERPATH/GL/*.h"                               \
-        glwidget.h
+        glwidget.h \
+    transformwidget.h
 
 RESOURCES +=\
 	style.qrc
 
 FORMS += \
-        padeditor.ui
+        padeditor.ui \
+    transformwidget.ui
 
 LIBS += \
         "$$LIBPATH/PAD Engine.lib"\

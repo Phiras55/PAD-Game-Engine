@@ -1,4 +1,5 @@
 #include "padeditor.h"
+#include "transformwidget.h"
 #include "ui_padeditor.h"
 #include "Graphics/Model/Mesh.h"
 #include <QTimer>
@@ -55,4 +56,9 @@ void PADEditor::on_projectListView_doubleClicked(const QModelIndex &index)
     qInfo( "Double Clicked..." );
     QString currentPath = FileModel->fileInfo(index).absoluteFilePath();
     ui->projectListView->setRootIndex(FileModel->setRootPath(currentPath));
+}
+
+void PADEditor::on_actionAdd_Transform_triggered()
+{
+    ui->Inspector_Content->layout()->addWidget(new TransformWidget());
 }

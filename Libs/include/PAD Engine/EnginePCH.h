@@ -11,6 +11,8 @@
 #include <direct.h>
 #include <fstream>
 #include <io.h>
+#include <type_traits>
+#include <bitset>
 
 ////////////////////////////////////////
 ////	EXTERNAL		INCLUDES	////

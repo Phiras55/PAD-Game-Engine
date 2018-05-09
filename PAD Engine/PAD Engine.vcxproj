@@ -38,14 +38,15 @@
     </ClCompile>
     <ClCompile Include="Sources\System\ECS\ACollider.cpp" />
     <ClCompile Include="Sources\System\ECS\BoxCollider.cpp" />
-    <ClCompile Include="Sources\System\ECS\ComponentsHandler.cpp" />
     <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp" />
     <ClCompile Include="Sources\System\ECS\PADObject.cpp" />
     <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp" />
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp" />
-    <ClCompile Include="Sources\System\ECS\Scene.cpp" />
     <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
-    <ClCompile Include="Sources\System\Resource\MasterManager.cpp" />
+    <ClCompile Include="Sources\System\ResourceHandling\ComponentsHandler.cpp" />
+    <ClCompile Include="Sources\System\ResourceHandling\MasterManager.cpp" />
+    <ClCompile Include="Sources\System\Scene\Scene.cpp" />
+    <ClCompile Include="Sources\System\Scene\SceneHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h" />
@@ -59,20 +60,26 @@
     <ClInclude Include="Sources\System\ECS\AComponent.h" />
     <ClInclude Include="Sources\System\ECS\BoxCollider.h" />
     <ClInclude Include="Sources\System\ECS\Camera.h" />
-    <ClInclude Include="Sources\System\ECS\ComponentsHandler.h" />
-    <ClInclude Include="Sources\System\ECS\IComponent.h" />
+    <ClInclude Include="Sources\System\ECS\AComponent.h" />
     <ClInclude Include="Sources\System\ECS\MeshRenderer.h" />
     <ClInclude Include="Sources\System\ECS\PADObject.h" />
     <ClInclude Include="Sources\System\ECS\PerspectiveCamera.h" />
     <ClInclude Include="Sources\System\ECS\RigidBody.h" />
-    <ClInclude Include="Sources\System\ECS\Scene.h" />
     <ClInclude Include="Sources\System\Physics\BulletContext.h" />
     <ClInclude Include="Sources\System\Physics\IPhysicContext.h" />
-    <ClInclude Include="Sources\System\Resource\MasterManager.h" />
-    <ClInclude Include="Sources\System\Resource\ResourceManager.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\ComponentsHandler.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\IComponentPool.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\ObjectPool.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\MasterManager.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\PoolItem.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\ResourceManager.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\SpecializedComponentPool.h" />
+    <ClInclude Include="Sources\System\Scene\Scene.h" />
+    <ClInclude Include="Sources\System\Scene\SceneHandler.h" />
     <ClInclude Include="Sources\Utilities\EnumUtils.h" />
     <ClInclude Include="Sources\Utilities\Export.h" />
     <ClInclude Include="Sources\Utilities\Randomizer.h" />
+    <ClInclude Include="Sources\Utilities\UniqueIDs.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\basicColors.frag" />

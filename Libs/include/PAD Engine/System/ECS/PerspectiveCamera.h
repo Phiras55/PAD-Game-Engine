@@ -26,10 +26,11 @@ public:
 	const math::Mat4& Perspective(float _fov, float _aspectRatio, float _near, float _far) override;
 	const math::Mat4& LookAt(const math::Vec3f& _eyePos, const math::Vec3f& _target, const math::Vec3f& _up) override;
 
-	virtual void				SetOwner(PADObject* const _owner)	{ m_owner = _owner; }
-	virtual PADObject* const	GetOwner() const					{ return m_owner; }
-
-	virtual const COMPONENT_TYPE GetType() const override { return m_type; }
+	const alias::ComponentID GetType() const override
+	{
+		return static_cast<alias::ComponentID>(
+			util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
+	}
 };
 
 } // namespace ecs

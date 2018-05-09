@@ -1,19 +1,36 @@
 #pragma once
+#include <Utilities/Export.h>
+#include <Math/Transform.h>
+#include <Json/Serialization.h>
+#include <Utilities/UniqueIDs.h>
+
 namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-class AComponent
+class PADObject;
+
+namespace alias	{
+	using ComponentID = uint8;
+}
+
+class ENGINE_API AComponent : public ISerializable
 {
 public:
+	AComponent() : m_owner(nullptr) {}
 	virtual ~AComponent() = default;
 
 public:
-	virtual void Start()		= 0;
-	virtual void Init()			= 0;
-	virtual void Update()		= 0;
-	virtual void FixedUpdate()	= 0;
-	virtual void LateUpdate()	= 0;
+	virtual void Init()								= 0;
+	virtual void Start()							= 0;
+	virtual void Update()							= 0;
+	virtual void FixedUpdate()						= 0;
+	virtual void LateUpdate()						= 0;
+
+	virtual const alias::ComponentID GetType() const = 0;
+
+protected:
+	PADObject* m_owner;
 };
 
 } // namespace ecs

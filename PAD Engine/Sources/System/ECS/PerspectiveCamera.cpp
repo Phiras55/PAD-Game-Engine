@@ -7,8 +7,6 @@ namespace ecs	{
 
 PerspectiveCamera::PerspectiveCamera()
 {
-	m_type = COMPONENT_TYPE::CAMERA;
-
 	Perspective(45, 16.f / 9.f, 0.01f, 1000.f);
 	LookAt(m_transform.Position(), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 }

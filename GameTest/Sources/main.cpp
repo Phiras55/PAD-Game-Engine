@@ -47,6 +47,8 @@ int main()
 	pad::CreateEngine();
 	pad::InitEngine(contextSettings, winSettings);
 
+	/*
+
 	#pragma region Ground
 
 	pad::sys::ecs::PADObject* ground = new pad::sys::ecs::PADObject();
@@ -55,12 +57,13 @@ int main()
 	ground_MR->GetSettings().isWireframe = true;
 	ground_MR->SetMeshName("Default");
 	ground_MR->SetMaterialName("Default");
-	ground_MR->GetTransform().SetScale(pad::math::Vec3f(10, 1, 10));
+	//ground_MR->GetTransform().SetScale(pad::math::Vec3f(10, 1, 10));
 
 	pad::sys::ecs::RigidBody*	ground_RB		= new pad::sys::ecs::RigidBody();
 	pad::sys::ecs::BoxCollider* ground_Collider = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(10, 1, 10));
 	ground_RB->SetMass(0.f);
 
+	ground->GetTransform().SetScale(pad::math::Vec3f(10.f, 1.f, 10.f));
 	ground->AddComponent(ground_MR);
 	ground->AddComponent(ground_RB);
 	ground->AddComponent(ground_Collider);
@@ -94,6 +97,8 @@ int main()
 	}
 
 	#pragma endregion
+
+	*/
 
 	pad::StartSimulation();
 	pad::DestroyEngine();

@@ -1,5 +1,6 @@
 #include <EnginePCH.h>
 #include <System/ECS/MeshRenderer.h>
+#include <System/ECS/PADObject.h>
 
 namespace pad	{
 namespace sys	{
@@ -9,10 +10,16 @@ std::vector<MeshRenderer*> MeshRenderer::m_collection;
 
 MeshRenderer::MeshRenderer()
 {
-	m_type					= COMPONENT_TYPE::MESH_RENDERER;
-	m_settings.modelMatrix	= &m_transform.GetGlobalTransform();
+	m_settings.modelMatrix	= &m_owner->GetTransform().GetGlobalTransform();
 
 	m_collection.push_back(this);
+}
+
+MeshRenderer::MeshRenderer(const std::string& _meshName, const std::string& _matName)	:
+	MeshRenderer()
+{
+	m_meshName		= _meshName;
+	m_materialName	= _matName;
 }
 
 MeshRenderer::~MeshRenderer()
@@ -27,14 +34,12 @@ void MeshRenderer::Init()
 
 void MeshRenderer::Start()
 {
-	m_transform.SetGlobalTransform(		m_owner->GetTransform().GetGlobalTransform()
-									*	m_transform.GetLocalTransform());
+
 }
 
 void MeshRenderer::Update()
 {
-	m_transform.SetGlobalTransform(		m_owner->GetTransform().GetGlobalTransform()
-									*	m_transform.GetLocalTransform());
+
 }
 
 void MeshRenderer::FixedUpdate()

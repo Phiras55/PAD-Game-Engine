@@ -1,5 +1,5 @@
 #include <EnginePCH.h>
-#include <System/Resource/MasterManager.h>
+#include <System/ResourceHandling/MasterManager.h>
 
 namespace pad	{
 namespace sys	{

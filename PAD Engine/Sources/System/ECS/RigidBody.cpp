@@ -11,7 +11,6 @@ RigidBody::RigidBody() :
 	m_btMotionState(nullptr),
 	m_btRigidBody(nullptr)
 {
-	m_type = COMPONENT_TYPE::RIGIDBODY;
 }
 
 RigidBody::~RigidBody()
@@ -24,17 +23,15 @@ RigidBody::~RigidBody()
 
 void RigidBody::Init()
 {
-	m_transform = m_owner->GetTransform();
-
 	m_btMotionState = new btDefaultMotionState();
 
 	for (auto comp : m_owner->GetComponents())
 	{
-		if (comp->GetType() == COMPONENT_TYPE::COLLIDER)
+		/*if (comp->GetType() == COMPONENT_TYPE::COLLIDER)
 		{
 			m_collider = static_cast<ACollider*>(comp);
 			break;
-		}
+		}*/
 	}
 
 	btVector3 inertia(0, 0, 0);

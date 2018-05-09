@@ -2,10 +2,11 @@
 #include <Graphics/HighLevelRenderer.h>
 #include <Graphics/RHI/RenderSettings.h>
 #include <Graphics/Model/Mesh.h>
-#include <System/ECS/Scene.h>
-#include <System/Resource/MasterManager.h>
-#include <System/Resource/ResourceManager.h>
+#include <System/Scene/Scene.h>
+#include <System/ResourceHandling/MasterManager.h>
+#include <System/ResourceHandling/ResourceManager.h>
 #include <System/Physics/IPhysicContext.h>
+#include <System/ResourceHandling/ComponentsHandler.h>
 #include <Core/Timer.h>
 
 namespace pad	{
@@ -25,6 +26,7 @@ private:
 
 	sys::ecs::Scene*			m_scene;
 	sys::res::MasterManager*	m_resourceManager;
+	sys::res::ComponentsHandler m_componentHandler;
 
 	Timer m_fixedUpdateTimer;
 

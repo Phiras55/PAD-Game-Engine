@@ -12,6 +12,12 @@ public:
 	BoxCollider(const math::Vec3f _dimention = math::Vec3f(1.f, 1.f, 1.f));
 	virtual ~BoxCollider();
 
+	const alias::ComponentID GetType() const override
+	{
+		return static_cast<alias::ComponentID>(
+			util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
+	}
+
 private:	
 	btBoxShape* m_boxShape;
 

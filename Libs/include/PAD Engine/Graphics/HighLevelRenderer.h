@@ -1,6 +1,6 @@
 #pragma once
-#include <System/ECS/Scene.h>
-#include <System/Resource/MasterManager.h>
+#include <System/Scene/Scene.h>
+#include <System/ResourceHandling/MasterManager.h>
 #include <Graphics/RHI/IRenderer.h>
 #include <Graphics/Window/AWindow.h>
 

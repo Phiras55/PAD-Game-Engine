@@ -50,6 +50,23 @@ void Engine::StartSimulation()
 	m_fixedUpdateTimer.Start();
 
 	// Test
+	sys::ecs::PADObject::SetComponentHandler(&m_componentHandler);
+
+	std::cout << m_scene->GetMasterObject()->HasComponent<sys::ecs::MeshRenderer>() << std::endl;
+	m_scene->GetMasterObject()->AddComponent<sys::ecs::MeshRenderer>();
+
+	sys::ecs::MeshRenderer* m = m_scene->GetMasterObject()->GetComponent<sys::ecs::MeshRenderer>();
+	m->SetMeshName("I am a test, please do not delete me senpai!");
+
+	std::cout << m_scene->GetMasterObject()->HasComponent<sys::ecs::MeshRenderer>() << std::endl;
+	m_scene->GetMasterObject()->RemoveComponent<sys::ecs::MeshRenderer>();
+
+	std::cout << m_scene->GetMasterObject()->HasComponent<sys::ecs::MeshRenderer>() << std::endl;
+
+	m_scene->GetMasterObject()->AddComponent<sys::ecs::MeshRenderer>(std::string("patate"), std::string("radish"));
+
+	std::cout << m_scene->GetMasterObject()->HasComponent<sys::ecs::MeshRenderer>() << std::endl;
+
 	m_scene->Serialize();
 
 	while (m_highLevelRenderer.IsWindowOpen())

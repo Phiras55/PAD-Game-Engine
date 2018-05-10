@@ -140,6 +140,8 @@ void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const 
 		uniform.type = rhi::shad::DataType::UINT;
 
 		_settings.customUniforms["albedoMap"] = uniform;
+
+		(*texture)->Bind();
 	}
 
 	texture = _resources.GetTextureManager().GetResource(_mat.GetNormalMapName());

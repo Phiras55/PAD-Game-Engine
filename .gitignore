@@ -78,6 +78,14 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.fbx
+*.PADMesh
+*.PADSkeleton
+*.PADMaterial
+libfbxsdk.lib
+libfbxsdk-mt.lib
+libfbxsdk-md.lib
+
 
 # Chutzpah Test files
 _Chutzpah*

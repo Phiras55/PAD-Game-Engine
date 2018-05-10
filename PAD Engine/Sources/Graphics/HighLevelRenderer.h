@@ -28,6 +28,9 @@ public:
 	void PollEvents();
 	void ResizeContext(const uint32 _w, const uint32 _h);
 	bool IsWindowOpen();
+	void GenerateTexture(	rhi::ATexture* const _texture,
+							const std::string& _path,
+							const rhi::TextureParameters& _param);
 
 private:
 	void ClearBuffers();

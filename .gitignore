@@ -79,6 +79,7 @@ StyleCopReport.xml
 *.svclog
 *.scc
 *.fbx
+*.png
 *.PADMesh
 *.PADSkeleton
 *.PADMaterial

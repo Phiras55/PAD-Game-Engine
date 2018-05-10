@@ -214,6 +214,18 @@ void GLRenderer::GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao,
 	vbo.BindData(_md.positions, _md.positionCount, 3, static_cast<uint8>(gfx::rhi::shad::AttribLocation::POSITION));
 	vbo.Unbind();
 
+	gfx::gl::GLVertexBuffer ubo;
+	ubo.GenerateID();
+	ubo.Bind();
+	ubo.BindData(_md.uvs, _md.uvCount, 2, static_cast<uint8>(gfx::rhi::shad::AttribLocation::UV));
+	ubo.Unbind();
+
+	gfx::gl::GLVertexBuffer nbo;
+	nbo.GenerateID();
+	nbo.Bind();
+	nbo.BindData(_md.normals, _md.normalCount, 3, static_cast<uint8>(gfx::rhi::shad::AttribLocation::NORMAL));
+	nbo.Unbind();
+
 	_ibo->GenerateID();
 	_ibo->Bind();
 	_ibo->BindData(_md.indices, _md.indiceCount);
@@ -226,7 +238,7 @@ void GLRenderer::GenerateTexture(rhi::ATexture* const _t, const std::string& _pa
 {
 	int width, height, nrChannels;
 	stbi_set_flip_vertically_on_load(_param.flipY);
-	unsigned char *data = stbi_load(_path.c_str(), &width, &height, &nrChannels, 0);
+	unsigned char *data = stbi_load(_path.c_str(), &width, &height, &nrChannels, STBI_rgb);
 
 	if (data)
 	{

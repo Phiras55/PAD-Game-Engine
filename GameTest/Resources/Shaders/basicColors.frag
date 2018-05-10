@@ -2,13 +2,17 @@
 
 uniform vec4 albedo;
 
+uniform sampler2D albedoMap;
+
 in VertexData
 {
 	vec3 color;
+	vec3 normal;
 	vec2 uv;
 } inData;
 
 void main()
 {
-    gl_FragColor = vec4(albedo.xyz, 1.f);
+	vec4 textureColor = texture(albedoMap, vec2(inData.uv.x, inData.uv.y));
+    gl_FragColor = textureColor;
 }

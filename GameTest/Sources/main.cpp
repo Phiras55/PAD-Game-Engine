@@ -10,11 +10,15 @@
 #include <Graphics/Model/MeshData.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/BoxCollider.h>
+#include <AssetParser/AssetReader.h>
+#include <AssetParser/AssetParser.h>
 
 #undef main
 
 int main()
 {
+	pad::parser::ParseFile("D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\creature_pitlord_magtheridon.fbx", "D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\");
+
 	#pragma region RenderInit
 
 	pad::gfx::win::WindowSettings winSettings;
@@ -47,12 +51,17 @@ int main()
 	pad::CreateEngine();
 	pad::InitEngine(contextSettings, winSettings);
 
+	pad::LoadResourceFile("D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\creature_giantspider_giantspider.PADMesh", "");
+	pad::LoadResourceFile("D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\creature_giantspider_giantspider_0.PADMaterial", "");
+	pad::LoadResourceFile("D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\creature_pitlord_magtheridon.PADMesh", "");
+	pad::LoadResourceFile("D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\creature_pitlord_magtheridon_0.PADMaterial", "");
+
 	#pragma region Ground
 
 	pad::sys::ecs::PADObject* ground = new pad::sys::ecs::PADObject();
 	pad::sys::ecs::MeshRenderer* ground_MR = new pad::sys::ecs::MeshRenderer();
 
-	ground_MR->GetSettings().isWireframe = true;
+	ground_MR->GetSettings().isWireframe = false;
 	ground_MR->SetMeshName("Default");
 	ground_MR->SetMaterialName("Default");
 	ground_MR->GetTransform().SetScale(pad::math::Vec3f(10, 1, 10));
@@ -76,11 +85,20 @@ int main()
 		pad::sys::ecs::PADObject* cube = new pad::sys::ecs::PADObject();
 		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i *2 +10, 0));
 		cube->GetTransform().SetRotation(pad::math::Vec3f(i * 45, i *45, i*45));
+		cube->GetTransform().SetScale(0.01);
 
 		pad::sys::ecs::MeshRenderer* cube_MR = new pad::sys::ecs::MeshRenderer();
-		cube_MR->GetSettings().isWireframe = true;
-		cube_MR->SetMeshName("Default");
-		cube_MR->SetMaterialName("Default");
+		cube_MR->GetSettings().isWireframe = false;
+		if (i % 2 == 0)
+		{
+			cube_MR->SetMeshName("creature_giantspider_giantspider");
+			cube_MR->SetMaterialName("creature_giantspider_giantspider_0");
+		}
+		else
+		{
+			cube_MR->SetMeshName("creature_pitlord_magtheridon");
+			cube_MR->SetMaterialName("creature_pitlord_magtheridon_0");
+		}
 
 		pad::sys::ecs::RigidBody*	cube_RB = new pad::sys::ecs::RigidBody();
 		pad::sys::ecs::BoxCollider* cube_Collider = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(1, 1, 1));

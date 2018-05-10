@@ -49,6 +49,8 @@ private:
 public:
 	sys::ecs::Scene* const				GetScene() const			{ return m_scene; }
 	sys::res::MasterManager* const		GetResourceManager() const	{ return m_resourceManager; }
+	const	gfx::HighLevelRenderer&		GetRenderer() const			{ return m_highLevelRenderer; }
+			gfx::HighLevelRenderer&		GetRenderer()				{ return m_highLevelRenderer; }
 
 public:
 	static sys::phx::IPhysicContext* const GetPhysicContext() { return m_physicContext; }

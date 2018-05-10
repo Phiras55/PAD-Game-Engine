@@ -233,8 +233,10 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderProgram.h" />
     <ClInclude Include="Sources\Graphics\GL\Shader\GLVertexShader.h" />
     <ClInclude Include="Sources\Graphics\Model\Material.h" />
+    <ClInclude Include="Sources\Graphics\Model\MaterialData.h" />
     <ClInclude Include="Sources\Graphics\Model\Mesh.h" />
     <ClInclude Include="Sources\Graphics\Model\MeshData.h" />
+    <ClInclude Include="Sources\Graphics\Model\TextureData.h" />
     <ClInclude Include="Sources\Graphics\RHI\ATexture.h" />
     <ClInclude Include="Sources\Graphics\RHI\AUniformBufferObject.h" />
     <ClInclude Include="Sources\Graphics\RHI\AVertexArray.h" />

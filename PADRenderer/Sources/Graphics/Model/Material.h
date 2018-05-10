@@ -12,9 +12,9 @@ public:
 	Material();
 	~Material();
 
-	Material(const Material&)	= delete;
-	Material(Material&&)		= delete;
-
+//	Material(const Material&)	= delete;
+//	Material(Material&&)		= delete;
+	
 private:
 	math::Vec4f		m_albedo;
 	math::Vec3f		m_ambient;
@@ -48,8 +48,8 @@ public:
 	inline void SetAlbedo(const float _x, const float _y, const float _z, const float _w = 1.f) { m_albedo.x = _x; m_albedo.y = _y; m_albedo.z = _z; m_albedo.w = _w; }
 
 public:
-	void operator=(const Material&) = delete;
-	void operator=(Material&&)		= delete;
+//	void operator=(const Material&) = delete;
+//	void operator=(Material&&)		= delete;
 };
 
 } // namespace mod

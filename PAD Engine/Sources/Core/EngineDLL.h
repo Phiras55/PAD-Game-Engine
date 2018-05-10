@@ -22,4 +22,6 @@ namespace pad
 	ENGINE_API void SetMainCameraTarget(const math::Vec3f& _targetPosition);
 
 	ENGINE_API void LoadResourceFile(const std::string& _filePath, const std::string& _outputPath);
+	ENGINE_API void LoadMeshFile(const std::string& _filePath);
+	ENGINE_API void LoadMaterialFile(const std::string& _filePath);
 }

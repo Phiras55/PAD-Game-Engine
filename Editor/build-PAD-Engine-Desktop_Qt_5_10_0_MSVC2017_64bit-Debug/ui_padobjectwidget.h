@@ -1,83 +1,64 @@
 /********************************************************************************
-** Form generated from reading UI file 'transformwidget.ui'
+** Form generated from reading UI file 'padobjectwidget.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.10.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_TRANSFORMWIDGET_H
-#define UI_TRANSFORMWIDGET_H
+#ifndef UI_PADOBJECTWIDGET_H
+#define UI_PADOBJECTWIDGET_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QDoubleSpinBox>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
-class Ui_TransformWidget
+class Ui_PADObjectWidget
 {
 public:
     QGridLayout *gridLayout;
-    QGroupBox *Transform;
+    QGroupBox *PadObject;
     QGridLayout *gridLayout_2;
-    QHBoxLayout *Rot;
-    QLabel *label_Rot;
-    QHBoxLayout *Rot_X;
-    QLabel *label_Rot_X;
-    QDoubleSpinBox *val_Rot_X;
-    QHBoxLayout *Rot_Y;
-    QLabel *label_Rot_Y;
-    QDoubleSpinBox *val_Rot_Y;
-    QHBoxLayout *Rot_Z;
-    QLabel *label_Rot_Z;
-    QDoubleSpinBox *val_Rot_Z;
-    QHBoxLayout *Scale;
-    QLabel *label_Scale;
-    QHBoxLayout *Scale_X;
-    QLabel *label_Scale_X;
-    QDoubleSpinBox *val_Scale_X;
-    QHBoxLayout *Scale_Y;
-    QLabel *label_Scale_Y;
-    QDoubleSpinBox *val_Scale_Y;
-    QHBoxLayout *Scale_Z;
-    QLabel *label_Scale_Z;
-    QDoubleSpinBox *val_Scale_Z;
-    QHBoxLayout *Pos;
-    QLabel *label_Pos;
-    QHBoxLayout *Pos_X;
-    QLabel *label_Pos_X;
-    QDoubleSpinBox *val_Pos_X;
-    QHBoxLayout *Pos_Y;
-    QLabel *label_Pos_Y;
-    QDoubleSpinBox *val_Pos_Y;
-    QHBoxLayout *Pos_Z;
-    QLabel *label_Pos_Z;
-    QDoubleSpinBox *val_Pos_Z;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *firstLine;
+    QHBoxLayout *Name;
+    QLabel *nameLabel;
+    QLineEdit *nameEdit;
+    QCheckBox *Static;
+    QHBoxLayout *secondLine;
+    QHBoxLayout *Tag;
+    QLabel *tagLabel;
+    QComboBox *tagComboBox;
+    QHBoxLayout *Layer;
+    QLabel *layerLabel;
+    QComboBox *layerComboBox;
 
-    void setupUi(QWidget *TransformWidget)
+    void setupUi(QWidget *PADObjectWidget)
     {
-        if (TransformWidget->objectName().isEmpty())
-            TransformWidget->setObjectName(QStringLiteral("TransformWidget"));
-        TransformWidget->setEnabled(true);
-        TransformWidget->resize(360, 140);
+        if (PADObjectWidget->objectName().isEmpty())
+            PADObjectWidget->setObjectName(QStringLiteral("PADObjectWidget"));
+        PADObjectWidget->resize(247, 94);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(TransformWidget->sizePolicy().hasHeightForWidth());
-        TransformWidget->setSizePolicy(sizePolicy);
-        TransformWidget->setMinimumSize(QSize(360, 140));
-        TransformWidget->setMaximumSize(QSize(16777215, 140));
-        TransformWidget->setFocusPolicy(Qt::StrongFocus);
-        TransformWidget->setStyleSheet(QLatin1String("QToolTip {\n"
+        sizePolicy.setHeightForWidth(PADObjectWidget->sizePolicy().hasHeightForWidth());
+        PADObjectWidget->setSizePolicy(sizePolicy);
+        PADObjectWidget->setMinimumSize(QSize(247, 94));
+        PADObjectWidget->setMaximumSize(QSize(16777215, 94));
+        PADObjectWidget->setStyleSheet(QLatin1String("QToolTip {\n"
 "    border: 1px solid #76797C;\n"
 "    background-color: #5A7566;\n"
 "    color: white;\n"
@@ -1328,303 +1309,123 @@ public:
 "    image: url(:/qss_icons/rc/down_arrow.png);\n"
 "}\n"
 ""));
-        gridLayout = new QGridLayout(TransformWidget);
+        gridLayout = new QGridLayout(PADObjectWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        Transform = new QGroupBox(TransformWidget);
-        Transform->setObjectName(QStringLiteral("Transform"));
-        Transform->setEnabled(true);
-        sizePolicy.setHeightForWidth(Transform->sizePolicy().hasHeightForWidth());
-        Transform->setSizePolicy(sizePolicy);
-        gridLayout_2 = new QGridLayout(Transform);
-        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        gridLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
-        gridLayout_2->setHorizontalSpacing(0);
-        gridLayout_2->setVerticalSpacing(10);
-        gridLayout_2->setContentsMargins(5, 5, 5, 5);
-        Rot = new QHBoxLayout();
-        Rot->setObjectName(QStringLiteral("Rot"));
-        Rot->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Rot = new QLabel(Transform);
-        label_Rot->setObjectName(QStringLiteral("label_Rot"));
-        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        gridLayout->setContentsMargins(3, 0, 3, 2);
+        PadObject = new QGroupBox(PADObjectWidget);
+        PadObject->setObjectName(QStringLiteral("PadObject"));
+        PadObject->setEnabled(true);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(label_Rot->sizePolicy().hasHeightForWidth());
-        label_Rot->setSizePolicy(sizePolicy1);
-        label_Rot->setMinimumSize(QSize(25, 0));
+        sizePolicy1.setHeightForWidth(PadObject->sizePolicy().hasHeightForWidth());
+        PadObject->setSizePolicy(sizePolicy1);
+        gridLayout_2 = new QGridLayout(PadObject);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        firstLine = new QHBoxLayout();
+        firstLine->setObjectName(QStringLiteral("firstLine"));
+        Name = new QHBoxLayout();
+        Name->setObjectName(QStringLiteral("Name"));
+        nameLabel = new QLabel(PadObject);
+        nameLabel->setObjectName(QStringLiteral("nameLabel"));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(nameLabel->sizePolicy().hasHeightForWidth());
+        nameLabel->setSizePolicy(sizePolicy2);
 
-        Rot->addWidget(label_Rot);
-
-        Rot_X = new QHBoxLayout();
-        Rot_X->setObjectName(QStringLiteral("Rot_X"));
-        Rot_X->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Rot_X = new QLabel(Transform);
-        label_Rot_X->setObjectName(QStringLiteral("label_Rot_X"));
-        sizePolicy1.setHeightForWidth(label_Rot_X->sizePolicy().hasHeightForWidth());
-        label_Rot_X->setSizePolicy(sizePolicy1);
-        label_Rot_X->setLayoutDirection(Qt::LeftToRight);
-        label_Rot_X->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        Name->addWidget(nameLabel);
 
-        Rot_X->addWidget(label_Rot_X);
+        nameEdit = new QLineEdit(PadObject);
+        nameEdit->setObjectName(QStringLiteral("nameEdit"));
+        sizePolicy.setHeightForWidth(nameEdit->sizePolicy().hasHeightForWidth());
+        nameEdit->setSizePolicy(sizePolicy);
 
-        val_Rot_X = new QDoubleSpinBox(Transform);
-        val_Rot_X->setObjectName(QStringLiteral("val_Rot_X"));
-        sizePolicy.setHeightForWidth(val_Rot_X->sizePolicy().hasHeightForWidth());
-        val_Rot_X->setSizePolicy(sizePolicy);
-        val_Rot_X->setFocusPolicy(Qt::ClickFocus);
+        Name->addWidget(nameEdit);
 
-        Rot_X->addWidget(val_Rot_X);
 
+        firstLine->addLayout(Name);
 
-        Rot->addLayout(Rot_X);
+        Static = new QCheckBox(PadObject);
+        Static->setObjectName(QStringLiteral("Static"));
+        sizePolicy2.setHeightForWidth(Static->sizePolicy().hasHeightForWidth());
+        Static->setSizePolicy(sizePolicy2);
 
-        Rot_Y = new QHBoxLayout();
-        Rot_Y->setObjectName(QStringLiteral("Rot_Y"));
-        Rot_Y->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Rot_Y = new QLabel(Transform);
-        label_Rot_Y->setObjectName(QStringLiteral("label_Rot_Y"));
-        sizePolicy1.setHeightForWidth(label_Rot_Y->sizePolicy().hasHeightForWidth());
-        label_Rot_Y->setSizePolicy(sizePolicy1);
-        label_Rot_Y->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        firstLine->addWidget(Static);
 
-        Rot_Y->addWidget(label_Rot_Y);
 
-        val_Rot_Y = new QDoubleSpinBox(Transform);
-        val_Rot_Y->setObjectName(QStringLiteral("val_Rot_Y"));
-        sizePolicy.setHeightForWidth(val_Rot_Y->sizePolicy().hasHeightForWidth());
-        val_Rot_Y->setSizePolicy(sizePolicy);
-        val_Rot_Y->setFocusPolicy(Qt::ClickFocus);
+        verticalLayout->addLayout(firstLine);
 
-        Rot_Y->addWidget(val_Rot_Y);
+        secondLine = new QHBoxLayout();
+        secondLine->setObjectName(QStringLiteral("secondLine"));
+        Tag = new QHBoxLayout();
+        Tag->setObjectName(QStringLiteral("Tag"));
+        tagLabel = new QLabel(PadObject);
+        tagLabel->setObjectName(QStringLiteral("tagLabel"));
+        sizePolicy2.setHeightForWidth(tagLabel->sizePolicy().hasHeightForWidth());
+        tagLabel->setSizePolicy(sizePolicy2);
 
+        Tag->addWidget(tagLabel);
 
-        Rot->addLayout(Rot_Y);
+        tagComboBox = new QComboBox(PadObject);
+        tagComboBox->setObjectName(QStringLiteral("tagComboBox"));
 
-        Rot_Z = new QHBoxLayout();
-        Rot_Z->setSpacing(6);
-        Rot_Z->setObjectName(QStringLiteral("Rot_Z"));
-        Rot_Z->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Rot_Z = new QLabel(Transform);
-        label_Rot_Z->setObjectName(QStringLiteral("label_Rot_Z"));
-        sizePolicy1.setHeightForWidth(label_Rot_Z->sizePolicy().hasHeightForWidth());
-        label_Rot_Z->setSizePolicy(sizePolicy1);
-        label_Rot_Z->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        Tag->addWidget(tagComboBox);
 
-        Rot_Z->addWidget(label_Rot_Z);
 
-        val_Rot_Z = new QDoubleSpinBox(Transform);
-        val_Rot_Z->setObjectName(QStringLiteral("val_Rot_Z"));
-        sizePolicy.setHeightForWidth(val_Rot_Z->sizePolicy().hasHeightForWidth());
-        val_Rot_Z->setSizePolicy(sizePolicy);
-        val_Rot_Z->setFocusPolicy(Qt::ClickFocus);
+        secondLine->addLayout(Tag);
 
-        Rot_Z->addWidget(val_Rot_Z);
+        Layer = new QHBoxLayout();
+        Layer->setObjectName(QStringLiteral("Layer"));
+        layerLabel = new QLabel(PadObject);
+        layerLabel->setObjectName(QStringLiteral("layerLabel"));
+        sizePolicy2.setHeightForWidth(layerLabel->sizePolicy().hasHeightForWidth());
+        layerLabel->setSizePolicy(sizePolicy2);
 
+        Layer->addWidget(layerLabel);
 
-        Rot->addLayout(Rot_Z);
+        layerComboBox = new QComboBox(PadObject);
+        layerComboBox->setObjectName(QStringLiteral("layerComboBox"));
 
+        Layer->addWidget(layerComboBox);
 
-        gridLayout_2->addLayout(Rot, 1, 0, 1, 1);
 
-        Scale = new QHBoxLayout();
-        Scale->setObjectName(QStringLiteral("Scale"));
-        Scale->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Scale = new QLabel(Transform);
-        label_Scale->setObjectName(QStringLiteral("label_Scale"));
-        sizePolicy1.setHeightForWidth(label_Scale->sizePolicy().hasHeightForWidth());
-        label_Scale->setSizePolicy(sizePolicy1);
-        label_Scale->setMinimumSize(QSize(25, 0));
+        secondLine->addLayout(Layer);
 
-        Scale->addWidget(label_Scale);
 
-        Scale_X = new QHBoxLayout();
-        Scale_X->setObjectName(QStringLiteral("Scale_X"));
-        Scale_X->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Scale_X = new QLabel(Transform);
-        label_Scale_X->setObjectName(QStringLiteral("label_Scale_X"));
-        sizePolicy1.setHeightForWidth(label_Scale_X->sizePolicy().hasHeightForWidth());
-        label_Scale_X->setSizePolicy(sizePolicy1);
-        label_Scale_X->setLayoutDirection(Qt::LeftToRight);
-        label_Scale_X->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        verticalLayout->addLayout(secondLine);
 
-        Scale_X->addWidget(label_Scale_X);
 
-        val_Scale_X = new QDoubleSpinBox(Transform);
-        val_Scale_X->setObjectName(QStringLiteral("val_Scale_X"));
-        sizePolicy.setHeightForWidth(val_Scale_X->sizePolicy().hasHeightForWidth());
-        val_Scale_X->setSizePolicy(sizePolicy);
-        val_Scale_X->setFocusPolicy(Qt::ClickFocus);
+        gridLayout_2->addLayout(verticalLayout, 0, 0, 1, 1);
 
-        Scale_X->addWidget(val_Scale_X);
 
+        gridLayout->addWidget(PadObject, 0, 0, 1, 1);
 
-        Scale->addLayout(Scale_X);
 
-        Scale_Y = new QHBoxLayout();
-        Scale_Y->setObjectName(QStringLiteral("Scale_Y"));
-        Scale_Y->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Scale_Y = new QLabel(Transform);
-        label_Scale_Y->setObjectName(QStringLiteral("label_Scale_Y"));
-        sizePolicy1.setHeightForWidth(label_Scale_Y->sizePolicy().hasHeightForWidth());
-        label_Scale_Y->setSizePolicy(sizePolicy1);
-        label_Scale_Y->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        retranslateUi(PADObjectWidget);
 
-        Scale_Y->addWidget(label_Scale_Y);
-
-        val_Scale_Y = new QDoubleSpinBox(Transform);
-        val_Scale_Y->setObjectName(QStringLiteral("val_Scale_Y"));
-        sizePolicy.setHeightForWidth(val_Scale_Y->sizePolicy().hasHeightForWidth());
-        val_Scale_Y->setSizePolicy(sizePolicy);
-        val_Scale_Y->setFocusPolicy(Qt::ClickFocus);
-
-        Scale_Y->addWidget(val_Scale_Y);
-
-
-        Scale->addLayout(Scale_Y);
-
-        Scale_Z = new QHBoxLayout();
-        Scale_Z->setSpacing(6);
-        Scale_Z->setObjectName(QStringLiteral("Scale_Z"));
-        Scale_Z->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Scale_Z = new QLabel(Transform);
-        label_Scale_Z->setObjectName(QStringLiteral("label_Scale_Z"));
-        sizePolicy1.setHeightForWidth(label_Scale_Z->sizePolicy().hasHeightForWidth());
-        label_Scale_Z->setSizePolicy(sizePolicy1);
-        label_Scale_Z->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        Scale_Z->addWidget(label_Scale_Z);
-
-        val_Scale_Z = new QDoubleSpinBox(Transform);
-        val_Scale_Z->setObjectName(QStringLiteral("val_Scale_Z"));
-        sizePolicy.setHeightForWidth(val_Scale_Z->sizePolicy().hasHeightForWidth());
-        val_Scale_Z->setSizePolicy(sizePolicy);
-        val_Scale_Z->setFocusPolicy(Qt::ClickFocus);
-
-        Scale_Z->addWidget(val_Scale_Z);
-
-
-        Scale->addLayout(Scale_Z);
-
-
-        gridLayout_2->addLayout(Scale, 2, 0, 1, 1);
-
-        Pos = new QHBoxLayout();
-        Pos->setObjectName(QStringLiteral("Pos"));
-        Pos->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Pos = new QLabel(Transform);
-        label_Pos->setObjectName(QStringLiteral("label_Pos"));
-        sizePolicy1.setHeightForWidth(label_Pos->sizePolicy().hasHeightForWidth());
-        label_Pos->setSizePolicy(sizePolicy1);
-        label_Pos->setMinimumSize(QSize(25, 0));
-
-        Pos->addWidget(label_Pos);
-
-        Pos_X = new QHBoxLayout();
-        Pos_X->setObjectName(QStringLiteral("Pos_X"));
-        Pos_X->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Pos_X = new QLabel(Transform);
-        label_Pos_X->setObjectName(QStringLiteral("label_Pos_X"));
-        sizePolicy1.setHeightForWidth(label_Pos_X->sizePolicy().hasHeightForWidth());
-        label_Pos_X->setSizePolicy(sizePolicy1);
-        label_Pos_X->setLayoutDirection(Qt::LeftToRight);
-        label_Pos_X->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        Pos_X->addWidget(label_Pos_X);
-
-        val_Pos_X = new QDoubleSpinBox(Transform);
-        val_Pos_X->setObjectName(QStringLiteral("val_Pos_X"));
-        sizePolicy.setHeightForWidth(val_Pos_X->sizePolicy().hasHeightForWidth());
-        val_Pos_X->setSizePolicy(sizePolicy);
-        val_Pos_X->setFocusPolicy(Qt::ClickFocus);
-
-        Pos_X->addWidget(val_Pos_X);
-
-
-        Pos->addLayout(Pos_X);
-
-        Pos_Y = new QHBoxLayout();
-        Pos_Y->setObjectName(QStringLiteral("Pos_Y"));
-        Pos_Y->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Pos_Y = new QLabel(Transform);
-        label_Pos_Y->setObjectName(QStringLiteral("label_Pos_Y"));
-        sizePolicy1.setHeightForWidth(label_Pos_Y->sizePolicy().hasHeightForWidth());
-        label_Pos_Y->setSizePolicy(sizePolicy1);
-        label_Pos_Y->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        Pos_Y->addWidget(label_Pos_Y);
-
-        val_Pos_Y = new QDoubleSpinBox(Transform);
-        val_Pos_Y->setObjectName(QStringLiteral("val_Pos_Y"));
-        sizePolicy.setHeightForWidth(val_Pos_Y->sizePolicy().hasHeightForWidth());
-        val_Pos_Y->setSizePolicy(sizePolicy);
-        val_Pos_Y->setFocusPolicy(Qt::ClickFocus);
-
-        Pos_Y->addWidget(val_Pos_Y);
-
-
-        Pos->addLayout(Pos_Y);
-
-        Pos_Z = new QHBoxLayout();
-        Pos_Z->setSpacing(6);
-        Pos_Z->setObjectName(QStringLiteral("Pos_Z"));
-        Pos_Z->setSizeConstraint(QLayout::SetDefaultConstraint);
-        label_Pos_Z = new QLabel(Transform);
-        label_Pos_Z->setObjectName(QStringLiteral("label_Pos_Z"));
-        sizePolicy1.setHeightForWidth(label_Pos_Z->sizePolicy().hasHeightForWidth());
-        label_Pos_Z->setSizePolicy(sizePolicy1);
-        label_Pos_Z->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-
-        Pos_Z->addWidget(label_Pos_Z);
-
-        val_Pos_Z = new QDoubleSpinBox(Transform);
-        val_Pos_Z->setObjectName(QStringLiteral("val_Pos_Z"));
-        sizePolicy.setHeightForWidth(val_Pos_Z->sizePolicy().hasHeightForWidth());
-        val_Pos_Z->setSizePolicy(sizePolicy);
-        val_Pos_Z->setFocusPolicy(Qt::ClickFocus);
-
-        Pos_Z->addWidget(val_Pos_Z);
-
-
-        Pos->addLayout(Pos_Z);
-
-
-        gridLayout_2->addLayout(Pos, 0, 0, 1, 1);
-
-
-        gridLayout->addWidget(Transform, 0, 0, 1, 1);
-
-
-        retranslateUi(TransformWidget);
-
-        QMetaObject::connectSlotsByName(TransformWidget);
+        QMetaObject::connectSlotsByName(PADObjectWidget);
     } // setupUi
 
-    void retranslateUi(QWidget *TransformWidget)
+    void retranslateUi(QWidget *PADObjectWidget)
     {
-        TransformWidget->setWindowTitle(QApplication::translate("TransformWidget", "Form", nullptr));
-        Transform->setTitle(QApplication::translate("TransformWidget", "Transform", nullptr));
-        label_Rot->setText(QApplication::translate("TransformWidget", "Rot", nullptr));
-        label_Rot_X->setText(QApplication::translate("TransformWidget", "X", nullptr));
-        label_Rot_Y->setText(QApplication::translate("TransformWidget", "Y", nullptr));
-        label_Rot_Z->setText(QApplication::translate("TransformWidget", "Z", nullptr));
-        label_Scale->setText(QApplication::translate("TransformWidget", "Scale", nullptr));
-        label_Scale_X->setText(QApplication::translate("TransformWidget", "X", nullptr));
-        label_Scale_Y->setText(QApplication::translate("TransformWidget", "Y", nullptr));
-        label_Scale_Z->setText(QApplication::translate("TransformWidget", "Z", nullptr));
-        label_Pos->setText(QApplication::translate("TransformWidget", "Pos", nullptr));
-        label_Pos_X->setText(QApplication::translate("TransformWidget", "X", nullptr));
-        label_Pos_Y->setText(QApplication::translate("TransformWidget", "Y", nullptr));
-        label_Pos_Z->setText(QApplication::translate("TransformWidget", "Z", nullptr));
+        PADObjectWidget->setWindowTitle(QApplication::translate("PADObjectWidget", "Form", nullptr));
+        PadObject->setTitle(QApplication::translate("PADObjectWidget", "PadObject", nullptr));
+        nameLabel->setText(QApplication::translate("PADObjectWidget", "Name", nullptr));
+        Static->setText(QApplication::translate("PADObjectWidget", "Static", nullptr));
+        tagLabel->setText(QApplication::translate("PADObjectWidget", "Tag", nullptr));
+        layerLabel->setText(QApplication::translate("PADObjectWidget", "Layer", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class TransformWidget: public Ui_TransformWidget {};
+    class PADObjectWidget: public Ui_PADObjectWidget {};
 } // namespace Ui
 
 QT_END_NAMESPACE
 
-#endif // UI_TRANSFORMWIDGET_H
+#endif // UI_PADOBJECTWIDGET_H

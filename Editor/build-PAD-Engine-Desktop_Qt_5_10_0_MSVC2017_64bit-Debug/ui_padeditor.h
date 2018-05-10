@@ -34,6 +34,7 @@ class Ui_PADEditor
 {
 public:
     QAction *actionAdd_Transform;
+    QAction *actionAdd_PadInfos;
     QWidget *centralWidget;
     QMenuBar *menuBar;
     QMenu *menuFile;
@@ -53,6 +54,7 @@ public:
     QGridLayout *gridLayout_3;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
+    QGridLayout *gridLayout_6;
     QDockWidget *Project_View;
     QWidget *Project_View_Content;
     QGridLayout *gridLayout_2;
@@ -1324,6 +1326,8 @@ public:
         PADEditor->setDockNestingEnabled(false);
         actionAdd_Transform = new QAction(PADEditor);
         actionAdd_Transform->setObjectName(QStringLiteral("actionAdd_Transform"));
+        actionAdd_PadInfos = new QAction(PADEditor);
+        actionAdd_PadInfos->setObjectName(QStringLiteral("actionAdd_PadInfos"));
         centralWidget = new QWidget(PADEditor);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setStyleSheet(QStringLiteral(""));
@@ -1376,7 +1380,7 @@ public:
         PADEditor->addDockWidget(static_cast<Qt::DockWidgetArea>(1), Hierarchy);
         Inspector = new QDockWidget(PADEditor);
         Inspector->setObjectName(QStringLiteral("Inspector"));
-        QSizePolicy sizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(Inspector->sizePolicy().hasHeightForWidth());
@@ -1391,10 +1395,23 @@ public:
         gridLayout_3->setContentsMargins(0, 0, 0, 0);
         scrollArea = new QScrollArea(Inspector_Content);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        sizePolicy.setHeightForWidth(scrollArea->sizePolicy().hasHeightForWidth());
+        scrollArea->setSizePolicy(sizePolicy);
+        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
         scrollArea->setWidgetResizable(true);
+        scrollArea->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 222, 382));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 374, 382));
+        sizePolicy.setHeightForWidth(scrollAreaWidgetContents->sizePolicy().hasHeightForWidth());
+        scrollAreaWidgetContents->setSizePolicy(sizePolicy);
+        gridLayout_6 = new QGridLayout(scrollAreaWidgetContents);
+        gridLayout_6->setSpacing(0);
+        gridLayout_6->setContentsMargins(11, 11, 11, 11);
+        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
+        gridLayout_6->setSizeConstraint(QLayout::SetDefaultConstraint);
+        gridLayout_6->setContentsMargins(0, 0, 0, 0);
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         gridLayout_3->addWidget(scrollArea, 0, 0, 1, 1);
@@ -1449,6 +1466,7 @@ public:
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuEdit->menuAction());
         menuBar->addAction(menuView->menuAction());
+        menuView->addAction(actionAdd_PadInfos);
         menuView->addAction(actionAdd_Transform);
 
         retranslateUi(PADEditor);
@@ -1460,6 +1478,7 @@ public:
     {
         PADEditor->setWindowTitle(QApplication::translate("PADEditor", "PADEditor", nullptr));
         actionAdd_Transform->setText(QApplication::translate("PADEditor", "Add Transform", nullptr));
+        actionAdd_PadInfos->setText(QApplication::translate("PADEditor", "Add PadInfos", nullptr));
         menuFile->setTitle(QApplication::translate("PADEditor", "File", nullptr));
         menuEdit->setTitle(QApplication::translate("PADEditor", "Edit", nullptr));
         menuView->setTitle(QApplication::translate("PADEditor", "View", nullptr));

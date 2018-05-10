@@ -23,6 +23,8 @@ private slots:
 
     void on_actionAdd_Transform_triggered();
 
+    void on_actionAdd_PadInfos_triggered();
+
 private:
     Ui::PADEditor *ui;
 

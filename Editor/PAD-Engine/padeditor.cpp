@@ -1,5 +1,6 @@
 #include "padeditor.h"
 #include "transformwidget.h"
+#include "padobjectwidget.h"
 #include "ui_padeditor.h"
 #include "Graphics/Model/Mesh.h"
 #include <QTimer>
@@ -47,18 +48,21 @@ PADEditor::~PADEditor()
 
 void PADEditor::on_projectTreeView_clicked(const QModelIndex &index)
 {
-    qInfo( "Clicked..." );
     ui->projectListView->setRootIndex(FileModel->setRootPath(DirModel->fileInfo(index).absoluteFilePath()));
 }
 
 void PADEditor::on_projectListView_doubleClicked(const QModelIndex &index)
 {
-    qInfo( "Double Clicked..." );
     QString currentPath = FileModel->fileInfo(index).absoluteFilePath();
     ui->projectListView->setRootIndex(FileModel->setRootPath(currentPath));
 }
 
 void PADEditor::on_actionAdd_Transform_triggered()
 {
-    ui->Inspector_Content->layout()->addWidget(new TransformWidget());
+    ui->scrollAreaWidgetContents->layout()->addWidget(new TransformWidget());
+}
+
+void PADEditor::on_actionAdd_PadInfos_triggered()
+{
+    ui->scrollAreaWidgetContents->layout()->addWidget(new PADObjectWidget());
 }

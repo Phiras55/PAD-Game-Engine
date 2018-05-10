@@ -34,13 +34,11 @@ public:
 public slots:
     inline void Update()
     {
-        qInfo( "Update..." );
         pad::Simulate();
     }
 private:
     inline void paintGL() override
     {
-        qInfo( "paintGL..." );
         pad::Simulate();
     }
 };

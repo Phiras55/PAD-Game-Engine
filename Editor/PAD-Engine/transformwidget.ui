@@ -31,6 +31,9 @@
     <height>140</height>
    </size>
   </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -1259,6 +1262,9 @@ QDateEdit::down-arrow:focus {
 </string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetDefaultConstraint</enum>
+   </property>
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -1287,7 +1293,7 @@ QDateEdit::down-arrow:focus {
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <property name="sizeConstraint">
-       <enum>QLayout::SetFixedSize</enum>
+       <enum>QLayout::SetDefaultConstraint</enum>
       </property>
       <property name="leftMargin">
        <number>5</number>
@@ -1334,7 +1340,7 @@ QDateEdit::down-arrow:focus {
         <item>
          <layout class="QHBoxLayout" name="Rot_X">
           <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
+           <enum>QLayout::SetDefaultConstraint</enum>
           </property>
           <item>
            <widget class="QLabel" name="label_Rot_X">
@@ -1358,10 +1364,13 @@ QDateEdit::down-arrow:focus {
           <item>
            <widget class="QDoubleSpinBox" name="val_Rot_X">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
            </widget>
           </item>
@@ -1370,7 +1379,7 @@ QDateEdit::down-arrow:focus {
         <item>
          <layout class="QHBoxLayout" name="Rot_Y">
           <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
+           <enum>QLayout::SetDefaultConstraint</enum>
           </property>
           <item>
            <widget class="QLabel" name="label_Rot_Y">
@@ -1391,10 +1400,13 @@ QDateEdit::down-arrow:focus {
           <item>
            <widget class="QDoubleSpinBox" name="val_Rot_Y">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
            </widget>
           </item>
@@ -1406,7 +1418,7 @@ QDateEdit::down-arrow:focus {
            <number>6</number>
           </property>
           <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
+           <enum>QLayout::SetDefaultConstraint</enum>
           </property>
           <item>
            <widget class="QLabel" name="label_Rot_Z">
@@ -1427,10 +1439,13 @@ QDateEdit::down-arrow:focus {
           <item>
            <widget class="QDoubleSpinBox" name="val_Rot_Z">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
            </widget>
           </item>
@@ -1465,7 +1480,7 @@ QDateEdit::down-arrow:focus {
         <item>
          <layout class="QHBoxLayout" name="Scale_X">
           <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
+           <enum>QLayout::SetDefaultConstraint</enum>
           </property>
           <item>
            <widget class="QLabel" name="label_Scale_X">
@@ -1489,10 +1504,13 @@ QDateEdit::down-arrow:focus {
           <item>
            <widget class="QDoubleSpinBox" name="val_Scale_X">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
            </widget>
           </item>
@@ -1501,7 +1519,7 @@ QDateEdit::down-arrow:focus {
         <item>
          <layout class="QHBoxLayout" name="Scale_Y">
           <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
+           <enum>QLayout::SetDefaultConstraint</enum>
           </property>
           <item>
            <widget class="QLabel" name="label_Scale_Y">
@@ -1522,10 +1540,13 @@ QDateEdit::down-arrow:focus {
           <item>
            <widget class="QDoubleSpinBox" name="val_Scale_Y">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
            </widget>
           </item>
@@ -1537,7 +1558,7 @@ QDateEdit::down-arrow:focus {
            <number>6</number>
           </property>
           <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
+           <enum>QLayout::SetDefaultConstraint</enum>
           </property>
           <item>
            <widget class="QLabel" name="label_Scale_Z">
@@ -1558,10 +1579,13 @@ QDateEdit::down-arrow:focus {
           <item>
            <widget class="QDoubleSpinBox" name="val_Scale_Z">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
            </widget>
           </item>
@@ -1596,7 +1620,7 @@ QDateEdit::down-arrow:focus {
         <item>
          <layout class="QHBoxLayout" name="Pos_X">
           <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
+           <enum>QLayout::SetDefaultConstraint</enum>
           </property>
           <item>
            <widget class="QLabel" name="label_Pos_X">
@@ -1620,10 +1644,13 @@ QDateEdit::down-arrow:focus {
           <item>
            <widget class="QDoubleSpinBox" name="val_Pos_X">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
            </widget>
           </item>
@@ -1632,7 +1659,7 @@ QDateEdit::down-arrow:focus {
         <item>
          <layout class="QHBoxLayout" name="Pos_Y">
           <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
+           <enum>QLayout::SetDefaultConstraint</enum>
           </property>
           <item>
            <widget class="QLabel" name="label_Pos_Y">
@@ -1653,10 +1680,13 @@ QDateEdit::down-arrow:focus {
           <item>
            <widget class="QDoubleSpinBox" name="val_Pos_Y">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
            </widget>
           </item>
@@ -1668,7 +1698,7 @@ QDateEdit::down-arrow:focus {
            <number>6</number>
           </property>
           <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
+           <enum>QLayout::SetDefaultConstraint</enum>
           </property>
           <item>
            <widget class="QLabel" name="label_Pos_Z">
@@ -1689,10 +1719,13 @@ QDateEdit::down-arrow:focus {
           <item>
            <widget class="QDoubleSpinBox" name="val_Pos_Z">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
             </property>
            </widget>
           </item>

@@ -19,7 +19,6 @@ PADEditor::PADEditor(QWidget *parent) :
     setCentralWidget(ui->OpenGl);
     setDockNestingEnabled(true);
 
-
     QString contentPath = "../";
     DirModel = new QFileSystemModel(this);
     DirModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);

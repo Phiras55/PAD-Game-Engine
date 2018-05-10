@@ -26,6 +26,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QTreeView>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -54,7 +55,7 @@ public:
     QGridLayout *gridLayout_3;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QGridLayout *gridLayout_6;
+    QVBoxLayout *verticalLayout;
     QDockWidget *Project_View;
     QWidget *Project_View_Content;
     QGridLayout *gridLayout_2;
@@ -710,14 +711,14 @@ public:
 "QAbstractSpinBox:up-button {\n"
 "    background-color: transparent;\n"
 "    subcontrol-origin: border;\n"
-"    subcontrol-position: center right;\n"
+"    subcontrol-position: top right;\n"
 "}\n"
 "\n"
 "QAbstractSpinBox:down-button {\n"
 "    background-color: transparent;\n"
-" "
-                        "   subcontrol-origin: border;\n"
-"    subcontrol-position: center left;\n"
+"    "
+                        "subcontrol-origin: border;\n"
+"    subcontrol-position: bottom right;\n"
 "}\n"
 "\n"
 "QAbstractSpinBox::up-arrow,\n"
@@ -759,8 +760,8 @@ public:
 "}\n"
 "\n"
 "QTabWidget::tab-bar {\n"
-"    /* left: 5px; move"
-                        " to the right by 5px */\n"
+"    /* left: 5px; move t"
+                        "o the right by 5px */\n"
 "}\n"
 "\n"
 "QTabBar {\n"
@@ -805,8 +806,8 @@ public:
 "    color: #eff0f1;\n"
 "    background-color: #54575B;\n"
 "    border: 1px solid #76797C;\n"
-""
-                        "    border-bottom: 2px solid #3daee9;\n"
+" "
+                        "   border-bottom: 2px solid #3daee9;\n"
 "    border-top-left-radius: 2px;\n"
 "    border-top-right-radius: 2px;\n"
 "}\n"
@@ -848,8 +849,8 @@ public:
 "QTabBar::tab:left {\n"
 "    color: #eff0f1;\n"
 "    border: 1px solid #76797C;\n"
-"    border-left: "
-                        "1px transparent black;\n"
+"    border-left: 1"
+                        "px transparent black;\n"
 "    background-color: #31363b;\n"
 "    padding: 5px;\n"
 "    border-top-right-radius: 2px;\n"
@@ -888,8 +889,8 @@ public:
 "    color: #eff0f1;\n"
 "    background-color: #54575B;\n"
 "    border: 1px solid #76797C;\n"
-"    border-right: 2px s"
-                        "olid #3daee9;\n"
+"    border-right: 2px so"
+                        "lid #3daee9;\n"
 "    border-top-left-radius: 2px;\n"
 "    border-bottom-left-radius: 2px;\n"
 "}\n"
@@ -1334,7 +1335,7 @@ public:
         PADEditor->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(PADEditor);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1280, 20));
+        menuBar->setGeometry(QRect(0, 0, 1280, 21));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuEdit = new QMenu(menuBar);
@@ -1397,21 +1398,22 @@ public:
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
         sizePolicy.setHeightForWidth(scrollArea->sizePolicy().hasHeightForWidth());
         scrollArea->setSizePolicy(sizePolicy);
+        scrollArea->setFocusPolicy(Qt::NoFocus);
         scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         scrollArea->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
         scrollArea->setWidgetResizable(true);
         scrollArea->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 374, 382));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 92, 365));
         sizePolicy.setHeightForWidth(scrollAreaWidgetContents->sizePolicy().hasHeightForWidth());
         scrollAreaWidgetContents->setSizePolicy(sizePolicy);
-        gridLayout_6 = new QGridLayout(scrollAreaWidgetContents);
-        gridLayout_6->setSpacing(0);
-        gridLayout_6->setContentsMargins(11, 11, 11, 11);
-        gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
-        gridLayout_6->setSizeConstraint(QLayout::SetDefaultConstraint);
-        gridLayout_6->setContentsMargins(0, 0, 0, 0);
+        scrollAreaWidgetContents->setFocusPolicy(Qt::NoFocus);
+        verticalLayout = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         gridLayout_3->addWidget(scrollArea, 0, 0, 1, 1);

@@ -22,6 +22,7 @@
     <ClCompile Include="Sources\Core\Engine.cpp" />
     <ClCompile Include="Sources\Core\EngineClock.cpp" />
     <ClCompile Include="Sources\Core\EngineDLL.cpp" />
+    <ClCompile Include="Sources\Core\IDHandler.cpp" />
     <ClCompile Include="Sources\Core\IDPool.cpp" />
     <ClCompile Include="Sources\Core\Timer.cpp" />
     <ClCompile Include="Sources\Graphics\HighLevelRenderer.cpp" />
@@ -52,6 +53,7 @@
     <ClInclude Include="Sources\Core\Engine.h" />
     <ClInclude Include="Sources\Core\EngineClock.h" />
     <ClInclude Include="Sources\Core\EngineDLL.h" />
+    <ClInclude Include="Sources\Core\IDHandler.h" />
     <ClInclude Include="Sources\Core\IDPool.h" />
     <ClInclude Include="Sources\Core\Timer.h" />
     <ClInclude Include="Sources\Graphics\HighLevelRenderer.h" />

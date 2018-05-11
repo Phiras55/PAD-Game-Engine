@@ -10,16 +10,17 @@ class ENGINE_API BoxCollider final : public ACollider
 {
 public:
 	BoxCollider(const math::Vec3f _dimention = math::Vec3f(1.f, 1.f, 1.f));
+	BoxCollider(const BoxCollider& _other);
 	virtual ~BoxCollider();
 
 	const alias::ComponentID GetType() const override
 	{
-		return static_cast<alias::ComponentID>(
-			util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
+		return m_id;
 	}
 
 private:	
-	btBoxShape* m_boxShape;
+	btBoxShape*					m_boxShape;
+	static alias::ComponentID	m_id;
 
 public:
 	void Init()								override;
@@ -30,6 +31,9 @@ public:
 
 	json Serialize()						override;
 	void Deserialize(const json& j)			override;
+
+public:
+	void operator=(const BoxCollider& _other);
 };
 
 } // namespace ecs

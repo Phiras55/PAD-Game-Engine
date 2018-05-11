@@ -28,9 +28,11 @@ public:
 
 	const alias::ComponentID GetType() const override
 	{
-		return static_cast<alias::ComponentID>(
-			util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
+		return m_id;
 	}
+
+private:
+	static alias::ComponentID m_id;
 };
 
 } // namespace ecs

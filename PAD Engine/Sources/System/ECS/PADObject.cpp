@@ -10,7 +10,8 @@ res::ComponentsHandler*	PADObject::m_componentHandlerHandle = nullptr;
 
 PADObject::PADObject() :
 	m_parent(nullptr),
-	m_dontDestroy(false)
+	m_dontDestroy(false),
+	m_collider(nullptr)
 {
 	m_components.reserve(MAX_COMPONENT_COUNT);
 	m_components.resize(MAX_COMPONENT_COUNT);
@@ -28,6 +29,12 @@ PADObject::~PADObject()
 	if (m_parent)
 		m_parent->RemoveChild(this);
 
+	for (int i = 0, count = m_components.size(); i < count; ++i)
+	{
+		if (m_hasComponent[i] && m_components[i])
+			m_componentHandlerHandle->RemoveComponent(m_components[i], m_components[i]->GetType());
+	}
+
 	for (PADObject* so : m_childs)
 	{
 		so->m_parent = nullptr;
@@ -35,13 +42,32 @@ PADObject::~PADObject()
 	}
 }
 
+void PADObject::SetParent(PADObject* const _parent)
+{
+	/*if (m_parent)
+		m_parent->RemoveChild(this);
+
+	_parent->AddChild(this);*/
+
+	m_parent = _parent;
+	
+	if (m_parent)
+		m_parent->AddChild(this);
+}
+
 void PADObject::AddChild(PADObject* const _child)
 {
-	if (_child->m_parent)
+	/*if (_child->m_parent)
 		_child->m_parent->RemoveChild(_child);
 
 	_child->m_parent = this;
-	m_childs.push_back(_child);
+	m_childs.push_back(_child);*/
+
+	if (_child)
+	{
+		m_childs.push_back(_child);
+		m_childs.unique();
+	}
 }
 
 void PADObject::RemoveChild(PADObject* const _child)
@@ -65,8 +91,9 @@ void PADObject::Update()
 
 void PADObject::FixedUpdate()
 {
-	//for (AComponent* comp : m_components)
-		//comp->FixedUpdate();
+	for (AComponent* const comp : m_components)
+		if(comp)
+			comp->FixedUpdate();
 
 	for (PADObject* so : m_childs)
 		so->FixedUpdate();
@@ -74,8 +101,9 @@ void PADObject::FixedUpdate()
 
 void PADObject::LateUpdate()
 {
-	//for (AComponent* comp : m_components)
-		//comp->LateUpdate();
+	for (AComponent* const comp : m_components)
+		if (comp)
+			comp->LateUpdate();
 
 	for (PADObject* so : m_childs)
 		so->LateUpdate();
@@ -83,8 +111,9 @@ void PADObject::LateUpdate()
 
 void PADObject::Init()
 {
-	//for (AComponent* comp : m_components)
-		//comp->Init();
+	for (AComponent* const comp : m_components)
+		if (comp)
+			comp->Init();
 
 	for (PADObject* so : m_childs)
 		so->Init();
@@ -100,19 +129,12 @@ void PADObject::Start()
 	else
 		m_transform.SetGlobalTransform(m_transform.GetLocalTransform());
 
-	//for (AComponent* comp : m_components)
-		//comp->Start();
+	for (AComponent* const comp : m_components)
+		if (comp)
+			comp->Start();
 
 	for (PADObject* so : m_childs)
 		so->Start();
-}
-
-void PADObject::SetParent(PADObject* const _parent)
-{
-	if (m_parent)
-		m_parent->RemoveChild(this);
-
-	_parent->AddChild(this);
 }
 
 json PADObject::Serialize()

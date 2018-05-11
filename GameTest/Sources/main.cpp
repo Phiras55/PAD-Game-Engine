@@ -47,58 +47,33 @@ int main()
 	pad::CreateEngine();
 	pad::InitEngine(contextSettings, winSettings);
 
-	/*
+	pad::sys::ecs::PADObject* plat = pad::CreatePADObject("Platform");
+	plat->AddComponent<pad::sys::ecs::MeshRenderer>("Default", "Default");
 
-	#pragma region Ground
+	plat->GetTransform().SetScale(pad::math::Vec3f(10.f, 1.f, 10.f));
 
-	pad::sys::ecs::PADObject* ground = new pad::sys::ecs::PADObject();
-	pad::sys::ecs::MeshRenderer* ground_MR = new pad::sys::ecs::MeshRenderer();
+	pad::sys::ecs::MeshRenderer* mr = plat->GetComponent<pad::sys::ecs::MeshRenderer>();
+	mr->GetSettings().isWireframe	= true;
 
-	ground_MR->GetSettings().isWireframe = true;
-	ground_MR->SetMeshName("Default");
-	ground_MR->SetMaterialName("Default");
-	//ground_MR->GetTransform().SetScale(pad::math::Vec3f(10, 1, 10));
-
-	pad::sys::ecs::RigidBody*	ground_RB		= new pad::sys::ecs::RigidBody();
-	pad::sys::ecs::BoxCollider* ground_Collider = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(10, 1, 10));
-	ground_RB->SetMass(0.f);
-
-	ground->GetTransform().SetScale(pad::math::Vec3f(10.f, 1.f, 10.f));
-	ground->AddComponent(ground_MR);
-	ground->AddComponent(ground_RB);
-	ground->AddComponent(ground_Collider);
-
-	pad::AddPADObject(ground);
-
-	#pragma endregion
-
-	#pragma region Falling Cube
+	plat->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(10.f, 1.f, 10.f));
+	plat->AddComponent<pad::sys::ecs::RigidBody>();
+	pad::sys::ecs::RigidBody* rb = plat->GetComponent<pad::sys::ecs::RigidBody>();
+	rb->SetMass(0.f);
 
 	for (int i = 0; i < 10; ++i)
 	{
-		pad::sys::ecs::PADObject* cube = new pad::sys::ecs::PADObject();
-		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i *2 +10, 0));
-		cube->GetTransform().SetRotation(pad::math::Vec3f(i * 45, i *45, i*45));
+		pad::sys::ecs::PADObject* cube = pad::CreatePADObject(std::string("Cube_0") + std::to_string(i));
 
-		pad::sys::ecs::MeshRenderer* cube_MR = new pad::sys::ecs::MeshRenderer();
-		cube_MR->GetSettings().isWireframe = true;
-		cube_MR->SetMeshName("Default");
-		cube_MR->SetMaterialName("Default");
+		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i * 2 + 10, 0));
+		cube->GetTransform().SetRotation(pad::math::Vec3f(i * 45, i * 45, i * 45));
 
-		pad::sys::ecs::RigidBody*	cube_RB = new pad::sys::ecs::RigidBody();
-		pad::sys::ecs::BoxCollider* cube_Collider = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(1, 1, 1));
-		cube_RB->SetMass(10.f);
+		cube->AddComponent<pad::sys::ecs::MeshRenderer>("Default", "Default");
+		cube->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(1.f, 1.f, 1.f));
+		cube->AddComponent<pad::sys::ecs::RigidBody>();
 
-		cube->AddComponent(cube_MR);
-		cube->AddComponent(cube_RB);
-		cube->AddComponent(cube_Collider);
-
-		pad::AddPADObject(cube);
+		rb = cube->GetComponent<pad::sys::ecs::RigidBody>();
+		rb->SetMass(10.f);
 	}
-
-	#pragma endregion
-
-	*/
 
 	pad::StartSimulation();
 	pad::DestroyEngine();

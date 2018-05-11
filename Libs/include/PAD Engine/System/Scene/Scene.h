@@ -27,9 +27,16 @@ public:
 	void FixedUpdate();
 	void LateUpdate();
 	void AddPADObject(PADObject* _PADObject);
+
+	PADObject*	GetPADObject(const std::string& _name, PADObject* const _rootSearch = nullptr);
+	PADObject*	CreatePADObject(const std::string& _name, PADObject* const _parent = nullptr);
+	void		DeletePADObject(const std::string& _name, PADObject* const _rootSearch = nullptr);
 	
 	json Serialize()				override;
 	void Deserialize(const json& j)	override;
+
+private:
+	PADObject* FindPADObject(const std::string& _name, PADObject* const _rootSearch = nullptr);
 
 public:
 	inline PADObject* const		GetMasterObject()	{ return m_masterPADObject; }

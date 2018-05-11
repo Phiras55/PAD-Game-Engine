@@ -27,7 +27,6 @@ public:
 
 	~ObjectPool()
 	{
-
 	}
 
 	T_type& GetItem()
@@ -39,6 +38,7 @@ public:
 
 		PoolItem<T_type>* first = m_firstAvailable;
 		m_firstAvailable = first->next;
+		AddActive(&first->data);
 		return first->data;
 	}
 
@@ -50,10 +50,17 @@ public:
 			{
 				PoolItem<T_type>* itemFound = &m_pool[i];
 				itemFound->next = m_firstAvailable;
+				RemoveActive(&m_pool[i].data);
 
 				m_firstAvailable = itemFound;
+				break;
 			}
 		}
+	}
+
+	std::list<T_type*>& GetActivePool()
+	{
+		return m_activePool;
 	}
 
 private:
@@ -76,8 +83,19 @@ private:
 		SetLastNextNull();
 	}
 
+	void AddActive(T_type* const _item)
+	{
+		m_activePool.push_back(_item);
+	}
+
+	void RemoveActive(T_type* const _item)
+	{
+		m_activePool.remove(_item);
+	}
+
 private:
 	std::vector<PoolItem<T_type>>	m_pool;
+	std::list<T_type*>				m_activePool;
 	PoolItem<T_type>*				m_firstAvailable;
 };
 

@@ -99,7 +99,7 @@ void HighLevelRenderer::InitializeDefaultMeshes()
 	m_masterManagerHandle->GetMeshManager().AddResource("Default", m);
 }
 
-void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene)
+void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene, sys::res::ComponentsHandler& _components)
 {
 	if (!m_lowLevelRenderer)
 		return;
@@ -111,19 +111,27 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Sc
 
 	m_lowLevelRenderer->SetCameraUniformBufferData(math::Vec3f(), math::Vec3f(), vp);
 
-	for (auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
+	std::list<sys::ecs::MeshRenderer*>* mr = _components.GetActiveComponents<sys::ecs::MeshRenderer>();
+
+	if (mr)
 	{
-		const gfx::mod::Mesh* const currentMesh		= _resources.GetMeshManager().GetResource(meshRenderer->GetMeshName());
-		const gfx::mod::Material* const currentMat	= _resources.GetMaterialManager().GetResource(meshRenderer->GetMaterialName());
-		gfx::rhi::RenderSettings& currentSettings	= meshRenderer->GetSettings();
+		for (auto& meshRenderer : *mr)
+		{
+			const gfx::mod::Mesh* const currentMesh		= _resources.GetMeshManager().GetResource(meshRenderer->GetMeshName());
+			const gfx::mod::Material* const currentMat	= _resources.GetMaterialManager().GetResource(meshRenderer->GetMaterialName());
+			gfx::rhi::RenderSettings& currentSettings	= meshRenderer->GetSettings();
 
-		if (!currentMesh)
-			continue;
+			if (!currentMesh)
+				continue;
 
-		if (currentMat)
-			FillTextureLayout(currentSettings, *currentMat, _resources);
+			if (currentMat)
+				FillTextureLayout(currentSettings, *currentMat, _resources);
 
-		m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
+			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
+
+			if (currentMat)
+				UnbindTextures(currentSettings, *currentMat, _resources);
+		}
 	}
 
 	SwapBuffers();
@@ -136,6 +144,7 @@ void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const 
 
 	if (texture)
 	{
+		(*texture)->Bind();
 		uniform.data = (void*)&(*texture)->GetID();
 		uniform.type = rhi::shad::DataType::UINT;
 
@@ -145,6 +154,7 @@ void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const 
 	texture = _resources.GetTextureManager().GetResource(_mat.GetNormalMapName());
 	if (texture)
 	{
+		(*texture)->Bind();
 		uniform.data = (void*)&(*texture)->GetID();
 
 		_settings.customUniforms["normalMap"] = uniform;
@@ -175,6 +185,22 @@ void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const 
 	uniform.type = rhi::shad::DataType::FLOAT;
 
 	_settings.customUniforms["shiness"] = uniform;
+}
+
+void HighLevelRenderer::UnbindTextures(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources)
+{
+	rhi::ATexture** texture = _resources.GetTextureManager().GetResource(_mat.GetAlbedoMapName());
+
+	if (texture)
+	{
+		(*texture)->Unbind();
+	}
+
+	texture = _resources.GetTextureManager().GetResource(_mat.GetNormalMapName());
+	if (texture)
+	{
+		(*texture)->Unbind();
+	}
 }
 
 void HighLevelRenderer::GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)

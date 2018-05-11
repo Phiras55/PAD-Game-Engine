@@ -42,6 +42,11 @@ public:
 	{
 		m_pool.SetItem(*static_cast<T_type*>(_comp));
 	}
+
+	std::list<T_type*>& GetActiveComponent()
+	{
+		return m_pool.GetActivePool();
+	}
 };
 
 } // namespace res

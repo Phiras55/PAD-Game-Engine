@@ -17,15 +17,16 @@ class ENGINE_API MeshRenderer : public AComponent
 {
 public:
 	MeshRenderer();
-	MeshRenderer(const std::string& _meshName, const std::string& _matName);
+	MeshRenderer(const MeshRenderer& _other);
+	MeshRenderer(const std::string& _meshName, const std::string& _materialName);
 	~MeshRenderer();
 
 private:
-	std::string m_meshName;
-	std::string m_materialName;
-	gfx::rhi::RenderSettings m_settings;
+	std::string					m_meshName;
+	std::string					m_materialName;
+	gfx::rhi::RenderSettings	m_settings;
 
-	static std::vector<MeshRenderer*> m_collection;
+	static alias::ComponentID	m_id;
 
 public:
 	void Init()								override;
@@ -46,15 +47,13 @@ public:
 	inline		 gfx::rhi::RenderSettings& GetSettings()		{ return m_settings; }
 	inline const gfx::rhi::RenderSettings& GetSettings() const	{ return m_settings; }
 
-	static		 std::vector<MeshRenderer*>& GetCollection()	{ return m_collection; }
-
-	static void AddToCollection(MeshRenderer* const _meshRenderer);
-
 	const alias::ComponentID GetType() const override
 	{
-		return static_cast<alias::ComponentID>(
-			util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
+		return m_id;
 	}
+
+public:
+	void operator=(const MeshRenderer& _other);
 };
 
 } // namespace ecs

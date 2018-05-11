@@ -12,6 +12,7 @@ class ENGINE_API RigidBody final : public AComponent
 {
 public:
 	RigidBody();
+	RigidBody(const RigidBody& _other);
 	~RigidBody();
 
 public:
@@ -30,19 +31,22 @@ public:
 	inline btRigidBody* const	GetBTRigidBody() const				{ return m_btRigidBody; }
 	inline ACollider*	const	GetCollider() const					{ return m_collider; }
 
-	inline void SetCollider(ACollider* const _collider);
+	inline void SetCollider(ACollider* const _collider)				{ m_collider = _collider; }
 
 	const alias::ComponentID GetType() const override
 	{
-		return static_cast<alias::ComponentID>(
-			util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
+		return m_id;
 	}
 	
 private:
-	btRigidBody*	m_btRigidBody;
-	btMotionState*	m_btMotionState;
-	ACollider*		m_collider;
-	float			m_mass;
+	btRigidBody*				m_btRigidBody;
+	btMotionState*				m_btMotionState;
+	ACollider*					m_collider;
+	float						m_mass;
+	static alias::ComponentID	m_id;
+
+public:
+	void operator=(const RigidBody& _other);
 };
 
 } // namespace ecs

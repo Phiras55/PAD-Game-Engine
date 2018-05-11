@@ -8,6 +8,7 @@
 #include <System/Physics/IPhysicContext.h>
 #include <System/ResourceHandling/ComponentsHandler.h>
 #include <Core/Timer.h>
+#include <Core/IDHandler.h>
 
 namespace pad	{
 namespace core	{

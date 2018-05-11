@@ -66,6 +66,58 @@ void Scene::Deserialize(const json& _j)
 	m_masterPADObject->Deserialize(_j);
 }
 
+PADObject* Scene::GetPADObject(const std::string& _name, PADObject* const _rootSearch)
+{
+	PADObject* entity = nullptr;
+	PADObject* root = (_rootSearch ? _rootSearch : m_masterPADObject);
+
+	return FindPADObject(_name, root);
+}
+
+PADObject* Scene::CreatePADObject(const std::string& _name, PADObject* const _parent)
+{
+	PADObject* entity = new PADObject();
+	entity->SetName(_name);
+
+	if (_parent)
+		entity->SetParent(_parent);
+	else
+		m_masterPADObject->AddChild(entity);
+
+	return entity;
+}
+
+void Scene::DeletePADObject(const std::string& _name, PADObject* const _rootSearch)
+{
+	PADObject* objectFound = GetPADObject(_name, _rootSearch);
+
+	if (objectFound)
+	{
+		delete objectFound;
+	}
+}
+
+PADObject* Scene::FindPADObject(const std::string& _name, PADObject* const _rootSearch)
+{
+	PADObject* resultEntity = nullptr;
+
+	if (_rootSearch)
+	{
+		if (_rootSearch->GetName() == _name)
+			return _rootSearch;
+
+		for (PADObject* const p : _rootSearch->GetChildren())
+		{
+			resultEntity = FindPADObject(_name, p);
+
+			if (resultEntity)
+				break;
+		}
+	}
+
+	return resultEntity;
+}
+
 } // namespace ecs
 } // namespace sys
 } // namespace pad

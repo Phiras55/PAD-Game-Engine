@@ -7,6 +7,10 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
+namespace alias	{
+	using ChildList = std::list<PADObject*>;
+}
+
 #define MAX_COMPONENT_COUNT 20u
 
 class AComponent;
@@ -30,13 +34,14 @@ public:
 
 private:
 	math::Transform						m_transform;
-	std::list<PADObject*>				m_childs;
+	alias::ChildList					m_childs;
 	PADObject*							m_parent;
 	bool								m_dontDestroy;
 								
 	std::string							m_name;
 	std::vector<AComponent*>			m_components;
 	std::bitset<MAX_COMPONENT_COUNT>	m_hasComponent;
+	ecs::ACollider*						m_collider;
 	
 	static res::ComponentsHandler*		m_componentHandlerHandle;
 
@@ -57,8 +62,16 @@ public:
 			T* comp = m_componentHandlerHandle->CreateComponent<T, Targs...>(std::forward<Targs>(_args)...);
 			if (comp)
 			{
-				m_components[util::GetTypeID<T>()] = comp;
-				m_hasComponent[util::GetTypeID<T>()] = true;
+				if constexpr (std::is_base_of<ACollider, T>::value)
+				{
+					m_collider = static_cast<ACollider*>(comp);
+				}
+
+				comp->SetOwner(this);
+				comp->Init();
+				comp->Start();
+				m_components[comp->GetType()] = comp;
+				m_hasComponent[comp->GetType()] = true;
 			}
 		}
 	}
@@ -71,7 +84,8 @@ public:
 
 		if (HasComponent<T>())
 		{
-			comp = static_cast<T*>(m_components[util::GetTypeID<T>()]);
+			T type;
+			comp = static_cast<T*>(m_components[type.GetType()]);
 		}
 
 		return comp;
@@ -81,7 +95,8 @@ public:
 	bool HasComponent()
 	{
 		AssertIfNotComponent<T>();
-		return m_hasComponent[util::GetTypeID<T>()];
+		T type;
+		return m_hasComponent[type.GetType()];
 	}
 
 	template<typename T>
@@ -90,9 +105,10 @@ public:
 		AssertIfNotComponent<T>();
 		if (HasComponent<T>())
 		{
-			m_hasComponent[util::GetTypeID<T>()] = false;
-			m_componentHandlerHandle->RemoveComponent<T>(m_components[util::GetTypeID<T>()]);
-			m_components[util::GetTypeID<T>()] = nullptr;
+			T comp;
+			m_hasComponent[comp.GetType()] = false;
+			m_componentHandlerHandle->RemoveComponent<T>(m_components[comp.GetType()]);
+			m_components[comp.GetType()] = nullptr;
 		}
 	}
 
@@ -124,7 +140,9 @@ public:
 	inline void SetName(const std::string _name)		{ m_name = _name; }
 	inline const std::string& GetName() const			{ return m_name; }
 
-	inline const std::vector<AComponent*> GetComponents() const	{ return m_components; }
+	inline const alias::ChildList& GetChildren() const	{ return m_childs; }
+
+	inline ACollider* const GetCollider()				{ return m_collider; }
 
 	inline static void SetComponentHandler(res::ComponentsHandler* const _handle) { m_componentHandlerHandle = _handle; }
 #pragma endregion

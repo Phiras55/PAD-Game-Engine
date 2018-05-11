@@ -87,4 +87,42 @@ void LoadResourceFile(const std::string& _filePath, const std::string& _outputPa
 	}
 }
 
+sys::ecs::PADObject* GetPADObject(const std::string& _name, sys::ecs::PADObject* const _rootSearch)
+{
+	sys::ecs::PADObject* entity = nullptr;
+
+	if (g_engine)
+	{
+		sys::ecs::Scene* currentScene = g_engine->GetScene();
+		if (currentScene)
+			entity = currentScene->GetPADObject(_name, _rootSearch);
+	}
+
+	return entity;
+}
+
+sys::ecs::PADObject* CreatePADObject(const std::string& _name, sys::ecs::PADObject* const _parent)
+{
+	sys::ecs::PADObject* entity = nullptr;
+
+	if (g_engine)
+	{
+		sys::ecs::Scene* currentScene = g_engine->GetScene();
+		if(currentScene)
+			entity = currentScene->CreatePADObject(_name, _parent);
+	}
+
+	return entity;
+}
+
+void DeletePADObject(const std::string& _name, sys::ecs::PADObject* const _rootSearch)
+{
+	if (g_engine)
+	{
+		sys::ecs::Scene* currentScene = g_engine->GetScene();
+		if (currentScene)
+			currentScene->DeletePADObject(_name, _rootSearch);
+	}
+}
+
 } // namespace pad

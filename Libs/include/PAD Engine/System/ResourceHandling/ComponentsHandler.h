@@ -4,6 +4,7 @@
 #include <System/ECS/BoxCollider.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/PerspectiveCamera.h>
+#include <Core/IDHandler.h>
 
 namespace pad	{
 namespace sys	{
@@ -26,6 +27,9 @@ public:
 	ComponentsHandler(const ComponentsHandler&) = delete;
 	ComponentsHandler(ComponentsHandler&&)		= delete;
 
+public:
+	core::IDHandler idHandler;
+
 private:
 	alias::ComponentHashTable m_pools;
 
@@ -35,21 +39,39 @@ public:
 	{
 		static_assert(std::is_base_of<ecs::AComponent, T>::value, "T must be of type AComponent");
 		T* result = nullptr;
-		if (m_pools.find(util::GetTypeID<T>()) != m_pools.end())
+		T type;
+		if (m_pools.find(type.GetType()) != m_pools.end())
 		{
-			auto pool = static_cast<SpecializedComponentPool<T, DEFAULT_COMPONENT_COUNT, DEFAULT_COMPONENT_GROWTH_COUNT>*>(m_pools[util::GetTypeID<T>()]);
-			result = static_cast<T*>(pool->CreateComponent<Targs...>(std::forward<Targs>(_args)...));
+			SpecializedComponentPool<T, DEFAULT_COMPONENT_COUNT, DEFAULT_COMPONENT_GROWTH_COUNT>* pool = static_cast<SpecializedComponentPool<T, DEFAULT_COMPONENT_COUNT, DEFAULT_COMPONENT_GROWTH_COUNT>*>(m_pools[type.GetType()]);
+
+			if(pool)
+				result = static_cast<T*>(pool->CreateComponent<Targs...>(std::forward<Targs>(_args)...));
 		}
 		return result;
 	}
 
-	template<typename T>
-	void RemoveComponent(ecs::AComponent* const _comp)
+	void RemoveComponent(ecs::AComponent* const _comp, const ecs::alias::ComponentID& _id)
 	{
-		if (m_pools.find(util::GetTypeID<T>()) != m_pools.end())
+		if (m_pools.find(_id) != m_pools.end())
 		{
-			m_pools[util::GetTypeID<T>()]->DeleteComponent(_comp);
+			m_pools[_id]->DeleteComponent(_comp);
 		}
+	}
+
+	template<typename T>
+	std::list<T*>* GetActiveComponents()
+	{
+		static_assert(std::is_base_of<ecs::AComponent, T>::value, "T must be of type AComponent");
+
+		std::list<T*>* v = nullptr;
+		T type;
+		SpecializedComponentPool<T, DEFAULT_COMPONENT_COUNT, DEFAULT_COMPONENT_GROWTH_COUNT>* pool = 
+			static_cast<SpecializedComponentPool<T, DEFAULT_COMPONENT_COUNT, DEFAULT_COMPONENT_GROWTH_COUNT>*>(m_pools[type.GetType()]);
+
+		if (pool)
+			v = &pool->GetActiveComponent();
+
+		return v;
 	}
 
 public:

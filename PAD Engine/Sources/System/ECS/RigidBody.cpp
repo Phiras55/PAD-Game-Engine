@@ -6,11 +6,21 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
+alias::ComponentID RigidBody::m_id = INVALID_COMPONENT_ID;
+
 RigidBody::RigidBody() :
 	m_collider(nullptr),
 	m_btMotionState(nullptr),
 	m_btRigidBody(nullptr)
 {
+	if (m_id != INVALID_COMPONENT_ID)
+		m_id = static_cast<alias::ComponentID>(util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
+}
+
+RigidBody::RigidBody(const RigidBody& _other)	:
+	RigidBody()
+{
+
 }
 
 RigidBody::~RigidBody()
@@ -23,16 +33,8 @@ RigidBody::~RigidBody()
 
 void RigidBody::Init()
 {
+	m_collider = m_owner->GetCollider();
 	m_btMotionState = new btDefaultMotionState();
-
-	for (auto comp : m_owner->GetComponents())
-	{
-		/*if (comp->GetType() == COMPONENT_TYPE::COLLIDER)
-		{
-			m_collider = static_cast<ACollider*>(comp);
-			break;
-		}*/
-	}
 
 	btVector3 inertia(0, 0, 0);
 	if (m_collider)
@@ -113,11 +115,6 @@ void RigidBody::SetMass(const float _mass)
 		m_btRigidBody->setMassProps(_mass, inertia);
 }
 
-inline void RigidBody::SetCollider(ACollider* const _collider)
-{
-	m_collider = _collider;
-}
-
 json RigidBody::Serialize()
 {
 	json j;
@@ -126,6 +123,11 @@ json RigidBody::Serialize()
 }
 
 void RigidBody::Deserialize(const json& j)
+{
+
+}
+
+void RigidBody::operator=(const RigidBody& _other)
 {
 
 }

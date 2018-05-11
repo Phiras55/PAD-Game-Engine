@@ -8,6 +8,8 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
+#define INVALID_COMPONENT_ID -1
+
 class PADObject;
 
 namespace alias	{
@@ -28,6 +30,9 @@ public:
 	virtual void LateUpdate()						= 0;
 
 	virtual const alias::ComponentID GetType() const = 0;
+
+	inline PADObject* GetOwner()						{ return m_owner; }
+	inline void		  SetOwner(PADObject* const _owner)	{ m_owner = _owner; }
 
 protected:
 	PADObject* m_owner;

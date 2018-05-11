@@ -6,30 +6,38 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-std::vector<MeshRenderer*> MeshRenderer::m_collection;
+alias::ComponentID MeshRenderer::m_id = INVALID_COMPONENT_ID;
 
-MeshRenderer::MeshRenderer()
+MeshRenderer::MeshRenderer() :
+	m_meshName(),
+	m_materialName()
 {
-	m_settings.modelMatrix	= &m_owner->GetTransform().GetGlobalTransform();
-
-	m_collection.push_back(this);
+	if(m_id != INVALID_COMPONENT_ID)
+		m_id = static_cast<alias::ComponentID>(util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
 }
 
-MeshRenderer::MeshRenderer(const std::string& _meshName, const std::string& _matName)	:
+MeshRenderer::MeshRenderer(const MeshRenderer& _other)
+{
+	m_meshName		= _other.m_meshName;
+	m_materialName	= _other.m_materialName;
+	m_settings		= _other.m_settings;
+}
+
+MeshRenderer::MeshRenderer(const std::string& _meshName, const std::string& _materialName):
 	MeshRenderer()
 {
 	m_meshName		= _meshName;
-	m_materialName	= _matName;
+	m_materialName	= _materialName;
 }
 
 MeshRenderer::~MeshRenderer()
 {
-
+	
 }
 
 void MeshRenderer::Init()
 {
-
+	m_settings.modelMatrix = &m_owner->GetTransform().GetGlobalTransform();
 }
 
 void MeshRenderer::Start()
@@ -52,11 +60,6 @@ void MeshRenderer::LateUpdate()
 
 }
 
-void MeshRenderer::AddToCollection(MeshRenderer* const _meshRenderer)
-{
-	m_collection.push_back(_meshRenderer);
-}
-
 json MeshRenderer::Serialize()
 {
 	json j;
@@ -73,6 +76,13 @@ void MeshRenderer::Deserialize(const json& j)
 	m_meshName		= JsonToData<std::string>(j, "m_meshName");
 	m_materialName	= JsonToData<std::string>(j, "m_materialName");
 	m_settings.Deserialize(JsonToData<json>(j, "m_settings"));
+}
+
+void MeshRenderer::operator=(const MeshRenderer& _other)
+{
+	m_meshName		= _other.m_meshName;
+	m_materialName	= _other.m_materialName;
+	m_settings		= _other.m_settings;
 }
 
 } // namespace ecs

@@ -38,7 +38,7 @@ void GLRenderer::Init(const rhi::ContextSettings& _settings)
 
 void GLRenderer::InitShaders()
 {
-	m_shaderManager->LoadShaders("Resources/Shaders/basicPositions.vert", "Resources/Shaders/basicColors.frag", "Default");
+	LoadShaders("Resources/Shaders/basicPositions.vert", "Resources/Shaders/basicColors.frag", "Default");
 }
 
 void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
@@ -233,6 +233,7 @@ void GLRenderer::GenerateTexture(rhi::ATexture* const _t, const std::string& _pa
 		_t->GenerateID();
 		_t->Bind();
 		_t->GenerateTexture(width, height, data, _param);
+		_t->Unbind();
 	}
 	else
 	{
@@ -298,9 +299,9 @@ void GLRenderer::SetCameraUniformBufferData(
 
 void GLRenderer::SetLightsUniformBufferData(
 	math::Vec4f* const _positions,
-	math::Vec4f* const _directions)
+	math::Vec4f* const _directions,
+	const uint8 _count)
 {
-
 }
 
 rhi::AUniformBufferObject* const GLRenderer::GetUniformBufferObject(const std::string& _name)
@@ -308,6 +309,11 @@ rhi::AUniformBufferObject* const GLRenderer::GetUniformBufferObject(const std::s
 	if (m_uniformBufferObjects.find(_name) != m_uniformBufferObjects.end())
 		return m_uniformBufferObjects[_name];
 	return nullptr;
+}
+
+bool GLRenderer::LoadShaders(const std::string& _vPath, const std::string& _fPath, const std::string& _name)
+{
+	return m_shaderManager->LoadShaders(_vPath, _fPath, _name);
 }
 
 } // namespace gl

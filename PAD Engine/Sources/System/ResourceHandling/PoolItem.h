@@ -21,7 +21,6 @@ struct PoolItem final
 
 	}
 
-	
 	T_type				data;
 	PoolItem<T_type>*	next = nullptr;
 };

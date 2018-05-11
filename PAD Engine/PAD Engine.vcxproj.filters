@@ -126,6 +126,9 @@
     <ClCompile Include="Sources\System\ResourceHandling\ComponentsHandler.cpp">
       <Filter>Source Files\System\ResourceHandling</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Core\IDHandler.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -220,6 +223,12 @@
     </ClInclude>
     <ClInclude Include="Sources\System\ResourceHandling\ComponentsHandler.h">
       <Filter>Header Files\System\ResourceHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\AComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Core\IDHandler.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

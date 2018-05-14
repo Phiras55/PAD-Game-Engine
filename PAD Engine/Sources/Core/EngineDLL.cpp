@@ -95,6 +95,8 @@ void LoadResourceFile(const std::string& _filePath, const std::string& _outputPa
 			LoadMeshFile(_filePath);
 		else if (ext == ".PADMaterial")
 			LoadMaterialFile(_filePath);
+		else if (ext == ".png" || ext == ".jpg")
+			LoadTextureFile(_filePath);
 	}
 }
 
@@ -137,6 +139,14 @@ void LoadMaterialFile(const std::string& _filePath)
 	material.SetAlbedoMapName(textureData.m_name);
 
 	g_engine->GetResourceManager()->GetMaterialManager().AddResource(material.GetName(), material);
+	g_engine->GetResourceManager()->GetTextureManager().AddResource(texture->GetName(), texture);
+}
+
+ENGINE_API void LoadTextureFile(const std::string& _filePath)
+{
+	gfx::gl::GLTexture* texture = new gfx::gl::GLTexture();
+	gfx::rhi::TextureParameters param;
+	g_engine->GetRenderer().GenerateTexture(texture, _filePath, param);
 	g_engine->GetResourceManager()->GetTextureManager().AddResource(texture->GetName(), texture);
 }
 

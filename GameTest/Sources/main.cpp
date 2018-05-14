@@ -36,9 +36,9 @@ int main()
 
 	contextSettings.viewportSize.x		= winSettings.size.x;
 	contextSettings.viewportSize.y		= winSettings.size.y;
-	contextSettings.clearColor.r		= 0.3f;
-	contextSettings.clearColor.g		= 0.3f;
-	contextSettings.clearColor.b		= 0.3f;
+	contextSettings.clearColor.r		= 150.f / 255.f;
+	contextSettings.clearColor.g		= 150.f / 255.f;
+	contextSettings.clearColor.b		= 150.f / 255.f;
 	contextSettings.clearColor.a		= 1.0f;
 	contextSettings.implementationType	= pad::gfx::rhi::E_RENDERER_IMPLEMENTATION_TYPE::OPENGL;
 	contextSettings.cullFace			= pad::gfx::rhi::E_CULL_FACE::BACK;
@@ -52,14 +52,14 @@ int main()
 	pad::InitEngine(contextSettings, winSettings);
 
 	pad::sys::ecs::PADObject* plat = pad::CreatePADObject("Platform");
-	plat->AddComponent<pad::sys::ecs::MeshRenderer>("Default", "Default");
+	plat->AddComponent<pad::sys::ecs::MeshRenderer>("Cube", "Default");
 
-	//ground_MR->SetMaterialName("creature_pitlord_magtheridon_0");
-	//ground_MR->SetMeshName("creature_pitlord_magtheridon");
 	pad::LoadResourceFile("../Resources/PADFormat\\creature_pitlord_magtheridon_0.PADMaterial", "");
 	pad::LoadResourceFile("../Resources/PADFormat\\creature_pitlord_magtheridon.PADMesh", "");
 	pad::LoadResourceFile("../Resources/PADFormat\\creature_giantspider_giantspider_0.PADMaterial", "");
 	pad::LoadResourceFile("../Resources/PADFormat\\creature_giantspider_giantspider.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/Grid.png", "");
+	pad::LoadResourceFile("../Resources/PADFormat/Default.jpg", "");
 
 	plat->GetTransform().SetScale(pad::math::Vec3f(10.f, 1.f, 10.f));
 
@@ -78,9 +78,6 @@ int main()
 		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i * 2 + 10, 0));
 		cube->GetTransform().SetRotation(pad::math::Vec3f(i * 45, i * 45, i * 45));
 		cube->GetTransform().SetScale(0.01f);
-
-		//cube_MR->SetMeshName("creature_giantspider_giantspider");
-		//cube_MR->SetMaterialName("creature_giantspider_giantspider_0");
 
 		cube->AddComponent<pad::sys::ecs::MeshRenderer>("creature_giantspider_giantspider", "creature_giantspider_giantspider_0");
 		cube->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(1.f, 1.f, 1.f));

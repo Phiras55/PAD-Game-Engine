@@ -63,9 +63,9 @@ void HighLevelRenderer::Initialize(const rhi::ContextSettings& _rSettings, const
 
 void HighLevelRenderer::InitializeDefaultMeshes()
 {
-	pad::gfx::mod::MeshData md;
+	pad::gfx::mod::MeshData md1, md2;
 
-	md.positions = new float[24]{
+	md1.positions		= new float[24]{
 		-0.5, -0.5,  0.5,
 		0.5, -0.5,  0.5,
 		-0.5,  0.5,  0.5,
@@ -75,9 +75,9 @@ void HighLevelRenderer::InitializeDefaultMeshes()
 		0.5, -0.5, -0.5,
 		0.5,  0.5,  0.5
 	};
-	md.positionCount = 24;
+	md1.positionCount	= 24;
 
-	md.indices = new pad::uint32[36]{
+	md1.indices			= new pad::uint32[36]{
 		0, 1, 2,
 		3, 4, 5,
 		4, 3, 6,
@@ -91,12 +91,37 @@ void HighLevelRenderer::InitializeDefaultMeshes()
 		1, 0, 4,
 		7, 3, 5
 	};
-	md.indiceCount = 36;
+	md1.indiceCount		= 36;
 
-	gfx::mod::Mesh m;
+	md2.positions		= new float[8]{
+		-0.5, -0.5,
+		 0.5, -0.5,
+		 0.5,  0.5,
+		-0.5,  0.5
+	};
+	md2.positionCount	= 8;
 
-	GenerateMesh(m, md);
-	m_masterManagerHandle->GetMeshManager().AddResource("Default", m);
+	md2.indices			= new uint32[6]{
+		0, 1, 2,
+		0, 2, 3
+	};
+	md2.indiceCount		= 6;
+
+	md2.uvs				= new float[8]{
+		0.f, 0.f,
+		1.f, 0.f,
+		1.f, 1.f,
+		0.f, 1.f
+	};
+	md2.uvCount			= 8;
+
+	gfx::mod::Mesh m1, m2;
+
+	GenerateMesh(m1, md1);
+	m_masterManagerHandle->GetMeshManager().AddResource("Cube", m1);
+
+	GenerateMesh(m2, md2);
+	m_masterManagerHandle->GetMeshManager().AddResource("Quad", m2);
 }
 
 void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene, sys::res::ComponentsHandler& _components)

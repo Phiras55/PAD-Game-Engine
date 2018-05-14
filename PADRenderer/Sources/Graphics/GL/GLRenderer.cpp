@@ -77,6 +77,12 @@ void GLRenderer::InitMainBuffer(const rhi::ContextSettings& _settings)
 	}
 }
 
+void GLRenderer::InitBlendFunction()
+{
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
+
 void GLRenderer::InitDepthBuffer(const rhi::ContextSettings& _settings)
 {
 	glEnable(GL_DEPTH_TEST);

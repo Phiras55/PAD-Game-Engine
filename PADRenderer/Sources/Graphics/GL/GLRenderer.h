@@ -56,6 +56,7 @@ private:
 	void InitMainBuffer(const rhi::ContextSettings& _settings);
 	void InitCullFace(const rhi::ContextSettings& _settings);
 	void InitDepthBuffer(const rhi::ContextSettings& _settings);
+	void InitBlendFunction();
 	void InitWindingOrder(const rhi::ContextSettings& _settings);
 	void InitDefaultUniformBuffers();
 	void SetCustomUniforms(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings);

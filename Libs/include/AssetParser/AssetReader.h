@@ -17,5 +17,8 @@ void ReadPADMaterial(	const	std::string&			_inputPath,
 								gfx::mod::MaterialData&	_materialData,
 								gfx::mod::TextureData&	_textureData);
 
+std::string GetFileExt(const std::string& _path);
+std::string GetFileName(const std::string& _path);
+
 } // namespace parser
 } // namespace pad

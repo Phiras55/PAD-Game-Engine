@@ -3,6 +3,7 @@
 #include <sstream>
 #include <AssetParser/AssetReader.h>
 #include <Shlwapi.h>
+#include "AssetReader.h"
 
 #pragma comment(lib,"shlwapi.lib")
 
@@ -201,6 +202,16 @@ void ReadPADMaterial(const	std::string&			_inputPath,
 			}
 		}
 	}
+}
+
+std::string GetFileExt(const std::string& _path)
+{
+	return PathFindExtension(_path.c_str());
+}
+
+std::string GetFileName(const std::string& _path)
+{
+	return PathFindFileName(_path.c_str());
 }
 
 } // namespace parser

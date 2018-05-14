@@ -215,5 +215,11 @@
     <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderManager.h">
       <Filter>Header Files\Graphics\RHI\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\MaterialData.h">
+      <Filter>Header Files\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\TextureData.h">
+      <Filter>Header Files\Graphics\Model</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

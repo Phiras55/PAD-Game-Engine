@@ -149,6 +149,8 @@ void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const 
 		uniform.type = rhi::shad::DataType::UINT;
 
 		_settings.customUniforms["albedoMap"] = uniform;
+
+		(*texture)->Bind();
 	}
 
 	texture = _resources.GetTextureManager().GetResource(_mat.GetNormalMapName());
@@ -214,6 +216,12 @@ bool HighLevelRenderer::IsWindowOpen()
 	if (m_mainWindow)
 		return m_mainWindow->IsOpen();
 	return false;
+}
+
+void HighLevelRenderer::GenerateTexture(rhi::ATexture* const _texture, const std::string& _path, const rhi::TextureParameters& _param)
+{
+	if (m_lowLevelRenderer)
+		m_lowLevelRenderer->GenerateTexture(_texture, _path, _param);
 }
 
 void HighLevelRenderer::PollEvents()

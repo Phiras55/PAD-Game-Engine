@@ -10,11 +10,15 @@
 #include <Graphics/Model/MeshData.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/BoxCollider.h>
+#include <AssetParser/AssetReader.h>
+#include <AssetParser/AssetParser.h>
 
 #undef main
 
 int main()
 {
+	//pad::parser::ParseFile("D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\GiantSpider.fbx", "D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\");
+
 	#pragma region RenderInit
 
 	pad::gfx::win::WindowSettings winSettings;
@@ -50,6 +54,13 @@ int main()
 	pad::sys::ecs::PADObject* plat = pad::CreatePADObject("Platform");
 	plat->AddComponent<pad::sys::ecs::MeshRenderer>("Default", "Default");
 
+	//ground_MR->SetMaterialName("creature_pitlord_magtheridon_0");
+	//ground_MR->SetMeshName("creature_pitlord_magtheridon");
+	pad::LoadResourceFile("../Resources/PADFormat\\creature_pitlord_magtheridon_0.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat\\creature_pitlord_magtheridon.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat\\creature_giantspider_giantspider_0.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat\\creature_giantspider_giantspider.PADMesh", "");
+
 	plat->GetTransform().SetScale(pad::math::Vec3f(10.f, 1.f, 10.f));
 
 	pad::sys::ecs::MeshRenderer* mr = plat->GetComponent<pad::sys::ecs::MeshRenderer>();
@@ -66,8 +77,12 @@ int main()
 
 		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i * 2 + 10, 0));
 		cube->GetTransform().SetRotation(pad::math::Vec3f(i * 45, i * 45, i * 45));
+		cube->GetTransform().SetScale(0.01f);
 
-		cube->AddComponent<pad::sys::ecs::MeshRenderer>("Default", "Default");
+		//cube_MR->SetMeshName("creature_giantspider_giantspider");
+		//cube_MR->SetMaterialName("creature_giantspider_giantspider_0");
+
+		cube->AddComponent<pad::sys::ecs::MeshRenderer>("creature_giantspider_giantspider", "creature_giantspider_giantspider_0");
 		cube->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(1.f, 1.f, 1.f));
 		cube->AddComponent<pad::sys::ecs::RigidBody>();
 

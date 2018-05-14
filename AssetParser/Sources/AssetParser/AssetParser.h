@@ -4,6 +4,7 @@
 #include <fbxsdk.h>
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include <PADRenderer/Graphics/RHI/TextureParameters.h>
 
 #define ASSET_PARSER_EXPORTS
@@ -21,6 +22,18 @@ enum PARSER_RESULT
 	SUCCESS,
 	FAILURE,
 	DEFAULT
+};
+
+struct WeightInfo
+{
+	std::vector<int>	boneIndex;
+	std::vector<float>	weight;
+};
+
+struct ControlPoint
+{
+	std::unordered_map<int, std::vector<int>> fbxIndicesMyIndice;
+	WeightInfo* weightInfos;
 };
 
 struct AssetMaterial
@@ -46,6 +59,8 @@ struct Bone
 	math::Vec4f		scale;
 
 	math::Mat4		inverseBindPose;
+
+
 };
 
 struct Skeleton
@@ -81,7 +96,8 @@ PARSER_RESULT ParseFBX(	const	std::string& _inputPath,
 
 void ParseMesh(			FbxNode*		const	_node,
 				const	std::string&			_outputPath,
-						std::string&			_fileName);
+				const	std::string&			_fileName,
+						ControlPoint*			_controlPoint);
 
 void ParseNormals(	int									_index,
 					int									_polygonIndiceStart,
@@ -120,9 +136,12 @@ std::string ParseMaterial(const	std::string&			_outputPath,
 std::string GeneratePADMaterial(const	std::string&	_outputPath, 
 										AssetMaterial&	_material);
 
-void ParseAnimation(FbxNode*	const	_currentNode,
-					FbxMesh*	const	_fbxMesh,
-					Skeleton*	const	_skeleton);
+void ParseAnimation(const	std::string&			_outputPath,
+					const	std::string&			_fileName,
+							FbxNode*		const	_currentNode,
+							FbxMesh*		const	_fbxMesh,
+							Skeleton*		const	_skeleton,
+							ControlPoint*	const	_controlPoint);
 
 void ParseTexture(	FbxFileTexture*	const	_texture,
 					AssetMaterial&			_material);

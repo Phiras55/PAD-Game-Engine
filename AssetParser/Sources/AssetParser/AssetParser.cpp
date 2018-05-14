@@ -42,7 +42,8 @@ PARSER_RESULT ParseFBX(	const	std::string& _inputPath,
 	fbxImporter->Import(fbxScene);
 	fbxImporter->Destroy();
 
-	FbxMesh* fbxMesh = nullptr;
+	FbxMesh*		fbxMesh			= nullptr;
+	ControlPoint*	controlPoints	= new ControlPoint();
 
 	int i = 0;
 	FbxNode* currentNode = fbxScene->GetRootNode();
@@ -56,14 +57,14 @@ PARSER_RESULT ParseFBX(	const	std::string& _inputPath,
 		if (currentNode->GetChild(i)->GetMesh())
 		{	
 			fbxMesh = currentNode->GetChild(i)->GetMesh();
-			ParseMesh(currentNode->GetChild(i), _outputPath, nodeName);
+			ParseMesh(currentNode->GetChild(i), _outputPath, nodeName, controlPoints);
 		}			
 		else if (currentNode->GetChild(i)->GetSkeleton())
 		{
 			Skeleton* skeleton = new Skeleton();
 			ParseSkeleton(currentNode->GetChild(i), skeleton);
 			if(fbxMesh)
-				ParseAnimation(currentNode->GetChild(i), fbxMesh, skeleton);
+				ParseAnimation(_outputPath, nodeName, currentNode->GetChild(i), fbxMesh, skeleton, controlPoints);
 			GeneratePADSkeleton(_outputPath, nodeName, skeleton);
 			delete skeleton;
 		}
@@ -76,6 +77,9 @@ PARSER_RESULT ParseFBX(	const	std::string& _inputPath,
 		}
 	}
 
+	if (controlPoints)
+		delete controlPoints;
+
 	fbxScene->Destroy();
 	fbxManager->Destroy();
 
@@ -84,7 +88,8 @@ PARSER_RESULT ParseFBX(	const	std::string& _inputPath,
 
 void ParseMesh(			FbxNode*		const	_node,
 				const	std::string&			_outputPath,
-						std::string&			_fileName)
+				const	std::string&			_fileName,
+						ControlPoint*			_controlPoint)
 {
 	FbxGeometry*					fbxGeometry		= _node->GetGeometry();
 	FbxMesh*						fbxMesh			= _node->GetMesh();
@@ -100,6 +105,8 @@ void ParseMesh(			FbxNode*		const	_node,
 	FbxVector4*						normals			= new FbxVector4[indicesCount];
 	FbxVector2*						uvs				= new FbxVector2[indicesCount];
 
+	_controlPoint->weightInfos = new WeightInfo[indicesCount];
+
 	int index = 0;
 	for (int polygonIndex = 0; polygonIndex < polyCount; ++polygonIndex)
 	{
@@ -108,6 +115,7 @@ void ParseMesh(			FbxNode*		const	_node,
 		for (int vertexIndex = 0; vertexIndex < fbxMesh->GetPolygonSize(polygonIndex); ++vertexIndex)
 		{
 			vertex[index] = vertexRaw[indices[polygonIndiceStart]];
+			_controlPoint->fbxIndicesMyIndice[indices[polygonIndiceStart]].push_back(index);
 
 			ParseNormals(index, polygonIndiceStart, normalsRaw, indices, normals);
 			ParseUV(index, fbxUVs, indices, uvs);
@@ -390,9 +398,12 @@ std::string GeneratePADMaterial(const	std::string&	_outputPath,
 	return outputFile;
 }
 
-void ParseAnimation(FbxNode*	const	_currentNode,
-					FbxMesh*	const	_fbxMesh,
-					Skeleton*	const	_skeleton)
+void ParseAnimation(const	std::string&			_outputPath,
+					const	std::string&			_fileName,
+							FbxNode*		const	_currentNode,
+							FbxMesh*		const	_fbxMesh,
+							Skeleton*		const	_skeleton,
+							ControlPoint*	const	_controlPoint)
 {
 	unsigned int deformerCount = _fbxMesh->GetDeformerCount();
 	FbxAMatrix geoTrans(_currentNode->GetGeometricTranslation(FbxNode::eSourcePivot),
@@ -410,7 +421,10 @@ void ParseAnimation(FbxNode*	const	_currentNode,
 				FbxCluster* fbxCluster = fbxSkin->GetCluster(clusterIndex);
 				if (fbxCluster)
 				{
-					int boneIndex = _skeleton->GetBoneIndex(fbxCluster->GetLink()->GetName());
+					std::string boneName = fbxCluster->GetLink()->GetName();
+					std::replace(boneName.begin(), boneName.end(), '/', '_');
+					std::replace(boneName.begin(), boneName.end(), '\\', '_');
+					int boneIndex = _skeleton->GetBoneIndex(boneName);
 					if (boneIndex != -1)
 					{
 						FbxAMatrix transformMatrix;
@@ -422,11 +436,44 @@ void ParseAnimation(FbxNode*	const	_currentNode,
 
 						_skeleton->bones[boneIndex]->inverseBindPose = FbxMatToMat(globalBindposeInverseMatrix);
 
+						int		controlPointCount	= fbxCluster->GetControlPointIndicesCount();
+						double* weight				= fbxCluster->GetControlPointWeights();
+						int*	indices				= fbxCluster->GetControlPointIndices();
+
+						for (int controlPointIndex = 0; controlPointIndex < controlPointCount; ++controlPointIndex)
+						{
+							for (int myCP = 0; myCP < _controlPoint->fbxIndicesMyIndice[indices[controlPointIndex]].size(); ++myCP)
+							{
+								_controlPoint->weightInfos[_controlPoint->fbxIndicesMyIndice[indices[controlPointIndex]][myCP]].boneIndex.push_back(boneIndex);
+								_controlPoint->weightInfos[_controlPoint->fbxIndicesMyIndice[indices[controlPointIndex]][myCP]].weight.push_back(weight[controlPointIndex]);
+							}
+						}
 					}
 				}
 			}
 		}
 	}
+	for (int i = 0; i < _fbxMesh->GetPolygonVertexCount(); ++i)
+	{
+		for (int j = _controlPoint->weightInfos[i].boneIndex.size(); j <= 3; ++j)
+		{
+			_controlPoint->weightInfos[i].boneIndex.push_back(-1);
+			_controlPoint->weightInfos[i].weight.push_back(0);
+		}
+	}
+
+	std::string append = "[BONE_WEIGHT]\n";
+	for (int i = 0; i < _fbxMesh->GetPolygonVertexCount(); ++i)
+	{
+		for (int x = 0; x < _controlPoint->weightInfos[i].boneIndex.size(); ++x)
+		{
+			append += std::to_string(_controlPoint->weightInfos[i].boneIndex[x]) + " " + std::to_string(_controlPoint->weightInfos[i].weight[x]) + "\n";
+		}
+	}
+	std::string meshFile = _outputPath + _fileName + ".PADMesh";
+	std::ofstream out;
+	out.open(meshFile, std::ios_base::app);
+	out << append;
 }
 
 void ParseTexture(	FbxFileTexture* const	_texture, 

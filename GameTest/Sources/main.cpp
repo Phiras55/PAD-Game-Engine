@@ -17,7 +17,7 @@
 
 int main()
 {
-	pad::parser::ParseFile("D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\creature_pitlord_magtheridon.fbx", "D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\");
+	pad::parser::ParseFile("D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\GiantSpider.fbx", "D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\");
 
 	#pragma region RenderInit
 
@@ -62,9 +62,11 @@ int main()
 	pad::sys::ecs::MeshRenderer* ground_MR = new pad::sys::ecs::MeshRenderer();
 
 	ground_MR->GetSettings().isWireframe = false;
-	ground_MR->SetMeshName("Default");
-	ground_MR->SetMaterialName("Default");
-	ground_MR->GetTransform().SetScale(pad::math::Vec3f(10, 1, 10));
+	ground_MR->SetMeshName("creature_pitlord_magtheridon");
+	ground_MR->SetMaterialName("creature_pitlord_magtheridon_0");
+	ground_MR->GetTransform().SetScale(pad::math::Vec3f(.051, .051, .0510));
+	ground_MR->GetTransform().SetPosition(pad::math::Vec3f(0, -10, 0));
+//	ground_MR->GetTransform().SetScale(pad::math::Vec3f(10, 1, 10));
 
 	pad::sys::ecs::RigidBody*	ground_RB		= new pad::sys::ecs::RigidBody();
 	pad::sys::ecs::BoxCollider* ground_Collider = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(10, 1, 10));

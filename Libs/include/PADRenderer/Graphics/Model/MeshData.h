@@ -3,6 +3,12 @@ namespace pad	{
 namespace gfx	{
 namespace mod	{
 
+struct ControlPoint
+{
+	uint fbxIndice;
+	uint myIndice;
+};
+
 struct MeshData
 {
 	MeshData();
@@ -17,6 +23,8 @@ struct MeshData
 	uint32 normalCount;
 	uint32 uvCount;
 	uint32 indiceCount;
+
+	ControlPoint* vertexInfo;
 };
 
 } // namespace mod

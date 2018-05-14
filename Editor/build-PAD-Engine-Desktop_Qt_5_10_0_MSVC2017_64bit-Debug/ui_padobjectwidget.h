@@ -1311,7 +1311,7 @@ public:
 ""));
         gridLayout = new QGridLayout(PADObjectWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setContentsMargins(3, 0, 3, 2);
+        gridLayout->setContentsMargins(0, 0, 0, 0);
         PadObject = new QGroupBox(PADObjectWidget);
         PadObject->setObjectName(QStringLiteral("PadObject"));
         PadObject->setEnabled(true);
@@ -1322,7 +1322,7 @@ public:
         PadObject->setSizePolicy(sizePolicy1);
         gridLayout_2 = new QGridLayout(PadObject);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        gridLayout_2->setContentsMargins(5, 5, 5, 5);
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         firstLine = new QHBoxLayout();

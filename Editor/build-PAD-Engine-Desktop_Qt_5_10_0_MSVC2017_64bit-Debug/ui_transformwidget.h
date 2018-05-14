@@ -68,7 +68,7 @@ public:
         if (TransformWidget->objectName().isEmpty())
             TransformWidget->setObjectName(QStringLiteral("TransformWidget"));
         TransformWidget->setEnabled(true);
-        TransformWidget->resize(360, 140);
+        TransformWidget->resize(763, 140);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -76,7 +76,7 @@ public:
         TransformWidget->setSizePolicy(sizePolicy);
         TransformWidget->setMinimumSize(QSize(360, 140));
         TransformWidget->setMaximumSize(QSize(16777215, 140));
-        TransformWidget->setFocusPolicy(Qt::StrongFocus);
+        TransformWidget->setFocusPolicy(Qt::ClickFocus);
         TransformWidget->setStyleSheet(QLatin1String("QToolTip {\n"
 "    border: 1px solid #76797C;\n"
 "    background-color: #5A7566;\n"
@@ -1337,6 +1337,7 @@ public:
         Transform->setEnabled(true);
         sizePolicy.setHeightForWidth(Transform->sizePolicy().hasHeightForWidth());
         Transform->setSizePolicy(sizePolicy);
+        Transform->setFocusPolicy(Qt::ClickFocus);
         gridLayout_2 = new QGridLayout(Transform);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
@@ -1358,8 +1359,10 @@ public:
         Rot->addWidget(label_Rot);
 
         Rot_X = new QHBoxLayout();
+        Rot_X->setSpacing(2);
         Rot_X->setObjectName(QStringLiteral("Rot_X"));
         Rot_X->setSizeConstraint(QLayout::SetDefaultConstraint);
+        Rot_X->setContentsMargins(6, -1, -1, -1);
         label_Rot_X = new QLabel(Transform);
         label_Rot_X->setObjectName(QStringLiteral("label_Rot_X"));
         sizePolicy1.setHeightForWidth(label_Rot_X->sizePolicy().hasHeightForWidth());
@@ -1381,8 +1384,10 @@ public:
         Rot->addLayout(Rot_X);
 
         Rot_Y = new QHBoxLayout();
+        Rot_Y->setSpacing(2);
         Rot_Y->setObjectName(QStringLiteral("Rot_Y"));
         Rot_Y->setSizeConstraint(QLayout::SetDefaultConstraint);
+        Rot_Y->setContentsMargins(6, -1, -1, -1);
         label_Rot_Y = new QLabel(Transform);
         label_Rot_Y->setObjectName(QStringLiteral("label_Rot_Y"));
         sizePolicy1.setHeightForWidth(label_Rot_Y->sizePolicy().hasHeightForWidth());
@@ -1403,9 +1408,10 @@ public:
         Rot->addLayout(Rot_Y);
 
         Rot_Z = new QHBoxLayout();
-        Rot_Z->setSpacing(6);
+        Rot_Z->setSpacing(2);
         Rot_Z->setObjectName(QStringLiteral("Rot_Z"));
         Rot_Z->setSizeConstraint(QLayout::SetDefaultConstraint);
+        Rot_Z->setContentsMargins(6, -1, -1, -1);
         label_Rot_Z = new QLabel(Transform);
         label_Rot_Z->setObjectName(QStringLiteral("label_Rot_Z"));
         sizePolicy1.setHeightForWidth(label_Rot_Z->sizePolicy().hasHeightForWidth());
@@ -1440,8 +1446,10 @@ public:
         Scale->addWidget(label_Scale);
 
         Scale_X = new QHBoxLayout();
+        Scale_X->setSpacing(2);
         Scale_X->setObjectName(QStringLiteral("Scale_X"));
         Scale_X->setSizeConstraint(QLayout::SetDefaultConstraint);
+        Scale_X->setContentsMargins(6, -1, -1, -1);
         label_Scale_X = new QLabel(Transform);
         label_Scale_X->setObjectName(QStringLiteral("label_Scale_X"));
         sizePolicy1.setHeightForWidth(label_Scale_X->sizePolicy().hasHeightForWidth());
@@ -1463,8 +1471,10 @@ public:
         Scale->addLayout(Scale_X);
 
         Scale_Y = new QHBoxLayout();
+        Scale_Y->setSpacing(2);
         Scale_Y->setObjectName(QStringLiteral("Scale_Y"));
         Scale_Y->setSizeConstraint(QLayout::SetDefaultConstraint);
+        Scale_Y->setContentsMargins(6, -1, -1, -1);
         label_Scale_Y = new QLabel(Transform);
         label_Scale_Y->setObjectName(QStringLiteral("label_Scale_Y"));
         sizePolicy1.setHeightForWidth(label_Scale_Y->sizePolicy().hasHeightForWidth());
@@ -1485,9 +1495,10 @@ public:
         Scale->addLayout(Scale_Y);
 
         Scale_Z = new QHBoxLayout();
-        Scale_Z->setSpacing(6);
+        Scale_Z->setSpacing(2);
         Scale_Z->setObjectName(QStringLiteral("Scale_Z"));
         Scale_Z->setSizeConstraint(QLayout::SetDefaultConstraint);
+        Scale_Z->setContentsMargins(6, -1, -1, -1);
         label_Scale_Z = new QLabel(Transform);
         label_Scale_Z->setObjectName(QStringLiteral("label_Scale_Z"));
         sizePolicy1.setHeightForWidth(label_Scale_Z->sizePolicy().hasHeightForWidth());
@@ -1522,8 +1533,10 @@ public:
         Pos->addWidget(label_Pos);
 
         Pos_X = new QHBoxLayout();
+        Pos_X->setSpacing(2);
         Pos_X->setObjectName(QStringLiteral("Pos_X"));
         Pos_X->setSizeConstraint(QLayout::SetDefaultConstraint);
+        Pos_X->setContentsMargins(6, -1, -1, -1);
         label_Pos_X = new QLabel(Transform);
         label_Pos_X->setObjectName(QStringLiteral("label_Pos_X"));
         sizePolicy1.setHeightForWidth(label_Pos_X->sizePolicy().hasHeightForWidth());
@@ -1545,8 +1558,10 @@ public:
         Pos->addLayout(Pos_X);
 
         Pos_Y = new QHBoxLayout();
+        Pos_Y->setSpacing(2);
         Pos_Y->setObjectName(QStringLiteral("Pos_Y"));
         Pos_Y->setSizeConstraint(QLayout::SetDefaultConstraint);
+        Pos_Y->setContentsMargins(6, -1, -1, -1);
         label_Pos_Y = new QLabel(Transform);
         label_Pos_Y->setObjectName(QStringLiteral("label_Pos_Y"));
         sizePolicy1.setHeightForWidth(label_Pos_Y->sizePolicy().hasHeightForWidth());
@@ -1567,9 +1582,10 @@ public:
         Pos->addLayout(Pos_Y);
 
         Pos_Z = new QHBoxLayout();
-        Pos_Z->setSpacing(6);
+        Pos_Z->setSpacing(2);
         Pos_Z->setObjectName(QStringLiteral("Pos_Z"));
         Pos_Z->setSizeConstraint(QLayout::SetDefaultConstraint);
+        Pos_Z->setContentsMargins(6, -1, -1, -1);
         label_Pos_Z = new QLabel(Transform);
         label_Pos_Z->setObjectName(QStringLiteral("label_Pos_Z"));
         sizePolicy1.setHeightForWidth(label_Pos_Z->sizePolicy().hasHeightForWidth());

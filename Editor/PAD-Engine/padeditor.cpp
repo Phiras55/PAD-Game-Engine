@@ -19,7 +19,7 @@ PADEditor::PADEditor(QWidget *parent) :
     setCentralWidget(ui->OpenGl);
     setDockNestingEnabled(true);
 
-    QString contentPath = "../";
+    QString contentPath = "Resources";
     DirModel = new QFileSystemModel(this);
     DirModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
     DirModel->setRootPath(contentPath);
@@ -27,7 +27,7 @@ PADEditor::PADEditor(QWidget *parent) :
     ui->projectTreeView->setRootIndex(DirModel->setRootPath(contentPath));
 
     FileModel = new QFileSystemModel(this);
-    FileModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files);
+    FileModel->setFilter(QDir::NoDotAndDotDot | QDir::Files);
     FileModel->setRootPath(contentPath);
     ui->projectListView->setModel(FileModel);
     ui->projectListView->setRootIndex(FileModel->setRootPath(contentPath));
@@ -35,7 +35,10 @@ PADEditor::PADEditor(QWidget *parent) :
     ui->projectTreeView->setColumnHidden(1, true);
     ui->projectTreeView->setColumnHidden(2, true);
     ui->projectTreeView->setColumnHidden(3, true);
+    ui->projectTreeView->header()->hide();
 
+    ui->InspecContent->layout()->addWidget(new PADObjectWidget());
+    ui->InspecContent->layout()->addWidget(new TransformWidget());
 
     openGLWidget->setFocusPolicy(Qt::FocusPolicy::ClickFocus);
 }
@@ -54,14 +57,4 @@ void PADEditor::on_projectListView_doubleClicked(const QModelIndex &index)
 {
     QString currentPath = FileModel->fileInfo(index).absoluteFilePath();
     ui->projectListView->setRootIndex(FileModel->setRootPath(currentPath));
-}
-
-void PADEditor::on_actionAdd_Transform_triggered()
-{
-    ui->scrollAreaWidgetContents->layout()->addWidget(new TransformWidget());
-}
-
-void PADEditor::on_actionAdd_PadInfos_triggered()
-{
-    ui->scrollAreaWidgetContents->layout()->addWidget(new PADObjectWidget());
 }

@@ -11,6 +11,7 @@ struct TextureData
 	std::string				m_path;
 	int						m_sWrap;
 	int						m_tWrap;
+	int						m_channel;
 };
 
 } // namespace mod

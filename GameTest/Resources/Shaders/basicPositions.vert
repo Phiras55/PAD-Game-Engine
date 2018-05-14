@@ -6,7 +6,6 @@ layout(location = 2) in vec2 vertexUv;
 
 uniform mat4 model;
 
-
 layout (std140, binding = 0, row_major) uniform CameraSettings
 {
 							// Base Alignment  	// Aligned Offset

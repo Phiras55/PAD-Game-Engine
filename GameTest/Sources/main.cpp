@@ -58,13 +58,12 @@ int main()
 	pad::LoadResourceFile("../Resources/PADFormat\\creature_pitlord_magtheridon.PADMesh", "");
 	pad::LoadResourceFile("../Resources/PADFormat\\creature_giantspider_giantspider_0.PADMaterial", "");
 	pad::LoadResourceFile("../Resources/PADFormat\\creature_giantspider_giantspider.PADMesh", "");
-	pad::LoadResourceFile("../Resources/PADFormat/Grid.png", "");
-	pad::LoadResourceFile("../Resources/PADFormat/Default.jpg", "");
+	pad::LoadResourceFile("../Resources/PADFormat\\Grid.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat\\Default.PADMaterial", "");
 
 	plat->GetTransform().SetScale(pad::math::Vec3f(10.f, 1.f, 10.f));
 
 	pad::sys::ecs::MeshRenderer* mr = plat->GetComponent<pad::sys::ecs::MeshRenderer>();
-	mr->GetSettings().isWireframe	= true;
 
 	plat->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(10.f, 1.f, 10.f));
 	plat->AddComponent<pad::sys::ecs::RigidBody>();
@@ -86,6 +85,11 @@ int main()
 		rb = cube->GetComponent<pad::sys::ecs::RigidBody>();
 		rb->SetMass(10.f);
 	}
+
+	pad::sys::ecs::PADObject* grid = pad::CreatePADObject("Grid");
+	grid->AddComponent<pad::sys::ecs::MeshRenderer>("Quad", "Grid");
+	grid->GetTransform().SetRotation(pad::math::Vec3f(-90.f, 0.f, 0.f));
+	grid->GetTransform().SetScale(100.f);
 
 	pad::StartSimulation();
 	pad::DestroyEngine();

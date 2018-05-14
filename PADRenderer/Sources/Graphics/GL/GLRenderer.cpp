@@ -61,6 +61,7 @@ void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
 	InitCullFace(_settings);
 	InitWindingOrder(_settings);
 	InitDefaultUniformBuffers();
+	InitBlendFunction();
 }
 
 void GLRenderer::InitMainBuffer(const rhi::ContextSettings& _settings)
@@ -242,9 +243,13 @@ void GLRenderer::GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao,
 
 void GLRenderer::GenerateTexture(rhi::ATexture* const _t, const std::string& _path, const rhi::TextureParameters& _param)
 {
-	int width, height, nrChannels;
+	int width, height, nrChannels, channel;
+	unsigned char* data = nullptr;
+
 	stbi_set_flip_vertically_on_load(_param.flipY);
-	unsigned char *data = stbi_load(_path.c_str(), &width, &height, &nrChannels, STBI_rgb);
+
+	channel = _param.channelType == rhi::ChannelType::RGB ? STBI_rgb : STBI_rgb_alpha;
+	data = stbi_load(_path.c_str(), &width, &height, &nrChannels, channel);
 
 	if (data)
 	{

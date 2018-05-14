@@ -100,7 +100,7 @@ void LoadResourceFile(const std::string& _filePath, const std::string& _outputPa
 	}
 }
 
-ENGINE_API void LoadMeshFile(const std::string& _filePath)
+void LoadMeshFile(const std::string& _filePath)
 {
 	std::string	name		= pad::parser::GetFileName(_filePath);
 	size_t		extIndex	= name.find_last_of(".");
@@ -131,8 +131,9 @@ void LoadMaterialFile(const std::string& _filePath)
 	material.SetName(materialData.m_name);
 
 	gfx::rhi::TextureParameters param;
-	param.sWrap = gfx::rhi::E_WRAP_TYPE(textureData.m_sWrap);
-	param.tWrap = gfx::rhi::E_WRAP_TYPE(textureData.m_tWrap);
+	param.sWrap			= gfx::rhi::E_WRAP_TYPE(textureData.m_sWrap);
+	param.tWrap			= gfx::rhi::E_WRAP_TYPE(textureData.m_tWrap);
+	param.channelType	= gfx::rhi::E_CHANNEL_TYPE(textureData.m_channel);
 	texture->SetName(textureData.m_name);
 	g_engine->GetRenderer().GenerateTexture(texture, textureData.m_path, param);
 
@@ -142,10 +143,16 @@ void LoadMaterialFile(const std::string& _filePath)
 	g_engine->GetResourceManager()->GetTextureManager().AddResource(texture->GetName(), texture);
 }
 
-ENGINE_API void LoadTextureFile(const std::string& _filePath)
+void LoadTextureFile(const std::string& _filePath)
 {
+	std::string	name	= pad::parser::GetFileName(_filePath);
+	size_t extIndex		= name.find_last_of(".");
+
+	name = name.substr(0, extIndex);
+
 	gfx::gl::GLTexture* texture = new gfx::gl::GLTexture();
 	gfx::rhi::TextureParameters param;
+	texture->SetName(name);
 	g_engine->GetRenderer().GenerateTexture(texture, _filePath, param);
 	g_engine->GetResourceManager()->GetTextureManager().AddResource(texture->GetName(), texture);
 }

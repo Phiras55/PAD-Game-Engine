@@ -13,6 +13,5 @@ in VertexData
 
 void main()
 {
-	vec4 textureColor = texture(albedoMap, vec2(inData.uv.x, inData.uv.y));
-    gl_FragColor = textureColor;
+    gl_FragColor = texture(albedoMap, inData.uv);
 }

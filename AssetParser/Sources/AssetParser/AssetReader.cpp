@@ -127,6 +127,7 @@ void ReadPADMaterial(const	std::string&			_inputPath,
 		SHININESS,
 		TEXTURE_FILE,
 		TEXTURE_WRAP,
+		CHANNEL,
 		DEFAULT
 	};
 
@@ -154,6 +155,8 @@ void ReadPADMaterial(const	std::string&			_inputPath,
 				sec = TEXTURE_WRAP;
 			else if (line == "[TEXTURE_FILE]")
 				sec = TEXTURE_FILE;
+			else if (line == "[CHANNEL]")
+				sec = CHANNEL;
 			else
 				sec = DEFAULT;
 		}
@@ -199,6 +202,9 @@ void ReadPADMaterial(const	std::string&			_inputPath,
 
 					break;
 				}
+				case CHANNEL:
+					stream >> _textureData.m_channel;
+					break;
 			}
 		}
 	}

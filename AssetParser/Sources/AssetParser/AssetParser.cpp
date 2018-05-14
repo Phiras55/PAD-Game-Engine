@@ -378,7 +378,9 @@ std::string GeneratePADMaterial(const	std::string&	_outputPath,
 				+	std::to_string(static_cast<unsigned int>(_material.textureParam.sWrap))	+ " "
 				+	std::to_string(static_cast<unsigned int>(_material.textureParam.tWrap)) + "\n"
 				+	"[TEXTURE_FILE]\n"
-				+	PathFindFileName(_material.textureFile.c_str());
+				+	PathFindFileName(_material.textureFile.c_str()) + "\n"
+                +   "[CHANNEL]" + "\n"
+                +   std::to_string(static_cast<unsigned int>(gfx::rhi::ChannelType::RGB));
 
 	std::string outputFile = _outputPath + _material.name + ".PADMaterial";
 	std::ofstream out(outputFile);

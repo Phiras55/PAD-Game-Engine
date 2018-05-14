@@ -65,19 +65,19 @@ void HighLevelRenderer::InitializeDefaultMeshes()
 {
 	pad::gfx::mod::MeshData md1, md2;
 
-	md1.positions		= new float[24]{
+	md1.positions		= new float32[24]{
 		-0.5, -0.5,  0.5,
-		0.5, -0.5,  0.5,
+		 0.5, -0.5,  0.5,
 		-0.5,  0.5,  0.5,
-		0.5,  0.5, -0.5,
+		 0.5,  0.5, -0.5,
 		-0.5, -0.5, -0.5,
 		-0.5,  0.5, -0.5,
-		0.5, -0.5, -0.5,
-		0.5,  0.5,  0.5
+		 0.5, -0.5, -0.5,
+		 0.5,  0.5,  0.5
 	};
 	md1.positionCount	= 24;
 
-	md1.indices			= new pad::uint32[36]{
+	md1.indices			= new uint32[36]{
 		0, 1, 2,
 		3, 4, 5,
 		4, 3, 6,
@@ -93,13 +93,26 @@ void HighLevelRenderer::InitializeDefaultMeshes()
 	};
 	md1.indiceCount		= 36;
 
-	md2.positions		= new float[8]{
-		-0.5, -0.5,
-		 0.5, -0.5,
-		 0.5,  0.5,
-		-0.5,  0.5
+	md1.uvs = new float32[16]{
+		0.0, 0.0,
+		1.0, 0.0,
+		1.0, 1.0,
+		0.0, 1.0,
+
+		0.0, 0.0,
+		1.0, 0.0,
+		1.0, 1.0,
+		0.0, 1.0,
 	};
-	md2.positionCount	= 8;
+	md1.uvCount = 16;
+
+	md2.positions		= new float32[12]{
+		-0.5, -0.5, 0.0,
+		 0.5, -0.5, 0.0,
+		 0.5,  0.5, 0.0,
+		-0.5,  0.5, 0.0
+	};
+	md2.positionCount	= 12;
 
 	md2.indices			= new uint32[6]{
 		0, 1, 2,
@@ -107,11 +120,11 @@ void HighLevelRenderer::InitializeDefaultMeshes()
 	};
 	md2.indiceCount		= 6;
 
-	md2.uvs				= new float[8]{
-		0.f, 0.f,
-		1.f, 0.f,
-		1.f, 1.f,
-		0.f, 1.f
+	md2.uvs				= new float32[8]{
+		0.0f, 0.0f,
+		10.f, 0.0f,
+		10.f, 10.f,
+		0.0f, 10.f
 	};
 	md2.uvCount			= 8;
 

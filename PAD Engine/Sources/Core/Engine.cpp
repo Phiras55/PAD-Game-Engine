@@ -40,6 +40,9 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win:
 	core::EngineClock::Init();
 
 	m_highLevelRenderer.Initialize(_c, _w, m_resourceManager);
+
+	// Test
+	sys::ecs::PADObject::SetComponentHandler(&m_componentHandler);
 }
 
 void Engine::StartSimulation()
@@ -48,9 +51,6 @@ void Engine::StartSimulation()
 	m_physicContext->Init();
 	m_scene->Start();
 	m_fixedUpdateTimer.Start();
-
-	// Test
-	m_scene->Serialize();
 
 	while (m_highLevelRenderer.IsWindowOpen())
 	{
@@ -100,7 +100,7 @@ void Engine::LateUpdate()
 
 void Engine::Render()
 {
-	m_highLevelRenderer.Render(*m_resourceManager, *m_scene);
+	m_highLevelRenderer.Render(*m_resourceManager, *m_scene, m_componentHandler);
 }
 
 void Engine::ResizeContext(const uint32 _w, const uint32 _h)

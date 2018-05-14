@@ -21,6 +21,10 @@ namespace pad
 	ENGINE_API void RotateMainCamera(const math::Vec3f& _rotation);
 	ENGINE_API void SetMainCameraTarget(const math::Vec3f& _targetPosition);
 
+	ENGINE_API sys::ecs::PADObject* GetPADObject	(const std::string& _name, sys::ecs::PADObject* const _rootSearch = nullptr);
+	ENGINE_API sys::ecs::PADObject* CreatePADObject	(const std::string& _name, sys::ecs::PADObject* const _parent = nullptr);
+	ENGINE_API void					DeletePADObject	(const std::string& _name, sys::ecs::PADObject* const _rootSearch = nullptr);
+
 	ENGINE_API void LoadResourceFile(const std::string& _filePath, const std::string& _outputPath);
 	ENGINE_API void LoadMeshFile(const std::string& _filePath);
 	ENGINE_API void LoadMaterialFile(const std::string& _filePath);

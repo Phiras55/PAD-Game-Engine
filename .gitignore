@@ -79,12 +79,7 @@ StyleCopReport.xml
 *.svclog
 *.scc
 *.fbx
-*.png
-*.PADMesh
-*.PADSkeleton
-*.PADMaterial
 libfbxsdk.lib
-libfbxsdk-mt.lib
 libfbxsdk-md.lib
 
 

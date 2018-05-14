@@ -21,6 +21,11 @@ void GLTexture::Bind()
 	glBindTexture(GL_TEXTURE_2D, m_id);
 }
 
+void GLTexture::Unbind()
+{
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 void GLTexture::SetTextureParameters(const rhi::TextureParameters& _param)
 {
 	CheckWrapParameters(_param.sWrap, rhi::AxisType::S);

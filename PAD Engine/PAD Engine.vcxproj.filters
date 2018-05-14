@@ -43,14 +43,8 @@
     <Filter Include="Source Files\System\Physics">
       <UniqueIdentifier>{ccdf6619-b50f-46e6-9870-19c69d597994}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\System\ResourceManager">
-      <UniqueIdentifier>{d4a4f04b-8d47-462c-906c-7ea2317a670d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\System\Physics">
       <UniqueIdentifier>{07c47f7e-e6fc-4bc5-a29e-508581c4326c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\System\ResourceManager">
-      <UniqueIdentifier>{b17d9066-18ec-4256-b90b-d761d1689495}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Graphics">
       <UniqueIdentifier>{6048f736-da9d-4568-b5bf-1c2253703102}</UniqueIdentifier>
@@ -63,6 +57,15 @@
     </Filter>
     <Filter Include="Source Files\Utilities">
       <UniqueIdentifier>{3e0b94b6-86de-4f35-9ae8-0da24f721c36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\Scene">
+      <UniqueIdentifier>{05f7b60f-8a30-4286-8fdc-8fae22503f0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\ResourceHandling">
+      <UniqueIdentifier>{b17d9066-18ec-4256-b90b-d761d1689495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\ResourceHandling">
+      <UniqueIdentifier>{d4a4f04b-8d47-462c-906c-7ea2317a670d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -87,9 +90,6 @@
     <ClCompile Include="Sources\System\ECS\PADObject.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\ECS\Scene.cpp">
-      <Filter>Source Files\System\ECS</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
@@ -101,9 +101,6 @@
     </ClCompile>
     <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp">
       <Filter>Source Files\System\ECS</Filter>
-    </ClCompile>
-    <ClCompile Include="Sources\System\Resource\MasterManager.cpp">
-      <Filter>Source Files\System\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="Sources\Graphics\HighLevelRenderer.cpp">
       <Filter>Source Files\Graphics</Filter>
@@ -117,8 +114,20 @@
     <ClCompile Include="Sources\System\ECS\BoxCollider.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\ECS\ComponentsHandler.cpp">
-      <Filter>Source Files\System\ECS</Filter>
+    <ClCompile Include="Sources\System\Scene\SceneHandler.cpp">
+      <Filter>Source Files\System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\Scene\Scene.cpp">
+      <Filter>Source Files\System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ResourceHandling\MasterManager.cpp">
+      <Filter>Source Files\System\ResourceHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ResourceHandling\ComponentsHandler.cpp">
+      <Filter>Source Files\System\ResourceHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Core\IDHandler.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,19 +143,10 @@
     <ClInclude Include="Sources\Core\EngineDLL.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\Resource\ResourceManager.h">
-      <Filter>Header Files\System\ResourceManager</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Core\IDPool.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\PADObject.h">
-      <Filter>Header Files\System\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\ECS\Scene.h">
-      <Filter>Header Files\System\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\ECS\IComponent.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\RigidBody.h">
@@ -170,9 +170,6 @@
     <ClInclude Include="Sources\System\ECS\MeshRenderer.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\Resource\MasterManager.h">
-      <Filter>Header Files\System\ResourceManager</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Graphics\HighLevelRenderer.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
@@ -191,11 +188,47 @@
     <ClInclude Include="Sources\Utilities\Randomizer.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\ECS\ComponentsHandler.h">
+    <ClInclude Include="Sources\System\ECS\AComponent.h">
       <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Scene\SceneHandler.h">
+      <Filter>Header Files\System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\Scene\Scene.h">
+      <Filter>Header Files\System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ResourceHandling\PoolItem.h">
+      <Filter>Header Files\System\ResourceHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ResourceHandling\ResourceManager.h">
+      <Filter>Header Files\System\ResourceHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ResourceHandling\MasterManager.h">
+      <Filter>Header Files\System\ResourceHandling</Filter>
     </ClInclude>
     <ClInclude Include="Sources\System\ECS\AComponent.h">
       <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Utilities\UniqueIDs.h">
+      <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ResourceHandling\ObjectPool.h">
+      <Filter>Header Files\System\ResourceHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ResourceHandling\IComponentPool.h">
+      <Filter>Header Files\System\ResourceHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ResourceHandling\SpecializedComponentPool.h">
+      <Filter>Header Files\System\ResourceHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ResourceHandling\ComponentsHandler.h">
+      <Filter>Header Files\System\ResourceHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\AComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Core\IDHandler.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

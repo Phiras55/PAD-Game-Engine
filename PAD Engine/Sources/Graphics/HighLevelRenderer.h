@@ -1,6 +1,6 @@
 #pragma once
-#include <System/ECS/Scene.h>
-#include <System/Resource/MasterManager.h>
+#include <System/Scene/Scene.h>
+#include <System/ResourceHandling/MasterManager.h>
 #include <Graphics/RHI/IRenderer.h>
 #include <Graphics/Window/AWindow.h>
 
@@ -22,8 +22,14 @@ private:
 	sys::res::MasterManager*	m_masterManagerHandle;
 
 public:
-	void Initialize(const rhi::ContextSettings& _rSettings, const win::WindowSettings& _wSettings, sys::res::MasterManager* _masterManagerHandle);
-	void Render(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene);
+	void Initialize(
+		const rhi::ContextSettings& _rSettings, 
+		const win::WindowSettings& _wSettings, 
+		sys::res::MasterManager* _masterManagerHandle);
+	void Render(
+		sys::res::MasterManager& _resources, 
+		sys::ecs::Scene& _scene,
+		sys::res::ComponentsHandler& _components);
 	void GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md);
 	void PollEvents();
 	void ResizeContext(const uint32 _w, const uint32 _h);
@@ -36,6 +42,7 @@ private:
 	void ClearBuffers();
 	void SwapBuffers();
 	void InitializeDefaultMeshes();
+	void UnbindTextures(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources);
 	void FillTextureLayout(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources);
 
 public:

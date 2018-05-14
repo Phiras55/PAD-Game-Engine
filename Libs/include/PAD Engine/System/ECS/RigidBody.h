@@ -1,6 +1,6 @@
 #pragma once
 
-#include <System/ECS/IComponent.h>
+#include <System/ECS/AComponent.h>
 #include <System/ECS/ACollider.h>
 #include <Utilities/Export.h>
 
@@ -8,10 +8,11 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-class ENGINE_API RigidBody final : public IComponent
+class ENGINE_API RigidBody final : public AComponent
 {
 public:
 	RigidBody();
+	RigidBody(const RigidBody& _other);
 	~RigidBody();
 
 public:
@@ -30,23 +31,22 @@ public:
 	inline btRigidBody* const	GetBTRigidBody() const				{ return m_btRigidBody; }
 	inline ACollider*	const	GetCollider() const					{ return m_collider; }
 
-	inline void SetCollider(ACollider* const _collider);
+	inline void SetCollider(ACollider* const _collider)				{ m_collider = _collider; }
 
-	virtual void				SetOwner(PADObject* const _owner) override { m_owner = _owner; }
-	virtual PADObject* const	GetOwner() const override					{ return m_owner; }
-
-	virtual const COMPONENT_TYPE GetType() const override			{ return m_type; }
-
-	const math::Transform& GetTransform() const override { return m_transform; }
-	math::Transform& GetTransform()				override { return m_transform; }
+	const alias::ComponentID GetType() const override
+	{
+		return m_id;
+	}
 	
-
-
 private:
-	btRigidBody*	m_btRigidBody;
-	btMotionState*	m_btMotionState;
-	ACollider*		m_collider;
-	float			m_mass;
+	btRigidBody*				m_btRigidBody;
+	btMotionState*				m_btMotionState;
+	ACollider*					m_collider;
+	float						m_mass;
+	static alias::ComponentID	m_id;
+
+public:
+	void operator=(const RigidBody& _other);
 };
 
 } // namespace ecs

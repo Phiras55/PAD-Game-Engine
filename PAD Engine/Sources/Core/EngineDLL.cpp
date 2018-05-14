@@ -100,7 +100,7 @@ void LoadResourceFile(const std::string& _filePath, const std::string& _outputPa
 
 ENGINE_API void LoadMeshFile(const std::string& _filePath)
 {
-	std::string	name		= PathFindFileName(_filePath.c_str());
+	std::string	name		= pad::parser::GetFileName(_filePath);
 	size_t		extIndex	= name.find_last_of(".");
 	name					= name.substr(0, extIndex);
 
@@ -178,10 +178,5 @@ void DeletePADObject(const std::string& _name, sys::ecs::PADObject* const _rootS
 	}
 }
 
-} // namespace pad
 }
-
-void LoadMeshFile(const std::string& _filePath)
-{
-	std::string	name		= PathFindFileName(_filePath.c_str());
-	size_t		extIndex	= name.find_last_of(".");
+// namespace pad

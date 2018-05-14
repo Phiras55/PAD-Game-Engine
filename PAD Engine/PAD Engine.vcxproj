@@ -62,7 +62,6 @@
     <ClInclude Include="Sources\System\ECS\AComponent.h" />
     <ClInclude Include="Sources\System\ECS\BoxCollider.h" />
     <ClInclude Include="Sources\System\ECS\Camera.h" />
-    <ClInclude Include="Sources\System\ECS\AComponent.h" />
     <ClInclude Include="Sources\System\ECS\MeshRenderer.h" />
     <ClInclude Include="Sources\System\ECS\PADObject.h" />
     <ClInclude Include="Sources\System\ECS\PerspectiveCamera.h" />

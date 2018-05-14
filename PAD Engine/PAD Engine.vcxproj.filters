@@ -188,9 +188,6 @@
     <ClInclude Include="Sources\Utilities\Randomizer.h">
       <Filter>Header Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\ECS\AComponent.h">
-      <Filter>Header Files\System\ECS</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\System\Scene\SceneHandler.h">
       <Filter>Header Files\System\Scene</Filter>
     </ClInclude>
@@ -223,9 +220,6 @@
     </ClInclude>
     <ClInclude Include="Sources\System\ResourceHandling\ComponentsHandler.h">
       <Filter>Header Files\System\ResourceHandling</Filter>
-    </ClInclude>
-    <ClInclude Include="Sources\System\ECS\AComponent.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Core\IDHandler.h">
       <Filter>Header Files\Core</Filter>

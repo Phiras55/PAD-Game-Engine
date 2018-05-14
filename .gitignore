@@ -81,7 +81,7 @@ StyleCopReport.xml
 *.fbx
 libfbxsdk.lib
 libfbxsdk-md.lib
-
+libfbxsdk-mt.lib
 
 # Chutzpah Test files
 _Chutzpah*

@@ -17,6 +17,9 @@ struct MeshData
 	uint32 normalCount;
 	uint32 uvCount;
 	uint32 indiceCount;
+
+	int*	boneIndex;
+	float*	weight;
 };
 
 } // namespace mod

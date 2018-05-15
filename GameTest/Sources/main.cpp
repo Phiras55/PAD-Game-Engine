@@ -17,7 +17,7 @@
 
 int main()
 {
-	//pad::parser::ParseFile("D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\GiantSpider.fbx", "D:\\Projects\\PFA\\PAD-Game-Engine\\Resources\\FBX\\");
+	pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
 
 	#pragma region RenderInit
 

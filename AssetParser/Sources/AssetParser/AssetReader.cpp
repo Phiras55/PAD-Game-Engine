@@ -22,6 +22,7 @@ void ReadPADMesh(const	std::string&			_inputPath,
 		NORMALS,
 		UVS,
 		INDICES,
+		BONE_WEIGHT,
 		DEFAULT
 	};
 
@@ -29,6 +30,7 @@ void ReadPADMesh(const	std::string&			_inputPath,
 	int normalCounter	= 0;
 	int uvCounter		= 0;
 	int indicesCounter	= 0;
+	int boneCounter		= 0;
 	SECTION sec			= DEFAULT;
 
 	std::ifstream in(_inputPath);
@@ -52,6 +54,8 @@ void ReadPADMesh(const	std::string&			_inputPath,
 				sec = UVS;
 			else if (line == "[INDICES]")
 				sec = INDICES;
+			else if (line == "[BONE_WEIGHT]")
+				sec = BONE_WEIGHT;
 			else
 				sec = DEFAULT;
 		}
@@ -69,6 +73,8 @@ void ReadPADMesh(const	std::string&			_inputPath,
 					_meshData.positions		= new float[_meshData.positionCount * 3];
 					_meshData.normals		= new float[_meshData.normalCount * 3];
 					_meshData.uvs			= new float[_meshData.uvCount * 2];
+					_meshData.boneIndex		= new int[_meshData.positionCount * 4];
+					_meshData.weight		= new float[_meshData.positionCount * 4];
 
 					_meshData.positionCount *= 3;
 
@@ -109,6 +115,12 @@ void ReadPADMesh(const	std::string&			_inputPath,
 					std::string path;
 					stream >> path;
 //					ReadPADMaterial(path);
+				}
+				case BONE_WEIGHT :
+				{
+					stream >> _meshData.boneIndex[boneCounter] >> _meshData.weight[boneCounter];
+					++boneCounter;
+					break;
 				}
 			}
 		}

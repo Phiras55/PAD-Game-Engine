@@ -17,7 +17,7 @@
 
 int main()
 {
-	pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
+	pad::parser::ParseFile("../Resources/FBX/CubeTexture.fbx", "../Resources/PADFormat/");
 
 	#pragma region RenderInit
 
@@ -54,12 +54,15 @@ int main()
 	pad::sys::ecs::PADObject* plat = pad::CreatePADObject("Platform");
 	plat->AddComponent<pad::sys::ecs::MeshRenderer>("Cube", "Default");
 
-	pad::LoadResourceFile("../Resources/PADFormat\\creature_pitlord_magtheridon_0.PADMaterial", "");
-	pad::LoadResourceFile("../Resources/PADFormat\\creature_pitlord_magtheridon.PADMesh", "");
-	pad::LoadResourceFile("../Resources/PADFormat\\creature_giantspider_giantspider_0.PADMaterial", "");
-	pad::LoadResourceFile("../Resources/PADFormat\\creature_giantspider_giantspider.PADMesh", "");
-	pad::LoadResourceFile("../Resources/PADFormat\\Grid.PADMaterial", "");
-	pad::LoadResourceFile("../Resources/PADFormat\\Default.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_pitlord_magtheridon_0.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_pitlord_magtheridon.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_0.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/Grid.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/Default.PADMaterial", "");
+
+	pad::LoadResourceFile("../Resources/PADFormat/pCube1.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/lambert2.PADMaterial", "");
 
 	plat->GetTransform().SetScale(pad::math::Vec3f(10.f, 1.f, 10.f));
 

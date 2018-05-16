@@ -59,8 +59,6 @@ struct Bone
 	math::Vec4f		scale;
 
 	math::Mat4		inverseBindPose;
-
-
 };
 
 struct Skeleton
@@ -85,6 +83,20 @@ struct Skeleton
 		}
 		return -1;
 	}
+};
+
+struct BoneInfo
+{
+	std::vector<int>		boneIds;
+	std::vector<math::Mat4> transforms;
+};
+
+struct Anim
+{
+	std::string		name;
+	int				frameNumber;
+	float			animDuration;
+	BoneInfo*		boneInfos;
 };
 
 PARSER_RESULT ParseFile(const	std::string& _inputPath, 
@@ -136,17 +148,23 @@ std::string ParseMaterial(const	std::string&			_outputPath,
 std::string GeneratePADMaterial(const	std::string&	_outputPath, 
 										AssetMaterial&	_material);
 
-void ParseAnimation(const	std::string&			_outputPath,
-					const	std::string&			_fileName,
-							FbxNode*		const	_currentNode,
-							FbxMesh*		const	_fbxMesh,
-							Skeleton*		const	_skeleton,
-							ControlPoint*	const	_controlPoint);
+void ParseBoneWeight(	const	std::string&			_outputPath,
+						const	std::string&			_fileName,
+								FbxScene*		const	_scene,
+								FbxNode*		const	_currentNode,
+								FbxMesh*		const	_fbxMesh,
+								Skeleton*		const	_skeleton,
+								ControlPoint*	const	_controlPoint);
 
 void ParseTexture(	FbxFileTexture*	const	_texture,
 					AssetMaterial&			_material);
 
+void GeneratePADAnim(	const	std::string&			_outputPath,
+								Anim**			const	_anims,
+						const	int						_animCount);
+
 math::Mat4 FbxMatToMat(const FbxAMatrix& _matrix);
+std::string MatToString(const math::Mat4& _matrix);
 
 } // namespace parser
 } // namespace pad

@@ -4,6 +4,7 @@
 #include <sstream>
 #include <algorithm>
 #include <AssetParser/AssetParser.h>
+#include "AssetParser.h"
 
 #pragma comment(lib,"shlwapi.lib")
 
@@ -19,10 +20,10 @@ PARSER_RESULT ParseFile(const std::string& _inputPath,
 	if (extension == ".fbx")
 	{
 		if (ParseFBX(_inputPath, _outputPath, fileName) == FAILURE)
-			return FAILURE;
+			return PARSER_RESULT::FAILURE;
 	}
 
-	return SUCCESS;
+	return PARSER_RESULT::SUCCESS;
 }
 
 PARSER_RESULT ParseFBX(	const	std::string& _inputPath, 
@@ -36,13 +37,14 @@ PARSER_RESULT ParseFBX(	const	std::string& _inputPath,
 	FbxImporter* fbxImporter = FbxImporter::Create(fbxManager, "");
 
 	if (!fbxImporter->Initialize(_inputPath.c_str(), -1, fbxManager->GetIOSettings()))
-		return FAILURE;
+		return PARSER_RESULT::FAILURE;
 
 	FbxScene* fbxScene = FbxScene::Create(fbxManager, "scene");
 	fbxImporter->Import(fbxScene);
 	fbxImporter->Destroy();
 
 	FbxMesh*		fbxMesh			= nullptr;
+	Skeleton* skeleton				= nullptr;
 	ControlPoint*	controlPoints	= new ControlPoint();
 
 	int i = 0;
@@ -61,10 +63,10 @@ PARSER_RESULT ParseFBX(	const	std::string& _inputPath,
 		}			
 		else if (currentNode->GetChild(i)->GetSkeleton())
 		{
-			Skeleton* skeleton = new Skeleton();
+			skeleton = new Skeleton();
 			ParseSkeleton(currentNode->GetChild(i), skeleton);
 			if(fbxMesh)
-				ParseAnimation(_outputPath, nodeName, currentNode->GetChild(i), fbxMesh, skeleton, controlPoints);
+				ParseBoneWeight(_outputPath, nodeName, fbxScene, currentNode->GetChild(i), fbxMesh, skeleton, controlPoints);
 			GeneratePADSkeleton(_outputPath, nodeName, skeleton);
 			delete skeleton;
 		}
@@ -76,6 +78,8 @@ PARSER_RESULT ParseFBX(	const	std::string& _inputPath,
 			i = 0;
 		}
 	}
+	//if (skeleton)
+	//	ParseAnimations(fbxScene, skeleton);
 
 	if (controlPoints)
 		delete controlPoints;
@@ -83,7 +87,7 @@ PARSER_RESULT ParseFBX(	const	std::string& _inputPath,
 	fbxScene->Destroy();
 	fbxManager->Destroy();
 
-	return SUCCESS;
+	return PARSER_RESULT::SUCCESS;
 }
 
 void ParseMesh(			FbxNode*		const	_node,
@@ -277,13 +281,16 @@ void GeneratePADSkeleton(	const	std::string&			_outputPath,
 	std::string resultFile;
 	for (int boneIndex = 0; boneIndex < _skeleton->bones.size(); ++boneIndex)
 	{
-		resultFile +=		"[" 
-						+	_skeleton->bones[boneIndex]->boneName
-						+	"]\n"
-						+	std::to_string(_skeleton->bones[boneIndex]->id) 
-						+	" " 
-						+	std::to_string(_skeleton->bones[boneIndex]->parentId) 
-						+	"\n";
+		resultFile	+=	"[" 
+					+	_skeleton->bones[boneIndex]->boneName
+					+	"]\n"
+					+	std::to_string(_skeleton->bones[boneIndex]->id) 
+					+	" " 
+					+	std::to_string(_skeleton->bones[boneIndex]->parentId) 
+					+	"\n";
+		for (int i = 0; i < 16; ++i)
+			resultFile += std::to_string(_skeleton->bones[boneIndex]->inverseBindPose[i / 4][i % 4]) + " ";
+		resultFile += "\n";
 	}
 
 	std::string outputFile = _outputPath + _skeletonName + ".PADSkeleton";
@@ -401,17 +408,27 @@ std::string GeneratePADMaterial(const	std::string&	_outputPath,
 	return outputFile;
 }
 
-void ParseAnimation(const	std::string&			_outputPath,
-					const	std::string&			_fileName,
-							FbxNode*		const	_currentNode,
-							FbxMesh*		const	_fbxMesh,
-							Skeleton*		const	_skeleton,
-							ControlPoint*	const	_controlPoint)
+void ParseBoneWeight(	const	std::string&			_outputPath,
+						const	std::string&			_fileName,
+								FbxScene*		const	_scene,
+								FbxNode*		const	_currentNode,
+								FbxMesh*		const	_fbxMesh,
+								Skeleton*		const	_skeleton,
+								ControlPoint*	const	_controlPoint)
 {
 	unsigned int deformerCount = _fbxMesh->GetDeformerCount();
+	unsigned int animCount = _scene->GetSrcObjectCount<FbxAnimStack>();
+
 	FbxAMatrix geoTrans(_currentNode->GetGeometricTranslation(FbxNode::eSourcePivot),
 						_currentNode->GetGeometricRotation(FbxNode::eSourcePivot),
 						_currentNode->GetGeometricScaling(FbxNode::eSourcePivot));
+
+	Anim** anims = new Anim*[animCount];
+	for (int i = 0; i < animCount; ++i)
+	{
+		anims[i] = new Anim();
+		anims[i]->boneInfos = nullptr;
+	}
 
 	for (unsigned int deformerIndex = 0; deformerIndex < deformerCount; ++deformerIndex)
 	{
@@ -419,6 +436,7 @@ void ParseAnimation(const	std::string&			_outputPath,
 		if (fbxSkin)
 		{
 			unsigned int clusterCount = fbxSkin->GetClusterCount();
+
 			for (int clusterIndex = 0; clusterIndex < clusterCount; ++clusterIndex)
 			{
 				FbxCluster* fbxCluster = fbxSkin->GetCluster(clusterIndex);
@@ -451,6 +469,32 @@ void ParseAnimation(const	std::string&			_outputPath,
 								_controlPoint->weightInfos[_controlPoint->fbxIndicesMyIndice[indices[controlPointIndex]][myCP]].weight.push_back(weight[controlPointIndex]);
 							}
 						}
+
+						for (int animStackIndex = 0; animStackIndex < animCount; ++animStackIndex)
+						{
+							FbxAnimStack*	animStack	= _scene->GetSrcObject<FbxAnimStack>(animStackIndex);
+
+							FbxTakeInfo*	takeInfo	= _scene->GetTakeInfo(animStack->GetName());
+							FbxTime			start		= takeInfo->mLocalTimeSpan.GetStart();
+							FbxTime			end			= takeInfo->mLocalTimeSpan.GetStop();
+							int				lenght		= end.GetFrameCount(FbxTime::eFrames24) - start.GetFrameCount(FbxTime::eFrames24) + 1;
+
+							if (!anims[animStackIndex]->boneInfos)
+								anims[animStackIndex]->boneInfos = new BoneInfo[lenght];
+
+							anims[animStackIndex]->frameNumber	= lenght;
+							anims[animStackIndex]->name			= animStack->GetName();
+
+							for (int frameIndex = start.GetFrameCount(FbxTime::eFrames24); frameIndex <= end.GetFrameCount(FbxTime::eFrames24); ++frameIndex)
+							{
+								FbxTime time;
+								time.SetFrame(frameIndex, FbxTime::eFrames24);
+
+								FbxAMatrix offset = _currentNode->EvaluateGlobalTransform(time) * geoTrans;
+								anims[animStackIndex]->boneInfos[frameIndex].boneIds.push_back(boneIndex);
+								anims[animStackIndex]->boneInfos[frameIndex].transforms.push_back(FbxMatToMat(offset.Inverse() * fbxCluster->GetLink()->EvaluateGlobalTransform(time)));
+							}
+						}
 					}
 				}
 			}
@@ -477,6 +521,9 @@ void ParseAnimation(const	std::string&			_outputPath,
 	std::ofstream out;
 	out.open(meshFile, std::ios_base::app);
 	out << append;
+
+	if (animCount > 0)
+		GeneratePADAnim(_outputPath, anims, animCount);
 }
 
 void ParseTexture(	FbxFileTexture* const	_texture, 
@@ -493,6 +540,34 @@ void ParseTexture(	FbxFileTexture* const	_texture,
 		_material.textureParam.tWrap = gfx::rhi::E_WRAP_TYPE::REPEAT;
 	else
 		_material.textureParam.tWrap = gfx::rhi::E_WRAP_TYPE::CLAMP_EDGE;
+}
+
+void GeneratePADAnim(	const	std::string&			_outputPath,
+								Anim**			const	_anims,
+						const	int						_animCount)
+{
+	for (int animIndex = 0; animIndex < _animCount; ++animIndex)
+	{
+		std::string result;
+
+		for (int frameIndex = 0; frameIndex < _anims[animIndex]->frameNumber; ++frameIndex)
+		{
+			result += "[KEY]" + std::to_string(frameIndex) + "\n";
+			result += std::to_string(_anims[animIndex]->boneInfos[frameIndex].boneIds.size()) + "\n";
+
+			for (int boneIndex = 0; boneIndex < _anims[animIndex]->boneInfos[frameIndex].boneIds.size(); ++boneIndex)
+			{
+				result += std::to_string(_anims[animIndex]->boneInfos[frameIndex].boneIds[boneIndex]) + " ";
+				result += MatToString(_anims[animIndex]->boneInfos[frameIndex].transforms[boneIndex]) + "\n";
+			}
+		}
+
+		std::string animFile = _outputPath + _anims[animIndex]->name + ".PADAnim";
+		std::ofstream out(animFile);
+		out << result;
+		out.close();
+	}
+
 }
 
 math::Mat4 FbxMatToMat(const FbxAMatrix& _matrix)
@@ -513,6 +588,16 @@ math::Mat4 FbxMatToMat(const FbxAMatrix& _matrix)
 						_matrix.mData[3][1],
 						_matrix.mData[3][2],
 						_matrix.mData[3][3]);
+}
+
+std::string MatToString(const math::Mat4 & _matrix)
+{
+	std::string result;
+
+	for (int i = 0; i < 16; ++i)
+		result += std::to_string(_matrix[i / 4][i % 4]) + " ";
+
+	return result;
 }
 
 } // namespace parser

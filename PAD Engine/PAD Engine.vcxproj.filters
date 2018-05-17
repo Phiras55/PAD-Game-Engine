@@ -129,6 +129,12 @@
     <ClCompile Include="Sources\Core\IDHandler.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\System\ECS\Skeleton.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\System\ECS\AnimRenderer.cpp">
+      <Filter>Source Files\System\ECS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h">
@@ -223,6 +229,12 @@
     </ClInclude>
     <ClInclude Include="Sources\Core\IDHandler.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\AnimRenderer.h">
+      <Filter>Header Files\System\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\System\ECS\Skeleton.h">
+      <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

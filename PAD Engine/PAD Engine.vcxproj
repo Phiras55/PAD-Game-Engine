@@ -38,11 +38,13 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EnginePCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Sources\System\ECS\ACollider.cpp" />
+    <ClCompile Include="Sources\System\ECS\AnimRenderer.cpp" />
     <ClCompile Include="Sources\System\ECS\BoxCollider.cpp" />
     <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp" />
     <ClCompile Include="Sources\System\ECS\PADObject.cpp" />
     <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp" />
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp" />
+    <ClCompile Include="Sources\System\ECS\Skeleton.cpp" />
     <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
     <ClCompile Include="Sources\System\ResourceHandling\ComponentsHandler.cpp" />
     <ClCompile Include="Sources\System\ResourceHandling\MasterManager.cpp" />
@@ -60,12 +62,14 @@
     <ClInclude Include="Sources\EnginePCH.h" />
     <ClInclude Include="Sources\System\ECS\ACollider.h" />
     <ClInclude Include="Sources\System\ECS\AComponent.h" />
+    <ClInclude Include="Sources\System\ECS\AnimRenderer.h" />
     <ClInclude Include="Sources\System\ECS\BoxCollider.h" />
     <ClInclude Include="Sources\System\ECS\Camera.h" />
     <ClInclude Include="Sources\System\ECS\MeshRenderer.h" />
     <ClInclude Include="Sources\System\ECS\PADObject.h" />
     <ClInclude Include="Sources\System\ECS\PerspectiveCamera.h" />
     <ClInclude Include="Sources\System\ECS\RigidBody.h" />
+    <ClInclude Include="Sources\System\ECS\Skeleton.h" />
     <ClInclude Include="Sources\System\Physics\BulletContext.h" />
     <ClInclude Include="Sources\System\Physics\IPhysicContext.h" />
     <ClInclude Include="Sources\System\ResourceHandling\ComponentsHandler.h" />

@@ -3,7 +3,6 @@
 #include <sstream>
 #include <AssetParser/AssetReader.h>
 #include <Shlwapi.h>
-#include "AssetReader.h"
 
 #pragma comment(lib,"shlwapi.lib")
 
@@ -215,8 +214,64 @@ void ReadPADMaterial(const	std::string&			_inputPath,
 					break;
 				}
 				case CHANNEL:
+				{
 					stream >> _textureData.m_channel;
 					break;
+				}
+			}
+		}
+	}
+}
+
+void ReadPADSkeleton(const	std::string&		_inputPath, 
+							sys::ecs::Skeleton& _skeleton)
+{
+	enum SECTION
+	{
+		BONE_COUNT,
+		BONES,
+		DEFAULT
+	};
+
+	SECTION sec = DEFAULT;
+
+//	std::string	name = PathFindFileName(_inputPath.c_str());
+	_skeleton.SetName(GetFileNameNoExt(_inputPath));
+
+	std::ifstream in(_inputPath);
+	std::string line;
+	while (std::getline(in, line))
+	{
+		std::istringstream stream(line);
+		if (line[0] == '[')
+		{
+			if (line == "[BONE_COUNT]")
+				sec = BONE_COUNT;
+			else if (line == "[BONES]")
+				sec = BONES;
+		}
+		else
+		{
+			switch (sec)
+			{
+				case BONE_COUNT:
+				{
+					int boneCount;
+					stream >> boneCount;
+					_skeleton.SetBoneCount(boneCount);
+					break;
+				}
+				case BONES:
+				{
+					sys::ecs::Bone b;
+					stream	>> b.m_name >> b.m_id >> b.m_parentId 
+							>> b.m_inverseBindPose[0][0] >> b.m_inverseBindPose[0][1] >> b.m_inverseBindPose[0][2] >> b.m_inverseBindPose[0][3]
+							>> b.m_inverseBindPose[1][0] >> b.m_inverseBindPose[1][1] >> b.m_inverseBindPose[1][2] >> b.m_inverseBindPose[1][3] 
+							>> b.m_inverseBindPose[2][0] >> b.m_inverseBindPose[2][1] >> b.m_inverseBindPose[2][2] >> b.m_inverseBindPose[2][3]
+							>> b.m_inverseBindPose[3][0] >> b.m_inverseBindPose[3][1] >> b.m_inverseBindPose[3][2] >> b.m_inverseBindPose[3][3];
+					_skeleton.AddBone(b);
+					break;
+				}
 			}
 		}
 	}
@@ -230,6 +285,15 @@ std::string GetFileExt(const std::string& _path)
 std::string GetFileName(const std::string& _path)
 {
 	return PathFindFileName(_path.c_str());
+}
+
+std::string GetFileNameNoExt(const std::string& _path)
+{
+	std::string result;
+	result			= GetFileName(_path);
+	size_t extIndex = result.find_last_of(".");
+	result			= result.substr(0, extIndex);
+	return result;
 }
 
 } // namespace parser

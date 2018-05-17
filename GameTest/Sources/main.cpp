@@ -17,7 +17,7 @@
 
 int main()
 {
-	pad::parser::ParseFile("../Resources/FBX/CubeTexture.fbx", "../Resources/PADFormat/");
+	pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
 
 	#pragma region RenderInit
 

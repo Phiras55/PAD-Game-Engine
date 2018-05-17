@@ -97,14 +97,14 @@ void LoadResourceFile(const std::string& _filePath, const std::string& _outputPa
 			LoadMaterialFile(_filePath);
 		else if (ext == ".png" || ext == ".jpg")
 			LoadTextureFile(_filePath);
+		else if (ext == ".PADSkeleton")
+			LoadSkeletonFile(_filePath);
 	}
 }
 
 void LoadMeshFile(const std::string& _filePath)
 {
-	std::string	name		= pad::parser::GetFileName(_filePath);
-	size_t		extIndex	= name.find_last_of(".");
-	name					= name.substr(0, extIndex);
+	std::string	name = pad::parser::GetFileNameNoExt(_filePath);
 
 	gfx::mod::MeshData	meshData;
 	gfx::mod::Mesh		mesh;
@@ -113,6 +113,13 @@ void LoadMeshFile(const std::string& _filePath)
 
 	g_engine->GetRenderer().GenerateMesh(mesh, meshData);
 	g_engine->GetResourceManager()->GetMeshManager().AddResource(name, mesh);
+}
+
+void LoadSkeletonFile(const std::string& _filePath)
+{
+	sys::ecs::Skeleton skeleton;
+	parser::ReadPADSkeleton(_filePath, skeleton);
+	g_engine->GetResourceManager()->GetSkeletonManager().AddResource(skeleton.GetName(), skeleton);
 }
 
 void LoadMaterialFile(const std::string& _filePath)
@@ -145,10 +152,7 @@ void LoadMaterialFile(const std::string& _filePath)
 
 void LoadTextureFile(const std::string& _filePath)
 {
-	std::string	name	= pad::parser::GetFileName(_filePath);
-	size_t extIndex		= name.find_last_of(".");
-
-	name = name.substr(0, extIndex);
+	std::string	name = pad::parser::GetFileNameNoExt(_filePath);
 
 	gfx::gl::GLTexture* texture = new gfx::gl::GLTexture();
 	gfx::rhi::TextureParameters param;

@@ -44,7 +44,7 @@ PARSER_RESULT ParseFBX(	const	std::string& _inputPath,
 	fbxImporter->Destroy();
 
 	FbxMesh*		fbxMesh			= nullptr;
-	Skeleton* skeleton				= nullptr;
+	SkeletonData*	skeleton		= nullptr;
 	ControlPoint*	controlPoints	= new ControlPoint();
 
 	int i = 0;
@@ -63,7 +63,7 @@ PARSER_RESULT ParseFBX(	const	std::string& _inputPath,
 		}			
 		else if (currentNode->GetChild(i)->GetSkeleton())
 		{
-			skeleton = new Skeleton();
+			skeleton = new SkeletonData();
 			ParseSkeleton(currentNode->GetChild(i), skeleton);
 			if(fbxMesh)
 				ParseBoneWeight(_outputPath, nodeName, fbxScene, currentNode->GetChild(i), fbxMesh, skeleton, controlPoints);
@@ -242,15 +242,15 @@ void GeneratePADMesh(	const	std::string&			_outputPath,
 }
 
 void ParseSkeleton(	FbxNode*		const	_currentNode,
-					Skeleton*		const	_skeleton)
+					SkeletonData*	const	_skeleton)
 {
 	ParseSkeletonRecur(_skeleton, _currentNode, 0, -1);
 }
 
-void ParseSkeletonRecur(Skeleton*	const	_skeleton,
-						FbxNode*	const	_currentNode,
-						int					_id,
-						int					_parentId)
+void ParseSkeletonRecur(SkeletonData*	const	_skeleton,
+						FbxNode*		const	_currentNode,
+						int						_id,
+						int						_parentId)
 {
 	FbxNodeAttribute::EType nodeType;
 	if (_currentNode->GetNodeAttribute())
@@ -259,7 +259,7 @@ void ParseSkeletonRecur(Skeleton*	const	_skeleton,
 
 	if (nodeType == FbxNodeAttribute::eSkeleton)
 	{
-		Bone* bone		= new Bone();
+		BoneData* bone	= new BoneData();
 		bone->boneName	= _currentNode->GetName();
 		bone->id		= _id;
 		bone->parentId	= _parentId;
@@ -276,18 +276,19 @@ void ParseSkeletonRecur(Skeleton*	const	_skeleton,
 
 void GeneratePADSkeleton(	const	std::string&			_outputPath, 
 							const	std::string&			_skeletonName,
-									Skeleton*		const	_skeleton)
+									SkeletonData*	const	_skeleton)
 {
 	std::string resultFile;
+	resultFile += "[BONE_COUNT]\n" + std::to_string(_skeleton->bones.size()) + "\n";
+	resultFile += "[BONES]\n";
 	for (int boneIndex = 0; boneIndex < _skeleton->bones.size(); ++boneIndex)
 	{
-		resultFile	+=	"[" 
-					+	_skeleton->bones[boneIndex]->boneName
-					+	"]\n"
+		resultFile	+=	_skeleton->bones[boneIndex]->boneName
+					+	" "
 					+	std::to_string(_skeleton->bones[boneIndex]->id) 
 					+	" " 
 					+	std::to_string(_skeleton->bones[boneIndex]->parentId) 
-					+	"\n";
+					+	" ";
 		for (int i = 0; i < 16; ++i)
 			resultFile += std::to_string(_skeleton->bones[boneIndex]->inverseBindPose[i / 4][i % 4]) + " ";
 		resultFile += "\n";
@@ -413,7 +414,7 @@ void ParseBoneWeight(	const	std::string&			_outputPath,
 								FbxScene*		const	_scene,
 								FbxNode*		const	_currentNode,
 								FbxMesh*		const	_fbxMesh,
-								Skeleton*		const	_skeleton,
+								SkeletonData*	const	_skeleton,
 								ControlPoint*	const	_controlPoint)
 {
 	unsigned int deformerCount = _fbxMesh->GetDeformerCount();

@@ -6,8 +6,8 @@
 #include <Utilities/Export.h>
 
 namespace pad	{
-namespace sys	{
-namespace ecs	{
+namespace gfx	{
+namespace mod	{
 
 struct ENGINE_API Bone
 {
@@ -38,6 +38,6 @@ public:
 	inline const std::string& GetName() const		{ return m_name; }
 };
 
-} // namespace ecs
-} // namespace sys
+} // namespace mod
+} // namespace gfx
 } // namespace pad

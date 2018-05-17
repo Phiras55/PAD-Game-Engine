@@ -3,8 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
-#include <AssetParser/AssetParser.h>
-#include "AssetParser.h"
+#include <AssetParser.h>
 
 #pragma comment(lib,"shlwapi.lib")
 

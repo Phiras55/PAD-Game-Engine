@@ -111,6 +111,9 @@
     <ClCompile Include="Sources\Graphics\GL\Shader\GLShaderManager.cpp">
       <Filter>Source Files\Graphics\GL\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Graphics\Model\Skeleton.cpp">
+      <Filter>Source Files\Graphics\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h">
@@ -219,6 +222,9 @@
       <Filter>Header Files\Graphics\Model</Filter>
     </ClInclude>
     <ClInclude Include="Sources\Graphics\Model\TextureData.h">
+      <Filter>Header Files\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\Skeleton.h">
       <Filter>Header Files\Graphics\Model</Filter>
     </ClInclude>
   </ItemGroup>

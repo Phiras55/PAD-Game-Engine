@@ -117,7 +117,7 @@ void LoadMeshFile(const std::string& _filePath)
 
 void LoadSkeletonFile(const std::string& _filePath)
 {
-	sys::ecs::Skeleton skeleton;
+	gfx::mod::Skeleton skeleton;
 	parser::ReadPADSkeleton(_filePath, skeleton);
 	g_engine->GetResourceManager()->GetSkeletonManager().AddResource(skeleton.GetName(), skeleton);
 }

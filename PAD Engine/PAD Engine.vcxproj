@@ -45,7 +45,6 @@
     <ClCompile Include="Sources\System\ECS\PADObject.cpp" />
     <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp" />
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp" />
-    <ClCompile Include="Sources\System\ECS\Skeleton.cpp" />
     <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
     <ClCompile Include="Sources\System\ResourceHandling\ComponentsHandler.cpp" />
     <ClCompile Include="Sources\System\ResourceHandling\MasterManager.cpp" />
@@ -72,7 +71,6 @@
     <ClInclude Include="Sources\System\ECS\PADObject.h" />
     <ClInclude Include="Sources\System\ECS\PerspectiveCamera.h" />
     <ClInclude Include="Sources\System\ECS\RigidBody.h" />
-    <ClInclude Include="Sources\System\ECS\Skeleton.h" />
     <ClInclude Include="Sources\System\Physics\BulletContext.h" />
     <ClInclude Include="Sources\System\Physics\IPhysicContext.h" />
     <ClInclude Include="Sources\System\ResourceHandling\ComponentsHandler.h" />

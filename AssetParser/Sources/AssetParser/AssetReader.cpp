@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <AssetParser/AssetReader.h>
+#include <AssetReader.h>
 #include <Shlwapi.h>
 
 #pragma comment(lib,"shlwapi.lib")
@@ -224,7 +224,7 @@ void ReadPADMaterial(const	std::string&			_inputPath,
 }
 
 void ReadPADSkeleton(const	std::string&		_inputPath, 
-							sys::ecs::Skeleton& _skeleton)
+							gfx::mod::Skeleton& _skeleton)
 {
 	enum SECTION
 	{
@@ -263,7 +263,7 @@ void ReadPADSkeleton(const	std::string&		_inputPath,
 				}
 				case BONES:
 				{
-					sys::ecs::Bone b;
+					gfx::mod::Bone b;
 					stream	>> b.m_name >> b.m_id >> b.m_parentId 
 							>> b.m_inverseBindPose[0][0] >> b.m_inverseBindPose[0][1] >> b.m_inverseBindPose[0][2] >> b.m_inverseBindPose[0][3]
 							>> b.m_inverseBindPose[1][0] >> b.m_inverseBindPose[1][1] >> b.m_inverseBindPose[1][2] >> b.m_inverseBindPose[1][3] 

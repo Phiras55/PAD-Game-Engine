@@ -1,9 +1,9 @@
-#include <EnginePCH.h>
-#include <System/ECS/Skeleton.h>
+#include <PCH.h>
+#include <Graphics/Model/Skeleton.h>
 
 namespace pad	{
-namespace sys	{
-namespace ecs	{
+namespace gfx	{
+namespace mod	{
 
 Skeleton::Skeleton()
 {
@@ -23,6 +23,6 @@ Bone* const Skeleton::GetBoneByName(const std::string& _boneName)
 	return nullptr;
 }
 
-} // namespace ecs
-} // namespace sys
+} // namespace mod
+} // namespace gfx
 } // namespace pad

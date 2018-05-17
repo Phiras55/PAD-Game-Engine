@@ -27,6 +27,7 @@ namespace pad
 
 	ENGINE_API void LoadResourceFile(const std::string& _filePath, const std::string& _outputPath);
 	ENGINE_API void LoadMeshFile(const std::string& _filePath);
+	ENGINE_API void LoadSkeletonFile(const std::string& _filePath);
 	ENGINE_API void LoadMaterialFile(const std::string& _filePath);
 	ENGINE_API void LoadTextureFile(const std::string& _filePath);
 }

@@ -2,11 +2,13 @@
 #include <Graphics/HighLevelRenderer.h>
 #include <Graphics/RHI/RenderSettings.h>
 #include <Graphics/Model/Mesh.h>
-#include <System/ECS/Scene.h>
-#include <System/Resource/MasterManager.h>
-#include <System/Resource/ResourceManager.h>
+#include <System/Scene/Scene.h>
+#include <System/ResourceHandling/MasterManager.h>
+#include <System/ResourceHandling/ResourceManager.h>
 #include <System/Physics/IPhysicContext.h>
+#include <System/ResourceHandling/ComponentsHandler.h>
 #include <Core/Timer.h>
+#include <Core/IDHandler.h>
 
 namespace pad	{
 namespace core	{
@@ -25,6 +27,7 @@ private:
 
 	sys::ecs::Scene*			m_scene;
 	sys::res::MasterManager*	m_resourceManager;
+	sys::res::ComponentsHandler m_componentHandler;
 
 	Timer m_fixedUpdateTimer;
 
@@ -49,6 +52,8 @@ private:
 public:
 	sys::ecs::Scene* const				GetScene() const			{ return m_scene; }
 	sys::res::MasterManager* const		GetResourceManager() const	{ return m_resourceManager; }
+	const	gfx::HighLevelRenderer&		GetRenderer() const			{ return m_highLevelRenderer; }
+			gfx::HighLevelRenderer&		GetRenderer()				{ return m_highLevelRenderer; }
 
 public:
 	static sys::phx::IPhysicContext* const GetPhysicContext() { return m_physicContext; }

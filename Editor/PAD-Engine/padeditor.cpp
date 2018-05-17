@@ -40,6 +40,8 @@ PADEditor::PADEditor(QWidget *parent) :
     ui->InspecContent->layout()->addWidget(new PADObjectWidget());
     ui->InspecContent->layout()->addWidget(new TransformWidget());
 
+    setContextMenuPolicy(Qt::ContextMenuPolicy::PreventContextMenu);
+
     openGLWidget->setFocusPolicy(Qt::FocusPolicy::ClickFocus);
 }
 

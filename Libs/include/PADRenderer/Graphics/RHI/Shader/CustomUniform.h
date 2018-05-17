@@ -19,7 +19,7 @@ enum class E_DATA_TYPE : uint8
 
 using DataType = E_DATA_TYPE;
 
-struct CustomUniform
+struct CustomUniform final
 {
 	void*		data;
 	E_DATA_TYPE	type;

@@ -5,9 +5,12 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
+alias::ComponentID PerspectiveCamera::m_id = INVALID_COMPONENT_ID;
+
 PerspectiveCamera::PerspectiveCamera()
 {
-	m_type = COMPONENT_TYPE::CAMERA;
+	if (m_id != INVALID_COMPONENT_ID)
+		m_id = static_cast<alias::ComponentID>(util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
 
 	Perspective(45, 16.f / 9.f, 0.01f, 1000.f);
 	LookAt(m_transform.Position(), math::Vec3f(0, 0, 0), math::Vec3f::Up());
@@ -82,6 +85,22 @@ const math::Mat4& PerspectiveCamera::LookAt(const math::Vec3f& eye, const math::
 	_viewMatrix[2][3] = he;
 
 	return _viewMatrix;
+}
+
+json PerspectiveCamera::Serialize()
+{
+	json j;
+
+	AddDataToJson(j, "_viewMatrix", _viewMatrix.Serialize());
+	AddDataToJson(j, "_projectionMatrix", _projectionMatrix.Serialize());
+
+	return j;
+}
+
+void PerspectiveCamera::Deserialize(const json& j)
+{
+	_viewMatrix.Deserialize			(JsonToData<json>(j, "_viewMatrix"));
+	_projectionMatrix.Deserialize	(JsonToData<json>(j, "_projectionMatrix"));
 }
 
 } // namespace ecs

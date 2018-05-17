@@ -13,11 +13,11 @@ CC            = cl
 CXX           = cl
 DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DNDEBUG
 CFLAGS        = -nologo -Zc:wchar_t -FS -Zc:strictStrings -O2 -MD -W3 -w44456 -w44457 -w44458 $(DEFINES)
-CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -EHsc $(DEFINES)
-INCPATH       = -I..\PAD-Engine -I. -I"..\..\Libs\include\PAD Engine" -I..\..\Libs\include\PADRenderer -I..\..\Libs\include -IC:\Qt\5.10.0\msvc2017_64\include -IC:\Qt\5.10.0\msvc2017_64\include\QtWidgets -IC:\Qt\5.10.0\msvc2017_64\include\QtGui -IC:\Qt\5.10.0\msvc2017_64\include\QtANGLE -IC:\Qt\5.10.0\msvc2017_64\include\QtCore -Irelease -I. -I\include -IC:\Qt\5.10.0\msvc2017_64\mkspecs\win32-msvc 
+CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding /std:c++17 -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -EHsc $(DEFINES)
+INCPATH       = -I..\PAD-Engine -I. -I"..\..\Libs\include\PAD Engine" -I..\..\Libs\include\PADRenderer -I..\..\Libs\include\FBXSDK -I..\..\Libs\include -IC:\Qt\5.10.0\msvc2017_64\include -IC:\Qt\5.10.0\msvc2017_64\include\QtWidgets -IC:\Qt\5.10.0\msvc2017_64\include\QtGui -IC:\Qt\5.10.0\msvc2017_64\include\QtANGLE -IC:\Qt\5.10.0\msvc2017_64\include\QtCore -Irelease -I. -I\include -IC:\Qt\5.10.0\msvc2017_64\mkspecs\win32-msvc 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:C:\Qt\5.10.0\msvc2017_64\lib C:\Qt\5.10.0\msvc2017_64\lib\qtmain.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib shell32.lib /LIBPATH:..\..\Libs\lib\Release\x64 "..\..\Libs\lib\Release\x64\PAD Engine.lib" ..\..\Libs\lib\Release\x64\PADRenderer.lib ..\..\Libs\lib\Release\x64\glew32.lib opengl32.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Widgets.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Gui.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Core.lib 
+LIBS          = /LIBPATH:C:\Qt\5.10.0\msvc2017_64\lib C:\Qt\5.10.0\msvc2017_64\lib\qtmain.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib shell32.lib /LIBPATH:..\..\Libs\lib\Release\x64 "..\..\Libs\lib\Release\x64\PAD Engine.lib" ..\..\Libs\lib\Release\x64\libfbxsdk-md.lib ..\..\Libs\lib\Release\x64\AssetParser.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Widgets.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Gui.lib C:\Qt\5.10.0\msvc2017_64\lib\Qt5Core.lib 
 QMAKE         = C:\Qt\5.10.0\msvc2017_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl /NOLOGO
@@ -68,76 +68,6 @@ OBJECTS       = release\main.obj \
 		release\moc_boxcolliderwidget.obj
 
 DIST          =  ..\PAD-Engine\padeditor.h \
-		"..\..\Libs\include\PAD Engine\Core\Engine.h" \
-		"..\..\Libs\include\PAD Engine\Core\EngineClock.h" \
-		"..\..\Libs\include\PAD Engine\Core\EngineDLL.h" \
-		"..\..\Libs\include\PAD Engine\Core\IDPool.h" \
-		"..\..\Libs\include\PAD Engine\Core\Timer.h" \
-		"..\..\Libs\include\PAD Engine\Graphics\HighLevelRenderer.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\ACollider.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\AComponent.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\AScriptComponent.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\BoxCollider.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\Camera.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\Collider.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\ComponentsHandler.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\IComponent.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\MeshRenderer.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\PADObject.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\PerspectiveCamera.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\RigidBody.h" \
-		"..\..\Libs\include\PAD Engine\System\ECS\Scene.h" \
-		"..\..\Libs\include\PAD Engine\System\Physics\BulletContext.h" \
-		"..\..\Libs\include\PAD Engine\System\Physics\IPhysicContext.h" \
-		"..\..\Libs\include\PAD Engine\System\Resource\AResourceManager.h" \
-		"..\..\Libs\include\PAD Engine\System\Resource\MasterManager.h" \
-		"..\..\Libs\include\PAD Engine\System\Resource\MeshManager.h" \
-		"..\..\Libs\include\PAD Engine\System\Resource\Resource.h" \
-		"..\..\Libs\include\PAD Engine\System\Resource\ResourceManager.h" \
-		"..\..\Libs\include\PAD Engine\System\Window\AWindow.h" \
-		"..\..\Libs\include\PAD Engine\System\Window\IWindowBase.h" \
-		"..\..\Libs\include\PAD Engine\System\Window\SDLWindow.h" \
-		"..\..\Libs\include\PAD Engine\System\Window\WindowSettings.h" \
-		"..\..\Libs\include\PAD Engine\System\IModule.h" \
-		"..\..\Libs\include\PAD Engine\Utilities\EnumUtils.h" \
-		"..\..\Libs\include\PAD Engine\Utilities\Export.h" \
-		"..\..\Libs\include\PAD Engine\Utilities\Randomizer.h" \
-		"..\..\Libs\include\PAD Engine\Utilities\Serialization.h" \
-		..\..\Libs\include\Json\json.hpp \
-		..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLFragmentShader.h \
-		..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLShaderProgram.h \
-		..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLVertexShader.h \
-		..\..\Libs\include\PADRenderer\Graphics\GL\GLRenderer.h \
-		..\..\Libs\include\PADRenderer\Graphics\GL\GLTexture.h \
-		..\..\Libs\include\PADRenderer\Graphics\GL\GLUniformBufferObject.h \
-		..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexArray.h \
-		..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexBuffer.h \
-		..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexElementBuffer.h \
-		..\..\Libs\include\PADRenderer\Graphics\Model\Material.h \
-		..\..\Libs\include\PADRenderer\Graphics\Model\Mesh.h \
-		..\..\Libs\include\PADRenderer\Graphics\Model\MeshData.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShader.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShaderProgram.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\CustomUniform.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\ShaderInfos.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\ATexture.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\AUniformBufferObject.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexArray.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexBuffer.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\ContextSettings.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\IRenderer.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\RenderSettings.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\TextureParameters.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\TextureSettings.h \
-		..\..\Libs\include\PADRenderer\Graphics\RHI\UniformBufferSettings.h \
-		..\..\Libs\include\PADRenderer\Graphics\Window\AWindow.h \
-		..\..\Libs\include\PADRenderer\Graphics\Window\IWindowBase.h \
-		..\..\Libs\include\PADRenderer\Graphics\Window\SDLWindow.h \
-		..\..\Libs\include\PADRenderer\Graphics\Window\WindowSettings.h \
-		..\..\Libs\include\GL\eglew.h \
-		..\..\Libs\include\GL\glew.h \
-		..\..\Libs\include\GL\glxew.h \
-		..\..\Libs\include\GL\wglew.h \
 		..\PAD-Engine\glwidget.h \
 		..\PAD-Engine\transformwidget.h \
 		..\PAD-Engine\padobjectwidget.h \
@@ -232,7 +162,7 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) PAD-Engine.zip $(SOURCES) $(DIST) ..\PAD-Engine\PAD-Engine.pro C:\Qt\5.10.0\msvc2017_64\mkspecs\features\spec_pre.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\angle.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\windows-vulkan.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\msvc-desktop.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\qconfig.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3danimation.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3danimation_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dextras.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dextras_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_accessibility_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_edid_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_egl_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gamepad.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gamepad_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_location.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_scxml.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_scxml_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_texttospeech.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_texttospeech_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_theme_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_vulkan_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webview.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webview_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qt_functions.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qt_config.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\win32-msvc\qmake.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\5.10.0\msvc2017_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\msvc-version.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\toolchain.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\default_pre.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\resolve_config.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\default_post.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\build_pass.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qml_debug.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\precompile_header.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\warn_on.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qt.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\resources.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\moc.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\win32\opengl.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\uic.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qmake_use.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\file_copies.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\win32\windows.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\testcase_targets.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\exceptions.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\yacc.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\lex.prf ..\PAD-Engine\PAD-Engine.pro ..\PAD-Engine\style.qrc C:\Qt\5.10.0\msvc2017_64\lib\qtmain.prl C:\Qt\5.10.0\msvc2017_64\lib\Qt5Widgets.prl C:\Qt\5.10.0\msvc2017_64\lib\Qt5Gui.prl C:\Qt\5.10.0\msvc2017_64\lib\Qt5Core.prl   ..\PAD-Engine\style.qrc C:\Qt\5.10.0\msvc2017_64\mkspecs\features\data\dummy.cpp ..\PAD-Engine\padeditor.h "..\..\Libs\include\PAD Engine\Core\Engine.h" "..\..\Libs\include\PAD Engine\Core\EngineClock.h" "..\..\Libs\include\PAD Engine\Core\EngineDLL.h" "..\..\Libs\include\PAD Engine\Core\IDPool.h" "..\..\Libs\include\PAD Engine\Core\Timer.h" "..\..\Libs\include\PAD Engine\Graphics\HighLevelRenderer.h" "..\..\Libs\include\PAD Engine\System\ECS\ACollider.h" "..\..\Libs\include\PAD Engine\System\ECS\AComponent.h" "..\..\Libs\include\PAD Engine\System\ECS\AScriptComponent.h" "..\..\Libs\include\PAD Engine\System\ECS\BoxCollider.h" "..\..\Libs\include\PAD Engine\System\ECS\Camera.h" "..\..\Libs\include\PAD Engine\System\ECS\Collider.h" "..\..\Libs\include\PAD Engine\System\ECS\ComponentsHandler.h" "..\..\Libs\include\PAD Engine\System\ECS\IComponent.h" "..\..\Libs\include\PAD Engine\System\ECS\MeshRenderer.h" "..\..\Libs\include\PAD Engine\System\ECS\PADObject.h" "..\..\Libs\include\PAD Engine\System\ECS\PerspectiveCamera.h" "..\..\Libs\include\PAD Engine\System\ECS\RigidBody.h" "..\..\Libs\include\PAD Engine\System\ECS\Scene.h" "..\..\Libs\include\PAD Engine\System\Physics\BulletContext.h" "..\..\Libs\include\PAD Engine\System\Physics\IPhysicContext.h" "..\..\Libs\include\PAD Engine\System\Resource\AResourceManager.h" "..\..\Libs\include\PAD Engine\System\Resource\MasterManager.h" "..\..\Libs\include\PAD Engine\System\Resource\MeshManager.h" "..\..\Libs\include\PAD Engine\System\Resource\Resource.h" "..\..\Libs\include\PAD Engine\System\Resource\ResourceManager.h" "..\..\Libs\include\PAD Engine\System\Window\AWindow.h" "..\..\Libs\include\PAD Engine\System\Window\IWindowBase.h" "..\..\Libs\include\PAD Engine\System\Window\SDLWindow.h" "..\..\Libs\include\PAD Engine\System\Window\WindowSettings.h" "..\..\Libs\include\PAD Engine\System\IModule.h" "..\..\Libs\include\PAD Engine\Utilities\EnumUtils.h" "..\..\Libs\include\PAD Engine\Utilities\Export.h" "..\..\Libs\include\PAD Engine\Utilities\Randomizer.h" "..\..\Libs\include\PAD Engine\Utilities\Serialization.h" ..\..\Libs\include\Json\json.hpp ..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLFragmentShader.h ..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLShaderProgram.h ..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLVertexShader.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLRenderer.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLTexture.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLUniformBufferObject.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexArray.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexBuffer.h ..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexElementBuffer.h ..\..\Libs\include\PADRenderer\Graphics\Model\Material.h ..\..\Libs\include\PADRenderer\Graphics\Model\Mesh.h ..\..\Libs\include\PADRenderer\Graphics\Model\MeshData.h ..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShader.h ..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShaderProgram.h ..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\CustomUniform.h ..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\ShaderInfos.h ..\..\Libs\include\PADRenderer\Graphics\RHI\ATexture.h ..\..\Libs\include\PADRenderer\Graphics\RHI\AUniformBufferObject.h ..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexArray.h ..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexBuffer.h ..\..\Libs\include\PADRenderer\Graphics\RHI\ContextSettings.h ..\..\Libs\include\PADRenderer\Graphics\RHI\IRenderer.h ..\..\Libs\include\PADRenderer\Graphics\RHI\RenderSettings.h ..\..\Libs\include\PADRenderer\Graphics\RHI\TextureParameters.h ..\..\Libs\include\PADRenderer\Graphics\RHI\TextureSettings.h ..\..\Libs\include\PADRenderer\Graphics\RHI\UniformBufferSettings.h ..\..\Libs\include\PADRenderer\Graphics\Window\AWindow.h ..\..\Libs\include\PADRenderer\Graphics\Window\IWindowBase.h ..\..\Libs\include\PADRenderer\Graphics\Window\SDLWindow.h ..\..\Libs\include\PADRenderer\Graphics\Window\WindowSettings.h ..\..\Libs\include\GL\eglew.h ..\..\Libs\include\GL\glew.h ..\..\Libs\include\GL\glxew.h ..\..\Libs\include\GL\wglew.h ..\PAD-Engine\glwidget.h ..\PAD-Engine\transformwidget.h ..\PAD-Engine\padobjectwidget.h ..\PAD-Engine\boxcolliderwidget.h  ..\PAD-Engine\main.cpp ..\PAD-Engine\padeditor.cpp ..\PAD-Engine\transformwidget.cpp ..\PAD-Engine\padobjectwidget.cpp ..\PAD-Engine\boxcolliderwidget.cpp ..\PAD-Engine\padeditor.ui ..\PAD-Engine\transformwidget.ui ..\PAD-Engine\padobjectwidget.ui ..\PAD-Engine\boxcolliderwidget.ui    
+	$(ZIP) PAD-Engine.zip $(SOURCES) $(DIST) ..\PAD-Engine\PAD-Engine.pro C:\Qt\5.10.0\msvc2017_64\mkspecs\features\spec_pre.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\angle.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\windows-vulkan.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\msvc-desktop.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\qconfig.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3danimation.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3danimation_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dextras.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dextras_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_accessibility_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_edid_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_egl_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gamepad.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gamepad_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_location.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_scxml.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_scxml_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_texttospeech.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_texttospeech_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_theme_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_vulkan_support_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webview.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_webview_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qt_functions.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qt_config.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\win32-msvc\qmake.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\5.10.0\msvc2017_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\common\msvc-version.conf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\toolchain.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\default_pre.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\resolve_config.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\default_post.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\build_pass.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qml_debug.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\precompile_header.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\warn_on.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qt.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\resources.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\moc.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\win32\opengl.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\uic.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\qmake_use.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\file_copies.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\win32\windows.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\testcase_targets.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\exceptions.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\yacc.prf C:\Qt\5.10.0\msvc2017_64\mkspecs\features\lex.prf ..\PAD-Engine\PAD-Engine.pro ..\PAD-Engine\style.qrc C:\Qt\5.10.0\msvc2017_64\lib\qtmain.prl C:\Qt\5.10.0\msvc2017_64\lib\Qt5Widgets.prl C:\Qt\5.10.0\msvc2017_64\lib\Qt5Gui.prl C:\Qt\5.10.0\msvc2017_64\lib\Qt5Core.prl   ..\PAD-Engine\style.qrc C:\Qt\5.10.0\msvc2017_64\mkspecs\features\data\dummy.cpp ..\PAD-Engine\padeditor.h ..\PAD-Engine\glwidget.h ..\PAD-Engine\transformwidget.h ..\PAD-Engine\padobjectwidget.h ..\PAD-Engine\boxcolliderwidget.h  ..\PAD-Engine\main.cpp ..\PAD-Engine\padeditor.cpp ..\PAD-Engine\transformwidget.cpp ..\PAD-Engine\padobjectwidget.cpp ..\PAD-Engine\boxcolliderwidget.cpp ..\PAD-Engine\padeditor.ui ..\PAD-Engine\transformwidget.ui ..\PAD-Engine\padobjectwidget.ui ..\PAD-Engine\boxcolliderwidget.ui    
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\main.obj release\padeditor.obj release\transformwidget.obj release\padobjectwidget.obj release\boxcolliderwidget.obj release\qrc_style.obj release\moc_padeditor.obj release\moc_glwidget.obj release\moc_transformwidget.obj release\moc_padobjectwidget.obj release\moc_boxcolliderwidget.obj
@@ -304,7 +234,7 @@ compiler_moc_predefs_make_all: release\moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) release\moc_predefs.h
 release\moc_predefs.h: C:\Qt\5.10.0\msvc2017_64\mkspecs\features\data\dummy.cpp
-	cl -BxC:\Qt\5.10.0\msvc2017_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E C:\Qt\5.10.0\msvc2017_64\mkspecs\features\data\dummy.cpp 2>NUL >release\moc_predefs.h
+	cl -BxC:\Qt\5.10.0\msvc2017_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding /std:c++17 -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E C:\Qt\5.10.0\msvc2017_64\mkspecs\features\data\dummy.cpp 2>NUL >release\moc_predefs.h
 
 compiler_moc_header_make_all: release\moc_padeditor.cpp release\moc_glwidget.cpp release\moc_transformwidget.cpp release\moc_padobjectwidget.cpp release\moc_boxcolliderwidget.cpp
 compiler_moc_header_clean:
@@ -424,14 +354,20 @@ release\moc_padeditor.cpp: C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QMainWindo
 		..\PAD-Engine\padeditor.h \
 		release\moc_predefs.h \
 		C:\Qt\5.10.0\msvc2017_64\bin\moc.exe
-	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\padeditor.h -o release\moc_padeditor.cpp
+	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/FBXSDK" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\padeditor.h -o release\moc_padeditor.cpp
 
 release\moc_glwidget.cpp: "..\..\Libs\include\PAD Engine\Core\EngineDLL.h" \
-		..\..\Libs\include\PADRenderer\Graphics\Window\WindowSettings.h \
-		..\..\Libs\include\PADRenderer\PCH.h \
-		..\..\Libs\include\PADRenderer\Common.h \
-		..\..\Libs\include\Math\Vector2.h \
-		..\..\Libs\include\Math\Vector2_impl.h \
+		"..\..\Libs\include\PAD Engine\Core\Engine.h" \
+		"..\..\Libs\include\PAD Engine\Core\EngineClock.h" \
+		"..\..\Libs\include\PAD Engine\Graphics\HighLevelRenderer.h" \
+		"..\..\Libs\include\PAD Engine\System\Scene\Scene.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\PerspectiveCamera.h" \
+		..\..\Libs\include\Math\Transform.h \
+		..\..\Libs\include\Json\Serialization.h \
+		..\..\Libs\include\Json\json.hpp \
+		..\..\Libs\include\Math\MatrixTransform.h \
+		..\..\Libs\include\Math\Matrix4x4.h \
+		..\..\Libs\include\Math\Vector4.h \
 		..\..\Libs\include\Math\Vector3.h \
 		..\..\Libs\include\Bullet\btBulletDynamicsCommon.h \
 		..\..\Libs\include\Bullet\btBulletCollisionCommon.h \
@@ -518,10 +454,32 @@ release\moc_glwidget.cpp: "..\..\Libs\include\PAD Engine\Core\EngineDLL.h" \
 		..\..\Libs\include\Bullet\BulletDynamics\Vehicle\btVehicleRaycaster.h \
 		..\..\Libs\include\Bullet\BulletDynamics\Vehicle\btWheelInfo.h \
 		..\..\Libs\include\Math\Vector3_impl.h \
-		..\..\Libs\include\Math\Vector4.h \
 		..\..\Libs\include\Math\Vector4_impl.h \
-		..\..\Libs\include\Math\Matrix4x4.h \
 		..\..\Libs\include\Math\Matrix4x4_impl.h \
+		..\..\Libs\include\Math\Quaternion.h \
+		..\..\Libs\include\Math\Quaternion_impl.h \
+		"..\..\Libs\include\PAD Engine\System\ECS\Camera.h" \
+		"..\..\Libs\include\PAD Engine\Utilities\Export.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\AComponent.h" \
+		"..\..\Libs\include\PAD Engine\Utilities\UniqueIDs.h" \
+		..\..\Libs\include\PADRenderer\Common.h \
+		"..\..\Libs\include\PAD Engine\System\ECS\PADObject.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\ComponentsHandler.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\SpecializedComponentPool.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\IComponentPool.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\ObjectPool.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\PoolItem.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\RigidBody.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\ACollider.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\BoxCollider.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\MeshRenderer.h" \
+		..\..\Libs\include\PADRenderer\Graphics\Model\Mesh.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexArray.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexBuffer.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\Material.h \
+		..\..\Libs\include\PADRenderer\PCH.h \
+		..\..\Libs\include\Math\Vector2.h \
+		..\..\Libs\include\Math\Vector2_impl.h \
 		..\..\Libs\include\GL\glew.h \
 		..\..\Libs\include\SDL2\SDL.h \
 		..\..\Libs\include\SDL2\SDL_main.h \
@@ -572,13 +530,240 @@ release\moc_glwidget.cpp: "..\..\Libs\include\PAD Engine\Core\EngineDLL.h" \
 		..\..\Libs\include\Logger\SimpleLoggerEnums.h \
 		..\..\Libs\include\Logger\Message.h \
 		..\..\Libs\include\Logger\SimpleLogger_impl.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\ATexture.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\TextureParameters.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\RenderSettings.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShaderProgram.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShader.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\CustomUniform.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\UniformBufferSettings.h \
+		"..\..\Libs\include\PAD Engine\Core\IDHandler.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\MasterManager.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\ResourceManager.h" \
+		"..\..\Libs\include\PAD Engine\Core\IDPool.h" \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\IRenderer.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\MeshData.h \
 		..\..\Libs\include\PADRenderer\Graphics\RHI\ContextSettings.h \
-		"..\..\Libs\include\PAD Engine\System\ECS\PADObject.h" \
-		..\..\Libs\include\Math\Transform.h \
-		..\..\Libs\include\Math\MatrixTransform.h \
-		..\..\Libs\include\Math\Quaternion.h \
-		..\..\Libs\include\Math\Quaternion_impl.h \
-		"..\..\Libs\include\PAD Engine\Utilities\Export.h" \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShaderManager.h \
+		..\..\Libs\include\PADRenderer\Graphics\Window\AWindow.h \
+		..\..\Libs\include\PADRenderer\Graphics\Window\WindowSettings.h \
+		"..\..\Libs\include\PAD Engine\System\Physics\IPhysicContext.h" \
+		"..\..\Libs\include\PAD Engine\Core\Timer.h" \
+		..\..\Libs\include\AssetParser\AssetReader.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\MaterialData.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\TextureData.h \
+		..\..\Libs\include\AssetParser\AssetParser.h \
+		..\..\Libs\include\FBXSDK\fbxsdk.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_def.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_version.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxarch.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxtypes.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_nsbegin.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_nsend.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxdebug.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxalloc.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxnew.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxstdcompliant.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxarray.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxbitset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxcharptrset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxcontainerallocators.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxdynamicarray.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxstatus.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxstring.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxfile.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxfolder.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxhashmap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxmap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxredblacktree.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxpair.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxintrusivelist.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxmemorypool.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxatomic.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxstringlist.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxtime.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxtimecode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxutils.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxmath.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxvector2.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxvector4.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxmatrix.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxaffinematrix.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxdualquaternion.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxquaternion.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxclock.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxsync.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxthread.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxclassid.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxconnectionpoint.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxdatatypes.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertytypes.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxsystemunit.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertyhandle.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertydef.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxmodule.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxloadingstrategy.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxplugin.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxobject.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxquery.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxemitter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxeventhandler.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxevent.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxproperty.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxstream.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxnamehandler.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxlistener.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxplugincontainer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxmanager.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxperipheral.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertypage.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxsymbol.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxqueryevent.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxscopedloadingdirectory.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxscopedloadingfilename.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxxref.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxexporter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiobase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiosettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiosettingspath.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxprogress.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategy.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxexternaldocreflistener.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxfiletokens.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxglobalcamerasettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxgloballightsettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxgobo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbximporter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxstatistics.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxaxissystem.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiopluginregistry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxreader.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbx\fbxio.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxwriter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxstatisticsfbx.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcollection.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcollectionexclusive.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcontainer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcontainertemplate.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxdisplaylayer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxdocument.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxdocumentinfo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxenvironment.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxgroupname.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxlibrary.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxobjectfilter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxobjectmetadata.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxpose.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxreference.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxscene.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxmultimap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimevaluator.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimevalstate.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxtransforms.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimstack.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlayer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsurfacematerial.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxtexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnodeattribute.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxglobalsettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxselectionset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxselectionnode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxtakeinfo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxthumbnail.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxvideo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurve.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurvebase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurvefilters.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurvenode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimevalclassic.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimlayer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimutilities.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcharacternodename.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcharacter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraint.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcharacterpose.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintaim.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintcustom.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintparent.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintposition.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintrotation.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintscale.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintsinglechainik.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintutils.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcontrolset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxhik2fbxcharacter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxblendshape.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxdeformer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxblendshapechannel.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxsubdeformer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcache.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcachedeffect.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcamera.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcamerastereo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcameraswitcher.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcluster.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgenericnode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgeometry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgeometrybase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlayercontainer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxshape.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgeometryweightedmap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxweightedmapping.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlight.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlimitsutilities.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxline.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlodgroup.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxmarker.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxmesh.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnull.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnurbs.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnurbscurve.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnurbssurface.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxopticalreference.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxpatch.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxproceduralgeometry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxskeleton.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxskin.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxsubdiv.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxtrimnurbssurface.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxvertexcachedeformer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxshadingconventions.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingsentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingtable.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingtablebase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingtableentry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingoperator.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxconstantentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxfiletexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbximplementation.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbximplementationfilter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbximplementationutils.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxoperatorentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxpropertyentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxlayeredtexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxproceduraltexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsemanticentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsurfacelambert.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsurfacephong.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxdeformationsevaluator.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessor.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessorxref.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessorxrefuserlib.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessorshaderdependency.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxclonemanager.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxgeometryconverter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxmanipulators.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxmaterialconverter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategyfbx5.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategybase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategyfbx6.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategyutilities.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrootnodeutility.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxusernotification.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxscenecheckutility.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QOpenGLWidget \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qopenglwidget.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
@@ -701,7 +886,7 @@ release\moc_glwidget.cpp: "..\..\Libs\include\PAD Engine\Core\EngineDLL.h" \
 		..\PAD-Engine\glwidget.h \
 		release\moc_predefs.h \
 		C:\Qt\5.10.0\msvc2017_64\bin\moc.exe
-	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\glwidget.h -o release\moc_glwidget.cpp
+	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/FBXSDK" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\glwidget.h -o release\moc_glwidget.cpp
 
 release\moc_transformwidget.cpp: C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QWidget \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qwidget.h \
@@ -809,7 +994,7 @@ release\moc_transformwidget.cpp: C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QWid
 		..\PAD-Engine\transformwidget.h \
 		release\moc_predefs.h \
 		C:\Qt\5.10.0\msvc2017_64\bin\moc.exe
-	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\transformwidget.h -o release\moc_transformwidget.cpp
+	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/FBXSDK" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\transformwidget.h -o release\moc_transformwidget.cpp
 
 release\moc_padobjectwidget.cpp: C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QWidget \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qwidget.h \
@@ -917,7 +1102,7 @@ release\moc_padobjectwidget.cpp: C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QWid
 		..\PAD-Engine\padobjectwidget.h \
 		release\moc_predefs.h \
 		C:\Qt\5.10.0\msvc2017_64\bin\moc.exe
-	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\padobjectwidget.h -o release\moc_padobjectwidget.cpp
+	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/FBXSDK" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\padobjectwidget.h -o release\moc_padobjectwidget.cpp
 
 release\moc_boxcolliderwidget.cpp: C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QWidget \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qwidget.h \
@@ -1025,7 +1210,7 @@ release\moc_boxcolliderwidget.cpp: C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QW
 		..\PAD-Engine\boxcolliderwidget.h \
 		release\moc_predefs.h \
 		C:\Qt\5.10.0\msvc2017_64\bin\moc.exe
-	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\boxcolliderwidget.h -o release\moc_boxcolliderwidget.cpp
+	C:\Qt\5.10.0\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include release/moc_predefs.h -IC:/Qt/5.10.0/msvc2017_64/mkspecs/win32-msvc -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Editor/PAD-Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/FBXSDK" -I"C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include" -IC:/Qt/5.10.0/msvc2017_64/include -IC:/Qt/5.10.0/msvc2017_64/include/QtWidgets -IC:/Qt/5.10.0/msvc2017_64/include/QtGui -IC:/Qt/5.10.0/msvc2017_64/include/QtANGLE -IC:/Qt/5.10.0/msvc2017_64/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\PAD-Engine\boxcolliderwidget.h -o release\moc_boxcolliderwidget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1172,6 +1357,28 @@ release\main.obj: ..\PAD-Engine\main.cpp C:\Qt\5.10.0\msvc2017_64\include\QtWidg
 		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qinputmethod.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtCore\QFile \
 		C:\Qt\5.10.0\msvc2017_64\include\QtCore\QTextStream \
+		../PAD-Engine/padeditor.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QMainWindow \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qmainwindow.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtabwidget.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qicon.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QFileSystemModel \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qfilesystemmodel.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qabstractitemmodel.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdir.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qfileinfo.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdiriterator.h \
+		../PAD-Engine/glwidget.h \
+		"..\..\Libs\include\PAD Engine\Core\EngineDLL.h" \
+		"..\..\Libs\include\PAD Engine\Core\Engine.h" \
+		"..\..\Libs\include\PAD Engine\Core\EngineClock.h" \
+		"..\..\Libs\include\PAD Engine\Graphics\HighLevelRenderer.h" \
+		"..\..\Libs\include\PAD Engine\System\Scene\Scene.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\PerspectiveCamera.h" \
+		..\..\Libs\include\Math\Transform.h \
+		..\..\Libs\include\Json\Serialization.h \
+		..\..\Libs\include\Json\json.hpp \
+		..\..\Libs\include\Math\MatrixTransform.h \
 		..\..\Libs\include\Math\Matrix4x4.h \
 		..\..\Libs\include\Math\Vector4.h \
 		..\..\Libs\include\Math\Vector3.h \
@@ -1262,13 +1469,31 @@ release\main.obj: ..\PAD-Engine\main.cpp C:\Qt\5.10.0\msvc2017_64\include\QtWidg
 		..\..\Libs\include\Math\Vector3_impl.h \
 		..\..\Libs\include\Math\Vector4_impl.h \
 		..\..\Libs\include\Math\Matrix4x4_impl.h \
-		"../../Libs/include/PAD Engine/Core/EngineDLL.h" \
-		../../Libs/include/PADRenderer/Graphics/Window/WindowSettings.h \
-		..\..\Libs\include\PADRenderer\PCH.h \
+		..\..\Libs\include\Math\Quaternion.h \
+		..\..\Libs\include\Math\Quaternion_impl.h \
+		"..\..\Libs\include\PAD Engine\System\ECS\Camera.h" \
+		"..\..\Libs\include\PAD Engine\Utilities\Export.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\AComponent.h" \
+		"..\..\Libs\include\PAD Engine\Utilities\UniqueIDs.h" \
 		..\..\Libs\include\PADRenderer\Common.h \
+		"..\..\Libs\include\PAD Engine\System\ECS\PADObject.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\ComponentsHandler.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\SpecializedComponentPool.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\IComponentPool.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\ObjectPool.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\PoolItem.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\RigidBody.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\ACollider.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\BoxCollider.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\MeshRenderer.h" \
+		..\..\Libs\include\PADRenderer\Graphics\Model\Mesh.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexArray.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexBuffer.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\Material.h \
+		..\..\Libs\include\PADRenderer\PCH.h \
 		..\..\Libs\include\Math\Vector2.h \
 		..\..\Libs\include\Math\Vector2_impl.h \
-		../../Libs/include/GL/glew.h \
+		..\..\Libs\include\GL\glew.h \
 		..\..\Libs\include\SDL2\SDL.h \
 		..\..\Libs\include\SDL2\SDL_main.h \
 		..\..\Libs\include\SDL2\SDL_stdinc.h \
@@ -1318,47 +1543,240 @@ release\main.obj: ..\PAD-Engine\main.cpp C:\Qt\5.10.0\msvc2017_64\include\QtWidg
 		..\..\Libs\include\Logger\SimpleLoggerEnums.h \
 		..\..\Libs\include\Logger\Message.h \
 		..\..\Libs\include\Logger\SimpleLogger_impl.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/ContextSettings.h \
-		"../../Libs/include/PAD Engine/System/ECS/PADObject.h" \
-		..\..\Libs\include\Math\Transform.h \
-		..\..\Libs\include\Math\MatrixTransform.h \
-		..\..\Libs\include\Math\Quaternion.h \
-		..\..\Libs\include\Math\Quaternion_impl.h \
-		"../../Libs/include/PAD Engine/Utilities/Export.h" \
-		../../Libs/include/PADRenderer/Graphics/GL/Shader/GLShaderProgram.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/Shader/AShaderProgram.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/Shader/AShader.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/Shader/CustomUniform.h \
-		../../Libs/include/PADRenderer/Graphics/GL/Shader/GLVertexShader.h \
-		../../Libs/include/PADRenderer/Graphics/GL/Shader/GLFragmentShader.h \
-		"../../Libs/include/PAD Engine/System/ECS/PerspectiveCamera.h" \
-		"../../Libs/include/PAD Engine/System/ECS/Camera.h" \
-		"../../Libs/include/PAD Engine/System/ECS/IComponent.h" \
-		"../../Libs/include/PAD Engine/System/ECS/RigidBody.h" \
-		"../../Libs/include/PAD Engine/System/ECS/ACollider.h" \
-		../../Libs/include/PADRenderer/Graphics/Model/Mesh.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/AVertexArray.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/AVertexBuffer.h \
-		../../Libs/include/PADRenderer/Graphics/Model/MeshData.h \
-		"../../Libs/include/PAD Engine/System/ECS/MeshRenderer.h" \
-		../../Libs/include/PADRenderer/Graphics/Model/Material.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/ATexture.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/TextureParameters.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/RenderSettings.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/UniformBufferSettings.h \
-		"../../Libs/include/PAD Engine/System/ECS/BoxCollider.h" \
-		../PAD-Engine/padeditor.h \
-		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QMainWindow \
-		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qmainwindow.h \
-		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtabwidget.h \
-		C:\Qt\5.10.0\msvc2017_64\include\QtGui\qicon.h \
-		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QFileSystemModel \
-		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qfilesystemmodel.h \
-		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qabstractitemmodel.h \
-		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdir.h \
-		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qfileinfo.h \
-		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qdiriterator.h \
-		../PAD-Engine/glwidget.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\ATexture.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\TextureParameters.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\RenderSettings.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShaderProgram.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShader.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\CustomUniform.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\UniformBufferSettings.h \
+		"..\..\Libs\include\PAD Engine\Core\IDHandler.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\MasterManager.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\ResourceManager.h" \
+		"..\..\Libs\include\PAD Engine\Core\IDPool.h" \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\IRenderer.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\MeshData.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\ContextSettings.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShaderManager.h \
+		..\..\Libs\include\PADRenderer\Graphics\Window\AWindow.h \
+		..\..\Libs\include\PADRenderer\Graphics\Window\WindowSettings.h \
+		"..\..\Libs\include\PAD Engine\System\Physics\IPhysicContext.h" \
+		"..\..\Libs\include\PAD Engine\Core\Timer.h" \
+		..\..\Libs\include\AssetParser\AssetReader.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\MaterialData.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\TextureData.h \
+		..\..\Libs\include\AssetParser\AssetParser.h \
+		..\..\Libs\include\FBXSDK\fbxsdk.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_def.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_version.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxarch.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxtypes.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_nsbegin.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_nsend.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxdebug.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxalloc.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxnew.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxstdcompliant.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxarray.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxbitset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxcharptrset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxcontainerallocators.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxdynamicarray.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxstatus.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxstring.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxfile.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxfolder.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxhashmap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxmap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxredblacktree.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxpair.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxintrusivelist.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxmemorypool.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxatomic.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxstringlist.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxtime.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxtimecode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxutils.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxmath.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxvector2.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxvector4.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxmatrix.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxaffinematrix.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxdualquaternion.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxquaternion.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxclock.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxsync.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxthread.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxclassid.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxconnectionpoint.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxdatatypes.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertytypes.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxsystemunit.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertyhandle.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertydef.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxmodule.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxloadingstrategy.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxplugin.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxobject.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxquery.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxemitter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxeventhandler.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxevent.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxproperty.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxstream.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxnamehandler.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxlistener.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxplugincontainer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxmanager.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxperipheral.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertypage.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxsymbol.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxqueryevent.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxscopedloadingdirectory.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxscopedloadingfilename.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxxref.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxexporter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiobase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiosettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiosettingspath.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxprogress.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategy.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxexternaldocreflistener.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxfiletokens.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxglobalcamerasettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxgloballightsettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxgobo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbximporter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxstatistics.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxaxissystem.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiopluginregistry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxreader.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbx\fbxio.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxwriter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxstatisticsfbx.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcollection.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcollectionexclusive.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcontainer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcontainertemplate.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxdisplaylayer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxdocument.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxdocumentinfo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxenvironment.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxgroupname.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxlibrary.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxobjectfilter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxobjectmetadata.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxpose.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxreference.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxscene.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxmultimap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimevaluator.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimevalstate.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxtransforms.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimstack.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlayer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsurfacematerial.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxtexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnodeattribute.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxglobalsettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxselectionset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxselectionnode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxtakeinfo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxthumbnail.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxvideo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurve.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurvebase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurvefilters.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurvenode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimevalclassic.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimlayer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimutilities.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcharacternodename.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcharacter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraint.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcharacterpose.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintaim.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintcustom.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintparent.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintposition.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintrotation.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintscale.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintsinglechainik.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintutils.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcontrolset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxhik2fbxcharacter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxblendshape.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxdeformer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxblendshapechannel.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxsubdeformer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcache.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcachedeffect.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcamera.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcamerastereo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcameraswitcher.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcluster.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgenericnode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgeometry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgeometrybase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlayercontainer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxshape.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgeometryweightedmap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxweightedmapping.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlight.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlimitsutilities.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxline.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlodgroup.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxmarker.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxmesh.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnull.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnurbs.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnurbscurve.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnurbssurface.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxopticalreference.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxpatch.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxproceduralgeometry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxskeleton.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxskin.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxsubdiv.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxtrimnurbssurface.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxvertexcachedeformer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxshadingconventions.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingsentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingtable.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingtablebase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingtableentry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingoperator.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxconstantentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxfiletexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbximplementation.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbximplementationfilter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbximplementationutils.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxoperatorentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxpropertyentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxlayeredtexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxproceduraltexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsemanticentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsurfacelambert.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsurfacephong.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxdeformationsevaluator.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessor.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessorxref.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessorxrefuserlib.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessorshaderdependency.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxclonemanager.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxgeometryconverter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxmanipulators.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxmaterialconverter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategyfbx5.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategybase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategyfbx6.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategyutilities.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrootnodeutility.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxusernotification.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxscenecheckutility.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QOpenGLWidget \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qopenglwidget.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QWidget \
@@ -1560,19 +1978,26 @@ release\padeditor.obj: ..\PAD-Engine\padeditor.cpp ../PAD-Engine/padeditor.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtoolbar.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QTreeView \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtreeview.h \
-		../../Libs/include/PADRenderer/Graphics/Model/Mesh.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/AVertexArray.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\Mesh.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexArray.h \
 		..\..\Libs\include\PADRenderer\Common.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/AVertexBuffer.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexBuffer.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtCore\QTimer \
 		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qtimer.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtCore\qbasictimer.h \
 		../PAD-Engine/glwidget.h \
-		"../../Libs/include/PAD Engine/Core/EngineDLL.h" \
-		../../Libs/include/PADRenderer/Graphics/Window/WindowSettings.h \
-		..\..\Libs\include\PADRenderer\PCH.h \
-		..\..\Libs\include\Math\Vector2.h \
-		..\..\Libs\include\Math\Vector2_impl.h \
+		"..\..\Libs\include\PAD Engine\Core\EngineDLL.h" \
+		"..\..\Libs\include\PAD Engine\Core\Engine.h" \
+		"..\..\Libs\include\PAD Engine\Core\EngineClock.h" \
+		"..\..\Libs\include\PAD Engine\Graphics\HighLevelRenderer.h" \
+		"..\..\Libs\include\PAD Engine\System\Scene\Scene.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\PerspectiveCamera.h" \
+		..\..\Libs\include\Math\Transform.h \
+		..\..\Libs\include\Json\Serialization.h \
+		..\..\Libs\include\Json\json.hpp \
+		..\..\Libs\include\Math\MatrixTransform.h \
+		..\..\Libs\include\Math\Matrix4x4.h \
+		..\..\Libs\include\Math\Vector4.h \
 		..\..\Libs\include\Math\Vector3.h \
 		..\..\Libs\include\Bullet\btBulletDynamicsCommon.h \
 		..\..\Libs\include\Bullet\btBulletCollisionCommon.h \
@@ -1659,11 +2084,29 @@ release\padeditor.obj: ..\PAD-Engine\padeditor.cpp ../PAD-Engine/padeditor.h \
 		..\..\Libs\include\Bullet\BulletDynamics\Vehicle\btVehicleRaycaster.h \
 		..\..\Libs\include\Bullet\BulletDynamics\Vehicle\btWheelInfo.h \
 		..\..\Libs\include\Math\Vector3_impl.h \
-		..\..\Libs\include\Math\Vector4.h \
 		..\..\Libs\include\Math\Vector4_impl.h \
-		..\..\Libs\include\Math\Matrix4x4.h \
 		..\..\Libs\include\Math\Matrix4x4_impl.h \
-		../../Libs/include/GL/glew.h \
+		..\..\Libs\include\Math\Quaternion.h \
+		..\..\Libs\include\Math\Quaternion_impl.h \
+		"..\..\Libs\include\PAD Engine\System\ECS\Camera.h" \
+		"..\..\Libs\include\PAD Engine\Utilities\Export.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\AComponent.h" \
+		"..\..\Libs\include\PAD Engine\Utilities\UniqueIDs.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\PADObject.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\ComponentsHandler.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\SpecializedComponentPool.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\IComponentPool.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\ObjectPool.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\PoolItem.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\RigidBody.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\ACollider.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\BoxCollider.h" \
+		"..\..\Libs\include\PAD Engine\System\ECS\MeshRenderer.h" \
+		..\..\Libs\include\PADRenderer\Graphics\Model\Material.h \
+		..\..\Libs\include\PADRenderer\PCH.h \
+		..\..\Libs\include\Math\Vector2.h \
+		..\..\Libs\include\Math\Vector2_impl.h \
+		..\..\Libs\include\GL\glew.h \
 		..\..\Libs\include\SDL2\SDL.h \
 		..\..\Libs\include\SDL2\SDL_main.h \
 		..\..\Libs\include\SDL2\SDL_stdinc.h \
@@ -1713,13 +2156,240 @@ release\padeditor.obj: ..\PAD-Engine\padeditor.cpp ../PAD-Engine/padeditor.h \
 		..\..\Libs\include\Logger\SimpleLoggerEnums.h \
 		..\..\Libs\include\Logger\Message.h \
 		..\..\Libs\include\Logger\SimpleLogger_impl.h \
-		../../Libs/include/PADRenderer/Graphics/RHI/ContextSettings.h \
-		"../../Libs/include/PAD Engine/System/ECS/PADObject.h" \
-		..\..\Libs\include\Math\Transform.h \
-		..\..\Libs\include\Math\MatrixTransform.h \
-		..\..\Libs\include\Math\Quaternion.h \
-		..\..\Libs\include\Math\Quaternion_impl.h \
-		"../../Libs/include/PAD Engine/Utilities/Export.h" \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\ATexture.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\TextureParameters.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\RenderSettings.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShaderProgram.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShader.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\CustomUniform.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\UniformBufferSettings.h \
+		"..\..\Libs\include\PAD Engine\Core\IDHandler.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\MasterManager.h" \
+		"..\..\Libs\include\PAD Engine\System\ResourceHandling\ResourceManager.h" \
+		"..\..\Libs\include\PAD Engine\Core\IDPool.h" \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\IRenderer.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\MeshData.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\ContextSettings.h \
+		..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShaderManager.h \
+		..\..\Libs\include\PADRenderer\Graphics\Window\AWindow.h \
+		..\..\Libs\include\PADRenderer\Graphics\Window\WindowSettings.h \
+		"..\..\Libs\include\PAD Engine\System\Physics\IPhysicContext.h" \
+		"..\..\Libs\include\PAD Engine\Core\Timer.h" \
+		..\..\Libs\include\AssetParser\AssetReader.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\MaterialData.h \
+		..\..\Libs\include\PADRenderer\Graphics\Model\TextureData.h \
+		..\..\Libs\include\AssetParser\AssetParser.h \
+		..\..\Libs\include\FBXSDK\fbxsdk.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_def.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_version.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxarch.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxtypes.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_nsbegin.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fbxsdk_nsend.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxdebug.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxalloc.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxnew.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\arch\fbxstdcompliant.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxarray.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxbitset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxcharptrset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxcontainerallocators.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxdynamicarray.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxstatus.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxstring.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxfile.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxfolder.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxhashmap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxmap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxredblacktree.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxpair.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxintrusivelist.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxmemorypool.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxatomic.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxstringlist.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxtime.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxtimecode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxutils.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxmath.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxvector2.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxvector4.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxmatrix.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxaffinematrix.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxdualquaternion.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxquaternion.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxclock.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxsync.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\sync\fbxthread.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxclassid.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxconnectionpoint.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxdatatypes.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertytypes.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxsystemunit.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertyhandle.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertydef.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxmodule.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxloadingstrategy.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxplugin.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxobject.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxquery.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxemitter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxeventhandler.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxevent.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxproperty.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxstream.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxnamehandler.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxlistener.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxplugincontainer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxmanager.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxperipheral.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxpropertypage.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxsymbol.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxqueryevent.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxscopedloadingdirectory.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxscopedloadingfilename.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\fbxxref.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxexporter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiobase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiosettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiosettingspath.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxprogress.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategy.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxexternaldocreflistener.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxfiletokens.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxglobalcamerasettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxgloballightsettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxgobo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbximporter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxstatistics.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxaxissystem.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxiopluginregistry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxreader.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbx\fbxio.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxwriter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxstatisticsfbx.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcollection.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcollectionexclusive.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcontainer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxcontainertemplate.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxdisplaylayer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxdocument.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxdocumentinfo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxenvironment.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxgroupname.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxlibrary.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxobjectfilter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxobjectmetadata.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxpose.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxreference.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxscene.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\base\fbxmultimap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimevaluator.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimevalstate.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\core\math\fbxtransforms.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimstack.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlayer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsurfacematerial.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxtexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnodeattribute.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\fileio\fbxglobalsettings.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxselectionset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxselectionnode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxtakeinfo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxthumbnail.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\fbxvideo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurve.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurvebase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurvefilters.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimcurvenode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimevalclassic.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimlayer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\animation\fbxanimutilities.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcharacternodename.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcharacter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraint.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcharacterpose.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintaim.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintcustom.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintparent.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintposition.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintrotation.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintscale.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintsinglechainik.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxconstraintutils.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxcontrolset.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\constraint\fbxhik2fbxcharacter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxblendshape.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxdeformer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxblendshapechannel.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxsubdeformer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcache.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcachedeffect.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcamera.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcamerastereo.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcameraswitcher.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxcluster.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgenericnode.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgeometry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgeometrybase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlayercontainer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxshape.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxgeometryweightedmap.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxweightedmapping.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlight.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlimitsutilities.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxline.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxlodgroup.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxmarker.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxmesh.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnull.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnurbs.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnurbscurve.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxnurbssurface.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxopticalreference.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxpatch.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxproceduralgeometry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxskeleton.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxskin.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxsubdiv.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxtrimnurbssurface.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\geometry\fbxvertexcachedeformer.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxshadingconventions.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingsentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingtable.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingtablebase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingtableentry.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxbindingoperator.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxconstantentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxfiletexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbximplementation.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbximplementationfilter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbximplementationutils.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxoperatorentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxpropertyentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxlayeredtexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxproceduraltexture.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsemanticentryview.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsurfacelambert.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\scene\shading\fbxsurfacephong.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxdeformationsevaluator.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessor.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessorxref.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessorxrefuserlib.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxprocessorshaderdependency.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxclonemanager.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxgeometryconverter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxmanipulators.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxmaterialconverter.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategyfbx5.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategybase.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategyfbx6.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrenamingstrategyutilities.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxrootnodeutility.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxusernotification.h \
+		..\..\Libs\include\FBXSDK\fbxsdk\utils\fbxscenecheckutility.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QOpenGLWidget \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qopenglwidget.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtGui\QSurfaceFormat \

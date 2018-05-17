@@ -1,4 +1,5 @@
 #include <PCH.h>
+
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image/stb_image.h>
 #include <Utilities/EnumUtils.h>
@@ -8,7 +9,7 @@
 #include <Graphics/RHI/Shader/ShaderInfos.h>
 #include <Graphics/GL/GLVertexElementBuffer.h>
 #include <Graphics/GL/GLUniformBufferObject.h>
-#include <Graphics/RHI/Shader/AShaderProgram.h>
+#include <Graphics/GL/Shader/GLShaderManager.h>
 
 namespace pad	{
 namespace gfx	{
@@ -16,7 +17,7 @@ namespace gl	{
 
 GLRenderer::GLRenderer()
 {
-
+	m_shaderManager = new gl::shad::GLShaderManager();
 }
 
 GLRenderer::~GLRenderer()
@@ -24,12 +25,20 @@ GLRenderer::~GLRenderer()
 	for (auto& ubo : m_uniformBufferObjects)
 		delete ubo.second;
 	m_uniformBufferObjects.clear();
+
+	delete m_shaderManager;
 }
 
 void GLRenderer::Init(const rhi::ContextSettings& _settings)
 {
 	InitContext(_settings);
 	InitViewPort(_settings.viewportSize);
+	InitShaders();
+}
+
+void GLRenderer::InitShaders()
+{
+	LoadShaders("Resources/Shaders/basicPositions.vert", "Resources/Shaders/basicColors.frag", "Default");
 }
 
 void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
@@ -52,6 +61,7 @@ void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
 	InitCullFace(_settings);
 	InitWindingOrder(_settings);
 	InitDefaultUniformBuffers();
+	InitBlendFunction();
 }
 
 void GLRenderer::InitMainBuffer(const rhi::ContextSettings& _settings)
@@ -66,6 +76,12 @@ void GLRenderer::InitMainBuffer(const rhi::ContextSettings& _settings)
 		glEnable(GL_STENCIL_TEST);
 		glStencilMask(0x00);
 	}
+}
+
+void GLRenderer::InitBlendFunction()
+{
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void GLRenderer::InitDepthBuffer(const rhi::ContextSettings& _settings)
@@ -153,12 +169,9 @@ void GLRenderer::ForwardRendering(
 	const rhi::RenderSettings _setting,
 	const math::Mat4& _vp)
 {
-	if (!_vao || !_ibo)
-		return;
+	rhi::shad::AShaderProgram* const currentShader = m_shaderManager->GetShader(_setting.programHandle);
 
-	const uint32 shaderCount = (uint32)_setting.programs.size();
-
-	if (shaderCount == 0)
+	if (!_vao || !_ibo || !currentShader)
 		return;
 
 	_vao->Bind();
@@ -167,20 +180,15 @@ void GLRenderer::ForwardRendering(
 	if (_setting.isWireframe)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	for (rhi::shad::AShaderProgram* const currentProgram : _setting.programs)
-	{
-		if (!currentProgram)
-		{
-			LOG_ERROR_S("The shader is not valid. Try to add one in the RenderSettings.\n");
-			continue;
-		}
+	if (!currentShader)
+		return;
 
-		currentProgram->Use();
-		currentProgram->SetUniform("model", *_setting.modelMatrix);
-		SetCustomUniforms(currentProgram, _setting);
+	currentShader->Use();
+	currentShader->SetUniform("model", *_setting.modelMatrix);
+	SetCustomUniforms(currentShader, _setting);
 
-		glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, (void*)0);
-	}
+	glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, (void*)0);
+
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	_ibo->Unbind();
@@ -213,6 +221,18 @@ void GLRenderer::GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao,
 	vbo.BindData(_md.positions, _md.positionCount, 3, static_cast<uint8>(gfx::rhi::shad::AttribLocation::POSITION));
 	vbo.Unbind();
 
+	gfx::gl::GLVertexBuffer ubo;
+	ubo.GenerateID();
+	ubo.Bind();
+	ubo.BindData(_md.uvs, _md.uvCount, 2, static_cast<uint8>(gfx::rhi::shad::AttribLocation::UV));
+	ubo.Unbind();
+
+	gfx::gl::GLVertexBuffer nbo;
+	nbo.GenerateID();
+	nbo.Bind();
+	nbo.BindData(_md.normals, _md.normalCount, 3, static_cast<uint8>(gfx::rhi::shad::AttribLocation::NORMAL));
+	nbo.Unbind();
+
 	_ibo->GenerateID();
 	_ibo->Bind();
 	_ibo->BindData(_md.indices, _md.indiceCount);
@@ -223,15 +243,20 @@ void GLRenderer::GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao,
 
 void GLRenderer::GenerateTexture(rhi::ATexture* const _t, const std::string& _path, const rhi::TextureParameters& _param)
 {
-	int width, height, nrChannels;
+	int width, height, nrChannels, channel;
+	unsigned char* data = nullptr;
+
 	stbi_set_flip_vertically_on_load(_param.flipY);
-	unsigned char *data = stbi_load(_path.c_str(), &width, &height, &nrChannels, 0);
+
+	channel = _param.channelType == rhi::ChannelType::RGB ? STBI_rgb : STBI_rgb_alpha;
+	data = stbi_load(_path.c_str(), &width, &height, &nrChannels, channel);
 
 	if (data)
 	{
 		_t->GenerateID();
 		_t->Bind();
 		_t->GenerateTexture(width, height, data, _param);
+		_t->Unbind();
 	}
 	else
 	{
@@ -297,9 +322,9 @@ void GLRenderer::SetCameraUniformBufferData(
 
 void GLRenderer::SetLightsUniformBufferData(
 	math::Vec4f* const _positions,
-	math::Vec4f* const _directions)
+	math::Vec4f* const _directions,
+	const uint8 _count)
 {
-
 }
 
 rhi::AUniformBufferObject* const GLRenderer::GetUniformBufferObject(const std::string& _name)
@@ -307,6 +332,11 @@ rhi::AUniformBufferObject* const GLRenderer::GetUniformBufferObject(const std::s
 	if (m_uniformBufferObjects.find(_name) != m_uniformBufferObjects.end())
 		return m_uniformBufferObjects[_name];
 	return nullptr;
+}
+
+bool GLRenderer::LoadShaders(const std::string& _vPath, const std::string& _fPath, const std::string& _name)
+{
+	return m_shaderManager->LoadShaders(_vPath, _fPath, _name);
 }
 
 } // namespace gl

@@ -22,6 +22,7 @@
     <ClCompile Include="Sources\Core\Engine.cpp" />
     <ClCompile Include="Sources\Core\EngineClock.cpp" />
     <ClCompile Include="Sources\Core\EngineDLL.cpp" />
+    <ClCompile Include="Sources\Core\IDHandler.cpp" />
     <ClCompile Include="Sources\Core\IDPool.cpp" />
     <ClCompile Include="Sources\Core\Timer.cpp" />
     <ClCompile Include="Sources\Graphics\HighLevelRenderer.cpp" />
@@ -36,22 +37,23 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EnginePCH.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Sources\System\ECS\Collider.cpp" />
     <ClCompile Include="Sources\System\ECS\ACollider.cpp" />
     <ClCompile Include="Sources\System\ECS\BoxCollider.cpp" />
-    <ClCompile Include="Sources\System\ECS\ComponentsHandler.cpp" />
     <ClCompile Include="Sources\System\ECS\MeshRenderer.cpp" />
     <ClCompile Include="Sources\System\ECS\PADObject.cpp" />
     <ClCompile Include="Sources\System\ECS\PerspectiveCamera.cpp" />
     <ClCompile Include="Sources\System\ECS\RigidBody.cpp" />
-    <ClCompile Include="Sources\System\ECS\Scene.cpp" />
     <ClCompile Include="Sources\System\Physics\BulletContext.cpp" />
-    <ClCompile Include="Sources\System\Resource\MasterManager.cpp" />
+    <ClCompile Include="Sources\System\ResourceHandling\ComponentsHandler.cpp" />
+    <ClCompile Include="Sources\System\ResourceHandling\MasterManager.cpp" />
+    <ClCompile Include="Sources\System\Scene\Scene.cpp" />
+    <ClCompile Include="Sources\System\Scene\SceneHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Core\Engine.h" />
     <ClInclude Include="Sources\Core\EngineClock.h" />
     <ClInclude Include="Sources\Core\EngineDLL.h" />
+    <ClInclude Include="Sources\Core\IDHandler.h" />
     <ClInclude Include="Sources\Core\IDPool.h" />
     <ClInclude Include="Sources\Core\Timer.h" />
     <ClInclude Include="Sources\Graphics\HighLevelRenderer.h" />
@@ -60,21 +62,25 @@
     <ClInclude Include="Sources\System\ECS\AComponent.h" />
     <ClInclude Include="Sources\System\ECS\BoxCollider.h" />
     <ClInclude Include="Sources\System\ECS\Camera.h" />
-    <ClInclude Include="Sources\System\ECS\ComponentsHandler.h" />
-    <ClInclude Include="Sources\System\ECS\IComponent.h" />
     <ClInclude Include="Sources\System\ECS\MeshRenderer.h" />
     <ClInclude Include="Sources\System\ECS\PADObject.h" />
     <ClInclude Include="Sources\System\ECS\PerspectiveCamera.h" />
     <ClInclude Include="Sources\System\ECS\RigidBody.h" />
-    <ClInclude Include="Sources\System\ECS\Scene.h" />
     <ClInclude Include="Sources\System\Physics\BulletContext.h" />
     <ClInclude Include="Sources\System\Physics\IPhysicContext.h" />
-    <ClInclude Include="Sources\System\Resource\MasterManager.h" />
-    <ClInclude Include="Sources\System\Resource\ResourceManager.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\ComponentsHandler.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\IComponentPool.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\ObjectPool.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\MasterManager.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\PoolItem.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\ResourceManager.h" />
+    <ClInclude Include="Sources\System\ResourceHandling\SpecializedComponentPool.h" />
+    <ClInclude Include="Sources\System\Scene\Scene.h" />
+    <ClInclude Include="Sources\System\Scene\SceneHandler.h" />
     <ClInclude Include="Sources\Utilities\EnumUtils.h" />
     <ClInclude Include="Sources\Utilities\Export.h" />
     <ClInclude Include="Sources\Utilities\Randomizer.h" />
-    <ClInclude Include="Sources\Utilities\Serialization.h" />
+    <ClInclude Include="Sources\Utilities\UniqueIDs.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\basicColors.frag" />
@@ -135,25 +141,25 @@
     <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
     <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include/FBXSDK;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
     <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include/FBXSDK;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
     <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include/FBXSDK;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Libs/bin/$(Configuration)/$(Platform)/</OutDir>
     <IntDir>$(ProjectDir)temp/$(Configuration)/$(Platform)/</IntDir>
     <TargetName>$(ProjectName)</TargetName>
-    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/Libs/include/PADRenderer;$(SolutionDir)/Libs/include/FBXSDK;$(SolutionDir)/Libs/include;$(ProjectDir)Sources;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -205,7 +211,7 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\SDL2\lib\sdlx64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libs\lib\$(Configuration)\$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;EventSystem.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;EventSystem.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vld.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;AssetParser.lib;libfbxsdk-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ImportLibrary>$(SolutionDir)Libs/lib/$(Configuration)/$(Platform)/$(TargetName).lib</ImportLibrary>

@@ -11,11 +11,16 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = PAD-Engine
 TEMPLATE = app
 
+
+QMAKE_CXXFLAGS *= /std:c++17
+
+
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
-DEFINES += QT_DEPRECATED_WARNINGS
+DEFINES += \
+        QT_DEPRECATED_WARNINGS
 
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -44,6 +49,7 @@ HEADERPATH = "../../Libs/include"
 INCLUDEPATH  += \
                 "../../Libs/include/PAD Engine" \
                 "../../Libs/include/PADRenderer"\
+                "../../Libs/include/FBXSDK"\
                 "../../Libs/include"
 
 SOURCES += \
@@ -55,38 +61,21 @@ SOURCES += \
 
 HEADERS += \
     padeditor.h                                         \
-    "$$HEADERPATH/PAD Engine/Core/*.h"                  \
-    "$$HEADERPATH/PAD Engine/Graphics/*.h"              \
-    "$$HEADERPATH/PAD Engine/System/ECS/*.h"            \
-    "$$HEADERPATH/PAD Engine/System/Physics/*.h"        \
-    "$$HEADERPATH/PAD Engine/System/Resource/*.h"       \
-    "$$HEADERPATH/PAD Engine/System/Window/*.h"         \
-    "$$HEADERPATH/PAD Engine/System/IModule.h"          \
-    "$$HEADERPATH/PAD Engine/Utilities/*.h"             \
-    "$$HEADERPATH/Json/*.hpp"                           \
-    "$$HEADERPATH/PADRenderer/Graphics/GL/Shader/*.h"   \
-    "$$HEADERPATH/PADRenderer/Graphics/GL/*.h"          \
-    "$$HEADERPATH/PADRenderer/Graphics/Model/*.h"       \
-    "$$HEADERPATH/PADRenderer/Graphics/RHI/Shader/*.h"  \
-    "$$HEADERPATH/PADRenderer/Graphics/RHI/*.h"         \
-    "$$HEADERPATH/PADRenderer/Graphics/Window/*.h"      \
-    "$$HEADERPATH/GL/*.h"                               \
     glwidget.h											\
     transformwidget.h									\
     padobjectwidget.h									\
     boxcolliderwidget.h
 
 RESOURCES +=\
-	style.qrc
+        style.qrc
 
 FORMS += \
         padeditor.ui \
-    transformwidget.ui \
-    padobjectwidget.ui \
-    boxcolliderwidget.ui
+        transformwidget.ui \
+        padobjectwidget.ui \
+        boxcolliderwidget.ui
 
 LIBS += \
         "$$LIBPATH/PAD Engine.lib"\
-        "$$LIBPATH/PADRenderer.lib"\
-        "$$LIBPATH/glew32.lib"\
-        "opengl32.lib"
+        "$$LIBPATH/libfbxsdk-md.lib"\
+        "$$LIBPATH/AssetParser.lib"

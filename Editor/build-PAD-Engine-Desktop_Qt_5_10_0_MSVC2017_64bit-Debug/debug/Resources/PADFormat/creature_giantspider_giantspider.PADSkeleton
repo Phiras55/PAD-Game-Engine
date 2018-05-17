@@ -1,0 +1,176 @@
+[creature_giantspider_giantspider]
+0 -1
+[creature_giantspider_giantspider_bone_0]
+1 0
+[creature_giantspider_giantspider_bone_1]
+2 1
+[creature_giantspider_giantspider_bone_2]
+3 2
+[creature_giantspider_giantspider_bone_23]
+4 3
+[creature_giantspider_giantspider_bone_33]
+5 4
+[creature_giantspider_giantspider_bone_3]
+6 2
+[creature_giantspider_giantspider_bone_24]
+7 6
+[creature_giantspider_giantspider_bone_34]
+8 7
+[creature_giantspider_giantspider_bone_4]
+9 2
+[creature_giantspider_giantspider_bone_72]
+10 9
+[creature_giantspider_giantspider_bone_73]
+11 9
+[creature_giantspider_giantspider_bone_5]
+12 2
+[creature_giantspider_giantspider_bone_14]
+13 12
+[creature_giantspider_giantspider_bone_79]
+14 13
+[creature_giantspider_giantspider_bone_80]
+15 13
+[creature_giantspider_giantspider_bone_81]
+16 13
+[creature_giantspider_giantspider_bone_82]
+17 13
+[creature_giantspider_giantspider_bone_83]
+18 13
+[creature_giantspider_giantspider_bone_84]
+19 13
+[creature_giantspider_giantspider_bone_85]
+20 13
+[creature_giantspider_giantspider_bone_74]
+21 12
+[creature_giantspider_giantspider_bone_86]
+22 21
+[creature_giantspider_giantspider_bone_75]
+23 12
+[creature_giantspider_giantspider_bone_76]
+24 12
+[creature_giantspider_giantspider_bone_77]
+25 12
+[creature_giantspider_giantspider_bone_78]
+26 12
+[creature_giantspider_giantspider_bone_6]
+27 2
+[creature_giantspider_giantspider_bone_15]
+28 27
+[creature_giantspider_giantspider_bone_25]
+29 28
+[creature_giantspider_giantspider_bone_35]
+30 29
+[creature_giantspider_giantspider_bone_43]
+31 30
+[creature_giantspider_giantspider_bone_7]
+32 2
+[creature_giantspider_giantspider_bone_16]
+33 32
+[creature_giantspider_giantspider_bone_26]
+34 33
+[creature_giantspider_giantspider_bone_36]
+35 34
+[creature_giantspider_giantspider_bone_44]
+36 35
+[creature_giantspider_giantspider_bone_8]
+37 2
+[creature_giantspider_giantspider_bone_17]
+38 37
+[creature_giantspider_giantspider_bone_27]
+39 38
+[creature_giantspider_giantspider_bone_37]
+40 39
+[creature_giantspider_giantspider_bone_45]
+41 40
+[creature_giantspider_giantspider_bone_9]
+42 2
+[creature_giantspider_giantspider_bone_18]
+43 42
+[creature_giantspider_giantspider_bone_28]
+44 43
+[creature_giantspider_giantspider_bone_38]
+45 44
+[creature_giantspider_giantspider_bone_46]
+46 45
+[creature_giantspider_giantspider_bone_10]
+47 2
+[creature_giantspider_giantspider_bone_19]
+48 47
+[creature_giantspider_giantspider_bone_29]
+49 48
+[creature_giantspider_giantspider_bone_39]
+50 49
+[creature_giantspider_giantspider_bone_47]
+51 50
+[creature_giantspider_giantspider_bone_11]
+52 2
+[creature_giantspider_giantspider_bone_20]
+53 52
+[creature_giantspider_giantspider_bone_30]
+54 53
+[creature_giantspider_giantspider_bone_40]
+55 54
+[creature_giantspider_giantspider_bone_48]
+56 55
+[creature_giantspider_giantspider_bone_12]
+57 2
+[creature_giantspider_giantspider_bone_21]
+58 57
+[creature_giantspider_giantspider_bone_31]
+59 58
+[creature_giantspider_giantspider_bone_41]
+60 59
+[creature_giantspider_giantspider_bone_49]
+61 60
+[creature_giantspider_giantspider_bone_13]
+62 2
+[creature_giantspider_giantspider_bone_22]
+63 62
+[creature_giantspider_giantspider_bone_32]
+64 63
+[creature_giantspider_giantspider_bone_42]
+65 64
+[creature_giantspider_giantspider_bone_50]
+66 65
+[creature_giantspider_giantspider_bone_51]
+67 0
+[creature_giantspider_giantspider_bone_52]
+68 0
+[creature_giantspider_giantspider_bone_53]
+69 0
+[creature_giantspider_giantspider_bone_54]
+70 0
+[creature_giantspider_giantspider_bone_55]
+71 0
+[creature_giantspider_giantspider_bone_56]
+72 0
+[creature_giantspider_giantspider_bone_57]
+73 0
+[creature_giantspider_giantspider_bone_58]
+74 0
+[creature_giantspider_giantspider_bone_59]
+75 0
+[creature_giantspider_giantspider_bone_60]
+76 0
+[creature_giantspider_giantspider_bone_61]
+77 0
+[creature_giantspider_giantspider_bone_62]
+78 0
+[creature_giantspider_giantspider_bone_63]
+79 0
+[creature_giantspider_giantspider_bone_64]
+80 0
+[creature_giantspider_giantspider_bone_65]
+81 0
+[creature_giantspider_giantspider_bone_66]
+82 0
+[creature_giantspider_giantspider_bone_67]
+83 0
+[creature_giantspider_giantspider_bone_68]
+84 0
+[creature_giantspider_giantspider_bone_69]
+85 0
+[creature_giantspider_giantspider_bone_70]
+86 0
+[creature_giantspider_giantspider_bone_71]
+87 0

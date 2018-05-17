@@ -1,4 +1,4 @@
-#version 400 core
+#version 420 core
 
 layout(location = 0) in vec4 vertexPos;
 
@@ -9,7 +9,7 @@ layout (std140, binding = 0, row_major) uniform CameraSettings
 							// Base Alignment  	// Aligned Offset
 	vec3 position;			// 16			   	// 0
 	vec3 direction; 		// 16				// 16
-	mat4 viewPerspective	// 64				// 32
+	mat4 viewPerspective;	// 64				// 32
 } camera;
 
 layout (std140, binding = 1) uniform Lights

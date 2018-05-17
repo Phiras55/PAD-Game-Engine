@@ -21,6 +21,11 @@ void GLTexture::Bind()
 	glBindTexture(GL_TEXTURE_2D, m_id);
 }
 
+void GLTexture::Unbind()
+{
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 void GLTexture::SetTextureParameters(const rhi::TextureParameters& _param)
 {
 	CheckWrapParameters(_param.sWrap, rhi::AxisType::S);
@@ -91,8 +96,9 @@ void GLTexture::CheckMipmapParameters(const rhi::MipmapType& _param, const rhi::
 void GLTexture::GenerateTexture(const int32 _w, const int32 _h, uchar* const _data, const rhi::TextureParameters& _param)
 {
 	SetTextureParameters(_param);
+	int channel = _param.channelType == rhi::E_CHANNEL_TYPE::RGB ? GL_RGB : GL_RGBA;
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _w, _h, 0, GL_RGB, GL_UNSIGNED_BYTE, _data);
+	glTexImage2D(GL_TEXTURE_2D, 0, channel, _w, _h, 0, channel, GL_UNSIGNED_BYTE, _data);
 	glGenerateMipmap(GL_TEXTURE_2D);
 }
 

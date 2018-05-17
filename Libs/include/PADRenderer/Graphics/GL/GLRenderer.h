@@ -40,16 +40,23 @@ public:
 		const math::Mat4& _vp)												override;
 	void SetLightsUniformBufferData(
 		math::Vec4f* const _positions,
-		math::Vec4f* const _directions)										override;
+		math::Vec4f* const _directions,
+		const uint8 _count)													override;
 	void CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)	override;
+	bool LoadShaders(
+		const std::string& _vPath, 
+		const std::string& _fPath,
+		const std::string& _name)											override;
 
 private:
 	void InitContext(const rhi::ContextSettings& _settings)					override;
 	void InitViewPort(const math::Vec2i& _viewportSize)						override;
 
+	void InitShaders();
 	void InitMainBuffer(const rhi::ContextSettings& _settings);
 	void InitCullFace(const rhi::ContextSettings& _settings);
 	void InitDepthBuffer(const rhi::ContextSettings& _settings);
+	void InitBlendFunction();
 	void InitWindingOrder(const rhi::ContextSettings& _settings);
 	void InitDefaultUniformBuffers();
 	void SetCustomUniforms(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings);

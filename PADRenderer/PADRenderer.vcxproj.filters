@@ -108,6 +108,9 @@
     <ClCompile Include="Sources\PCH.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Graphics\GL\Shader\GLShaderManager.cpp">
+      <Filter>Source Files\Graphics\GL\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sources\Graphics\GL\GLRenderer.h">
@@ -205,6 +208,18 @@
     </ClInclude>
     <ClInclude Include="Sources\Common.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderManager.h">
+      <Filter>Header Files\Graphics\GL\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\RHI\Shader\AShaderManager.h">
+      <Filter>Header Files\Graphics\RHI\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\MaterialData.h">
+      <Filter>Header Files\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\TextureData.h">
+      <Filter>Header Files\Graphics\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 #include <Math/Vector3.h>
 #include <immintrin.h>
@@ -8,7 +7,7 @@ namespace pad	{
 namespace math	{
 
 template<typename T>
-struct Vector4 final																				/*! Templated vector 4 structure */
+struct Vector4 final : public ISerializable															/*! Templated vector 4 structure */
 {
 #pragma region Constructor / Destructor
 
@@ -77,6 +76,26 @@ struct Vector4 final																				/*! Templated vector 4 structure */
 
 
 #pragma endregion
+
+	json Serialize() override
+	{
+		json j;
+
+		AddDataToJson(j, "x", x);
+		AddDataToJson(j, "y", y);
+		AddDataToJson(j, "z", z);
+		AddDataToJson(j, "w", w);
+
+		return j;
+	}
+
+	void Deserialize(const json& j)	override
+	{
+		x = JsonToData<T>(j, "x");
+		y = JsonToData<T>(j, "y");
+		z = JsonToData<T>(j, "z");
+		w = JsonToData<T>(j, "w");
+	}
 };
 
 #pragma region Utils

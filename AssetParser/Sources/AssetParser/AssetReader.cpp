@@ -249,6 +249,8 @@ void ReadPADSkeleton(const	std::string&		_inputPath,
 				sec = BONE_COUNT;
 			else if (line == "[BONES]")
 				sec = BONES;
+			else
+				sec = DEFAULT;
 		}
 		else
 		{
@@ -264,12 +266,89 @@ void ReadPADSkeleton(const	std::string&		_inputPath,
 				case BONES:
 				{
 					gfx::mod::Bone b;
-					stream	>> b.m_name >> b.m_id >> b.m_parentId 
+					stream	>> b.m_name	>> b.m_id >> b.m_parentId 
 							>> b.m_inverseBindPose[0][0] >> b.m_inverseBindPose[0][1] >> b.m_inverseBindPose[0][2] >> b.m_inverseBindPose[0][3]
 							>> b.m_inverseBindPose[1][0] >> b.m_inverseBindPose[1][1] >> b.m_inverseBindPose[1][2] >> b.m_inverseBindPose[1][3] 
 							>> b.m_inverseBindPose[2][0] >> b.m_inverseBindPose[2][1] >> b.m_inverseBindPose[2][2] >> b.m_inverseBindPose[2][3]
 							>> b.m_inverseBindPose[3][0] >> b.m_inverseBindPose[3][1] >> b.m_inverseBindPose[3][2] >> b.m_inverseBindPose[3][3];
 					_skeleton.AddBone(b);
+					break;
+				}
+			}
+		}
+	}
+}
+
+void ReadPADAnim(const	std::string&	_inputPath, 
+						gfx::mod::Anim& _anim)
+{
+	enum SECTION
+	{
+		FRAME_COUNT,
+		BONE_COUNT,
+		DURATION,
+		KEY,
+		DEFAULT
+	};
+
+	SECTION sec = DEFAULT;
+
+	_anim.m_name = GetFileNameNoExt(_inputPath);
+
+	int frameCounter = -1;
+
+	std::ifstream in(_inputPath);
+	std::string line;
+	while (std::getline(in, line))
+	{
+		std::istringstream stream(line);
+		if (line[0] == '[')
+		{
+			if (line == "[FRAME_COUNT]")
+				sec = FRAME_COUNT;
+			else if (line == "[BONE_COUNT]")
+				sec = BONE_COUNT;
+			else if (line == "[DURATION]")
+				sec = DURATION;
+			else if (line == "[KEY]")
+			{
+				sec = KEY;
+				++frameCounter;
+				gfx::mod::KeyFrame keyFrame;
+				keyFrame.m_id = frameCounter;
+				_anim.m_keyFrames.push_back(keyFrame);
+			}
+			else
+				sec = DEFAULT;
+		}
+		else
+		{
+			switch (sec)
+			{
+				case FRAME_COUNT:
+				{
+					stream >> _anim.m_frameCount;
+					break;
+				}
+				case BONE_COUNT:
+				{
+					stream >> _anim.m_boneCount;					
+					break;
+				}
+				case DURATION:
+				{
+					stream >> _anim.m_duration;
+					break;
+				}
+				case KEY:
+				{
+					gfx::mod::BoneAnim boneAnim;
+					stream	>> boneAnim.m_boneId
+							>> boneAnim.m_transform[0][0] >> boneAnim.m_transform[0][1] >> boneAnim.m_transform[0][2] >> boneAnim.m_transform[0][3]
+							>> boneAnim.m_transform[1][0] >> boneAnim.m_transform[1][1] >> boneAnim.m_transform[1][2] >> boneAnim.m_transform[1][3]
+							>> boneAnim.m_transform[2][0] >> boneAnim.m_transform[2][1] >> boneAnim.m_transform[2][2] >> boneAnim.m_transform[2][3]
+							>> boneAnim.m_transform[3][0] >> boneAnim.m_transform[3][1] >> boneAnim.m_transform[3][2] >> boneAnim.m_transform[3][3];
+					_anim.m_keyFrames[frameCounter].m_bones.push_back(boneAnim);
 					break;
 				}
 			}

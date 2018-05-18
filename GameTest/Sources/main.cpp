@@ -17,7 +17,7 @@
 
 int main()
 {
-	pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
+	//pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
 
 	#pragma region RenderInit
 
@@ -58,6 +58,7 @@ int main()
 	pad::LoadResourceFile("../Resources/PADFormat/creature_pitlord_magtheridon.PADMesh", "");
 	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_0.PADMaterial", "");
 	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_AttackUnarmed [3].PADAnim", "");
 	pad::LoadResourceFile("../Resources/PADFormat/Grid.PADMaterial", "");
 	pad::LoadResourceFile("../Resources/PADFormat/Default.PADMaterial", "");
 

@@ -99,66 +99,95 @@ void LoadResourceFile(const std::string& _filePath, const std::string& _outputPa
 			LoadTextureFile(_filePath);
 		else if (ext == ".PADSkeleton")
 			LoadSkeletonFile(_filePath);
+		else if (ext == ".PADAnim")
+			LoadAnimFile(_filePath);
 	}
 }
 
 void LoadMeshFile(const std::string& _filePath)
 {
 	std::string	name = pad::parser::GetFileNameNoExt(_filePath);
+	if (!g_engine->GetResourceManager()->GetMeshManager().GetResource(name))
+	{
+		gfx::mod::MeshData	meshData;
+		gfx::mod::Mesh		mesh;
 
-	gfx::mod::MeshData	meshData;
-	gfx::mod::Mesh		mesh;
+		parser::ReadPADMesh(_filePath, meshData);
 
-	parser::ReadPADMesh(_filePath, meshData);
-
-	g_engine->GetRenderer().GenerateMesh(mesh, meshData);
-	g_engine->GetResourceManager()->GetMeshManager().AddResource(name, mesh);
+		g_engine->GetRenderer().GenerateMesh(mesh, meshData);
+		g_engine->GetResourceManager()->GetMeshManager().AddResource(name, mesh);
+	}
 }
 
 void LoadSkeletonFile(const std::string& _filePath)
 {
 	gfx::mod::Skeleton skeleton;
-	parser::ReadPADSkeleton(_filePath, skeleton);
-	g_engine->GetResourceManager()->GetSkeletonManager().AddResource(skeleton.GetName(), skeleton);
+	std::string name = pad::parser::GetFileNameNoExt(_filePath);
+	if (!g_engine->GetResourceManager()->GetSkeletonManager().GetResource(name))
+	{
+		parser::ReadPADSkeleton(_filePath, skeleton);
+		g_engine->GetResourceManager()->GetSkeletonManager().AddResource(name, skeleton);
+	}
 }
 
 void LoadMaterialFile(const std::string& _filePath)
 {
-	gfx::mod::MaterialData	materialData;
-	gfx::mod::Material		material;
-	gfx::mod::TextureData	textureData;
-	gfx::gl::GLTexture*		texture = new gfx::gl::GLTexture();
+	std::string name = pad::parser::GetFileNameNoExt(_filePath);
+	if (!g_engine->GetResourceManager()->GetMaterialManager().GetResource(name))
+	{
+		std::string name = pad::parser::GetFileNameNoExt(_filePath);
 
-	parser::ReadPADMaterial(_filePath, materialData, textureData);
+		gfx::mod::MaterialData	materialData;
+		gfx::mod::Material		material;
+		gfx::mod::TextureData	textureData;
+		gfx::gl::GLTexture*		texture = new gfx::gl::GLTexture();
 
-	material.SetAmbient(materialData.m_ambient);
-	material.SetDiffuse(materialData.m_diffuse);
-	material.SetSpecular(materialData.m_specular);
-	material.SetShiness(materialData.m_shiness);
-	material.SetName(materialData.m_name);
+		parser::ReadPADMaterial(_filePath, materialData, textureData);
 
-	gfx::rhi::TextureParameters param;
-	param.sWrap			= gfx::rhi::E_WRAP_TYPE(textureData.m_sWrap);
-	param.tWrap			= gfx::rhi::E_WRAP_TYPE(textureData.m_tWrap);
-	param.channelType	= gfx::rhi::E_CHANNEL_TYPE(textureData.m_channel);
-	texture->SetName(textureData.m_name);
-	g_engine->GetRenderer().GenerateTexture(texture, textureData.m_path, param);
+		material.SetAmbient(materialData.m_ambient);
+		material.SetDiffuse(materialData.m_diffuse);
+		material.SetSpecular(materialData.m_specular);
+		material.SetShiness(materialData.m_shiness);
+		material.SetName(materialData.m_name);
 
-	material.SetAlbedoMapName(textureData.m_name);
+		gfx::rhi::TextureParameters param;
+		param.sWrap = gfx::rhi::E_WRAP_TYPE(textureData.m_sWrap);
+		param.tWrap = gfx::rhi::E_WRAP_TYPE(textureData.m_tWrap);
+		param.channelType = gfx::rhi::E_CHANNEL_TYPE(textureData.m_channel);
+		texture->SetName(textureData.m_name);
+		g_engine->GetRenderer().GenerateTexture(texture, textureData.m_path, param);
 
-	g_engine->GetResourceManager()->GetMaterialManager().AddResource(material.GetName(), material);
-	g_engine->GetResourceManager()->GetTextureManager().AddResource(texture->GetName(), texture);
+		material.SetAlbedoMapName(textureData.m_name);
+
+		g_engine->GetResourceManager()->GetMaterialManager().AddResource(name, material);
+		g_engine->GetResourceManager()->GetTextureManager().AddResource(texture->GetName(), texture);
+	}
 }
 
 void LoadTextureFile(const std::string& _filePath)
 {
-	std::string	name = pad::parser::GetFileNameNoExt(_filePath);
+	std::string name = pad::parser::GetFileNameNoExt(_filePath);
+	if (!g_engine->GetResourceManager()->GetTextureManager().GetResource(name))
+	{
+		std::string	name = pad::parser::GetFileNameNoExt(_filePath);
 
-	gfx::gl::GLTexture* texture = new gfx::gl::GLTexture();
-	gfx::rhi::TextureParameters param;
-	texture->SetName(name);
-	g_engine->GetRenderer().GenerateTexture(texture, _filePath, param);
-	g_engine->GetResourceManager()->GetTextureManager().AddResource(texture->GetName(), texture);
+		gfx::gl::GLTexture* texture = new gfx::gl::GLTexture();
+		gfx::rhi::TextureParameters param;
+		texture->SetName(name);
+		g_engine->GetRenderer().GenerateTexture(texture, _filePath, param);
+		g_engine->GetResourceManager()->GetTextureManager().AddResource(texture->GetName(), texture);
+	}
+}
+
+void LoadAnimFile(const std::string& _filePath)
+{
+	gfx::mod::Anim anim;
+	std::string name = pad::parser::GetFileNameNoExt(_filePath);
+	if (!g_engine->GetResourceManager()->GetAnimManager().GetResource(name))
+	{
+		parser::ReadPADAnim(_filePath, anim);
+		g_engine->GetResourceManager()->GetAnimManager().AddResource(name, anim);
+	}
 }
 
 sys::ecs::PADObject* GetPADObject(const std::string& _name, sys::ecs::PADObject* const _rootSearch)

@@ -252,12 +252,21 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Sc
 	if (!m_lowLevelRenderer)
 		return;
 
-	const sys::ecs::PerspectiveCamera& cam = _scene.GetMainCamera();
-	math::Mat4 vp = cam.GetProjection() * cam.GetView();
+	sys::ecs::PerspectiveCamera* cam = _scene.GetMainCamera();
+	math::Mat4 vp = cam->GetProjection() * cam->GetView();
+
+	sys::ecs::DirectionalLight* dirLight = _scene.GetDirectionalLight();
 
 	ClearBuffers();
 
-	m_lowLevelRenderer->SetCameraUniformBufferData(math::Vec3f(), math::Vec3f(), vp);
+	m_lowLevelRenderer->SetCameraUniformBufferData(
+		cam->GetTransform().Position(), 
+		cam->GetTransform().Forward(), 
+		vp);
+	m_lowLevelRenderer->SetDirectionalLightUniformBufferData(
+		dirLight->GetOwner()->GetTransform().Forward(), 
+		dirLight->GetColor(), 
+		dirLight->GetIntensity());
 
 	std::list<sys::ecs::MeshRenderer*>* mr = _components.GetActiveComponents<sys::ecs::MeshRenderer>();
 
@@ -331,10 +340,10 @@ void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const 
 
 	_settings.customUniforms["specular"] = uniform;
 
-	uniform.data = (void*)&_mat.GetShiness();
+	uniform.data = (void*)&_mat.GetShininess();
 	uniform.type = rhi::shad::DataType::FLOAT;
 
-	_settings.customUniforms["shiness"] = uniform;
+	_settings.customUniforms["shininess"] = uniform;
 }
 
 void HighLevelRenderer::UnbindTextures(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources)

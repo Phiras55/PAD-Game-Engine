@@ -283,6 +283,14 @@ void GLRenderer::InitDefaultUniformBuffers()
 
 	CreateUniformBuffer(cameraSettings);
 	BindBufferToBindingPoint(cameraSettings);
+
+	rhi::UniformBufferSettings directionnalLightSettings;
+	directionnalLightSettings.name				= "DirectionalLightSettings";
+	directionnalLightSettings.dataSize			= 48;
+	directionnalLightSettings.bindingPointID	= 1;
+
+	CreateUniformBuffer(directionnalLightSettings);
+	BindBufferToBindingPoint(directionnalLightSettings);
 }
 
 void GLRenderer::CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)
@@ -320,11 +328,14 @@ void GLRenderer::SetCameraUniformBufferData(
 	SetUniformBufferData("CameraSettings", &(_vp.data[0]), 64, 32);
 }
 
-void GLRenderer::SetLightsUniformBufferData(
-	math::Vec4f* const _positions,
-	math::Vec4f* const _directions,
-	const uint8 _count)
+void GLRenderer::SetDirectionalLightUniformBufferData(
+	const math::Vec3f& _direction,
+	const math::Vec3f& _color,
+	const float _intensity)
 {
+	SetUniformBufferData("DirectionalLightSettings", &_direction, 16,  0);
+	SetUniformBufferData("DirectionalLightSettings", &_color,	  16, 16);
+	SetUniformBufferData("DirectionalLightSettings", &_intensity,  4, 32);
 }
 
 rhi::AUniformBufferObject* const GLRenderer::GetUniformBufferObject(const std::string& _name)

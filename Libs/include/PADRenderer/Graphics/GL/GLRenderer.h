@@ -38,10 +38,10 @@ public:
 		const math::Vec3f& _position,
 		const math::Vec3f& _direction,
 		const math::Mat4& _vp)												override;
-	void SetLightsUniformBufferData(
-		math::Vec4f* const _positions,
-		math::Vec4f* const _directions,
-		const uint8 _count)													override;
+	void SetDirectionalLightUniformBufferData(
+		const math::Vec3f& _direction,
+		const math::Vec3f& _color,
+		const float _intensity)												override;
 	void CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)	override;
 	bool LoadShaders(
 		const std::string& _vPath, 

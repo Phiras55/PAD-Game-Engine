@@ -14,13 +14,6 @@ layout (std140, binding = 0, row_major) uniform CameraSettings
 	mat4 viewPerspective;	// 64				// 32
 } camera;
 
-layout (std140, binding = 1) uniform Lights
-{
-							// Base Alignment  	// Aligned Offset
-	vec4 position;			// 16				// 0
-	vec3 direction; 		// 16				// 16
-} lights;
-
 out VertexData
 {
 	vec3 color;
@@ -28,9 +21,19 @@ out VertexData
 	vec2 uv;
 } outData;
 
+out vec3 cameraPos;
+out vec3 cameraDir;
+out vec3 fragPos;
+
 void main()
 {
-	gl_Position = camera.viewPerspective * model * vec4(vertexPos.xyz, 1.f);
-	outData.normal = vertexNormal;
-	outData.uv = vertexUv;
+	// Data needed for fragments
+	outData.normal 	= vertexNormal;
+	outData.uv 		= vertexUv;
+	cameraPos 		= camera.position;
+	cameraDir 		= camera.direction;
+	fragPos 		= vec3(model * vertexPos);
+	
+	// Vertex final position
+	gl_Position = camera.viewPerspective * model * vertexPos;
 }

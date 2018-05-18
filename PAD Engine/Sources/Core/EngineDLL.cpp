@@ -68,21 +68,21 @@ void RemovePADObject(sys::ecs::PADObject* const _padObject)
 void MoveMainCamera(math::Vec3f& _translation)
 {
 	if (g_engine && g_engine->GetScene()) 
-		g_engine->GetScene()->GetMainCamera().GetTransform().Move(_translation);
+		g_engine->GetScene()->GetMainCamera()->GetTransform().Move(_translation);
 }
 
 void RotateMainCamera(math::Vec3f& _rotation)
 {
 	if (g_engine && g_engine->GetScene())
-		g_engine->GetScene()->GetMainCamera().GetTransform().SetRotation(_rotation);
+		g_engine->GetScene()->GetMainCamera()->GetTransform().SetRotation(_rotation);
 }
 
 void SetMainCameraTarget(const math::Vec3f& _targetPosition)
 {
 	if (g_engine && g_engine->GetScene())
 	{
-		sys::ecs::PerspectiveCamera& cam = g_engine->GetScene()->GetMainCamera();
-		cam.LookAt(cam.GetTransform().Position(), _targetPosition, math::Vec3f::Up());
+		sys::ecs::PerspectiveCamera* cam = g_engine->GetScene()->GetMainCamera();
+		cam->LookAt(cam->GetTransform().Position(), _targetPosition, math::Vec3f::Up());
 	}
 }
 
@@ -134,7 +134,7 @@ void LoadMaterialFile(const std::string& _filePath)
 	material.SetAmbient(materialData.m_ambient);
 	material.SetDiffuse(materialData.m_diffuse);
 	material.SetSpecular(materialData.m_specular);
-	material.SetShiness(materialData.m_shiness);
+	material.SetShininess(materialData.m_shiness);
 	material.SetName(materialData.m_name);
 
 	gfx::rhi::TextureParameters param;

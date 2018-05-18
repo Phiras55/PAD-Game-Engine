@@ -57,14 +57,17 @@ SOURCES += \
     padeditor.cpp \
     transformwidget.cpp \
     padobjectwidget.cpp \
-    boxcolliderwidget.cpp
+    boxcolliderwidget.cpp \
+    sceneview.cpp
 
 HEADERS += \
     padeditor.h                                         \
     glwidget.h											\
     transformwidget.h									\
     padobjectwidget.h									\
-    boxcolliderwidget.h
+    boxcolliderwidget.h \
+    sceneview.h \
+    scenenode.h
 
 RESOURCES +=\
         style.qrc

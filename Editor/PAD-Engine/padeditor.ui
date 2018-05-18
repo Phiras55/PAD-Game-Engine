@@ -1349,7 +1349,13 @@ QDateEdit::down-arrow:focus {
       <number>0</number>
      </property>
      <item row="0" column="0">
-      <widget class="QTreeView" name="hierarchyTreeView"/>
+      <widget class="QTreeWidget" name="treeWidget">
+       <column>
+        <property name="text">
+         <string>Scene</string>
+        </property>
+       </column>
+      </widget>
      </item>
     </layout>
    </widget>

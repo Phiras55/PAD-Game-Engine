@@ -1,6 +1,5 @@
 #include <EnginePCH.h>
 #include <System/ECS/AnimRenderer.h>
-#include <Core/Engine.h>
 
 namespace pad	{
 namespace sys	{
@@ -39,11 +38,15 @@ AnimRenderer::AnimRenderer(	const std::string&	_meshName,
 
 AnimRenderer::~AnimRenderer()
 {
+
 }
 
 void AnimRenderer::Init()
 {
-	//m_meshP = 
+	m_keyFrameDuration	= -1;
+	m_currentKey		= 0;
+
+	m_animTimer.Start();
 }
 
 void AnimRenderer::Start()
@@ -83,6 +86,15 @@ void AnimRenderer::Deserialize(const json& j)
 	m_currentAnim		= JsonToData<std::string>(j, "m_currentAnim");
 
 	m_settings.Deserialize(JsonToData<json>(j, "m_settings"));
+}
+
+inline void AnimRenderer::SetAnim(const std::string _name)
+{
+	m_currentAnim		= _name;
+	m_keyFrameDuration	= -1;
+	m_currentKey		= 0;
+
+	m_animTimer.Reset();
 }
 
 void AnimRenderer::operator=(const AnimRenderer& _other)

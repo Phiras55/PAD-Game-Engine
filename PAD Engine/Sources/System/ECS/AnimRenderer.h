@@ -26,11 +26,6 @@ private:
 	int				m_currentKey;
 	float			m_keyFrameDuration;
 	core::Timer		m_animTimer;
-	math::Mat4*		m_matrixArray;
-
-	gfx::mod::Anim*		m_currentAnimP;
-	gfx::mod::Skeleton*	m_skeletonP;
-	gfx::mod::Mesh*		m_meshP;
 
 private:
 	static alias::ComponentID	m_AR_id;
@@ -48,9 +43,18 @@ public:
 public:
 	inline const alias::ComponentID GetType() const override { return m_AR_id; }
 
-	inline void	SetAnimName(const std::string _name)	{ m_currentAnim = _name; }
+	inline const	std::string&	GetSkeletonName()	const	{ return m_skeletonName; }
+	inline const	std::string&	GetAnimName()		const	{ return m_currentAnim; }
+	inline const	core::Timer&	GetTimer()			const	{ return m_animTimer; }
+	inline			core::Timer&	GetTimer() 					{ return m_animTimer; }
+	inline const	int				GetCurrentFrame()	const	{ return m_currentKey; }
+	inline const	float			GetFrameDuration()	const	{ return m_keyFrameDuration; }
 
-	inline math::Mat4* const GetMatrix() const { return m_matrixArray; }
+	inline void SetCurrentFrame(const int _key)					{ m_currentKey = _key; }
+	inline void SetFrameDuration(const float _duration)			{ m_keyFrameDuration = _duration; }
+
+	inline void	SetAnim(const std::string _name);
+
 
 public:
 	void operator=(const AnimRenderer& _other);

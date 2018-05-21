@@ -13,6 +13,7 @@
 #include <Graphics/GL/Shader/GLVertexShader.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/PerspectiveCamera.h>
+#include <Graphics/Model/Skeleton.h>
 
 namespace pad	{
 namespace core	{
@@ -111,6 +112,44 @@ void Engine::ResizeContext(const uint32 _w, const uint32 _h)
 void Engine::FlushLogs()
 {
 	LOG_FLUSH();
+}
+
+void const Engine::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, math::Mat4* _matrixArray)
+{
+	gfx::mod::Anim*		anim		= m_resourceManager->GetAnimManager().GetResource(_animRenderer.GetAnimName());
+	gfx::mod::Skeleton* skeleton	= m_resourceManager->GetSkeletonManager().GetResource(_animRenderer.GetSkeletonName());
+
+	if (!anim)
+	{
+		for (int i = 0; i < skeleton->GetBoneCount(); ++i)
+			_matrixArray[skeleton->GetBones()[i].m_id] = skeleton->GetBones()[i].m_inverseBindPose;
+
+		return;
+	}
+
+	if (_animRenderer.GetFrameDuration() == -1)		
+		_animRenderer.SetFrameDuration(anim->m_duration / (float)anim->m_frameCount);
+
+	if (_animRenderer.GetTimer().GetDuration() > _animRenderer.GetFrameDuration())
+	{
+		int key = _animRenderer.GetCurrentFrame() + 1;
+		if (key >= anim->m_frameCount)
+			key = 0;
+		_animRenderer.SetCurrentFrame(key);
+		_animRenderer.GetTimer().Reset();
+	}
+
+	for (int i = 0; i < anim->m_boneCount; ++i)
+	{
+		int			boneId		= anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_boneId;
+
+		math::Mat4	animMatrix	= anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;
+		math::Mat4	bindMatrix	= skeleton->GetBoneById(boneId)->m_inverseBindPose;
+		_matrixArray[boneId]	= animMatrix * bindMatrix;
+//		_matrixArray[boneId]	= bindMatrix * animMatrix;
+
+//		_matrixArray[boneId] = skeleton->GetBoneById(boneId)->m_inverseBindPose * anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;
+	}
 }
 
 } // namespace core

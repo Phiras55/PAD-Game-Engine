@@ -51,6 +51,10 @@ private:
 
 public:
 	Bone* const GetBoneByName(const std::string& _boneName);
+	Bone* const GetBoneById(const int _id);
+
+	inline const int GetBoneCount() const { return m_boneCount; }
+	inline const std::vector<Bone>& GetBones() const { return m_bones; }
 
 	inline void SetName(const std::string& _name)	{ m_name = _name; }
 	inline void SetBoneCount(const int _boneCount)	{ m_boneCount = _boneCount; }

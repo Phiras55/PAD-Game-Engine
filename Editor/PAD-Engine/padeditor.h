@@ -4,13 +4,14 @@
 #include <QMainWindow>
 #include <QFileSystemModel>
 
+#include <glwidget.h>
+
 namespace Ui {
 class PADEditor;
 }
 
 class PADEditor : public QMainWindow
 {
-
     Q_OBJECT
 
 public:
@@ -23,6 +24,8 @@ private slots:
 
 private:
     Ui::PADEditor *ui;
+
+    GLWidget* openGLWidget;
 
     QFileSystemModel* DirModel;
     QFileSystemModel* FileModel;

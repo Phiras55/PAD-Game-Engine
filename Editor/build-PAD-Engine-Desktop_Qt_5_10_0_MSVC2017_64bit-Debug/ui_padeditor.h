@@ -27,6 +27,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QTreeView>
+#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -47,7 +48,7 @@ public:
     QDockWidget *Hierarchy;
     QWidget *Hierarchy_Content;
     QGridLayout *gridLayout_4;
-    QTreeView *hierarchyTreeView;
+    QTreeWidget *treeWidget;
     QDockWidget *Inspector;
     QWidget *Inspector_Content;
     QGridLayout *gridLayout_3;
@@ -1368,10 +1369,10 @@ public:
         gridLayout_4->setContentsMargins(11, 11, 11, 11);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
         gridLayout_4->setContentsMargins(0, 0, 0, 0);
-        hierarchyTreeView = new QTreeView(Hierarchy_Content);
-        hierarchyTreeView->setObjectName(QStringLiteral("hierarchyTreeView"));
+        treeWidget = new QTreeWidget(Hierarchy_Content);
+        treeWidget->setObjectName(QStringLiteral("treeWidget"));
 
-        gridLayout_4->addWidget(hierarchyTreeView, 0, 0, 1, 1);
+        gridLayout_4->addWidget(treeWidget, 0, 0, 1, 1);
 
         Hierarchy->setWidget(Hierarchy_Content);
         PADEditor->addDockWidget(static_cast<Qt::DockWidgetArea>(1), Hierarchy);
@@ -2739,6 +2740,8 @@ public:
         menuView->setTitle(QApplication::translate("PADEditor", "View", nullptr));
         OpenGl->setWindowTitle(QApplication::translate("PADEditor", "OpenGL", nullptr));
         Hierarchy->setWindowTitle(QApplication::translate("PADEditor", "Hierarchy", nullptr));
+        QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
+        ___qtreewidgetitem->setText(0, QApplication::translate("PADEditor", "Scene", nullptr));
         Inspector->setWindowTitle(QApplication::translate("PADEditor", "Inspector", nullptr));
         Project_View->setWindowTitle(QApplication::translate("PADEditor", "Project", nullptr));
         Console->setWindowTitle(QApplication::translate("PADEditor", "Console", nullptr));

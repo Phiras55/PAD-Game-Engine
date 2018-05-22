@@ -4,7 +4,7 @@
 
 #include <padeditor.h>
 #include <glwidget.h>
-
+#include "ui_padeditor.h"
 
 //#include <EnginePCH.h>
 #include <Core/EngineDLL.h>
@@ -47,8 +47,8 @@ int main(int argc, char *argv[])
     pad::gfx::win::WindowSettings winSettings;
 
     winSettings.title			= "This is a SDL Window.";
-    winSettings.position.x		= 400u;
-    winSettings.position.y		= 200u;
+    winSettings.position.x		= 0u;
+    winSettings.position.y		= 0u;
     winSettings.size.x			= 1600u;
     winSettings.size.y			= 900u;
     winSettings.isFullscreen	= false;

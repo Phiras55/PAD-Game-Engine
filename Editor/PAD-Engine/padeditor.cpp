@@ -5,15 +5,13 @@
 #include "Graphics/Model/Mesh.h"
 #include <QTimer>
 
-#include <glwidget.h>
-
 PADEditor::PADEditor(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::PADEditor)
 {
     ui->setupUi(this);
 
-    GLWidget* openGLWidget = new GLWidget(0);
+    openGLWidget = new GLWidget(0);
     openGLWidget->Init();
     ui->OpenGL_Content->layout()->addWidget(openGLWidget);
     setCentralWidget(ui->OpenGl);

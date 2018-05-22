@@ -1,15 +1,15 @@
 #include <sceneview.h>
+#include <scenenode.h>
 
 SceneView::SceneView(QWidget *parent) :
     QTreeWidget(parent)
 {
+    QTreeWidgetItem scene;
 
+    addTopLevelItem(scene);
 }
 
-SceneView::AddObject(pad::sys::ecs::PADObject* obj, pad::sys::ecs::PADObject *parent)
+SceneView::AddObject(pad::sys::ecs::PADObject* obj)
 {
-    QTreeWidgetItem toto;
-    if(parent)
-        QTreeWidget.item
-    QTreeWidget.items(0)[0]->addChild();
+    SceneNode(obj, topLevelItem(), topLevelItem());
 }

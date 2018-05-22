@@ -41,6 +41,10 @@ private:
     {
         pad::Simulate();
     }
+    inline void resizeGL() override
+    {
+
+    }
 };
 
 #endif

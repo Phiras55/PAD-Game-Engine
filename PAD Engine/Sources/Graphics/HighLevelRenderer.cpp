@@ -342,7 +342,7 @@ bool HighLevelRenderer::LoadShaders(
 	return false;
 }
 
-void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, math::Mat4* _matrixArray, sys::res::MasterManager& _resources)
+void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, float(*_matrixArray)[16], sys::res::MasterManager& _resources)
 {
 	gfx::mod::Anim*		anim = _resources.GetAnimManager().GetResource(_animRenderer.GetAnimName());
 	gfx::mod::Skeleton* skeleton = _resources.GetSkeletonManager().GetResource(_animRenderer.GetSkeletonName());
@@ -350,8 +350,8 @@ void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, mat
 	if (!anim)
 	{
 		for (int i = 0; i < skeleton->GetBoneCount(); ++i)
-			_matrixArray[skeleton->GetBones()[i].m_id] = skeleton->GetBones()[i].m_inverseBindPose;
-
+			memcpy(_matrixArray[skeleton->GetBones()[i].m_id], skeleton->GetBones()[i].m_inverseBindPose.data, 16*sizeof(float));
+			//_matrixArray[skeleton->GetBones()[i].m_id] = skeleton->GetBones()[i].m_inverseBindPose.data;
 		return;
 	}
 
@@ -373,7 +373,10 @@ void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, mat
 
 		math::Mat4	animMatrix	= anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;
 		math::Mat4	bindMatrix	= skeleton->GetBoneById(boneId)->m_inverseBindPose;
-		_matrixArray[boneId]	= math::Mat4();
+		memcpy(_matrixArray[boneId], math::Mat4().data, 16*sizeof(float));
+		//_matrixArray[boneId]	= math::Mat4();
+		
+		
 		//		_matrixArray[boneId]	= bindMatrix * animMatrix;
 
 		//		_matrixArray[boneId] = skeleton->GetBoneById(boneId)->m_inverseBindPose * anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;

@@ -4,10 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PAD Engine", "PAD Engine\PAD Engine.vcxproj", "{2DA028DE-BFEF-40F3-8326-C4E510AF7339}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5DB7F6F1-97BB-4D9D-84EA-2DC52EE0E553} = {5DB7F6F1-97BB-4D9D-84EA-2DC52EE0E553}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Math", "Math\Math.vcxproj", "{40A4178C-EE0B-43C6-A4AD-085F0390F44E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameTest", "GameTest\GameTest.vcxproj", "{01CD162C-23D2-4855-B70A-778F6A0BB608}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2DA028DE-BFEF-40F3-8326-C4E510AF7339} = {2DA028DE-BFEF-40F3-8326-C4E510AF7339}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ThreadPool", "ThreadPool\ThreadPool.vcxproj", "{31046353-3DA1-40BF-90CB-FCA7BF3E82C5}"
 EndProject

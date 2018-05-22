@@ -22,7 +22,7 @@ private:
 	rhi::IRenderer*				m_lowLevelRenderer;
 	win::AWindow*				m_mainWindow;
 	sys::res::MasterManager*	m_masterManagerHandle;
-	math::Mat4					m_animJoints[JOINT_COUNT];
+	float						m_animJoints[JOINT_COUNT][16];
 
 public:
 	void Initialize(
@@ -49,7 +49,7 @@ private:
 	void ClearBuffers();
 	void SwapBuffers();
 	void InitializeDefaultMeshes();
-	void GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, math::Mat4* _matrixArray, sys::res::MasterManager& _resources);
+	void GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, float(*_matrixArray)[16], sys::res::MasterManager& _resources);
 	void DrawStaticObjects(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene, sys::res::ComponentsHandler& _components);
 	void DrawAnimatedObjects(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene, sys::res::ComponentsHandler& _components);
 	void UnbindTextures(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources);

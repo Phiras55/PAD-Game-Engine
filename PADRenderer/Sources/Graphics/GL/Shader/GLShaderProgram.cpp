@@ -113,11 +113,11 @@ void GLShaderProgram::SetUniform(const std::string& name, const math::Vec3f& _va
 	glUniform3fv(m_uniforms[name], 1, &_value[0]);
 }
 
-void GLShaderProgram::SetUniform(const std::string& name, math::Mat4* const _value, const uint32 _count)
+void GLShaderProgram::SetUniform(const std::string& name, const float(*_value)[16], const uint32 _count)
 {
 	if (m_uniforms.find(name) == m_uniforms.end())
 		m_uniforms[name] = glGetUniformLocation(m_id, name.c_str());
-	glUniformMatrix4fv(m_uniforms[name], _count, GL_TRUE, nullptr);
+	glUniformMatrix4fv(m_uniforms[name], _count, GL_TRUE, _value[0]);
 }
 
 void GLShaderProgram::SetCustomUniform(const std::string& _name, const rhi::shad::CustomUniform& _customUniform)
@@ -131,10 +131,10 @@ void GLShaderProgram::SetCustomUniform(const std::string& _name, const rhi::shad
 
 		break;
 	case rhi::shad::DataType::MAT4:
-		SetUniform(_name, *static_cast<math::Mat4*>(_customUniform.data));
+		SetUniform(_name, *static_cast<float*>(_customUniform.data));
 		break;
 	case rhi::shad::DataType::MAT4_ARRAY:
-		SetUniform(_name, static_cast<math::Mat4*>(_customUniform.data), _customUniform.count);
+		SetUniform(_name, static_cast<float(*)[16]>(_customUniform.data), _customUniform.count);
 		break;
 	case rhi::shad::DataType::VEC4:
 		SetUniform(_name, *static_cast<math::Vec4f*>(_customUniform.data));

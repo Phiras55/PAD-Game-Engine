@@ -32,7 +32,7 @@ public:
 	virtual void SetUniform(const std::string& _name, const math::Vec4f& _value)						= 0;
 	virtual void SetUniform(const std::string& _name, const math::Vec3f& _value)						= 0;
 	virtual void SetUniform(const std::string& _name, const math::Mat4& _value)							= 0;
-	virtual void SetUniform(const std::string& _name, math::Mat4* const _value, const uint32 _count)	= 0;
+	virtual void SetUniform(const std::string& _name, const float(*_value)[16], const uint32 _count)		= 0;
 	virtual void SetCustomUniform(const std::string& _name, const CustomUniform& _customUniform)		= 0;
 
 public:

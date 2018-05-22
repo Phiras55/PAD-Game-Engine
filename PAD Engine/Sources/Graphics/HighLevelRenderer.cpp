@@ -238,6 +238,11 @@ void HighLevelRenderer::InitializeDefaultMeshes()
 	};
 	md2.uvCount			= 8;
 
+	md1.boneIndexCount	= 0;
+	md1.boneWeightCount = 0;
+	md2.boneIndexCount	= 0;
+	md2.boneWeightCount = 0;
+
 	gfx::mod::Mesh m1, m2;
 
 	GenerateMesh(m1, md1);
@@ -312,9 +317,10 @@ void HighLevelRenderer::DrawAnimatedObjects(sys::res::MasterManager& _resources,
 			if (currentMat)
 				FillTextureLayout(currentSettings, *currentMat, _resources);
 
-			c.type = rhi::shad::DataType::MAT4_ARRAY;
-			c.data = m_animJoints;
-			currentSettings.customUniforms["skinningMatrices"];
+			c.type	= rhi::shad::DataType::MAT4_ARRAY;
+			c.data	= m_animJoints;
+			c.count = 150;
+			currentSettings.customUniforms["skinningMatrices"] = c;
 
 			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings);
 
@@ -364,9 +370,9 @@ void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, mat
 	{
 		int			boneId = anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_boneId;
 
-		math::Mat4	animMatrix = anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;
-		math::Mat4	bindMatrix = skeleton->GetBoneById(boneId)->m_inverseBindPose;
-		_matrixArray[boneId] = animMatrix * bindMatrix;
+		math::Mat4	animMatrix	= anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;
+		math::Mat4	bindMatrix	= skeleton->GetBoneById(boneId)->m_inverseBindPose;
+		_matrixArray[boneId]	= math::Mat4();
 		//		_matrixArray[boneId]	= bindMatrix * animMatrix;
 
 		//		_matrixArray[boneId] = skeleton->GetBoneById(boneId)->m_inverseBindPose * anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;

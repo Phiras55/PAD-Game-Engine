@@ -1,5 +1,6 @@
 #include <EnginePCH.h>
 #include <System/ECS/AnimRenderer.h>
+#include <System/ECS/PADObject.h>
 
 namespace pad	{
 namespace sys	{
@@ -12,7 +13,7 @@ AnimRenderer::AnimRenderer()
 	if (m_AR_id != INVALID_COMPONENT_ID)
 		m_AR_id = static_cast<alias::ComponentID>(util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
 
-	m_settings.programHandle = "DefaultAnimShader";
+	m_settings.programHandle = "DefaultAnim";
 }
 
 AnimRenderer::AnimRenderer(const AnimRenderer& _other)
@@ -26,7 +27,7 @@ AnimRenderer::AnimRenderer(const AnimRenderer& _other)
 	m_keyFrameDuration	= _other.m_keyFrameDuration;
 	m_animTimer			= _other.m_animTimer;
 
-	m_settings.programHandle = "DefaultAnimShader";
+	m_settings.programHandle = "DefaultAnim";
 }
 
 AnimRenderer::AnimRenderer(	const std::string&	_meshName, 
@@ -39,7 +40,7 @@ AnimRenderer::AnimRenderer(	const std::string&	_meshName,
 	m_skeletonName	= _skeletonName;
 	m_currentAnim	= _animName;
 
-	m_settings.programHandle = "DefaultAnimShader";
+	m_settings.programHandle = "DefaultAnim";
 }
 
 AnimRenderer::~AnimRenderer()
@@ -49,9 +50,9 @@ AnimRenderer::~AnimRenderer()
 
 void AnimRenderer::Init()
 {
-	m_keyFrameDuration	= -1;
-	m_currentKey		= 0;
-
+	m_keyFrameDuration		= -1;
+	m_currentKey			= 0;
+	m_settings.modelMatrix	= &m_owner->GetTransform().GetGlobalTransform();
 	m_animTimer.Start();
 }
 

@@ -117,7 +117,7 @@ void GLShaderProgram::SetUniform(const std::string& name, math::Mat4* const _val
 {
 	if (m_uniforms.find(name) == m_uniforms.end())
 		m_uniforms[name] = glGetUniformLocation(m_id, name.c_str());
-	glUniformMatrix4fv(m_uniforms[name], _count, GL_TRUE, _value[0][0]);
+	glUniformMatrix4fv(m_uniforms[name], _count, GL_TRUE, nullptr);
 }
 
 void GLShaderProgram::SetCustomUniform(const std::string& _name, const rhi::shad::CustomUniform& _customUniform)

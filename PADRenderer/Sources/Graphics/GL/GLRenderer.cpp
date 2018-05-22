@@ -39,6 +39,7 @@ void GLRenderer::Init(const rhi::ContextSettings& _settings)
 void GLRenderer::InitShaders()
 {
 	LoadShaders("Resources/Shaders/basicPositions.vert", "Resources/Shaders/basicColors.frag", "Default");
+	LoadShaders("Resources/Shaders/animPositions.vert", "Resources/Shaders/basicColors.frag", "DefaultAnim");
 }
 
 void GLRenderer::InitContext(const rhi::ContextSettings& _settings)

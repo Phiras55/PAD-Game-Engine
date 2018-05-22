@@ -122,7 +122,7 @@ void LoadMeshFile(const std::string& _filePath)
 void LoadSkeletonFile(const std::string& _filePath)
 {
 	gfx::mod::Skeleton skeleton;
-	std::string name = pad::parser::GetFileNameNoExt(_filePath);
+	std::string	name = pad::parser::GetFileNameNoExt(_filePath);
 	if (!g_engine->GetResourceManager()->GetSkeletonManager().GetResource(name))
 	{
 		parser::ReadPADSkeleton(_filePath, skeleton);

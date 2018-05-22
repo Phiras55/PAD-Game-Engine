@@ -60,9 +60,6 @@ public:
 	static sys::phx::IPhysicContext* const GetPhysicContext() { return m_physicContext; }
 
 public:
-	void const GetAnimMatrix(sys::ecs::AnimRenderer& _anim, math::Mat4* _matrixArray);
-
-public:
 	void operator=(const Engine&)	= delete;
 	void operator=(const Engine&&)	= delete;
 };

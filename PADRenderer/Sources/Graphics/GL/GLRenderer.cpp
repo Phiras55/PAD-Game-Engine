@@ -166,8 +166,7 @@ void GLRenderer::InitViewPort(const math::Vec2i& _viewportSize)
 void GLRenderer::ForwardRendering(
 	rhi::AVertexArray* const _vao,
 	rhi::AVertexBuffer* const _ibo,
-	const rhi::RenderSettings _setting,
-	const math::Mat4& _vp)
+	const rhi::RenderSettings _setting)
 {
 	rhi::shad::AShaderProgram* const currentShader = m_shaderManager->GetShader(_setting.programHandle);
 
@@ -232,6 +231,18 @@ void GLRenderer::GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao,
 	nbo.Bind();
 	nbo.BindData(_md.normals, _md.normalCount, 3, static_cast<uint8>(gfx::rhi::shad::AttribLocation::NORMAL));
 	nbo.Unbind();
+
+	gfx::gl::GLVertexBuffer wbo;
+	wbo.GenerateID();
+	wbo.Bind();
+	wbo.BindData(_md.boneWeight, _md.boneWeightCount, 4, static_cast<uint8>(gfx::rhi::shad::AttribLocation::BONE_WEIGHT));
+	wbo.Unbind();
+
+	gfx::gl::GLVertexBuffer bbo;
+	bbo.GenerateID();
+	bbo.Bind();
+	bbo.BindData(_md.boneIndex, _md.boneIndexCount, 4, static_cast<uint8>(gfx::rhi::shad::AttribLocation::BONE_INDICE));
+	bbo.Unbind();
 
 	_ibo->GenerateID();
 	_ibo->Bind();

@@ -32,8 +32,7 @@ public:
 	void ForwardRendering(
 		rhi::AVertexArray* const _vaos,
 		rhi::AVertexBuffer* const _ibos,
-		const rhi::RenderSettings _settings,
-		const math::Mat4& _vp)												override;
+		const rhi::RenderSettings _settings)								override;
 	void SetCameraUniformBufferData(
 		const math::Vec3f& _position,
 		const math::Vec3f& _direction,

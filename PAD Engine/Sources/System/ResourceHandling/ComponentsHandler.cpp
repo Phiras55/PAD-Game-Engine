@@ -40,8 +40,13 @@ ComponentsHandler::ComponentsHandler()
 	perspectiveCameraPool->DeleteComponent(p);
 #pragma endregion
 
-#pragma region PointLight
-	
+#pragma region AnimRenderer
+	alias::AnimRendererPool* animRendererPool			= new alias::AnimRendererPool();
+	ecs::AnimRenderer* a								= static_cast<ecs::AnimRenderer*>(animRendererPool->CreateComponent());
+
+	m_pools[a->GetType()] = animRendererPool;
+	a->GetType();
+	animRendererPool->DeleteComponent(a);
 #pragma endregion
 }
 

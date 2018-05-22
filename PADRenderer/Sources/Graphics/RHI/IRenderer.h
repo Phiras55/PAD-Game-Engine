@@ -37,8 +37,7 @@ public:
 	virtual void ForwardRendering(
 		rhi::AVertexArray* const _vaos, 
 		rhi::AVertexBuffer* const _ibos, 
-		const rhi::RenderSettings _settings, 
-		const math::Mat4& _vp)														= 0;
+		const rhi::RenderSettings _settings)										= 0;
 	virtual void SetCameraUniformBufferData(
 		const math::Vec3f& _position,
 		const math::Vec3f& _direction,
@@ -56,8 +55,8 @@ public:
 	inline shad::AShaderManager* const GetShaderManager() { return m_shaderManager; }
 
 protected:
-	virtual void InitContext(const rhi::ContextSettings& _settings)				= 0;
-	virtual void InitViewPort(const math::Vec2i& _viewportSize)					= 0;
+	virtual void InitContext(const rhi::ContextSettings& _settings)					= 0;
+	virtual void InitViewPort(const math::Vec2i& _viewportSize)						= 0;
 };
 
 } // namespace rhi

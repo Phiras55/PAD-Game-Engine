@@ -7,6 +7,8 @@
 namespace pad	{
 namespace gfx	{
 
+#define JOINT_COUNT 150
+
 class HighLevelRenderer final
 {
 public:
@@ -20,6 +22,7 @@ private:
 	rhi::IRenderer*				m_lowLevelRenderer;
 	win::AWindow*				m_mainWindow;
 	sys::res::MasterManager*	m_masterManagerHandle;
+	math::Mat4					m_animJoints[JOINT_COUNT];
 
 public:
 	void Initialize(
@@ -37,11 +40,18 @@ public:
 	void GenerateTexture(	rhi::ATexture* const _texture,
 							const std::string& _path,
 							const rhi::TextureParameters& _param);
+	virtual bool LoadShaders(
+		const std::string& _vPath,
+		const std::string& _fPath,
+		const std::string& _name);
 
 private:
 	void ClearBuffers();
 	void SwapBuffers();
 	void InitializeDefaultMeshes();
+	void GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, math::Mat4* _matrixArray, sys::res::MasterManager& _resources);
+	void DrawStaticObjects(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene, sys::res::ComponentsHandler& _components);
+	void DrawAnimatedObjects(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene, sys::res::ComponentsHandler& _components);
 	void UnbindTextures(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources);
 	void FillTextureLayout(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources);
 

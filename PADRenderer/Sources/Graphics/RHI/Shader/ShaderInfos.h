@@ -18,7 +18,9 @@ enum class E_VERTEX_ATTRIB_LOCATION : uint8
 	POSITION	= 0,
 	COLOR		= 1,
 	UV			= 2,
-	NORMAL		= 3
+	NORMAL		= 3,
+	BONE_WEIGHT	= 4,
+	BONE_INDICE = 5
 };
 
 using AttribLocation = E_VERTEX_ATTRIB_LOCATION;

@@ -66,16 +66,18 @@ void ReadPADMesh(const	std::string&			_inputPath,
 				{
 					stream >> _meshData.positionCount;
 
-					_meshData.normalCount	= _meshData.positionCount * 3;
-					_meshData.uvCount		= _meshData.positionCount * 2;
+					_meshData.normalCount		= _meshData.positionCount * 3;
+					_meshData.uvCount			= _meshData.positionCount * 2;
 
-					_meshData.positions		= new float[_meshData.positionCount * 3];
-					_meshData.normals		= new float[_meshData.normalCount * 3];
-					_meshData.uvs			= new float[_meshData.uvCount * 2];
-					_meshData.boneIndex		= new int[_meshData.positionCount * 4];
-					_meshData.weight		= new float[_meshData.positionCount * 4];
+					_meshData.positions			= new float[_meshData.positionCount * 3];
+					_meshData.normals			= new float[_meshData.normalCount * 3];
+					_meshData.uvs				= new float[_meshData.uvCount * 2];
+					_meshData.boneIndex			= new float[_meshData.positionCount * 4];
+					_meshData.boneWeight		= new float[_meshData.positionCount * 4];
 
-					_meshData.positionCount *= 3;
+					_meshData.boneIndexCount	= _meshData.positionCount * 4;
+					_meshData.boneWeightCount	= _meshData.positionCount * 4;
+					_meshData.positionCount		*= 3;
 
 					break;
 				}
@@ -117,7 +119,7 @@ void ReadPADMesh(const	std::string&			_inputPath,
 				}
 				case BONE_WEIGHT :
 				{
-					stream >> _meshData.boneIndex[boneCounter] >> _meshData.weight[boneCounter];
+					stream >> _meshData.boneIndex[boneCounter] >> _meshData.boneWeight[boneCounter];
 					++boneCounter;
 					break;
 				}

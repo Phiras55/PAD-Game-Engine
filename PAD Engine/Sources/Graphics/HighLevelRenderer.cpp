@@ -303,6 +303,10 @@ void HighLevelRenderer::DrawAnimatedObjects(sys::res::MasterManager& _resources,
 	if (ar)
 	{
 		rhi::shad::CustomUniform c;
+		c.type = rhi::shad::DataType::MAT4_ARRAY;
+		c.data = m_animJoints;
+		c.count = 150;
+
 		for (auto& animRenderer : *ar)
 		{
 			GetAnimMatrix(*animRenderer, m_animJoints, _resources);
@@ -317,9 +321,6 @@ void HighLevelRenderer::DrawAnimatedObjects(sys::res::MasterManager& _resources,
 			if (currentMat)
 				FillTextureLayout(currentSettings, *currentMat, _resources);
 
-			c.type	= rhi::shad::DataType::MAT4_ARRAY;
-			c.data	= m_animJoints;
-			c.count = 150;
 			currentSettings.customUniforms["skinningMatrices"] = c;
 
 			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings);

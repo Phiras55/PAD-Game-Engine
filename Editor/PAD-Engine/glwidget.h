@@ -5,6 +5,7 @@
 #include <QOpenGLWidget>
 #include <QTimer>
 #include <iostream>
+#include <fstream>
 
 
 class GLWidget final : public QOpenGLWidget
@@ -19,6 +20,9 @@ public:
             QTimer* timer = new QTimer(this);
             connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
             timer->start(0);
+            std::ofstream toto("toto.dest");
+            toto << "dest";
+            toto.close();
     }
 
     ~GLWidget()
@@ -41,7 +45,7 @@ private:
     {
         pad::Simulate();
     }
-    inline void resizeGL() override
+    inline void resizeGL(int w, int h) override
     {
 
     }

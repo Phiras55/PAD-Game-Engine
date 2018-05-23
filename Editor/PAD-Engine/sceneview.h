@@ -13,6 +13,9 @@ public:
 private:
     AddObject(pad::sys::ecs::PADObject* obj, pad::sys::ecs::PADObject* parent = nullptr);
 
+private slots:
+    SelectItem();
+
 }
 
 #endif // SCENEVIEW_H

@@ -25,15 +25,15 @@ public:
 	virtual bool CompileProgram() = 0;
 	virtual void Use() = 0;
 
-	virtual void SetUniform(const std::string& _name, const int32 value)								= 0;
-	virtual void SetUniform(const std::string& _name, const uint32 value)								= 0;
-	virtual void SetUniform(const std::string& _name, const bool value)									= 0;
-	virtual void SetUniform(const std::string& _name, const float32 value)								= 0;
-	virtual void SetUniform(const std::string& _name, const math::Vec4f& _value)						= 0;
-	virtual void SetUniform(const std::string& _name, const math::Vec3f& _value)						= 0;
-	virtual void SetUniform(const std::string& _name, const math::Mat4& _value)							= 0;
-	virtual void SetUniform(const std::string& _name, const float(*_value)[16], const uint32 _count)		= 0;
-	virtual void SetCustomUniform(const std::string& _name, const CustomUniform& _customUniform)		= 0;
+	virtual void SetUniform(const std::string& _name, const int32 value)							= 0;
+	virtual void SetUniform(const std::string& _name, const uint32 value)							= 0;
+	virtual void SetUniform(const std::string& _name, const bool value)								= 0;
+	virtual void SetUniform(const std::string& _name, const float32 value)							= 0;
+	virtual void SetUniform(const std::string& _name, const math::Vec4f& _value)					= 0;
+	virtual void SetUniform(const std::string& _name, const math::Vec3f& _value)					= 0;
+	virtual void SetUniform(const std::string& _name, float* const _value)							= 0;
+	virtual void SetUniform(const std::string& _name, float* const _value, const uint32 _count)		= 0;
+	virtual void SetCustomUniform(const std::string& _name, const CustomUniform& _customUniform)	= 0;
 
 public:
 	inline int32&		GetID()			{ return m_id; }

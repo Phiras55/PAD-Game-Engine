@@ -302,11 +302,6 @@ void HighLevelRenderer::DrawAnimatedObjects(sys::res::MasterManager& _resources,
 
 	if (ar)
 	{
-		rhi::shad::CustomUniform c;
-		c.type = rhi::shad::DataType::MAT4_ARRAY;
-		c.data = m_animJoints;
-		c.count = 150;
-
 		for (auto& animRenderer : *ar)
 		{
 			GetAnimMatrix(*animRenderer, m_animJoints, _resources);
@@ -321,7 +316,7 @@ void HighLevelRenderer::DrawAnimatedObjects(sys::res::MasterManager& _resources,
 			if (currentMat)
 				FillTextureLayout(currentSettings, *currentMat, _resources);
 
-			currentSettings.customUniforms["skinningMatrices"] = c;
+			m_lowLevelRenderer->SetJointsUniformBufferData(m_animJoints[0], MAX_JOINT_COUNT);
 
 			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings);
 
@@ -342,7 +337,7 @@ bool HighLevelRenderer::LoadShaders(
 	return false;
 }
 
-void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, float(*_matrixArray)[16], sys::res::MasterManager& _resources)
+void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, float(*_matrixArray)[FLOAT_PER_MATRIX], sys::res::MasterManager& _resources)
 {
 	gfx::mod::Anim*		anim = _resources.GetAnimManager().GetResource(_animRenderer.GetAnimName());
 	gfx::mod::Skeleton* skeleton = _resources.GetSkeletonManager().GetResource(_animRenderer.GetSkeletonName());

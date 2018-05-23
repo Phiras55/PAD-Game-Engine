@@ -184,7 +184,7 @@ void GLRenderer::ForwardRendering(
 		return;
 
 	currentShader->Use();
-	currentShader->SetUniform("model", *_setting.modelMatrix);
+	currentShader->SetUniform("model", (float*)_setting.modelMatrix->data);
 	SetCustomUniforms(currentShader, _setting);
 
 	glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, (void*)0);
@@ -298,6 +298,14 @@ void GLRenderer::InitDefaultUniformBuffers()
 
 	CreateUniformBuffer(cameraSettings);
 	BindBufferToBindingPoint(cameraSettings);
+
+	rhi::UniformBufferSettings Skinning;
+	Skinning.name			= "Skinning";
+	Skinning.dataSize		= 150 * 16 * sizeof(float);
+	Skinning.bindingPointID = 2;
+
+	CreateUniformBuffer(Skinning);
+	BindBufferToBindingPoint(Skinning);
 }
 
 void GLRenderer::CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)
@@ -332,7 +340,15 @@ void GLRenderer::SetCameraUniformBufferData(
 {
 	SetUniformBufferData("CameraSettings", &_position, 16, 0);
 	SetUniformBufferData("CameraSettings", &_direction, 16, 16);
-	SetUniformBufferData("CameraSettings", &(_vp.data[0]), 64, 32);
+	SetUniformBufferData("CameraSettings", _vp.data, 64, 32);
+}
+
+void GLRenderer::SetJointsUniformBufferData(
+	float* const _joints,
+	const uint8 _count)
+{
+	// 16 floats per matrix * count
+	SetUniformBufferData("Skinning", _joints, 16 * sizeof(float) * _count, 0);
 }
 
 void GLRenderer::SetLightsUniformBufferData(

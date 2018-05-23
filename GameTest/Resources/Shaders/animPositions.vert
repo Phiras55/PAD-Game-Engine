@@ -38,7 +38,7 @@ void main()
 //						(vertexBoneWeight.z * (skinningMatrices[int(vertexBoneIndex.z)] * vertexPos)) +
 //						(vertexBoneWeight.w * (skinningMatrices[int(vertexBoneIndex.w)] * vertexPos));
 
-	vec4 pos = skinningMatrices[0] * vertexPos;
+	vec4 pos = skinningMatrices[1] * vertexPos;
 
 	gl_Position = camera.viewPerspective * model * vec4(pos.xyz, 1.f);
 	outData.normal = vertexNormal;

@@ -7,7 +7,7 @@
 namespace pad	{
 namespace gfx	{
 
-#define JOINT_COUNT 150
+#define JOINT_COUNT 120
 
 class HighLevelRenderer final
 {

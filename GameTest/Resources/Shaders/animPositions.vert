@@ -7,7 +7,7 @@ layout(location = 4) in vec4 vertexBoneWeight;
 layout(location = 5) in vec4 vertexBoneIndex;
 
 uniform mat4 model;
-uniform mat4 skinningMatrices[150];
+uniform mat4 skinningMatrices[120];
 
 layout (std140, binding = 0, row_major) uniform CameraSettings
 {

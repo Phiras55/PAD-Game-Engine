@@ -305,7 +305,7 @@ void HighLevelRenderer::DrawAnimatedObjects(sys::res::MasterManager& _resources,
 		rhi::shad::CustomUniform c;
 		c.type = rhi::shad::DataType::MAT4_ARRAY;
 		c.data = m_animJoints;
-		c.count = 150;
+		c.count = JOINT_COUNT;
 
 		for (auto& animRenderer : *ar)
 		{

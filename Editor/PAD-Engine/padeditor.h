@@ -5,6 +5,7 @@
 #include <QFileSystemModel>
 
 #include <glwidget.h>
+#include <sceneview.h>
 
 namespace Ui {
 class PADEditor;
@@ -22,10 +23,14 @@ private slots:
     void on_projectTreeView_clicked(const QModelIndex &index);
     void on_projectListView_doubleClicked(const QModelIndex &index);
 
+    void on_actionAdd_Pad_Object_triggered();
+
 private:
     Ui::PADEditor *ui;
 
     GLWidget* openGLWidget;
+
+    SceneView* sceneView;
 
     QFileSystemModel* DirModel;
     QFileSystemModel* FileModel;

@@ -1,0 +1,290 @@
+[creature_pitlord_magtheridon]
+0 -1
+[creature_pitlord_magtheridon_bone_0]
+1 0
+[creature_pitlord_magtheridon_bone_1]
+2 0
+[creature_pitlord_magtheridon_bone_2]
+3 0
+[creature_pitlord_magtheridon_bone_3]
+4 0
+[creature_pitlord_magtheridon_bone_4]
+5 4
+[creature_pitlord_magtheridon_bone_6]
+6 5
+[creature_pitlord_magtheridon_bone_11]
+7 6
+[creature_pitlord_magtheridon_bone_16]
+8 7
+[creature_pitlord_magtheridon_bone_26]
+9 8
+[creature_pitlord_magtheridon_bone_134]
+10 9
+[creature_pitlord_magtheridon_bone_27]
+11 8
+[creature_pitlord_magtheridon_bone_135]
+12 11
+[creature_pitlord_magtheridon_bone_136]
+13 11
+[creature_pitlord_magtheridon_bone_28]
+14 8
+[creature_pitlord_magtheridon_bone_137]
+15 14
+[creature_pitlord_magtheridon_bone_29]
+16 8
+[creature_pitlord_magtheridon_bone_138]
+17 16
+[creature_pitlord_magtheridon_bone_127]
+18 8
+[creature_pitlord_magtheridon_bone_128]
+19 8
+[creature_pitlord_magtheridon_bone_129]
+20 8
+[creature_pitlord_magtheridon_bone_132]
+21 8
+[creature_pitlord_magtheridon_bone_133]
+22 8
+[creature_pitlord_magtheridon_bone_17]
+23 7
+[creature_pitlord_magtheridon_bone_30]
+24 23
+[creature_pitlord_magtheridon_bone_39]
+25 24
+[creature_pitlord_magtheridon_bone_48]
+26 25
+[creature_pitlord_magtheridon_bone_65]
+27 26
+[creature_pitlord_magtheridon_bone_82]
+28 27
+[creature_pitlord_magtheridon_bone_66]
+29 26
+[creature_pitlord_magtheridon_bone_83]
+30 29
+[creature_pitlord_magtheridon_bone_67]
+31 26
+[creature_pitlord_magtheridon_bone_84]
+32 31
+[creature_pitlord_magtheridon_bone_68]
+33 26
+[creature_pitlord_magtheridon_bone_85]
+34 33
+[creature_pitlord_magtheridon_bone_141]
+35 26
+[creature_pitlord_magtheridon_bone_143]
+36 26
+[creature_pitlord_magtheridon_bone_49]
+37 25
+[creature_pitlord_magtheridon_bone_40]
+38 24
+[creature_pitlord_magtheridon_bone_18]
+39 7
+[creature_pitlord_magtheridon_bone_31]
+40 39
+[creature_pitlord_magtheridon_bone_41]
+41 40
+[creature_pitlord_magtheridon_bone_50]
+42 41
+[creature_pitlord_magtheridon_bone_69]
+43 42
+[creature_pitlord_magtheridon_bone_86]
+44 43
+[creature_pitlord_magtheridon_bone_70]
+45 42
+[creature_pitlord_magtheridon_bone_87]
+46 45
+[creature_pitlord_magtheridon_bone_71]
+47 42
+[creature_pitlord_magtheridon_bone_88]
+48 47
+[creature_pitlord_magtheridon_bone_72]
+49 42
+[creature_pitlord_magtheridon_bone_89]
+50 49
+[creature_pitlord_magtheridon_bone_142]
+51 42
+[creature_pitlord_magtheridon_bone_51]
+52 41
+[creature_pitlord_magtheridon_bone_47]
+53 40
+[creature_pitlord_magtheridon_bone_52]
+54 53
+[creature_pitlord_magtheridon_bone_53]
+55 53
+[creature_pitlord_magtheridon_bone_19]
+56 7
+[creature_pitlord_magtheridon_bone_32]
+57 56
+[creature_pitlord_magtheridon_bone_42]
+58 57
+[creature_pitlord_magtheridon_bone_54]
+59 58
+[creature_pitlord_magtheridon_bone_73]
+60 59
+[creature_pitlord_magtheridon_bone_55]
+61 58
+[creature_pitlord_magtheridon_bone_74]
+62 61
+[creature_pitlord_magtheridon_bone_56]
+63 58
+[creature_pitlord_magtheridon_bone_75]
+64 63
+[creature_pitlord_magtheridon_bone_57]
+65 58
+[creature_pitlord_magtheridon_bone_20]
+66 7
+[creature_pitlord_magtheridon_bone_33]
+67 66
+[creature_pitlord_magtheridon_bone_43]
+68 67
+[creature_pitlord_magtheridon_bone_58]
+69 68
+[creature_pitlord_magtheridon_bone_76]
+70 69
+[creature_pitlord_magtheridon_bone_59]
+71 68
+[creature_pitlord_magtheridon_bone_60]
+72 68
+[creature_pitlord_magtheridon_bone_77]
+73 72
+[creature_pitlord_magtheridon_bone_61]
+74 68
+[creature_pitlord_magtheridon_bone_78]
+75 74
+[creature_pitlord_magtheridon_bone_123]
+76 7
+[creature_pitlord_magtheridon_bone_125]
+77 7
+[creature_pitlord_magtheridon_bone_126]
+78 7
+[creature_pitlord_magtheridon_bone_12]
+79 6
+[creature_pitlord_magtheridon_bone_21]
+80 79
+[creature_pitlord_magtheridon_bone_22]
+81 79
+[creature_pitlord_magtheridon_bone_122]
+82 79
+[creature_pitlord_magtheridon_bone_130]
+83 82
+[creature_pitlord_magtheridon_bone_113]
+84 6
+[creature_pitlord_magtheridon_bone_114]
+85 6
+[creature_pitlord_magtheridon_bone_115]
+86 6
+[creature_pitlord_magtheridon_bone_117]
+87 6
+[creature_pitlord_magtheridon_bone_118]
+88 6
+[creature_pitlord_magtheridon_bone_119]
+89 6
+[creature_pitlord_magtheridon_bone_120]
+90 6
+[creature_pitlord_magtheridon_bone_121]
+91 6
+[creature_pitlord_magtheridon_bone_109]
+92 5
+[creature_pitlord_magtheridon_bone_111]
+93 92
+[creature_pitlord_magtheridon_bone_110]
+94 5
+[creature_pitlord_magtheridon_bone_112]
+95 94
+[creature_pitlord_magtheridon_bone_5]
+96 4
+[creature_pitlord_magtheridon_bone_7]
+97 96
+[creature_pitlord_magtheridon_bone_13]
+98 97
+[creature_pitlord_magtheridon_bone_23]
+99 98
+[creature_pitlord_magtheridon_bone_34]
+100 99
+[creature_pitlord_magtheridon_bone_44]
+101 100
+[creature_pitlord_magtheridon_bone_62]
+102 101
+[creature_pitlord_magtheridon_bone_79]
+103 102
+[creature_pitlord_magtheridon_bone_90]
+104 103
+[creature_pitlord_magtheridon_bone_93]
+105 104
+[creature_pitlord_magtheridon_bone_140]
+106 101
+[creature_pitlord_magtheridon_bone_139]
+107 100
+[creature_pitlord_magtheridon_bone_35]
+108 99
+[creature_pitlord_magtheridon_bone_45]
+109 108
+[creature_pitlord_magtheridon_bone_63]
+110 109
+[creature_pitlord_magtheridon_bone_80]
+111 110
+[creature_pitlord_magtheridon_bone_91]
+112 111
+[creature_pitlord_magtheridon_bone_36]
+113 99
+[creature_pitlord_magtheridon_bone_46]
+114 113
+[creature_pitlord_magtheridon_bone_64]
+115 114
+[creature_pitlord_magtheridon_bone_81]
+116 115
+[creature_pitlord_magtheridon_bone_92]
+117 116
+[creature_pitlord_magtheridon_bone_131]
+118 99
+[creature_pitlord_magtheridon_bone_124]
+119 98
+[creature_pitlord_magtheridon_bone_116]
+120 97
+[creature_pitlord_magtheridon_bone_8]
+121 96
+[creature_pitlord_magtheridon_bone_14]
+122 121
+[creature_pitlord_magtheridon_bone_24]
+123 122
+[creature_pitlord_magtheridon_bone_37]
+124 123
+[creature_pitlord_magtheridon_bone_9]
+125 96
+[creature_pitlord_magtheridon_bone_15]
+126 125
+[creature_pitlord_magtheridon_bone_25]
+127 126
+[creature_pitlord_magtheridon_bone_38]
+128 127
+[creature_pitlord_magtheridon_bone_10]
+129 96
+[creature_pitlord_magtheridon_bone_94]
+130 0
+[creature_pitlord_magtheridon_bone_95]
+131 0
+[creature_pitlord_magtheridon_bone_96]
+132 0
+[creature_pitlord_magtheridon_bone_97]
+133 0
+[creature_pitlord_magtheridon_bone_98]
+134 0
+[creature_pitlord_magtheridon_bone_99]
+135 0
+[creature_pitlord_magtheridon_bone_100]
+136 0
+[creature_pitlord_magtheridon_bone_101]
+137 0
+[creature_pitlord_magtheridon_bone_102]
+138 0
+[creature_pitlord_magtheridon_bone_103]
+139 0
+[creature_pitlord_magtheridon_bone_104]
+140 0
+[creature_pitlord_magtheridon_bone_105]
+141 0
+[creature_pitlord_magtheridon_bone_106]
+142 0
+[creature_pitlord_magtheridon_bone_107]
+143 0
+[creature_pitlord_magtheridon_bone_108]
+144 0

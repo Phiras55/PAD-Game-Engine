@@ -3,6 +3,7 @@
 
 #include <QTreeWidget>
 #include <PAD Engine/System/ECS/PADObject.h>
+#include <scenenode.h>
 
 class SceneView final : public QTreeWidget
 {
@@ -11,11 +12,8 @@ public:
     SceneView(QWidget* parent = nullptr);
 
 private:
-    AddObject(pad::sys::ecs::PADObject* obj, pad::sys::ecs::PADObject* parent = nullptr);
+    AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after = nullptr);
 
-private slots:
-    SelectItem();
-
-}
+};
 
 #endif // SCENEVIEW_H

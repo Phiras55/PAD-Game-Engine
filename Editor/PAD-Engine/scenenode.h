@@ -14,5 +14,5 @@ struct SceneNode final : public QTreeWidgetItem
     }
 
     pad::sys::ecs::PADObject* obj;
-}
+};
 #endif // SCENENODE_H

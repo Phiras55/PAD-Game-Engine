@@ -3,20 +3,25 @@
 #include "padobjectwidget.h"
 #include "ui_padeditor.h"
 #include "Graphics/Model/Mesh.h"
+#include "sceneview.h"
 #include <QTimer>
+#include <PAD Engine/Core/EngineDLL.h>
+#include <PAD Engine/System/ECS/PADObject.h>
+
 
 PADEditor::PADEditor(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::PADEditor)
 {
     ui->setupUi(this);
-
+//GLWidget
     openGLWidget = new GLWidget(0);
     openGLWidget->Init();
     ui->OpenGL_Content->layout()->addWidget(openGLWidget);
     setCentralWidget(ui->OpenGl);
     setDockNestingEnabled(true);
 
+//File system
     QString contentPath = "Resources";
     DirModel = new QFileSystemModel(this);
     DirModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
@@ -35,11 +40,17 @@ PADEditor::PADEditor(QWidget *parent) :
     ui->projectTreeView->setColumnHidden(3, true);
     ui->projectTreeView->header()->hide();
 
+//Inspector
     ui->InspecContent->layout()->addWidget(new PADObjectWidget());
     ui->InspecContent->layout()->addWidget(new TransformWidget());
 
-    setContextMenuPolicy(Qt::ContextMenuPolicy::PreventContextMenu);
 
+//Hierarchy
+    sceneView = new SceneView(ui->Hierarchy_Content);
+    ui->Hierarchy_Content->layout()->addWidget(sceneView);
+
+//FocusPolicy
+    setContextMenuPolicy(Qt::ContextMenuPolicy::PreventContextMenu);
     openGLWidget->setFocusPolicy(Qt::FocusPolicy::ClickFocus);
 }
 
@@ -57,4 +68,10 @@ void PADEditor::on_projectListView_doubleClicked(const QModelIndex &index)
 {
     QString currentPath = FileModel->fileInfo(index).absoluteFilePath();
     ui->projectListView->setRootIndex(FileModel->setRootPath(currentPath));
+}
+
+void PADEditor::on_actionAdd_Pad_Object_triggered()
+{
+    pad::sys::ecs::PadObject* obj = pad::CreatePADObject("DefaultName");
+    sceneView->AddObject(obj);
 }

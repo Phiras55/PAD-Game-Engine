@@ -4,13 +4,15 @@
 SceneView::SceneView(QWidget *parent) :
     QTreeWidget(parent)
 {
-    QTreeWidgetItem scene;
+    QTreeWidgetItem* scene = new QTreeWidgetItem();
 
     addTopLevelItem(scene);
 }
 
-SceneView::AddObject(pad::sys::ecs::PADObject* obj)
+SceneView::AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after)
 {
-    SceneNode(obj, topLevelItem(), topLevelItem());
-    connect(this, SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(yourSlotGoesHere()));
+    if(parent)
+        SceneNode(obj, parent, parent);
+    else
+        SceneNode(obj, topLevelItem(), topLevelItem());
 }

@@ -1275,9 +1275,16 @@ QDateEdit::down-arrow:focus {
      <string>View</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuScene">
+    <property name="title">
+     <string>Scene</string>
+    </property>
+    <addaction name="actionAdd_Pad_Object"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
+   <addaction name="menuScene"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -1348,15 +1355,6 @@ QDateEdit::down-arrow:focus {
      <property name="spacing">
       <number>0</number>
      </property>
-     <item row="0" column="0">
-      <widget class="QTreeWidget" name="treeWidget">
-       <column>
-        <property name="text">
-         <string>Scene</string>
-        </property>
-       </column>
-      </widget>
-     </item>
     </layout>
    </widget>
   </widget>
@@ -1421,8 +1419,8 @@ QDateEdit::down-arrow:focus {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>65</width>
-          <height>382</height>
+          <width>62</width>
+          <height>410</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -2783,6 +2781,11 @@ QDateEdit::down-arrow:focus {
     </layout>
    </widget>
   </widget>
+  <action name="actionAdd_Pad_Object">
+   <property name="text">
+    <string>Add Pad Object</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

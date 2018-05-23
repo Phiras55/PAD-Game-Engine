@@ -2,6 +2,7 @@
 #define PADOBJECTWIDGET_H
 
 #include <QWidget>
+#include <PAD Engine/System/ECS/PADObject.h>
 
 namespace Ui {
 class PADObjectWidget;

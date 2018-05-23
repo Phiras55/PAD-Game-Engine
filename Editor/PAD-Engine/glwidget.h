@@ -7,6 +7,8 @@
 #include <iostream>
 #include <fstream>
 
+#include <QtDebug>
+#include <qopenglcontext.h>
 
 class GLWidget final : public QOpenGLWidget
 {
@@ -20,9 +22,7 @@ public:
             QTimer* timer = new QTimer(this);
             connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
             timer->start(0);
-            std::ofstream toto("toto.dest");
-            toto << "dest";
-            toto.close();
+            setUpdateBehavior(UpdateBehavior::NoPartialUpdate);
     }
 
     ~GLWidget()
@@ -30,7 +30,7 @@ public:
     }
 private:
     QTimer* timer;
-
+    int loop = 0;
 public:
 
     inline void Init() {}
@@ -39,6 +39,7 @@ public slots:
     inline void Update()
     {
         pad::Simulate();
+        update();
     }
 private:
     inline void paintGL() override

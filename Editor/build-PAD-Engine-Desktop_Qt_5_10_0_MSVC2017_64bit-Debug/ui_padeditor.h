@@ -27,7 +27,6 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QTreeView>
-#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -35,11 +34,13 @@ QT_BEGIN_NAMESPACE
 class Ui_PADEditor
 {
 public:
+    QAction *actionAdd_Pad_Object;
     QWidget *centralWidget;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEdit;
     QMenu *menuView;
+    QMenu *menuScene;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
     QDockWidget *OpenGl;
@@ -48,7 +49,6 @@ public:
     QDockWidget *Hierarchy;
     QWidget *Hierarchy_Content;
     QGridLayout *gridLayout_4;
-    QTreeWidget *treeWidget;
     QDockWidget *Inspector;
     QWidget *Inspector_Content;
     QGridLayout *gridLayout_3;
@@ -1326,6 +1326,8 @@ public:
 "}\n"
 ""));
         PADEditor->setDockNestingEnabled(false);
+        actionAdd_Pad_Object = new QAction(PADEditor);
+        actionAdd_Pad_Object->setObjectName(QStringLiteral("actionAdd_Pad_Object"));
         centralWidget = new QWidget(PADEditor);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         centralWidget->setStyleSheet(QStringLiteral(""));
@@ -1339,6 +1341,8 @@ public:
         menuEdit->setObjectName(QStringLiteral("menuEdit"));
         menuView = new QMenu(menuBar);
         menuView->setObjectName(QStringLiteral("menuView"));
+        menuScene = new QMenu(menuBar);
+        menuScene->setObjectName(QStringLiteral("menuScene"));
         PADEditor->setMenuBar(menuBar);
         mainToolBar = new QToolBar(PADEditor);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -1369,11 +1373,6 @@ public:
         gridLayout_4->setContentsMargins(11, 11, 11, 11);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
         gridLayout_4->setContentsMargins(0, 0, 0, 0);
-        treeWidget = new QTreeWidget(Hierarchy_Content);
-        treeWidget->setObjectName(QStringLiteral("treeWidget"));
-
-        gridLayout_4->addWidget(treeWidget, 0, 0, 1, 1);
-
         Hierarchy->setWidget(Hierarchy_Content);
         PADEditor->addDockWidget(static_cast<Qt::DockWidgetArea>(1), Hierarchy);
         Inspector = new QDockWidget(PADEditor);
@@ -1402,7 +1401,7 @@ public:
         scrollArea->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 65, 382));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 62, 410));
         sizePolicy.setHeightForWidth(scrollAreaWidgetContents->sizePolicy().hasHeightForWidth());
         scrollAreaWidgetContents->setSizePolicy(sizePolicy);
         scrollAreaWidgetContents->setFocusPolicy(Qt::ClickFocus);
@@ -2726,6 +2725,8 @@ public:
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuEdit->menuAction());
         menuBar->addAction(menuView->menuAction());
+        menuBar->addAction(menuScene->menuAction());
+        menuScene->addAction(actionAdd_Pad_Object);
 
         retranslateUi(PADEditor);
 
@@ -2735,13 +2736,13 @@ public:
     void retranslateUi(QMainWindow *PADEditor)
     {
         PADEditor->setWindowTitle(QApplication::translate("PADEditor", "PADEditor", nullptr));
+        actionAdd_Pad_Object->setText(QApplication::translate("PADEditor", "Add Pad Object", nullptr));
         menuFile->setTitle(QApplication::translate("PADEditor", "File", nullptr));
         menuEdit->setTitle(QApplication::translate("PADEditor", "Edit", nullptr));
         menuView->setTitle(QApplication::translate("PADEditor", "View", nullptr));
+        menuScene->setTitle(QApplication::translate("PADEditor", "Scene", nullptr));
         OpenGl->setWindowTitle(QApplication::translate("PADEditor", "OpenGL", nullptr));
         Hierarchy->setWindowTitle(QApplication::translate("PADEditor", "Hierarchy", nullptr));
-        QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
-        ___qtreewidgetitem->setText(0, QApplication::translate("PADEditor", "Scene", nullptr));
         Inspector->setWindowTitle(QApplication::translate("PADEditor", "Inspector", nullptr));
         Project_View->setWindowTitle(QApplication::translate("PADEditor", "Project", nullptr));
         Console->setWindowTitle(QApplication::translate("PADEditor", "Console", nullptr));

@@ -41,6 +41,9 @@ public:
 		math::Vec4f* const _positions,
 		math::Vec4f* const _directions,
 		const uint8 _count)													override;
+	void SetJointsUniformBufferData(
+		float* const _joints,
+		const uint8 _count)													override;
 	void CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)	override;
 	bool LoadShaders(
 		const std::string& _vPath, 

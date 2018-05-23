@@ -24,6 +24,11 @@ layout (std140, binding = 1) uniform Lights
 	vec3 direction; 		// 16				// 16
 } lights;
 
+layout (std140, binding = 2, row_major) uniform Skinning
+{
+	mat4 mats[150];
+} skinning;
+
 out VertexData
 {
 	vec3 color;
@@ -38,7 +43,7 @@ void main()
 //						(vertexBoneWeight.z * (skinningMatrices[int(vertexBoneIndex.z)] * vertexPos)) +
 //						(vertexBoneWeight.w * (skinningMatrices[int(vertexBoneIndex.w)] * vertexPos));
 
-	vec4 pos = skinningMatrices[1] * vertexPos;
+	vec4 pos = skinning.mats[1] * vertexPos;
 
 	gl_Position = camera.viewPerspective * model * vec4(pos.xyz, 1.f);
 	outData.normal = vertexNormal;

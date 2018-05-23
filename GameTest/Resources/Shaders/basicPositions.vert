@@ -3,11 +3,8 @@
 layout(location = 0) in vec4 vertexPos;
 layout(location = 3) in vec3 vertexNormal;
 layout(location = 2) in vec2 vertexUv;
-layout(location = 4) in vec4 vertexBoneWeight;
-layout(location = 5) in vec4 vertexBoneIndex;
 
 uniform mat4 model;
-//uniform mat4 skinningMatrices[150];
 
 layout (std140, binding = 0, row_major) uniform CameraSettings
 {

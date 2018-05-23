@@ -32,8 +32,7 @@ public:
 	void ForwardRendering(
 		rhi::AVertexArray* const _vaos,
 		rhi::AVertexBuffer* const _ibos,
-		const rhi::RenderSettings _settings,
-		const math::Mat4& _vp)												override;
+		const rhi::RenderSettings _settings)								override;
 	void SetCameraUniformBufferData(
 		const math::Vec3f& _position,
 		const math::Vec3f& _direction,
@@ -42,6 +41,9 @@ public:
 		const math::Vec3f& _direction,
 		const math::Vec3f& _color,
 		const float _intensity)												override;
+	void SetJointsUniformBufferData(
+		float* const _joints,
+		const uint8 _count)													override;
 	void CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)	override;
 	bool LoadShaders(
 		const std::string& _vPath, 

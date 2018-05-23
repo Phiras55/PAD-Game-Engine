@@ -23,6 +23,16 @@ Bone* const Skeleton::GetBoneByName(const std::string& _boneName)
 	return nullptr;
 }
 
+Bone* const Skeleton::GetBoneById(const int _id)
+{
+	for (int boneIndex = 0; boneIndex < m_bones.size(); ++boneIndex)
+	{
+		if (m_bones[boneIndex].m_id == _id)
+			return &m_bones[boneIndex];
+	}
+	return nullptr;
+}
+
 } // namespace mod
 } // namespace gfx
 } // namespace pad

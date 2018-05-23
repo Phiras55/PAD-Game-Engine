@@ -1,14 +1,17 @@
 #version 420 core
 
-uniform vec4  albedo;
-uniform vec3  ambient;
-uniform vec3  diffuse;
-uniform vec3  specular;
-uniform float shininess;
+////////////////////////////////////
+//         Uniform Blocks         //
+////////////////////////////////////
+layout (std140, binding = 0, row_major) uniform CameraSettings
+{
+							// Base Alignment  	// Aligned Offset
+	vec3 position;			// 16			   	// 0
+	vec3 direction; 		// 16				// 16
+	mat4 viewPerspective;	// 64				// 32
+} camera;
 
-uniform sampler2D albedoMap;
-
-layout (std140, binding = 1) uniform DirectionalLight
+layout (std140, binding = 1) uniform DirectionalLightSettings
 {
 							// Base Alignment  	// Aligned Offset
 	vec3  direction;		// 16				// 0
@@ -16,38 +19,53 @@ layout (std140, binding = 1) uniform DirectionalLight
 	float intensity;		// 4				// 32
 } dLight;
 
+////////////////////////////////////
+//            Uniforms            //
+////////////////////////////////////
+uniform vec4  albedo;
+uniform vec3  ambient;
+uniform vec3  diffuse;
+uniform vec3  specular;
+uniform float shininess;
+uniform sampler2D albedoMap;
+
+////////////////////////////////////
+//        Interface Blocks        //
+////////////////////////////////////
 in VertexData
 {
-	vec3 color;
 	vec3 normal;
 	vec2 uv;
 } inData;
 
-in vec3 cameraPos;
-in vec3 cameraDir;
-in vec3 fragPos;
+in FragmentInformations
+{
+	vec3 fragPos;
+} inInfos;
+
+out vec4 finalColor;
 
 void main()
 {
 	// Ambient
 	float ambientIntensity 	= 0.2;
-	vec3 resultAmbient 		= (ambient * ambientIntensity) * (dLight.color * dLight.intensity);
+	vec3 resultAmbient 		= ambient * ambientIntensity;
 	
 	// Diffuse
 	vec3 normalizedNormal 	= normalize(inData.normal);
-	float diff 				= max(dot(normalizedNormal, lightDir), 0.0);
-	vec3 resultDiffuse 		= diff * dLight.color;
+	float diff 				= max(dot(normalizedNormal, -dLight.direction), 0.0);
+	vec3 resultDiffuse 		= dLight.color * diff;
 	
 	// Specular
-	float specularStrength 	= 0.5;
-	vec3 viewDir 			= normalize(cameraPos - fragPos);
+	float specularStrength 	= 1.0;
+	vec3 viewDir 			= normalize(camera.position - inInfos.fragPos);
 	vec3 reflectDir 		= reflect(-dLight.direction, normalizedNormal);
-	float spec 				= pow(max(dot(viewDir, reflectDir), 0.0), 32);
-	vec3 resultSpecular 	= specular * dLight.color * specularStrength * spec;
+	float spec 				= pow(max(dot(viewDir, reflectDir), 0.0), shininess);
+	vec3 resultSpecular 	= specular * (specularStrength * spec);
 	
 	// Result
-	vec3 objectColor 		= texture(albedoMap, inData.uv) * albedo;
-	vec3 resultLighting 	= (resultAmbient + resultDiffuse + resultSpecular) * objectColor;
+	vec4 objectColor 		= texture(albedoMap, inData.uv) * vec4(diffuse, 1.0);
+	vec4 resultLighting 	= vec4(resultAmbient + resultDiffuse + resultSpecular, 1.0) * objectColor;
 	
-    gl_FragColor 			= texture(albedoMap, inData.uv) * albedo;
+	finalColor 				= resultLighting;
 }

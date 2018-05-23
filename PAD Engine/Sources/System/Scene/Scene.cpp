@@ -26,7 +26,7 @@ void Scene::Init()
 	camera = CreatePADObject("MainCamera", m_masterPADObject);
 
 	light->AddComponent<DirectionalLight>();
-	light->GetTransform().SetRotation(math::Vec3f(50.f, -30.f, 0.f));
+	light->GetTransform().SetRotation(math::Vec3f(0.f, 180.f, 0.f));
 	m_directionalLight = light->GetComponent<DirectionalLight>();
 
 	if (m_directionalLight)

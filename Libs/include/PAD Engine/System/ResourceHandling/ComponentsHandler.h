@@ -5,6 +5,7 @@
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/PerspectiveCamera.h>
 #include <System/ECS/DirectionalLight.h>
+#include <System/ECS/AnimRenderer.h>
 #include <Core/IDHandler.h>
 
 namespace pad	{
@@ -18,6 +19,7 @@ namespace alias {
 	using MeshRendererPool		= SpecializedComponentPool<ecs::MeshRenderer>;
 	using PerspectiveCameraPool = SpecializedComponentPool<ecs::PerspectiveCamera>;
 	using DirectionalLightPool	= SpecializedComponentPool<ecs::DirectionalLight>;
+	using AnimRendererPool		= SpecializedComponentPool<ecs::AnimRenderer>;
 } // namespace alias
 
 class ComponentsHandler final

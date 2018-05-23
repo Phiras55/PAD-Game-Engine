@@ -423,10 +423,10 @@ void ParseBoneWeight(	const	std::string&			_outputPath,
 						_currentNode->GetGeometricRotation(FbxNode::eSourcePivot),
 						_currentNode->GetGeometricScaling(FbxNode::eSourcePivot));
 
-	Anim** anims = new Anim*[animCount];
+	AnimData** anims = new AnimData*[animCount];
 	for (int i = 0; i < animCount; ++i)
 	{
-		anims[i] = new Anim();
+		anims[i] = new AnimData();
 		anims[i]->boneInfos = nullptr;
 	}
 
@@ -489,6 +489,7 @@ void ParseBoneWeight(	const	std::string&			_outputPath,
 							{
 								FbxTime time;
 								time.SetFrame(frameIndex, FbxTime::eFrames24);
+								anims[animStackIndex]->animDuration = lenght / 24.f;
 
 								FbxAMatrix offset = _currentNode->EvaluateGlobalTransform(time) * geoTrans;
 								anims[animStackIndex]->boneInfos[frameIndex].boneIds.push_back(boneIndex);
@@ -523,7 +524,14 @@ void ParseBoneWeight(	const	std::string&			_outputPath,
 	out << append;
 
 	if (animCount > 0)
-		GeneratePADAnim(_outputPath, anims, animCount);
+		GeneratePADAnim(_outputPath, _fileName, anims, animCount);
+
+	for (int i = 0; i < animCount; ++i)
+	{
+		delete[] anims[i]->boneInfos;
+		delete anims[i];
+	}
+	delete[] anims;
 }
 
 void ParseTexture(	FbxFileTexture* const	_texture, 
@@ -543,17 +551,20 @@ void ParseTexture(	FbxFileTexture* const	_texture,
 }
 
 void GeneratePADAnim(	const	std::string&			_outputPath,
-								Anim**			const	_anims,
+						const	std::string&			_skeletonName,
+								AnimData**		const	_anims,
 						const	int						_animCount)
 {
 	for (int animIndex = 0; animIndex < _animCount; ++animIndex)
 	{
 		std::string result;
+		result += "[FRAME_COUNT]\n" + std::to_string(_anims[animIndex]->frameNumber) + "\n";
+		result += "[DURATION]\n" + std::to_string(_anims[animIndex]->animDuration) + "\n";
+		result += "[BONE_COUNT]\n" + std::to_string(_anims[animIndex]->boneInfos[0].boneIds.size()) + "\n";
 
 		for (int frameIndex = 0; frameIndex < _anims[animIndex]->frameNumber; ++frameIndex)
 		{
-			result += "[KEY]" + std::to_string(frameIndex) + "\n";
-			result += std::to_string(_anims[animIndex]->boneInfos[frameIndex].boneIds.size()) + "\n";
+			result += "[KEY]\n";
 
 			for (int boneIndex = 0; boneIndex < _anims[animIndex]->boneInfos[frameIndex].boneIds.size(); ++boneIndex)
 			{
@@ -562,12 +573,11 @@ void GeneratePADAnim(	const	std::string&			_outputPath,
 			}
 		}
 
-		std::string animFile = _outputPath + _anims[animIndex]->name + ".PADAnim";
+		std::string animFile = _outputPath + _skeletonName + "_" +_anims[animIndex]->name + ".PADAnim";
 		std::ofstream out(animFile);
 		out << result;
 		out.close();
 	}
-
 }
 
 math::Mat4 FbxMatToMat(const FbxAMatrix& _matrix)

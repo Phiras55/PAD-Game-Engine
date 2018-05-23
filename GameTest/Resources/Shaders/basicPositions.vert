@@ -1,11 +1,12 @@
 #version 420 core
 
 layout(location = 0) in vec4 vertexPos;
+layout(location = 2) in vec2 vertexUV;
 layout(location = 3) in vec3 vertexNormal;
-layout(location = 2) in vec2 vertexUv;
 
-uniform mat4 model;
-
+////////////////////////////////////
+//         Uniform Blocks         //
+////////////////////////////////////
 layout (std140, binding = 0, row_major) uniform CameraSettings
 {
 							// Base Alignment  	// Aligned Offset
@@ -14,26 +15,32 @@ layout (std140, binding = 0, row_major) uniform CameraSettings
 	mat4 viewPerspective;	// 64				// 32
 } camera;
 
+////////////////////////////////////
+//            Uniforms            //
+////////////////////////////////////
+uniform mat4 model;
+
+////////////////////////////////////
+//        Interface Blocks        //
+////////////////////////////////////
 out VertexData
 {
-	vec3 color;
 	vec3 normal;
 	vec2 uv;
 } outData;
 
-out vec3 cameraPos;
-out vec3 cameraDir;
-out vec3 fragPos;
+out FragmentInformations
+{
+	vec3 fragPos;
+} outInfos;
 
 void main()
 {
-	// Data needed for fragments
-	outData.normal 	= vertexNormal;
-	outData.uv 		= vertexUv;
-	cameraPos 		= camera.position;
-	cameraDir 		= camera.direction;
-	fragPos 		= vec3(model * vertexPos);
+	// Data needed for fragment shader
+	outData.normal 		= vertexNormal;
+	outData.uv 			= vertexUV;
+	outInfos.fragPos 	= vec3(model * vertexPos);
 	
 	// Vertex final position
-	gl_Position = camera.viewPerspective * model * vertexPos;
+	gl_Position 		= camera.viewPerspective * model * vertexPos;
 }

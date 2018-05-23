@@ -13,6 +13,7 @@
 #include <Graphics/GL/Shader/GLVertexShader.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/PerspectiveCamera.h>
+#include <Graphics/Model/Skeleton.h>
 
 namespace pad	{
 namespace core	{

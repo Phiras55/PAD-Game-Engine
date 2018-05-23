@@ -91,7 +91,7 @@ struct BoneInfo
 	std::vector<math::Mat4> transforms;
 };
 
-struct Anim
+struct AnimData
 {
 	std::string		name;
 	int				frameNumber;
@@ -160,7 +160,8 @@ void ParseTexture(	FbxFileTexture*	const	_texture,
 					AssetMaterial&			_material);
 
 void GeneratePADAnim(	const	std::string&			_outputPath,
-								Anim**			const	_anims,
+						const	std::string&			_skeletonName,
+								AnimData**		const	_anims,
 						const	int						_animCount);
 
 math::Mat4 FbxMatToMat(	const FbxAMatrix& _matrix);

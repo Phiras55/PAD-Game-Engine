@@ -8,18 +8,19 @@ struct MeshData
 	MeshData();
 	~MeshData();
 
-	float*	positions;
-	float*	normals;
-	float*	uvs;
-	uint32* indices;
+	float32*	positions;
+	float32*	normals;
+	float32*	uvs;
+	uint32*		indices;
+	float32*	boneIndex;
+	float32*	boneWeight;
 
-	uint32 positionCount;
-	uint32 normalCount;
-	uint32 uvCount;
-	uint32 indiceCount;
-
-	int*	boneIndex;
-	float*	weight;
+	uint32		positionCount;
+	uint32		normalCount;
+	uint32		uvCount;
+	uint32		indiceCount;
+	uint32		boneIndexCount;
+	uint32		boneWeightCount;
 };
 
 } // namespace mod

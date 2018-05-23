@@ -1,5 +1,6 @@
 #include <EnginePCH.h>
 #include <System/ECS/AnimRenderer.h>
+#include <System/ECS/PADObject.h>
 
 namespace pad	{
 namespace sys	{
@@ -11,6 +12,8 @@ AnimRenderer::AnimRenderer()
 {
 	if (m_AR_id != INVALID_COMPONENT_ID)
 		m_AR_id = static_cast<alias::ComponentID>(util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
+
+	m_settings.programHandle = "DefaultAnim";
 }
 
 AnimRenderer::AnimRenderer(const AnimRenderer& _other)
@@ -23,23 +26,34 @@ AnimRenderer::AnimRenderer(const AnimRenderer& _other)
 	m_currentKey		= _other.m_currentKey;
 	m_keyFrameDuration	= _other.m_keyFrameDuration;
 	m_animTimer			= _other.m_animTimer;
+
+	m_settings.programHandle = "DefaultAnim";
 }
 
-AnimRenderer::AnimRenderer(	const std::string& _meshName, 
-							const std::string& _materialName, 
-							const std::string& _skeletonName)
+AnimRenderer::AnimRenderer(	const std::string&	_meshName, 
+							const std::string&	_materialName, 
+							const std::string&	_skeletonName,
+							const std::string&	_animName)
 {
-	m_meshName			= _meshName;
-	m_materialName		= _materialName;
-	m_skeletonName		= _skeletonName;
+	m_meshName		= _meshName;
+	m_materialName	= _materialName;
+	m_skeletonName	= _skeletonName;
+	m_currentAnim	= _animName;
+
+	m_settings.programHandle = "DefaultAnim";
 }
 
 AnimRenderer::~AnimRenderer()
 {
+
 }
 
 void AnimRenderer::Init()
 {
+	m_keyFrameDuration		= -1;
+	m_currentKey			= 0;
+	m_settings.modelMatrix	= &m_owner->GetTransform().GetGlobalTransform();
+	m_animTimer.Start();
 }
 
 void AnimRenderer::Start()
@@ -73,11 +87,21 @@ json AnimRenderer::Serialize()
 
 void AnimRenderer::Deserialize(const json& j)
 {
-	m_meshName		= JsonToData<std::string>(j, "m_meshName");
-	m_materialName	= JsonToData<std::string>(j, "m_materialName");
-	m_skeletonName	= JsonToData<std::string>(j, "m_skeletonName");
-	m_currentAnim	= JsonToData<std::string>(j, "m_currentAnim");
+	m_meshName			= JsonToData<std::string>(j, "m_meshName");
+	m_materialName		= JsonToData<std::string>(j, "m_materialName");
+	m_skeletonName		= JsonToData<std::string>(j, "m_skeletonName");
+	m_currentAnim		= JsonToData<std::string>(j, "m_currentAnim");
+
 	m_settings.Deserialize(JsonToData<json>(j, "m_settings"));
+}
+
+inline void AnimRenderer::SetAnim(const std::string _name)
+{
+	m_currentAnim		= _name;
+	m_keyFrameDuration	= -1;
+	m_currentKey		= 0;
+
+	m_animTimer.Reset();
 }
 
 void AnimRenderer::operator=(const AnimRenderer& _other)

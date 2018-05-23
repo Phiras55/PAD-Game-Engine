@@ -30,4 +30,5 @@ namespace pad
 	ENGINE_API void LoadSkeletonFile(const std::string& _filePath);
 	ENGINE_API void LoadMaterialFile(const std::string& _filePath);
 	ENGINE_API void LoadTextureFile(const std::string& _filePath);
+	ENGINE_API void LoadAnimFile(const std::string& _filePath);
 }

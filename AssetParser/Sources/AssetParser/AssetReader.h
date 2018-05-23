@@ -20,6 +20,9 @@ void ReadPADMaterial(	const	std::string&			_inputPath,
 void ReadPADSkeleton(	const	std::string&		_inputPath,
 								gfx::mod::Skeleton&	_skeleton);
 
+void ReadPADAnim(const	std::string&		_inputPath,
+						gfx::mod::Anim&		_anim);
+
 std::string GetFileExt(const std::string& _path);
 std::string GetFileName(const std::string& _path);
 std::string GetFileNameNoExt(const std::string& _path);

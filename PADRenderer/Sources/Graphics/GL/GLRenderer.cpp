@@ -39,6 +39,7 @@ void GLRenderer::Init(const rhi::ContextSettings& _settings)
 void GLRenderer::InitShaders()
 {
 	LoadShaders("Resources/Shaders/basicPositions.vert", "Resources/Shaders/basicColors.frag", "Default");
+	LoadShaders("Resources/Shaders/animPositions.vert", "Resources/Shaders/basicColors.frag", "DefaultAnim");
 }
 
 void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
@@ -166,8 +167,7 @@ void GLRenderer::InitViewPort(const math::Vec2i& _viewportSize)
 void GLRenderer::ForwardRendering(
 	rhi::AVertexArray* const _vao,
 	rhi::AVertexBuffer* const _ibo,
-	const rhi::RenderSettings _setting,
-	const math::Mat4& _vp)
+	const rhi::RenderSettings _setting)
 {
 	rhi::shad::AShaderProgram* const currentShader = m_shaderManager->GetShader(_setting.programHandle);
 
@@ -184,7 +184,7 @@ void GLRenderer::ForwardRendering(
 		return;
 
 	currentShader->Use();
-	currentShader->SetUniform("model", *_setting.modelMatrix);
+	currentShader->SetUniform("model", (float*)_setting.modelMatrix->data);
 	SetCustomUniforms(currentShader, _setting);
 
 	glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, (void*)0);
@@ -232,6 +232,21 @@ void GLRenderer::GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao,
 	nbo.Bind();
 	nbo.BindData(_md.normals, _md.normalCount, 3, static_cast<uint8>(gfx::rhi::shad::AttribLocation::NORMAL));
 	nbo.Unbind();
+
+	if (_md.boneIndexCount > 0)
+	{
+		gfx::gl::GLVertexBuffer wbo;
+		wbo.GenerateID();
+		wbo.Bind();
+		wbo.BindData(_md.boneWeight, _md.boneWeightCount, 4, static_cast<uint8>(gfx::rhi::shad::AttribLocation::BONE_WEIGHT));
+		wbo.Unbind();
+
+		gfx::gl::GLVertexBuffer bbo;
+		bbo.GenerateID();
+		bbo.Bind();
+		bbo.BindData(_md.boneIndex, _md.boneIndexCount, 4, static_cast<uint8>(gfx::rhi::shad::AttribLocation::BONE_INDICE));
+		bbo.Unbind();
+	}
 
 	_ibo->GenerateID();
 	_ibo->Bind();
@@ -291,6 +306,14 @@ void GLRenderer::InitDefaultUniformBuffers()
 
 	CreateUniformBuffer(directionnalLightSettings);
 	BindBufferToBindingPoint(directionnalLightSettings);
+
+	rhi::UniformBufferSettings Skinning;
+	Skinning.name			= "Skinning";
+	Skinning.dataSize		= 150 * 16 * sizeof(float);
+	Skinning.bindingPointID = 2;
+
+	CreateUniformBuffer(Skinning);
+	BindBufferToBindingPoint(Skinning);
 }
 
 void GLRenderer::CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)
@@ -325,7 +348,15 @@ void GLRenderer::SetCameraUniformBufferData(
 {
 	SetUniformBufferData("CameraSettings", &_position, 16, 0);
 	SetUniformBufferData("CameraSettings", &_direction, 16, 16);
-	SetUniformBufferData("CameraSettings", &(_vp.data[0]), 64, 32);
+	SetUniformBufferData("CameraSettings", _vp.data, 64, 32);
+}
+
+void GLRenderer::SetJointsUniformBufferData(
+	float* const _joints,
+	const uint8 _count)
+{
+	// 16 floats per matrix * count
+	SetUniformBufferData("Skinning", _joints, 16 * sizeof(float) * _count, 0);
 }
 
 void GLRenderer::SetDirectionalLightUniformBufferData(
@@ -333,9 +364,9 @@ void GLRenderer::SetDirectionalLightUniformBufferData(
 	const math::Vec3f& _color,
 	const float _intensity)
 {
-	SetUniformBufferData("DirectionalLightSettings", &_direction, 16,  0);
-	SetUniformBufferData("DirectionalLightSettings", &_color,	  16, 16);
-	SetUniformBufferData("DirectionalLightSettings", &_intensity,  4, 32);
+	SetUniformBufferData("DirectionalLightSettings", &_direction[0], 16,  0);
+	SetUniformBufferData("DirectionalLightSettings", &_color[0],	 16, 16);
+	SetUniformBufferData("DirectionalLightSettings", &_intensity,	 4, 32);
 }
 
 rhi::AUniformBufferObject* const GLRenderer::GetUniformBufferObject(const std::string& _name)

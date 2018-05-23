@@ -58,9 +58,10 @@ int main()
 	pad::LoadResourceFile("../Resources/PADFormat/creature_pitlord_magtheridon.PADMesh", "");
 	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_0.PADMaterial", "");
 	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_AttackUnarmed [3].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider.PADSkeleton", "");
 	pad::LoadResourceFile("../Resources/PADFormat/Grid.PADMaterial", "");
 	pad::LoadResourceFile("../Resources/PADFormat/Default.PADMaterial", "");
-
 	pad::LoadResourceFile("../Resources/PADFormat/pCube1.PADMesh", "");
 	pad::LoadResourceFile("../Resources/PADFormat/lambert2.PADMaterial", "");
 
@@ -73,15 +74,19 @@ int main()
 	pad::sys::ecs::RigidBody* rb = plat->GetComponent<pad::sys::ecs::RigidBody>();
 	rb->SetMass(0.f);
 
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 1; ++i)
 	{
 		pad::sys::ecs::PADObject* cube = pad::CreatePADObject(std::string("Cube_0") + std::to_string(i));
 
-		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i * 2 + 10, 0));
+		cube->GetTransform().SetPosition(pad::math::Vec3f(0, 2, 2));
 		cube->GetTransform().SetRotation(pad::math::Vec3f(i * 45, i * 45, i * 45));
-		cube->GetTransform().SetScale(0.01f);
+		cube->GetTransform().SetScale(0.05f);
 
-		cube->AddComponent<pad::sys::ecs::MeshRenderer>("creature_giantspider_giantspider", "creature_giantspider_giantspider_0");
+		cube->AddComponent<pad::sys::ecs::AnimRenderer>(
+			"creature_giantspider_giantspider", 
+			"creature_giantspider_giantspider_0", 
+			"creature_giantspider_giantspider", 
+			"creature_giantspider_giantspider_AttackUnarmed [3]");
 		cube->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(1.f, 1.f, 1.f));
 		cube->AddComponent<pad::sys::ecs::RigidBody>();
 

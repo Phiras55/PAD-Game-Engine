@@ -7,6 +7,7 @@
 #include <System/ResourceHandling/ResourceManager.h>
 #include <System/Physics/IPhysicContext.h>
 #include <System/ResourceHandling/ComponentsHandler.h>
+#include <System/ECS/AnimRenderer.h>
 #include <Core/Timer.h>
 #include <Core/IDHandler.h>
 

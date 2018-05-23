@@ -238,6 +238,11 @@ void HighLevelRenderer::InitializeDefaultMeshes()
 	};
 	md2.uvCount			= 8;
 
+	md1.boneIndexCount	= 0;
+	md1.boneWeightCount = 0;
+	md2.boneIndexCount	= 0;
+	md2.boneWeightCount = 0;
+
 	gfx::mod::Mesh m1, m2;
 
 	GenerateMesh(m1, md1);
@@ -268,6 +273,14 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Sc
 		dirLight->GetColor(), 
 		dirLight->GetIntensity());
 
+	DrawAnimatedObjects(_resources, _scene, _components);
+	DrawStaticObjects(_resources, _scene, _components);
+
+	SwapBuffers();
+}
+
+void HighLevelRenderer::DrawStaticObjects(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene, sys::res::ComponentsHandler& _components)
+{
 	std::list<sys::ecs::MeshRenderer*>* mr = _components.GetActiveComponents<sys::ecs::MeshRenderer>();
 
 	if (mr)
@@ -284,14 +297,94 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Sc
 			if (currentMat)
 				FillTextureLayout(currentSettings, *currentMat, _resources);
 
-			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
+			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings);
 
 			if (currentMat)
 				UnbindTextures(currentSettings, *currentMat, _resources);
 		}
 	}
+}
 
-	SwapBuffers();
+void HighLevelRenderer::DrawAnimatedObjects(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene, sys::res::ComponentsHandler& _components)
+{
+	std::list<sys::ecs::AnimRenderer*>* ar = _components.GetActiveComponents<sys::ecs::AnimRenderer>();
+
+	if (ar)
+	{
+		for (auto& animRenderer : *ar)
+		{
+			GetAnimMatrix(*animRenderer, m_animJoints, _resources);
+
+			const gfx::mod::Mesh* const currentMesh		= _resources.GetMeshManager().GetResource(animRenderer->GetMeshName());
+			const gfx::mod::Material* const currentMat	= _resources.GetMaterialManager().GetResource(animRenderer->GetMaterialName());
+			gfx::rhi::RenderSettings& currentSettings	= animRenderer->GetSettings();
+
+			if (!currentMesh)
+				continue;
+
+			if (currentMat)
+				FillTextureLayout(currentSettings, *currentMat, _resources);
+
+			m_lowLevelRenderer->SetJointsUniformBufferData(m_animJoints[0], MAX_JOINT_COUNT);
+
+			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings);
+
+			if (currentMat)
+				UnbindTextures(currentSettings, *currentMat, _resources);
+		}
+	}
+}
+
+bool HighLevelRenderer::LoadShaders(
+	const std::string& _vPath,
+	const std::string& _fPath,
+	const std::string& _name)
+{
+	if (m_lowLevelRenderer)
+		return m_lowLevelRenderer->LoadShaders(_vPath, _fPath, _name);
+
+	return false;
+}
+
+void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, float(*_matrixArray)[FLOAT_PER_MATRIX], sys::res::MasterManager& _resources)
+{
+	gfx::mod::Anim*		anim = _resources.GetAnimManager().GetResource(_animRenderer.GetAnimName());
+	gfx::mod::Skeleton* skeleton = _resources.GetSkeletonManager().GetResource(_animRenderer.GetSkeletonName());
+
+	if (!anim)
+	{
+		for (int i = 0; i < skeleton->GetBoneCount(); ++i)
+			memcpy(_matrixArray[skeleton->GetBones()[i].m_id], skeleton->GetBones()[i].m_inverseBindPose.data, 16*sizeof(float));
+			//_matrixArray[skeleton->GetBones()[i].m_id] = skeleton->GetBones()[i].m_inverseBindPose.data;
+		return;
+	}
+
+	if (_animRenderer.GetFrameDuration() == -1)
+		_animRenderer.SetFrameDuration(anim->m_duration / (float)anim->m_frameCount);
+
+	if (_animRenderer.GetTimer().GetDuration() > _animRenderer.GetFrameDuration())
+	{
+		int key = _animRenderer.GetCurrentFrame() + 1;
+		if (key >= anim->m_frameCount)
+			key = 0;
+		_animRenderer.SetCurrentFrame(key);
+		_animRenderer.GetTimer().Reset();
+	}
+
+	for (int i = 0; i < anim->m_boneCount; ++i)
+	{
+		int			boneId = anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_boneId;
+
+		math::Mat4	animMatrix	= anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;
+		math::Mat4	bindMatrix	= skeleton->GetBoneById(boneId)->m_inverseBindPose;
+		memcpy(_matrixArray[boneId], math::Mat4().data, 16*sizeof(float));
+		//_matrixArray[boneId]	= math::Mat4();
+		
+		
+		//		_matrixArray[boneId]	= bindMatrix * animMatrix;
+
+		//		_matrixArray[boneId] = skeleton->GetBoneById(boneId)->m_inverseBindPose * anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;
+	}
 }
 
 void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources)

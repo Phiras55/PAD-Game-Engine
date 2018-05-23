@@ -40,6 +40,13 @@ ComponentsHandler::ComponentsHandler()
 	perspectiveCameraPool->DeleteComponent(p);
 #pragma endregion
 
+#pragma region AnimRenderer
+	alias::AnimRendererPool* animRendererPool			= new alias::AnimRendererPool();
+	ecs::AnimRenderer* a								= static_cast<ecs::AnimRenderer*>(animRendererPool->CreateComponent());
+
+	m_pools[a->GetType()] = animRendererPool;
+	a->GetType();
+	animRendererPool->DeleteComponent(a);
 #pragma region DirectionalLight
 	alias::DirectionalLightPool* directionalLightPool = new alias::DirectionalLightPool();
 	ecs::DirectionalLight* l = static_cast<ecs::DirectionalLight*>(directionalLightPool->CreateComponent());

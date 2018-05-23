@@ -20,6 +20,7 @@ private:
 	ResourceManager<gfx::mod::Material>		m_materialManager;
 	ResourceManager<gfx::rhi::ATexture*>	m_textureManager;
 	ResourceManager<gfx::mod::Skeleton>		m_skeletonManager;
+	ResourceManager<gfx::mod::Anim>			m_animManager;
 
 public:
 	ResourceManager<gfx::mod::Mesh>&			GetMeshManager()			{ return m_meshManager; }
@@ -30,6 +31,8 @@ public:
 	const ResourceManager<gfx::rhi::ATexture*>&	GetTextureManager() const	{ return m_textureManager; }
 	ResourceManager<gfx::mod::Skeleton>&		GetSkeletonManager()		{ return m_skeletonManager; }
 	const ResourceManager<gfx::mod::Skeleton>&	GetSkeletonManager() const	{ return m_skeletonManager; }
+	ResourceManager<gfx::mod::Anim>&			GetAnimManager()			{ return m_animManager; }
+	const ResourceManager<gfx::mod::Anim>&		GetAnimManager() const		{ return m_animManager; }
 };
 
 } // namespace res

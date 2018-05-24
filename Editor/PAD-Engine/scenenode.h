@@ -5,8 +5,14 @@
 
 struct SceneNode final : public QTreeWidgetItem
 {
-    SceneNode() = delete;
-    SceneNode(pad::sys::ecs::PADObject* _obj, QTreeWidgetItem* parent, QTreeWidgetItem* after, int type = Type) :
+            SceneNode() = delete;
+    inline  SceneNode(pad::sys::ecs::PADObject* _obj) :
+        QTreeWidgetItem(),
+        obj(_obj)
+    {
+
+    }
+    inline  SceneNode(pad::sys::ecs::PADObject* _obj, QTreeWidgetItem* parent, QTreeWidgetItem* after, int type = Type) :
         QTreeWidgetItem(parent, after, type),
         obj(_obj)
     {

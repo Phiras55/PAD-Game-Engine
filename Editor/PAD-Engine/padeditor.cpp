@@ -72,6 +72,6 @@ void PADEditor::on_projectListView_doubleClicked(const QModelIndex &index)
 
 void PADEditor::on_actionAdd_Pad_Object_triggered()
 {
-    pad::sys::ecs::PadObject* obj = pad::CreatePADObject("DefaultName");
-    sceneView->AddObject(obj);
+    pad::sys::ecs::PADObject* obj = pad::CreatePADObject("DefaultName", nullptr);
+    sceneView->AddObject(obj, nullptr);
 }

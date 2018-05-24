@@ -808,6 +808,8 @@ release\moc_padeditor.cpp: C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QMainWindo
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtabbar.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qrubberband.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtreewidgetitemiterator.h \
+		..\PAD-Engine\scenenode.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QTreeWidgetItem \
 		..\PAD-Engine\padeditor.h \
 		release\moc_predefs.h \
 		C:\Qt\5.10.0\msvc2017_64\bin\moc.exe
@@ -2151,6 +2153,8 @@ release\moc_sceneview.cpp: C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QTreeWidge
 		"..\..\Libs\include\PAD Engine\System\ECS\PerspectiveCamera.h" \
 		"..\..\Libs\include\PAD Engine\System\ECS\Camera.h" \
 		"..\..\Libs\include\PAD Engine\Core\IDHandler.h" \
+		..\PAD-Engine\scenenode.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QTreeWidgetItem \
 		..\PAD-Engine\sceneview.h \
 		release\moc_predefs.h \
 		C:\Qt\5.10.0\msvc2017_64\bin\moc.exe
@@ -2762,6 +2766,8 @@ release\main.obj: ..\PAD-Engine\main.cpp C:\Qt\5.10.0\msvc2017_64\include\QtWidg
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtabbar.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qrubberband.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtreewidgetitemiterator.h \
+		../PAD-Engine/scenenode.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QTreeWidgetItem \
 		ui_padeditor.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtCore\QVariant \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QAction \
@@ -3373,6 +3379,8 @@ release\padeditor.obj: ..\PAD-Engine\padeditor.cpp ../PAD-Engine/padeditor.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtabbar.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qrubberband.h \
 		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\qtreewidgetitemiterator.h \
+		../PAD-Engine/scenenode.h \
+		C:\Qt\5.10.0\msvc2017_64\include\QtWidgets\QTreeWidgetItem \
 		../PAD-Engine/transformwidget.h \
 		../PAD-Engine/padobjectwidget.h \
 		ui_padeditor.h \

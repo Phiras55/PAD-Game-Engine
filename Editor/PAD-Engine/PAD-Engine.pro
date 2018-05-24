@@ -65,9 +65,11 @@ HEADERS += \
     glwidget.h											\
     transformwidget.h									\
     padobjectwidget.h									\
-    boxcolliderwidget.h \
-    sceneview.h \
-    scenenode.h
+    boxcolliderwidget.h									\
+    sceneview.h											\
+    scenenode.h		#									\
+    #"$$HEADERPATH/Pad Engine/System/ECS/PadObject.h"
+
 
 RESOURCES +=\
         style.qrc

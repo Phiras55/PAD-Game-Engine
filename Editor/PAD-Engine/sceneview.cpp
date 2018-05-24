@@ -6,13 +6,17 @@ SceneView::SceneView(QWidget *parent) :
 {
     QTreeWidgetItem* scene = new QTreeWidgetItem();
 
-    addTopLevelItem(scene);
 }
 
-SceneView::AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after)
+void SceneView::AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after)
 {
-    if(parent)
-        SceneNode(obj, parent, parent);
+    SceneNode* current;
+    if(after)
+        current = new SceneNode(obj, after, after);
     else
-        SceneNode(obj, topLevelItem(), topLevelItem());
+    {
+        addTopLevelItem(new SceneNode(obj));
+        current = static_cast<SceneNode*>(topLevelItem(topLevelItemCount()-1));
+    }
+    current->setText(0, "Pad Object");
 }

@@ -10,9 +10,7 @@ class SceneView final : public QTreeWidget
     Q_OBJECT
 public:
     SceneView(QWidget* parent = nullptr);
-
-private:
-    AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after = nullptr);
+    void AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after = nullptr);
 
 };
 

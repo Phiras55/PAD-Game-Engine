@@ -35,6 +35,11 @@ Engine::~Engine()
 		delete m_resourceManager;
 }
 
+void Engine::Close()
+{
+	m_highLevelRenderer.CloseWindow();
+}
+
 void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win::WindowSettings& _w)
 {
 	LOG_INIT();
@@ -42,7 +47,6 @@ void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win:
 
 	m_highLevelRenderer.Initialize(_c, _w, m_resourceManager);
 
-	// Test
 	sys::ecs::PADObject::SetComponentHandler(&m_componentHandler);
 }
 
@@ -52,6 +56,12 @@ void Engine::StartSimulation()
 	m_physicContext->Init();
 	m_scene->Start();
 	m_fixedUpdateTimer.Start();
+
+	sys::ecs::PerspectiveCamera* c = m_scene->GetMainCamera();
+	math::Transform& t = c->GetTransform();
+
+	m_highLevelRenderer.BindInputs(SDLK_w, std::bind(&sys::ecs::PerspectiveCamera::MoveForward, c, 5.f), false, 0);
+	m_highLevelRenderer.BindInputs(SDLK_ESCAPE, std::bind(&Engine::Close, this), false, 0);
 
 	while (m_highLevelRenderer.IsWindowOpen())
 	{
@@ -86,6 +96,7 @@ void Engine::PollEvents()
 void Engine::Update()
 {
 	m_scene->Update();
+	m_highLevelRenderer.CenterMouse();
 }
 
 void Engine::FixedUpdate()

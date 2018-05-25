@@ -38,13 +38,22 @@ public:
 	void PollEvents();
 	void ResizeContext(const uint32 _w, const uint32 _h);
 	bool IsWindowOpen();
-	void GenerateTexture(	rhi::ATexture* const _texture,
-							const std::string& _path,
-							const rhi::TextureParameters& _param);
-	virtual bool LoadShaders(
+	void GenerateTexture(	
+		rhi::ATexture* const _texture,
+		const std::string& _path,
+		const rhi::TextureParameters& _param);
+	bool LoadShaders(
 		const std::string& _vPath,
 		const std::string& _fPath,
 		const std::string& _name);
+	void BindInputs(
+		const uint32 _key, 
+		const inp::alias::Function& _func, 
+		const bool _isToggleKey, 
+		const float32 _cooldown);
+
+	void CenterMouse();
+	void CloseWindow();
 
 private:
 	void ClearBuffers();

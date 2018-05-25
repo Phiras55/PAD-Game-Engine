@@ -28,12 +28,12 @@ private:
 public:
 	inline const std::string&	GetAlbedoMapName()	const	{ return m_albedoMapName; }
 	inline const std::string&	GetNormalMapName()	const	{ return m_normalMapName; }
-	inline const math::Vec4f&	GetAlbedo()		const		{ return m_albedo; }
-	inline const math::Vec3f&	GetAmbient()	const		{ return m_ambient; }
-	inline const math::Vec3f&	GetDiffuse()	const		{ return m_diffuse; }
-	inline const math::Vec3f&	GetSpecular()	const		{ return m_specular; }
-	inline const float&			GetShininess()	const		{ return m_shininess; }
-	inline const std::string&	GetName()		const		{ return m_name; }
+	inline const math::Vec4f&	GetAlbedo()			const	{ return m_albedo; }
+	inline const math::Vec3f&	GetAmbient()		const	{ return m_ambient; }
+	inline const math::Vec3f&	GetDiffuse()		const	{ return m_diffuse; }
+	inline const math::Vec3f&	GetSpecular()		const	{ return m_specular; }
+	inline const float&			GetShininess()		const	{ return m_shininess; }
+	inline const std::string&	GetName()			const	{ return m_name; }
 
 	inline void SetAlbedoMapName(const std::string& _n)		{ m_albedoMapName = _n; }
 	inline void SetNormalMapName(const std::string& _n)		{ m_normalMapName = _n; }

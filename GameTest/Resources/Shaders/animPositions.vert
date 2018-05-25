@@ -50,12 +50,12 @@ out FragmentInformations
 
 void main()
 {
-//	vec4 pos =  		(vertexBoneWeight.x * (skinningMatrices[int(vertexBoneIndex.x)] * vertexPos)) +
-//						(vertexBoneWeight.y * (skinningMatrices[int(vertexBoneIndex.y)] * vertexPos)) +
-//						(vertexBoneWeight.z * (skinningMatrices[int(vertexBoneIndex.z)] * vertexPos)) +
-//						(vertexBoneWeight.w * (skinningMatrices[int(vertexBoneIndex.w)] * vertexPos));
+	vec4 pos =  		(vertexBoneWeight.x * (skinning.mats[int(vertexBoneIndex.x)] * vertexPos)) +
+						(vertexBoneWeight.y * (skinning.mats[int(vertexBoneIndex.y)] * vertexPos)) +
+						(vertexBoneWeight.z * (skinning.mats[int(vertexBoneIndex.z)] * vertexPos)) +
+						(vertexBoneWeight.w * (skinning.mats[int(vertexBoneIndex.w)] * vertexPos));
 
-	vec4 pos = skinning.mats[1] * vertexPos;
+//	vec4 pos = skinning.mats[4] * vertexPos;
 	
 	outData.normal 		= vertexNormal;
 	outData.uv 			= vertexUV;

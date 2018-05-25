@@ -6,6 +6,7 @@ PADObjectWidget::PADObjectWidget(QWidget *parent) :
     ui(new Ui::PADObjectWidget)
 {
     ui->setupUi(this);
+
 }
 
 PADObjectWidget::~PADObjectWidget()

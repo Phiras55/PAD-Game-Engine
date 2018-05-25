@@ -34,6 +34,7 @@ PADEditor::PADEditor(QWidget *parent) :
     FileModel->setRootPath(contentPath);
     ui->projectListView->setModel(FileModel);
     ui->projectListView->setRootIndex(FileModel->setRootPath(contentPath));
+   // ui->projectListView->
 
     ui->projectTreeView->setColumnHidden(1, true);
     ui->projectTreeView->setColumnHidden(2, true);

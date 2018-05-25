@@ -66,20 +66,16 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;"..\..\Libs\include\PAD Engine";..\..\Libs\include\PADRenderer;..\..\Libs\include;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;release;\include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;"..\..\Libs\include\PAD Engine";..\..\Libs\include\PADRenderer;..\..\Libs\include\FBXSDK;..\..\Libs\include;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;release;\include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding /std:c++17 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>None</DebugInformationFormat>
       <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ForcedIncludeFiles>..\..\Libs\include\PAD Engine\EnginePCH.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>..\..\Libs\include\PAD Engine\EnginePCH.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)\PAD-Engine.pch</PrecompiledHeaderOutputFile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;USING_PCH;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -89,7 +85,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(QTDIR)\lib\qtmain.lib;shell32.lib;"..\..\Libs\lib\Release\x64\PAD Engine.lib";..\..\Libs\lib\Release\x64\PADRenderer.lib;..\..\Libs\lib\Release\x64\glew32.lib;opengl32.lib;$(QTDIR)\lib\Qt5Widgets.lib;$(QTDIR)\lib\Qt5Gui.lib;$(QTDIR)\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(QTDIR)\lib\qtmain.lib;shell32.lib;"..\..\Libs\lib\Release\x64\PAD Engine.lib";..\..\Libs\lib\Release\x64\libfbxsdk-md.lib;..\..\Libs\lib\Release\x64\AssetParser.lib;$(QTDIR)\lib\Qt5Widgets.lib;$(QTDIR)\lib\Qt5Gui.lib;$(QTDIR)\lib\Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;..\..\Libs\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -107,18 +103,18 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;USING_PCH;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <QtMoc>
       <QTDIR>$(QTDIR)</QTDIR>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
-      <Define>UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;USING_PCH;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Define>
+      <Define>UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Define>
       <CompilerFlavor>msvc</CompilerFlavor>
       <Include>$(Configuration)/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/FBXSDK;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
     </QtMoc>
     <QtRcc>
       <InitFuncName>style</InitFuncName>
@@ -137,20 +133,16 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;"..\..\Libs\include\PAD Engine";..\..\Libs\include\PADRenderer;..\..\Libs\include;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;debug;\include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;"..\..\Libs\include\PAD Engine";..\..\Libs\include\PADRenderer;..\..\Libs\include\FBXSDK;..\..\Libs\include;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtCore;debug;\include;$(QTDIR)\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding /std:c++17 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ForcedIncludeFiles>..\..\Libs\include\PAD Engine\EnginePCH.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>Disabled</Optimization>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>..\..\Libs\include\PAD Engine\EnginePCH.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)\PAD-Engine.pch</PrecompiledHeaderOutputFile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;USING_PCH;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -160,7 +152,7 @@
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;"..\..\Libs\lib\Debug\x64\PAD Engine.lib";..\..\Libs\lib\Debug\x64\PADRenderer.lib;..\..\Libs\lib\Debug\x64\glew32.lib;opengl32.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(QTDIR)\lib\qtmaind.lib;shell32.lib;"..\..\Libs\lib\Debug\x64\PAD Engine.lib";..\..\Libs\lib\Debug\x64\libfbxsdk-md.lib;..\..\Libs\lib\Debug\x64\AssetParser.lib;$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;C:\utils\my_sql\my_sql\lib;C:\utils\postgresql\pgsql\lib;..\..\Libs\lib\Debug\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
@@ -177,7 +169,7 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;USING_PCH;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <QtRcc>
       <QTDIR>$(QTDIR)</QTDIR>
@@ -190,13 +182,13 @@
     <QtMoc>
       <QTDIR>$(QTDIR)</QTDIR>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
-      <Define>UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;USING_PCH;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Define>
+      <Define>UNICODE;_UNICODE;WIN32;WIN64;QT_DEPRECATED_WARNINGS;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Define>
       <CompilerFlavor>msvc</CompilerFlavor>
       <Include>$(Configuration)/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/FBXSDK;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
     </QtMoc>
     <QtUic>
       <QTDIR>$(QTDIR)</QTDIR>
@@ -210,185 +202,37 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="padeditor.cpp" />
     <ClCompile Include="padobjectwidget.cpp" />
+    <ClCompile Include="sceneview.cpp" />
     <ClCompile Include="transformwidget.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\ACollider.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\AComponent.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\Resource\AResourceManager.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\AScriptComponent.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShader.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShaderManager.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\AShaderProgram.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\ATexture.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\AUniformBufferObject.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexArray.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\AVertexBuffer.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\Window\AWindow.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\Window\AWindow.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\BoxCollider.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\Physics\BulletContext.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\Camera.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\Collider.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\ComponentsHandler.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\ContextSettings.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\CustomUniform.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\Core\Engine.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\Core\EngineClock.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\Core\EngineDLL.h" />
-    <CustomBuild Include="..\..\Libs\include\PAD Engine\EnginePCH.h">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">echo /*-------------------------------------------------------------------- &gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Precompiled header source file used by Visual Studio.NET to generate&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * the .pch file.&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Due to issues with the dependencies checker within the IDE, it&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * sometimes fails to recompile the PCH file, if we force the IDE to&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * create the PCH file directly from the header file.&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * specified, and is used as the common stdafx.cpp. The file is only&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * generated when creating .vcxproj project files, and is not used for&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * command line compilations by nmake.&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * WARNING: All changes made in this file will be lost.&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo --------------------------------------------------------------------*/&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo #include "EnginePCH.h"&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating precompiled header source file '..\..\Libs\include\PAD Engine\EnginePCH.h.cpp' ...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\Libs\include\PAD Engine\EnginePCH.h.cpp;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">echo /*-------------------------------------------------------------------- &gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Precompiled header source file used by Visual Studio.NET to generate&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * the .pch file.&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * Due to issues with the dependencies checker within the IDE, it&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * sometimes fails to recompile the PCH file, if we force the IDE to&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * create the PCH file directly from the header file.&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * This file is auto-generated by qmake since no PRECOMPILED_SOURCE was&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * specified, and is used as the common stdafx.cpp. The file is only&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * generated when creating .vcxproj project files, and is not used for&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * command line compilations by nmake.&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo *&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo * WARNING: All changes made in this file will be lost.&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo --------------------------------------------------------------------*/&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp
-if errorlevel 1 goto VCEnd
-echo #include "EnginePCH.h"&gt;&gt;..\..\Libs\include\PAD Engine\EnginePCH.h.cpp</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating precompiled header source file '..\..\Libs\include\PAD Engine\EnginePCH.h.cpp' ...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\Libs\include\PAD Engine\EnginePCH.h.cpp;%(Outputs)</Outputs>
-    </CustomBuild>
-    <ClInclude Include="..\..\Libs\include\PAD Engine\Utilities\EnumUtils.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\Utilities\Export.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLFragmentShader.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\GL\GLRenderer.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLShaderManager.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLShaderProgram.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\GL\GLTexture.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\GL\GLUniformBufferObject.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexArray.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexBuffer.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\GL\GLVertexElementBuffer.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\GL\Shader\GLVertexShader.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\Graphics\HighLevelRenderer.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\IComponent.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\Core\IDHandler.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\Core\IDPool.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\IModule.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\Physics\IPhysicContext.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\IRenderer.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\Window\IWindowBase.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\Window\IWindowBase.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\Resource\MasterManager.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\Model\Material.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\Model\MaterialData.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\Model\MaterialSettings.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\Model\Mesh.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\Model\MeshData.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\Resource\MeshManager.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\MeshRenderer.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\PADObject.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\PerspectiveCamera.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\Utilities\Randomizer.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\RenderSettings.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\Resource\Resource.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\Resource\ResourceManager.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\RigidBody.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\Window\SDLWindow.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\Window\SDLWindow.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\ECS\Scene.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\Shader\ShaderInfos.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\Model\TextureData.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\TextureParameters.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\TextureSettings.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\Core\Timer.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\RHI\UniformBufferSettings.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\Utilities\UniqueIDs.h" />
-    <ClInclude Include="..\..\Libs\include\PAD Engine\System\Window\WindowSettings.h" />
-    <ClInclude Include="..\..\Libs\include\PADRenderer\Graphics\Window\WindowSettings.h" />
     <QtMoc Include="boxcolliderwidget.h">
     </QtMoc>
-    <ClInclude Include="..\..\Libs\include\GL\eglew.h" />
-    <ClInclude Include="..\..\Libs\include\GL\glew.h" />
     <QtMoc Include="glwidget.h">
     </QtMoc>
-    <ClInclude Include="..\..\Libs\include\GL\glxew.h" />
-    <ClInclude Include="..\..\Libs\include\Json\json.hpp" />
     <QtMoc Include="padeditor.h">
     </QtMoc>
     <QtMoc Include="padobjectwidget.h">
     </QtMoc>
+    <ClInclude Include="scenenode.h" />
+    <QtMoc Include="sceneview.h">
+    </QtMoc>
     <QtMoc Include="transformwidget.h">
     </QtMoc>
-    <ClInclude Include="..\..\Libs\include\GL\wglew.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Libs\include\PAD Engine\EnginePCH.h.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NOINHERIT)</ForcedIncludeFiles>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">EnginePCH.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NOINHERIT)</ForcedIncludeFiles>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">EnginePCH.h</PrecompiledHeaderFile>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-    </ClCompile>
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding /std:c++17 -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generate moc_predefs.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_predefs.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <FileType>Document</FileType>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl -Bx"$(QTDIR)\bin\qmake.exe" -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding /std:c++17 -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E $(QTDIR)\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generate moc_predefs.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_predefs.h;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

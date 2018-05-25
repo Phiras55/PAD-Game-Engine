@@ -5,6 +5,7 @@
 #include <System/ECS/PerspectiveCamera.h>
 #include <System/ECS/MeshRenderer.h>
 #include <Graphics/Model/Material.h>
+//#include <glm/gtc/matrix_transform.hpp>
 
 namespace pad	{
 namespace gfx	{
@@ -368,13 +369,8 @@ void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, flo
 
 		math::Mat4	animMatrix	= anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;
 		math::Mat4	bindMatrix	= skeleton->GetBoneById(boneId)->m_inverseBindPose;
-		memcpy(_matrixArray[boneId], math::Mat4().data, 16*sizeof(float));
-		//_matrixArray[boneId]	= math::Mat4();
-		
-		
-		//		_matrixArray[boneId]	= bindMatrix * animMatrix;
 
-		//		_matrixArray[boneId] = skeleton->GetBoneById(boneId)->m_inverseBindPose * anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;
+		memcpy(_matrixArray[boneId], (bindMatrix * animMatrix).Transposed().data, 16*sizeof(float));
 	}
 }
 

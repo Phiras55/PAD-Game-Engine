@@ -1,7 +1,6 @@
 #include <EnginePCH.h>
 #include <Core/EngineDLL.h>
 #include <Core/Engine.h>
-//#include <Shlwapi.h>
 #include <AssetParser/AssetReader.h>
 #include <stb_image/stb_image.h>
 #include <Graphics/GL/GLTexture.h>
@@ -53,18 +52,6 @@ void Simulate()
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void AddPADObject(sys::ecs::PADObject* const _padObject)
-{
-	if(g_engine && g_engine->GetScene())
-		g_engine->GetScene()->AddPADObject(_padObject);
-}
-
-void RemovePADObject(sys::ecs::PADObject* const _padObject)
-{
-	if(_padObject->GetParent())
-		_padObject->GetParent()->RemoveChild(_padObject);
-}
-
 void MoveMainCamera(math::Vec3f& _translation)
 {
 	if (g_engine && g_engine->GetScene()) 
@@ -90,17 +77,21 @@ void LoadResourceFile(const std::string& _filePath, const std::string& _outputPa
 {
 	if (g_engine)
 	{
-		std::string ext = pad::parser::GetFileExt(_filePath);
-		if (ext == ".PADMesh")
-			LoadMeshFile(_filePath);
-		else if (ext == ".PADMaterial")
-			LoadMaterialFile(_filePath);
-		else if (ext == ".png" || ext == ".jpg")
-			LoadTextureFile(_filePath);
-		else if (ext == ".PADSkeleton")
-			LoadSkeletonFile(_filePath);
-		else if (ext == ".PADAnim")
-			LoadAnimFile(_filePath);
+		if (FILE* f = fopen(_filePath.c_str(), "r"))
+		{
+			fclose(f);
+			std::string ext = pad::parser::GetFileExt(_filePath);
+			if (ext == ".PADMesh")
+				LoadMeshFile(_filePath);
+			else if (ext == ".PADMaterial")
+				LoadMaterialFile(_filePath);
+			else if (ext == ".png" || ext == ".jpg")
+				LoadTextureFile(_filePath);
+			else if (ext == ".PADSkeleton")
+				LoadSkeletonFile(_filePath);
+			else if (ext == ".PADAnim")
+				LoadAnimFile(_filePath);
+		}
 	}
 }
 
@@ -218,13 +209,19 @@ sys::ecs::PADObject* CreatePADObject(const std::string& _name, sys::ecs::PADObje
 	return entity;
 }
 
-void DeletePADObject(const std::string& _name, sys::ecs::PADObject* const _rootSearch)
+void DeletePADObject(sys::ecs::PADObject* const _object)
 {
 	if (g_engine)
 	{
-		sys::ecs::Scene* currentScene = g_engine->GetScene();
-		if (currentScene)
-			currentScene->DeletePADObject(_name, _rootSearch);
+		if (_object)
+		{
+			sys::ecs::PADObject* parent = _object->GetParent();
+			if (parent)
+			{
+				parent->RemoveChild(_object);
+				delete _object;
+			}
+		}
 	}
 }
 

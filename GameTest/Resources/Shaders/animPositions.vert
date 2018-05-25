@@ -17,13 +17,6 @@ layout (std140, binding = 0, row_major) uniform CameraSettings
 	mat4 viewPerspective;	// 64				// 32
 } camera;
 
-layout (std140, binding = 1) uniform Lights
-{
-							// Base Alignment  	// Aligned Offset
-	vec4 position;			// 16				// 0
-	vec3 direction; 		// 16				// 16
-} lights;
-
 layout (std140, binding = 2, row_major) uniform Skinning
 {
 	mat4 mats[150];
@@ -55,7 +48,6 @@ void main()
 						(vertexBoneWeight.z * (skinning.mats[int(vertexBoneIndex.z)] * vertexPos)) +
 						(vertexBoneWeight.w * (skinning.mats[int(vertexBoneIndex.w)] * vertexPos));
 
-//	vec4 pos = skinning.mats[4] * vertexPos;
 	
 	outData.normal 		= vertexNormal;
 	outData.uv 			= vertexUV;

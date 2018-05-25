@@ -110,12 +110,7 @@ PADObject* Scene::CreatePADObject(const std::string& _name, PADObject* const _pa
 
 void Scene::DeletePADObject(const std::string& _name, PADObject* const _rootSearch)
 {
-	PADObject* objectFound = GetPADObject(_name, _rootSearch);
-
-	if (objectFound)
-	{
-		delete objectFound;
-	}
+	
 }
 
 PADObject* Scene::FindPADObject(const std::string& _name, PADObject* const _rootSearch)

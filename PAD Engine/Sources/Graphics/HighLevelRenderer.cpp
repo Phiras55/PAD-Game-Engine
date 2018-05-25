@@ -409,11 +409,6 @@ void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const 
 		uniform.type = rhi::shad::DataType::UINT;
 	}
 
-	uniform.data = (void*)&_mat.GetAlbedo();
-	uniform.type = rhi::shad::DataType::VEC4;
-
-	_settings.customUniforms["albedo"] = uniform;
-
 	uniform.data = (void*)&_mat.GetAmbient();
 	uniform.type = rhi::shad::DataType::VEC3;
 
@@ -422,7 +417,7 @@ void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const 
 	uniform.data = (void*)&_mat.GetDiffuse();
 	uniform.type = rhi::shad::DataType::VEC3;
 
-	_settings.customUniforms["diffuse"] = uniform;
+	_settings.customUniforms["tint"] = uniform;
 
 	uniform.data = (void*)&_mat.GetSpecular();
 	uniform.type = rhi::shad::DataType::VEC3;

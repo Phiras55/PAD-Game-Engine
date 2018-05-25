@@ -22,12 +22,12 @@ layout (std140, binding = 1) uniform DirectionalLightSettings
 ////////////////////////////////////
 //            Uniforms            //
 ////////////////////////////////////
-uniform vec4  albedo;
 uniform vec3  ambient;
-uniform vec3  diffuse;
+uniform vec3  tint;
 uniform vec3  specular;
 uniform float shininess;
 uniform sampler2D albedoMap;
+uniform bool isAffectedByLight = false;
 
 ////////////////////////////////////
 //        Interface Blocks        //
@@ -47,25 +47,34 @@ out vec4 finalColor;
 
 void main()
 {
-	// Ambient
-	float ambientIntensity 	= 0.2;
-	vec3 resultAmbient 		= ambient * ambientIntensity;
+	vec4 resultLighting;
+	vec4 objectColor 		= texture(albedoMap, inData.uv) * vec4(tint, 1.0);
 	
-	// Diffuse
-	vec3 normalizedNormal 	= normalize(inData.normal);
-	float diff 				= max(dot(normalizedNormal, -dLight.direction), 0.0);
-	vec3 resultDiffuse 		= dLight.color * diff;
+	if(isAffectedByLight)
+	{
+		// Ambient
+		float ambientIntensity 	= 0.2;
+		vec3 resultAmbient 		= ambient * ambientIntensity;
+		
+		// Diffuse
+		vec3 normalizedNormal 	= normalize(inData.normal);
+		float diff 				= max(dot(normalizedNormal, -dLight.direction), 0.0);
+		vec3 resultDiffuse 		= dLight.color * diff;
+		
+		// Specular
+		float specularStrength 	= 1.0;
+		vec3 viewDir 			= normalize(camera.position - inInfos.fragPos);
+		vec3 reflectDir 		= reflect(-dLight.direction, normalizedNormal);
+		float spec 				= pow(max(dot(viewDir, reflectDir), 0.0), shininess);
+		vec3 resultSpecular 	= specular * (specularStrength * spec);
+		
+		// Result
+		vec4 resultLighting 	= vec4(resultAmbient + resultDiffuse + resultSpecular, 1.0) * objectColor;
+	}
+	else
+	{
+		resultLighting = objectColor;
+	}
 	
-	// Specular
-	float specularStrength 	= 1.0;
-	vec3 viewDir 			= normalize(camera.position - inInfos.fragPos);
-	vec3 reflectDir 		= reflect(-dLight.direction, normalizedNormal);
-	float spec 				= pow(max(dot(viewDir, reflectDir), 0.0), shininess);
-	vec3 resultSpecular 	= specular * (specularStrength * spec);
-	
-	// Result
-	vec4 objectColor 		= texture(albedoMap, inData.uv) * vec4(diffuse, 1.0);
-	vec4 resultLighting 	= vec4(resultAmbient + resultDiffuse + resultSpecular, 1.0) * objectColor;
-	
-	finalColor 				= resultLighting;
+	finalColor = resultLighting;
 }

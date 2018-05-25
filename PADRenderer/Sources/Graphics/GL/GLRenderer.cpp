@@ -185,6 +185,7 @@ void GLRenderer::ForwardRendering(
 
 	currentShader->Use();
 	currentShader->SetUniform("model", (float*)_setting.modelMatrix->data);
+	currentShader->SetUniform("isAffectedByLight", (bool)_setting.isAffectedByLight);
 	SetCustomUniforms(currentShader, _setting);
 
 	glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, (void*)0);

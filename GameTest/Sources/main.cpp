@@ -17,7 +17,7 @@
 
 int main()
 {
-	pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
+	//pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
 
 	#pragma region RenderInit
 
@@ -97,6 +97,7 @@ int main()
 		cube->AddComponent<pad::sys::ecs::RigidBody>();
 
 		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnim("creature_giantspider_giantspider_Death [6]");
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->GetSettings().isAffectedByLight = true;
 
 		rb = cube->GetComponent<pad::sys::ecs::RigidBody>();
 		rb->SetMass(10.f);

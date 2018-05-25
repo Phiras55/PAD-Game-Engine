@@ -185,6 +185,7 @@ void GLRenderer::ForwardRendering(
 
 	currentShader->Use();
 	currentShader->SetUniform("model", (float*)_setting.modelMatrix->data);
+	currentShader->SetUniform("isAffectedByLight", (bool)_setting.isAffectedByLight);
 	SetCustomUniforms(currentShader, _setting);
 
 	glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, (void*)0);
@@ -299,6 +300,14 @@ void GLRenderer::InitDefaultUniformBuffers()
 	CreateUniformBuffer(cameraSettings);
 	BindBufferToBindingPoint(cameraSettings);
 
+	rhi::UniformBufferSettings directionnalLightSettings;
+	directionnalLightSettings.name				= "DirectionalLightSettings";
+	directionnalLightSettings.dataSize			= 48;
+	directionnalLightSettings.bindingPointID	= 1;
+
+	CreateUniformBuffer(directionnalLightSettings);
+	BindBufferToBindingPoint(directionnalLightSettings);
+
 	rhi::UniformBufferSettings Skinning;
 	Skinning.name			= "Skinning";
 	Skinning.dataSize		= 150 * 16 * sizeof(float);
@@ -351,11 +360,14 @@ void GLRenderer::SetJointsUniformBufferData(
 	SetUniformBufferData("Skinning", _joints, 16 * sizeof(float) * _count, 0);
 }
 
-void GLRenderer::SetLightsUniformBufferData(
-	math::Vec4f* const _positions,
-	math::Vec4f* const _directions,
-	const uint8 _count)
+void GLRenderer::SetDirectionalLightUniformBufferData(
+	const math::Vec3f& _direction,
+	const math::Vec3f& _color,
+	const float _intensity)
 {
+	SetUniformBufferData("DirectionalLightSettings", &_direction[0], 16,  0);
+	SetUniformBufferData("DirectionalLightSettings", &_color[0],	 16, 16);
+	SetUniformBufferData("DirectionalLightSettings", &_intensity,	 4, 32);
 }
 
 rhi::AUniformBufferObject* const GLRenderer::GetUniformBufferObject(const std::string& _name)

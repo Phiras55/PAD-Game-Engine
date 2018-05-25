@@ -47,6 +47,13 @@ ComponentsHandler::ComponentsHandler()
 	m_pools[a->GetType()] = animRendererPool;
 	a->GetType();
 	animRendererPool->DeleteComponent(a);
+#pragma region DirectionalLight
+	alias::DirectionalLightPool* directionalLightPool = new alias::DirectionalLightPool();
+	ecs::DirectionalLight* l = static_cast<ecs::DirectionalLight*>(directionalLightPool->CreateComponent());
+
+	m_pools[l->GetType()] = directionalLightPool;
+	l->GetType();
+	directionalLightPool->DeleteComponent(l);
 #pragma endregion
 }
 

@@ -17,7 +17,7 @@
 
 int main()
 {
-	pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
+	//pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
 
 	#pragma region RenderInit
 
@@ -86,13 +86,18 @@ int main()
 
 		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i*10, 0));
 		cube->GetTransform().SetRotation(pad::math::Vec3f(i * 45, i * 45, i * 45));
-		cube->GetTransform().SetScale(0.01f);
+		cube->GetTransform().SetScale(0.05f);
 
-		cube->AddComponent<pad::sys::ecs::AnimRenderer>("creature_giantspider_giantspider", "creature_giantspider_giantspider_0", "creature_giantspider_giantspider", "creature_giantspider_giantspider_Walk [0]");
+		cube->AddComponent<pad::sys::ecs::AnimRenderer>(
+			"creature_giantspider_giantspider", 
+			"creature_giantspider_giantspider_0", 
+			"creature_giantspider_giantspider", 
+			"creature_giantspider_giantspider_AttackUnarmed [3]");
 		cube->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(1.f, 1.f, 1.f));
 		cube->AddComponent<pad::sys::ecs::RigidBody>();
 
 		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnim("creature_giantspider_giantspider_Death [6]");
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->GetSettings().isAffectedByLight = true;
 
 		rb = cube->GetComponent<pad::sys::ecs::RigidBody>();
 		rb->SetMass(10.f);

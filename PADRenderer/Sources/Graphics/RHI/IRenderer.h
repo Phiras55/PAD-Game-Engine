@@ -42,12 +42,12 @@ public:
 		const math::Vec3f& _position,
 		const math::Vec3f& _direction,
 		const math::Mat4& _vp)														= 0;
+	virtual void SetDirectionalLightUniformBufferData(
+		const math::Vec3f& _direction,
+		const math::Vec3f& _color,
+		const float _intensity)														= 0;
 	virtual void SetJointsUniformBufferData(
 		float* const _joints,
-		const uint8 _count)															= 0;
-	virtual void SetLightsUniformBufferData(
-		math::Vec4f* const _positions, 
-		math::Vec4f* const _directions,
 		const uint8 _count)															= 0;
 	virtual void CreateUniformBuffer(const UniformBufferSettings& _settings)		= 0;
 	virtual bool LoadShaders(

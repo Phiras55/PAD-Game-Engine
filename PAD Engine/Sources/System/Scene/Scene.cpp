@@ -20,8 +20,29 @@ void Scene::Init()
 {
 	m_masterPADObject->Init();
 
-	m_mainCamera.Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-	m_mainCamera.LookAt(math::Vec3f(15, 7, 7), math::Vec3f(0, 0, 0), math::Vec3f::Up());
+	PADObject* light, *camera;
+
+	light =  CreatePADObject("DirectionalLight", m_masterPADObject);
+	camera = CreatePADObject("MainCamera", m_masterPADObject);
+
+	light->AddComponent<DirectionalLight>();
+	light->GetTransform().SetRotation(math::Vec3f(0.f, 180.f, 0.f));
+	m_directionalLight = light->GetComponent<DirectionalLight>();
+
+	if (m_directionalLight)
+	{
+		m_directionalLight->SetColor(math::Vec3f(255.f / 255.f, 244.f / 255.f, 214.f / 255.f));
+		m_directionalLight->SetIntensity(1.f);
+	}
+
+	camera->AddComponent<PerspectiveCamera>();
+	m_mainCamera = camera->GetComponent<PerspectiveCamera>();
+
+	if (m_mainCamera)
+	{
+		m_mainCamera->Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
+		m_mainCamera->LookAt(math::Vec3f(15, 7, 7), math::Vec3f(0, 0, 0), math::Vec3f::Up());
+	}
 }
 
 void Scene::Start()
@@ -89,12 +110,7 @@ PADObject* Scene::CreatePADObject(const std::string& _name, PADObject* const _pa
 
 void Scene::DeletePADObject(const std::string& _name, PADObject* const _rootSearch)
 {
-	PADObject* objectFound = GetPADObject(_name, _rootSearch);
-
-	if (objectFound)
-	{
-		delete objectFound;
-	}
+	
 }
 
 PADObject* Scene::FindPADObject(const std::string& _name, PADObject* const _rootSearch)

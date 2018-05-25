@@ -132,7 +132,7 @@
     <ClCompile Include="Sources\System\ECS\AnimRenderer.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\System\ECS\DirectionnalLight.cpp">
+    <ClCompile Include="Sources\System\ECS\DirectionalLight.cpp">
       <Filter>Source Files\System\ECS</Filter>
     </ClCompile>
   </ItemGroup>
@@ -236,7 +236,7 @@
     <ClInclude Include="Sources\System\ECS\ALight.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\System\ECS\DirectionnalLight.h">
+    <ClInclude Include="Sources\System\ECS\DirectionalLight.h">
       <Filter>Header Files\System\ECS</Filter>
     </ClInclude>
   </ItemGroup>

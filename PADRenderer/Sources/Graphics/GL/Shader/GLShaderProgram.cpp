@@ -36,11 +36,11 @@ bool GLShaderProgram::CompileProgram()
 	{
 		char infoLog[SHADER_LOG_SIZE];
 
+		glGetProgramInfoLog(m_id, SHADER_LOG_SIZE, NULL, infoLog);
+		LOG_ERROR("Error! Could not link the program: %%", infoLog);
 		glDeleteProgram(m_id);
 		glDeleteShader(vertID);
 		glDeleteShader(fragID);
-		glGetProgramInfoLog(m_id, SHADER_LOG_SIZE, NULL, infoLog);
-		LOG_ERROR("Error! Could not link the program: %%", infoLog);
 		m_vertShader = nullptr;
 		m_fragShader = nullptr;
 		return false;

@@ -258,12 +258,21 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Sc
 	if (!m_lowLevelRenderer)
 		return;
 
-	const sys::ecs::PerspectiveCamera& cam = _scene.GetMainCamera();
-	math::Mat4 vp = cam.GetProjection() * cam.GetView();
+	sys::ecs::PerspectiveCamera* cam = _scene.GetMainCamera();
+	math::Mat4 vp = cam->GetProjection() * cam->GetView();
+
+	sys::ecs::DirectionalLight* dirLight = _scene.GetDirectionalLight();
 
 	ClearBuffers();
 
-	m_lowLevelRenderer->SetCameraUniformBufferData(math::Vec3f(), math::Vec3f(), vp);
+	m_lowLevelRenderer->SetCameraUniformBufferData(
+		cam->GetTransform().Position(), 
+		cam->GetTransform().Forward(), 
+		vp);
+	m_lowLevelRenderer->SetDirectionalLightUniformBufferData(
+		dirLight->GetOwner()->GetTransform().Forward(), 
+		dirLight->GetColor(), 
+		dirLight->GetIntensity());
 
 	DrawAnimatedObjects(_resources, _scene, _components);
 	DrawStaticObjects(_resources, _scene, _components);
@@ -400,11 +409,6 @@ void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const 
 		uniform.type = rhi::shad::DataType::UINT;
 	}
 
-	uniform.data = (void*)&_mat.GetAlbedo();
-	uniform.type = rhi::shad::DataType::VEC4;
-
-	_settings.customUniforms["albedo"] = uniform;
-
 	uniform.data = (void*)&_mat.GetAmbient();
 	uniform.type = rhi::shad::DataType::VEC3;
 
@@ -413,17 +417,17 @@ void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const 
 	uniform.data = (void*)&_mat.GetDiffuse();
 	uniform.type = rhi::shad::DataType::VEC3;
 
-	_settings.customUniforms["diffuse"] = uniform;
+	_settings.customUniforms["tint"] = uniform;
 
 	uniform.data = (void*)&_mat.GetSpecular();
 	uniform.type = rhi::shad::DataType::VEC3;
 
 	_settings.customUniforms["specular"] = uniform;
 
-	uniform.data = (void*)&_mat.GetShiness();
+	uniform.data = (void*)&_mat.GetShininess();
 	uniform.type = rhi::shad::DataType::FLOAT;
 
-	_settings.customUniforms["shiness"] = uniform;
+	_settings.customUniforms["shininess"] = uniform;
 }
 
 void HighLevelRenderer::UnbindTextures(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources)

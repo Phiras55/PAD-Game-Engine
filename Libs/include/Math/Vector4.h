@@ -74,7 +74,9 @@ struct Vector4 final : public ISerializable															/*! Templated vector 4
 	T&			operator[]	(const	int			_index);											/*! Access operator */
 	const T&	operator[]	(const	int			_index) const;										/*! Access operator */
 
-
+	static inline Vector4 Up()		{ return Vec4f(0, 1, 0, 1); }
+	static inline Vector4 Forward()	{ return Vec4f(0, 0, 1, 1); }
+	static inline Vector4 Right()	{ return Vec4f(1, 0, 0, 1); }
 #pragma endregion
 
 	json Serialize() override

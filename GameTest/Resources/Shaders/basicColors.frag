@@ -69,7 +69,7 @@ void main()
 		vec3 resultSpecular 	= specular * (specularStrength * spec);
 		
 		// Result
-		vec4 resultLighting 	= vec4(resultAmbient + resultDiffuse + resultSpecular, 1.0) * objectColor;
+		resultLighting 			= vec4(resultAmbient + resultDiffuse + resultSpecular, 1.0) * objectColor;
 	}
 	else
 	{

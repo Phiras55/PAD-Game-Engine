@@ -46,6 +46,7 @@ private:
 	void FixedUpdate();
 	void LateUpdate();
 	void Render();
+	void Close();
 
 	void ResizeContext(const uint32 _w, const uint32 _h);
 	void FlushLogs();

@@ -41,7 +41,7 @@ void Scene::Init()
 	if (m_mainCamera)
 	{
 		m_mainCamera->Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-		m_mainCamera->LookAt(math::Vec3f(15, 7, 7), math::Vec3f(0, 0, 0), math::Vec3f::Up());
+		m_mainCamera->GetTransform().SetPosition(math::Vec3f(0, 5, -10));
 	}
 }
 

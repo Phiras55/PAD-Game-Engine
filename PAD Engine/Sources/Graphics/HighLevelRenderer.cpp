@@ -259,7 +259,7 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Sc
 		return;
 
 	sys::ecs::PerspectiveCamera* cam = _scene.GetMainCamera();
-	math::Mat4 vp = cam->GetProjection() * cam->GetView();
+	math::Mat4 vp = cam->GetProjection() * cam->LookAt(cam->GetTransform().Position(), cam->GetTransform().Position() + cam->GetTransform().Forward(), math::Vec3f::Up());
 
 	sys::ecs::DirectionalLight* dirLight = _scene.GetDirectionalLight();
 
@@ -345,6 +345,16 @@ bool HighLevelRenderer::LoadShaders(
 		return m_lowLevelRenderer->LoadShaders(_vPath, _fPath, _name);
 
 	return false;
+}
+
+void HighLevelRenderer::BindInputs(
+	const uint32 _key,
+	const inp::alias::Function& _func,
+	const bool _isToggleKey,
+	const float32 _cooldown)
+{
+	if(m_mainWindow)
+		m_mainWindow->BindInputs(_key, _func, _isToggleKey, _cooldown);
 }
 
 void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, float(*_matrixArray)[FLOAT_PER_MATRIX], sys::res::MasterManager& _resources)
@@ -468,7 +478,10 @@ void HighLevelRenderer::GenerateTexture(rhi::ATexture* const _texture, const std
 void HighLevelRenderer::PollEvents()
 {
 	if (m_mainWindow)
+	{
 		m_mainWindow->PollEvents();
+		m_mainWindow->UpdateInputs(core::EngineClock::DeltaTime());
+	}
 }
 
 void HighLevelRenderer::ClearBuffers()
@@ -485,7 +498,20 @@ void HighLevelRenderer::SwapBuffers()
 
 void HighLevelRenderer::ResizeContext(const uint32 _w, const uint32 _h)
 {
-	m_lowLevelRenderer->ResizeViewport(_w, _h);
+	if (m_lowLevelRenderer)
+		m_lowLevelRenderer->ResizeViewport(_w, _h);
+}
+
+void HighLevelRenderer::CenterMouse()
+{
+	if (m_mainWindow)
+		m_mainWindow->CenterMouse();
+}
+
+void HighLevelRenderer::CloseWindow()
+{
+	if (m_mainWindow)
+		m_mainWindow->Close();
 }
 
 } // namespace gfx

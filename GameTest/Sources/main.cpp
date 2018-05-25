@@ -24,11 +24,11 @@ int main()
 	pad::gfx::win::WindowSettings winSettings;
 
 	winSettings.title			= "This is a SDL Window.";
-	winSettings.position.x		= 400u;
-	winSettings.position.y		= 200u;
+	winSettings.position.x		= 0u;
+	winSettings.position.y		= 30u;
 	winSettings.size.x			= 1600u;
 	winSettings.size.y			= 900u;
-	winSettings.isFullscreen	= false;
+	winSettings.isFullscreen	= true;
 	winSettings.windowType		= pad::gfx::win::E_WINDOW_TYPE::SDL;
 
 	// Will be read from a config file

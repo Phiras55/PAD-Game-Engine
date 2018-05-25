@@ -473,6 +473,7 @@ void ParseBoneWeight(	const	std::string&			_outputPath,
 						for (int animStackIndex = 0; animStackIndex < animCount; ++animStackIndex)
 						{
 							FbxAnimStack*	animStack	= _scene->GetSrcObject<FbxAnimStack>(animStackIndex);
+							_scene->SetCurrentAnimationStack(animStack);
 
 							FbxTakeInfo*	takeInfo	= _scene->GetTakeInfo(animStack->GetName());
 							FbxTime			start		= takeInfo->mLocalTimeSpan.GetStart();

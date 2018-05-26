@@ -26,6 +26,8 @@ AnimRenderer::AnimRenderer(const AnimRenderer& _other)
 	m_currentKey		= _other.m_currentKey;
 	m_keyFrameDuration	= _other.m_keyFrameDuration;
 	m_animTimer			= _other.m_animTimer;
+	m_animSpeed			= _other.m_animSpeed;
+	m_loop				= _other.m_loop;
 
 	m_settings.programHandle = "DefaultAnim";
 }

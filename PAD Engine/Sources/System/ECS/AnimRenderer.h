@@ -26,6 +26,8 @@ private:
 	int				m_currentKey;
 	float			m_keyFrameDuration;
 	core::Timer		m_animTimer;
+	float			m_animSpeed;
+	bool			m_loop;
 
 private:
 	static alias::ComponentID	m_AR_id;
@@ -49,9 +51,13 @@ public:
 	inline			core::Timer&	GetTimer() 					{ return m_animTimer; }
 	inline const	int				GetCurrentFrame()	const	{ return m_currentKey; }
 	inline const	float			GetFrameDuration()	const	{ return m_keyFrameDuration; }
+	inline const	bool			GetLoop()			const	{ return m_loop; }
+	inline const	float			GetAnimSpeed()		const	{ return m_animSpeed; }
 
 	inline void SetCurrentFrame(const int _key)					{ m_currentKey = _key; }
 	inline void SetFrameDuration(const float _duration)			{ m_keyFrameDuration = _duration; }
+	inline void SetAnimSpeed(const float _animSpeed)			{ m_animSpeed = _animSpeed; }
+	inline void SetLoop(const bool _loop)						{ m_loop = _loop; }
 
 	inline void	SetAnim(const std::string _name);
 

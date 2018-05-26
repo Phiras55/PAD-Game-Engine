@@ -17,7 +17,7 @@
 
 int main()
 {
-	//pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
+	pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
 
 	#pragma region RenderInit
 
@@ -28,7 +28,7 @@ int main()
 	winSettings.position.y		= 30u;
 	winSettings.size.x			= 1600u;
 	winSettings.size.y			= 900u;
-	winSettings.isFullscreen	= true;
+	winSettings.isFullscreen	= false;
 	winSettings.windowType		= pad::gfx::win::E_WINDOW_TYPE::SDL;
 
 	// Will be read from a config file
@@ -80,13 +80,13 @@ int main()
 	pad::sys::ecs::RigidBody* rb = plat->GetComponent<pad::sys::ecs::RigidBody>();
 	rb->SetMass(0.f);
 
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 1; ++i)
 	{
 		pad::sys::ecs::PADObject* cube = pad::CreatePADObject(std::string("Cube_0") + std::to_string(i));
 
 		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i*10, 0));
-		cube->GetTransform().SetRotation(pad::math::Vec3f(i * 45, i * 45, i * 45));
-		cube->GetTransform().SetScale(0.05f);
+		cube->GetTransform().SetRotation(pad::math::Vec3f(0, 90, 0));
+		cube->GetTransform().SetScale(0.03f);
 
 		cube->AddComponent<pad::sys::ecs::AnimRenderer>(
 			"creature_giantspider_giantspider", 
@@ -96,8 +96,10 @@ int main()
 		cube->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(1.f, 1.f, 1.f));
 		cube->AddComponent<pad::sys::ecs::RigidBody>();
 
-		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnim("creature_giantspider_giantspider_Death [6]");
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnim("creature_giantspider_giantspider_Run [1]");
 		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->GetSettings().isAffectedByLight = true;
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnimSpeed(3);
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetLoop(true);
 
 		rb = cube->GetComponent<pad::sys::ecs::RigidBody>();
 		rb->SetMass(10.f);

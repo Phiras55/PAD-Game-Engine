@@ -89,6 +89,21 @@ struct BoneInfo
 {
 	std::vector<int>		boneIds;
 	std::vector<math::Mat4> transforms;
+
+	inline bool operator != (const BoneInfo& _other)
+	{ 
+		if (boneIds != _other.boneIds || transforms != _other.transforms) 
+			return true;
+		else 
+			return false; 
+	}
+	inline bool operator == (const BoneInfo& _other)
+	{
+		if (boneIds != _other.boneIds || transforms != _other.transforms)
+			return false;
+		else
+			return true;
+	}
 };
 
 struct AnimData

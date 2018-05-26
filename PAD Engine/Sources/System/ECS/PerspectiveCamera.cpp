@@ -27,6 +27,11 @@ void PerspectiveCamera::MoveForward(const float32 _speed)
 	m_transform.Move(m_transform.Forward() * _speed * core::EngineClock::DeltaTime());
 }
 
+void PerspectiveCamera::MoveBackward(const float32 _speed)
+{
+	m_transform.Move(-m_transform.Forward() * _speed * core::EngineClock::DeltaTime());
+}
+
 void PerspectiveCamera::Init()
 {
 

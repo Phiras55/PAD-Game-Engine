@@ -525,7 +525,31 @@ void ParseBoneWeight(	const	std::string&			_outputPath,
 	out << append;
 
 	if (animCount > 0)
+	{
+		for (int animIndex = 0; animIndex < animCount; ++animIndex)
+		{
+			int tempFrameNumber = anims[animIndex]->frameNumber;
+			bool firstSame = true;
+			for (int frameIndex = 0; frameIndex < anims[animIndex]->frameNumber; ++frameIndex)
+			{
+				if (frameIndex != 0)
+				{
+					if (anims[animIndex]->boneInfos[frameIndex] == anims[animIndex]->boneInfos[frameIndex - 1])
+					{
+						if (firstSame)
+						{
+							--tempFrameNumber;
+							firstSame = false;
+						}
+						--tempFrameNumber;
+					}
+				}
+			}
+			anims[animIndex]->frameNumber = tempFrameNumber;
+			anims[animIndex]->animDuration = tempFrameNumber / 24.f;
+		}
 		GeneratePADAnim(_outputPath, _fileName, anims, animCount);
+	}
 
 	for (int i = 0; i < animCount; ++i)
 	{
@@ -566,7 +590,6 @@ void GeneratePADAnim(	const	std::string&			_outputPath,
 		for (int frameIndex = 0; frameIndex < _anims[animIndex]->frameNumber; ++frameIndex)
 		{
 			result += "[KEY]\n";
-
 			for (int boneIndex = 0; boneIndex < _anims[animIndex]->boneInfos[frameIndex].boneIds.size(); ++boneIndex)
 			{
 				result += std::to_string(_anims[animIndex]->boneInfos[frameIndex].boneIds[boneIndex]) + " ";

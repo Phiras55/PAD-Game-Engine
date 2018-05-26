@@ -373,11 +373,24 @@ void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, flo
 	if (_animRenderer.GetFrameDuration() == -1)
 		_animRenderer.SetFrameDuration(anim->m_duration / (float)anim->m_frameCount);
 
-	if (_animRenderer.GetTimer().GetDuration() > _animRenderer.GetFrameDuration())
+	int nextKey;
+	if (_animRenderer.GetTimer().GetDuration() * _animRenderer.GetAnimSpeed() > _animRenderer.GetFrameDuration())
 	{
 		int key = _animRenderer.GetCurrentFrame() + 1;
+		nextKey = key + 1;
 		if (key >= anim->m_frameCount)
-			key = 0;
+		{
+			if (_animRenderer.GetLoop())
+			{
+				key = 0;
+				nextKey = 1;
+			}
+			else
+			{
+				--key;
+				nextKey = key;
+			}
+		}
 		_animRenderer.SetCurrentFrame(key);
 		_animRenderer.GetTimer().Reset();
 	}

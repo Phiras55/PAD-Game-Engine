@@ -61,6 +61,7 @@ void Engine::StartSimulation()
 	math::Transform& t = c->GetTransform();
 
 	m_highLevelRenderer.BindInputs(SDLK_w, std::bind(&sys::ecs::PerspectiveCamera::MoveForward, c, 5.f), false, 0);
+	m_highLevelRenderer.BindInputs(SDLK_s, std::bind(&sys::ecs::PerspectiveCamera::MoveBackward, c, 5.f), false, 0);
 	m_highLevelRenderer.BindInputs(SDLK_ESCAPE, std::bind(&Engine::Close, this), false, 0);
 
 	while (m_highLevelRenderer.IsWindowOpen())

@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F8CA2257-F73B-313D-A015-432ECBADC131}</ProjectGuid>
+    <ProjectGuid>{B6574368-7512-3214-BB93-BE8DC6C7D773}</ProjectGuid>
     <RootNamespace>PAD-Engine</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
@@ -114,7 +114,7 @@
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/FBXSDK;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/FBXSDK;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
     </QtMoc>
     <QtRcc>
       <InitFuncName>style</InitFuncName>
@@ -188,7 +188,7 @@
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/FBXSDK;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/FBXSDK;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
     </QtMoc>
     <QtUic>
       <QTDIR>$(QTDIR)</QTDIR>
@@ -303,7 +303,7 @@
   <ImportGroup Label="ExtensionTargets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" Qt5Version_x0020_x64="5.10.0" />
+      <UserProperties UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" Qt5Version_x0020_x64="msvc2017_64" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

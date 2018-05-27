@@ -25,6 +25,8 @@ private slots:
 
     void on_actionAdd_Pad_Object_triggered();
 
+    void updateInspector();
+
 private:
     Ui::PADEditor *ui;
 

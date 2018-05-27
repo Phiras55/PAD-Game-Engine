@@ -1419,8 +1419,8 @@ QDateEdit::down-arrow:focus {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>62</width>
-          <height>410</height>
+          <width>65</width>
+          <height>382</height>
          </rect>
         </property>
         <property name="sizePolicy">

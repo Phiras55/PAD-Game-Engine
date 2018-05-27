@@ -42,7 +42,6 @@ int main(int argc, char *argv[])
     }
     PADEditor w;
     w.show();
-
     pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
 
     #pragma region RenderInit

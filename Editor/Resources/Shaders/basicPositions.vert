@@ -17,13 +17,6 @@ layout (std140, binding = 0, row_major) uniform CameraSettings
 	mat4 viewPerspective;	// 64				// 32
 } camera;
 
-layout (std140, binding = 1) uniform Lights
-{
-							// Base Alignment  	// Aligned Offset
-	vec4 position;			// 16				// 0
-	vec3 direction; 		// 16				// 16
-} lights;
-
 out VertexData
 {
 	vec3 color;

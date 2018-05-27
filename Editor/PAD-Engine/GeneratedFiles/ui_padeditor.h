@@ -1401,7 +1401,7 @@ public:
         scrollArea->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 62, 410));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 65, 382));
         sizePolicy.setHeightForWidth(scrollAreaWidgetContents->sizePolicy().hasHeightForWidth());
         scrollAreaWidgetContents->setSizePolicy(sizePolicy);
         scrollAreaWidgetContents->setFocusPolicy(Qt::ClickFocus);

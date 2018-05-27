@@ -50,6 +50,9 @@ PADEditor::PADEditor(QWidget *parent) :
     sceneView = new SceneView(ui->Hierarchy_Content);
     ui->Hierarchy_Content->layout()->addWidget(sceneView);
 
+    connect(sceneView, SIGNAL(itemSelectionChanged()), this, SLOT(updateInspector()));
+
+
 //FocusPolicy
     setContextMenuPolicy(Qt::ContextMenuPolicy::PreventContextMenu);
     openGLWidget->setFocusPolicy(Qt::FocusPolicy::ClickFocus);
@@ -75,4 +78,9 @@ void PADEditor::on_actionAdd_Pad_Object_triggered()
 {
     pad::sys::ecs::PADObject* obj = pad::CreatePADObject("DefaultName", nullptr);
     sceneView->AddObject(obj, nullptr);
+}
+
+void PADEditor::updateInspector()
+{
+
 }

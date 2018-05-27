@@ -17,7 +17,11 @@
 
 int main()
 {
-	pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
+	int result = pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
+	if (result == 1)
+		std ::cout << ("Fail to Parse") << std::endl;
+	else if (result == 0)
+		std::cout << ("Parsing done") << std::endl;
 
 	#pragma region RenderInit
 
@@ -115,4 +119,3 @@ int main()
 
 	return EXIT_SUCCESS;
 }
-

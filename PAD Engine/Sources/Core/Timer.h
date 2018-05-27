@@ -17,8 +17,8 @@ public:
 	Timer(const bool _affectedByPause = true);														/*!< Default constructor */
 	~Timer();																						/*!< Default destructor */	
 																				
-	Timer(const Timer&) = delete;
-	Timer(Timer&&)		= delete;
+	Timer(const Timer&) = default;
+	Timer(Timer&&)		= default;
 #pragma endregion
 
 #pragma region Variables
@@ -58,9 +58,9 @@ public:
 
 #pragma region Operators
 
-public:
-	Timer& operator=(const Timer&)	= delete;
-	Timer& operator=(Timer&&)		= delete;
+//public:
+	Timer& operator=(const Timer&)	= default;
+	//Timer& operator=(Timer&&)		= delete;
 
 #pragma endregion
 };

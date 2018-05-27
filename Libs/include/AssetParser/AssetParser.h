@@ -48,7 +48,7 @@ struct AssetMaterial
 	gfx::rhi::TextureParameters textureParam;
 };
 
-struct Bone
+struct BoneData
 {
 	int				id;
 	int				parentId;
@@ -59,16 +59,14 @@ struct Bone
 	math::Vec4f		scale;
 
 	math::Mat4		inverseBindPose;
-
-
 };
 
-struct Skeleton
+struct SkeletonData
 {
-	std::string			skeletonName;
-	std::vector<Bone*>	bones;
+	std::string				skeletonName;
+	std::vector<BoneData*>	bones;
 
-	~Skeleton()
+	~SkeletonData()
 	{
 		for (int boneIndex = 0; boneIndex < bones.size(); ++boneIndex)
 		{
@@ -85,6 +83,35 @@ struct Skeleton
 		}
 		return -1;
 	}
+};
+
+struct BoneInfo
+{
+	std::vector<int>		boneIds;
+	std::vector<math::Mat4> transforms;
+
+	inline bool operator != (const BoneInfo& _other)
+	{ 
+		if (boneIds != _other.boneIds || transforms != _other.transforms) 
+			return true;
+		else 
+			return false; 
+	}
+	inline bool operator == (const BoneInfo& _other)
+	{
+		if (boneIds != _other.boneIds || transforms != _other.transforms)
+			return false;
+		else
+			return true;
+	}
+};
+
+struct AnimData
+{
+	std::string		name;
+	int				frameNumber;
+	float			animDuration;
+	BoneInfo*		boneInfos;
 };
 
 PARSER_RESULT ParseFile(const	std::string& _inputPath, 
@@ -119,16 +146,16 @@ void GeneratePADMesh(	const	std::string&			_outputPath,
 						const	std::string&			_materialPath);
 
 void ParseSkeleton(	FbxNode*		const	_currentNode,
-					Skeleton*		const	_skeleton);
+					SkeletonData*	const	_skeleton);
 
-void ParseSkeletonRecur(Skeleton*	const	_skeleton,
-						FbxNode*	const	_currentNode,
-						int					_id,
-						int					_parentId);
+void ParseSkeletonRecur(SkeletonData*	const	_skeleton,
+						FbxNode*		const	_currentNode,
+						int						_id,
+						int						_parentId);
 
 void GeneratePADSkeleton(	const	std::string&			_outputPath, 
 							const	std::string&			_skeletonName,
-									Skeleton*		const	_skeleton);
+									SkeletonData*	const	_skeleton);
 
 std::string ParseMaterial(const	std::string&			_outputPath,
 								FbxNode*		const	_currentNode);
@@ -136,17 +163,25 @@ std::string ParseMaterial(const	std::string&			_outputPath,
 std::string GeneratePADMaterial(const	std::string&	_outputPath, 
 										AssetMaterial&	_material);
 
-void ParseAnimation(const	std::string&			_outputPath,
-					const	std::string&			_fileName,
-							FbxNode*		const	_currentNode,
-							FbxMesh*		const	_fbxMesh,
-							Skeleton*		const	_skeleton,
-							ControlPoint*	const	_controlPoint);
+void ParseBoneWeight(	const	std::string&			_outputPath,
+						const	std::string&			_fileName,
+								FbxScene*		const	_scene,
+								FbxNode*		const	_currentNode,
+								FbxMesh*		const	_fbxMesh,
+								SkeletonData*	const	_skeleton,
+								ControlPoint*	const	_controlPoint);
 
 void ParseTexture(	FbxFileTexture*	const	_texture,
 					AssetMaterial&			_material);
 
-math::Mat4 FbxMatToMat(const FbxAMatrix& _matrix);
+void GeneratePADAnim(	const	std::string&			_outputPath,
+						const	std::string&			_skeletonName,
+								AnimData**		const	_anims,
+						const	int						_animCount);
+
+math::Mat4 FbxMatToMat(	const FbxAMatrix& _matrix);
+
+std::string MatToString(const math::Mat4& _matrix);
 
 } // namespace parser
 } // namespace pad

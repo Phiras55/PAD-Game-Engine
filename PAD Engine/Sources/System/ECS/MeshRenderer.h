@@ -21,7 +21,7 @@ public:
 	MeshRenderer(const std::string& _meshName, const std::string& _materialName);
 	~MeshRenderer();
 
-private:
+protected:
 	std::string					m_meshName;
 	std::string					m_materialName;
 	gfx::rhi::RenderSettings	m_settings;

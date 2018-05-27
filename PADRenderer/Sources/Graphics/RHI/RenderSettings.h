@@ -13,6 +13,7 @@ struct RenderSettings final : public ISerializable
 	RenderSettings() :
 		programHandle("Default"),
 		modelMatrix(nullptr),
+		isAffectedByLight(false),
 		isWireframe(false)
 	{
 	}
@@ -20,7 +21,8 @@ struct RenderSettings final : public ISerializable
 	std::string												programHandle;
 	std::unordered_map<std::string, shad::CustomUniform>	customUniforms;
 	const math::Matrix4x4*									modelMatrix;
-
+	
+	bool isAffectedByLight;
 	bool isWireframe;
 
 	json Serialize()				override

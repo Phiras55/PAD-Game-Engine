@@ -1,9 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <AssetParser/AssetReader.h>
+#include <AssetReader.h>
 #include <Shlwapi.h>
-#include "AssetReader.h"
 
 #pragma comment(lib,"shlwapi.lib")
 
@@ -22,6 +21,7 @@ void ReadPADMesh(const	std::string&			_inputPath,
 		NORMALS,
 		UVS,
 		INDICES,
+		BONE_WEIGHT,
 		DEFAULT
 	};
 
@@ -29,6 +29,7 @@ void ReadPADMesh(const	std::string&			_inputPath,
 	int normalCounter	= 0;
 	int uvCounter		= 0;
 	int indicesCounter	= 0;
+	int boneCounter		= 0;
 	SECTION sec			= DEFAULT;
 
 	std::ifstream in(_inputPath);
@@ -52,6 +53,8 @@ void ReadPADMesh(const	std::string&			_inputPath,
 				sec = UVS;
 			else if (line == "[INDICES]")
 				sec = INDICES;
+			else if (line == "[BONE_WEIGHT]")
+				sec = BONE_WEIGHT;
 			else
 				sec = DEFAULT;
 		}
@@ -63,14 +66,18 @@ void ReadPADMesh(const	std::string&			_inputPath,
 				{
 					stream >> _meshData.positionCount;
 
-					_meshData.normalCount	= _meshData.positionCount * 3;
-					_meshData.uvCount		= _meshData.positionCount * 2;
+					_meshData.normalCount		= _meshData.positionCount * 3;
+					_meshData.uvCount			= _meshData.positionCount * 2;
 
-					_meshData.positions		= new float[_meshData.positionCount * 3];
-					_meshData.normals		= new float[_meshData.normalCount * 3];
-					_meshData.uvs			= new float[_meshData.uvCount * 2];
+					_meshData.positions			= new float[_meshData.positionCount * 3];
+					_meshData.normals			= new float[_meshData.normalCount * 3];
+					_meshData.uvs				= new float[_meshData.uvCount * 2];
+					_meshData.boneIndex			= new float[_meshData.positionCount * 4];
+					_meshData.boneWeight		= new float[_meshData.positionCount * 4];
 
-					_meshData.positionCount *= 3;
+					_meshData.boneIndexCount	= _meshData.positionCount * 4;
+					_meshData.boneWeightCount	= _meshData.positionCount * 4;
+					_meshData.positionCount		*= 3;
 
 					break;
 				}
@@ -109,6 +116,12 @@ void ReadPADMesh(const	std::string&			_inputPath,
 					std::string path;
 					stream >> path;
 //					ReadPADMaterial(path);
+				}
+				case BONE_WEIGHT :
+				{
+					stream >> _meshData.boneIndex[boneCounter] >> _meshData.boneWeight[boneCounter];
+					++boneCounter;
+					break;
 				}
 			}
 		}
@@ -203,8 +216,143 @@ void ReadPADMaterial(const	std::string&			_inputPath,
 					break;
 				}
 				case CHANNEL:
+				{
 					stream >> _textureData.m_channel;
 					break;
+				}
+			}
+		}
+	}
+}
+
+void ReadPADSkeleton(const	std::string&		_inputPath, 
+							gfx::mod::Skeleton& _skeleton)
+{
+	enum SECTION
+	{
+		BONE_COUNT,
+		BONES,
+		DEFAULT
+	};
+
+	SECTION sec = DEFAULT;
+
+//	std::string	name = PathFindFileName(_inputPath.c_str());
+	_skeleton.SetName(GetFileNameNoExt(_inputPath));
+
+	std::ifstream in(_inputPath);
+	std::string line;
+	while (std::getline(in, line))
+	{
+		std::istringstream stream(line);
+		if (line[0] == '[')
+		{
+			if (line == "[BONE_COUNT]")
+				sec = BONE_COUNT;
+			else if (line == "[BONES]")
+				sec = BONES;
+			else
+				sec = DEFAULT;
+		}
+		else
+		{
+			switch (sec)
+			{
+				case BONE_COUNT:
+				{
+					int boneCount;
+					stream >> boneCount;
+					_skeleton.SetBoneCount(boneCount);
+					break;
+				}
+				case BONES:
+				{
+					gfx::mod::Bone b;
+					stream	>> b.m_name	>> b.m_id >> b.m_parentId 
+							>> b.m_inverseBindPose[0][0] >> b.m_inverseBindPose[0][1] >> b.m_inverseBindPose[0][2] >> b.m_inverseBindPose[0][3]
+							>> b.m_inverseBindPose[1][0] >> b.m_inverseBindPose[1][1] >> b.m_inverseBindPose[1][2] >> b.m_inverseBindPose[1][3] 
+							>> b.m_inverseBindPose[2][0] >> b.m_inverseBindPose[2][1] >> b.m_inverseBindPose[2][2] >> b.m_inverseBindPose[2][3]
+							>> b.m_inverseBindPose[3][0] >> b.m_inverseBindPose[3][1] >> b.m_inverseBindPose[3][2] >> b.m_inverseBindPose[3][3];
+					_skeleton.AddBone(b);
+					break;
+				}
+			}
+		}
+	}
+}
+
+void ReadPADAnim(const	std::string&	_inputPath, 
+						gfx::mod::Anim& _anim)
+{
+	enum SECTION
+	{
+		FRAME_COUNT,
+		BONE_COUNT,
+		DURATION,
+		KEY,
+		DEFAULT
+	};
+
+	SECTION sec = DEFAULT;
+
+	_anim.m_name = GetFileNameNoExt(_inputPath);
+
+	int frameCounter = -1;
+
+	std::ifstream in(_inputPath);
+	std::string line;
+	while (std::getline(in, line))
+	{
+		std::istringstream stream(line);
+		if (line[0] == '[')
+		{
+			if (line == "[FRAME_COUNT]")
+				sec = FRAME_COUNT;
+			else if (line == "[BONE_COUNT]")
+				sec = BONE_COUNT;
+			else if (line == "[DURATION]")
+				sec = DURATION;
+			else if (line == "[KEY]")
+			{
+				sec = KEY;
+				++frameCounter;
+				gfx::mod::KeyFrame keyFrame;
+				keyFrame.m_id = frameCounter;
+				_anim.m_keyFrames.push_back(keyFrame);
+			}
+			else
+				sec = DEFAULT;
+		}
+		else
+		{
+			switch (sec)
+			{
+				case FRAME_COUNT:
+				{
+					stream >> _anim.m_frameCount;
+					break;
+				}
+				case BONE_COUNT:
+				{
+					stream >> _anim.m_boneCount;					
+					break;
+				}
+				case DURATION:
+				{
+					stream >> _anim.m_duration;
+					break;
+				}
+				case KEY:
+				{
+					gfx::mod::BoneAnim boneAnim;
+					stream	>> boneAnim.m_boneId
+							>> boneAnim.m_transform[0][0] >> boneAnim.m_transform[0][1] >> boneAnim.m_transform[0][2] >> boneAnim.m_transform[0][3]
+							>> boneAnim.m_transform[1][0] >> boneAnim.m_transform[1][1] >> boneAnim.m_transform[1][2] >> boneAnim.m_transform[1][3]
+							>> boneAnim.m_transform[2][0] >> boneAnim.m_transform[2][1] >> boneAnim.m_transform[2][2] >> boneAnim.m_transform[2][3]
+							>> boneAnim.m_transform[3][0] >> boneAnim.m_transform[3][1] >> boneAnim.m_transform[3][2] >> boneAnim.m_transform[3][3];
+					_anim.m_keyFrames[frameCounter].m_bones.push_back(boneAnim);
+					break;
+				}
 			}
 		}
 	}
@@ -218,6 +366,15 @@ std::string GetFileExt(const std::string& _path)
 std::string GetFileName(const std::string& _path)
 {
 	return PathFindFileName(_path.c_str());
+}
+
+std::string GetFileNameNoExt(const std::string& _path)
+{
+	std::string result;
+	result			= GetFileName(_path);
+	size_t extIndex = result.find_last_of(".");
+	result			= result.substr(0, extIndex);
+	return result;
 }
 
 } // namespace parser

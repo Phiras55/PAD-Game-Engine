@@ -15,33 +15,12 @@ ACollider::ACollider() :
 
 ACollider::~ACollider()
 {
-	if (m_btCollider)
-		delete m_btCollider;
 
-	if (m_btCollisionShape)
-		delete m_btCollisionShape;
 }
 
 void ACollider::Init()
 {
-	//m_transform = m_owner->GetTransform();
 
-	//RigidBody* rb = nullptr;
-	//for (auto comp : m_owner->GetComponents())
-	//{
-	//	if (comp->GetType() == COMPONENT_TYPE::RIGIDBODY)
-	//	{
-	//		rb = static_cast<RigidBody*>(comp);
-	//		if (!rb->GetCollider())
-	//		{
-	//			rb->SetCollider(this);
-	//			return;
-	//		}
-	//	}
-	//}
-
-	//if (!rb)
-	//	core::Engine::GetPhysicContext()->AddCollider(this);
 }
 
 void ACollider::SetBTCollisionObject(btCollisionObject* const _collisionObject)

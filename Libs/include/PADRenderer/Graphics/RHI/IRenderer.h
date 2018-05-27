@@ -37,15 +37,17 @@ public:
 	virtual void ForwardRendering(
 		rhi::AVertexArray* const _vaos, 
 		rhi::AVertexBuffer* const _ibos, 
-		const rhi::RenderSettings _settings, 
-		const math::Mat4& _vp)														= 0;
+		const rhi::RenderSettings _settings)										= 0;
 	virtual void SetCameraUniformBufferData(
 		const math::Vec3f& _position,
 		const math::Vec3f& _direction,
 		const math::Mat4& _vp)														= 0;
-	virtual void SetLightsUniformBufferData(
-		math::Vec4f* const _positions, 
-		math::Vec4f* const _directions,
+	virtual void SetDirectionalLightUniformBufferData(
+		const math::Vec3f& _direction,
+		const math::Vec3f& _color,
+		const float _intensity)														= 0;
+	virtual void SetJointsUniformBufferData(
+		float* const _joints,
 		const uint8 _count)															= 0;
 	virtual void CreateUniformBuffer(const UniformBufferSettings& _settings)		= 0;
 	virtual bool LoadShaders(
@@ -56,8 +58,8 @@ public:
 	inline shad::AShaderManager* const GetShaderManager() { return m_shaderManager; }
 
 protected:
-	virtual void InitContext(const rhi::ContextSettings& _settings)				= 0;
-	virtual void InitViewPort(const math::Vec2i& _viewportSize)					= 0;
+	virtual void InitContext(const rhi::ContextSettings& _settings)					= 0;
+	virtual void InitViewPort(const math::Vec2i& _viewportSize)						= 0;
 };
 
 } // namespace rhi

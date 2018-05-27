@@ -1,30 +1,31 @@
-//#include <EnginePCH.h>
+#include <EnginePCH.h>
 #include <Core/EngineDLL.h>
-//#include <Graphics/GL/Shader/GLShaderProgram.h>
-//#include <Graphics/GL/Shader/GLVertexShader.h>
-//#include <Graphics/GL/Shader/GLFragmentShader.h>
-//#include <System/ECS/PerspectiveCamera.h>
-//#include <System/ECS/PADObject.h>
-//#include <System/ECS/RigidBody.h>
-//#include <Graphics/Model/Mesh.h>
-//#include <Graphics/Model/MeshData.h>
-//#include <System/ECS/MeshRenderer.h>
-//#include <System/ECS/BoxCollider.h>
-
+#include <Graphics/GL/Shader/GLShaderProgram.h>
+#include <Graphics/GL/Shader/GLVertexShader.h>
+#include <Graphics/GL/Shader/GLFragmentShader.h>
+#include <System/ECS/PerspectiveCamera.h>
+#include <System/ECS/PADObject.h>
+#include <System/ECS/RigidBody.h>
+#include <Graphics/Model/Mesh.h>
+#include <Graphics/Model/MeshData.h>
+#include <System/ECS/MeshRenderer.h>
+#include <System/ECS/BoxCollider.h>
+#include <AssetParser/AssetReader.h>
+#include <AssetParser/AssetParser.h>
 
 #undef main
 
 int main()
 {
-	pad::parser::ParseFile("..\\Resources\\FBX\\GiantSpider.fbx", "..\\Resources\\PADFormat\\");
+	pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
 
 	#pragma region RenderInit
 
 	pad::gfx::win::WindowSettings winSettings;
 
 	winSettings.title			= "This is a SDL Window.";
-	winSettings.position.x		= 400u;
-	winSettings.position.y		= 200u;
+	winSettings.position.x		= 0u;
+	winSettings.position.y		= 30u;
 	winSettings.size.x			= 1600u;
 	winSettings.size.y			= 900u;
 	winSettings.isFullscreen	= false;
@@ -53,12 +54,22 @@ int main()
 	pad::sys::ecs::PADObject* plat = pad::CreatePADObject("Platform");
 	plat->AddComponent<pad::sys::ecs::MeshRenderer>("Cube", "Default");
 
-	pad::LoadResourceFile("../Resources/PADFormat\\creature_pitlord_magtheridon_0.PADMaterial", "");
-	pad::LoadResourceFile("../Resources/PADFormat\\creature_pitlord_magtheridon.PADMesh", "");
-	pad::LoadResourceFile("../Resources/PADFormat\\creature_giantspider_giantspider_0.PADMaterial", "");
-	pad::LoadResourceFile("../Resources/PADFormat\\creature_giantspider_giantspider.PADMesh", "");
-	pad::LoadResourceFile("../Resources/PADFormat\\Grid.PADMaterial", "");
-	pad::LoadResourceFile("../Resources/PADFormat\\Default.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_pitlord_magtheridon_0.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_pitlord_magtheridon.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_0.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_Walk [0].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_AttackUnarmed [4].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_CombatWound [5].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_Run [1].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_SpellCast [7].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_Stand [2].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_Death [6].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider.PADSkeleton", "");
+	pad::LoadResourceFile("../Resources/PADFormat/Grid.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/Default.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/pCube1.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/lambert2.PADMaterial", "");
 
 	plat->GetTransform().SetScale(pad::math::Vec3f(10.f, 1.f, 10.f));
 
@@ -69,18 +80,26 @@ int main()
 	pad::sys::ecs::RigidBody* rb = plat->GetComponent<pad::sys::ecs::RigidBody>();
 	rb->SetMass(0.f);
 
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 1; ++i)
 	{
 		pad::sys::ecs::PADObject* cube = pad::CreatePADObject(std::string("Cube_0") + std::to_string(i));
 
-		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i * 2 + 10, 0));
-		cube->GetTransform().SetRotation(pad::math::Vec3f(i * 45, i * 45, i * 45));
-		cube->GetTransform().SetScale(0.01f);
+		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i*10, 0));
+		cube->GetTransform().SetRotation(pad::math::Vec3f(0, 90, 0));
+		cube->GetTransform().SetScale(0.03f);
 
-		cube->AddComponent<pad::sys::ecs::MeshRenderer>("creature_giantspider_giantspider",	"creature_giantspider_giantspider_0");
-
+		cube->AddComponent<pad::sys::ecs::AnimRenderer>(
+			"creature_giantspider_giantspider", 
+			"creature_giantspider_giantspider_0", 
+			"creature_giantspider_giantspider", 
+			"creature_giantspider_giantspider_AttackUnarmed [3]");
 		cube->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(1.f, 1.f, 1.f));
 		cube->AddComponent<pad::sys::ecs::RigidBody>();
+
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnim("creature_giantspider_giantspider_Run [1]");
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->GetSettings().isAffectedByLight = true;
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnimSpeed(3);
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetLoop(true);
 
 		rb = cube->GetComponent<pad::sys::ecs::RigidBody>();
 		rb->SetMass(10.f);

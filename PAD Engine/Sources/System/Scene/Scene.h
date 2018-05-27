@@ -1,5 +1,6 @@
 #pragma once
 #include <System/ECS/PerspectiveCamera.h>
+#include <System/ECS/DirectionalLight.h>
 #include <System/ECS/PADObject.h>
 #include <Json/Serialization.h>
 
@@ -18,7 +19,8 @@ public:
 
 private:
 	PADObject*			m_masterPADObject;
-	PerspectiveCamera	m_mainCamera;
+	PerspectiveCamera*	m_mainCamera;
+	DirectionalLight*	m_directionalLight;
 
 public:
 	void Init();
@@ -39,8 +41,9 @@ private:
 	PADObject* FindPADObject(const std::string& _name, PADObject* const _rootSearch = nullptr);
 
 public:
-	inline PADObject* const		GetMasterObject()	{ return m_masterPADObject; }
-	inline PerspectiveCamera&	GetMainCamera()		{ return m_mainCamera; }
+	inline PADObject* const		GetMasterObject()		{ return m_masterPADObject; }
+	inline PerspectiveCamera*	GetMainCamera()			{ return m_mainCamera; }
+	inline DirectionalLight*	GetDirectionalLight()	{ return m_directionalLight; }
 };
 
 } // namespace ecs

@@ -1,5 +1,6 @@
 #include <EnginePCH.h>
 #include <System/ECS/PerspectiveCamera.h>
+#include <Core/EngineClock.h>
 
 namespace pad	{
 namespace sys	{
@@ -19,6 +20,16 @@ PerspectiveCamera::PerspectiveCamera()
 PerspectiveCamera::~PerspectiveCamera()
 {
 
+}
+
+void PerspectiveCamera::MoveForward(const float32 _speed)
+{
+	m_transform.Move(m_transform.Forward() * _speed * core::EngineClock::DeltaTime());
+}
+
+void PerspectiveCamera::MoveBackward(const float32 _speed)
+{
+	m_transform.Move(-m_transform.Forward() * _speed * core::EngineClock::DeltaTime());
 }
 
 void PerspectiveCamera::Init()

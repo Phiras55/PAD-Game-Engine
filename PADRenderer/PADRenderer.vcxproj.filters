@@ -55,6 +55,12 @@
     <Filter Include="Source Files\Graphics\Window">
       <UniqueIdentifier>{6b739a59-35e0-4fa3-97f3-b65d8979e3c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Graphics\Inputs">
+      <UniqueIdentifier>{97704248-9508-4090-a480-a176cab1dbd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Inputs">
+      <UniqueIdentifier>{9db628a8-1b01-4aaf-bf60-cfb961157f74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Graphics\GL\GLRenderer.cpp">
@@ -110,6 +116,12 @@
     </ClCompile>
     <ClCompile Include="Sources\Graphics\GL\Shader\GLShaderManager.cpp">
       <Filter>Source Files\Graphics\GL\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\Model\Skeleton.cpp">
+      <Filter>Source Files\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Graphics\Inputs\Inputs.cpp">
+      <Filter>Source Files\Inputs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +232,15 @@
     </ClInclude>
     <ClInclude Include="Sources\Graphics\Model\TextureData.h">
       <Filter>Header Files\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Model\Skeleton.h">
+      <Filter>Header Files\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Inputs\Inputs.h">
+      <Filter>Header Files\Graphics\Inputs</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Graphics\Inputs\InputData.h">
+      <Filter>Header Files\Graphics\Inputs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -25,6 +25,8 @@ public:
 public:
 	const math::Mat4& Perspective(float _fov, float _aspectRatio, float _near, float _far) override;
 	const math::Mat4& LookAt(const math::Vec3f& _eyePos, const math::Vec3f& _target, const math::Vec3f& _up) override;
+	void MoveForward(const float32 _speed);
+	void MoveBackward(const float32 _speed);
 
 	const alias::ComponentID GetType() const override
 	{

@@ -2,7 +2,6 @@
 #include <System/ResourceHandling/ComponentsHandler.h>
 #include <Json/Serialization.h>
 #include <Utilities/Export.h>
-#include <bitset>
 
 namespace pad	{
 namespace sys	{

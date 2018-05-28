@@ -6,14 +6,19 @@ namespace sys	{
 namespace ecs	{
 
 Scene::Scene() : 
-	m_masterPADObject(new PADObject())
+	m_masterPADObject(new PADObject()),
+	m_directionalLight(nullptr),
+	m_mainCamera(nullptr)
 {
 	m_masterPADObject->SetName("MasterSceneObject");
+	m_isLightRotating = false;
 }
 
 Scene::~Scene() 
 {
 	delete m_masterPADObject;
+	m_directionalLight = nullptr;
+	m_mainCamera = nullptr;
 }
 
 void Scene::Init()
@@ -22,26 +27,33 @@ void Scene::Init()
 
 	PADObject* light, *camera;
 
-	light =  CreatePADObject("DirectionalLight", m_masterPADObject);
-	camera = CreatePADObject("MainCamera", m_masterPADObject);
-
-	light->AddComponent<DirectionalLight>();
-	light->GetTransform().SetRotation(math::Vec3f(0.f, 180.f, 0.f));
-	m_directionalLight = light->GetComponent<DirectionalLight>();
-
-	if (m_directionalLight)
+	if (!m_directionalLight)
 	{
-		m_directionalLight->SetColor(math::Vec3f(255.f / 255.f, 244.f / 255.f, 214.f / 255.f));
-		m_directionalLight->SetIntensity(1.f);
+		light = CreatePADObject("DirectionalLight", m_masterPADObject);
+
+		light->AddComponent<DirectionalLight>();
+		light->GetTransform().SetRotation(math::Vec3f(0.f, 180.f, 0.f));
+		m_directionalLight = light->GetComponent<DirectionalLight>();
+
+		if (m_directionalLight)
+		{
+			m_directionalLight->SetColor(math::Vec3f(255.f / 255.f, 244.f / 255.f, 214.f / 255.f));
+			m_directionalLight->SetIntensity(1.f);
+		}
 	}
-
-	camera->AddComponent<PerspectiveCamera>();
-	m_mainCamera = camera->GetComponent<PerspectiveCamera>();
-
-	if (m_mainCamera)
+	
+	if (!m_mainCamera)
 	{
-		m_mainCamera->Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-		m_mainCamera->GetOwner()->GetTransform().SetPosition(math::Vec3f(0, 5, -10));
+		camera = CreatePADObject("MainCamera", m_masterPADObject);
+
+		camera->AddComponent<PerspectiveCamera>();
+		m_mainCamera = camera->GetComponent<PerspectiveCamera>();
+
+		if (m_mainCamera)
+		{
+			m_mainCamera->Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
+			m_mainCamera->GetOwner()->GetTransform().SetPosition(math::Vec3f(0, 5, -10));
+		}
 	}
 }
 
@@ -53,6 +65,9 @@ void Scene::Start()
 void Scene::Update()
 {
 	m_masterPADObject->Update();
+
+	if (m_isLightRotating)
+		m_directionalLight->GetOwner()->GetTransform().SetRotation(m_directionalLight->GetOwner()->GetTransform().Rotation() + (m_lightRotation * core::EngineClock::DeltaTime()));
 }
 
 void Scene::FixedUpdate()
@@ -87,8 +102,8 @@ void Scene::Deserialize(const std::string& _savePath)
 	if (m_masterPADObject)
 	{
 		m_masterPADObject->Deserialize(j);
-		m_directionalLight = GetPADObject("DirectionalLight")->GetComponent<DirectionalLight>();
-		m_mainCamera = GetPADObject("MainCamera")->GetComponent<PerspectiveCamera>();
+		m_directionalLight	= GetPADObject("DirectionalLight")->GetComponent<DirectionalLight>();
+		m_mainCamera		= GetPADObject("MainCamera")->GetComponent<PerspectiveCamera>();
 	}
 }
 
@@ -137,6 +152,16 @@ PADObject* Scene::FindPADObject(const std::string& _name, PADObject* const _root
 	}
 
 	return resultEntity;
+}
+
+void Scene::ToggleDirectionalLightRotation()
+{
+	m_isLightRotating = !m_isLightRotating;
+}
+
+void Scene::SetLightRotation(const math::Vec3f& _rotation)
+{
+	m_lightRotation = _rotation;
 }
 
 } // namespace ecs

@@ -29,14 +29,19 @@ public:
 	json Serialize()				override;
 	void Deserialize(const json& j)	override;
 
-	inline float GetFov()			{ return fov; }
-	inline float GetAspectRatio()	{ return aspectRatio; }
-	inline float GetNear()			{ return near; }
-	inline float GetFar()			{ return far; }
+	inline float GetFov()			{ return m_fov; }
+	inline float GetAspectRatio()	{ return m_aspectRatio; }
+	inline float GetNear()			{ return m_near; }
+	inline float GetFar()			{ return m_far; }
 
 
-	void MoveForward(const float32 _speed);
-	void MoveBackward(const float32 _speed);
+	void MoveForward();
+	void MoveBackward();
+	void MoveLeft();
+	void MoveRight();
+	void MoveUp();
+	void MoveDown();
+
 	void FirstPersonMouseInput(
 		const math::Vec2i& _mousePos,
 		const math::Vec2i& _windowSize);
@@ -57,10 +62,11 @@ public:
 private:
 	static alias::ComponentID	m_id;
 	const std::string			m_name = "PerspectiveCamera";
-	float fov;
-	float aspectRatio;
-	float near;
-	float far;
+	float						m_fov;
+	float						m_aspectRatio;
+	float						m_near;
+	float						m_far;
+	float						m_speed;
 };
 
 } // namespace ecs

@@ -143,6 +143,18 @@ public:
 		Vec4f r = RotationMatrix(m_quatRotation) * Vec4f::Forward();
 		return Vec3f(r.x, r.y, r.z).Normalized();
 	}
+
+	inline Vec3f Right()
+	{
+		Vec4f r = RotationMatrix(m_quatRotation) * Vec4f::Right();
+		return Vec3f(r.x, r.y, r.z).Normalized();
+	}
+
+	inline Vec3f Up()
+	{
+		Vec4f r = RotationMatrix(m_quatRotation) * Vec4f::Up();
+		return Vec3f(r.x, r.y, r.z).Normalized();
+	}
 };
 
 } // namespace math

@@ -21,6 +21,8 @@ private:
 	PADObject*			m_masterPADObject;
 	PerspectiveCamera*	m_mainCamera;
 	DirectionalLight*	m_directionalLight;
+	math::Vec3f			m_lightRotation;
+	bool				m_isLightRotating;
 
 public:
 	void Init();
@@ -29,6 +31,8 @@ public:
 	void FixedUpdate();
 	void LateUpdate();
 	void AddPADObject(PADObject* _PADObject);
+	void ToggleDirectionalLightRotation();
+	void SetLightRotation(const math::Vec3f& _rotation);
 
 	PADObject*	GetPADObject(const std::string& _name, PADObject* const _rootSearch = nullptr);
 	PADObject*	CreatePADObject(const std::string& _name, PADObject* const _parent = nullptr);

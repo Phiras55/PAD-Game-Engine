@@ -233,9 +233,9 @@ void HighLevelRenderer::InitializeDefaultMeshes()
 
 	md2.uvs				= new float32[8]{
 		0.0f, 0.0f,
-		10.f, 0.0f,
-		10.f, 10.f,
-		0.0f, 10.f
+		100.f, 0.0f,
+		100.f, 100.f,
+		0.0f, 100.f
 	};
 	md2.uvCount			= 8;
 

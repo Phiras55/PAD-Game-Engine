@@ -45,11 +45,6 @@ PADObject::~PADObject()
 
 void PADObject::SetParent(PADObject* const _parent)
 {
-	/*if (m_parent)
-		m_parent->RemoveChild(this);
-
-	_parent->AddChild(this);*/
-
 	m_parent = _parent;
 	
 	if (m_parent)
@@ -58,12 +53,6 @@ void PADObject::SetParent(PADObject* const _parent)
 
 void PADObject::AddChild(PADObject* const _child)
 {
-	/*if (_child->m_parent)
-		_child->m_parent->RemoveChild(_child);
-
-	_child->m_parent = this;
-	m_childs.push_back(_child);*/
-
 	if (_child)
 	{
 		m_childs.push_back(_child);
@@ -182,7 +171,6 @@ void PADObject::Deserialize(const json& _j)
 	{
 		comp = AddComponentFromName(JsonToData<std::string>(_j, std::string("componentName") + std::to_string(i)));
 		comp->Deserialize(JsonToData<json>(_j, "componentData" + std::to_string(i)));
-		comp->Init();
 	}
 
 	int childCount = JsonToData<size_t>(_j, "childCount");

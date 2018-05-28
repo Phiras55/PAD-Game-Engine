@@ -51,6 +51,7 @@ private:
 	void Close();
 
 	void ResizeContext(const uint32 _w, const uint32 _h);
+	void ToggleDirectionalLightRotation();
 	void FlushLogs();
 
 public:

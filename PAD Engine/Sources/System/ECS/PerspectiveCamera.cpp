@@ -9,7 +9,8 @@ namespace ecs	{
 
 alias::ComponentID PerspectiveCamera::m_id = INVALID_COMPONENT_ID;
 
-PerspectiveCamera::PerspectiveCamera()
+PerspectiveCamera::PerspectiveCamera() :
+	m_speed(5.0)
 {
 	if (m_id != INVALID_COMPONENT_ID)
 		m_id = static_cast<alias::ComponentID>(util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
@@ -23,14 +24,34 @@ PerspectiveCamera::~PerspectiveCamera()
 
 }
 
-void PerspectiveCamera::MoveForward(const float32 _speed)
+void PerspectiveCamera::MoveForward()
 {
-	m_owner->GetTransform().Move(m_owner->GetTransform().Forward() * _speed * core::EngineClock::DeltaTime());
+	m_owner->GetTransform().Move(m_owner->GetTransform().Forward() * m_speed * core::EngineClock::DeltaTime());
 }
 
-void PerspectiveCamera::MoveBackward(const float32 _speed)
+void PerspectiveCamera::MoveBackward()
 {
-	m_owner->GetTransform().Move(-m_owner->GetTransform().Forward() * _speed * core::EngineClock::DeltaTime());
+	m_owner->GetTransform().Move(-m_owner->GetTransform().Forward() * m_speed * core::EngineClock::DeltaTime());
+}
+
+void PerspectiveCamera::MoveLeft()
+{
+	m_owner->GetTransform().Move(m_owner->GetTransform().Right() * m_speed * core::EngineClock::DeltaTime());
+}
+
+void PerspectiveCamera::MoveRight()
+{
+	m_owner->GetTransform().Move(-m_owner->GetTransform().Right() * m_speed * core::EngineClock::DeltaTime());
+}
+
+void PerspectiveCamera::MoveUp()
+{
+	m_owner->GetTransform().Move(m_owner->GetTransform().Up() * m_speed * core::EngineClock::DeltaTime());
+}
+
+void PerspectiveCamera::MoveDown()
+{
+	m_owner->GetTransform().Move(-m_owner->GetTransform().Up() * m_speed * core::EngineClock::DeltaTime());
 }
 
 void PerspectiveCamera::Init()
@@ -58,10 +79,10 @@ const math::Mat4& PerspectiveCamera::Perspective(float v, float r, float n, floa
 {
 	float fovTan = tan(math::DegreeToRad(v) / 2.f);
 
-	fov = v;
-	aspectRatio = r;
-	near = n;
-	far = f;
+	m_fov = v;
+	m_aspectRatio = r;
+	m_near = n;
+	m_far = f;
 
 	_projectionMatrix[0][0] = 1.f / (fovTan * r);
 	_projectionMatrix[1][1] = 1.f / fovTan;

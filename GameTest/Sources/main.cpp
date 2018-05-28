@@ -17,7 +17,7 @@
 
 int main()
 {
-	pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
+	//pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
 
 	#pragma region RenderInit
 
@@ -36,9 +36,9 @@ int main()
 
 	contextSettings.viewportSize.x		= winSettings.size.x;
 	contextSettings.viewportSize.y		= winSettings.size.y;
-	contextSettings.clearColor.r		= 150.f / 255.f;
-	contextSettings.clearColor.g		= 150.f / 255.f;
-	contextSettings.clearColor.b		= 150.f / 255.f;
+	contextSettings.clearColor.r		= 30.f / 255.f;
+	contextSettings.clearColor.g		= 30.f / 255.f;
+	contextSettings.clearColor.b		= 30.f / 255.f;
 	contextSettings.clearColor.a		= 1.0f;
 	contextSettings.implementationType	= pad::gfx::rhi::E_RENDERER_IMPLEMENTATION_TYPE::OPENGL;
 	contextSettings.cullFace			= pad::gfx::rhi::E_CULL_FACE::BACK;
@@ -80,7 +80,7 @@ int main()
 	pad::sys::ecs::RigidBody* rb = plat->GetComponent<pad::sys::ecs::RigidBody>();
 	rb->SetMass(0.f);
 
-	for (int i = 0; i < 1; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
 		pad::sys::ecs::PADObject* cube = pad::CreatePADObject(std::string("Cube_0") + std::to_string(i));
 
@@ -98,7 +98,7 @@ int main()
 
 		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnim("creature_giantspider_giantspider_Run [1]");
 		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->GetSettings().isAffectedByLight = true;
-		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnimSpeed(3);
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnimSpeed(1.f);
 		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetLoop(true);
 
 		rb = cube->GetComponent<pad::sys::ecs::RigidBody>();

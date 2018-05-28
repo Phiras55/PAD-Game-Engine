@@ -73,7 +73,7 @@ void main()
 	}
 	else
 	{
-		resultLighting = objectColor;
+		resultLighting = objectColor * vec4(0.8, 0.8, 0.8, 1.0);
 	}
 	
 	finalColor = resultLighting;

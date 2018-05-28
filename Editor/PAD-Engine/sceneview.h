@@ -15,6 +15,11 @@ public:
     void AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after = nullptr);
     void keyPressEvent(QKeyEvent *event) override;
     void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
+
+private:
+    void ParseScene();
+    void ParseObj();
+
 private slots:
     void SetSelectedAsCurrent();
 

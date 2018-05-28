@@ -47,9 +47,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="animationwidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="boxcolliderwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -70,9 +67,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="animationwidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="boxcolliderwidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -96,31 +90,12 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    
-    
-    
-    
-    
-    
-    <ClInclude Include="ui_animationwidget.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="ui_boxcolliderwidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -135,9 +110,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="animationwidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
     <QtUic Include="boxcolliderwidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>

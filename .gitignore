@@ -322,6 +322,4 @@ ASALocalRun/
 
 *.tlog
 
-*.lib
-
 *.exp

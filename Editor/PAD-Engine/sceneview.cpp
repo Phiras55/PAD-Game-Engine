@@ -12,7 +12,7 @@ SceneView::SceneView(QWidget *parent) :
     viewport()->setAcceptDrops(true);
     setDropIndicatorShown(true);
     setDragDropMode(QAbstractItemView::InternalMove);
-    headerItem()->setDisabled(true);
+    model()->setHeaderData(0, Qt::Horizontal, "Scene");
     connect(this, SIGNAL(itemSelectionChanged()), this, SLOT(SetSelectedAsCurrent()));
 }
 
@@ -60,3 +60,16 @@ void SceneView::SetSelectedAsCurrent()
 {
     currentObject = static_cast<SceneNode*>(selectedItems()[0])->obj;
 }
+
+void SceneView::ParseScene()
+{
+    pad::sys::ecs::Scene* sc = pad::GetScene();
+    std::list<pad::sys::ecs::PADObject*> objs = sc->GetMasterObject()->GetChildren();
+
+    for (int i = 0; i < objs.size(); ++i)
+    {
+        AddObject(objs[i]);
+    }
+
+}
+

@@ -99,11 +99,18 @@ void Engine::PollEvents()
 
 void Engine::Update()
 {
-	m_scene->Update();
-	m_scene->GetMainCamera()->FirstPersonMouseInput(
-		m_highLevelRenderer.GetMainWindow()->GetMousePosition(),
-		m_highLevelRenderer.GetMainWindow()->GetSize());
-	m_highLevelRenderer.CenterMouse();
+	if (m_scene)
+	{
+		m_scene->Update();
+		if (m_scene->GetMainCamera() && m_highLevelRenderer.GetMainWindow())
+		{
+			m_scene->GetMainCamera()->FirstPersonMouseInput(
+				m_highLevelRenderer.GetMainWindow()->GetMousePosition(),
+				m_highLevelRenderer.GetMainWindow()->GetSize());
+			m_highLevelRenderer.CenterMouse();
+		}
+
+	}
 }
 
 void Engine::FixedUpdate()

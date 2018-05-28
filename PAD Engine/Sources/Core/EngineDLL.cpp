@@ -55,13 +55,13 @@ void Simulate()
 void MoveMainCamera(math::Vec3f& _translation)
 {
 	if (g_engine && g_engine->GetScene()) 
-		g_engine->GetScene()->GetMainCamera()->GetTransform().Move(_translation);
+		g_engine->GetScene()->GetMainCamera()->GetOwner()->GetTransform().Move(_translation);
 }
 
 void RotateMainCamera(math::Vec3f& _rotation)
 {
 	if (g_engine && g_engine->GetScene())
-		g_engine->GetScene()->GetMainCamera()->GetTransform().SetRotation(_rotation);
+		g_engine->GetScene()->GetMainCamera()->GetOwner()->GetTransform().SetRotation(_rotation);
 }
 
 void SetMainCameraTarget(const math::Vec3f& _targetPosition)
@@ -69,7 +69,7 @@ void SetMainCameraTarget(const math::Vec3f& _targetPosition)
 	if (g_engine && g_engine->GetScene())
 	{
 		sys::ecs::PerspectiveCamera* cam = g_engine->GetScene()->GetMainCamera();
-		cam->LookAt(cam->GetTransform().Position(), _targetPosition, math::Vec3f::Up());
+		cam->LookAt(cam->GetOwner()->GetTransform().Position(), _targetPosition, math::Vec3f::Up());
 	}
 }
 
@@ -213,14 +213,10 @@ void DeletePADObject(sys::ecs::PADObject* const _object)
 {
 	if (g_engine)
 	{
-		if (_object)
+		sys::ecs::Scene* currentScene = g_engine->GetScene();
+		if (currentScene)
 		{
-			sys::ecs::PADObject* parent = _object->GetParent();
-			if (parent)
-			{
-				parent->RemoveChild(_object);
-				delete _object;
-			}
+			currentScene->DeletePADObject(_object);
 		}
 	}
 }

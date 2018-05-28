@@ -17,18 +17,15 @@ RigidBody::RigidBody() :
 		m_id = static_cast<alias::ComponentID>(util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
 }
 
-RigidBody::RigidBody(const RigidBody& _other)	:
-	RigidBody()
+RigidBody::RigidBody(const RigidBody& _other)
 {
 
 }
 
 RigidBody::~RigidBody()
 {
-	if (m_btMotionState)
-		delete m_btMotionState;
-	if (m_btRigidBody)
-		delete m_btRigidBody;
+	delete m_btMotionState;
+	delete m_btRigidBody;
 }
 
 void RigidBody::Init()
@@ -119,12 +116,15 @@ json RigidBody::Serialize()
 {
 	json j;
 
+	AddDataToJson(j, "m_mass", m_mass);
+
 	return j;
 }
 
 void RigidBody::Deserialize(const json& j)
 {
-
+	m_mass = JsonToData<float>(j, "m_mass");
+	SetMass(m_mass);
 }
 
 void RigidBody::operator=(const RigidBody& _other)

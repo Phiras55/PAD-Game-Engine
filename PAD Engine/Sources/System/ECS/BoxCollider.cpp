@@ -69,12 +69,19 @@ json BoxCollider::Serialize()
 {
 	json j;
 
+	math::Vec3f v(m_boxShape->getHalfExtentsWithMargin());
+	v *= 2;
+	AddDataToJson(j, "dimensions", v.Serialize());
+
 	return j;
 }
 
 void BoxCollider::Deserialize(const json& j)
 {
+	math::Vec3f v;
+	v.Deserialize(JsonToData<json>(j, "dimensions"));
 
+	m_boxShape->setLocalScaling(btVector3(v.x, v.y, v.z));
 }
 
 void BoxCollider::operator=(const BoxCollider& _other)

@@ -259,15 +259,19 @@ void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Sc
 		return;
 
 	sys::ecs::PerspectiveCamera* cam = _scene.GetMainCamera();
-	math::Mat4 vp = cam->GetProjection() * cam->LookAt(cam->GetTransform().Position(), cam->GetTransform().Position() + cam->GetTransform().Forward(), math::Vec3f::Up());
+	math::Mat4 vp = cam->GetProjection() * 
+		cam->LookAt(
+			cam->GetOwner()->GetTransform().Position(), 
+			cam->GetOwner()->GetTransform().Position() + cam->GetOwner()->GetTransform().Forward(), 
+			math::Vec3f::Up());
 
 	sys::ecs::DirectionalLight* dirLight = _scene.GetDirectionalLight();
 
 	ClearBuffers();
 
 	m_lowLevelRenderer->SetCameraUniformBufferData(
-		cam->GetTransform().Position(), 
-		cam->GetTransform().Forward(), 
+		cam->GetOwner()->GetTransform().Position(),
+		cam->GetOwner()->GetTransform().Forward(),
 		vp);
 	m_lowLevelRenderer->SetDirectionalLightUniformBufferData(
 		dirLight->GetOwner()->GetTransform().Forward(), 

@@ -54,12 +54,13 @@ public:
 	void RemoveChild(PADObject* const _child);
 
 	template<typename T, typename ...Targs>
-	void AddComponent(Targs&&... _args)
+	T* AddComponent(Targs&&... _args)
 	{
 		AssertIfNotComponent<T>();
+		T* comp = nullptr;
 		if (!HasComponent<T>())
 		{
-			T* comp = m_componentHandlerHandle->CreateComponent<T, Targs...>(std::forward<Targs>(_args)...);
+			comp = m_componentHandlerHandle->CreateComponent<T, Targs...>(std::forward<Targs>(_args)...);
 			if (comp)
 			{
 				if constexpr (std::is_base_of<ACollider, T>::value)
@@ -74,6 +75,7 @@ public:
 				m_hasComponent[comp->GetType()] = true;
 			}
 		}
+		return comp;
 	}
 
 	template<typename T>
@@ -125,12 +127,15 @@ public:
 	void LateUpdate();
 
 	json Serialize()				override;
-	void Deserialize(const json& j)	override;
+	void Deserialize(const json& _j)override;
+
+	AComponent* const AddComponentFromName(const std::string& _name);
 
 #pragma endregion
 
 #pragma region Getter / Setter
 
+public:
 	void SetParent(PADObject* const _parent);
 	inline PADObject* const GetParent() const			{ return m_parent; }
 

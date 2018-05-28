@@ -43,7 +43,6 @@ void Engine::Close()
 void Engine::InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win::WindowSettings& _w)
 {
 	LOG_INIT();
-	core::EngineClock::Init();
 
 	m_highLevelRenderer.Initialize(_c, _w, m_resourceManager);
 
@@ -58,11 +57,15 @@ void Engine::StartSimulation()
 	m_fixedUpdateTimer.Start();
 
 	sys::ecs::PerspectiveCamera* c = m_scene->GetMainCamera();
-	math::Transform& t = c->GetTransform();
+	math::Transform& t = c->GetOwner()->GetTransform();
 
 	m_highLevelRenderer.BindInputs(SDLK_w, std::bind(&sys::ecs::PerspectiveCamera::MoveForward, c, 5.f), false, 0);
 	m_highLevelRenderer.BindInputs(SDLK_s, std::bind(&sys::ecs::PerspectiveCamera::MoveBackward, c, 5.f), false, 0);
-	m_highLevelRenderer.BindInputs(SDLK_ESCAPE, std::bind(&Engine::Close, this), false, 0);
+	m_highLevelRenderer.BindInputs(SDLK_ESCAPE, std::bind(&Engine::Close, this), true, 0);
+	m_highLevelRenderer.BindInputs(SDLK_F5, std::bind(&Engine::SaveCurrentScene, this, "scene.json"), true, 0);
+	m_highLevelRenderer.BindInputs(SDLK_F9, std::bind(&Engine::LoadScene, this, "scene.json"), true, 0);
+
+	core::EngineClock::Init();
 
 	while (m_highLevelRenderer.IsWindowOpen())
 	{
@@ -97,6 +100,9 @@ void Engine::PollEvents()
 void Engine::Update()
 {
 	m_scene->Update();
+	m_scene->GetMainCamera()->FirstPersonMouseInput(
+		m_highLevelRenderer.GetMainWindow()->GetMousePosition(),
+		m_highLevelRenderer.GetMainWindow()->GetSize());
 	m_highLevelRenderer.CenterMouse();
 }
 
@@ -124,6 +130,21 @@ void Engine::ResizeContext(const uint32 _w, const uint32 _h)
 void Engine::FlushLogs()
 {
 	LOG_FLUSH();
+}
+
+void Engine::SaveCurrentScene(const std::string& _savePath)
+{
+	if (m_scene)
+		m_scene->Serialize(_savePath);
+}
+
+void Engine::LoadScene(const std::string& _savePath)
+{
+	if (m_scene)
+		delete m_scene;
+
+	m_scene = new sys::ecs::Scene();
+	m_scene->Deserialize(_savePath);
 }
 
 } // namespace core

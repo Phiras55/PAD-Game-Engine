@@ -65,7 +65,7 @@ json DirectionalLight::Serialize()
 void DirectionalLight::Deserialize(const json& j)
 {
 	m_color.Deserialize(JsonToData<json>(j, "m_color"));
-	m_intensity = JsonToData<float>(j, "m_intensity");
+	m_intensity =		JsonToData<float>(j, "m_intensity");
 }
 
 void DirectionalLight::operator=(const DirectionalLight& _other)

@@ -12,7 +12,6 @@ class ENGINE_API Camera : public sys::ecs::AComponent
 protected:
 	math::Mat4		_projectionMatrix;
 	math::Mat4		_viewMatrix;
-	math::Transform m_transform;
 
 public:
 	virtual const math::Mat4& Perspective(float _fov, float _aspectRatio, float _near, float _far)				= 0;
@@ -27,9 +26,6 @@ public:
 public:
 	inline const math::Mat4& GetProjection() const	{ return _projectionMatrix; }
 	inline const math::Mat4& GetView()		 const	{ return _viewMatrix; }
-
-	math::Transform&		GetTransform()		  { return m_transform; }
-	const math::Transform&	GetTransform()	const { return m_transform; }
 };
 
 } // namespace ecs

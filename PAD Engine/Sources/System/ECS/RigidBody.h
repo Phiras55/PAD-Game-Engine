@@ -37,6 +37,8 @@ public:
 	{
 		return m_id;
 	}
+
+	inline const std::string& GetName() override { return m_name; }
 	
 private:
 	btRigidBody*				m_btRigidBody;
@@ -44,6 +46,7 @@ private:
 	ACollider*					m_collider;
 	float						m_mass;
 	static alias::ComponentID	m_id;
+	const std::string			m_name = "RigidBody";
 
 public:
 	void operator=(const RigidBody& _other);

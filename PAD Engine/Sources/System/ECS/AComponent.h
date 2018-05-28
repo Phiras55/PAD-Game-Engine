@@ -23,13 +23,14 @@ public:
 	virtual ~AComponent() = default;
 
 public:
-	virtual void Init()								= 0;
-	virtual void Start()							= 0;
-	virtual void Update()							= 0;
-	virtual void FixedUpdate()						= 0;
-	virtual void LateUpdate()						= 0;
+	virtual void Init()									= 0;
+	virtual void Start()								= 0;
+	virtual void Update()								= 0;
+	virtual void FixedUpdate()							= 0;
+	virtual void LateUpdate()							= 0;
 
-	virtual const alias::ComponentID GetType() const = 0;
+	virtual const alias::ComponentID GetType() const	= 0;
+	virtual const std::string& GetName()				= 0;
 
 	inline PADObject* const GetOwner()							{ return m_owner; }
 	inline void				SetOwner(PADObject* const _owner)	{ m_owner = _owner; }

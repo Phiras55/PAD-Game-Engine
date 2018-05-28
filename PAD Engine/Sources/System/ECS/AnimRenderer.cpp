@@ -78,23 +78,32 @@ json AnimRenderer::Serialize()
 {
 	json j;
 
-	AddDataToJson(j, "m_meshName", m_meshName);
-	AddDataToJson(j, "m_materialName", m_materialName);
-	AddDataToJson(j, "m_settings", m_settings.Serialize());
-	AddDataToJson(j, "m_skeletonName", m_skeletonName);
-	AddDataToJson(j, "m_currentAnim", m_currentAnim);
+	AddDataToJson(j, "m_meshName",			m_meshName);
+	AddDataToJson(j, "m_materialName",		m_materialName);
+	AddDataToJson(j, "m_settings",			m_settings.Serialize());
+	AddDataToJson(j, "m_skeletonName",		m_skeletonName);
+	AddDataToJson(j, "m_currentAnim",		m_currentAnim);
+	AddDataToJson(j, "m_currentKey",		m_currentKey);
+	AddDataToJson(j, "m_keyFrameDuration",	m_keyFrameDuration);
+	AddDataToJson(j, "m_animSpeed",			m_animSpeed);
+	AddDataToJson(j, "m_loop",				m_loop);
 
 	return j;
 }
 
 void AnimRenderer::Deserialize(const json& j)
 {
-	m_meshName			= JsonToData<std::string>(j, "m_meshName");
-	m_materialName		= JsonToData<std::string>(j, "m_materialName");
-	m_skeletonName		= JsonToData<std::string>(j, "m_skeletonName");
-	m_currentAnim		= JsonToData<std::string>(j, "m_currentAnim");
+	m_meshName =			JsonToData<std::string>(j, "m_meshName");
+	m_materialName =		JsonToData<std::string>(j, "m_materialName");
+	m_skeletonName =		JsonToData<std::string>(j, "m_skeletonName");
+	m_currentAnim =			JsonToData<std::string>(j, "m_currentAnim");
+	m_currentKey =			JsonToData<int>(j, "m_currentKey");
+	m_currentKey =			JsonToData<int>(j, "m_currentKey");
+	m_keyFrameDuration =	JsonToData<float>(j, "m_keyFrameDuration");
+	m_animSpeed =			JsonToData<float>(j, "m_animSpeed");
+	m_loop =				JsonToData<bool>(j, "m_loop");
 
-	m_settings.Deserialize(JsonToData<json>(j, "m_settings"));
+	m_settings.Deserialize(	JsonToData<json>(j, "m_settings"));
 }
 
 inline void AnimRenderer::SetAnim(const std::string _name)

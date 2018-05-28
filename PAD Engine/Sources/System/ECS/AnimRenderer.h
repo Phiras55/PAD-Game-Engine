@@ -31,6 +31,7 @@ private:
 
 private:
 	static alias::ComponentID	m_AR_id;
+	const std::string			m_name = "AnimRenderer";
 
 public:
 	void Init()							override;
@@ -41,6 +42,8 @@ public:
 
 	json Serialize()					override;
 	void Deserialize(const json& j)		override;
+
+	inline const std::string& GetName() override { return m_name; }
 
 public:
 	inline const alias::ComponentID GetType() const override { return m_AR_id; }

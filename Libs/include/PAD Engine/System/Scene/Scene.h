@@ -8,7 +8,7 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-class Scene final : public ISerializable
+class Scene final
 {
 public:
 	Scene();
@@ -32,18 +32,18 @@ public:
 
 	PADObject*	GetPADObject(const std::string& _name, PADObject* const _rootSearch = nullptr);
 	PADObject*	CreatePADObject(const std::string& _name, PADObject* const _parent = nullptr);
-	void		DeletePADObject(const std::string& _name, PADObject* const _rootSearch = nullptr);
+	void		DeletePADObject(PADObject* const _object);
 	
-	json Serialize()				override;
-	void Deserialize(const json& j)	override;
+	void Serialize(const std::string& _savePath);
+	void Deserialize(const std::string& _savePath);
 
 private:
 	PADObject* FindPADObject(const std::string& _name, PADObject* const _rootSearch = nullptr);
 
 public:
-	inline PADObject* const		GetMasterObject()		{ return m_masterPADObject; }
-	inline PerspectiveCamera*	GetMainCamera()			{ return m_mainCamera; }
-	inline DirectionalLight*	GetDirectionalLight()	{ return m_directionalLight; }
+	inline PADObject* const			GetMasterObject()		{ return m_masterPADObject; }
+	inline PerspectiveCamera* const	GetMainCamera()			{ return m_mainCamera; }
+	inline DirectionalLight* const	GetDirectionalLight()	{ return m_directionalLight; }
 };
 
 } // namespace ecs

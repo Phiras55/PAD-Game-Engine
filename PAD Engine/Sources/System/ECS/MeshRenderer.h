@@ -27,6 +27,7 @@ protected:
 	gfx::rhi::RenderSettings	m_settings;
 
 	static alias::ComponentID	m_id;
+	const std::string			m_name = "MeshRenderer";
 
 public:
 	void Init()								override;
@@ -51,6 +52,8 @@ public:
 	{
 		return m_id;
 	}
+
+	inline const std::string& GetName() override { return m_name; }
 
 public:
 	void operator=(const MeshRenderer& _other);

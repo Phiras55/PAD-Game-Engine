@@ -18,9 +18,12 @@ public:
 		return m_id;
 	}
 
+	inline const std::string& GetName() override { return m_name; }
+
 private:	
 	btBoxShape*					m_boxShape;
 	static alias::ComponentID	m_id;
+	const std::string			m_name = "BoxCollider";
 
 public:
 	void Init()								override;

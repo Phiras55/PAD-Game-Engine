@@ -21,7 +21,8 @@ PADObject::PADObject(PADObject* const _parent) :
 	m_parent(_parent),
 	m_dontDestroy(false)
 {
-
+	m_components.reserve(MAX_COMPONENT_COUNT);
+	m_components.resize(MAX_COMPONENT_COUNT);
 }
 
 PADObject::~PADObject()
@@ -144,23 +145,73 @@ json PADObject::Serialize()
 	AddDataToJson(j, "m_transform", m_transform.Serialize());
 	AddDataToJson(j, "m_dontDestroy", m_dontDestroy);
 	AddDataToJson(j, "m_name", m_name);
-	AddDataToJson(j, "componentCount", m_components.size());
-	AddDataToJson(j, "childrenCount", m_childs.size());
+
+	int componentCount = 0;
+	for (int i = 0, count = m_components.size(); i < count; ++i)
+	{
+		if (m_hasComponent[i])
+		{
+			AddDataToJson(j, std::string("componentName") + std::to_string(componentCount), m_components[i]->GetName());
+			AddDataToJson(j, std::string("componentData") + std::to_string(componentCount), m_components[i]->Serialize());
+			++componentCount;
+		}
+	}
+
+	AddDataToJson(j, "componentCount", componentCount);
 
 	int i = 0;
-	for (AComponent* const component : m_components)
+	AddDataToJson(j, "childCount", m_childs.size());
+	for (PADObject* const child : m_childs)
 	{
-		AddDataToJson(j, std::string("componentType") + std::to_string(i), component->GetType());
-		AddDataToJson(j, std::string("componentType") + std::to_string(i), component->Serialize());
+		AddDataToJson(j, std::string("child") + std::to_string(i), child->Serialize());
 		++i;
 	}
 
 	return j;
 }
 
-void PADObject::Deserialize(const json& j)
+void PADObject::Deserialize(const json& _j)
 {
+	m_transform.Deserialize(JsonToData<json>(_j, "m_transform"));
+	m_dontDestroy =			JsonToData<bool>(_j, "m_dontDestroy");
+	m_name =				JsonToData<std::string>(_j, "m_name");
 
+	int componentCount = JsonToData<size_t>(_j, "componentCount");
+	AComponent* comp = nullptr;
+	for (int i = 0; i < componentCount; ++i)
+	{
+		comp = AddComponentFromName(JsonToData<std::string>(_j, std::string("componentName") + std::to_string(i)));
+		comp->Deserialize(JsonToData<json>(_j, "componentData" + std::to_string(i)));
+		comp->Init();
+	}
+
+	int childCount = JsonToData<size_t>(_j, "childCount");
+	PADObject* currentChild = nullptr;
+	for (int i = 0; i < childCount; ++i)
+	{
+		currentChild = new PADObject(this);
+		currentChild->Deserialize(JsonToData<json>(_j, std::string("child") + std::to_string(i)));
+		m_childs.push_back(currentChild);
+	}
+}
+
+AComponent* const PADObject::AddComponentFromName(const std::string& _name)
+{
+	AComponent* comp = nullptr;
+	if (_name == "PerspectiveCamera")
+		comp = AddComponent<PerspectiveCamera>();
+	else if (_name == "RigidBody")
+		comp = AddComponent<RigidBody>();
+	else if (_name == "BoxCollider")
+		comp = AddComponent<BoxCollider>();
+	else if (_name == "DirectionalLight")
+		comp = AddComponent<DirectionalLight>();
+	else if (_name == "MeshRenderer")
+		comp = AddComponent<MeshRenderer>();
+	else
+		comp = AddComponent<AnimRenderer>();
+
+	return comp;
 }
 
 } // namespace ecs

@@ -73,9 +73,9 @@ json MeshRenderer::Serialize()
 
 void MeshRenderer::Deserialize(const json& j)
 {
-	m_meshName		= JsonToData<std::string>(j, "m_meshName");
-	m_materialName	= JsonToData<std::string>(j, "m_materialName");
-	m_settings.Deserialize(JsonToData<json>(j, "m_settings"));
+	m_meshName =			JsonToData<std::string>(j, "m_meshName");
+	m_materialName =		JsonToData<std::string>(j, "m_materialName");
+	m_settings.Deserialize(	JsonToData<json>(j, "m_settings"));
 }
 
 void MeshRenderer::operator=(const MeshRenderer& _other)

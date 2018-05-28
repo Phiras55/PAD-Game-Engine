@@ -41,7 +41,7 @@ void Scene::Init()
 	if (m_mainCamera)
 	{
 		m_mainCamera->Perspective(45.f, 16.f / 9.f, 0.01f, 1000.f);
-		m_mainCamera->GetTransform().SetPosition(math::Vec3f(0, 5, -10));
+		m_mainCamera->GetOwner()->GetTransform().SetPosition(math::Vec3f(0, 5, -10));
 	}
 }
 
@@ -65,26 +65,31 @@ void Scene::LateUpdate()
 	m_masterPADObject->LateUpdate();
 }
 
-void Scene::AddPADObject(PADObject * _PADObject)
+void Scene::AddPADObject(PADObject* _PADObject)
 {
 	m_masterPADObject->AddChild(_PADObject);
 }
 
-json Scene::Serialize()
+void Scene::Serialize(const std::string& _savePath)
 {
-	json sceneJson;
+	json j;
 
 	if (m_masterPADObject)
-	{
-		m_masterPADObject->Serialize();
-	}
+		j = m_masterPADObject->Serialize();
 
-	return sceneJson;
+	AddJsonToFile(_savePath, j);
 }
 
-void Scene::Deserialize(const json& _j)
+void Scene::Deserialize(const std::string& _savePath)
 {
-	m_masterPADObject->Deserialize(_j);
+	json j = LoadJsonFromFile(_savePath);
+	
+	if (m_masterPADObject)
+	{
+		m_masterPADObject->Deserialize(j);
+		m_directionalLight = GetPADObject("DirectionalLight")->GetComponent<DirectionalLight>();
+		m_mainCamera = GetPADObject("MainCamera")->GetComponent<PerspectiveCamera>();
+	}
 }
 
 PADObject* Scene::GetPADObject(const std::string& _name, PADObject* const _rootSearch)
@@ -108,9 +113,9 @@ PADObject* Scene::CreatePADObject(const std::string& _name, PADObject* const _pa
 	return entity;
 }
 
-void Scene::DeletePADObject(const std::string& _name, PADObject* const _rootSearch)
+void Scene::DeletePADObject(PADObject* const _object)
 {
-	
+	delete _object;
 }
 
 PADObject* Scene::FindPADObject(const std::string& _name, PADObject* const _rootSearch)

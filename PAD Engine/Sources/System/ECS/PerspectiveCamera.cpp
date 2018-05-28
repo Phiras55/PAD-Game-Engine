@@ -1,4 +1,5 @@
 #include <EnginePCH.h>
+#include <System/ECS/PADObject.h>
 #include <System/ECS/PerspectiveCamera.h>
 #include <Core/EngineClock.h>
 
@@ -14,7 +15,7 @@ PerspectiveCamera::PerspectiveCamera()
 		m_id = static_cast<alias::ComponentID>(util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
 
 	Perspective(45, 16.f / 9.f, 0.01f, 1000.f);
-	LookAt(m_transform.Position(), math::Vec3f(0, 0, 0), math::Vec3f::Up());
+	LookAt(math::Vec3f(0, 0, 0), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 }
 
 PerspectiveCamera::~PerspectiveCamera()
@@ -24,12 +25,12 @@ PerspectiveCamera::~PerspectiveCamera()
 
 void PerspectiveCamera::MoveForward(const float32 _speed)
 {
-	m_transform.Move(m_transform.Forward() * _speed * core::EngineClock::DeltaTime());
+	m_owner->GetTransform().Move(m_owner->GetTransform().Forward() * _speed * core::EngineClock::DeltaTime());
 }
 
 void PerspectiveCamera::MoveBackward(const float32 _speed)
 {
-	m_transform.Move(-m_transform.Forward() * _speed * core::EngineClock::DeltaTime());
+	m_owner->GetTransform().Move(-m_owner->GetTransform().Forward() * _speed * core::EngineClock::DeltaTime());
 }
 
 void PerspectiveCamera::Init()
@@ -96,6 +97,26 @@ const math::Mat4& PerspectiveCamera::LookAt(const math::Vec3f& eye, const math::
 	_viewMatrix[2][3] = he;
 
 	return _viewMatrix;
+}
+
+void PerspectiveCamera::FirstPersonMouseInput(
+	const math::Vec2i& _mousePos,
+	const math::Vec2i& _windowSize)
+{
+	float x = 5 * core::EngineClock::DeltaTime() * float((_windowSize.x / 2.f) - _mousePos.x);
+	float y = 5 * core::EngineClock::DeltaTime() * float((_windowSize.y / 2.f) - _mousePos.y);
+
+	x = fmod(x, 360.f);
+	y = fmod(y, 360.f);
+
+	float rotX = GetOwner()->GetTransform().Rotation().x - y;
+	if (rotX > 89)
+		rotX = 89;
+	else if (rotX < -89)
+		rotX = -89;
+
+	m_owner->GetTransform().SetRotation(math::Vec3f(rotX, m_owner->GetTransform().Rotation().y + x, m_owner->GetTransform().Rotation().z));
+	LookAt(m_owner->GetTransform().Position(), m_owner->GetTransform().Position() + m_owner->GetTransform().Forward(), math::Vec3f::Up());
 }
 
 json PerspectiveCamera::Serialize()

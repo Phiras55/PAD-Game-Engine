@@ -49,7 +49,7 @@ void main()
 						(vertexBoneWeight.w * (skinning.mats[int(vertexBoneIndex.w)] * vertexPos));
 
 	
-	outData.normal 		= vertexNormal;
+	outData.normal 		= (inverse(transpose(model)) * vec4(vertexNormal, 1.0)).xyz;
 	outData.uv 			= vertexUV;
 	outInfos.fragPos 	= vec3(model * vertexPos);
 

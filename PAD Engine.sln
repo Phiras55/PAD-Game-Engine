@@ -26,6 +26,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssetParser", "AssetParser\
 		{5DB7F6F1-97BB-4D9D-84EA-2DC52EE0E553} = {5DB7F6F1-97BB-4D9D-84EA-2DC52EE0E553}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PAD-Engine", "Editor\PAD-Engine\PAD-Engine.vcxproj", "{B6574368-7512-3214-BB93-BE8DC6C7D773}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -90,6 +92,12 @@ Global
 		{8AA1FE25-11CC-417C-82C9-2BC081A67AEC}.Release|x64.Build.0 = Release|x64
 		{8AA1FE25-11CC-417C-82C9-2BC081A67AEC}.Release|x86.ActiveCfg = Release|Win32
 		{8AA1FE25-11CC-417C-82C9-2BC081A67AEC}.Release|x86.Build.0 = Release|Win32
+		{B6574368-7512-3214-BB93-BE8DC6C7D773}.Debug|x64.ActiveCfg = Debug|x64
+		{B6574368-7512-3214-BB93-BE8DC6C7D773}.Debug|x64.Build.0 = Debug|x64
+		{B6574368-7512-3214-BB93-BE8DC6C7D773}.Debug|x86.ActiveCfg = Debug|x64
+		{B6574368-7512-3214-BB93-BE8DC6C7D773}.Release|x64.ActiveCfg = Release|x64
+		{B6574368-7512-3214-BB93-BE8DC6C7D773}.Release|x64.Build.0 = Release|x64
+		{B6574368-7512-3214-BB93-BE8DC6C7D773}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

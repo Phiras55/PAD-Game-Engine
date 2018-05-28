@@ -10,8 +10,8 @@ namespace ecs	{
 class ENGINE_API Camera : public sys::ecs::AComponent
 {
 protected:
-	math::Mat4		_projectionMatrix;
-	math::Mat4		_viewMatrix;
+	math::Mat4 _projectionMatrix;
+	math::Mat4 _viewMatrix;
 
 public:
 	virtual const math::Mat4& Perspective(float _fov, float _aspectRatio, float _near, float _far)				= 0;
@@ -24,8 +24,9 @@ public:
 	}
 
 public:
-	inline const math::Mat4& GetProjection() const	{ return _projectionMatrix; }
-	inline const math::Mat4& GetView()		 const	{ return _viewMatrix; }
+	inline const math::Mat4& GetProjection()	{ return _projectionMatrix; }
+	inline const math::Mat4& GetView()			{ return _viewMatrix; }
+
 };
 
 } // namespace ecs

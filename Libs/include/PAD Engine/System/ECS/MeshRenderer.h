@@ -1,6 +1,6 @@
 #pragma once
 
-#include <System/ECS/IComponent.h>
+#include <System/ECS/AComponent.h>
 #include <Graphics/Model/Mesh.h>
 #include <Graphics/Model/Material.h>
 #include <Graphics/RHI/RenderSettings.h>
@@ -13,18 +13,21 @@ namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-class ENGINE_API MeshRenderer : public IComponent
+class ENGINE_API MeshRenderer : public AComponent
 {
 public:
 	MeshRenderer();
+	MeshRenderer(const MeshRenderer& _other);
+	MeshRenderer(const std::string& _meshName, const std::string& _materialName);
 	~MeshRenderer();
 
-private:
-	std::string m_meshName;
-	std::string m_materialName;
-	gfx::rhi::RenderSettings m_settings;
+protected:
+	std::string					m_meshName;
+	std::string					m_materialName;
+	gfx::rhi::RenderSettings	m_settings;
 
-	static std::vector<MeshRenderer*> m_collection;
+	static alias::ComponentID	m_id;
+	const std::string			m_name = "MeshRenderer";
 
 public:
 	void Init()								override;
@@ -36,11 +39,6 @@ public:
 	json Serialize()						override;
 	void Deserialize(const json& j)			override;
 
-	void SetOwner(PADObject* const _owner)	override			{ m_owner = _owner; }
-	PADObject* const GetOwner() const		override			{ return m_owner; }
-
-	virtual const COMPONENT_TYPE GetType() const override		{ return m_type; }
-
 	void SetMeshName(const std::string& _name)					{ m_meshName = _name; }
 	const std::string& GetMeshName() const						{ return m_meshName; }
 
@@ -50,12 +48,15 @@ public:
 	inline		 gfx::rhi::RenderSettings& GetSettings()		{ return m_settings; }
 	inline const gfx::rhi::RenderSettings& GetSettings() const	{ return m_settings; }
 
-	static		 std::vector<MeshRenderer*>& GetCollection()	{ return m_collection; }
-	
-	inline const math::Transform& 			GetTransform() const override { return m_transform; }
-	inline 		 math::Transform& 			GetTransform() override { return m_transform; }
+	const alias::ComponentID GetType() const override
+	{
+		return m_id;
+	}
 
-	static void AddToCollection(MeshRenderer* const _meshRenderer);
+	inline const std::string& GetName() override { return m_name; }
+
+public:
+	void operator=(const MeshRenderer& _other);
 };
 
 } // namespace ecs

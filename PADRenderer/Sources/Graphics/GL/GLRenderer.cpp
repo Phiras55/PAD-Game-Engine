@@ -38,7 +38,8 @@ void GLRenderer::Init(const rhi::ContextSettings& _settings)
 
 void GLRenderer::InitShaders()
 {
-	m_shaderManager->LoadShaders("Resources/Shaders/basicPositions.vert", "Resources/Shaders/basicColors.frag", "Default");
+	LoadShaders("Resources/Shaders/basicPositions.vert", "Resources/Shaders/basicColors.frag", "Default");
+	LoadShaders("Resources/Shaders/animPositions.vert", "Resources/Shaders/basicColors.frag", "DefaultAnim");
 }
 
 void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
@@ -61,6 +62,7 @@ void GLRenderer::InitContext(const rhi::ContextSettings& _settings)
 	InitCullFace(_settings);
 	InitWindingOrder(_settings);
 	InitDefaultUniformBuffers();
+	InitBlendFunction();
 }
 
 void GLRenderer::InitMainBuffer(const rhi::ContextSettings& _settings)
@@ -75,6 +77,12 @@ void GLRenderer::InitMainBuffer(const rhi::ContextSettings& _settings)
 		glEnable(GL_STENCIL_TEST);
 		glStencilMask(0x00);
 	}
+}
+
+void GLRenderer::InitBlendFunction()
+{
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void GLRenderer::InitDepthBuffer(const rhi::ContextSettings& _settings)
@@ -159,8 +167,7 @@ void GLRenderer::InitViewPort(const math::Vec2i& _viewportSize)
 void GLRenderer::ForwardRendering(
 	rhi::AVertexArray* const _vao,
 	rhi::AVertexBuffer* const _ibo,
-	const rhi::RenderSettings _setting,
-	const math::Mat4& _vp)
+	const rhi::RenderSettings _setting)
 {
 	rhi::shad::AShaderProgram* const currentShader = m_shaderManager->GetShader(_setting.programHandle);
 
@@ -177,7 +184,8 @@ void GLRenderer::ForwardRendering(
 		return;
 
 	currentShader->Use();
-	currentShader->SetUniform("model", *_setting.modelMatrix);
+	currentShader->SetUniform("model", (float*)_setting.modelMatrix->data);
+	currentShader->SetUniform("isAffectedByLight", (bool)_setting.isAffectedByLight);
 	SetCustomUniforms(currentShader, _setting);
 
 	glDrawElements(GL_TRIANGLES, _ibo->GetCount(), GL_UNSIGNED_INT, (void*)0);
@@ -214,6 +222,33 @@ void GLRenderer::GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao,
 	vbo.BindData(_md.positions, _md.positionCount, 3, static_cast<uint8>(gfx::rhi::shad::AttribLocation::POSITION));
 	vbo.Unbind();
 
+	gfx::gl::GLVertexBuffer ubo;
+	ubo.GenerateID();
+	ubo.Bind();
+	ubo.BindData(_md.uvs, _md.uvCount, 2, static_cast<uint8>(gfx::rhi::shad::AttribLocation::UV));
+	ubo.Unbind();
+
+	gfx::gl::GLVertexBuffer nbo;
+	nbo.GenerateID();
+	nbo.Bind();
+	nbo.BindData(_md.normals, _md.normalCount, 3, static_cast<uint8>(gfx::rhi::shad::AttribLocation::NORMAL));
+	nbo.Unbind();
+
+	if (_md.boneIndexCount > 0)
+	{
+		gfx::gl::GLVertexBuffer wbo;
+		wbo.GenerateID();
+		wbo.Bind();
+		wbo.BindData(_md.boneWeight, _md.boneWeightCount, 4, static_cast<uint8>(gfx::rhi::shad::AttribLocation::BONE_WEIGHT));
+		wbo.Unbind();
+
+		gfx::gl::GLVertexBuffer bbo;
+		bbo.GenerateID();
+		bbo.Bind();
+		bbo.BindData(_md.boneIndex, _md.boneIndexCount, 4, static_cast<uint8>(gfx::rhi::shad::AttribLocation::BONE_INDICE));
+		bbo.Unbind();
+	}
+
 	_ibo->GenerateID();
 	_ibo->Bind();
 	_ibo->BindData(_md.indices, _md.indiceCount);
@@ -224,15 +259,20 @@ void GLRenderer::GenerateMesh(const mod::MeshData& _md, rhi::AVertexArray* _vao,
 
 void GLRenderer::GenerateTexture(rhi::ATexture* const _t, const std::string& _path, const rhi::TextureParameters& _param)
 {
-	int width, height, nrChannels;
+	int width, height, nrChannels, channel;
+	unsigned char* data = nullptr;
+
 	stbi_set_flip_vertically_on_load(_param.flipY);
-	unsigned char *data = stbi_load(_path.c_str(), &width, &height, &nrChannels, 0);
+
+	channel = _param.channelType == rhi::ChannelType::RGB ? STBI_rgb : STBI_rgb_alpha;
+	data = stbi_load(_path.c_str(), &width, &height, &nrChannels, channel);
 
 	if (data)
 	{
 		_t->GenerateID();
 		_t->Bind();
 		_t->GenerateTexture(width, height, data, _param);
+		_t->Unbind();
 	}
 	else
 	{
@@ -259,6 +299,22 @@ void GLRenderer::InitDefaultUniformBuffers()
 
 	CreateUniformBuffer(cameraSettings);
 	BindBufferToBindingPoint(cameraSettings);
+
+	rhi::UniformBufferSettings directionnalLightSettings;
+	directionnalLightSettings.name				= "DirectionalLightSettings";
+	directionnalLightSettings.dataSize			= 48;
+	directionnalLightSettings.bindingPointID	= 1;
+
+	CreateUniformBuffer(directionnalLightSettings);
+	BindBufferToBindingPoint(directionnalLightSettings);
+
+	rhi::UniformBufferSettings Skinning;
+	Skinning.name			= "Skinning";
+	Skinning.dataSize		= 150 * 16 * sizeof(float);
+	Skinning.bindingPointID = 2;
+
+	CreateUniformBuffer(Skinning);
+	BindBufferToBindingPoint(Skinning);
 }
 
 void GLRenderer::CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)
@@ -293,14 +349,25 @@ void GLRenderer::SetCameraUniformBufferData(
 {
 	SetUniformBufferData("CameraSettings", &_position, 16, 0);
 	SetUniformBufferData("CameraSettings", &_direction, 16, 16);
-	SetUniformBufferData("CameraSettings", &(_vp.data[0]), 64, 32);
+	SetUniformBufferData("CameraSettings", _vp.data, 64, 32);
 }
 
-void GLRenderer::SetLightsUniformBufferData(
-	math::Vec4f* const _positions,
-	math::Vec4f* const _directions)
+void GLRenderer::SetJointsUniformBufferData(
+	float* const _joints,
+	const uint8 _count)
 {
+	// 16 floats per matrix * count
+	SetUniformBufferData("Skinning", _joints, 16 * sizeof(float) * _count, 0);
+}
 
+void GLRenderer::SetDirectionalLightUniformBufferData(
+	const math::Vec3f& _direction,
+	const math::Vec3f& _color,
+	const float _intensity)
+{
+	SetUniformBufferData("DirectionalLightSettings", &_direction[0], 16,  0);
+	SetUniformBufferData("DirectionalLightSettings", &_color[0],	 16, 16);
+	SetUniformBufferData("DirectionalLightSettings", &_intensity,	 4, 32);
 }
 
 rhi::AUniformBufferObject* const GLRenderer::GetUniformBufferObject(const std::string& _name)
@@ -308,6 +375,11 @@ rhi::AUniformBufferObject* const GLRenderer::GetUniformBufferObject(const std::s
 	if (m_uniformBufferObjects.find(_name) != m_uniformBufferObjects.end())
 		return m_uniformBufferObjects[_name];
 	return nullptr;
+}
+
+bool GLRenderer::LoadShaders(const std::string& _vPath, const std::string& _fPath, const std::string& _name)
+{
+	return m_shaderManager->LoadShaders(_vPath, _fPath, _name);
 }
 
 } // namespace gl

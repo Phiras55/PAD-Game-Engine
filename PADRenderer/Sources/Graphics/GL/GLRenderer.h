@@ -32,16 +32,23 @@ public:
 	void ForwardRendering(
 		rhi::AVertexArray* const _vaos,
 		rhi::AVertexBuffer* const _ibos,
-		const rhi::RenderSettings _settings,
-		const math::Mat4& _vp)												override;
+		const rhi::RenderSettings _settings)								override;
 	void SetCameraUniformBufferData(
 		const math::Vec3f& _position,
 		const math::Vec3f& _direction,
 		const math::Mat4& _vp)												override;
-	void SetLightsUniformBufferData(
-		math::Vec4f* const _positions,
-		math::Vec4f* const _directions)										override;
+	void SetDirectionalLightUniformBufferData(
+		const math::Vec3f& _direction,
+		const math::Vec3f& _color,
+		const float _intensity)												override;
+	void SetJointsUniformBufferData(
+		float* const _joints,
+		const uint8 _count)													override;
 	void CreateUniformBuffer(const rhi::UniformBufferSettings& _settings)	override;
+	bool LoadShaders(
+		const std::string& _vPath, 
+		const std::string& _fPath,
+		const std::string& _name)											override;
 
 private:
 	void InitContext(const rhi::ContextSettings& _settings)					override;
@@ -51,6 +58,7 @@ private:
 	void InitMainBuffer(const rhi::ContextSettings& _settings);
 	void InitCullFace(const rhi::ContextSettings& _settings);
 	void InitDepthBuffer(const rhi::ContextSettings& _settings);
+	void InitBlendFunction();
 	void InitWindingOrder(const rhi::ContextSettings& _settings);
 	void InitDefaultUniformBuffers();
 	void SetCustomUniforms(rhi::shad::AShaderProgram* const _program, const rhi::RenderSettings& _settings);

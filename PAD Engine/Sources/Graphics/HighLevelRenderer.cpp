@@ -5,6 +5,7 @@
 #include <System/ECS/PerspectiveCamera.h>
 #include <System/ECS/MeshRenderer.h>
 #include <Graphics/Model/Material.h>
+//#include <glm/gtc/matrix_transform.hpp>
 
 namespace pad	{
 namespace gfx	{
@@ -63,88 +64,377 @@ void HighLevelRenderer::Initialize(const rhi::ContextSettings& _rSettings, const
 
 void HighLevelRenderer::InitializeDefaultMeshes()
 {
-	pad::gfx::mod::MeshData md;
+	pad::gfx::mod::MeshData md1, md2;
 
-	md.positions = new float[24]{
-		-0.5, -0.5,  0.5,
-		0.5, -0.5,  0.5,
-		-0.5,  0.5,  0.5,
-		0.5,  0.5, -0.5,
-		-0.5, -0.5, -0.5,
-		-0.5,  0.5, -0.5,
-		0.5, -0.5, -0.5,
-		0.5,  0.5,  0.5
+	md1.positions		= new float32[108]{
+		-0.5f, -0.5f, -0.5f,
+		 0.5f, -0.5f, -0.5f, 
+		 0.5f,  0.5f, -0.5f, 
+		 0.5f,  0.5f, -0.5f, 
+		-0.5f,  0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f,
+
+		-0.5f, -0.5f,  0.5f,
+		 0.5f, -0.5f,  0.5f, 
+		 0.5f,  0.5f,  0.5f, 
+		 0.5f,  0.5f,  0.5f, 
+		-0.5f,  0.5f,  0.5f,
+		-0.5f, -0.5f,  0.5f,
+
+		-0.5f,  0.5f,  0.5f,
+		-0.5f,  0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f,
+		-0.5f, -0.5f,  0.5f,
+		-0.5f,  0.5f,  0.5f,
+
+		 0.5f,  0.5f,  0.5f, 
+		 0.5f,  0.5f, -0.5f, 
+		 0.5f, -0.5f, -0.5f, 
+		 0.5f, -0.5f, -0.5f, 
+		 0.5f, -0.5f,  0.5f, 
+		 0.5f,  0.5f,  0.5f, 
+
+		-0.5f, -0.5f, -0.5f,
+		 0.5f, -0.5f, -0.5f, 
+		 0.5f, -0.5f,  0.5f, 
+		 0.5f, -0.5f,  0.5f, 
+		-0.5f, -0.5f,  0.5f,
+		-0.5f, -0.5f, -0.5f,
+
+		-0.5f,  0.5f, -0.5f,
+		 0.5f,  0.5f, -0.5f, 
+		 0.5f,  0.5f,  0.5f, 
+		 0.5f,  0.5f,  0.5f, 
+		-0.5f,  0.5f,  0.5f,
+		-0.5f,  0.5f, -0.5f
 	};
-	md.positionCount = 24;
+	md1.positionCount	= 108;
 
-	md.indices = new pad::uint32[36]{
+	md1.indices			= new uint32[36]{
+		 2,  1,  0,
+		 5,  4,  3,
+		 6,  7,  8,
+		 9, 10, 11,
+		12, 13, 14,
+		15, 16, 17,
+		20, 19, 18,
+		23, 22, 21,
+		24, 25, 26,
+		27, 28, 29,
+		32, 31, 30,
+		35, 34, 33
+	};
+	md1.indiceCount		= 36;
+
+	md1.normals			= new float32[108]{
+		 0.0f,  0.0f, -1.0f,
+		 0.0f,  0.0f, -1.0f,
+		 0.0f,  0.0f, -1.0f,
+		 0.0f,  0.0f, -1.0f,
+		 0.0f,  0.0f, -1.0f,
+		 0.0f,  0.0f, -1.0f,
+
+		 0.0f,  0.0f,  1.0f,
+		 0.0f,  0.0f,  1.0f,
+		 0.0f,  0.0f,  1.0f,
+		 0.0f,  0.0f,  1.0f,
+		 0.0f,  0.0f,  1.0f,
+		 0.0f,  0.0f,  1.0f,
+
+		-1.0f,  0.0f,  0.0f,
+		-1.0f,  0.0f,  0.0f,
+		-1.0f,  0.0f,  0.0f,
+		-1.0f,  0.0f,  0.0f,
+		-1.0f,  0.0f,  0.0f,
+		-1.0f,  0.0f,  0.0f,
+
+		 1.0f,  0.0f,  0.0f,
+		 1.0f,  0.0f,  0.0f,
+		 1.0f,  0.0f,  0.0f,
+		 1.0f,  0.0f,  0.0f,
+		 1.0f,  0.0f,  0.0f,
+		 1.0f,  0.0f,  0.0f,
+
+		 0.0f, -1.0f,  0.0f,
+		 0.0f, -1.0f,  0.0f,
+		 0.0f, -1.0f,  0.0f,
+		 0.0f, -1.0f,  0.0f,
+		 0.0f, -1.0f,  0.0f,
+		 0.0f, -1.0f,  0.0f,
+
+		 0.0f,  1.0f,  0.0f,
+		 0.0f,  1.0f,  0.0f,
+		 0.0f,  1.0f,  0.0f,
+		 0.0f,  1.0f,  0.0f,
+		 0.0f,  1.0f,  0.0f,
+		 0.0f,  1.0f,  0.0f
+	};
+	md1.normalCount		= 108;
+
+	md1.uvs				= new float32[72]{
+		0.0f,  0.0f,
+		1.0f,  0.0f,
+		1.0f,  1.0f,
+		1.0f,  1.0f,
+		0.0f,  1.0f,
+		0.0f,  0.0f,
+
+		0.0f,  0.0f,
+		1.0f,  0.0f,
+		1.0f,  1.0f,
+		1.0f,  1.0f,
+		0.0f,  1.0f,
+		0.0f,  0.0f,
+
+		1.0f,  0.0f,
+		1.0f,  1.0f,
+		0.0f,  1.0f,
+		0.0f,  1.0f,
+		0.0f,  0.0f,
+		1.0f,  0.0f,
+
+		1.0f,  0.0f,
+		1.0f,  1.0f,
+		0.0f,  1.0f,
+		0.0f,  1.0f,
+		0.0f,  0.0f,
+		1.0f,  0.0f,
+
+		0.0f,  1.0f,
+		1.0f,  1.0f,
+		1.0f,  0.0f,
+		1.0f,  0.0f,
+		0.0f,  0.0f,
+		0.0f,  1.0f,
+
+		0.0f,  1.0f,
+		1.0f,  1.0f,
+		1.0f,  0.0f,
+		1.0f,  0.0f,
+		0.0f,  0.0f,
+		0.0f,  1.0f
+	};
+	md1.uvCount			= 72;
+
+	md2.positions		= new float32[12]{
+		-0.5, -0.5, 0.0,
+		 0.5, -0.5, 0.0,
+		 0.5,  0.5, 0.0,
+		-0.5,  0.5, 0.0
+	};
+	md2.positionCount	= 12;
+
+	md2.indices			= new uint32[6]{
 		0, 1, 2,
-		3, 4, 5,
-		4, 3, 6,
-		7, 2, 1,
-		4, 6, 1,
-		4, 2, 5,
-		7, 1, 6,
-		5, 2, 7,
-		4, 0, 2,
-		6, 3, 7,
-		1, 0, 4,
-		7, 3, 5
+		0, 2, 3
 	};
-	md.indiceCount = 36;
+	md2.indiceCount		= 6;
 
-	gfx::mod::Mesh m;
+	md2.uvs				= new float32[8]{
+		0.0f, 0.0f,
+		100.f, 0.0f,
+		100.f, 100.f,
+		0.0f, 100.f
+	};
+	md2.uvCount			= 8;
 
-	GenerateMesh(m, md);
-	m_masterManagerHandle->GetMeshManager().AddResource("Default", m);
+	md1.boneIndexCount	= 0;
+	md1.boneWeightCount = 0;
+	md2.boneIndexCount	= 0;
+	md2.boneWeightCount = 0;
+
+	gfx::mod::Mesh m1, m2;
+
+	GenerateMesh(m1, md1);
+	m_masterManagerHandle->GetMeshManager().AddResource("Cube", m1);
+
+	GenerateMesh(m2, md2);
+	m_masterManagerHandle->GetMeshManager().AddResource("Quad", m2);
 }
 
-void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene)
+void HighLevelRenderer::Render(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene, sys::res::ComponentsHandler& _components)
 {
 	if (!m_lowLevelRenderer)
 		return;
 
-	const sys::ecs::PerspectiveCamera& cam = _scene.GetMainCamera();
-	math::Mat4 vp = cam.GetProjection() * cam.GetView();
+	sys::ecs::PerspectiveCamera* cam = _scene.GetMainCamera();
+	math::Mat4 vp = cam->GetProjection() * 
+		cam->LookAt(
+			cam->GetOwner()->GetTransform().Position(), 
+			cam->GetOwner()->GetTransform().Position() + cam->GetOwner()->GetTransform().Forward(), 
+			math::Vec3f::Up());
+
+	sys::ecs::DirectionalLight* dirLight = _scene.GetDirectionalLight();
 
 	ClearBuffers();
 
-	m_lowLevelRenderer->SetCameraUniformBufferData(math::Vec3f(), math::Vec3f(), vp);
+	m_lowLevelRenderer->SetCameraUniformBufferData(
+		cam->GetOwner()->GetTransform().Position(),
+		cam->GetOwner()->GetTransform().Forward(),
+		vp);
+	m_lowLevelRenderer->SetDirectionalLightUniformBufferData(
+		dirLight->GetOwner()->GetTransform().Forward(), 
+		dirLight->GetColor(), 
+		dirLight->GetIntensity());
 
-	for (auto& meshRenderer : sys::ecs::MeshRenderer::GetCollection())
-	{
-		const gfx::mod::Mesh* const currentMesh		= _resources.GetMeshManager().GetResource(meshRenderer->GetMeshName());
-		const gfx::mod::Material* const currentMat	= _resources.GetMaterialManager().GetResource(meshRenderer->GetMaterialName());
-		gfx::rhi::RenderSettings& currentSettings	= meshRenderer->GetSettings();
-
-		if (!currentMesh)
-			continue;
-
-		if (currentMat)
-			FillTextureLayout(currentSettings, *currentMat);
-
-		m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings, vp);
-	}
+	DrawAnimatedObjects(_resources, _scene, _components);
+	DrawStaticObjects(_resources, _scene, _components);
 
 	SwapBuffers();
 }
 
-void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const mod::Material& _mat)
+void HighLevelRenderer::DrawStaticObjects(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene, sys::res::ComponentsHandler& _components)
+{
+	std::list<sys::ecs::MeshRenderer*>* mr = _components.GetActiveComponents<sys::ecs::MeshRenderer>();
+
+	if (mr)
+	{
+		for (auto& meshRenderer : *mr)
+		{
+			const gfx::mod::Mesh* const currentMesh		= _resources.GetMeshManager().GetResource(meshRenderer->GetMeshName());
+			const gfx::mod::Material* const currentMat	= _resources.GetMaterialManager().GetResource(meshRenderer->GetMaterialName());
+			gfx::rhi::RenderSettings& currentSettings	= meshRenderer->GetSettings();
+
+			if (!currentMesh)
+				continue;
+
+			if (currentMat)
+				FillTextureLayout(currentSettings, *currentMat, _resources);
+
+			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings);
+
+			if (currentMat)
+				UnbindTextures(currentSettings, *currentMat, _resources);
+		}
+	}
+}
+
+void HighLevelRenderer::DrawAnimatedObjects(sys::res::MasterManager& _resources, sys::ecs::Scene& _scene, sys::res::ComponentsHandler& _components)
+{
+	std::list<sys::ecs::AnimRenderer*>* ar = _components.GetActiveComponents<sys::ecs::AnimRenderer>();
+
+	if (ar)
+	{
+		for (auto& animRenderer : *ar)
+		{
+			GetAnimMatrix(*animRenderer, m_animJoints, _resources);
+
+			const gfx::mod::Mesh* const currentMesh		= _resources.GetMeshManager().GetResource(animRenderer->GetMeshName());
+			const gfx::mod::Material* const currentMat	= _resources.GetMaterialManager().GetResource(animRenderer->GetMaterialName());
+			gfx::rhi::RenderSettings& currentSettings	= animRenderer->GetSettings();
+
+			if (!currentMesh)
+				continue;
+
+			if (currentMat)
+				FillTextureLayout(currentSettings, *currentMat, _resources);
+
+			m_lowLevelRenderer->SetJointsUniformBufferData(m_animJoints[0], MAX_JOINT_COUNT);
+
+			m_lowLevelRenderer->ForwardRendering(currentMesh->GetVAO(), currentMesh->GetIBO(), currentSettings);
+
+			if (currentMat)
+				UnbindTextures(currentSettings, *currentMat, _resources);
+		}
+	}
+}
+
+bool HighLevelRenderer::LoadShaders(
+	const std::string& _vPath,
+	const std::string& _fPath,
+	const std::string& _name)
+{
+	if (m_lowLevelRenderer)
+		return m_lowLevelRenderer->LoadShaders(_vPath, _fPath, _name);
+
+	return false;
+}
+
+void HighLevelRenderer::BindInputs(
+	const uint32 _key,
+	const inp::alias::Function& _func,
+	const bool _isToggleKey,
+	const float32 _cooldown)
+{
+	if(m_mainWindow)
+		m_mainWindow->BindInputs(_key, _func, _isToggleKey, _cooldown);
+}
+
+void HighLevelRenderer::GetAnimMatrix(sys::ecs::AnimRenderer& _animRenderer, float(*_matrixArray)[FLOAT_PER_MATRIX], sys::res::MasterManager& _resources)
+{
+	gfx::mod::Anim*		anim = _resources.GetAnimManager().GetResource(_animRenderer.GetAnimName());
+	gfx::mod::Skeleton* skeleton = _resources.GetSkeletonManager().GetResource(_animRenderer.GetSkeletonName());
+
+	if (!anim)
+	{
+		for (int i = 0; i < skeleton->GetBoneCount(); ++i)
+			memcpy(_matrixArray[skeleton->GetBones()[i].m_id], skeleton->GetBones()[i].m_inverseBindPose.data, 16*sizeof(float));
+			//_matrixArray[skeleton->GetBones()[i].m_id] = skeleton->GetBones()[i].m_inverseBindPose.data;
+		return;
+	}
+
+	if (_animRenderer.GetFrameDuration() == -1)
+		_animRenderer.SetFrameDuration(anim->m_duration / (float)anim->m_frameCount);
+
+	int nextKey;
+	if (_animRenderer.GetTimer().GetDuration() * _animRenderer.GetAnimSpeed() > _animRenderer.GetFrameDuration())
+	{
+		int key = _animRenderer.GetCurrentFrame() + 1;
+		nextKey = key + 1;
+		if (key >= anim->m_frameCount)
+		{
+			if (_animRenderer.GetLoop())
+			{
+				key = 0;
+				nextKey = 1;
+			}
+			else
+			{
+				--key;
+				nextKey = key;
+			}
+		}
+		_animRenderer.SetCurrentFrame(key);
+		_animRenderer.GetTimer().Reset();
+	}
+
+	for (int i = 0; i < anim->m_boneCount; ++i)
+	{
+		int			boneId = anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_boneId;
+
+		math::Mat4	animMatrix	= anim->m_keyFrames[_animRenderer.GetCurrentFrame()].m_bones[i].m_transform;
+		math::Mat4	bindMatrix	= skeleton->GetBoneById(boneId)->m_inverseBindPose;
+
+		memcpy(_matrixArray[boneId], (bindMatrix * animMatrix).Transposed().data, 16*sizeof(float));
+	}
+}
+
+void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources)
 {
 	rhi::shad::CustomUniform uniform;
-	uniform.data = &_mat.GetAlbedoMap()->GetID();
-	uniform.type = rhi::shad::DataType::UINT;
+	rhi::ATexture** texture = _resources.GetTextureManager().GetResource(_mat.GetAlbedoMapName());
 
-	_settings.customUniforms["albedoMap"] = uniform;
+	if (texture)
+	{
+		(*texture)->Bind();
+		uniform.data = (void*)&(*texture)->GetID();
+		uniform.type = rhi::shad::DataType::UINT;
 
-	uniform.data = &_mat.GetNormalMap()->GetID();
+		_settings.customUniforms["albedoMap"] = uniform;
 
-	_settings.customUniforms["normalMap"] = uniform;
+		(*texture)->Bind();
+	}
 
-	uniform.data = (void*)&_mat.GetAlbedo();
-	uniform.type = rhi::shad::DataType::VEC4;
+	texture = _resources.GetTextureManager().GetResource(_mat.GetNormalMapName());
+	if (texture)
+	{
+		(*texture)->Bind();
+		uniform.data = (void*)&(*texture)->GetID();
 
-	_settings.customUniforms["albedo"] = uniform;
+		_settings.customUniforms["normalMap"] = uniform;
+		uniform.type = rhi::shad::DataType::UINT;
+	}
 
 	uniform.data = (void*)&_mat.GetAmbient();
 	uniform.type = rhi::shad::DataType::VEC3;
@@ -154,17 +444,33 @@ void HighLevelRenderer::FillTextureLayout(rhi::RenderSettings& _settings, const 
 	uniform.data = (void*)&_mat.GetDiffuse();
 	uniform.type = rhi::shad::DataType::VEC3;
 
-	_settings.customUniforms["diffuse"] = uniform;
+	_settings.customUniforms["tint"] = uniform;
 
 	uniform.data = (void*)&_mat.GetSpecular();
 	uniform.type = rhi::shad::DataType::VEC3;
 
 	_settings.customUniforms["specular"] = uniform;
 
-	uniform.data = (void*)&_mat.GetShiness();
+	uniform.data = (void*)&_mat.GetShininess();
 	uniform.type = rhi::shad::DataType::FLOAT;
 
-	_settings.customUniforms["shiness"] = uniform;
+	_settings.customUniforms["shininess"] = uniform;
+}
+
+void HighLevelRenderer::UnbindTextures(rhi::RenderSettings& _settings, const mod::Material& _mat, sys::res::MasterManager& _resources)
+{
+	rhi::ATexture** texture = _resources.GetTextureManager().GetResource(_mat.GetAlbedoMapName());
+
+	if (texture)
+	{
+		(*texture)->Unbind();
+	}
+
+	texture = _resources.GetTextureManager().GetResource(_mat.GetNormalMapName());
+	if (texture)
+	{
+		(*texture)->Unbind();
+	}
 }
 
 void HighLevelRenderer::GenerateMesh(gfx::mod::Mesh& _m, const gfx::mod::MeshData& _md)
@@ -180,10 +486,19 @@ bool HighLevelRenderer::IsWindowOpen()
 	return false;
 }
 
+void HighLevelRenderer::GenerateTexture(rhi::ATexture* const _texture, const std::string& _path, const rhi::TextureParameters& _param)
+{
+	if (m_lowLevelRenderer)
+		m_lowLevelRenderer->GenerateTexture(_texture, _path, _param);
+}
+
 void HighLevelRenderer::PollEvents()
 {
 	if (m_mainWindow)
+	{
 		m_mainWindow->PollEvents();
+		m_mainWindow->UpdateInputs(core::EngineClock::DeltaTime());
+	}
 }
 
 void HighLevelRenderer::ClearBuffers()
@@ -200,7 +515,20 @@ void HighLevelRenderer::SwapBuffers()
 
 void HighLevelRenderer::ResizeContext(const uint32 _w, const uint32 _h)
 {
-	m_lowLevelRenderer->ResizeViewport(_w, _h);
+	if (m_lowLevelRenderer)
+		m_lowLevelRenderer->ResizeViewport(_w, _h);
+}
+
+void HighLevelRenderer::CenterMouse()
+{
+	if (m_mainWindow)
+		m_mainWindow->CenterMouse();
+}
+
+void HighLevelRenderer::CloseWindow()
+{
+	if (m_mainWindow)
+		m_mainWindow->Close();
 }
 
 } // namespace gfx

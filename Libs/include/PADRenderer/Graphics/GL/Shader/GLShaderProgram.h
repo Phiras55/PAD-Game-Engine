@@ -23,9 +23,10 @@ public:
 	void SetUniform(const std::string& _name, const uint32 value)			override;
 	void SetUniform(const std::string& _name, const bool value)				override;
 	void SetUniform(const std::string& _name, const float32 value)			override;
-	void SetUniform(const std::string& _name, const math::Mat4& _value)		override;
+	void SetUniform(const std::string& _name, float* const _value)			override;
 	void SetUniform(const std::string& _name, const math::Vec4f& _value)	override;
 	void SetUniform(const std::string& _name, const math::Vec3f& _value)	override;
+	void SetUniform(const std::string& _name, float* const _value, const uint32 _count) override;
 	void SetCustomUniform(const std::string& _name, const rhi::shad::CustomUniform& _customUniform) override;
 
 public:

@@ -2,11 +2,14 @@
 #include <Graphics/HighLevelRenderer.h>
 #include <Graphics/RHI/RenderSettings.h>
 #include <Graphics/Model/Mesh.h>
-#include <System/ECS/Scene.h>
-#include <System/Resource/MasterManager.h>
-#include <System/Resource/ResourceManager.h>
+#include <System/Scene/Scene.h>
+#include <System/ResourceHandling/MasterManager.h>
+#include <System/ResourceHandling/ResourceManager.h>
 #include <System/Physics/IPhysicContext.h>
+#include <System/ResourceHandling/ComponentsHandler.h>
+#include <System/ECS/AnimRenderer.h>
 #include <Core/Timer.h>
+#include <Core/IDHandler.h>
 
 namespace pad	{
 namespace core	{
@@ -25,6 +28,7 @@ private:
 
 	sys::ecs::Scene*			m_scene;
 	sys::res::MasterManager*	m_resourceManager;
+	sys::res::ComponentsHandler m_componentHandler;
 
 	Timer m_fixedUpdateTimer;
 
@@ -35,6 +39,8 @@ public:
 	void InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win::WindowSettings& _w);			/*! Initialize the simulation. Reads the config files and initialize the renderer and the window. */
 	void StartSimulation();																					/*! Starts the simulation with the parameters given in InitSimulation method. */
 	void Simulate();
+	void SaveCurrentScene(const std::string& _savePath);
+	void LoadScene(const std::string& _savePath);
 
 private:
 	void PollEvents();
@@ -42,13 +48,17 @@ private:
 	void FixedUpdate();
 	void LateUpdate();
 	void Render();
+	void Close();
 
 	void ResizeContext(const uint32 _w, const uint32 _h);
+	void ToggleDirectionalLightRotation();
 	void FlushLogs();
 
 public:
 	sys::ecs::Scene* const				GetScene() const			{ return m_scene; }
 	sys::res::MasterManager* const		GetResourceManager() const	{ return m_resourceManager; }
+	const	gfx::HighLevelRenderer&		GetRenderer() const			{ return m_highLevelRenderer; }
+			gfx::HighLevelRenderer&		GetRenderer()				{ return m_highLevelRenderer; }
 
 public:
 	static sys::phx::IPhysicContext* const GetPhysicContext() { return m_physicContext; }

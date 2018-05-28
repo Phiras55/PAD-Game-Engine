@@ -6,9 +6,8 @@ namespace gfx	{
 namespace mod	{
 
 Material::Material() :
-	m_albedoMap(nullptr),
-	m_normalMap(nullptr),
-	m_shiness(0.f)
+	m_diffuse(1.f, 1.f, 1.f),
+	m_shininess(0.f)
 {
 
 }

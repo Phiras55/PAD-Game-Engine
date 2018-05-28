@@ -12,8 +12,9 @@ public:
 	~GLTexture() = default;
 
 public:
-	void GenerateID() override;
-	void Bind() override;
+	void GenerateID()	override;
+	void Bind()			override;
+	void Unbind()		override;
 	void GenerateTexture(const int32 _w, const int32 _h, uchar* const _data, const rhi::TextureParameters& _param) override;
 
 private:

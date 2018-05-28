@@ -10,18 +10,22 @@
 #include <Graphics/Model/MeshData.h>
 #include <System/ECS/MeshRenderer.h>
 #include <System/ECS/BoxCollider.h>
+#include <AssetParser/AssetReader.h>
+#include <AssetParser/AssetParser.h>
 
 #undef main
 
 int main()
 {
+	//pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
+
 	#pragma region RenderInit
 
 	pad::gfx::win::WindowSettings winSettings;
 
 	winSettings.title			= "This is a SDL Window.";
-	winSettings.position.x		= 400u;
-	winSettings.position.y		= 200u;
+	winSettings.position.x		= 0u;
+	winSettings.position.y		= 30u;
 	winSettings.size.x			= 1600u;
 	winSettings.size.y			= 900u;
 	winSettings.isFullscreen	= false;
@@ -32,9 +36,9 @@ int main()
 
 	contextSettings.viewportSize.x		= winSettings.size.x;
 	contextSettings.viewportSize.y		= winSettings.size.y;
-	contextSettings.clearColor.r		= 0.3f;
-	contextSettings.clearColor.g		= 0.3f;
-	contextSettings.clearColor.b		= 0.3f;
+	contextSettings.clearColor.r		= 30.f / 255.f;
+	contextSettings.clearColor.g		= 30.f / 255.f;
+	contextSettings.clearColor.b		= 30.f / 255.f;
 	contextSettings.clearColor.a		= 1.0f;
 	contextSettings.implementationType	= pad::gfx::rhi::E_RENDERER_IMPLEMENTATION_TYPE::OPENGL;
 	contextSettings.cullFace			= pad::gfx::rhi::E_CULL_FACE::BACK;
@@ -47,57 +51,67 @@ int main()
 	pad::CreateEngine();
 	pad::InitEngine(contextSettings, winSettings);
 
-	#pragma region Ground
+	pad::sys::ecs::PADObject* plat = pad::CreatePADObject("Platform");
+	plat->AddComponent<pad::sys::ecs::MeshRenderer>("Cube", "Default");
 
-	pad::sys::ecs::PADObject* ground = new pad::sys::ecs::PADObject();
-	pad::sys::ecs::MeshRenderer* ground_MR = new pad::sys::ecs::MeshRenderer();
+	pad::LoadResourceFile("../Resources/PADFormat/creature_pitlord_magtheridon_0.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_pitlord_magtheridon.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_0.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_Walk [0].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_AttackUnarmed [4].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_CombatWound [5].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_Run [1].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_SpellCast [7].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_Stand [2].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider_Death [6].PADAnim", "");
+	pad::LoadResourceFile("../Resources/PADFormat/creature_giantspider_giantspider.PADSkeleton", "");
+	pad::LoadResourceFile("../Resources/PADFormat/Grid.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/Default.PADMaterial", "");
+	pad::LoadResourceFile("../Resources/PADFormat/pCube1.PADMesh", "");
+	pad::LoadResourceFile("../Resources/PADFormat/lambert2.PADMaterial", "");
 
-	ground_MR->GetSettings().isWireframe = true;
-	ground_MR->SetMeshName("Default");
-	ground_MR->SetMaterialName("Default");
-	ground_MR->GetTransform().SetScale(pad::math::Vec3f(10, 1, 10));
+	plat->GetTransform().SetScale(pad::math::Vec3f(10.f, 1.f, 10.f));
 
-	pad::sys::ecs::RigidBody*	ground_RB		= new pad::sys::ecs::RigidBody();
-	pad::sys::ecs::BoxCollider* ground_Collider = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(10, 1, 10));
-	ground_RB->SetMass(0.f);
+	pad::sys::ecs::MeshRenderer* mr = plat->GetComponent<pad::sys::ecs::MeshRenderer>();
 
-	ground->AddComponent(ground_MR);
-	ground->AddComponent(ground_RB);
-	ground->AddComponent(ground_Collider);
-
-	pad::AddPADObject(ground);
-
-	#pragma endregion
-
-	#pragma region Falling Cube
+	plat->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(10.f, 1.f, 10.f));
+	plat->AddComponent<pad::sys::ecs::RigidBody>();
+	pad::sys::ecs::RigidBody* rb = plat->GetComponent<pad::sys::ecs::RigidBody>();
+	rb->SetMass(0.f);
 
 	for (int i = 0; i < 10; ++i)
 	{
-		pad::sys::ecs::PADObject* cube = new pad::sys::ecs::PADObject();
-		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i *2 +10, 0));
-		cube->GetTransform().SetRotation(pad::math::Vec3f(i * 45, i *45, i*45));
+		pad::sys::ecs::PADObject* cube = pad::CreatePADObject(std::string("Cube_0") + std::to_string(i));
 
-		pad::sys::ecs::MeshRenderer* cube_MR = new pad::sys::ecs::MeshRenderer();
-		cube_MR->GetSettings().isWireframe = true;
-		cube_MR->SetMeshName("Default");
-		cube_MR->SetMaterialName("Default");
+		cube->GetTransform().SetPosition(pad::math::Vec3f(0, i*10, 0));
+		cube->GetTransform().SetRotation(pad::math::Vec3f(0, 90, 0));
+		cube->GetTransform().SetScale(0.03f);
 
-		pad::sys::ecs::RigidBody*	cube_RB = new pad::sys::ecs::RigidBody();
-		pad::sys::ecs::BoxCollider* cube_Collider = new pad::sys::ecs::BoxCollider(pad::math::Vec3f(1, 1, 1));
-		cube_RB->SetMass(10.f);
+		cube->AddComponent<pad::sys::ecs::AnimRenderer>(
+			"creature_giantspider_giantspider", 
+			"creature_giantspider_giantspider_0", 
+			"creature_giantspider_giantspider", 
+			"creature_giantspider_giantspider_AttackUnarmed [3]");
+		cube->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(1.f, 1.f, 1.f));
+		cube->AddComponent<pad::sys::ecs::RigidBody>();
 
-		cube->AddComponent(cube_MR);
-		cube->AddComponent(cube_RB);
-		cube->AddComponent(cube_Collider);
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnim("creature_giantspider_giantspider_Run [1]");
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->GetSettings().isAffectedByLight = true;
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnimSpeed(1.f);
+		cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetLoop(true);
 
-		pad::AddPADObject(cube);
+		rb = cube->GetComponent<pad::sys::ecs::RigidBody>();
+		rb->SetMass(10.f);
 	}
 
-	#pragma endregion
+	pad::sys::ecs::PADObject* grid = pad::CreatePADObject("Grid");
+	grid->AddComponent<pad::sys::ecs::MeshRenderer>("Quad", "Grid");
+	grid->GetTransform().SetRotation(pad::math::Vec3f(-90.f, 0.f, 0.f));
+	grid->GetTransform().SetScale(100.f);
 
 	pad::StartSimulation();
 	pad::DestroyEngine();
 
 	return EXIT_SUCCESS;
 }
-

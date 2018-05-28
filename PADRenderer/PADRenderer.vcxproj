@@ -193,9 +193,11 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     <ClCompile Include="Sources\Graphics\GL\Shader\GLShaderManager.cpp" />
     <ClCompile Include="Sources\Graphics\GL\Shader\GLShaderProgram.cpp" />
     <ClCompile Include="Sources\Graphics\GL\Shader\GLVertexShader.cpp" />
+    <ClCompile Include="Sources\Graphics\Inputs\Inputs.cpp" />
     <ClCompile Include="Sources\Graphics\Model\Material.cpp" />
     <ClCompile Include="Sources\Graphics\Model\Mesh.cpp" />
     <ClCompile Include="Sources\Graphics\Model\MeshData.cpp" />
+    <ClCompile Include="Sources\Graphics\Model\Skeleton.cpp" />
     <ClCompile Include="Sources\Graphics\RHI\ContextSettings.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
@@ -232,9 +234,14 @@ xcopy "$(ProjectDir)Sources\*.h" "$(SolutionDir)Libs\include\$(ProjectName)" /Y 
     <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderManager.h" />
     <ClInclude Include="Sources\Graphics\GL\Shader\GLShaderProgram.h" />
     <ClInclude Include="Sources\Graphics\GL\Shader\GLVertexShader.h" />
+    <ClInclude Include="Sources\Graphics\Inputs\InputData.h" />
+    <ClInclude Include="Sources\Graphics\Inputs\Inputs.h" />
     <ClInclude Include="Sources\Graphics\Model\Material.h" />
+    <ClInclude Include="Sources\Graphics\Model\MaterialData.h" />
     <ClInclude Include="Sources\Graphics\Model\Mesh.h" />
     <ClInclude Include="Sources\Graphics\Model\MeshData.h" />
+    <ClInclude Include="Sources\Graphics\Model\Skeleton.h" />
+    <ClInclude Include="Sources\Graphics\Model\TextureData.h" />
     <ClInclude Include="Sources\Graphics\RHI\ATexture.h" />
     <ClInclude Include="Sources\Graphics\RHI\AUniformBufferObject.h" />
     <ClInclude Include="Sources\Graphics\RHI\AVertexArray.h" />

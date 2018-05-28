@@ -78,6 +78,10 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.fbx
+libfbxsdk.lib
+libfbxsdk-md.lib
+libfbxsdk-mt.lib
 
 # Chutzpah Test files
 _Chutzpah*
@@ -315,3 +319,7 @@ ASALocalRun/
 # MSBuild Binary and Structured Log
 *.binlog
 
+
+*.tlog
+
+*.exp

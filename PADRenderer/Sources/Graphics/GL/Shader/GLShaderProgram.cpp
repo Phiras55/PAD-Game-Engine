@@ -36,11 +36,11 @@ bool GLShaderProgram::CompileProgram()
 	{
 		char infoLog[SHADER_LOG_SIZE];
 
+		glGetProgramInfoLog(m_id, SHADER_LOG_SIZE, NULL, infoLog);
+		LOG_ERROR("Error! Could not link the program: %%", infoLog);
 		glDeleteProgram(m_id);
 		glDeleteShader(vertID);
 		glDeleteShader(fragID);
-		glGetProgramInfoLog(m_id, SHADER_LOG_SIZE, NULL, infoLog);
-		LOG_ERROR("Error! Could not link the program: %%", infoLog);
 		m_vertShader = nullptr;
 		m_fragShader = nullptr;
 		return false;
@@ -92,11 +92,9 @@ void GLShaderProgram::SetUniform(const std::string& name, const bool value)
 	glUniform1i(m_uniforms[name], (int)value);
 }
 
-void GLShaderProgram::SetUniform(const std::string& name, const math::Mat4& _value)
+void GLShaderProgram::SetUniform(const std::string& name, float* const _value)
 {
-	if (m_uniforms.find(name) == m_uniforms.end())
-		m_uniforms[name] = glGetUniformLocation(m_id, name.c_str());
-	glUniformMatrix4fv(m_uniforms[name], 1, GL_TRUE, _value[0]);
+	SetUniform(name, _value, 1);
 }
 
 void GLShaderProgram::SetUniform(const std::string& name, const math::Vec4f& _value)
@@ -113,6 +111,13 @@ void GLShaderProgram::SetUniform(const std::string& name, const math::Vec3f& _va
 	glUniform3fv(m_uniforms[name], 1, &_value[0]);
 }
 
+void GLShaderProgram::SetUniform(const std::string& name, float* const _value, const uint32 _count)
+{
+	if (m_uniforms.find(name) == m_uniforms.end())
+		m_uniforms[name] = glGetUniformLocation(m_id, name.c_str());
+	glUniformMatrix4fv(m_uniforms[name], _count, GL_TRUE, _value);
+}
+
 void GLShaderProgram::SetCustomUniform(const std::string& _name, const rhi::shad::CustomUniform& _customUniform)
 {
 	if (m_uniforms.find(_name) == m_uniforms.end())
@@ -124,7 +129,10 @@ void GLShaderProgram::SetCustomUniform(const std::string& _name, const rhi::shad
 
 		break;
 	case rhi::shad::DataType::MAT4:
-		SetUniform(_name, *static_cast<math::Mat4*>(_customUniform.data));
+		SetUniform(_name, static_cast<float*>(_customUniform.data));
+		break;
+	case rhi::shad::DataType::MAT4_ARRAY:
+		SetUniform(_name, static_cast<float*>(_customUniform.data), _customUniform.count);
 		break;
 	case rhi::shad::DataType::VEC4:
 		SetUniform(_name, *static_cast<math::Vec4f*>(_customUniform.data));

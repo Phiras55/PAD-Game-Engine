@@ -1,21 +1,57 @@
 #include <EnginePCH.h>
+#include <System/ECS/PADObject.h>
 #include <System/ECS/PerspectiveCamera.h>
+#include <Core/EngineClock.h>
 
 namespace pad	{
 namespace sys	{
 namespace ecs	{
 
-PerspectiveCamera::PerspectiveCamera()
+alias::ComponentID PerspectiveCamera::m_id = INVALID_COMPONENT_ID;
+
+PerspectiveCamera::PerspectiveCamera() :
+	m_speed(5.0)
 {
-	m_type = COMPONENT_TYPE::CAMERA;
+	if (m_id != INVALID_COMPONENT_ID)
+		m_id = static_cast<alias::ComponentID>(util::GetTypeID<std::remove_const_t<std::remove_reference_t<decltype(*this)>>>());
 
 	Perspective(45, 16.f / 9.f, 0.01f, 1000.f);
-	LookAt(m_transform.Position(), math::Vec3f(0, 0, 0), math::Vec3f::Up());
+	LookAt(math::Vec3f(0, 0, 0), math::Vec3f(0, 0, 0), math::Vec3f::Up());
 }
 
 PerspectiveCamera::~PerspectiveCamera()
 {
 
+}
+
+void PerspectiveCamera::MoveForward()
+{
+	m_owner->GetTransform().Move(m_owner->GetTransform().Forward() * m_speed * core::EngineClock::DeltaTime());
+}
+
+void PerspectiveCamera::MoveBackward()
+{
+	m_owner->GetTransform().Move(-m_owner->GetTransform().Forward() * m_speed * core::EngineClock::DeltaTime());
+}
+
+void PerspectiveCamera::MoveLeft()
+{
+	m_owner->GetTransform().Move(m_owner->GetTransform().Right() * m_speed * core::EngineClock::DeltaTime());
+}
+
+void PerspectiveCamera::MoveRight()
+{
+	m_owner->GetTransform().Move(-m_owner->GetTransform().Right() * m_speed * core::EngineClock::DeltaTime());
+}
+
+void PerspectiveCamera::MoveUp()
+{
+	m_owner->GetTransform().Move(m_owner->GetTransform().Up() * m_speed * core::EngineClock::DeltaTime());
+}
+
+void PerspectiveCamera::MoveDown()
+{
+	m_owner->GetTransform().Move(-m_owner->GetTransform().Up() * m_speed * core::EngineClock::DeltaTime());
 }
 
 void PerspectiveCamera::Init()
@@ -42,6 +78,11 @@ void PerspectiveCamera::LateUpdate()
 const math::Mat4& PerspectiveCamera::Perspective(float v, float r, float n, float f) //v = FOV, r = aspectRatio, n = near, f = far
 {
 	float fovTan = tan(math::DegreeToRad(v) / 2.f);
+
+	m_fov = v;
+	m_aspectRatio = r;
+	m_near = n;
+	m_far = f;
 
 	_projectionMatrix[0][0] = 1.f / (fovTan * r);
 	_projectionMatrix[1][1] = 1.f / fovTan;
@@ -82,6 +123,26 @@ const math::Mat4& PerspectiveCamera::LookAt(const math::Vec3f& eye, const math::
 	_viewMatrix[2][3] = he;
 
 	return _viewMatrix;
+}
+
+void PerspectiveCamera::FirstPersonMouseInput(
+	const math::Vec2i& _mousePos,
+	const math::Vec2i& _windowSize)
+{
+	float x = 5 * core::EngineClock::DeltaTime() * float((_windowSize.x / 2.f) - _mousePos.x);
+	float y = 5 * core::EngineClock::DeltaTime() * float((_windowSize.y / 2.f) - _mousePos.y);
+
+	x = fmod(x, 360.f);
+	y = fmod(y, 360.f);
+
+	float rotX = GetOwner()->GetTransform().Rotation().x - y;
+	if (rotX > 89)
+		rotX = 89;
+	else if (rotX < -89)
+		rotX = -89;
+
+	m_owner->GetTransform().SetRotation(math::Vec3f(rotX, m_owner->GetTransform().Rotation().y + x, m_owner->GetTransform().Rotation().z));
+	LookAt(m_owner->GetTransform().Position(), m_owner->GetTransform().Position() + m_owner->GetTransform().Forward(), math::Vec3f::Up());
 }
 
 json PerspectiveCamera::Serialize()

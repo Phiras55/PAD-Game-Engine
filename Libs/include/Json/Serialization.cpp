@@ -1,9 +1,8 @@
-#include <EnginePCH.h>
 #include <Json/Serialization.h>
 
 namespace pad	{
 
-void AddJsonToFile(const std::string& path, const json& j)
+void ISerializable::AddJsonToFile(const std::string& path, const json& j)
 {
 	if (!_access(path.c_str(), 0))
 		_mkdir(path.c_str());
@@ -12,7 +11,7 @@ void AddJsonToFile(const std::string& path, const json& j)
 	file.close();
 }
 
-json LoadJsonFromFile(const std::string& path)
+json ISerializable::LoadJsonFromFile(const std::string& path)
 {
 	json j;
 	std::fstream f(path);

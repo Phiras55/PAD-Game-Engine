@@ -26,9 +26,16 @@ enum class E_MIPMAP_TYPE : uint8
 	LINEAR_LINEAR
 };
 
+enum class E_CHANNEL_TYPE : uint8
+{
+	RGB,
+	RGBA
+};
+
 using WrapType			= E_WRAP_TYPE;
 using TextureFiltering	= E_TEXTURE_FILTERING;
 using MipmapType		= E_MIPMAP_TYPE;
+using ChannelType		= E_CHANNEL_TYPE;
 
 struct TextureParameters
 {
@@ -39,6 +46,7 @@ struct TextureParameters
 		magFiltering(E_TEXTURE_FILTERING::LINEAR),
 		minMipmap(E_MIPMAP_TYPE::LINEAR_LINEAR),
 		magMipmap(E_MIPMAP_TYPE::LINEAR_LINEAR),
+		channelType(E_CHANNEL_TYPE::RGB),
 		flipY(true)
 	{
 	}
@@ -49,6 +57,7 @@ struct TextureParameters
 	TextureFiltering	magFiltering;
 	MipmapType			minMipmap;
 	MipmapType			magMipmap;
+	ChannelType			channelType;
 	bool				flipY;
 };
 

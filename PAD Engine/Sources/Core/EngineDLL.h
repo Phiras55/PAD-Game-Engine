@@ -13,7 +13,7 @@ namespace pad
 	ENGINE_API void DestroyEngine();
 
 	ENGINE_API void StartSimulation();
-	ENGINE_API void Simulate();
+	ENGINE_API void Simulate(bool _stepPhys);
 	ENGINE_API double DeltaTime();
 
 	ENGINE_API void MoveMainCamera(const math::Vec3f& _translation);

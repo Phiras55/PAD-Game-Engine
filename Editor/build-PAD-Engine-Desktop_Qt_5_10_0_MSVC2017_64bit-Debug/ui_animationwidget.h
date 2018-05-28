@@ -13,6 +13,8 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
@@ -37,12 +39,29 @@ public:
     QHBoxLayout *Material;
     QLabel *materialLabel;
     QLineEdit *materialEdit;
+    QHBoxLayout *Anim;
+    QLabel *animLabel;
+    QLineEdit *animEdit;
+    QHBoxLayout *Skeleton;
+    QLabel *skeletonLabel;
+    QLineEdit *skeletonEdit;
+    QHBoxLayout *Speed;
+    QLabel *speedLabel;
+    QDoubleSpinBox *speedEdit;
+    QCheckBox *Loop;
 
     void setupUi(QWidget *AnimationWidget)
     {
         if (AnimationWidget->objectName().isEmpty())
             AnimationWidget->setObjectName(QStringLiteral("AnimationWidget"));
-        AnimationWidget->resize(400, 115);
+        AnimationWidget->resize(208, 234);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(AnimationWidget->sizePolicy().hasHeightForWidth());
+        AnimationWidget->setSizePolicy(sizePolicy);
+        AnimationWidget->setMinimumSize(QSize(150, 234));
+        AnimationWidget->setMaximumSize(QSize(16777215, 234));
         AnimationWidget->setStyleSheet(QLatin1String("QToolTip {\n"
 "    border: 1px solid #76797C;\n"
 "    background-color: #5A7566;\n"
@@ -1300,11 +1319,11 @@ public:
         PadObject = new QGroupBox(AnimationWidget);
         PadObject->setObjectName(QStringLiteral("PadObject"));
         PadObject->setEnabled(true);
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(PadObject->sizePolicy().hasHeightForWidth());
-        PadObject->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(PadObject->sizePolicy().hasHeightForWidth());
+        PadObject->setSizePolicy(sizePolicy1);
         gridLayout = new QGridLayout(PadObject);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(5, 5, 5, 5);
@@ -1314,22 +1333,19 @@ public:
         Mesh->setObjectName(QStringLiteral("Mesh"));
         meshLabel = new QLabel(PadObject);
         meshLabel->setObjectName(QStringLiteral("meshLabel"));
-        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(meshLabel->sizePolicy().hasHeightForWidth());
-        meshLabel->setSizePolicy(sizePolicy1);
-        meshLabel->setMinimumSize(QSize(38, 0));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(meshLabel->sizePolicy().hasHeightForWidth());
+        meshLabel->setSizePolicy(sizePolicy2);
+        meshLabel->setMinimumSize(QSize(42, 0));
 
         Mesh->addWidget(meshLabel);
 
         meshEdit = new QLineEdit(PadObject);
         meshEdit->setObjectName(QStringLiteral("meshEdit"));
-        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(meshEdit->sizePolicy().hasHeightForWidth());
-        meshEdit->setSizePolicy(sizePolicy2);
+        sizePolicy.setHeightForWidth(meshEdit->sizePolicy().hasHeightForWidth());
+        meshEdit->setSizePolicy(sizePolicy);
 
         Mesh->addWidget(meshEdit);
 
@@ -1340,20 +1356,84 @@ public:
         Material->setObjectName(QStringLiteral("Material"));
         materialLabel = new QLabel(PadObject);
         materialLabel->setObjectName(QStringLiteral("materialLabel"));
-        sizePolicy1.setHeightForWidth(materialLabel->sizePolicy().hasHeightForWidth());
-        materialLabel->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(materialLabel->sizePolicy().hasHeightForWidth());
+        materialLabel->setSizePolicy(sizePolicy2);
+        materialLabel->setMinimumSize(QSize(42, 0));
 
         Material->addWidget(materialLabel);
 
         materialEdit = new QLineEdit(PadObject);
         materialEdit->setObjectName(QStringLiteral("materialEdit"));
-        sizePolicy2.setHeightForWidth(materialEdit->sizePolicy().hasHeightForWidth());
-        materialEdit->setSizePolicy(sizePolicy2);
+        sizePolicy.setHeightForWidth(materialEdit->sizePolicy().hasHeightForWidth());
+        materialEdit->setSizePolicy(sizePolicy);
 
         Material->addWidget(materialEdit);
 
 
         verticalLayout->addLayout(Material);
+
+        Anim = new QHBoxLayout();
+        Anim->setObjectName(QStringLiteral("Anim"));
+        animLabel = new QLabel(PadObject);
+        animLabel->setObjectName(QStringLiteral("animLabel"));
+        sizePolicy2.setHeightForWidth(animLabel->sizePolicy().hasHeightForWidth());
+        animLabel->setSizePolicy(sizePolicy2);
+        animLabel->setMinimumSize(QSize(42, 0));
+
+        Anim->addWidget(animLabel);
+
+        animEdit = new QLineEdit(PadObject);
+        animEdit->setObjectName(QStringLiteral("animEdit"));
+        sizePolicy.setHeightForWidth(animEdit->sizePolicy().hasHeightForWidth());
+        animEdit->setSizePolicy(sizePolicy);
+
+        Anim->addWidget(animEdit);
+
+
+        verticalLayout->addLayout(Anim);
+
+        Skeleton = new QHBoxLayout();
+        Skeleton->setObjectName(QStringLiteral("Skeleton"));
+        skeletonLabel = new QLabel(PadObject);
+        skeletonLabel->setObjectName(QStringLiteral("skeletonLabel"));
+        sizePolicy2.setHeightForWidth(skeletonLabel->sizePolicy().hasHeightForWidth());
+        skeletonLabel->setSizePolicy(sizePolicy2);
+        skeletonLabel->setMinimumSize(QSize(42, 0));
+
+        Skeleton->addWidget(skeletonLabel);
+
+        skeletonEdit = new QLineEdit(PadObject);
+        skeletonEdit->setObjectName(QStringLiteral("skeletonEdit"));
+        sizePolicy.setHeightForWidth(skeletonEdit->sizePolicy().hasHeightForWidth());
+        skeletonEdit->setSizePolicy(sizePolicy);
+
+        Skeleton->addWidget(skeletonEdit);
+
+
+        verticalLayout->addLayout(Skeleton);
+
+        Speed = new QHBoxLayout();
+        Speed->setObjectName(QStringLiteral("Speed"));
+        speedLabel = new QLabel(PadObject);
+        speedLabel->setObjectName(QStringLiteral("speedLabel"));
+        sizePolicy2.setHeightForWidth(speedLabel->sizePolicy().hasHeightForWidth());
+        speedLabel->setSizePolicy(sizePolicy2);
+        speedLabel->setMinimumSize(QSize(42, 0));
+
+        Speed->addWidget(speedLabel);
+
+        speedEdit = new QDoubleSpinBox(PadObject);
+        speedEdit->setObjectName(QStringLiteral("speedEdit"));
+
+        Speed->addWidget(speedEdit);
+
+
+        verticalLayout->addLayout(Speed);
+
+        Loop = new QCheckBox(PadObject);
+        Loop->setObjectName(QStringLiteral("Loop"));
+
+        verticalLayout->addWidget(Loop);
 
 
         gridLayout->addLayout(verticalLayout, 0, 0, 1, 1);
@@ -1370,9 +1450,13 @@ public:
     void retranslateUi(QWidget *AnimationWidget)
     {
         AnimationWidget->setWindowTitle(QApplication::translate("AnimationWidget", "Form", nullptr));
-        PadObject->setTitle(QApplication::translate("AnimationWidget", "Mesh Renderer", nullptr));
+        PadObject->setTitle(QApplication::translate("AnimationWidget", "Animation", nullptr));
         meshLabel->setText(QApplication::translate("AnimationWidget", "Mesh", nullptr));
         materialLabel->setText(QApplication::translate("AnimationWidget", "Material", nullptr));
+        animLabel->setText(QApplication::translate("AnimationWidget", "Anim", nullptr));
+        skeletonLabel->setText(QApplication::translate("AnimationWidget", "Skeleton", nullptr));
+        speedLabel->setText(QApplication::translate("AnimationWidget", "Speed", nullptr));
+        Loop->setText(QApplication::translate("AnimationWidget", "Loop", nullptr));
     } // retranslateUi
 
 };

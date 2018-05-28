@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B6574368-7512-3214-BB93-BE8DC6C7D773}</ProjectGuid>
+    <ProjectGuid>{F8CA2257-F73B-313D-A015-432ECBADC131}</ProjectGuid>
     <RootNamespace>PAD-Engine</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
@@ -114,7 +114,7 @@
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/FBXSDK;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/FBXSDK;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
     </QtMoc>
     <QtRcc>
       <InitFuncName>style</InitFuncName>
@@ -125,8 +125,8 @@
       <InputFile>%(FullPath)</InputFile>
     </QtRcc>
     <QtUic>
-      <QTDIR>$(QTDIR)</QTDIR>
       <OutputFile>.\GeneratedFiles\ui_%(Filename).h</OutputFile>
+      <QTDIR>$(QTDIR)</QTDIR>
       <ExecutionDescription>Uic'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
     </QtUic>
@@ -188,7 +188,7 @@
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <InputFile>%(FullPath)</InputFile>
       <DynamicSource>output</DynamicSource>
-      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include/FBXSDK;C:/Users/FunckyCrow/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
+      <IncludePath>.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\mkspecs/win32-msvc;.;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PAD Engine;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/PADRenderer;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include/FBXSDK;C:/Users/a.carriere/Documents/Visual Studio 2017/Projects/PAD-Game-Engine/PAD-Game-Engine/Libs/include;$(QTDIR)\include;$(QTDIR)\include/QtWidgets;$(QTDIR)\include/QtGui;$(QTDIR)\include/QtANGLE;$(QTDIR)\include/QtCore;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.13.26128\include;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt</IncludePath>
     </QtMoc>
     <QtUic>
       <QTDIR>$(QTDIR)</QTDIR>
@@ -198,17 +198,20 @@
     </QtUic>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="boxcolliderwidget.cpp" />
+    <ClCompile Include="animationwidget.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="meshwidget.cpp" />
     <ClCompile Include="padeditor.cpp" />
     <ClCompile Include="padobjectwidget.cpp" />
     <ClCompile Include="sceneview.cpp" />
     <ClCompile Include="transformwidget.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="boxcolliderwidget.h">
+    <QtMoc Include="animationwidget.h">
     </QtMoc>
     <QtMoc Include="glwidget.h">
+    </QtMoc>
+    <QtMoc Include="meshwidget.h">
     </QtMoc>
     <QtMoc Include="padeditor.h">
     </QtMoc>
@@ -237,13 +240,16 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_predefs.h;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </CustomBuild>
-    <ClInclude Include="ui_boxcolliderwidget.h" />
+    <ClInclude Include="ui_animationwidget.h" />
+    <ClInclude Include="ui_meshwidget.h" />
     <ClInclude Include="ui_padeditor.h" />
     <ClInclude Include="ui_padobjectwidget.h" />
     <ClInclude Include="ui_transformwidget.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="boxcolliderwidget.ui">
+    <QtUic Include="animationwidget.ui">
+    </QtUic>
+    <QtUic Include="meshwidget.ui">
     </QtUic>
     <QtUic Include="padeditor.ui">
     </QtUic>

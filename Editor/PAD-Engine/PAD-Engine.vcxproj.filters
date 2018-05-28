@@ -50,10 +50,10 @@
     <ClCompile Include="animationwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="boxcolliderwidget.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="meshwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="padeditor.cpp">
@@ -73,10 +73,10 @@
     <QtMoc Include="animationwidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="boxcolliderwidget.h">
+    <QtMoc Include="glwidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="glwidget.h">
+    <QtMoc Include="meshwidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="padeditor.h">
@@ -121,7 +121,7 @@
     <ClInclude Include="ui_animationwidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui_boxcolliderwidget.h">
+    <ClInclude Include="ui_meshwidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="ui_padeditor.h">
@@ -138,7 +138,7 @@
     <QtUic Include="animationwidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="boxcolliderwidget.ui">
+    <QtUic Include="meshwidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="padeditor.ui">

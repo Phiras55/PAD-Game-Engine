@@ -1377,6 +1377,8 @@ public:
         sizePolicy.setHeightForWidth(val_Rot_X->sizePolicy().hasHeightForWidth());
         val_Rot_X->setSizePolicy(sizePolicy);
         val_Rot_X->setFocusPolicy(Qt::ClickFocus);
+        val_Rot_X->setMinimum(-1.67772e+7);
+        val_Rot_X->setMaximum(1.67772e+7);
 
         Rot_X->addWidget(val_Rot_X);
 
@@ -1401,6 +1403,8 @@ public:
         sizePolicy.setHeightForWidth(val_Rot_Y->sizePolicy().hasHeightForWidth());
         val_Rot_Y->setSizePolicy(sizePolicy);
         val_Rot_Y->setFocusPolicy(Qt::ClickFocus);
+        val_Rot_Y->setMinimum(-1.67772e+7);
+        val_Rot_Y->setMaximum(1.67772e+7);
 
         Rot_Y->addWidget(val_Rot_Y);
 
@@ -1425,6 +1429,8 @@ public:
         sizePolicy.setHeightForWidth(val_Rot_Z->sizePolicy().hasHeightForWidth());
         val_Rot_Z->setSizePolicy(sizePolicy);
         val_Rot_Z->setFocusPolicy(Qt::ClickFocus);
+        val_Rot_Z->setMinimum(-1.67772e+7);
+        val_Rot_Z->setMaximum(1.67772e+7);
 
         Rot_Z->addWidget(val_Rot_Z);
 
@@ -1464,6 +1470,8 @@ public:
         sizePolicy.setHeightForWidth(val_Scale_X->sizePolicy().hasHeightForWidth());
         val_Scale_X->setSizePolicy(sizePolicy);
         val_Scale_X->setFocusPolicy(Qt::ClickFocus);
+        val_Scale_X->setMinimum(-1.67772e+7);
+        val_Scale_X->setMaximum(1.67772e+7);
 
         Scale_X->addWidget(val_Scale_X);
 
@@ -1488,6 +1496,8 @@ public:
         sizePolicy.setHeightForWidth(val_Scale_Y->sizePolicy().hasHeightForWidth());
         val_Scale_Y->setSizePolicy(sizePolicy);
         val_Scale_Y->setFocusPolicy(Qt::ClickFocus);
+        val_Scale_Y->setMinimum(-1.67772e+7);
+        val_Scale_Y->setMaximum(1.67772e+7);
 
         Scale_Y->addWidget(val_Scale_Y);
 
@@ -1512,6 +1522,8 @@ public:
         sizePolicy.setHeightForWidth(val_Scale_Z->sizePolicy().hasHeightForWidth());
         val_Scale_Z->setSizePolicy(sizePolicy);
         val_Scale_Z->setFocusPolicy(Qt::ClickFocus);
+        val_Scale_Z->setMinimum(-1.67772e+7);
+        val_Scale_Z->setMaximum(1.67772e+7);
 
         Scale_Z->addWidget(val_Scale_Z);
 
@@ -1551,6 +1563,8 @@ public:
         sizePolicy.setHeightForWidth(val_Pos_X->sizePolicy().hasHeightForWidth());
         val_Pos_X->setSizePolicy(sizePolicy);
         val_Pos_X->setFocusPolicy(Qt::ClickFocus);
+        val_Pos_X->setMinimum(-1.67772e+7);
+        val_Pos_X->setMaximum(1.67772e+7);
 
         Pos_X->addWidget(val_Pos_X);
 
@@ -1575,6 +1589,8 @@ public:
         sizePolicy.setHeightForWidth(val_Pos_Y->sizePolicy().hasHeightForWidth());
         val_Pos_Y->setSizePolicy(sizePolicy);
         val_Pos_Y->setFocusPolicy(Qt::ClickFocus);
+        val_Pos_Y->setMinimum(-1.67772e+7);
+        val_Pos_Y->setMaximum(1.67772e+7);
 
         Pos_Y->addWidget(val_Pos_Y);
 
@@ -1599,6 +1615,8 @@ public:
         sizePolicy.setHeightForWidth(val_Pos_Z->sizePolicy().hasHeightForWidth());
         val_Pos_Z->setSizePolicy(sizePolicy);
         val_Pos_Z->setFocusPolicy(Qt::ClickFocus);
+        val_Pos_Z->setMinimum(-1.67772e+7);
+        val_Pos_Z->setMaximum(1.67772e+7);
 
         Pos_Z->addWidget(val_Pos_Z);
 

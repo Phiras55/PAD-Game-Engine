@@ -1445,13 +1445,6 @@ QDateEdit::down-arrow:focus {
          <property name="bottomMargin">
           <number>0</number>
          </property>
-         <item row="0" column="0">
-          <layout class="QGridLayout" name="InspecContent">
-           <property name="spacing">
-            <number>0</number>
-           </property>
-          </layout>
-         </item>
          <item row="1" column="0">
           <spacer name="verticalSpacer">
            <property name="orientation">
@@ -1464,6 +1457,13 @@ QDateEdit::down-arrow:focus {
             </size>
            </property>
           </spacer>
+         </item>
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="InspecContent">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+          </layout>
          </item>
         </layout>
        </widget>

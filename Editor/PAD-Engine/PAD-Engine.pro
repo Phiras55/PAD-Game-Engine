@@ -55,19 +55,19 @@ SOURCES += \
     padeditor.cpp \
     transformwidget.cpp \
     padobjectwidget.cpp \
-    boxcolliderwidget.cpp \
     sceneview.cpp \
-    animationwidget.cpp
+    animationwidget.cpp \
+    meshwidget.cpp
 
 HEADERS += \
     padeditor.h                                         \
     glwidget.h											\
     transformwidget.h									\
     padobjectwidget.h									\
-    boxcolliderwidget.h									\
     sceneview.h											\
     scenenode.h \		#									\
-    animationwidget.h
+    animationwidget.h \
+    meshwidget.h
     #"$$HEADERPATH/Pad Engine/System/ECS/PadObject.h"
 
 
@@ -78,9 +78,8 @@ FORMS += \
         padeditor.ui \
         transformwidget.ui \
         padobjectwidget.ui \
-        boxcolliderwidget.ui \
     animationwidget.ui \
-    meshrendererwidget.ui
+    meshwidget.ui
 
 LIBS += \
         "$$LIBPATH/PAD Engine.lib"\

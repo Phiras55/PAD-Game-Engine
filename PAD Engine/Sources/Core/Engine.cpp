@@ -76,11 +76,11 @@ void Engine::StartSimulation()
 
 	while (m_highLevelRenderer.IsWindowOpen())
 	{
-		Simulate();
+		Simulate(true);
 	}
 }
 
-void Engine::Simulate()
+void Engine::Simulate(bool _stepPhys)
 {
 	core::EngineClock::Update();
 	PollEvents();
@@ -88,7 +88,7 @@ void Engine::Simulate()
 
 	Update();
 
-	if (m_fixedUpdateTimer.GetDuration() >= (1.f / 60.f))
+	if (_stepPhys && m_fixedUpdateTimer.GetDuration() >= (1.f / 60.f))
 	{
 		m_fixedUpdateTimer.Reset();
 		FixedUpdate();

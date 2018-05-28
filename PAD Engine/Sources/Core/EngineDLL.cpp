@@ -44,10 +44,10 @@ void StartSimulation()
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
-void Simulate()
+void Simulate(bool _stepPhys)
 {
 	if (g_engine)
-		g_engine->Simulate();
+		g_engine->Simulate(_stepPhys);
 	else
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }

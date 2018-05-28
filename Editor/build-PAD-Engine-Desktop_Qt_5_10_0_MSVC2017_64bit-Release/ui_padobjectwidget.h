@@ -50,13 +50,13 @@ public:
     {
         if (PADObjectWidget->objectName().isEmpty())
             PADObjectWidget->setObjectName(QStringLiteral("PADObjectWidget"));
-        PADObjectWidget->resize(247, 94);
+        PADObjectWidget->resize(255, 94);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(PADObjectWidget->sizePolicy().hasHeightForWidth());
         PADObjectWidget->setSizePolicy(sizePolicy);
-        PADObjectWidget->setMinimumSize(QSize(247, 94));
+        PADObjectWidget->setMinimumSize(QSize(255, 94));
         PADObjectWidget->setMaximumSize(QSize(16777215, 94));
         PADObjectWidget->setStyleSheet(QLatin1String("QToolTip {\n"
 "    border: 1px solid #76797C;\n"

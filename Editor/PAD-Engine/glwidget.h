@@ -28,6 +28,9 @@ public:
     ~GLWidget()
     {
     }
+public:
+    bool stepPhys = false;
+
 private:
     QTimer* timer;
     int loop = 0;
@@ -38,13 +41,13 @@ public:
 public slots:
     inline void Update()
     {
-        pad::Simulate();
+        pad::Simulate(stepPhys);
         update();
     }
 private:
     inline void paintGL() override
     {
-        pad::Simulate();
+        pad::Simulate(stepPhys);
     }
     inline void resizeGL(int w, int h) override
     {

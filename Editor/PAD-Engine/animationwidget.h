@@ -15,10 +15,20 @@ public:
     explicit AnimationWidget(QWidget *parent = 0);
     ~AnimationWidget();
 
-private slots:
-    void on_AnimationWidget_customContextMenuRequested(const QPoint &pos);
+Q_SIGNALS:
+    void updated();
 
-private:
+private slots:
+    void on_meshEdit_editingFinished();
+    void on_materialEdit_editingFinished();
+    void on_animEdit_editingFinished();
+    void on_skeletonEdit_editingFinished();
+
+    void on_speedEdit_editingFinished();
+
+    void on_Loop_stateChanged(int arg1);
+
+public:
     Ui::AnimationWidget *ui;
 };
 

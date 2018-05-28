@@ -38,7 +38,7 @@ private:
 public:
 	void InitSimulation(const gfx::rhi::ContextSettings& _c, const gfx::win::WindowSettings& _w);			/*! Initialize the simulation. Reads the config files and initialize the renderer and the window. */
 	void StartSimulation();																					/*! Starts the simulation with the parameters given in InitSimulation method. */
-	void Simulate();
+	void Simulate(bool _stepPhys);
 	void SaveCurrentScene(const std::string& _savePath);
 	void LoadScene(const std::string& _savePath);
 

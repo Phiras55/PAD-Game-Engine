@@ -55,8 +55,8 @@ public:
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QGridLayout *gridLayout_7;
-    QGridLayout *InspecContent;
     QSpacerItem *verticalSpacer;
+    QGridLayout *InspecContent;
     QDockWidget *Project_View;
     QWidget *Project_View_Content;
     QGridLayout *gridLayout_2;
@@ -1410,15 +1410,15 @@ public:
         gridLayout_7->setContentsMargins(11, 11, 11, 11);
         gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
         gridLayout_7->setContentsMargins(0, 0, 0, 0);
+        verticalSpacer = new QSpacerItem(20, 354, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_7->addItem(verticalSpacer, 1, 0, 1, 1);
+
         InspecContent = new QGridLayout();
         InspecContent->setSpacing(0);
         InspecContent->setObjectName(QStringLiteral("InspecContent"));
 
         gridLayout_7->addLayout(InspecContent, 0, 0, 1, 1);
-
-        verticalSpacer = new QSpacerItem(20, 354, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_7->addItem(verticalSpacer, 1, 0, 1, 1);
 
         scrollArea->setWidget(scrollAreaWidgetContents);
 

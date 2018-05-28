@@ -10,6 +10,8 @@
 
 #include "ui_padobjectwidget.h"
 #include "ui_transformwidget.h"
+#include "ui_meshwidget.h"
+#include "ui_animationwidget.h"
 #include <Math/Vector4.h>
 
 PADEditor::PADEditor(QWidget *parent) :
@@ -34,9 +36,9 @@ PADEditor::PADEditor(QWidget *parent) :
 
     FileModel = new QFileSystemModel(this);
     FileModel->setFilter(QDir::NoDotAndDotDot | QDir::Files);
-    FileModel->setRootPath(contentPath);
     ui->projectListView->setModel(FileModel);
     ui->projectListView->setRootIndex(FileModel->setRootPath(contentPath));
+
    // ui->projectListView->
 
     ui->projectTreeView->setColumnHidden(1, true);
@@ -47,9 +49,17 @@ PADEditor::PADEditor(QWidget *parent) :
 //Inspector
     padWidget = new PADObjectWidget();
     transformWidget = new TransformWidget();
+    meshWidget = new MeshWidget();
+    animWidget = new AnimationWidget();
+
+    animWidget->hide();
+    meshWidget->hide();
 
     ui->InspecContent->layout()->addWidget(padWidget);
     ui->InspecContent->layout()->addWidget(transformWidget);
+    ui->InspecContent->layout()->addWidget(meshWidget);
+    ui->InspecContent->layout()->addWidget(animWidget);
+
 
 
 //Hierarchy
@@ -60,6 +70,11 @@ PADEditor::PADEditor(QWidget *parent) :
 
     connect(padWidget, SIGNAL(updated()), this, SLOT(UpdateCurrentItem()));
     connect(transformWidget, SIGNAL(updated()), this, SLOT(UpdateCurrentItem()));
+
+    connect(meshWidget, SIGNAL(updated()), this, SLOT(UpdateCurrentMesh()));
+    connect(animWidget, SIGNAL(updated()), this, SLOT(UpdateCurrentMesh()));
+
+
 
 
 //FocusPolicy
@@ -96,19 +111,44 @@ void PADEditor::on_actionAdd_Pad_Object_triggered()
 
 void PADEditor::updateInspector()
 {
-    padWidget->ui->nameEdit->setText(sceneView->currentObject->GetName().c_str());
+    pad::sys::ecs::PADObject* obj = sceneView->currentObject;
+    padWidget->ui->nameEdit->setText(obj->GetName().c_str());
 
-    transformWidget->ui->val_Pos_X->setValue(sceneView->currentObject->GetTransform().Position().x);
-    transformWidget->ui->val_Pos_Y->setValue(sceneView->currentObject->GetTransform().Position().y);
-    transformWidget->ui->val_Pos_Z->setValue(sceneView->currentObject->GetTransform().Position().z);
+    transformWidget->ui->val_Pos_X->setValue(obj->GetTransform().Position().x);
+    transformWidget->ui->val_Pos_Y->setValue(obj->GetTransform().Position().y);
+    transformWidget->ui->val_Pos_Z->setValue(obj->GetTransform().Position().z);
 
-    transformWidget->ui->val_Rot_X->setValue(sceneView->currentObject->GetTransform().Rotation().x);
-    transformWidget->ui->val_Rot_Y->setValue(sceneView->currentObject->GetTransform().Rotation().y);
-    transformWidget->ui->val_Rot_Z->setValue(sceneView->currentObject->GetTransform().Rotation().z);
+    transformWidget->ui->val_Rot_X->setValue(obj->GetTransform().Rotation().x);
+    transformWidget->ui->val_Rot_Y->setValue(obj->GetTransform().Rotation().y);
+    transformWidget->ui->val_Rot_Z->setValue(obj->GetTransform().Rotation().z);
 
-    transformWidget->ui->val_Scale_X->setValue(sceneView->currentObject->GetTransform().Scale().x);
-    transformWidget->ui->val_Scale_Y->setValue(sceneView->currentObject->GetTransform().Scale().y);
-    transformWidget->ui->val_Scale_Z->setValue(sceneView->currentObject->GetTransform().Scale().z);
+    transformWidget->ui->val_Scale_X->setValue(obj->GetTransform().Scale().x);
+    transformWidget->ui->val_Scale_Y->setValue(obj->GetTransform().Scale().y);
+    transformWidget->ui->val_Scale_Z->setValue(obj->GetTransform().Scale().z);
+
+    animWidget->hide();
+    meshWidget->hide();
+
+    pad::sys::ecs::MeshRenderer* mr = obj->GetComponent<pad::sys::ecs::MeshRenderer>();
+    pad::sys::ecs::AnimRenderer* ar = obj->GetComponent<pad::sys::ecs::AnimRenderer>();
+
+    if (mr)
+    {
+        meshWidget->show();
+
+        meshWidget->ui->meshEdit->setText(mr->GetMeshName().c_str());
+        meshWidget->ui->materialEdit->setText(mr->GetMaterialName().c_str());
+    }
+    else if (ar)
+    {
+        animWidget->show();
+
+        animWidget->ui->meshEdit->setText(ar->GetMeshName().c_str());
+        animWidget->ui->materialEdit->setText(ar->GetMaterialName().c_str());
+        animWidget->ui->animEdit->setText(ar->GetAnimName().c_str());
+        animWidget->ui->speedEdit->setValue(ar->GetAnimSpeed());
+        animWidget->ui->Loop->setChecked(ar->GetLoop());
+    }
 
 }
 
@@ -131,5 +171,27 @@ void PADEditor::UpdateCurrentItem()
     sceneView->currentObject->GetTransform().SetPosition(pos);
     sceneView->currentObject->GetTransform().SetRotation(rot);
     sceneView->currentObject->GetTransform().SetScale(scale);
+
+}
+
+void PADEditor::UpdateCurrentMesh()
+{
+    pad::sys::ecs::PADObject* obj = sceneView->currentObject;
+    pad::sys::ecs::MeshRenderer* mr = obj->GetComponent<pad::sys::ecs::MeshRenderer>();
+    pad::sys::ecs::AnimRenderer* ar = obj->GetComponent<pad::sys::ecs::AnimRenderer>();
+    if (mr)
+    {
+        mr->SetMeshName(meshWidget->ui->meshEdit->text().toLatin1().constData());
+        mr->SetMaterialName(meshWidget->ui->materialEdit->text().toLatin1().constData());
+    }
+    else if (ar)
+    {
+        ar->SetMeshName(animWidget->ui->meshEdit->text().toLatin1().constData());
+        ar->SetMaterialName(animWidget->ui->materialEdit->text().toLatin1().constData());
+        ar->SetAnim(animWidget->ui->animEdit->text().toLatin1().constData());
+        ar->SetAnimSpeed(animWidget->ui->speedEdit->value());
+        ar->SetLoop(animWidget->ui->Loop->isChecked());
+    }
+
 
 }

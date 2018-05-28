@@ -8,6 +8,8 @@
 #include <sceneview.h>
 #include "transformwidget.h"
 #include "padobjectwidget.h"
+#include "animationwidget.h"
+#include "meshwidget.h"
 
 namespace Ui {
 class PADEditor;
@@ -32,6 +34,7 @@ private slots:
     void updateInspector();
 
     void UpdateCurrentItem();
+    void UpdateCurrentMesh();
 
 private:
     Ui::PADEditor *ui;
@@ -45,6 +48,8 @@ private:
 
     PADObjectWidget* padWidget;
     TransformWidget* transformWidget;
+    MeshWidget* meshWidget;
+    AnimationWidget* animWidget;
 
 };
 

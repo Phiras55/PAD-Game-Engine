@@ -138,6 +138,8 @@ int main(int argc, char *argv[])
 
     pad::StartSimulation();
 
+    w.PostEngineInit();
+
     a.exec();
     return pad::DestroyEngine();;
 }

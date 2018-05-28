@@ -79,7 +79,8 @@ FORMS += \
         transformwidget.ui \
         padobjectwidget.ui \
         boxcolliderwidget.ui \
-    animationwidget.ui
+    animationwidget.ui \
+    meshrendererwidget.ui
 
 LIBS += \
         "$$LIBPATH/PAD Engine.lib"\

@@ -17,17 +17,17 @@ public:
 
     Ui::TransformWidget *ui;
 private slots:
-    void on_val_Pos_X_valueChanged(double arg1);
-    void on_val_Pos_Y_valueChanged(double arg1);
-    void on_val_Pos_Z_valueChanged(double arg1);
+    void on_val_Pos_X_editingFinished();
+    void on_val_Pos_Y_editingFinished();
+    void on_val_Pos_Z_editingFinished();
 
-    void on_val_Rot_X_valueChanged(double arg1);
-    void on_val_Rot_Y_valueChanged(double arg1);
-    void on_val_Rot_Z_valueChanged(double arg1);
+    void on_val_Rot_X_editingFinished();
+    void on_val_Rot_Y_editingFinished();
+    void on_val_Rot_Z_editingFinished();
 
-    void on_val_Scale_X_valueChanged(double arg1);
-    void on_val_Scale_Y_valueChanged(double arg1);
-    void on_val_Scale_Z_valueChanged(double arg1);
+    void on_val_Scale_X_editingFinished();
+    void on_val_Scale_Y_editingFinished();
+    void on_val_Scale_Z_editingFinished();
 
 Q_SIGNALS:
     void updated();

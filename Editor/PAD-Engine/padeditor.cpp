@@ -72,6 +72,11 @@ PADEditor::~PADEditor()
     delete ui;
 }
 
+void PADEditor::PostEngineInit()
+{
+    sceneView->ParseScene();
+}
+
 void PADEditor::on_projectTreeView_clicked(const QModelIndex &index)
 {
     ui->projectListView->setRootIndex(FileModel->setRootPath(DirModel->fileInfo(index).absoluteFilePath()));

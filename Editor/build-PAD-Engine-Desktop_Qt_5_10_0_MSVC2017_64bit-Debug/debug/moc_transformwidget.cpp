@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_TransformWidget_t {
-    QByteArrayData data[13];
-    char stringdata0[270];
+    QByteArrayData data[12];
+    char stringdata0[292];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,28 +34,27 @@ static const qt_meta_stringdata_TransformWidget_t qt_meta_stringdata_TransformWi
 QT_MOC_LITERAL(0, 0, 15), // "TransformWidget"
 QT_MOC_LITERAL(1, 16, 7), // "updated"
 QT_MOC_LITERAL(2, 24, 0), // ""
-QT_MOC_LITERAL(3, 25, 25), // "on_val_Pos_X_valueChanged"
-QT_MOC_LITERAL(4, 51, 4), // "arg1"
-QT_MOC_LITERAL(5, 56, 25), // "on_val_Pos_Y_valueChanged"
-QT_MOC_LITERAL(6, 82, 25), // "on_val_Pos_Z_valueChanged"
-QT_MOC_LITERAL(7, 108, 25), // "on_val_Rot_X_valueChanged"
-QT_MOC_LITERAL(8, 134, 25), // "on_val_Rot_Y_valueChanged"
-QT_MOC_LITERAL(9, 160, 25), // "on_val_Rot_Z_valueChanged"
-QT_MOC_LITERAL(10, 186, 27), // "on_val_Scale_X_valueChanged"
-QT_MOC_LITERAL(11, 214, 27), // "on_val_Scale_Y_valueChanged"
-QT_MOC_LITERAL(12, 242, 27) // "on_val_Scale_Z_valueChanged"
+QT_MOC_LITERAL(3, 25, 28), // "on_val_Pos_X_editingFinished"
+QT_MOC_LITERAL(4, 54, 28), // "on_val_Pos_Y_editingFinished"
+QT_MOC_LITERAL(5, 83, 28), // "on_val_Pos_Z_editingFinished"
+QT_MOC_LITERAL(6, 112, 28), // "on_val_Rot_X_editingFinished"
+QT_MOC_LITERAL(7, 141, 28), // "on_val_Rot_Y_editingFinished"
+QT_MOC_LITERAL(8, 170, 28), // "on_val_Rot_Z_editingFinished"
+QT_MOC_LITERAL(9, 199, 30), // "on_val_Scale_X_editingFinished"
+QT_MOC_LITERAL(10, 230, 30), // "on_val_Scale_Y_editingFinished"
+QT_MOC_LITERAL(11, 261, 30) // "on_val_Scale_Z_editingFinished"
 
     },
     "TransformWidget\0updated\0\0"
-    "on_val_Pos_X_valueChanged\0arg1\0"
-    "on_val_Pos_Y_valueChanged\0"
-    "on_val_Pos_Z_valueChanged\0"
-    "on_val_Rot_X_valueChanged\0"
-    "on_val_Rot_Y_valueChanged\0"
-    "on_val_Rot_Z_valueChanged\0"
-    "on_val_Scale_X_valueChanged\0"
-    "on_val_Scale_Y_valueChanged\0"
-    "on_val_Scale_Z_valueChanged"
+    "on_val_Pos_X_editingFinished\0"
+    "on_val_Pos_Y_editingFinished\0"
+    "on_val_Pos_Z_editingFinished\0"
+    "on_val_Rot_X_editingFinished\0"
+    "on_val_Rot_Y_editingFinished\0"
+    "on_val_Rot_Z_editingFinished\0"
+    "on_val_Scale_X_editingFinished\0"
+    "on_val_Scale_Y_editingFinished\0"
+    "on_val_Scale_Z_editingFinished"
 };
 #undef QT_MOC_LITERAL
 
@@ -76,29 +75,29 @@ static const uint qt_meta_data_TransformWidget[] = {
        1,    0,   64,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    1,   65,    2, 0x08 /* Private */,
-       5,    1,   68,    2, 0x08 /* Private */,
-       6,    1,   71,    2, 0x08 /* Private */,
-       7,    1,   74,    2, 0x08 /* Private */,
-       8,    1,   77,    2, 0x08 /* Private */,
-       9,    1,   80,    2, 0x08 /* Private */,
-      10,    1,   83,    2, 0x08 /* Private */,
-      11,    1,   86,    2, 0x08 /* Private */,
-      12,    1,   89,    2, 0x08 /* Private */,
+       3,    0,   65,    2, 0x08 /* Private */,
+       4,    0,   66,    2, 0x08 /* Private */,
+       5,    0,   67,    2, 0x08 /* Private */,
+       6,    0,   68,    2, 0x08 /* Private */,
+       7,    0,   69,    2, 0x08 /* Private */,
+       8,    0,   70,    2, 0x08 /* Private */,
+       9,    0,   71,    2, 0x08 /* Private */,
+      10,    0,   72,    2, 0x08 /* Private */,
+      11,    0,   73,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::Double,    4,
-    QMetaType::Void, QMetaType::Double,    4,
-    QMetaType::Void, QMetaType::Double,    4,
-    QMetaType::Void, QMetaType::Double,    4,
-    QMetaType::Void, QMetaType::Double,    4,
-    QMetaType::Void, QMetaType::Double,    4,
-    QMetaType::Void, QMetaType::Double,    4,
-    QMetaType::Void, QMetaType::Double,    4,
-    QMetaType::Void, QMetaType::Double,    4,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -110,15 +109,15 @@ void TransformWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->updated(); break;
-        case 1: _t->on_val_Pos_X_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 2: _t->on_val_Pos_Y_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 3: _t->on_val_Pos_Z_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 4: _t->on_val_Rot_X_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 5: _t->on_val_Rot_Y_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 6: _t->on_val_Rot_Z_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 7: _t->on_val_Scale_X_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 8: _t->on_val_Scale_Y_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 9: _t->on_val_Scale_Z_valueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 1: _t->on_val_Pos_X_editingFinished(); break;
+        case 2: _t->on_val_Pos_Y_editingFinished(); break;
+        case 3: _t->on_val_Pos_Z_editingFinished(); break;
+        case 4: _t->on_val_Rot_X_editingFinished(); break;
+        case 5: _t->on_val_Rot_Y_editingFinished(); break;
+        case 6: _t->on_val_Rot_Z_editingFinished(); break;
+        case 7: _t->on_val_Scale_X_editingFinished(); break;
+        case 8: _t->on_val_Scale_Y_editingFinished(); break;
+        case 9: _t->on_val_Scale_Z_editingFinished(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -131,6 +130,7 @@ void TransformWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
             }
         }
     }
+    Q_UNUSED(_a);
 }
 
 const QMetaObject TransformWidget::staticMetaObject = {

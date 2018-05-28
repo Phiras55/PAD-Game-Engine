@@ -12,13 +12,14 @@ public:
     pad::sys::ecs::PADObject* currentObject;
 
     SceneView(QWidget* parent = nullptr);
-    void AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after = nullptr);
+    SceneNode* AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after = nullptr);
     void keyPressEvent(QKeyEvent *event) override;
     void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
 
-private:
     void ParseScene();
-    void ParseObj();
+
+private:
+    void ParseObj(SceneNode* parent = nullptr);
 
 private slots:
     void SetSelectedAsCurrent();

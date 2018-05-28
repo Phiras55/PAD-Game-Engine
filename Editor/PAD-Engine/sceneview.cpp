@@ -16,7 +16,7 @@ SceneView::SceneView(QWidget *parent) :
     connect(this, SIGNAL(itemSelectionChanged()), this, SLOT(SetSelectedAsCurrent()));
 }
 
-void SceneView::AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after)
+SceneNode* SceneView::AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after)
 {
     SceneNode* current;
     if(after)
@@ -29,7 +29,8 @@ void SceneView::AddObject(pad::sys::ecs::PADObject* obj, SceneNode* after)
     current->setFlags(current->flags() |
                       Qt::ItemIsEditable | Qt::ItemIsEnabled
                       | Qt::ItemIsSelectable);
-    current->setText(0, "Pad Object");
+    current->setText(0, obj->GetName().c_str());
+    return current;
 }
 
 void SceneView::currentChanged(const QModelIndex &current, const QModelIndex &previous)
@@ -65,11 +66,20 @@ void SceneView::ParseScene()
 {
     pad::sys::ecs::Scene* sc = pad::GetScene();
     std::list<pad::sys::ecs::PADObject*> objs = sc->GetMasterObject()->GetChildren();
-
-    for (int i = 0; i < objs.size(); ++i)
+    auto i = objs.begin();
+    for (pad::sys::ecs::PADObject* const obj:objs)
     {
-        AddObject(objs[i]);
+        SceneNode* current = AddObject(obj);
+        ParseObj(current);
     }
-
 }
 
+void SceneView::ParseObj(SceneNode* parent)
+{
+    std::list<pad::sys::ecs::PADObject*> objs = parent->obj->GetChildren();
+    for (pad::sys::ecs::PADObject* const obj:objs)
+    {
+        SceneNode* current = AddObject(obj, parent);
+        ParseObj(current);
+    }
+}

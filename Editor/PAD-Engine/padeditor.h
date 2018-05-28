@@ -21,6 +21,8 @@ public:
     explicit PADEditor(QWidget *parent = 0);
     ~PADEditor();
 
+    void PostEngineInit();
+
 private slots:
     void on_projectTreeView_clicked(const QModelIndex &index);
     void on_projectListView_doubleClicked(const QModelIndex &index);

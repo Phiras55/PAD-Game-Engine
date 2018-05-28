@@ -29,26 +29,11 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QFile f(":qdarkstyle/style.qss");
-    if (!f.exists())
-    {
-        printf("Unable to set stylesheet, file not found\n");
-    }
-    else
-    {
-        f.open(QFile::ReadOnly | QFile::Text);
-        QTextStream ts(&f);
-        qApp->setStyleSheet(ts.readAll());
-    }
-    PADEditor w;
-    w.show();
-    pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
-
     #pragma region RenderInit
 
     pad::gfx::win::WindowSettings winSettings;
 
-    winSettings.title			= "This is a SDL Window.";
+    winSettings.title			= "This is a QT Window.";
     winSettings.position.x		= 0u;
     winSettings.position.y		= 30u;
     winSettings.size.x			= 1600u;
@@ -72,6 +57,22 @@ int main(int argc, char *argv[])
     contextSettings.enabledBuffers		= pad::gfx::rhi::BufferType::ALL;
 
     #pragma endregion
+
+
+    QFile f(":qdarkstyle/style.qss");
+    if (!f.exists())
+    {
+        printf("Unable to set stylesheet, file not found\n");
+    }
+    else
+    {
+        f.open(QFile::ReadOnly | QFile::Text);
+        QTextStream ts(&f);
+        qApp->setStyleSheet(ts.readAll());
+    }
+    PADEditor w;
+    w.show();
+    //pad::parser::ParseFile("../Resources/FBX/GiantSpider.fbx", "../Resources/PADFormat/");
 
     pad::CreateEngine();
     pad::InitEngine(contextSettings, winSettings);
@@ -121,9 +122,9 @@ int main(int argc, char *argv[])
         cube->AddComponent<pad::sys::ecs::BoxCollider>(pad::math::Vec3f(1.f, 1.f, 1.f));
         cube->AddComponent<pad::sys::ecs::RigidBody>();
 
-        cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnim("creature_giantspider_giantspider_Run [1]");
+        cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnim("creature_giantspider_giantspider_Death [6]");
         cube->GetComponent<pad::sys::ecs::AnimRenderer>()->GetSettings().isAffectedByLight = true;
-        cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnimSpeed(3);
+        cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetAnimSpeed(1);
         cube->GetComponent<pad::sys::ecs::AnimRenderer>()->SetLoop(true);
 
         rb = cube->GetComponent<pad::sys::ecs::RigidBody>();
@@ -136,6 +137,7 @@ int main(int argc, char *argv[])
     grid->GetTransform().SetScale(100.f);
 
     pad::StartSimulation();
+
     a.exec();
     return pad::DestroyEngine();;
 }

@@ -131,7 +131,7 @@ public:
 #pragma endregion
 
 #pragma region Getter / Setter
-
+public:
 	void SetParent(PADObject* const _parent);
 	inline PADObject* const GetParent() const			{ return m_parent; }
 

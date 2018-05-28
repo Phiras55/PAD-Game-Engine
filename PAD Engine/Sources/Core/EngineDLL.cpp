@@ -52,6 +52,11 @@ void Simulate()
 		LOG_ERROR_S("Error! Call CreateEngine() first.\n");
 }
 
+double DeltaTime()
+{
+	return pad::core::EngineClock::DeltaTime();
+}
+
 void MoveMainCamera(math::Vec3f& _translation)
 {
 	if (g_engine && g_engine->GetScene()) 
@@ -70,6 +75,19 @@ void SetMainCameraTarget(const math::Vec3f& _targetPosition)
 	{
 		sys::ecs::PerspectiveCamera* cam = g_engine->GetScene()->GetMainCamera();
 		cam->LookAt(cam->GetTransform().Position(), _targetPosition, math::Vec3f::Up());
+	}
+}
+
+void ResizeContext(unsigned int _x, unsigned int _y)
+{
+	if (g_engine && g_engine->GetScene())
+	{
+		pad::sys::ecs::PerspectiveCamera* cam = g_engine->GetScene()->GetMainCamera();
+		if (cam)
+		{
+			cam->Perspective(cam->GetFov(), (float)_x / (float)_y, cam->GetNear(), cam->GetFar());
+			//g_engine->GetRenderer().ResizeContext(_x, _y);
+		}
 	}
 }
 
@@ -223,6 +241,11 @@ void DeletePADObject(sys::ecs::PADObject* const _object)
 			}
 		}
 	}
+}
+
+ENGINE_API sys::ecs::Scene * const GetScene()
+{
+	return g_engine->GetScene();
 }
 
 }

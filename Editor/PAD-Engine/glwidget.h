@@ -48,7 +48,7 @@ private:
     }
     inline void resizeGL(int w, int h) override
     {
-
+        pad::ResizeContext(w, h);
     }
 };
 

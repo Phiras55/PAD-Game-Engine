@@ -57,6 +57,11 @@ const math::Mat4& PerspectiveCamera::Perspective(float v, float r, float n, floa
 {
 	float fovTan = tan(math::DegreeToRad(v) / 2.f);
 
+	fov = v;
+	aspectRatio = r;
+	near = n;
+	far = f;
+
 	_projectionMatrix[0][0] = 1.f / (fovTan * r);
 	_projectionMatrix[1][1] = 1.f / fovTan;
 	_projectionMatrix[2][2] = -(f + n) / (f - n);

@@ -16,8 +16,13 @@ public:
     explicit PADObjectWidget(QWidget *parent = 0);
     ~PADObjectWidget();
 
-private:
     Ui::PADObjectWidget *ui;
+private slots:
+    void on_nameEdit_textEdited(const QString &arg1);
+
+Q_SIGNALS:
+    void updated();
+
 };
 
 #endif // PADOBJECTWIDGET_H

@@ -6,6 +6,8 @@
 
 #include <glwidget.h>
 #include <sceneview.h>
+#include "transformwidget.h"
+#include "padobjectwidget.h"
 
 namespace Ui {
 class PADEditor;
@@ -27,6 +29,8 @@ private slots:
 
     void updateInspector();
 
+    void UpdateCurrentItem();
+
 private:
     Ui::PADEditor *ui;
 
@@ -36,6 +40,10 @@ private:
 
     QFileSystemModel* DirModel;
     QFileSystemModel* FileModel;
+
+    PADObjectWidget* padWidget;
+    TransformWidget* transformWidget;
+
 };
 
 #endif // PADEDITOR_H

@@ -2,6 +2,7 @@
 #include <System/ResourceHandling/ComponentsHandler.h>
 #include <Json/Serialization.h>
 #include <Utilities/Export.h>
+#include <bitset>
 
 namespace pad	{
 namespace sys	{
@@ -130,7 +131,7 @@ public:
 #pragma endregion
 
 #pragma region Getter / Setter
-
+public:
 	void SetParent(PADObject* const _parent);
 	inline PADObject* const GetParent() const			{ return m_parent; }
 

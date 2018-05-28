@@ -1,6 +1,4 @@
 #include "padeditor.h"
-#include "transformwidget.h"
-#include "padobjectwidget.h"
 #include "ui_padeditor.h"
 #include "Graphics/Model/Mesh.h"
 #include "sceneview.h"
@@ -8,6 +6,11 @@
 #include <PAD Engine/Core/EngineDLL.h>
 #include <PAD Engine/System/ECS/PADObject.h>
 
+#include <Math/Transform.h>
+
+#include "ui_padobjectwidget.h"
+#include "ui_transformwidget.h"
+#include <Math/Vector4.h>
 
 PADEditor::PADEditor(QWidget *parent) :
     QMainWindow(parent),
@@ -42,8 +45,11 @@ PADEditor::PADEditor(QWidget *parent) :
     ui->projectTreeView->header()->hide();
 
 //Inspector
-    ui->InspecContent->layout()->addWidget(new PADObjectWidget());
-    ui->InspecContent->layout()->addWidget(new TransformWidget());
+    padWidget = new PADObjectWidget();
+    transformWidget = new TransformWidget();
+
+    ui->InspecContent->layout()->addWidget(padWidget);
+    ui->InspecContent->layout()->addWidget(transformWidget);
 
 
 //Hierarchy
@@ -51,6 +57,9 @@ PADEditor::PADEditor(QWidget *parent) :
     ui->Hierarchy_Content->layout()->addWidget(sceneView);
 
     connect(sceneView, SIGNAL(itemSelectionChanged()), this, SLOT(updateInspector()));
+
+    connect(padWidget, SIGNAL(updated()), this, SLOT(UpdateCurrentItem()));
+    connect(transformWidget, SIGNAL(updated()), this, SLOT(UpdateCurrentItem()));
 
 
 //FocusPolicy
@@ -82,5 +91,40 @@ void PADEditor::on_actionAdd_Pad_Object_triggered()
 
 void PADEditor::updateInspector()
 {
+    padWidget->ui->nameEdit->setText(sceneView->currentObject->GetName().c_str());
+
+    transformWidget->ui->val_Pos_X->setValue(sceneView->currentObject->GetTransform().Position().x);
+    transformWidget->ui->val_Pos_Y->setValue(sceneView->currentObject->GetTransform().Position().y);
+    transformWidget->ui->val_Pos_Z->setValue(sceneView->currentObject->GetTransform().Position().z);
+
+    transformWidget->ui->val_Rot_X->setValue(sceneView->currentObject->GetTransform().Rotation().x);
+    transformWidget->ui->val_Rot_Y->setValue(sceneView->currentObject->GetTransform().Rotation().y);
+    transformWidget->ui->val_Rot_Z->setValue(sceneView->currentObject->GetTransform().Rotation().z);
+
+    transformWidget->ui->val_Scale_X->setValue(sceneView->currentObject->GetTransform().Scale().x);
+    transformWidget->ui->val_Scale_Y->setValue(sceneView->currentObject->GetTransform().Scale().y);
+    transformWidget->ui->val_Scale_Z->setValue(sceneView->currentObject->GetTransform().Scale().z);
+
+}
+
+void PADEditor::UpdateCurrentItem()
+{
+    sceneView->currentObject->SetName(padWidget->ui->nameEdit->text().toLatin1().constData());
+
+    pad::math::Vec3f pos(   transformWidget->ui->val_Pos_X->value(),
+                            transformWidget->ui->val_Pos_Y->value(),
+                            transformWidget->ui->val_Pos_Z->value());
+
+    pad::math::Vec3f rot(   transformWidget->ui->val_Rot_X->value(),
+                            transformWidget->ui->val_Rot_Y->value(),
+                            transformWidget->ui->val_Rot_Z->value());
+
+    pad::math::Vec3f scale( transformWidget->ui->val_Scale_X->value(),
+                            transformWidget->ui->val_Scale_Y->value(),
+                            transformWidget->ui->val_Scale_Z->value());
+
+    sceneView->currentObject->GetTransform().SetPosition(pos);
+    sceneView->currentObject->GetTransform().SetRotation(rot);
+    sceneView->currentObject->GetTransform().SetScale(scale);
 
 }

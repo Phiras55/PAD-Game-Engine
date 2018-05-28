@@ -22,6 +22,12 @@ public:
 	json Serialize()				override;
 	void Deserialize(const json& j)	override;
 
+	inline float GetFov()			{ return fov; }
+	inline float GetAspectRatio()	{ return aspectRatio; }
+	inline float GetNear()			{ return near; }
+	inline float GetFar()			{ return far; }
+
+
 public:
 	const math::Mat4& Perspective(float _fov, float _aspectRatio, float _near, float _far) override;
 	const math::Mat4& LookAt(const math::Vec3f& _eyePos, const math::Vec3f& _target, const math::Vec3f& _up) override;
@@ -35,6 +41,12 @@ public:
 
 private:
 	static alias::ComponentID m_id;
+
+private:
+	float fov;
+	float aspectRatio;
+	float near;
+	float far;
 };
 
 } // namespace ecs

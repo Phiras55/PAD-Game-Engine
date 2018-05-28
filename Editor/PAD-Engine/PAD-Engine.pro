@@ -11,9 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = PAD-Engine
 TEMPLATE = app
 
-
-QMAKE_CXXFLAGS *= /std:c++17
-
+QMAKE_CXXFLAGS += /std:c++17
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -58,7 +56,8 @@ SOURCES += \
     transformwidget.cpp \
     padobjectwidget.cpp \
     boxcolliderwidget.cpp \
-    sceneview.cpp
+    sceneview.cpp \
+    animationwidget.cpp
 
 HEADERS += \
     padeditor.h                                         \
@@ -67,7 +66,8 @@ HEADERS += \
     padobjectwidget.h									\
     boxcolliderwidget.h									\
     sceneview.h											\
-    scenenode.h		#									\
+    scenenode.h \		#									\
+    animationwidget.h
     #"$$HEADERPATH/Pad Engine/System/ECS/PadObject.h"
 
 
@@ -78,7 +78,8 @@ FORMS += \
         padeditor.ui \
         transformwidget.ui \
         padobjectwidget.ui \
-        boxcolliderwidget.ui
+        boxcolliderwidget.ui \
+    animationwidget.ui
 
 LIBS += \
         "$$LIBPATH/PAD Engine.lib"\
